@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Layout from "../components/layout";
-import Questions from "./javascript/questions";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
@@ -22,8 +21,13 @@ export default function Home({
         <title>Jaeung Kim</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Jaeung Kim</p>
-        <Questions></Questions>
+        <h2 className={utilStyles.headingLg}>JavaScript Basics</h2>
+        <ul className={utilStyles.list}>
+          <li className={utilStyles.listItem}>
+            <Link href={`/questions/basicQuestions`}>Basic Questions</Link>
+            <br />
+          </li>
+        </ul>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
