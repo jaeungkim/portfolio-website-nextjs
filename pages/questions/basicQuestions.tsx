@@ -9,7 +9,7 @@ function reverseString(givenString: string): String {
 }
 
 // QUESTION #2
-function question2(): String[] {
+function question2(): any {
   //Given an Object "Person" with following attributes
   const Person = {
     fName: "Kiwoon",
@@ -23,17 +23,17 @@ function question2(): String[] {
      fullName: "Kiwoon Jung",
    };
 
-  Due to the nature of javaScript, output given in html return might be off. Please try your best in outputting a solution (hint: use toString())
+  Due to the nature of javaScript, output given in html return might be off. Please try your best in outputting a solution (hint: use JSON.stringify())
   */
 
-  //WRITE YOUR CODE HERE
+  //WRITE YOUR CODE HERE SAMPLE OUTPUT = {"firstName":"Kiwoon","lastName":"Jung","fullName":"KiwoonJung"}
   return;
 }
 
 // QUESTION #3
-function question3(): String[] {
+function question3(): any {
   //Given an Object "Person" with following attributes
-  const Person = [
+  const People = [
     {
       fName: "Kiwoon",
       lName: "Jung",
@@ -59,15 +59,14 @@ function question3(): String[] {
      },
    ];
 
-  Due to the nature of javaScript, output given in html return might be off. Please try your best in outputting a solution (hint: use toString())
+  Due to the nature of javaScript, output given in html return might be off. Please try your best in outputting a solution (hint: use JSON.strinify())
   */
 
-  //WRITE YOUR CODE HERE
-  return;
+  //WRITE YOUR CODE HERE SAMPLE OUTPUT = [{"firstName":"Kiwoon","lastName":"Jung","fullName":"KiwoonJung"},{"firstName":"Jaeung","lastName":"Kim","fullName":"JaeungKim"}]
 }
 
 // QUESTION #4
-function question4(): String[] {
+function question4(): any {
   const library = [
     {
       author: "Bill Gates",
@@ -87,7 +86,6 @@ function question4(): String[] {
   ];
 
   //Write a function to return an array of author from library object arry  = ['Bill Gates', 'Steve Jobs', 'Suzanne Collins'];
-
   return;
 }
 
