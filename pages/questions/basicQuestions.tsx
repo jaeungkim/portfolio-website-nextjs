@@ -206,6 +206,7 @@ function question6(): any {
   // Main Question: Get the passengers' names using the data provided
   // Bonus Part (a)- Return vegetarians/vegans
   // Bonus Part (b)- Sort passengers by the number of connected flights in descending order
+  
   return;
 }
 
