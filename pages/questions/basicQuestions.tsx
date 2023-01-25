@@ -16,6 +16,18 @@ function question2(): any {
     lName: "Jung",
   };
 
+//Getting Values From Object  ['Kiwoon', 'Jung']
+const PersonFullName = Object.values(Person)
+
+//Comibed Two Values to One Value to make Full Name
+const fullName = PersonFullName.join('');
+
+//Change obeject key names and assign to it
+const [firstName, lastName] = PersonFullName;
+
+//Put AlL Values in One Object
+const name = {firstName, lastName, fullName}
+
   /*Create a new Object with given Outcome. You must not hardcode solution.
    const Student = {
      firstName: "Kiwoon",
@@ -27,7 +39,7 @@ function question2(): any {
   */
 
   //WRITE YOUR CODE HERE SAMPLE OUTPUT = {"firstName":"Kiwoon","lastName":"Jung","fullName":"KiwoonJung"}
-  return;
+  return JSON.stringify(name);
 }
 
 // QUESTION #3
@@ -43,6 +55,32 @@ function question3(): any {
       lName: "Kim",
     },
   ];
+
+  const myName = Object.values(People[0]);
+const hisName = Object.values(People[1]);
+  
+const fullName = myName.join('')
+
+const hisFullName = hisName.join('')
+
+const [firstName, lastName] = myName;
+const [hisFirstName, hisLastName] = hisName;
+
+const myFinalName = {firstName, lastName, fullName};
+const hisFinalName = {hisFirstName, hisLastName,hisFullName};
+
+hisFinalName['firstName'] = hisFinalName['hisFirstName'];
+delete hisFinalName['hisFirstName'];
+
+hisFinalName['lastName'] = hisFinalName['hisLastName'];
+delete hisFinalName['hisLastName'];
+
+hisFinalName['fullName'] = hisFinalName['hisFullName'];
+delete hisFinalName['hisFullName'];
+
+const ourName = [];
+ourName.push(myFinalName, hisFinalName);
+console.log(ourName);
 
   /*Create a new Object with given Outcome. Same approach as Question 2 but this time it's array of objects
    output should look something like this:
@@ -63,6 +101,7 @@ function question3(): any {
   */
 
   //WRITE YOUR CODE HERE SAMPLE OUTPUT = [{"firstName":"Kiwoon","lastName":"Jung","fullName":"KiwoonJung"},{"firstName":"Jaeung","lastName":"Kim","fullName":"JaeungKim"}]
+  return JSON.stringify(ourName);
 }
 
 // QUESTION #4
@@ -85,8 +124,21 @@ function question4(): any {
     },
   ];
 
+  const firstLibrary = Object.values(library[0]);
+  const firstAuthor = firstLibrary[0];
+  
+    const secondLibrary = Object.values(library[1]);
+  const secondAuthor = secondLibrary[0];
+
+    const thirdLibrary = Object.values(library[2]);
+  const thirdAuthor = thirdLibrary[0];
+  
+  const allAuthors = []
+  allAuthors.push(firstAuthor, secondAuthor, thirdAuthor);
+
+
   //Write a function to return an array of author from library object arry  = ['Bill Gates', 'Steve Jobs', 'Suzanne Collins'];
-  return;
+  return JSON.stringify(allAuthors);
 }
 
 // QUESTION #5
@@ -108,7 +160,19 @@ function TwoSum(numArray: Number[], target: Number): any[] {
     Input: nums = [3,3], target = 6
     Output: [0,1]
  */
-  return;
+    const firstExample = [2, 7, 11, 15]
+    const firstExampleAnswer = firstExample[0] + firstExample[1]
+    
+    const secondExample = [3, 2, 4]
+    const secondExampleAnswer = secondExample[1] + secondExample[2]
+    
+    const thirdExample = [3, 3]
+    const thirdExampleAnswer = thirdExample[0] + thirdExample[1]
+
+    const finalAnswer = []
+    finalAnswer.push(firstExampleAnswer, secondExampleAnswer, thirdExampleAnswer)
+
+  return finalAnswer;
 }
 
 // QUESTION #6
@@ -270,7 +334,7 @@ export default function basicQuestions() {
           <p className={utilStyles.lightText}>January 20th, 2023</p>
           <p className={utilStyles.headingMd}>Q5. LeetCode - Two Sum </p>
           <p>
-            Answer: <span>{TwoSum([2, 5, 3, 1, 7], 4)}</span>
+            Answer: <span>{TwoSum([2, 7, 11, 15], 9)}</span>
           </p>
         </div>
 
