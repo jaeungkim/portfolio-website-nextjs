@@ -189,6 +189,30 @@ function question8(): any {
 
   return;
 }
+
+// QUESTION #9 - Remove Vowels from a String
+function RemoveVowels(str: string): any {
+  //'leetcodeisfun' would return = 'ltcdsfn'
+
+  /* Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
+
+    Example 1:
+
+    Input: s = "leetcodeisacommunityforcoders"
+    Output: "ltcdscmmntyfrcdrs"
+    Example 2:
+
+    Input: s = "aeiou"
+    Output: ""
+
+    Constraints:
+
+    1 <= s.length <= 1000
+    s consists of only lowercase English letters.
+ */
+
+  return;
+}
 export default function basicQuestions() {
   return (
     <Layout>
@@ -282,6 +306,17 @@ export default function basicQuestions() {
             Answer: <span>{question8()}</span>
           </p>
         </div>
+      </div>
+
+      {/* QUESTION #9 */}
+      <div className={utilStyles.questionsDiv}>
+        <p className={utilStyles.lightText}>January 23rd, 2023</p>
+        <p className={utilStyles.headingMd}>
+          Q9. Remove Vowels from given string (Vowels are : a,e,i,o,u){" "}
+        </p>
+        <p>
+          Answer: <span>{RemoveVowels("leetcodeisfun")}</span>
+        </p>
       </div>
     </Layout>
   );
