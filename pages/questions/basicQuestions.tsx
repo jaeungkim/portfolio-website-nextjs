@@ -16,17 +16,11 @@ function question2(): any {
     lName: "Jung",
   };
 
-//Getting Values From Object  ['Kiwoon', 'Jung']
-const PersonFullName = Object.values(Person)
-
-//Comibed Two Values to One Value to make Full Name
-const fullName = PersonFullName.join('');
-
-//Change obeject key names and assign to it
-const [firstName, lastName] = PersonFullName;
-
-//Put AlL Values in One Object
-const name = {firstName, lastName, fullName}
+  const Student = {
+    firstName: Person.fName,
+    lastName: Person.lName,
+    fullName: Person.fName + Person.lName
+}
 
   /*Create a new Object with given Outcome. You must not hardcode solution.
    const Student = {
@@ -39,7 +33,7 @@ const name = {firstName, lastName, fullName}
   */
 
   //WRITE YOUR CODE HERE SAMPLE OUTPUT = {"firstName":"Kiwoon","lastName":"Jung","fullName":"KiwoonJung"}
-  return JSON.stringify(name);
+  return JSON.stringify(Student);
 }
 
 // QUESTION #3
@@ -56,31 +50,19 @@ function question3(): any {
     },
   ];
 
-  const myName = Object.values(People[0]);
-const hisName = Object.values(People[1]);
-  
-const fullName = myName.join('')
-
-const hisFullName = hisName.join('')
-
-const [firstName, lastName] = myName;
-const [hisFirstName, hisLastName] = hisName;
-
-const myFinalName = {firstName, lastName, fullName};
-const hisFinalName = {hisFirstName, hisLastName,hisFullName};
-
-hisFinalName['firstName'] = hisFinalName['hisFirstName'];
-delete hisFinalName['hisFirstName'];
-
-hisFinalName['lastName'] = hisFinalName['hisLastName'];
-delete hisFinalName['hisLastName'];
-
-hisFinalName['fullName'] = hisFinalName['hisFullName'];
-delete hisFinalName['hisFullName'];
-
-const ourName = [];
-ourName.push(myFinalName, hisFinalName);
-console.log(ourName);
+  const Students = 
+  [
+  {
+   firstName: People[0].fName,
+   lastName: People[0].lName,
+   fullName: `${People[0].fName} ${People[0].lName}`
+  },
+  {
+   firstName: People[1].fName,
+   lastName: People[1].lName,
+   fullName: `${People[1].fName} ${People[1].lName}`
+  }
+  ]
 
   /*Create a new Object with given Outcome. Same approach as Question 2 but this time it's array of objects
    output should look something like this:
@@ -101,7 +83,7 @@ console.log(ourName);
   */
 
   //WRITE YOUR CODE HERE SAMPLE OUTPUT = [{"firstName":"Kiwoon","lastName":"Jung","fullName":"KiwoonJung"},{"firstName":"Jaeung","lastName":"Kim","fullName":"JaeungKim"}]
-  return JSON.stringify(ourName);
+  return JSON.stringify(Students);
 }
 
 // QUESTION #4
@@ -124,21 +106,10 @@ function question4(): any {
     },
   ];
 
-  const firstLibrary = Object.values(library[0]);
-  const firstAuthor = firstLibrary[0];
-  
-    const secondLibrary = Object.values(library[1]);
-  const secondAuthor = secondLibrary[0];
-
-    const thirdLibrary = Object.values(library[2]);
-  const thirdAuthor = thirdLibrary[0];
-  
-  const allAuthors = []
-  allAuthors.push(firstAuthor, secondAuthor, thirdAuthor);
-
+  const author = library.map((book) => book.author)
 
   //Write a function to return an array of author from library object arry  = ['Bill Gates', 'Steve Jobs', 'Suzanne Collins'];
-  return JSON.stringify(allAuthors);
+  return JSON.stringify(author);
 }
 
 // QUESTION #5
@@ -160,19 +131,6 @@ function TwoSum(numArray: Number[], target: Number): any[] {
     Input: nums = [3,3], target = 6
     Output: [0,1]
  */
-    const firstExample = [2, 7, 11, 15]
-    const firstExampleAnswer = firstExample[0] + firstExample[1]
-    
-    const secondExample = [3, 2, 4]
-    const secondExampleAnswer = secondExample[1] + secondExample[2]
-    
-    const thirdExample = [3, 3]
-    const thirdExampleAnswer = thirdExample[0] + thirdExample[1]
-
-    const finalAnswer = []
-    finalAnswer.push(firstExampleAnswer, secondExampleAnswer, thirdExampleAnswer)
-
-  return finalAnswer;
 }
 
 // QUESTION #6
@@ -197,17 +155,27 @@ function question6(): any {
       connectedFlights: 3,
     },
     {
-      id: 3,
+      id: 4,
       passengerName: "Michael Jackson",
       isVegetarianOrVegan: true,
       connectedFlights: 1,
     },
   ];
+
+  const passengersName = passengers.map((passenger) => passenger.passengerName);
+
+  const vegetarianOrVegan = passengers.filter((passenger) => passenger.isVegetarianOrVegan === true);
+  
+  const descendingOrder =  passengers.sort((a, b) => a.connectedFlights - b.connectedFlights);
+
   // Main Question: Get the passengers' names using the data provided
   // Bonus Part (a)- Return vegetarians/vegans
   // Bonus Part (b)- Sort passengers by the number of connected flights in descending order
-  
-  return;
+
+  console.log(passengersName)
+  console.log(vegetarianOrVegan)
+  console.log(descendingOrder)
+
 }
 
 // QUESTION #7
@@ -244,6 +212,11 @@ function question8(): any {
     },
   ];
 
+  const books = friends.reduce(
+    (accumulator, currentValue) => [...accumulator, ...currentValue.books],
+    ["Alphabet"],
+  );
+
   /* Given an array of objects, output the following result using reduce function. or without javascript methods
   [
     'Alphabet', 'Bible', 'Harry Potter', 'War and peace',
@@ -252,7 +225,7 @@ function question8(): any {
   ]
  */
 
-  return;
+  return JSON.stringify(books);
 }
 
 // QUESTION #9 - Remove Vowels from a String
@@ -276,8 +249,17 @@ function RemoveVowels(str: string): any {
     s consists of only lowercase English letters.
  */
 
-  return;
+    function wordFilter (word) {
+      const output = word.split("").filter((el) => el !== 'a' && el !== 'e' &&el !== 'i' && el !== 'o' && el !== 'u').join("")
+      return output;
+  }
+  
+  const example1 = wordFilter("leetcodeisacommunityforcoders")
+  const example2 = wordFilter("aeiou")
+
+  return JSON.stringify(example1, example2)
 }
+
 export default function basicQuestions() {
   return (
     <Layout>
