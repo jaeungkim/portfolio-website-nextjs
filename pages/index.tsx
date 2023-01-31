@@ -26,6 +26,16 @@ export default function Home({
           <li className={utilStyles.listItem}>
             <Link href={`/questions/basicQuestions`}>Basic Questions</Link>
             <br />
+            <small className={utilStyles.lightText}>
+              <Date dateString={"2020-01-20"} />
+            </small>
+          </li>
+          <li className={utilStyles.listItem}>
+            <Link href={`/questions/febWeek1`}>February week 1 Questions</Link>
+            <br />
+            <small className={utilStyles.lightText}>
+              <Date dateString={"2020-01-30"} />
+            </small>
           </li>
         </ul>
       </section>
