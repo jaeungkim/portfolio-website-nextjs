@@ -5,7 +5,7 @@ import utilStyles from "../../styles/utils.module.css";
 // QUESTION #1
 function question1(): any {
   /*
-  Given sample student object, 
+  Given sample student object,
   console log ['science', 'math'].
   */
   const student = {
@@ -30,9 +30,9 @@ function question2(): any {
       { science: 12, math: 35 },
       { science: 70, math: 75 }
     ]
-  2. console log 
+  2. console log
     [ [ 'science', 'math' ], [ 'science', 'math' ], [ 'science', 'math' ] ]
-  3. console log 
+  3. console log
     [ [ 99, 50 ], [ 12, 35 ], [ 70, 75 ] ]
   4. console.log
     [
@@ -70,15 +70,79 @@ function question2(): any {
   return;
 }
 
-// QUESTION #3
+// QUESTION #3 (Map / Filter / Reduce)
 function question3(): any {
-  
+  /*
+  Given array of objects of Star Wars Characters,
+  MAP
+  1. Get an array of all names
+  2. Get an array of all heights
+  3. Get an array of objects with just name and height properties
+  4. Get an array of all first names
+
+  REDUCE
+  1. Get the total mass of all characters
+  2. Get the total height of all characters
+  3. Get the total number of characters in all the character names
+  4. Get the total number of characters by eye color (hint. a map of eye color to count)
+
+  FILTER
+  1. Get characters with mass greater than 100
+  2. Get characters with height less than 200
+  3. Get all male characters
+  4. Get all female characters
+
+  SORT
+  1. Sort by name
+  2. Sort by mass
+  3. Sort by height
+  4. Sort by gender
+
+  EVERY
+  1. Does every character have blue eyes?
+  2. Does every character have mass more than 40?
+  3. Is every character shorter than 200?
+  4. Is every character male?
+
+  SOME
+  1. Is there at least one male character?
+  2. Is there at least one character with blue eyes?
+  3. Is there at least one character taller than 200?
+  4. Is there at least one character that has mass less than 50?
+  */
+  const characters = [
+    {
+      name: "Luke Skywalker",
+      height: "172",
+      mass: "77",
+      eye_color: "blue",
+      gender: "male",
+    },
+    {
+      name: "Darth Vader",
+      height: "202",
+      mass: "136",
+      eye_color: "yellow",
+      gender: "male",
+    },
+    {
+      name: "Leia Organa",
+      height: "150",
+      mass: "49",
+      eye_color: "brown",
+      gender: "female",
+    },
+    {
+      name: "Anakin Skywalker",
+      height: "188",
+      mass: "84",
+      eye_color: "blue",
+      gender: "male",
+    },
+  ];
 }
 
 // QUESTION #4
-function question4(): any {}
-
-// QUESTION #5
 function fizzBuzz(n: number): any {
   /*
   인터뷰에 굉장히 많이 나오는 문제입니다 한번 풀어보세요!
@@ -89,7 +153,6 @@ function fizzBuzz(n: number): any {
     answer[i] == "Fizz" if i is divisible by 3.
     answer[i] == "Buzz" if i is divisible by 5.
     answer[i] == i (as a string) if none of the above conditions are true.
-    
 
     Example 1:
     Input: n = 3
@@ -148,17 +211,6 @@ export default function febWeek1() {
         </div>
 
         {/* QUESTION #4 */}
-        <div className={utilStyles.questionsDiv}>
-          <p className={utilStyles.lightText}>January 30th, 2023</p>
-          <p className={utilStyles.headingMd}>
-            Q4. Return an answer for question #4
-          </p>
-          <p>
-            Answer: <span>{question4()}</span>
-          </p>
-        </div>
-
-        {/* QUESTION #5 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>January 30th, 2023</p>
           <p className={utilStyles.headingMd}>
