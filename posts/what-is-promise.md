@@ -1,0 +1,170 @@
+---
+title: "Promises in JavaScript"
+date: "2023-01-31"
+---
+
+# Promises in JavaScript (JS)
+
+Figure 1.1: Promises Can be Resolved or Rejected
+
+# **What is Promise in JavaScript?**
+
+> **A promise is an object that may produce a single value sometime in the future.** Either a resolved value or a rejected value.
+
+A promise is a good way to handle **asynchronous** operations. It is used to find out if the asynchronous operation is successfully completed or not.
+
+Prior to promises events and callback functions were used but they had limited functionalities and created unmanageable code. Multiple callback functions would create a callback hell that leads to unmanageable code. Events were not good at handling asynchronous operations.
+
+**_In other words, Promise makes JavaScript behave asynchronously, which makes this language versatile._**
+
+# How Promises Work?
+
+_Let's understand this with an example:_
+
+Suppose that you promise to gain 10kgs weight by next month.
+
+You don’t know if you will spend your time and effort to gain weight until next month or not.
+
+Fig 1.2: Process of Promises
+
+**_Promise has three possible states:_**
+
+- **_Pending:_** You don’t know if you will gain 10kg by the next month.
+- **_Resolved/Fulfilled:_** You gained10kgs by the next month.
+- **_Rejected:_** You don’t gain weight at all.
+
+A promise **_starts in the pending state_**, which **_indicates that the Promise hasn’t been completed yet_**. It **_ends with either resolved/fulfilled_** (successful) **_or rejected_** (failed) state.
+
+> **_Benefits of Promises_**
+
+1.  Improves Code Readability
+2.  Better handling of asynchronous operations
+3.  Better flow of control definition in asynchronous logic
+4.  Better Error Handling
+
+# JavaScript Promise Chaining
+
+Fig 1.3: Working of JavaScript promise chaining
+
+Promises are useful when you have to handle more than one asynchronous task, one after another. For that, we use promise chaining.
+
+You can perform an operation after a promise is resolved using methods `then()`, `catch()` and `finally()`.
+
+The `then()` method is used with the callback when the promise is successfully fulfilled or resolved.
+
+The syntax of `then()` the method is:
+
+```
+promiseObject.then(onFulfilled, onRejected);
+```
+
+# JavaScript catch() method
+
+The `catch()` method is used with the callback when the promise is rejected or if an error occurs.
+
+# Creating and Using A Promise Step by Step:-
+
+Firstly, we use a constructor to create a Promise object:
+
+```js
+const myPromise = new Promise();
+```
+
+It takes two parameters, one for success (resolve) and one for fail (reject):
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  // condition
+});
+```
+
+Finally, there will be a condition. If the condition is met, the Promise will be resolved, otherwise it will be rejected:
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+    let condition;
+
+    if(condition is met) {
+        resolve('Promise is resolved successfully.');
+    } else {
+        reject('Promise is rejected');
+    }
+});
+```
+
+So we have created our first Promise. Now let’s use it.
+
+# then( ) for resolved Promises:
+
+If you revisit the Fig1.2 in this post, you’ll see that there are 2 cases: One for resolved promises and one for rejected. If the Promise gets resolved (success case), then something will happen next (depends on what we do with the successful Promise).
+
+```js
+myPromise.then();
+```
+
+The then( ) method is called after the Promise is resolved. Then we can decide what to do with the resolved Promise.
+
+For example, let’s log the message to the console that we got from the Promise:
+
+```js
+myPromise.then((message) => {
+  console.log(message);
+});
+```
+
+# catch( ) for rejected Promises:
+
+However, the then( ) method is only for resolved Promises. What if the Promise fails? Then, we need to use the catch( ) method.
+
+Likewise, we attach the then( ) method. We can also directly attach the
+catch( ) method right after then( ):
+
+```js
+myPromise
+  .then((message) => {
+    console.log(message);
+  })
+  .catch((message) => {
+    console.log(message);
+  });
+```
+
+So if the promise gets rejected, it will jump to the catch( ) method and this time we will see a different message on the console.
+
+## To create a promise in JavaScript, you can use the Promise constructor as shown below:
+
+```js
+let prom = new Promise((resolve, reject) => {
+  let num = 10 + 10;
+  if (num === 20) {
+    resolve("This resolve should come in the then block");
+  } else {
+    reject("This reject should come in the catch block");
+  }
+});
+prom
+  .then((msg) => console.log("then block -->", msg))
+  .catch((msg) => console.log("catch block -->", msg));
+```
+
+when we run the above code we get the following output:
+
+```js
+'''then block --> This resolve should come in the then block'''
+```
+
+As, `10 + 10 = 20` the `num = 20` so it will execute `if(){}` block and it will `resolve` the promise. If we change `num = 10 + 10` to `num = 10 + 1` and keep the rest of the code the same we will get the following output as it will execute the `else{}` block and it will `reject` the promise.
+
+```js
+'''catch block --> This reject should come in the catch block'''
+```
+
+# JavaScript Promise Methods
+
+There are various methods available to the Promise object.
+
+## Wrap Up !!
+
+In short, a Promise is an object that once called upon, will eventually resolve or reject and return a response based on some criteria that is specified within the Promise object.
+
+I hope this post will help you in your journey. Keep learning!
