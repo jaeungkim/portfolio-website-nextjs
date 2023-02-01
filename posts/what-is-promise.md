@@ -159,12 +159,12 @@ As, `10 + 10 = 20` the `num = 20` so it will execute `if(){}` block and it will 
 '''catch block --> This reject should come in the catch block'''
 ```
 
-# JavaScript Promise Methods
+# Async / Await Promises
 
 There are various methods available to the Promise object.
 
-## Wrap Up !!
+## References
 
-In short, a Promise is an object that once called upon, will eventually resolve or reject and return a response based on some criteria that is specified within the Promise object.
-
-I hope this post will help you in your journey. Keep learning!
+1.  [_Promises in JavaScript (JS)_](https://kkirtigoel01.medium.com/promises-in-javascript-js-27baf0e506b5#:~:text=Resolved%20or%20Rejected-,What%20is%20Promise%20in%20JavaScript%3F,is%20successfully%20completed%20or%20not.)
+2.  [_Compare async/await versus then()_](https://www.smashingmagazine.com/2020/11/comparison-async-await-versus-then-catch/)
+Last Edit: 2020-01-31
