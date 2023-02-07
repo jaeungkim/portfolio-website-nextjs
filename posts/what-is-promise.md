@@ -161,10 +161,38 @@ As, `10 + 10 = 20` the `num = 20` so it will execute `if(){}` block and it will 
 
 # Async / Await Promises
 
-There are various methods available to the Promise object.
+Now, let's take a look at some examples of asynchronous operations.
 
+```js
+// #1
+console.log("Hello");
+// #2
+setTimeout(function () {
+  console.log("Bye");
+}, 3000);
+// #3
+console.log("Hello Again");
+```
+
+비동기 처리에 대한 이해가 없는 상태에서 위 코드를 보면 아마 다음과 같은 결과값이 나올 거라고 생각할 겁니다.
+
+```
+‘Hello’ 출력
+3초 있다가 ‘Bye’ 출력
+‘Hello Again’ 출력
+```
+
+그런데 실제 결과 값은 아래와 같이 나오죠.
+
+```
+‘Hello’ 출력
+‘Hello Again’ 출력
+3초 있다가 ‘Bye’ 출력
+```
+
+setTimeout() 역시 비동기 방식으로 실행되기 때문에 3초를 기다렸다가 다음 코드를 수행하는 것이 아니라 일단 setTimeout()을 실행하고 나서 바로 다음 코드인 console.log('Hello Again');으로 넘어갔습니다. 따라서, ‘Hello’, ‘Hello Again’를 먼저 출력하고 3초가 지나면 ‘Bye’가 출력됩니다.
 ## References
 
 1.  [_Promises in JavaScript (JS)_](https://kkirtigoel01.medium.com/promises-in-javascript-js-27baf0e506b5#:~:text=Resolved%20or%20Rejected-,What%20is%20Promise%20in%20JavaScript%3F,is%20successfully%20completed%20or%20not.)
 2.  [_Compare async/await versus then()_](https://www.smashingmagazine.com/2020/11/comparison-async-await-versus-then-catch/)
-Last Edit: 2020-01-31
+    Last Edit: 2020-01-31
