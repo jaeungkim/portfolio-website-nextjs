@@ -17,7 +17,7 @@ function question1(): any {
     },
   };
 
-  return;
+  return console.log(Object.keys(student.marks));
 }
 
 // QUESTION #2
@@ -67,6 +67,21 @@ function question2(): any {
       },
     },
   ];
+
+  const subjectsWithScores = students.map((el) => el.marks);
+  console.log(subjectsWithScores);
+
+  const subjects = students.map((el) => Object.keys(el.marks));
+  console.log(subjects);
+
+  const scores = students.map((el) => Object.values(el.marks));
+  console.log(scores);
+
+  const subjectsWithScoresArray = students.map((el) =>
+    Object.entries(el.marks)
+  );
+  console.log(subjectsWithScoresArray);
+
   return;
 }
 
@@ -140,6 +155,156 @@ function question3(): any {
       gender: "male",
     },
   ];
+
+  // MAP
+  // 1. Get an array of all names
+
+  const allNames = characters.map((el) => el.name);
+  console.log(allNames);
+
+  // 2. Get an array of all heights
+  const allHeights = characters.map((el) => el.height);
+  console.log(allHeights);
+
+  // 3. Get an array of objects with just name and height properties
+
+  // 4. Get an array of all first names
+
+  // REDUCE
+  // 1. Get the total mass of all characters
+
+  const massArray = characters.map((el) => Number(el.mass));
+  console.log(massArray);
+
+  const initialVaulue = 0;
+  const totalMass = massArray.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialVaulue
+  );
+  console.log(totalMass);
+
+  // 2. Get the total height of all characters
+  const heightArray = characters.map((el) => Number(el.height));
+  console.log(heightArray);
+  const totalHeight = heightArray.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialVaulue
+  );
+  console.log(totalHeight);
+
+  // 3. Get the total number of characters in all the character names
+  const nameLengthArray = characters.map((el) => el.name.length);
+  console.log(nameLengthArray);
+
+  const totalName = nameLengthArray.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialVaulue
+  );
+  console.log(totalName);
+
+  // 4. Get the total number of characters by eye color (hint. a map of eye color to count)
+  const eyeColorArray = characters.map((el) => el.eye_color.length);
+  console.log(eyeColorArray);
+  const totalEyeColor = eyeColorArray.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    initialVaulue
+  );
+
+  console.log(totalEyeColor);
+
+  // FILTER
+  // 1. Get characters with mass greater than 100
+  const mass100 = characters.filter((el) => Number(el.mass) > 100);
+  console.log(mass100);
+
+  // 2. Get characters with height less than 200
+  const height200 = characters.filter((el) => Number(el.height) < 200);
+  console.log(height200);
+
+  // 3. Get all male characters
+  const males = characters.filter((el) => el.gender === "male");
+  console.log(males);
+
+  // 4. Get all female characters
+  const females = characters.filter((el) => el.gender === "females");
+  console.log(females);
+
+  // SORT
+  // 1. Sort by name
+  const sortByName = characters.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+  console.log(sortByName);
+
+  // 2. Sort by mass
+  const sortByMass = characters.sort((a, b) => Number(b.mass) - Number(a.mass));
+  console.log(sortByMass);
+
+  // 3. Sort by height
+  const sortByHeight = characters.sort(
+    (a, b) => Number(b.height) - Number(a.height)
+  );
+  console.log(sortByHeight);
+
+  // 4. Sort by gender
+  const sortByGender = characters.sort((a, b) => {
+    if (a.gender < b.gender) {
+      return -1;
+    }
+    if (a.gender > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+  console.log(sortByGender);
+
+  // EVERY
+  // 1. Does every character have blue eyes?
+  const haveBlueEye = (currentValue: string) => currentValue === "blue";
+  const everyEyes = characters.map((el) => el.eye_color);
+  console.log(everyEyes.every(haveBlueEye));
+
+  // 2. Does every character have mass more than 40?
+  const mass40 = (currentValue: number) => currentValue > 40;
+  const everyMass40 = characters.map((el) => Number(el.mass));
+  console.log(everyMass40.every(mass40));
+
+  // 3. Is every character shorter than 200?
+  const heightShort200 = (currentValue: number) => currentValue < 200;
+  const everyHeight = characters.map((el) => Number(el.height));
+  console.log(everyHeight.every(heightShort200));
+
+  // 4. Is every character male?
+  const everyMale = (currentValue: string) => currentValue === "male";
+  const allGender = characters.map((el) => el.gender);
+  console.log(allGender.every(everyMale));
+
+  // SOME
+  // 1. Is there at least one male character?
+  const checkMale = (element: string) => element === "male";
+  console.log(allGender.some(checkMale));
+
+  // 2. Is there at least one character with blue eyes?
+  const checkBlueEye = (element: string) => element === "blue";
+  console.log(everyEyes.some(checkBlueEye));
+
+  // 3. Is there at least one character taller than 200?
+  const checkHeight200 = (element: Number) => element > 200;
+  console.log(
+    `3. Is there at least one character taller than 200? ${everyHeight.some(
+      checkHeight200
+    )}`
+  );
+
+  // 4. Is there at least one character that has mass less than 50?
+  const checkMass40 = (element: Number) => element > 50;
+  console.log(everyMass40.some(checkMass40));
 }
 
 // QUESTION #4
@@ -166,6 +331,24 @@ function fizzBuzz(n: number): any {
     Input: n = 15
     output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
   */
+
+  const output = [];
+
+  function FizzBuzz(n) {
+    for (let i = 1; i <= n; i++) {
+      if (i % 3 == 0 && i % 5 == 0) {
+        output.push("FizzBuzz");
+      } else if (i % 3 == 0) {
+        output.push("Fizz");
+      } else if (i % 5 == 0) {
+        output.push("Buzz");
+      } else output.push(i);
+    }
+    return output;
+  }
+
+  console.log(FizzBuzz(15));
+
   return;
 }
 
