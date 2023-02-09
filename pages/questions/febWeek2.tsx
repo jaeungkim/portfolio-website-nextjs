@@ -41,6 +41,49 @@ const question3 = () => {
   return user;
 };
 
+const question4 = (array) => {
+  //https://leetcode.com/problems/final-value-of-variable-after-performing-operations/
+  /*
+  There is a programming language with only four operations and one variable X:
+
+  ++X and X++ increments the value of the variable X by 1.
+  --X and X-- decrements the value of the variable X by 1.
+  Initially, the value of X is 0.
+
+  Given an array of strings operations containing a list of operations, return the final value of X after performing all the operations.
+
+  Example 1:
+
+  Input: operations = ["--X","X++","X++"]
+  Output: 1
+  Explanation: The operations are performed as follows:
+  Initially, X = 0.
+  --X: X is decremented by 1, X =  0 - 1 = -1.
+  X++: X is incremented by 1, X = -1 + 1 =  0.
+  X++: X is incremented by 1, X =  0 + 1 =  1.
+
+  Example 2:
+
+  Input: operations = ["++X","++X","X++"]
+  Output: 3
+  Explanation: The operations are performed as follows:
+  Initially, X = 0.
+  ++X: X is incremented by 1, X = 0 + 1 = 1.
+  ++X: X is incremented by 1, X = 1 + 1 = 2.
+  X++: X is incremented by 1, X = 2 + 1 = 3.
+
+  Example 3:
+
+  Input: operations = ["X++","++X","--X","X--"]
+  Output: 0
+  Explanation: The operations are performed as follows:
+  Initially, X = 0.
+  X++: X is incremented by 1, X = 0 + 1 = 1.
+  ++X: X is incremented by 1, X = 1 + 1 = 2.
+  --X: X is decremented by 1, X = 2 - 1 = 1.
+  X--: X is decremented by 1, X = 1 - 1 = 0.
+  */
+};
 export default function febWeek1() {
   return (
     <Layout>
@@ -110,6 +153,15 @@ export default function febWeek1() {
           >
             Execute Question #2
           </button>
+        </div>
+
+        {/* QUESTION #4 */}
+        <div className={utilStyles.questionsDiv}>
+          <p className={utilStyles.lightText}>February 6th, 2023</p>
+          <p className={utilStyles.headingMd}>
+            Q4. Output the answer (leetcode) - it should output 1 if given array : ["--X","X++","X++"]
+          </p>
+          Answer: {question4(["--X","X++","X++"])};
         </div>
       </div>
     </Layout>
