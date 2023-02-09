@@ -168,6 +168,31 @@ function question3(): any {
 
   // 3. Get an array of objects with just name and height properties
 
+  const allNameHeights = characters.map((character)=>
+  {
+    // ESLIST<<<
+    const { name, height } = character;
+
+    const newObject = {
+      name: name,
+      height: height
+    }
+
+     return newObject;
+  })
+
+  console.log(allNameHeights);
+  // [
+  //   {
+  //     name: "Luke Skywalker",
+  //     height: "172",
+  //   },
+  //   {
+  //     name: "Darth Vader",
+  //     height: "202",
+  //   }
+  // ]
+  
   // 4. Get an array of all first names
 
   // REDUCE
@@ -347,7 +372,7 @@ function fizzBuzz(n: number): any {
     return output;
   }
 
-  console.log(FizzBuzz(15));
+  console.log(FizzBuzz(50));
 
   return;
 }
