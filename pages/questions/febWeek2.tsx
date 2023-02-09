@@ -8,7 +8,7 @@ const WRONG_URL = `https://iamwrongurl`;
 
 const question1 = async () => {
   /*
-Please click on the URL to see the sample output you should see. 
+Please click on the URL to see the sample output you should see.
 Upon a click of a button, it should print out those users on console
 */
   const users = await fetch(API_URL)
@@ -103,8 +103,9 @@ export default function febWeek1() {
           </p>
           Answer:{" "}
           <button
-            onClick={async () => {
-              question3().then((result) => console.log(result)); // you can also try switching this function to async/await
+            onClick={() => {
+              const result = question3();
+              console.log(result);
             }}
           >
             Execute Question #2
