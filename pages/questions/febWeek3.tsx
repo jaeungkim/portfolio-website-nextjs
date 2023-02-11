@@ -7,14 +7,14 @@ export default function febWeek1() {
   const question1SetTimeoutWait = (delay) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(console.log("i'm executing" + delay));
+        resolve(console.log("i'm executing") + delay);
       }, delay);
     });
   };
   const question1 = async () => {
     await question1SetTimeoutWait(1000);
-    await question1SetTimeoutWait(1111);
-    await question1SetTimeoutWait(1222);
+    await question1SetTimeoutWait(1000);
+    await question1SetTimeoutWait(1000);
   };
 
   return (
@@ -30,8 +30,8 @@ export default function febWeek1() {
           <p className={utilStyles.headingMd}>Q1. Question1</p>
           Answer:{" "}
           <button
-            onClick={async () => {
-              await question1();
+            onClick={() => {
+              question1();
             }}
           >
             Execute Question #1
