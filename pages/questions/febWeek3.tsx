@@ -39,6 +39,20 @@ export default function febWeek1() {
             Execute Question #1
           </button>
         </div>
+
+        {/* QUESTION #2 */}
+        <div className={utilStyles.questionsDiv}>
+          <p className={utilStyles.lightText}>February 10th, 2023</p>
+          <p className={utilStyles.headingMd}>Q1. Question1</p>
+          Answer:{" "}
+          <button
+            onClick={() => {
+              question1();
+            }}
+          >
+            Execute Question #2
+          </button>
+        </div>
       </div>
     </Layout>
   );
