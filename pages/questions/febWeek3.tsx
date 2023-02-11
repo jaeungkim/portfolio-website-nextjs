@@ -12,9 +12,11 @@ export default function febWeek1() {
     });
   };
   const question1 = async () => {
-    await question1SetTimeoutWait(1000);
-    await question1SetTimeoutWait(1000);
-    await question1SetTimeoutWait(1000);
+    await Promise.all([
+      await question1SetTimeoutWait(1000),
+      await question1SetTimeoutWait(1000),
+      await question1SetTimeoutWait(1000),
+    ]);
   };
 
   return (
