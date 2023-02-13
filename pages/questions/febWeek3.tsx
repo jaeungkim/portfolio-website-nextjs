@@ -74,7 +74,7 @@ export default function febWeek1() {
     1 <= sum(word1[i].length), sum(word2[i].length) <= 103
     word1[i] and word2[i] consist of lowercase letters.
     */
-    function sameString(arr1, arr2) {
+    function sameStrings(arr1, arr2) {
       return arr1.join("") === arr2.join("") ? true : false;
     }
   };
