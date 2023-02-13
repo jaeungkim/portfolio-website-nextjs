@@ -6,24 +6,30 @@ import { useEffect, useState } from "react";
 const API_URL = `https://jsonplaceholder.typicode.com/users`;
 const WRONG_URL = `https://iamwrongurl`;
 
-const question1 = async () => {
+const getUsers = async () => {
   /*
 Please click on the URL to see the sample output you should see.
 Upon a click of a button, it should print out those users on console
 */
   const users = await fetch(API_URL)
-    .then((response) => response.json())
+    .then((response) => response.json()) //parsing
     .then((user) => user);
-
   return users;
 };
 
 const question2 = async () => {
-  const users = await fetch(WRONG_URL)
-    .then((response) => response.json())
-    .then((user) => user);
+  try {
+    const response = await fetch(API_URL);
+    const users = await response.json();
+    return users;
+  } catch (error) {
+    return console.log("I FAILED" + error);
+  }
 
-  return users;
+  // .then((response) => response.json())
+  // .catch((error) => console.log("I FAILED TO FETCH FROM API " + error))
+  // .then((user) => user)
+  // .catch((error)=>console.log("I FAILED TO STORE USER " + error))
 };
 
 const question3 = () => {
@@ -37,8 +43,25 @@ const question3 = () => {
         fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`)
       )
       .then((userResponse) => userResponse.json()); // parse JSON
-
+      
   return user;
+};
+
+const question4Async = async () => {
+  // get users list
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await response.json(); // parse JSON
+  const user = users[0]; // pick first user
+  // get user data
+  const userResponse = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${user.id}`
+  );
+  const userData = await userResponse.json(); // parse JSON
+  return userData;
+};
+const question4AsyncAwait = async () => {
+  const result = await question4Async();
+  console.log(result);
 };
 
 const question4 = (array) => {
@@ -104,9 +127,9 @@ export default function febWeek1() {
           </p>
           Answer:{" "}
           <button
-            onClick={() => {
-              const result = question1();
-              console.log(result);
+            onClick={async () => {
+              const users = await getUsers();
+              console.log(users);
             }}
           >
             Execute Question #1
@@ -124,8 +147,8 @@ export default function febWeek1() {
           </p>
           Answer:{" "}
           <button
-            onClick={() => {
-              const result = question2();
+            onClick={async () => {
+              const result = await question2();
               console.log(result);
             }}
           >
@@ -147,8 +170,7 @@ export default function febWeek1() {
           Answer:{" "}
           <button
             onClick={() => {
-              const result = question3();
-              console.log(result);
+              question4AsyncAwait();
             }}
           >
             Execute Question #2
@@ -159,9 +181,10 @@ export default function febWeek1() {
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 6th, 2023</p>
           <p className={utilStyles.headingMd}>
-            Q4. Output the answer (leetcode) - it should output 1 if given array : ["--X","X++","X++"]
+            Q4. Output the answer (leetcode) - it should output 1 if given array
+            : ["--X","X++","X++"]
           </p>
-          Answer: {question4(["--X","X++","X++"])};
+          Answer: {question4(["--X", "X++", "X++"])};
         </div>
       </div>
     </Layout>
