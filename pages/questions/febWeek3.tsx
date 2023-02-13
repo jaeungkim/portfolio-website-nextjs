@@ -12,7 +12,6 @@ export default function febWeek1() {
     });
   };
   const question1 = () => {
-    //currently this is executing not in sequence. Please use "Promise.all" and async/await to execute these functions in order
     question1SetTimeoutWait(1000);
     question1SetTimeoutWait(1000);
     question1SetTimeoutWait(1000);
@@ -42,6 +41,50 @@ export default function febWeek1() {
   };
 
   const question3 = () => {
+    //example of writing a async function with settimeout (has to use new Promise or call settimeout await function from es7)
+    function fetchItems() {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          var items = [1, 2, 3];
+          resolve(items);
+        }, 3000);
+      });
+    }
+
+    //and calling that function with async
+    async function logItems() {
+      var resultItems = await fetchItems();
+      console.log(resultItems); // [1,2,3]
+    }
+
+    //ANOTHER EXAMPLE WITH REAL API
+    function fetchUser() {
+      var url = "https://jsonplaceholder.typicode.com/users/1";
+      return fetch(url).then(function (response) {
+        return response.json();
+      });
+    }
+
+    function fetchTodo() {
+      var url = "https://jsonplaceholder.typicode.com/todos/1";
+      return fetch(url).then(function (response) {
+        return response.json();
+      });
+    }
+    async function logTodoTitle() {
+      try {
+        var user = await fetchUser();
+        if (user.id === 1) {
+          var todo = await fetchTodo();
+          console.log(todo.title); // delectus aut autem
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    return logTodoTitle();
+  };
+  const leetcode1 = () => {
     /*
     https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
     Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
@@ -75,7 +118,7 @@ export default function febWeek1() {
     word1[i] and word2[i] consist of lowercase letters.
     */
   };
-  const question4 = () => {
+  const leetcode2 = () => {
     /*
     https://leetcode.com/problems/check-if-the-sentence-is-pangram/
 
@@ -110,7 +153,10 @@ export default function febWeek1() {
         {/* QUESTION #1 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 10th, 2023</p>
-          <p className={utilStyles.headingMd}>Q1. Question1</p>
+          <p className={utilStyles.headingMd}>
+            Q1. Currently this is not executing in sequence. Please use
+            "Promise.all" and async/await to execute these functions in order
+          </p>
           Answer:{" "}
           <button
             onClick={() => {
@@ -142,28 +188,41 @@ export default function febWeek1() {
         {/* QUESTION #3 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 10th, 2023</p>
-          <p className={utilStyles.headingMd}>Q3. Question3</p>
+          <p className={utilStyles.headingMd}>Q3. Question 3</p>
           Answer:{" "}
           <button
             onClick={() => {
               question3();
             }}
           >
-            Execute Question #4
+            Execute Question #3
           </button>
         </div>
-
-        {/* QUESTION #4 */}
+        {/* LEETCODE #1 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 10th, 2023</p>
-          <p className={utilStyles.headingMd}>Q4. Question4</p>
+          <p className={utilStyles.headingMd}>Leetcode 1. </p>
           Answer:{" "}
           <button
             onClick={() => {
-              question4();
+              leetcode1();
             }}
           >
-            Execute Question #4
+            Execute LeetCode #1
+          </button>
+        </div>
+
+        {/* LEETCODE #2 */}
+        <div className={utilStyles.questionsDiv}>
+          <p className={utilStyles.lightText}>February 10th, 2023</p>
+          <p className={utilStyles.headingMd}>Leetcode 2. </p>
+          Answer:{" "}
+          <button
+            onClick={() => {
+              leetcode2();
+            }}
+          >
+            Execute LeetCode #2
           </button>
         </div>
       </div>
