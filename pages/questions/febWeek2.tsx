@@ -32,19 +32,32 @@ const question2 = async () => {
   // .catch((error)=>console.log("I FAILED TO STORE USER " + error))
 };
 
-const question3 = () => {
-  const user =
-    // get users list
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json()) // parse JSON
-      .then((users) => users[0]) // pick first user
-      // get user data
+const question3 = async () => {
+  try {
+    const user = await fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((users) => users[0])
       .then((user) =>
         fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`)
       )
-      .then((userResponse) => userResponse.json()); // parse JSON
-      
-  return user;
+      .then((userResponse) => userResponse.json());
+    return user;
+  } catch (error) {
+    return console.log(error);
+  }
+
+  // const user =
+  //   // get users list
+  //   fetch("https://jsonplaceholder.typicode.com/users")
+  //     .then((response) => response.json()) // parse JSON
+  //     .then((users) => users[0]) // pick first user
+  //     // get user data
+  //     .then((user) =>
+  //       fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`)
+  //     )
+  //     .then((userResponse) => userResponse.json()); // parse JSON
+
+  // return user;
 };
 
 const question4Async = async () => {
@@ -64,7 +77,7 @@ const question4AsyncAwait = async () => {
   console.log(result);
 };
 
-const question4 = (array) => {
+const question4 = (operations) => {
   //https://leetcode.com/problems/final-value-of-variable-after-performing-operations/
   /*
   There is a programming language with only four operations and one variable X:
@@ -106,6 +119,18 @@ const question4 = (array) => {
   --X: X is decremented by 1, X = 2 - 1 = 1.
   X--: X is decremented by 1, X = 1 - 1 = 0.
   */
+
+  let sum = 0;
+  for (let i = 0; i < operations.length; i++) {
+    if (operations[i] === "++X" || operations[i] === "X++") {
+      sum += 1;
+    } else if (operations[i] === "--X" || operations[i] === "X--") {
+      sum -= 1;
+    } else {
+      sum += 0;
+    }
+  }
+  return sum;
 };
 export default function febWeek1() {
   return (

@@ -74,6 +74,9 @@ export default function febWeek1() {
     1 <= sum(word1[i].length), sum(word2[i].length) <= 103
     word1[i] and word2[i] consist of lowercase letters.
     */
+    function sameString(arr1, arr2) {
+      return arr1.join("") === arr2.join("") ? true : false;
+    }
   };
   const question4 = () => {
     /*
@@ -99,6 +102,18 @@ export default function febWeek1() {
     1 <= sentence.length <= 1000
     sentence consists of lowercase English letters.
     */
+
+    function isPangram(string) {
+      let strArr = string.toLowerCase();
+      let alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+      for (let i = 0; i < alphabet.length; i++) {
+        if (strArr.indexOf(alphabet[i]) < 0) {
+          return false;
+        }
+      }
+      return true;
+    }
   };
   return (
     <Layout>
