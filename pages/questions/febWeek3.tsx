@@ -11,15 +11,37 @@ export default function febWeek1() {
       }, delay);
     });
   };
-  const question1 = async () => {
-    await Promise.all([
-      await question1SetTimeoutWait(1000),
-      await question1SetTimeoutWait(1000),
-      await question1SetTimeoutWait(1000),
-    ]);
+  const question1 = () => {
+    //currently this is executing not in sequence. Please use "Promise.all" and async/await to execute these functions in order
+    question1SetTimeoutWait(1000);
+    question1SetTimeoutWait(1000);
+    question1SetTimeoutWait(1000);
   };
 
-  const question4 = () => {
+  const question2 = () => {
+    function login(email, password) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({ userToken: "randomId" });
+        }, 2000);
+      });
+    }
+    function getDetails(userToken) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({ name: "John Doe", dob: "6th May 1995" });
+        }, 2000);
+      });
+    }
+    function userDetails() {
+      const token = login("abc@gmail.com", "1234");
+      const details = getDetails(token);
+      console.log(details);
+    }
+    return userDetails();
+  };
+
+  const question3 = () => {
     /*
     https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/
     Given two string arrays word1 and word2, return true if the two arrays represent the same string, and false otherwise.
@@ -44,7 +66,7 @@ export default function febWeek1() {
 
     Input: word1  = ["abc", "d", "defg"], word2 = ["abcddefg"]
     Output: true
-    
+
     Constraints:
 
     1 <= word1.length, word2.length <= 103
@@ -53,7 +75,7 @@ export default function febWeek1() {
     word1[i] and word2[i] consist of lowercase letters.
     */
   };
-  const question5 = () => {
+  const question4 = () => {
     /*
     https://leetcode.com/problems/check-if-the-sentence-is-pangram/
 
@@ -71,7 +93,7 @@ export default function febWeek1() {
 
     Input: sentence = "leetcode"
     Output: false
-    
+
     Constraints:
 
     1 <= sentence.length <= 1000
@@ -102,42 +124,46 @@ export default function febWeek1() {
         {/* QUESTION #2 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 10th, 2023</p>
-          <p className={utilStyles.headingMd}>Q1. Question1</p>
+          <p className={utilStyles.headingMd}>
+            Q2. question2() is not returning anything at the moment, modify
+            quesiton2() so it returns the user details. Please wrap it in try
+            catch as well to handle errors.
+          </p>
           Answer:{" "}
           <button
             onClick={() => {
-              question1();
+              question2();
             }}
           >
             Execute Question #2
           </button>
         </div>
 
-        {/* QUESTION #4 */}
+        {/* QUESTION #3 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 10th, 2023</p>
-          <p className={utilStyles.headingMd}>Q1. Question4</p>
+          <p className={utilStyles.headingMd}>Q3. Question3</p>
           Answer:{" "}
           <button
             onClick={() => {
-              question1();
+              question3();
             }}
           >
             Execute Question #4
           </button>
         </div>
 
-        {/* QUESTION #5 */}
+        {/* QUESTION #4 */}
         <div className={utilStyles.questionsDiv}>
           <p className={utilStyles.lightText}>February 10th, 2023</p>
-          <p className={utilStyles.headingMd}>Q5. Question5</p>
+          <p className={utilStyles.headingMd}>Q4. Question4</p>
           Answer:{" "}
           <button
             onClick={() => {
-              question1();
+              question4();
             }}
           >
-            Execute Question #5
+            Execute Question #4
           </button>
         </div>
       </div>
