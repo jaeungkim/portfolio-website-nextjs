@@ -8,20 +8,19 @@ const name = "Jaeung Kim";
 export const siteTitle = "Next.js Sample Website";
 
 export default function Layout({
-  children,
   home,
+  children,
+  blog,
 }: {
   children: React.ReactNode;
+  blog?: boolean;
   home?: boolean;
 }) {
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
+        <meta name="description" content="Jaeung Kim Blog" />
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
@@ -31,14 +30,14 @@ export default function Layout({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
         <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css"
-  integrity="sha256-Ykz0nNWK7w4QWJUYR7OraN4773aMB/11aMt1nZyrhuQ="
-  crossOrigin="anonymous"
-/>
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css"
+          integrity="sha256-Ykz0nNWK7w4QWJUYR7OraN4773aMB/11aMt1nZyrhuQ="
+          crossOrigin="anonymous"
+        />
       </Head>
       <header className={styles.header}>
-        {home ? (
+        {blog ? (
           <>
             <Image
               priority
@@ -50,25 +49,7 @@ export default function Layout({
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
-        ) : (
-          <>
-            <Link href="/">
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt={name}
-              />
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
-              </Link>
-            </h2>
-          </>
-        )}
+        ) : null}
       </header>
       <main>{children}</main>
       {!home && (
