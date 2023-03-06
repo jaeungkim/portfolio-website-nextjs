@@ -22,53 +22,58 @@ export default function Blog({
       <Head>
         <title>Jaeung Kim - Blog</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <h2 className={utilStyles.headingLg}>JavaScript Basics</h2>
-        <ul className={utilStyles.list}>
-          <li className={utilStyles.listItem}>
+      {/*
             <Link href={`/questions/basicQuestions`}>Basic Questions</Link>
-            <br />
-            <small className={utilStyles.lightText}>
-              <Date dateString={"2020-01-20"} />
-            </small>
-          </li>
-          <li className={utilStyles.listItem}>
+
             <Link href={`/questions/febWeek1`}>February week 1 Questions</Link>
-            <br />
-            <small className={utilStyles.lightText}>
-              <Date dateString={"2020-01-30"} />
-            </small>
-          </li>
-          <li className={utilStyles.listItem}>
+
             <Link href={`/questions/febWeek2`}>February week 2 Questions</Link>
-            <br />
-            <small className={utilStyles.lightText}>
-              <Date dateString={"2020-02-06"} />
-            </small>
-          </li>
-          <li className={utilStyles.listItem}>
-            <Link href={`/questions/febWeek3`}>February week 3 Questions</Link>
-            <br />
-            <small className={utilStyles.lightText}>
-              <Date dateString={"2020-02-10"} />
-            </small>
-          </li>
-        </ul>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
+
+
+            <Link href={`/questions/febWeek3`}>February week 3 Questions</Link> */}
+      <div className="mt-16 sm:mt-20">
+        <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+          <div className="flex max-w-3xl flex-col space-y-16">
+            {allPostsData.map(({ id, date, title }) => (
+              <article className="md:grid md:grid-cols-4 md:items-baseline">
+                <div className="md:col-span-3 group relative flex flex-col items-start">
+                  <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                    <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
+                    <a href={`/posts/${id}`}>
+                      <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+                      <span className="relative z-10">{title}</span>
+                    </a>
+                  </h2>
+                  <Date dateString={date} mobile={true} />
+                  <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                    Most asdfasdf
+                  </p>
+                  <div
+                    aria-hidden="true"
+                    className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+                  >
+                    Read article
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      aria-hidden="true"
+                      className="ml-1 h-4 w-4 stroke-current"
+                    >
+                      <path
+                        d="M6.75 5.75 9.25 8l-2.5 2.25"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <Date dateString={date} mobile={false} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

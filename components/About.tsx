@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="max-w-2xl">
+    <>
       <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
         Hi there 👋 I am Jaeung Kim
       </h1>
@@ -48,6 +48,6 @@ export default function About() {
           </svg>
         </a>
       </div>
-    </div>
+    </>
   );
 }

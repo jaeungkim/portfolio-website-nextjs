@@ -8,6 +8,7 @@ import {
   HomeIcon,
   MoonIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 
 const navigation = [
@@ -17,6 +18,7 @@ const navigation = [
   { name: "Contact", href: "#", current: false },
 ];
 export default function Navbar() {
+  let [isOpen, setIsOpen] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
   const renderThemeChanger = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
@@ -38,7 +40,6 @@ export default function Navbar() {
       </button>
     );
   };
-  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -53,7 +54,17 @@ export default function Navbar() {
       <div className="w-full mx-auto max-w-7xl lg:px-8">
         <div className="relative px-4 sm:px-8 lg:px-12 flex gap-4">
           <div className="flex flex-1">
-            <p>hi</p>
+            <div className="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+              <a className="pointer-events-auto">
+                <Image
+                  className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 h-9 w-9"
+                  src="/images/ill_prof.jpeg"
+                  alt="profileLogo"
+                  width="36"
+                  height="36"
+                />
+              </a>
+            </div>
           </div>
           {/* Mobile Menu */}
           <div className="flex flex-1 justify-end md:justify-center">
