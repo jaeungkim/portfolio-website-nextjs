@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "./layout.module.css";
 import Header from "../Header";
 import { Fragment } from "react";
+import Footer from "../Footer";
 
 export const siteTitle = "Jaeung Kim Portfolio Website";
 
@@ -40,6 +41,7 @@ export default function Layout({
           </div>
         </main>
       </div>
+      <Footer />
     </Fragment>
   );
 }

@@ -14,8 +14,8 @@ import { useTheme } from "next-themes";
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Articles", href: "/blog", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Contact", href: "#", current: false },
+  { name: "Projects", href: "/projects", current: false },
+  { name: "Contact", href: "/contact", current: false },
 ];
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);

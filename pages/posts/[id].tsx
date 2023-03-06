@@ -35,9 +35,9 @@ export default function Post({
         >
           <path
             d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>
         </svg>
       </button>
