@@ -1,11 +1,13 @@
+import Navbar from "./Navbar";
+
 const Header = () => {
+  return (
+    <header className="pointer-events-none relative flex flex-col">
+      <div className="flex h-full py-6 flex-col">
+        <Navbar />
+      </div>
+    </header>
+  );
+};
 
-    return (
-      <header className="h-15 shadow-sm dark:border-gray-700">
-        <div className="container  px-4 sm:px-6 py-4 flex justify-between items-center">
-        </div>
-      </header>
-    );
-  };
-
-  export default Header;
+export default Header;

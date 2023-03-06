@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "../../components/shared/layout";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
 

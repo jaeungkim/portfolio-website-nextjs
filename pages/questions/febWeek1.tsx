@@ -1,4 +1,4 @@
-import Layout from "../../components/layout";
+import Layout from "../../components/shared/layout";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
 
@@ -192,7 +192,7 @@ function question3(): any {
   //     height: "202",
   //   }
   // ]
-  
+
   // 4. Get an array of all first names
 
   // REDUCE
