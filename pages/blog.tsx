@@ -1,10 +1,12 @@
 import Head from "next/head";
-import Layout from "../components/shared/layout";
+import { Fragment } from "react";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/shared/date";
 import { GetStaticProps } from "next";
+import Header from "../components/Header";
+import Layout from "../components/shared/layout";
 
 export default function Blog({
   allPostsData,
@@ -16,7 +18,7 @@ export default function Blog({
   }[];
 }) {
   return (
-    <Layout blog>
+    <Layout>
       <Head>
         <title>Jaeung Kim - Blog</title>
       </Head>

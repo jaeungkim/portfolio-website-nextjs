@@ -1,23 +1,19 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
+import Header from "../Header";
+import { Fragment } from "react";
 
-const name = "Jaeung Kim";
-export const siteTitle = "Next.js Sample Website";
+export const siteTitle = "Jaeung Kim Portfolio Website";
 
 export default function Layout({
-  home,
   children,
-  blog,
 }: {
   children: React.ReactNode;
   blog?: boolean;
   home?: boolean;
 }) {
   return (
-    <div className={styles.container}>
+    <Fragment>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Jaeung Kim Blog" />
@@ -36,27 +32,12 @@ export default function Layout({
           crossOrigin="anonymous"
         />
       </Head>
-      <header className={styles.header}>
-        {blog ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : null}
-      </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
-        </div>
-      )}
-    </div>
+      <Header />
+      <div className="relative">
+        <main className="sm:px-8 mt-9 mx-auto max-w-7xl lg:px-8">
+          {children}
+        </main>
+      </div>
+    </Fragment>
   );
 }
