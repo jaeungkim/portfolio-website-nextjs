@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "./layout.module.css";
 import Header from "../Header";
+import Footer from "../Footer";
 import { Fragment } from "react";
 
 export const siteTitle = "Jaeung Kim Portfolio Website";
