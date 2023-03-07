@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "./layout.module.css";
 import Header from "../Header";
 import { Fragment } from "react";
-import Footer from "../Footer";
 
 export const siteTitle = "Jaeung Kim Portfolio Website";
 
@@ -20,7 +19,7 @@ export default function Layout({
         <meta name="description" content="Jaeung Kim Blog" />
         <meta
           property="og:image"
-          content={`https://vercel-og-nextjs-og-image-generation-chi.vercel.app/`}
+          content={`https://og-image.vercel.app/api/static`}
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
