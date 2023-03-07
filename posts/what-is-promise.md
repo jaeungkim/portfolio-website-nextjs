@@ -1,6 +1,7 @@
 ---
 title: "Promises in JavaScript"
 date: "2023-01-31"
+summary: "Prior to promises events and callback functions were used but they had limited functionalities and created unmanageable code. Multiple callback functions would create a callback hell that leads to unmanageable code. Events were not good at handling asynchronous operations."
 ---
 
 # Promises in JavaScript (JS)
@@ -191,6 +192,7 @@ console.log("Hello Again");
 ```
 
 setTimeout() 역시 비동기 방식으로 실행되기 때문에 3초를 기다렸다가 다음 코드를 수행하는 것이 아니라 일단 setTimeout()을 실행하고 나서 바로 다음 코드인 console.log('Hello Again');으로 넘어갔습니다. 따라서, ‘Hello’, ‘Hello Again’를 먼저 출력하고 3초가 지나면 ‘Bye’가 출력됩니다.
+
 ## References
 
 1.  [_Promises in JavaScript (JS)_](https://kkirtigoel01.medium.com/promises-in-javascript-js-27baf0e506b5#:~:text=Resolved%20or%20Rejected-,What%20is%20Promise%20in%20JavaScript%3F,is%20successfully%20completed%20or%20not.)
