@@ -20,7 +20,7 @@ export default function Layout({
         <meta name="description" content="Jaeung Kim Blog" />
         <meta
           property="og:image"
-          content={`https://og-image.vercel.app/api/static`}
+          content={`https://jaeungkim.vercel.app/api/og?username=jaeungkim`}
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
