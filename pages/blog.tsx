@@ -1,11 +1,7 @@
 import Head from "next/head";
-import { Fragment } from "react";
-import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
-import Link from "next/link";
 import Date from "../components/shared/date";
 import { GetStaticProps } from "next";
-import Header from "../components/Header";
 import Layout from "../components/shared/layout";
 
 export default function Blog({
@@ -23,15 +19,6 @@ export default function Blog({
       <Head>
         <title>Jaeung Kim - Blog</title>
       </Head>
-      {/*
-            <Link href={`/questions/basicQuestions`}>Basic Questions</Link>
-
-            <Link href={`/questions/febWeek1`}>February week 1 Questions</Link>
-
-            <Link href={`/questions/febWeek2`}>February week 2 Questions</Link>
-
-
-            <Link href={`/questions/febWeek3`}>February week 3 Questions</Link> */}
       <div className="mt-16 sm:mt-20">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">

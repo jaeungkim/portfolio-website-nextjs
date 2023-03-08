@@ -41,9 +41,8 @@ export default function Post({
           ></path>
         </svg>
       </button>
-      <article>
+      <article className="prose lg:prose-xl dark:prose-invert">
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}></div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </Layout>
