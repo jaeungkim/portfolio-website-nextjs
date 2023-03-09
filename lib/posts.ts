@@ -14,6 +14,10 @@ export function getSortedPostsData() {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, "");
 
+    // Extract the slug from the filename
+    const match = id.match(/^([\w-]+)/);
+    const slug = match ? match[1] : "";
+
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -21,9 +25,10 @@ export function getSortedPostsData() {
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
 
-    // Combine the data with the id
+    // Combine the data with the id and slug
     return {
       id,
+      slug,
       ...(matterResult.data as { date: string; title: string }),
     };
   });
@@ -52,6 +57,10 @@ export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
+  // Extract the slug from the filename
+  const match = id.match(/^([\w-]+)/);
+  const slug = match ? match[1] : "";
+
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
@@ -64,6 +73,7 @@ export async function getPostData(id: string) {
 
   // Combine the data with the id and contentHtml
   return {
+    slug,
     id,
     contentHtml,
     ...(matterResult.data as { date: string; title: string }),

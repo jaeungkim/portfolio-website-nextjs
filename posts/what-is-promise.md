@@ -1,5 +1,6 @@
 ---
 title: "Promises in JavaScript"
+subtitle: "what-is-promise"
 date: "2023-01-31"
 summary: "Prior to promises events and callback functions were used but they had limited functionalities and created unmanageable code. Multiple callback functions would create a callback hell that leads to unmanageable code. Events were not good at handling asynchronous operations."
 ---

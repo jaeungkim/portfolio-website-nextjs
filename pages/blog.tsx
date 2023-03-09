@@ -3,7 +3,7 @@ import { getSortedPostsData } from "../lib/posts";
 import Date from "../components/shared/date";
 import { GetStaticProps } from "next";
 import Layout from "../components/shared/layout";
-
+import ViewCounter from "../components/shared/viewCounter";
 export default function Blog({
   allPostsData,
 }: {

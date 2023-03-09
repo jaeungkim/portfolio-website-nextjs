@@ -1,5 +1,6 @@
 ---
 title: "JavaScript Array and Object Methods"
+subtitle: "javascript-basics"
 date: "2020-01-20"
 summary: "Objects in JavaScript, just as in many other programming languages, can be compared to objects in real life. In JavaScript, an object is a standalone entity, with properties and type. Compare it with a cup, for example. A cup is an object, with properties."
 ---

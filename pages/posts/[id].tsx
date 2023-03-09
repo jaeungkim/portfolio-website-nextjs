@@ -1,15 +1,15 @@
 import Layout from "../../components/shared/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
-import Date from "../../components/shared/date";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
-
+import ViewCounter from "../../components/shared/viewCounter";
 export default function Post({
   postData,
 }: {
   postData: {
+    id: string;
     title: string;
     date: string;
     contentHtml: string;
@@ -41,6 +41,7 @@ export default function Post({
           ></path>
         </svg>
       </button>
+      <ViewCounter slug={postData.id} />
       <article className="prose lg:prose-xl dark:prose-invert">
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
