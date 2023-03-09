@@ -13,6 +13,7 @@ export default async function handler(
       if (currentViews === null) {
         return 1;
       }
+
       return currentViews + 1;
     });
 
