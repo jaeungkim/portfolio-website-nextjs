@@ -5,6 +5,7 @@ import utilStyles from "../../styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import ViewCounter from "../../components/shared/viewCounter";
+import ScrollIndicator from "../../components/shared/scrollIndicator";
 export default function Post({
   postData,
 }: {
@@ -21,6 +22,7 @@ export default function Post({
       <Head>
         <title>{postData.title}</title>
       </Head>
+      <ScrollIndicator />
       <button
         onClick={() => router.back()}
         type="button"
