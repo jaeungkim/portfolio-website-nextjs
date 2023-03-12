@@ -23,7 +23,7 @@ const ScrollIndicator = () => {
   return (
     <div className="fixed top-0 left-0 right-0 h-1 bg-gray-300">
       <div
-        className="h-full bg-cyan-300 dark:bg-cyan-500"
+        className="h-full bg-pink-600 dark:bg-pink-300"
         style={{ width: `${scrollPercent}%` }}
       />
     </div>

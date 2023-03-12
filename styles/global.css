@@ -1,12 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
-  --header-position: sticky;
+  /* --header-position: sticky;
   --content-offset: 0px;
   --header-height: 64px;
   --header-mb: 0px;
@@ -14,7 +14,7 @@
   --avatar-border-transform: translate3d(-0.222222rem, 0, 0) scale(1.77778);
   --avatar-border-opacity: 0;
   --header-top: 0px;
-  --avatar-top: 0px;
+  --avatar-top: 0px; */
 }
 
 html,
@@ -25,4 +25,15 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   /* line-height: 1.6;
   font-size: 18px; */
+}
+
+/* Dark Palette Theme #1 */
+[data-theme="light"] {
+  --bg-primary: #35343d;
+  --indicator-primary: #ffdbd8;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #35343d;
+  --indicator-primary: #ffdbd8;
 }
