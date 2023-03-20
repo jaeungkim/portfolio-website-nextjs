@@ -76,7 +76,6 @@ export default function Blog({
                     <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                       {summary}
                     </p>
-                    <p>{tags}</p>
                     <div
                       aria-hidden="true"
                       className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
