@@ -152,8 +152,6 @@ nginx: configuration file /etc/nginx/nginx.conf test is
 successful
 ```
 
----
-
 5. Restart NGINX service- `sudo service nginx restart`
 
 6. check NGINX status - `sudo systemctl status nginx`
@@ -184,8 +182,6 @@ CGroup: /system.slice/nginx.service
 
 Now, You will be able to view your app on Instance’s Public IP with no port (port 80) EC2 Instance's Public IP Address eg: 231.112.123.12
 
-## Setting up Custom Domain / LoadBalancer
-
 1. Issue an SSL Certificate (Certificate Manager)
 
 ```
@@ -195,54 +191,34 @@ api.example.com
 
 2. Create Load Balancer
 
-Choose “Application Load Balancer”
+- Choose “Application Load Balancer”
+- Name: Give the load balancer a name
+- Scheme: Internet Facing
+- IP Address Type: IPv4
+- VPC: Default
+- Mappings: Select two Availability Zones
+- Security Groups: Select the configured security group from above
+- Listeners and routers: Add Two listeners, one for HTTP (port 80) and one for HTTPS (port 443)
+- Secure listener settings: Select the certificate that we recently created from the certificate manager. You can only select it after it has been issued.
 
-1. Name: Give the load balancer a name
+3. Before saving, you need to create a Traget Group
 
-2. Scheme: Internet Facing
+- Basic Configuration: Select “instances”
+- Name: Give the target group a name
+- Protocol: HTTP
+- Port: 8080
+- Click “Next”
 
-3. IP Address Type: IPv4
+4.  Add a Record to the Load Balancer in Route 53
 
-4. VPC: Default
+- Record Name: default
+- Record Type: A
+- Alias: Select “Alias” — After clicking alias you should see an option that says “Route Traffic to”
+- Route Traffic To: Choose “Alias to Application and Classic Load Balancer”
+- Choose Region: Choose which region your load balancer is in.
+- Choose a load balancer: Select the LB that you recently created.
+- Create the Record
 
-5. Mappings: Select two Availability Zones
+4. Add rules to load balancers
 
-6. Security Groups: Select the configured security group from above
-
-7. Listeners and routers: Add Two listeners, one for HTTP (port 80) and one for HTTPS (port 443)
-
-8. Secure listener settings: Select the certificate that we recently created from the certificate manager. You can only select it after it has been issued.
-
-Step 3. Before saving, you need to create a Traget Group
-
-1. Basic Configuration: Select “instances”
-
-2. Name: Give the target group a name
-
-3. Protocol: HTTP
-
-4. Port: 8080
-
-5. Click “Next”
-
-Step 4. Add a Record to the Load Balancer in Route 53
-
-1. Record Name: default
-
-2. Record Type: A
-
-3. Alias: Select “Alias” — After clicking alias you should see an option that says “Route Traffic to”
-
-4. Route Traffic To: Choose “Alias to Application and Classic Load Balancer”
-
-5. Choose Region: Choose which region your load balancer is in.
-
-6. Choose a load balancer: Select the LB that you recently created.
-
-7. Create the Record
-
-Step 5. Add rules to load balancers
-
-Https: 443 and Http: 80
-
-### Adding SSL for HTTPS
+- Https: 443 and Http: 80
