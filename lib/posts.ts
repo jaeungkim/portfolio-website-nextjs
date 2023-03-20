@@ -29,6 +29,7 @@ export function getSortedPostsData() {
     return {
       id,
       slug,
+      tags: matterResult.data.tags || [],
       ...(matterResult.data as { date: string; title: string }),
     };
   });
@@ -75,6 +76,7 @@ export async function getPostData(id: string) {
   return {
     slug,
     id,
+    tags: matterResult.data.tags || [], // if tags key is not present in the front matter, assign an empty array as default value
     contentHtml,
     ...(matterResult.data as { date: string; title: string }),
   };

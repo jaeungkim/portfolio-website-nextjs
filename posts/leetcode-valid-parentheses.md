@@ -1,8 +1,9 @@
 ---
 title: "Valid Parentheses (Leetcode)"
 subtitle: "Leetcode daily question (easy)"
-date: "2023-03-19"
+date: "2023-03-16"
 summary: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid."
+tags: ["Leetcode"]
 ---
 
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
@@ -16,26 +17,25 @@ An input string is valid if:
 **Example 1:**
 
 ```js
-Input: s = "()"
-Output: true
+Input: s = "()";
+Output: true;
 ```
 
 **Example 2:**
 
 ```js
-Input: s = "()\[\]{}"
-Output: true
+Input: s = "()[]{}";
+Output: true;
 ```
 
 **Example 3:**
 
 ```js
-Input: s = "(\]"
-Output: false
+Input: s = "(]";
+Output: false;
 ```
 
 ## APPROACH
-
 
 I am going to use **HashMap** to store the brackets and use **Stack** to check if the brackets are valid.
 

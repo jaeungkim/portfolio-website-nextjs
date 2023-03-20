@@ -6,6 +6,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import ViewCounter from "../../components/shared/viewCounter";
 import ScrollIndicator from "../../components/shared/scrollIndicator";
+
 export default function Post({
   postData,
 }: {
@@ -13,6 +14,7 @@ export default function Post({
     id: string;
     title: string;
     date: string;
+    tags: string[];
     contentHtml: string;
   };
 }) {
