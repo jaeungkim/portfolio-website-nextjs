@@ -3,7 +3,7 @@ title: "Valid Parentheses (Leetcode)"
 subtitle: "Leetcode daily question (easy)"
 date: "2023-03-16"
 summary: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid."
-tags: ["Leetcode"]
+tags: ["Leetcode", "Java"]
 ---
 
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
@@ -41,7 +41,7 @@ I am going to use **HashMap** to store the brackets and use **Stack** to check i
 
 First, we will initialize a character HashMap with brackets
 
-```js
+```java
 private HashMap<Character, Character> brackets;
 
 public Solution(){
@@ -51,7 +51,7 @@ public Solution(){
 
 ## SOLUTION
 
-```js
+```java
 class Solution {
   // Hash table that takes care of the mappings.
   private HashMap<Character,Character> brackets;
