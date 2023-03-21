@@ -3,7 +3,7 @@ title: "Deploying Node.Js app to AWS"
 subtitle: "deploying-nodejs-to-aws"
 date: "2023-03-07"
 summary: "Creating a Node.Js Application to AWS using EC2, PM2, NGINX, Load Balancers, and etc."
-tags: ["AWS", "PM2", "NGINX", "Node.Js"]
+tags: ["AWS", "Node.Js"]
 ---
 
 ## Create instance in EC2

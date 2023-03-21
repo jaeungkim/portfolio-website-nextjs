@@ -6,4 +6,3 @@ summary: "Given an array of integers nums and an integer target, return indices 
 tags: ["Leetcode"]
 ---
 
-## hi
