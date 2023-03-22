@@ -12,7 +12,7 @@ export default function Toast({
   show,
   onClose,
   children,
-  status = "success", // Default value is "success"
+  status = "success",
 }: PropsWithChildren<Props>) {
   return (
     <Transition
@@ -26,7 +26,7 @@ export default function Toast({
       leaveTo="opacity-0"
     >
       <div
-        className={`flex justify-between items-center p-4 pb-8 max-w-xl mx-auto shadow-lg rounded-lg pointer-events-auto ${
+        className={`flex justify-between items-center p-4 mb-8 max-w-xl mx-auto shadow-lg rounded-lg pointer-events-auto ${
           status === "success" ? "bg-green-400" : "bg-red-400"
         }`}
       >

@@ -94,7 +94,10 @@ export default function Contact() {
 
       <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
         <div className="mb-4">
-          <label htmlFor="name" className="block font-medium text-gray-700 dark:text-zinc-200">
+          <label
+            htmlFor="name"
+            className="block font-medium text-gray-700 dark:text-zinc-200"
+          >
             Full Name:
           </label>
           <input
@@ -112,7 +115,10 @@ export default function Contact() {
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block font-medium text-gray-700 dark:text-zinc-200">
+          <label
+            htmlFor="email"
+            className="block font-medium text-gray-700 dark:text-zinc-200"
+          >
             Email:
           </label>
           <input
@@ -130,7 +136,10 @@ export default function Contact() {
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="message" className="block font-medium text-gray-700 dark:text-zinc-200">
+          <label
+            htmlFor="message"
+            className="block font-medium text-gray-700 dark:text-zinc-200"
+          >
             Message:
           </label>
           <textarea
