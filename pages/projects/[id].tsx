@@ -63,7 +63,8 @@ function ProjectSingle(props) {
                   >
                     <span>{info.title}: </span>
                     <a
-                      href=""
+                      target={"_blank"}
+                      href={info.title === "Website" ? info.details : null}
                       className={
                         info.title === "Website" || info.title === "Phone"
                           ? "hover:underline hover:text-cyan-500 dark:hover:text-cyan-400 cursor-pointer duration-300"
