@@ -53,6 +53,7 @@ export default function Contact() {
         console.error(error);
         setApiStatus("danger");
         setToastMessage("Failed to send message. Please try again later.");
+        setFormErrors({});
       }
     } else {
       setFormErrors(errors);
