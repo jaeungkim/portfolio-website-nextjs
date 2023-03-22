@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Layout from "../../components/shared/layout";
 import { FiClock, FiTag } from "react-icons/fi";
 import { projectsData } from "../../data/projectsData";
 
 function ProjectSingle(props) {
   return (
-    <div className="container mx-auto">
+    <Layout>
       {/* Header */}
       <div>
         <p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7">
@@ -116,7 +117,7 @@ function ProjectSingle(props) {
           })}
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

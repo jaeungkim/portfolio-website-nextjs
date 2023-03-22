@@ -15,13 +15,13 @@ const ProjectSingle = ({ id, img, title, category }) => {
           duration: 0.7,
           delay: 0.15,
         }}
-        className="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
+        className="rounded-xl shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-white/90 dark:bg-zinc-800/90 hover:bg-zinc-100 dark:hover:bg-zinc-900"
         aria-label="Single Project"
       >
         <div>
           <Image
             src={img}
-            className="rounded-t-xl border-none"
+            className="rounded-xl border-none aspect-video"
             alt="Single Project"
             layout="responsive"
             width={100}

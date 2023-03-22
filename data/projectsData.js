@@ -10,30 +10,30 @@ import {
 export const projectsData = [
   {
     id: 1,
-    title: "Google Health Platform",
-    url: "google-health-platform",
+    title: "WebGL Playground",
+    url: "webgl-playground",
     category: "Web Application",
-    img: "/images/web-project-2.jpg",
+    img: "/images/webGL_project_main.png",
     ProjectHeader: {
-      title: "Google Health Platform",
+      title: "WebGL Playground",
       publishDate: "Jul 26, 2021",
       tags: "UI / Frontend",
     },
     ProjectImages: [
       {
         id: uuidv4(),
-        title: "Google Health Platform",
-        img: "/images/ui-project-1.jpg",
+        title: "WebGL Playground_1",
+        img: "/images/webGL_project_main.png",
       },
       {
         id: uuidv4(),
-        title: "Google Health Platform",
-        img: "/images/web-project-2.jpg",
+        title: "WebGL Playground_2",
+        img: "/images/webGL_project_main.png",
       },
       {
         id: uuidv4(),
-        title: "Google Health Platform",
-        img: "/images/mobile-project-2.jpg",
+        title: "WebGL Playground_3",
+        img: "/images/webGL_project_main.png",
       },
     ],
     ProjectInfo: {
@@ -103,30 +103,30 @@ export const projectsData = [
   },
   {
     id: 2,
-    title: "Phoenix Digital Agency",
-    url: "phoenix-digital-agency",
-    category: "Mobile Application",
-    img: "/images/mobile-project-2.jpg",
+    title: "iClinic Systems",
+    url: "iclinic-systems",
+    category: "Web Application",
+    img: "/images/iclinic_main.png",
     ProjectHeader: {
-      title: "Phoenix Digital Agency",
+      title: "iClinic Systems",
       publishDate: "Jul 26, 2021",
-      tags: "Mobile Application",
+      tags: "Web Application",
     },
     ProjectImages: [
       {
         id: uuidv4(),
-        title: "Phoenix Digital Agency",
-        img: "/images/ui-project-1.jpg",
+        title: "iClinic Systems",
+        img: "/images/iclinic_main.png",
       },
       {
         id: uuidv4(),
-        title: "Phoenix Digital Agency",
-        img: "/images/web-project-2.jpg",
+        title: "iClinic Systems",
+        img: "/images/iclinic_main.png",
       },
       {
         id: uuidv4(),
-        title: "Phoenix Digital Agency",
-        img: "/images/mobile-project-2.jpg",
+        title: "iClinic Systems",
+        img: "/images/iclinic_main.png",
       },
     ],
     ProjectInfo: {
@@ -197,30 +197,30 @@ export const projectsData = [
   },
   {
     id: 3,
-    title: "Project Management UI",
-    url: "project-management-ui",
-    category: "UI/UX Design",
-    img: "/images/ui-project-1.jpg",
+    title: "Catalyx.io",
+    url: "catalyx",
+    category: "Web Application",
+    img: "/images/catalyx_main.png",
     ProjectHeader: {
-      title: "Project Management UI",
+      title: "Catalyx.io",
       publishDate: "Jul 26, 2021",
       tags: "UI / Frontend",
     },
     ProjectImages: [
       {
         id: uuidv4(),
-        title: "Kabul Project Management UI",
-        img: "/images/ui-project-1.jpg",
+        title: "catalyx",
+        img: "/images/catalyx_main.png",
       },
       {
         id: uuidv4(),
-        title: "Kabul Project Management UI",
-        img: "/images/web-project-2.jpg",
+        title: "catalyx",
+        img: "/images/catalyx_main.png",
       },
       {
         id: uuidv4(),
-        title: "Kabul Project Management UI",
-        img: "/images/mobile-project-2.jpg",
+        title: "Catalyx",
+        img: "/images/catalyx_main.png",
       },
     ],
     ProjectInfo: {
@@ -290,30 +290,30 @@ export const projectsData = [
   },
   {
     id: 4,
-    title: "Cloud Storage Platform",
-    url: "cloud-storage-platform",
+    title: "Architecture Portfolio",
+    url: "suh-architecture",
     category: "UI/UX Design",
-    img: "/images/ui-project-2.jpg",
+    img: "/images/namju_portfolio_main.png",
     ProjectHeader: {
-      title: "Cloud Storage Platform",
+      title: "Namju Suh",
       publishDate: "Jul 26, 2021",
       tags: "Web & Cloud",
     },
     ProjectImages: [
       {
         id: uuidv4(),
-        title: "Kabul Cloud Storage Platform",
-        img: "/images/ui-project-1.jpg",
+        title: "Namju Suh",
+        img: "/images/namju_portfolio_main.png",
       },
       {
         id: uuidv4(),
-        title: "Kabul Cloud Storage Platform",
-        img: "/images/web-project-2.jpg",
+        title: "Namju Suh",
+        img: "/images/namju_portfolio_main.png",
       },
       {
         id: uuidv4(),
-        title: "Kabul Cloud Storage Platform",
-        img: "/images/mobile-project-2.jpg",
+        title: "Namju Suh",
+        img: "/images/namju_portfolio_main.png",
       },
     ],
     ProjectInfo: {
@@ -383,30 +383,30 @@ export const projectsData = [
   },
   {
     id: 5,
-    title: "WeTalk Social Application",
-    url: "wetalk-social-app",
+    title: "Lost Ark Discord Bot",
+    url: "lostark-discord",
     category: "Mobile Application",
-    img: "/images/mobile-project-1.jpg",
+    img: "/images/lostark_bot_main.png",
     ProjectHeader: {
-      title: "WeTalk Social Application",
+      title: "Lost Ark Discord Bot",
       publishDate: "Jul 26, 2021",
       tags: "UI / Frontend",
     },
     ProjectImages: [
       {
         id: uuidv4(),
-        title: "WeTalk Social Application",
-        img: "/images/ui-project-1.jpg",
+        title: "Lost Ark Discord Bot",
+        img: "/images/lostark_bot_1.png",
       },
       {
         id: uuidv4(),
-        title: "WeTalk Social Application",
-        img: "/images/web-project-2.jpg",
+        title: "Lost Ark Discord Bot",
+        img: "/images/lostark_bot_1.png",
       },
       {
         id: uuidv4(),
-        title: "WeTalk Social Application",
-        img: "/images/mobile-project-2.jpg",
+        title: "Lost Ark Discord Bot",
+        img: "/images/lostark_bot_1.png",
       },
     ],
     ProjectInfo: {
@@ -476,30 +476,30 @@ export const projectsData = [
   },
   {
     id: 6,
-    title: "Apple New Design System",
-    url: "apple-new-design-system",
+    title: "Circle Market",
+    url: "circle-market",
     category: "Web Application",
-    img: "/images/web-project-1.jpg",
+    img: "/images/circlemarket_main.png",
     ProjectHeader: {
-      title: "Apple New Design System",
+      title: "Circle Market",
       publishDate: "Jul 26, 2021",
       tags: "UI / Frontend",
     },
     ProjectImages: [
       {
         id: uuidv4(),
-        title: "Kabul Apple New Design System",
-        img: "/images/ui-project-1.jpg",
+        title: "Circle Market",
+        img: "/images/circlemarket_main.png",
       },
       {
         id: uuidv4(),
-        title: "Kabul Apple New Design System",
-        img: "/images/web-project-2.jpg",
+        title: "Circle Market",
+        img: "/images/circlemarket_main.png",
       },
       {
         id: uuidv4(),
-        title: "Kabul Apple New Design System",
-        img: "/images/mobile-project-2.jpg",
+        title: "Circle Market",
+        img: "/images/circlemarket_main.png",
       },
     ],
     ProjectInfo: {
