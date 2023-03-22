@@ -18,6 +18,8 @@ export default function Contact() {
   const [toastMessage, setToastMessage] = useState<string>("");
   const [apiStatus, setApiStatus] = useState<"success" | "danger">("success"); // Default value is "success"
 
+  const [loading, setLoading] = useState<boolean>(false); // Add new state variable for loading
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ): void => {
@@ -35,6 +37,7 @@ export default function Contact() {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
+      setLoading(true); // Set loading to true when the form is submitted
       try {
         const response = await axios.post("/api/sendgrid", {
           name,
@@ -55,6 +58,7 @@ export default function Contact() {
         setToastMessage("Failed to send message. Please try again later.");
         setFormErrors({});
       }
+      setLoading(false); // Set loading to false after the API call is complete
     } else {
       setFormErrors(errors);
     }
@@ -90,7 +94,7 @@ export default function Contact() {
 
       <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
         <div className="mb-4">
-          <label htmlFor="name" className="block font-medium text-gray-700">
+          <label htmlFor="name" className="block font-medium text-gray-700 dark:text-zinc-200">
             Full Name:
           </label>
           <input
@@ -99,7 +103,7 @@ export default function Contact() {
             name="name"
             onChange={handleChange}
             value={name}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
+            className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 ${
               formErrors.name ? "border-red-500" : ""
             }`}
           />
@@ -108,7 +112,7 @@ export default function Contact() {
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block font-medium text-gray-700">
+          <label htmlFor="email" className="block font-medium text-gray-700 dark:text-zinc-200">
             Email:
           </label>
           <input
@@ -117,7 +121,7 @@ export default function Contact() {
             name="email"
             value={email}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
+            className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 ${
               formErrors.email ? "border-red-500" : ""
             }`}
           />
@@ -126,7 +130,7 @@ export default function Contact() {
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="message" className="block font-medium text-gray-700">
+          <label htmlFor="message" className="block font-medium text-gray-700 dark:text-zinc-200">
             Message:
           </label>
           <textarea
@@ -135,7 +139,7 @@ export default function Contact() {
             value={message}
             rows={5}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
+            className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 ${
               formErrors.message ? "border-red-500" : ""
             }`}
           ></textarea>
@@ -143,12 +147,17 @@ export default function Contact() {
             <p className="text-red-500 text-sm mt-1">{formErrors.message}</p>
           )}
         </div>
-        <div className="text-center">
+        <div className="text-left">
           <button
             type="submit"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            disabled={loading}
+            className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ${
+              loading
+                ? "bg-gray-400 cursor-wait"
+                : "bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+            }`}
           >
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </button>
         </div>
       </form>
