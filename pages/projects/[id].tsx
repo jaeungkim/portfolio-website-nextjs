@@ -8,19 +8,19 @@ function ProjectSingle(props) {
     <Layout>
       {/* Header */}
       <div>
-        <p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7">
+        <p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-14 sm:mt-20 mb-7">
           {props.project.ProjectHeader.title}
         </p>
         <div className="flex">
           <div className="flex items-center mr-10">
-            <FiClock className="text-xl text-ternary-dark dark:text-ternary-light" />
-            <span className="font-general-regular ml-2 leading-none text-primary-dark dark:text-primary-light">
+            <FiClock className="text-xl text-zinc-600 dark:text-zinc-400" />
+            <span className="font-general-regular ml-2 leading-none text-zinc-600 dark:text-zinc-400">
               {props.project.ProjectHeader.publishDate}
             </span>
           </div>
           <div className="flex items-center">
-            <FiTag className="w-4 h-4 text-ternary-dark dark:text-ternary-light" />
-            <span className="font-general-regular ml-2 leading-none text-primary-dark dark:text-primary-light">
+            <FiTag className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
+            <span className="font-general-regular ml-2 leading-none text-zinc-600 dark:text-zinc-400">
               {props.project.ProjectHeader.tags}
             </span>
           </div>
@@ -51,14 +51,14 @@ function ProjectSingle(props) {
         <div className="w-full sm:w-1/3 text-left">
           {/* Single project client details */}
           <div className="mb-7">
-            <p className="font-general-regular text-2xl font-semibold text-secondary-dark dark:text-secondary-light mb-2">
+            <p className="font-general-regular text-2xl font-semibold text-zinc-800 dark:text-zinc-100 mb-2">
               {props.project.ProjectInfo.ClientHeading}
             </p>
             <ul className="leading-loose">
               {props.project.ProjectInfo.CompanyInfo.map((info) => {
                 return (
                   <li
-                    className="font-general-regular text-ternary-dark dark:text-ternary-light"
+                    className="font-general-regular text-zinc-600 dark:text-zinc-400"
                     key={info.id}
                   >
                     <span>{info.title}: </span>
@@ -66,7 +66,7 @@ function ProjectSingle(props) {
                       href="https://stoman.me"
                       className={
                         info.title === "Website" || info.title === "Phone"
-                          ? "hover:underline hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer duration-300"
+                          ? "hover:underline hover:text-cyan-500 dark:hover:text-cyan-400 cursor-pointer duration-300"
                           : ""
                       }
                       aria-label="Project Website and Phone"
@@ -81,20 +81,20 @@ function ProjectSingle(props) {
 
           {/* Single project objectives */}
           <div className="mb-7">
-            <p className="font-general-regular text-2xl font-semibold text-ternary-dark dark:text-ternary-light mb-2">
+            <p className="font-general-regular text-2xl font-semibold text-zinc-800 dark:text-zinc-100 mb-2">
               {props.project.ProjectInfo.ObjectivesHeading}
             </p>
-            <p className="font-general-regular text-primary-dark dark:text-ternary-light">
+            <p className="font-general-regular text-zinc-600 dark:text-zinc-400">
               {props.project.ProjectInfo.ObjectivesDetails}
             </p>
           </div>
 
           {/* Single project technologies */}
           <div className="mb-7">
-            <p className="font-general-regular text-2xl font-semibold text-ternary-dark dark:text-ternary-light mb-2">
+            <p className="font-general-regular text-2xl font-semibold text-zinc-800 dark:text-zinc-100 mb-2">
               {props.project.ProjectInfo.Technologies[0].title}
             </p>
-            <p className="font-general-regular text-primary-dark dark:text-ternary-light">
+            <p className="font-general-regular text-zinc-600 dark:text-zinc-400">
               {props.project.ProjectInfo.Technologies[0].techs.join(", ")}
             </p>
           </div>
@@ -102,14 +102,14 @@ function ProjectSingle(props) {
 
         {/*  Single project right section details */}
         <div className="w-full sm:w-2/3 text-left mt-10 sm:mt-0">
-          <p className="text-primary-dark dark:text-primary-light text-2xl font-bold mb-7">
+          <p className="text-zinc-800 dark:text-zinc-100 text-2xl font-bold mb-7">
             {props.project.ProjectInfo.ProjectDetailsHeading}
           </p>
           {props.project.ProjectInfo.ProjectDetails.map((details) => {
             return (
               <p
                 key={details.id}
-                className="font-general-regular mb-5 text-lg text-ternary-dark dark:text-ternary-light"
+                className="font-general-regular mb-5 text-lg text-zinc-600 dark:text-zinc-400"
               >
                 {details.details}
               </p>
