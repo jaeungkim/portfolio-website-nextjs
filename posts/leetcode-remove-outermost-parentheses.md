@@ -3,7 +3,7 @@ title: "Remove Outermost Parentheses (Leetcode)"
 subtitle: "Leetcode daily question (easy)"
 date: "2023-03-18"
 summary: "Given a valid parentheses string s, Return s after removing the outermost parentheses of every primitive string in the primitive decomposition of s."
-tags: ["Leetcode"]
+tags: ["Leetcode", "JavaScript"]
 ---
 
 Given a valid parentheses string `s`, Return `s` after removing the outermost parentheses of every primitive string in the primitive decomposition of  `s`.
@@ -45,8 +45,8 @@ We are going to use java’s StringBuilder to build string as we iterate through
 Next, for each iteration, we’ll append to the output variable based on these conditions.
 
 ```js
-1\. if (c == '(' && count++ > 0) output.append(c);
-2\. if (c == ')' && count-- > 1) output.append(c);
+1. if (c == '(' && count++ > 0) output.append(c);
+2. if (c == ')' && count-- > 1) output.append(c);
 ```
 
 Finally, we will output the built string with output.toString();

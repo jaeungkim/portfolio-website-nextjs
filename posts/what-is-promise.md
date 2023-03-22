@@ -6,11 +6,11 @@ summary: "Prior to promises events and callback functions were used but they had
 tags: ["JavaScript"]
 ---
 
-# Promises in JavaScript (JS)
+## Promises in JavaScript (JS)
 
 Figure 1.1: Promises Can be Resolved or Rejected
 
-# **What is Promise in JavaScript?**
+## **What is Promise in JavaScript?**
 
 > **A promise is an object that may produce a single value sometime in the future.** Either a resolved value or a rejected value.
 
@@ -20,7 +20,7 @@ Prior to promises events and callback functions were used but they had limited f
 
 **_In other words, Promise makes JavaScript behave asynchronously, which makes this language versatile._**
 
-# How Promises Work?
+## How Promises Work?
 
 _Let's understand this with an example:_
 
@@ -45,7 +45,7 @@ A promise **_starts in the pending state_**, which **_indicates that the Promise
 3.  Better flow of control definition in asynchronous logic
 4.  Better Error Handling
 
-# JavaScript Promise Chaining
+## JavaScript Promise Chaining
 
 Fig 1.3: Working of JavaScript promise chaining
 
@@ -61,11 +61,11 @@ The syntax of `then()` the method is:
 promiseObject.then(onFulfilled, onRejected);
 ```
 
-# JavaScript catch() method
+## JavaScript catch() method
 
 The `catch()` method is used with the callback when the promise is rejected or if an error occurs.
 
-# Creating and Using A Promise Step by Step:-
+## Creating and Using A Promise Step by Step:-
 
 Firstly, we use a constructor to create a Promise object:
 
@@ -97,7 +97,7 @@ const myPromise = new Promise((resolve, reject) => {
 
 So we have created our first Promise. Now let’s use it.
 
-# then( ) for resolved Promises:
+## then( ) for resolved Promises:
 
 If you revisit the Fig1.2 in this post, you’ll see that there are 2 cases: One for resolved promises and one for rejected. If the Promise gets resolved (success case), then something will happen next (depends on what we do with the successful Promise).
 
@@ -115,7 +115,7 @@ myPromise.then((message) => {
 });
 ```
 
-# catch( ) for rejected Promises:
+## catch( ) for rejected Promises:
 
 However, the then( ) method is only for resolved Promises. What if the Promise fails? Then, we need to use the catch( ) method.
 
@@ -162,7 +162,7 @@ As, `10 + 10 = 20` the `num = 20` so it will execute `if(){}` block and it will 
 '''catch block --> This reject should come in the catch block'''
 ```
 
-# Async / Await Promises
+## Async / Await Promises
 
 Now, let's take a look at some examples of asynchronous operations.
 

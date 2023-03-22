@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useMemo } from "react";
 import { Disclosure, Menu, Transition, Dialog } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -21,22 +21,22 @@ export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
   const renderThemeChanger = () => {
-    const currentTheme = theme === "system" ? systemTheme : theme;
-    const isDarkTheme = currentTheme === "dark";
-    const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
+    const isDarkTheme = theme === "dark";
     const buttonClassName = `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 ${
       isDarkTheme
         ? "text-yellow-300 hover:text-yellow-500"
         : "text-cyan-500 hover:text-cyan-700"
     }`;
+    const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
+    const icon = isDarkTheme ? (
+      <SunIcon className="w-5 h-5" role="button" />
+    ) : (
+      <MoonIcon className="w-5 h-5" role="button" />
+    );
 
     return (
       <button onClick={toggleTheme} className={buttonClassName}>
-        {isDarkTheme ? (
-          <SunIcon className="w-5 h-5" role="button" />
-        ) : (
-          <MoonIcon className="w-5 h-5" role="button" />
-        )}
+        {icon}
       </button>
     );
   };
@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="relative px-4 sm:px-8 lg:px-12 flex gap-4">
           <div className="flex flex-1">
             <div className="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-              <a className="pointer-events-auto" href='/'>
+              <a className="pointer-events-auto" href="/">
                 <Image
                   className="rounded-full bg-zinc-100 object-cover dark:bg-zinc-800 h-9 w-9"
                   src="/images/ill_prof.jpeg"
