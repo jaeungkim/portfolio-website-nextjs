@@ -1,13 +1,6 @@
-import { Fragment, useState, useMemo } from "react";
-import { Disclosure, Menu, Transition, Dialog } from "@headlessui/react";
-import {
-  Bars3Icon,
-  BellIcon,
-  XMarkIcon,
-  SunIcon,
-  HomeIcon,
-  MoonIcon,
-} from "@heroicons/react/24/outline";
+import { Fragment, useState } from "react";
+import { Transition, Dialog } from "@headlessui/react";
+import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
@@ -114,10 +107,10 @@ export default function Navbar() {
           <Transition.Child
             key="hi"
             as={Fragment}
-            enter="ease-out duration-300"
+            enter="transition ease-out duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in duration-200"
+            leave="transition ease-in duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
@@ -129,10 +122,10 @@ export default function Navbar() {
               <Transition.Child
                 key="hi"
                 as={Fragment}
-                enter="ease-out duration-300"
+                enter="transition ease-out duration-300"
                 enterFrom="opacity-0 scale-95"
                 enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
+                leave="transition ease-in duration-200"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >

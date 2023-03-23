@@ -1,13 +1,11 @@
 import Navbar from "./Navbar";
 
-const Header = () => {
+function Header() {
   return (
-    <header className="pointer-events-none relative flex flex-col">
-      <div className="flex h-full py-6 flex-col">
-        <Navbar />
-      </div>
+    <header className="pointer-events-none relative flex flex-col h-full py-6">
+      <Navbar />
     </header>
   );
-};
+}
 
 export default Header;
