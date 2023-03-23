@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Date from "../components/shared/date";
 import Layout from "../components/shared/layout";
-import ViewCounter from "../components/shared/viewCounter";
 import { getSortedPostsData } from "../lib/posts";
 
 interface Post {
@@ -58,6 +57,7 @@ export default function Blog({ allPostsData }: BlogProps) {
                 </button>
               ))}
             </div>
+
             {allPostsData
               .filter(postMatchesSelectedTags)
               .map(({ id, date, summary, title, tags }) => (
