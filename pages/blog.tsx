@@ -79,7 +79,7 @@ export default function Blog({ allPostsData }: BlogProps) {
                     </p>
                     <div
                       aria-hidden="true"
-                      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+                      className="relative z-10 mt-4 flex items-center text-sm font-medium text-cyan-500"
                     >
                       Read article
                       <svg
