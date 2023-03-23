@@ -1,22 +1,56 @@
+import { motion } from "framer-motion";
+
+const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
+const hidden = { opacity: 0, y: -50 };
+
 export default function About() {
   return (
-    <>
-      <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+    <motion.article
+      initial="hidden"
+      animate="visible"
+      exit={{ opacity: 0, transition: { duration: 1 } }}
+      variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+    >
+      <motion.h1
+        variants={{
+          visible,
+          hidden,
+        }}
+        className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl"
+      >
         Hi there 👋
-      </h1>
-      <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+      </motion.h1>
+      <motion.h2
+        variants={{
+          hidden,
+          visible: { ...visible, transition: { delay: 0.3 } },
+        }}
+        className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl"
+      >
         I am Jaeung Kim
-      </h2>
-      <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+      </motion.h2>
+      <motion.p
+        variants={{
+          hidden,
+          visible: { ...visible, transition: { delay: 0.6 } },
+        }}
+        className="mt-6 text-base text-zinc-600 dark:text-zinc-400"
+      >
         You can also call me Jae 🙂.
-      </p>
-      <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+      </motion.p>
+      <motion.p
+        variants={{
+          hidden,
+          visible: { ...visible, transition: { delay: 0.9 } },
+        }}
+        className="mt-6 text-base text-zinc-600 dark:text-zinc-400"
+      >
         I am a highly motivated and collaborative software engineer with 2 years
         of experience in designing, building, and maintaining software for
         startup companies. I primarily focuse on full-stack web development but
         I also have experiences working as a designer and product owners
         dependings on the needs of the company.
-      </p>
+      </motion.p>
       <div className="mt-6 flex gap-6">
         <a className="group -m-1 p-1" href="https://github.com/jaeungkim">
           <svg
@@ -31,7 +65,10 @@ export default function About() {
             ></path>
           </svg>
         </a>
-        <a className="group -m-1 p-1" href="https://www.linkedin.com/in/jaeungkim0526/">
+        <a
+          className="group -m-1 p-1"
+          href="https://www.linkedin.com/in/jaeungkim0526/"
+        >
           <svg
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -51,6 +88,6 @@ export default function About() {
           </svg>
         </a>
       </div>
-    </>
+    </motion.article>
   );
 }

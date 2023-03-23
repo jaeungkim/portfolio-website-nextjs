@@ -1,45 +1,46 @@
-import Head from "next/head";
-import { getSortedPostsData } from "../lib/posts";
-import Date from "../components/shared/date";
 import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Date from "../components/shared/date";
 import Layout from "../components/shared/layout";
 import ViewCounter from "../components/shared/viewCounter";
-import { useState } from "react";
+import { getSortedPostsData } from "../lib/posts";
 
-export default function Blog({
-  allPostsData,
-}: {
-  allPostsData: {
-    tags: string[];
-    date: string;
-    summary: string;
-    title: string;
-    id: string;
-  }[];
-}) {
+interface Post {
+  id: string;
+  title: string;
+  date: string;
+  summary: string;
+  tags: string[];
+}
+
+interface BlogProps {
+  allPostsData: Post[];
+}
+
+export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const tags: string[] = Array.from(
-    new Set(allPostsData.flatMap((post) => post.tags))
-  );
 
   function handleTagClick(tag: string) {
-    if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag));
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
+    setSelectedTags((prevSelectedTags) =>
+      prevSelectedTags.includes(tag)
+        ? prevSelectedTags.filter((t) => t !== tag)
+        : [...prevSelectedTags, tag]
+    );
   }
 
-  function postMatchesSelectedTags(post: any) {
-    return selectedTags.every((tag: string) => post.tags.includes(tag));
-  }
+  const tags = Array.from(new Set(allPostsData.flatMap((post) => post.tags)));
+
+  const postMatchesSelectedTags = (post: Post) =>
+    selectedTags.every((tag) => post.tags.includes(tag));
 
   return (
     <Layout>
       <Head>
         <title>Jaeung Kim - Blog</title>
       </Head>
-      <div className="mt-16 sm:mt-20">
+      <motion.div className="mt-16 sm:mt-20">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
             <div className="flex flex-wrap justify-center mt-6">
@@ -101,7 +102,7 @@ export default function Blog({
               ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </Layout>
   );
 }
