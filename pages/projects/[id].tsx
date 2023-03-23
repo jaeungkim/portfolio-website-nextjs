@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Layout from "../../components/shared/layout";
 import { FiClock, FiTag } from "react-icons/fi";
 import { projectsData } from "../../data/projectsData";

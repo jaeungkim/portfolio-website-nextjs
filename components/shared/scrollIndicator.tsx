@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const ScrollIndicator = () => {
-  const [scrollPercent, setScrollPercent] = useState(0);
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -10,22 +10,25 @@ const ScrollIndicator = () => {
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       const scrollPercent = (scrollY / pageHeight) * 100;
-      setScrollPercent(scrollPercent);
+      scrollRef.current.style.width = `${scrollPercent}%`;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    let rafId;
+    const handleAnimationFrame = () => {
+      handleScroll();
+      rafId = requestAnimationFrame(handleAnimationFrame);
+    };
+
+    handleAnimationFrame();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
     <div className="fixed top-0 left-0 right-0 h-1 bg-gray-300">
-      <div
-        className="h-full bg-pink-600 dark:bg-pink-300"
-        style={{ width: `${scrollPercent}%` }}
-      />
+      <div className="h-full bg-pink-600 dark:bg-pink-300" ref={scrollRef} />
     </div>
   );
 };
