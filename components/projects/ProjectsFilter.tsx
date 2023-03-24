@@ -22,7 +22,7 @@ const ProjectsFilter = memo(({ setSelectProject }: ProjectsFilterProps) => {
         defaultValue=""
         className="block w-full px-4 py-2 pr-8 bg-white/90 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 rounded-lg focus:ring-cyan-500 focus:border-cyan-500  dark:focus:ring-cyan-500 dark:focus:border-cyan-500 appearance-none"
       >
-        <option value="" disabled>
+        <option value="">
           All Projects
         </option>
         {selectOptions.map((option) => (

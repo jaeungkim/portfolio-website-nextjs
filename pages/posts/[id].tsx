@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import ViewCounter from "../../components/shared/viewCounter";
 import ScrollIndicator from "../../components/shared/scrollIndicator";
 import BackButton from "../../components/shared/backButton";
+import ScrollToTopButton from "../../components/shared/scrollToTopButton";
 
 export default function Post({
   postData,
@@ -26,6 +27,7 @@ export default function Post({
         <title>{postData.title}</title>
       </Head>
       <ScrollIndicator />
+      <ScrollToTopButton />
       <BackButton />
       <ViewCounter slug={postData.id} />
       <article className="prose prose-tr:border-none lg:prose-xl dark:prose-invert mx-auto overflow-auto">
