@@ -32,7 +32,10 @@ export default function Post({
       <ViewCounter slug={postData.id} />
       <article className="prose prose-tr:border-none lg:prose-xl dark:prose-invert mx-auto overflow-auto">
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div
+          key={postData.id}
+          dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+        />
       </article>
     </Layout>
   );

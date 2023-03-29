@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const ScrollIndicator = () => {
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -10,7 +10,9 @@ const ScrollIndicator = () => {
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       const scrollPercent = (scrollY / pageHeight) * 100;
-      scrollRef.current.style.width = `${scrollPercent}%`;
+      if (scrollRef.current) {
+        scrollRef.current.style.width = `${scrollPercent}%`;
+      }
     };
 
     let rafId;
@@ -27,7 +29,7 @@ const ScrollIndicator = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 bg-gray-300">
+    <div className="fixed top-0 left-0 right-0 h-1 bg-gray-300 z-50">
       <div className="h-full bg-pink-600 dark:bg-pink-300" ref={scrollRef} />
     </div>
   );

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import "prismjs/themes/prism-okaidia.css";
 
 function App({ Component, pageProps }) {
   const [isAnimating, setIsAnimating] = useState(false);

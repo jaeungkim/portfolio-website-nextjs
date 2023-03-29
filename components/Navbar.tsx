@@ -13,19 +13,26 @@ const navigation = [
 ];
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
-  const { systemTheme, theme, setTheme } = useTheme();
   const renderThemeChanger = () => {
-    const isDarkTheme = theme === "dark";
+    const { systemTheme, theme, setTheme } = useTheme();
+    const [isDarkTheme, setIsDarkTheme] = useState(theme === "dark");
+
     const buttonClassName = `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 ${
       isDarkTheme
         ? "text-yellow-300 hover:text-yellow-500"
         : "text-cyan-500 hover:text-cyan-700"
     }`;
-    const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
+
+    const toggleTheme = () => {
+      const newTheme = isDarkTheme ? "light" : "dark";
+      setIsDarkTheme(!isDarkTheme);
+      setTheme(newTheme);
+    };
+
     const icon = isDarkTheme ? (
-      <SunIcon className="w-5 h-5" role="button" />
+      <SunIcon className="w-5 h-5 text-yellow-400" />
     ) : (
-      <MoonIcon className="w-5 h-5" role="button" />
+      <MoonIcon className="w-5 h-5 text-blue-500" />
     );
 
     return (
@@ -60,8 +67,8 @@ export default function Navbar() {
               </a>
             </div>
           </div>
-          {/* Mobile Menu */}
           <div className="flex flex-1 justify-end md:justify-center">
+            {/* Mobile Menu */}
             <div
               className="pointer-events-auto md:hidden"
               onClick={() => openModal()}
@@ -130,7 +137,7 @@ export default function Navbar() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
+                <Dialog.Panel className="fixed inset-x-4 top-8 z-40 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
                   <Dialog.Title
                     as="h2"
                     className="flex flex-row w-full items-center justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400"
