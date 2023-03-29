@@ -1,8 +1,30 @@
 import { motion } from "framer-motion";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import {
+  OrbitControls,
+  Stage,
+  Html,
+  PerspectiveCamera,
+} from "@react-three/drei";
+import Model from "./Model";
 
 const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
 const hidden = { opacity: 0, y: -50 };
 
+function ModelLoader() {
+  return (
+    <Suspense
+      fallback={
+        <Html center className="text-zinc-600 dark:text-zinc-400">
+          Loading...
+        </Html>
+      }
+    >
+      <Model />
+    </Suspense>
+  );
+}
 export default function About() {
   return (
     <motion.article
@@ -87,6 +109,16 @@ export default function About() {
             <path d="M12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0-7.622a4.622 4.622 0 1 0 0 9.244 4.622 4.622 0 0 0 0-9.244Zm5.884-.182a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0Z"></path>
           </svg>
         </a>
+      </div>
+
+      <div className="w-full h-96 relative">
+        <Canvas>
+          <PerspectiveCamera makeDefault position={[0, 0, 50]} fov={75} />
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[2.5, 8, 5]} intensity={1} />
+          <Model />
+          <OrbitControls enableZoom={false} /> {/* Disable zoom */}
+        </Canvas>
       </div>
     </motion.article>
   );
