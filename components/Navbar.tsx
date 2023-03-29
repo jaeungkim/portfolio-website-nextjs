@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import Link from "next/link";
 import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -83,12 +84,12 @@ export default function Navbar() {
                     key={item.name}
                     aria-current={item.current ? "page" : undefined}
                   >
-                    <a
+                    <Link
                       className="relative block px-3 py-2 transition hover:text-cyan-500 dark:hover:text-cyan-400"
                       href={item.href}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -149,9 +150,9 @@ export default function Navbar() {
                           aria-current={item.current ? "page" : undefined}
                           onClick={() => setIsOpen(false)}
                         >
-                          <a className="block py-2" href={item.href}>
+                          <Link className="block py-2" href={item.href}>
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
