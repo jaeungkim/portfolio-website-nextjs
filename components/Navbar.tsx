@@ -111,7 +111,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Modal Pop-up */}
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <Transition.Child
             key="hi"
             as={Fragment}
