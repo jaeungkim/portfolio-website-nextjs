@@ -1,18 +1,18 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Layout from "../../components/shared/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
-import { useRouter } from "next/router";
 import ViewCounter from "../../components/shared/viewCounter";
 import ScrollIndicator from "../../components/shared/scrollIndicator";
 import BackButton from "../../components/shared/backButton";
 import ScrollToTopButton from "../../components/shared/scrollToTopButton";
 import { MDXRemote } from "next-mdx-remote";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
-
 import mdxComponents from "../../components/shared/mdxComponents";
-import ReactUtterances from "react-utterances";
+import { UtterancesComments } from "../../components/shared/utterancesComments";
 
 export default function Post({
   postData,
@@ -26,6 +26,7 @@ export default function Post({
   };
 }) {
   const router = useRouter();
+
   return (
     <Layout>
       <Head>
@@ -38,18 +39,10 @@ export default function Post({
       <article className="prose prose-tr:border-none lg:prose-xl dark:prose-invert mx-auto overflow-auto">
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div key={postData.id}>
-          <MDXRemote {...postData.contentHtml} components={mdxComponents} />{" "}
-          {/* Update this line */}
+          <MDXRemote {...postData.contentHtml} components={mdxComponents} />
         </div>
       </article>
-      <ReactUtterances
-        repo="jaeungkim/portfolio-website-nextjs"
-        type={"pathname"}
-        label="comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async
-      />
+      <UtterancesComments />
     </Layout>
   );
 }
