@@ -12,7 +12,7 @@ import ScrollToTopButton from "../../components/shared/scrollToTopButton";
 import { MDXRemote } from "next-mdx-remote";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import mdxComponents from "../../components/shared/mdxComponents";
-import { UtterancesComments } from "../../components/shared/utterancesComments";
+import UtterancesComments from "../../components/shared/utterancesComments";
 
 export default function Post({
   postData,
@@ -42,7 +42,7 @@ export default function Post({
           <MDXRemote {...postData.contentHtml} components={mdxComponents} />
         </div>
       </article>
-      <UtterancesComments />
+      <UtterancesComments repo="jaeungkim/portfolio-website-nextjs" />
     </Layout>
   );
 }

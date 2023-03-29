@@ -1,44 +1,50 @@
 import { useTheme } from "next-themes";
 import React, { useEffect, useRef } from "react";
 
-export const UtterancesComments: React.FC = () => {
+interface UtterancesCommentsProps {
+  repo: string;
+}
+
+const UtterancesComments: React.FC<UtterancesCommentsProps> = ({ repo }) => {
   const { theme } = useTheme();
   const elementRef = useRef<HTMLDivElement>(null);
-  const t = theme === "dark" ? "github-dark" : "github-light";
+  const themeName = theme === "dark" ? "github-dark" : "github-light";
 
-  // first load
   useEffect(() => {
     if (!elementRef.current) {
       return;
     }
 
-    const scriptElem = document.createElement("script");
-    scriptElem.src = "https://utteranc.es/client.js";
-    scriptElem.async = true;
-    scriptElem.crossOrigin = "anonymous";
-    scriptElem.setAttribute("repo", "jaeungkim/portfolio-website-nextjs");
-    scriptElem.setAttribute("issue-term", "url");
-    scriptElem.setAttribute("label", "blog-comment");
-    scriptElem.setAttribute("theme", t);
-    elementRef.current.appendChild(scriptElem);
-  }, []);
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.setAttribute("repo", repo);
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("label", "comment");
+    script.setAttribute("theme", themeName);
+    elementRef.current.appendChild(script);
 
-  // when theme change
+    return () => {
+      elementRef.current?.removeChild(script);
+    };
+  }, [repo, themeName]);
+
   useEffect(() => {
-    if (document.querySelector(".utterances-frame")) {
-      const iframe =
-        document.querySelector<HTMLIFrameElement>(".utterances-frame");
-
-      if (!iframe) {
-        return;
-      }
-
-      iframe?.contentWindow?.postMessage(
-        { type: "set-theme", theme: t },
+    const utterancesFrame =
+      document.querySelector<HTMLIFrameElement>(".utterances-frame");
+    if (utterancesFrame) {
+      utterancesFrame.contentWindow?.postMessage(
+        {
+          type: "set-theme",
+          theme: themeName,
+        },
         "https://utteranc.es"
       );
     }
-  }, [t]);
+  }, [themeName]);
 
-  return <section ref={elementRef} />;
+  return <div ref={elementRef} />;
 };
+
+export default UtterancesComments;
