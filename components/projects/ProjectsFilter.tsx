@@ -1,7 +1,7 @@
 import React, { ChangeEvent, memo, useCallback } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-const selectOptions = ["Web Application", "Mobile Application", "UI/UX Design"];
+const selectOptions = ["Full Stack", "Front End", "Back End"];
 
 interface ProjectsFilterProps {
   setSelectProject: React.Dispatch<React.SetStateAction<string | undefined>>;

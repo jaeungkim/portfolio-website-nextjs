@@ -7,8 +7,8 @@ import { useTheme } from "next-themes";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "Articles", href: "/blog", current: false },
-  { name: "Projects", href: "/projects", current: false },
+  { name: "Blog", href: "/blog", current: false },
+  { name: "Project", href: "/project", current: false },
   { name: "Contact", href: "/contact", current: false },
 ];
 export default function Navbar() {

@@ -2,9 +2,9 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Date from "../components/shared/date";
-import Layout from "../components/shared/layout";
-import { getSortedPostsData } from "../lib/posts";
+import Date from "../../components/shared/date";
+import Layout from "../../components/shared/layout";
+import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
 
 interface Post {
@@ -40,6 +40,15 @@ export default function Blog({ allPostsData }: BlogProps) {
       <Head>
         <title>Jaeung Kim - Blog</title>
       </Head>
+      <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+        Blog
+      </h1>
+      <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
+        Welcome to my personal blog, where I share my thoughts and experiences
+        on various topics including technology, travel, personal development and
+        more. Join me on this journey as I explore the world and share my
+        perspective through written word.
+      </p>
       <motion.div className="mt-16 sm:mt-20">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
@@ -69,7 +78,7 @@ export default function Blog({ allPostsData }: BlogProps) {
                   <div className="md:col-span-3 group relative flex flex-col items-start">
                     <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-                      <Link href={`/posts/${id}`}>
+                      <Link href={`/blog/${id}`}>
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                         <span className="relative z-10">{title}</span>
                       </Link>

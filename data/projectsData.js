@@ -5,7 +5,7 @@ export const projectsData = [
     id: 1,
     title: "WebGL Playground",
     url: "webgl-playground",
-    category: "Web Application",
+    category: "Full Stack",
     img: "/images/webGL_project_main.png",
     ProjectHeader: {
       title: "WebGL Playground",
@@ -100,12 +100,12 @@ export const projectsData = [
     id: 2,
     title: "iClinic Systems",
     url: "iclinic-systems",
-    category: "Web Application",
+    category: "Full Stack",
     img: "/images/iclinic_main.png",
     ProjectHeader: {
       title: "iClinic Systems",
       publishDate: "October 16th, 2022",
-      tags: "Web Application",
+      tags: "Full Stack",
     },
     ProjectImages: [
       {
@@ -184,7 +184,7 @@ export const projectsData = [
     id: 3,
     title: "Catalyx.io",
     url: "catalyx",
-    category: "Web Application",
+    category: "Full Stack",
     img: "/images/catalyx_main.png",
     ProjectHeader: {
       title: "Catalyx.io",
@@ -270,7 +270,7 @@ export const projectsData = [
     id: 4,
     title: "Architecture Portfolio",
     url: "suh-architecture",
-    category: "UI/UX Design",
+    category: "Front End",
     img: "/images/namju_portfolio_main.png",
     ProjectHeader: {
       title: "Namju Suh",
@@ -358,12 +358,12 @@ export const projectsData = [
     id: 5,
     title: "Lost Ark Discord Bot",
     url: "lostark-discord",
-    category: "Mobile Application",
+    category: "Back End",
     img: "/images/lostark_bot_main.png",
     ProjectHeader: {
       title: "Lost Ark Discord Bot",
       publishDate: "February 23rd, 2022",
-      tags: "Mobile Application",
+      tags: "Back End",
     },
     ProjectImages: [
       {
@@ -434,12 +434,12 @@ export const projectsData = [
     id: 6,
     title: "Circle Market",
     url: "circle-market",
-    category: "Web Application",
+    category: "Full Stack",
     img: "/images/circlemarket_main.png",
     ProjectHeader: {
       title: "Circle Market",
       publishDate: "January 4th, 2023",
-      tags: "Web Application",
+      tags: "Full Stack",
     },
     ProjectImages: [
       {

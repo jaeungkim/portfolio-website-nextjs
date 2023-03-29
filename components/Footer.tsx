@@ -4,7 +4,7 @@ import { useMemo } from "react";
 const menuItems = [
   { label: "Home", url: "/" },
   { label: "Blog", url: "/blog" },
-  { label: "Projects", url: "/projects" },
+  { label: "Project", url: "/project" },
   { label: "Contact", url: "/contact" },
 ];
 

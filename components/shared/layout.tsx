@@ -27,7 +27,7 @@ export default function Layout({
       <Header />
       <div className="relative">
         <main className="sm:px-8 mt-9 mx-auto max-w-7xl lg:px-8">
-          <div className="relative px-4 sm:px-8 lg:px-12 max-w-2xl lg:max-w-5xl mx-auto">
+          <div className="relative px-4 sm:px-8 lg:px-12 max-w-2xl lg:max-w-4xl mx-auto">
             {children}
           </div>
         </main>

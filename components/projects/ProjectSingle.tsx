@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProjectSingle = ({ id, img, title, category }) => (
-  <Link href={`/projects/${id}`} passHref>
+  <Link href={`/project/${id}`} passHref>
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

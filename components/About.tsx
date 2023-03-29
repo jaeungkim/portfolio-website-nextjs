@@ -44,10 +44,10 @@ export default function About() {
       <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
         I am Jaeung Kim
       </h2>
-      <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+      <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         You can also call me Jae 🙂.
       </p>
-      <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+      <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         I am a highly motivated and collaborative software engineer with 2 years
         of experience in designing, building, and maintaining software for
         startup companies. I primarily focus on full-stack web development but I
