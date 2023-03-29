@@ -134,49 +134,6 @@ myPromise
 
 So if the promise gets rejected, it will jump to the catch( ) method and this time we will see a different message on the console.
 
-### To create a promise in JavaScript, you can use the Promise constructor as shown below:
-
-```js
-let prom = new Promise((resolve, reject) => {
-  let num = 10 + 10;
-  if (num === 20) {
-    resolve("This resolve should come in the then block");
-  } else {
-    reject("This reject should come in the catch block");
-  }
-});
-prom
-  .then((msg) => console.log("then block -->", msg))
-  .catch((msg) => console.log("catch block -->", msg));
-```
-
-when we run the above code we get the following output:
-
-```js
-'''then block --> This resolve should come in the then block'''
-```
-
-As, `10 + 10 = 20` the `num = 20` so it will execute `if(){}` block and it will `resolve` the promise. If we change `num = 10 + 10` to `num = 10 + 1` and keep the rest of the code the same we will get the following output as it will execute the `else{}` block and it will `reject` the promise.
-
-```js
-'''catch block --> This reject should come in the catch block'''
-```
-
-### Async / Await Promises
-
-Now, let's take a look at some examples of asynchronous operations.
-
-```js
-// #1
-console.log("Hello");
-// #2
-setTimeout(function () {
-  console.log("Bye");
-}, 3000);
-// #3
-console.log("Hello Again");
-```
-
 ### References
 
 1.  [_Promises in JavaScript (JS)_](https://kkirtigoel01.medium.com/promises-in-javascript-js-27baf0e506b5#:~:text=Resolved%20or%20Rejected-,What%20is%20Promise%20in%20JavaScript%3F,is%20successfully%20completed%20or%20not.)

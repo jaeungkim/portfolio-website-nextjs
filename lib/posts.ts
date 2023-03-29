@@ -2,8 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkMdx from "remark-mdx";
 import prism from "remark-prism";
-import html from "remark-html";
+import { serialize } from "next-mdx-remote/serialize";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -12,7 +13,7 @@ export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, "");
+    const id = fileName.replace(/\.mdx$/, "");
 
     // Extract the slug from the filename
     const match = id.match(/^([\w-]+)/);
@@ -42,20 +43,19 @@ export function getSortedPostsData() {
     }
   });
 }
-
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ""),
+        id: fileName.replace(/\.mdx$/, ""),
       },
     };
   });
 }
 
 export async function getPostData(id: string) {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fullPath = path.join(postsDirectory, `${id}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Extract the slug from the filename
@@ -66,11 +66,12 @@ export async function getPostData(id: string) {
   const matterResult = matter(fileContents);
 
   // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html, { sanitize: false })
-    .use(prism)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  const contentHtml = await serialize(matterResult.content, {
+    mdxOptions: {
+      remarkPlugins: [prism],
+    },
+    scope: matterResult.data,
+  });
 
   // Combine the data with the id and contentHtml
   return {

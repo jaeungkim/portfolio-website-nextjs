@@ -83,34 +83,37 @@ A web server is a software that serves web content through the HTTP protocol. Co
 
 A reverse proxy is a service that takes a client request, sends the request to one or more proxied servers, fetches the response, and delivers the server’s response to the client.
 
-1. `sudo apt install nginx`
+```sh
+`sudo apt install nginx`
+```
 
 Now, we need to change the default configuration.
 
-2. `cd /etc/nginx/sites-available/` Navigate to this route then run `sudo vim default`
-
-3. We need to modify the below section,
-
+```sh
+cd /etc/nginx/sites-available/
 ```
+
+Navigate to this route then run
+
+```sh
+sudo vim default
+```
+
+Now, we need to modify the below section,
+
+```vim
 server_name _;
-
 location / {
-
 # First attempt to serve request as file, then
-
 # as directory, then fall back to displaying a 404.
-
 try_files $uri $uri/ =404;
-
 }
-
 ```
 
 Add the following snippet replacing the section in the default config
 
-```
+```vim
 server_name yourdomain.com www.yourdomain.com; #your api domain
-
 location / {
 proxy_pass http://localhost:8000
 proxy_http_version 1.1;
@@ -119,7 +122,6 @@ proxy_set_header Connection 'upgrade';
 proxy_set_header Host $host;
 proxy_cache_bypass $http_upgrade;
 }
-
 ```
 
 **Explanation of the above Code Snippet**
@@ -142,11 +144,15 @@ _NGINX Section References: https://gist.github.com/bradtraversy/cd90d1ed3c462fe3
 
 After adding the above code snippet, check NGINX config for errors and restart Nginx.
 
-4. Run this to check NGINX config - `sudo nginx -t`
+Run this to check NGINX config -
+
+```sh
+sudo nginx -t
+```
 
 - Output
 
-```
+```sh
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 
 nginx: configuration file /etc/nginx/nginx.conf test is
@@ -159,7 +165,7 @@ successful
 
 7. If you get this output then success!
 
-```
+```sh
 ● nginx.service - A high performance web server and a reverse proxy server
 
 Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
@@ -223,3 +229,8 @@ api.example.com
 4. Add rules to load balancers
 
 - Https: 443 and Http: 80
+
+### References
+
+1.
+2.

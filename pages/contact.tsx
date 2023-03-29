@@ -86,10 +86,10 @@ export default function Contact() {
         Contact
       </h1>
       <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
-        Welcome to my contact page! Whether you have a question, a project in
-        mind, or just want to say hello, I'd love to hear from you. Fill out the
-        form below or email me directly and I'll get back to you as soon as
-        possible. Thank you for your interest in my work! Let's Chat!
+        Whether you have a question, a project in mind, or just want to say
+        hello, I'd love to hear from you. Fill out the form below or email me
+        directly and I'll get back to you as soon as possible. Thank you for
+        your interest in my work! Let's Chat!
       </p>
 
       <Toast
