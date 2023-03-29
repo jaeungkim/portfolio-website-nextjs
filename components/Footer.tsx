@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useMemo } from "react";
 
 const menuItems = [
@@ -12,13 +13,13 @@ const Footer = () => {
     () => (
       <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
         {menuItems.map((item) => (
-          <a
+          <Link
             key={item.url}
             className="transition hover:text-cyan-500 dark:hover:text-cyan-400"
             href={item.url}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
       </div>
     ),

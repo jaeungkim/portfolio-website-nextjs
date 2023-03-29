@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Date from "../components/shared/date";
 import Layout from "../components/shared/layout";
 import { getSortedPostsData } from "../lib/posts";
+import Link from "next/link";
 
 interface Post {
   id: string;
@@ -68,10 +69,10 @@ export default function Blog({ allPostsData }: BlogProps) {
                   <div className="md:col-span-3 group relative flex flex-col items-start">
                     <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-                      <a href={`/posts/${id}`}>
+                      <Link href={`/posts/${id}`}>
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                         <span className="relative z-10">{title}</span>
-                      </a>
+                      </Link>
                     </h2>
                     <Date dateString={date} mobile={true} />
                     <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
