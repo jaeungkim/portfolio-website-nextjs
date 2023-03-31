@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Layout from "../../components/shared/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import Head from "next/head";
@@ -25,8 +23,6 @@ export default function Post({
     contentHtml: MDXRemoteSerializeResult;
   };
 }) {
-  const router = useRouter();
-
   return (
     <Layout>
       <Head>
@@ -42,7 +38,10 @@ export default function Post({
           <MDXRemote {...postData.contentHtml} components={mdxComponents} />
         </div>
       </article>
-      <UtterancesComments repo="jaeungkim/portfolio-website-nextjs" />
+      <div>
+        <h1 className={utilStyles.headingXl}>Comments</h1>
+        <UtterancesComments repo="jaeungkim/portfolio-website-nextjs" />
+      </div>
     </Layout>
   );
 }
