@@ -6,4 +6,90 @@ summary: "You're given strings jewels representing the types of stones that are 
 tags: ["Leetcode", "JavaScript", "Java"]
 ---
 
-## hi
+You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
+
+Letters are case sensitive, so "a" is considered a different type of stone from "A".
+
+**Example 1:**
+
+Input: jewels = "aA", stones = "aAAbbbb"
+Output: 3
+Example 2:
+
+Input: jewels = "z", stones = "ZZ"
+Output: 0
+
+## APPROACH
+
+Fairly simple 2D array problem, here are the steps I took
+
+1. split each parameters string into array (Java = char array, JavaScript = string array)
+
+```java
+char[] jewelsArray = jewels.toCharArray();
+char[] stonesArray = stones.toCharArray();
+```
+
+2. using for loop, loop over two iterations with i and j index. First one for jewels array and second one for stones array.
+
+```java
+for (int i = 0; i < jewelsArray.length; i++) {
+    for (int j = 0; j < stonesArray.length; j++) {
+        if (jewelsArray[i] == stonesArray[j]) {
+            counter++;
+        }
+    }
+}
+```
+
+3. increase counter when jewels array index matches with stones array index
+4. return counter
+
+## SOLUTION
+
+```java
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        char[] jewelsArray = jewels.toCharArray();
+        char[] stonesArray = stones.toCharArray();
+
+        int counter = 0;
+
+        for (int i = 0; i < jewelsArray.length; i++) {
+            for (int j = 0; j < stonesArray.length; j++) {
+                if (jewelsArray[i] == stonesArray[j]) {
+                    counter++;
+                }
+            }
+        }
+
+        return counter;
+    }
+}
+```
+
+**JavaScript Solution**
+
+```js
+/**
+ * @param {string} jewels
+ * @param {string} stones
+ * @return {number}
+ */
+var numJewelsInStones = function (jewels, stones) {
+  let jewelsArray = jewels.split(""); //[a,A];
+  let stonesArray = stones.split(""); //[a,A,A,b,b,b,b];
+
+  let counter = 0;
+
+  for (let i = 0; i < jewelsArray.length; i++) {
+    for (let j = 0; j < stonesArray.length; j++) {
+      if (jewelsArray[i] === stonesArray[j]) {
+        counter++;
+      }
+    }
+  }
+
+  return counter;
+};
+```
