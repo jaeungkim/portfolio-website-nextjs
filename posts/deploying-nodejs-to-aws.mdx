@@ -6,33 +6,41 @@ summary: "Creating a Node.Js Application to AWS using EC2, PM2, NGINX, Load Bala
 tags: ["AWS", "Node.Js"]
 ---
 
+In this tutorial, we will cover the steps to deploy a Node.js application to Amazon Web Services (AWS) using Elastic Compute Cloud (EC2), Process Manager 2 (PM2), Nginx, Load Balancers, and other tools.
+
 ## Create instance in EC2
+
+To get started, access the EC2 instance from your Mac Terminal using the following commands:
 
 **Access EC2 Instance from Mac Terminal**
 
-1.  chmod 400 "your-key.pem" - change permission of _your-key_ to readonly
-2.  ssh -i "you-key.pem" ubuntu@ec2-xx-xx-xxx xx.region.compute.amazonaws.com - Navigate to _your-key_ and
+1. Change the permission of your EC2 key file to read-only: chmod 400 your-key.pem.
+2. SSH into your instance using your key file: ssh -i your-key.pem ubuntu@ec2-xx-xx-xxx-xx.region.compute.amazonaws.com.
 
 ## Installing Node/NPM
 
-When you first open up Ubuntu server on EC2, you need to install dependencies and packages that allow you to run needed
+After logging into the EC2 instance, update and upgrade the installed packages using the following commands:
 
-1.  `sudo apt update` - this command will update installed packages in Ubuntu
-2.  `sudo apt upgrade` - this command will upgrade installed packages in Ubuntu
-3.  `sudo apt install -y curl` - this command will install curl
-4.  `curl  -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -` - this command will curl node version 16
-5.  `sudo apt install -y nodejs` - this command will install node version 16 (curled)
+1. sudo apt update
+2. sudo apt upgrade
+
+Next, install curl using the following command: sudo apt install -y curl.
+
+Then, install Node.js version 16 by running the following commands:
+
+1. curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+2. sudo apt install -y nodejs
+
+You can verify that Node.js has been installed by running node --version.
 
 At this point, you should be all set.
 Just to be certain, you can run node to figure out what version you’re currently running:
 
-7. `node  --version` - this will output **v16.x.x**
+`node  --version` - this will output **v16.x.x**
 
 ## Cloning your project from Github
 
-Now with packages and dependcies installed, you are ready to clone your Node.js project from GitHub directly to your Ubuntu server.
-
-Here are the steps.
+Now that the dependencies and packages are installed, clone your Node.js project from GitHub directly to your Ubuntu server. Here are the steps:
 
 1. You ened to Generate a new SSH key.
 
@@ -73,33 +81,8 @@ _Refer more: https://pm2.keymetrics.io/_
 
 ## Setting up NGINX
 
-Based on the assumption that we are using this EC2 instance just for one particular Node.js/MERN app and not having multiple different Node.js/MERN apps.
-
-We will be editing the “default config” if you want to deploy multiple apps on a single instance. I will follow up with a post and update a link to it.
-
-Nginx is a high-performance web server and a reverse proxy server.
-
-A web server is a software that serves web content through the HTTP protocol. Content can be static or dynamic.
-
-A reverse proxy is a service that takes a client request, sends the request to one or more proxied servers, fetches the response, and delivers the server’s response to the client.
-
-```sh
-`sudo apt install nginx`
-```
-
-Now, we need to change the default configuration.
-
-```sh
-cd /etc/nginx/sites-available/
-```
-
-Navigate to this route then run
-
-```sh
-sudo vim default
-```
-
-Now, we need to modify the below section,
+Assuming that you are using this EC2 instance for a single Node.js/MERN app and not multiple apps, install Nginx using the following command: `sudo apt install nginx`.
+Edit the default configuration file by navigating to `/etc/nginx/sites-available/` and then running `sudo vim default`. Modify the following section:
 
 ```vim
 server_name _;
@@ -123,32 +106,7 @@ proxy_set_header Host $host;
 proxy_cache_bypass $http_upgrade;
 }
 ```
-
-**Explanation of the above Code Snippet**
-
-In the default NGINX configuration, Nginx listens on port 80 as indicated by the line listen 80 of the server block.
-
-**proxy_pass** forwards all requests to the given proxy URL. Here the proxy URL is http://localhost:8000.
-
-**proxy_http_version** sets the HTTP protocol for proxying. By default, version 1.0 is used. For WebSockets and keepalive connections you need to use the version 1.1.
-
-**proxy_set_header Upgrade $http_upgrade** and **proxy_set_header Connection 'upgrade'** header fields are required to switch the connection to an enhanced protocol if available.
-
-**proxy_set_header Host $host** is used to set the host to $proxy_host.
-
-**proxy_cache_bypass $http_upgrade** we include this directive to not send cached responses to clients.
-
-_Refer to link for more detailed info on the Nginx proxy module: http://nginx.org/en/docs/http/ngx_http_proxy_module.html_
-
-_NGINX Section References: https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896#8-install-nginx-and-configure_
-
-After adding the above code snippet, check NGINX config for errors and restart Nginx.
-
-Run this to check NGINX config -
-
-```sh
-sudo nginx -t
-```
+Restart Nginx using sudo service nginx restart, and then check its status using sudo systemctl status nginx.
 
 - Output
 
@@ -158,12 +116,6 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is
 successful
 ```
-
-5. Restart NGINX service- `sudo service nginx restart`
-
-6. check NGINX status - `sudo systemctl status nginx`
-
-7. If you get this output then success!
 
 ```sh
 ● nginx.service - A high performance web server and a reverse proxy server
@@ -186,51 +138,40 @@ CGroup: /system.slice/nginx.service
 
 └─xxxx nginx: worker process
 ```
-
-Now, You will be able to view your app on Instance’s Public IP with no port (port 80) EC2 Instance's Public IP Address eg: 231.112.123.12
+## Creating an SSL Certificate and Load Balancer
+To issue an SSL certificate, create a load balancer, and map your instance to the load balancer, follow the steps below:
 
 1. Issue an SSL Certificate (Certificate Manager)
-
-```
-*.example.com
-api.example.com
-```
-
+* Choose the domain name you want to secure.
+* Click on "Request a certificate".
+* Add the domain name and validate it.
+* Once the validation is completed, you can download the SSL certificate.
 2. Create Load Balancer
+* Choose "Application Load Balancer".
+* Give it a name and select "Internet-facing" scheme.
+* Choose the IP address type as "IPv4".
+* Choose the VPC you created earlier.
+* Select two availability zones.
+* Add two listeners, one for HTTP (port 80) and one for HTTPS (port 443).
+* Select the SSL certificate you just created from the certificate manager.
+* Create a target group and attach the instances you created earlier.
+* Configure the load balancer security group to allow traffic on ports 80 and 443.
+* Save the changes.
+3. Add a Record to the Load Balancer in Route 53
+* Choose the domain name you want to add a record to.
+* Click on "Create Record".
+* Choose "A" record type.
+* Choose "Alias to Application and Classic Load Balancer".
+* Choose the region your load balancer is in.
+* Select the load balancer you just created.
+* Create the record.
+4. Add Rules to Load Balancer
+* Add a rule for HTTPS (port 443).
+* Add a rule for HTTP (port 80).
 
-- Choose “Application Load Balancer”
-- Name: Give the load balancer a name
-- Scheme: Internet Facing
-- IP Address Type: IPv4
-- VPC: Default
-- Mappings: Select two Availability Zones
-- Security Groups: Select the configured security group from above
-- Listeners and routers: Add Two listeners, one for HTTP (port 80) and one for HTTPS (port 443)
-- Secure listener settings: Select the certificate that we recently created from the certificate manager. You can only select it after it has been issued.
+With these steps, you have successfully created an SSL certificate, load balancer, and attached your instance to it. You can now access your Node.js app securely through HTTPS on port 443.
 
-3. Before saving, you need to create a Traget Group
-
-- Basic Configuration: Select “instances”
-- Name: Give the target group a name
-- Protocol: HTTP
-- Port: 8080
-- Click “Next”
-
-4.  Add a Record to the Load Balancer in Route 53
-
-- Record Name: default
-- Record Type: A
-- Alias: Select “Alias” — After clicking alias you should see an option that says “Route Traffic to”
-- Route Traffic To: Choose “Alias to Application and Classic Load Balancer”
-- Choose Region: Choose which region your load balancer is in.
-- Choose a load balancer: Select the LB that you recently created.
-- Create the Record
-
-4. Add rules to load balancers
-
-- Https: 443 and Http: 80
-
-### References
+## References
 
 1.
 2.

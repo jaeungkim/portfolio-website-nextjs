@@ -2,12 +2,113 @@
 title: "Setting up CI/CD for Node.JS Application on AWS"
 subtitle: "cicd-nodejs-to-aws"
 date: "2023-03-20"
-summary: "Setting up CI/CD for Node.JS Application on AWS using AWS Codedeploy and BitBucket/GitHub"
+summary: "Setting up CI/CD for Node.JS Application on AWS using AWS Codedeploy and BitBucket"
 tags: ["AWS", "Node.Js", "CI/CD"]
 ---
 
 ## Introduction
 
-CI/CD (Continuous Integration/Continuous Deployment) is an environment that must be implemented to support productivity and efficiency on releasing a web or mobile apps. If you want to know more about CI/CD, please read on this [article](https://www.redhat.com/en/topics/devops/what-is-ci-cd).
+Setting up a CI/CD pipeline for your Node.js application on AWS is an essential step to ensure that your application is delivered quickly and reliably. In this blog post, we'll guide you through the process of configuring AWS services to set up your pipeline, including Identity and Access Management (IAM), CodeDeploy, and S3.If you want to know more about CI/CD, please read on this [article](https://www.redhat.com/en/topics/devops/what-is-ci-cd).
 
-<Gist id="jaeungkim/eeaab0802c777d9d5d696314dfe10f2a" />
+## AWS Set Up
+
+First, you'll need to set up an IAM role and access keys. Go to the IAM service in your AWS console, and select "Roles" from the left navigation pane. Click "Create Role," choose AWS service, EC2 instance, and add the following permissions:
+
+* AmazonEC2RoleforAWSCodeDeploy
+* AmazonS3FullAccess
+* AWSCodeDeployFullAccess
+* AWSCodeDeployRole
+* AWSCodeDeployDeployerAccess
+
+Afterward, add the IAM role to your EC2 instance and reboot it to activate the changes. Then, create an access key and store it securely.
+
+Next, you'll need to create an IAM group. Go to the IAM service and select "Groups" from the left navigation pane. Click "Create New Group," give it a name, and add the following policies:
+
+* AmazonS3FullAccess
+* AWSCodeDeployFullAccess
+
+Then, add existing users to the group by clicking the "Add Users to Group" button in the "Users" tab.
+
+Now, let's move on to the CodeDeploy service. Click "Create Application," enter a name, and select "EC2/On-premises" as the compute platform. Afterward, scroll down and click "Create Deployment Group," give it a name, and select the IAM role that you created earlier for the "Service Role" option. In the "Environment Configuration" section, select "Amazon EC2 instances" and choose EC2 instances based on the current tags on your instance. For "Deployment settings," select "CodeDeployDefault.OneAtATime," and uncheck "Enable load balancing" in the "Load balancer" section.
+
+Lastly, go to the S3 service and create a bucket with a name that matches your project. This bucket will be used by CodeDeploy to store revisions.
+
+To complete the setup, you'll need to install the CodeDeploy agent on your EC2 instance. Log in to your instance with SSH, and install the agent using the appropriate command for your operating system. Remember to change the region to match your EC2 and S3 regions.
+
+With all the necessary components in place, you can now begin setting up your CI/CD pipeline for your Node.js application on AWS. Regularly test your pipeline to ensure that everything is working as expected and make necessary changes as your application evolves.
+
+## BitBucket Configuration
+
+After completing the configuration on AWS, we can now move on to creating the pipeline on Bitbucket. First, log in to your Bitbucket account and go to the project repository that you want to deploy to your EC2 instance. Activate the pipeline in the project settings by going to Settings > Pipelines > Settings and clicking on the switch button to enable the pipeline.
+
+Next, enter the environment variables that we will use during deployment. These include APPLICATION_NAME, DEPLOYMENT_GROUP, and S3_BUCKET, which contain the names of the application, deployment group, and S3 bucket that we created on CodeDeploy, respectively. Enter these names in the menu Settings > Pipelines > Repository variables.
+
+After setting up the environment variables, create a bitbucket-pipelines.yml file in the root directory of your project. Then, create a new file named appspec.yml in the same directory. The appspec.yml file contains several hooks used by CodeDeploy to run commands when posting or pre-installing the application.
+### appspec.yml
+
+```yml
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/iclinic-website-api
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: ubuntu
+```
+Create a new folder called "shells" and add three new files to it: before_install.sh, after_install.sh, and application_start.sh. Enter the appropriate commands for each of these files to stop the server, install dependencies, and start the server, respectively.
+
+1. ### before_install.sh
+```sh
+#!/bin/bash
+# Install node.js and pm2
+sudo apt-get update
+sudo apt-get install nodejs -y
+sudo apt-get install npm  -y
+sudo npm install pm2 -g
+```
+
+2. ### after_install.sh
+
+```sh
+#!/bin/bash
+mkdir /home/ubuntu/iclinic-website-api
+cd /home/ubuntu/iclinic-website-api
+sudo npm install
+```
+
+3. ### application_start.sh
+
+```sh
+#!/bin/bash
+# Stop all servers and start the server
+cd /home/ubuntu/iclinic-website-api
+pm2 kill
+pm2 start "NODE_ENV=staging npm run staging"
+```
+
+Finally, commit and push your changes to the master branch, and Bitbucket will trigger the pipeline and run the deployment automatically. You can view the deployment progress on the Pipelines page in the project repository.
+
+If the second deployment process fails with the error message "Directory not empty," you can try deleting the deployment group used on AWS and then recreating it with the same name.
+
+## Conclusion
+
+In conclusion, we have successfully set up CI/CD with Bitbucket Pipeline and EC2. This process makes deploying and updating our application much easier and eliminates the need for SSH access to instances every time a new version is released. However, if your team does not recommend automatic deployment every time there is a merge to the master branch, you can use the Continuous Delivery method instead.
+
+To implement Continuous Delivery, change a few lines of code in the bitbucket-pipelines.yml file and commit and merge to your master branch. This will make the deployment process manual instead of automatic. To perform manual action, go to Bitbucket's Pipelines page and click on the "Run pipeline" button to select the custom deployment you want to execute.
+
+That's all for this CI/CD tutorial with Bitbucket Pipeline. If you have any questions or encounter any problems, please leave them in the comments section. Thank you, and see you in the next tutorial!
+
+## References
+
+1.  [_Setup CI/CD for your Nodejs Application with Bitbucket Pipeline to AWS EC2 with CodeDeploy_](https://medium.com/@kadekpradnyana/setup-ci-cd-for-your-nodejs-application-with-bitbucket-pipeline-to-aws-ec2-codedeploy-a6b33e96d0ef)
