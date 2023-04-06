@@ -29,6 +29,55 @@ By the end of this lecture, you will have a better understanding of how to contr
 
 Loops are an essential part of programming, and they allow us to execute a block of code repeatedly based on certain conditions. In Java, there are three main types of loops: the for loop, the while loop, and the do-while loop. In this lecture, we will discuss each of these loops in detail, along with some best practices and common mistakes to avoid when using loops in Java.
 
+## Scanner
+
+Before we dive into loops, we will look at Java Scanner. In Java, the Scanner class is used to read input from various sources, such as the console or a file. It is a very powerful tool for processing user input and creating interactive programs. The Scanner class is located in the java.util package, so you will need to import it at the beginning of your program like this:
+
+```code
+import java.util.Scanner;
+```
+
+Once you have imported the Scanner class, you can create a Scanner object and use it to read input from the user. Here's an example:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter your name: ");
+    String name = scanner.nextLine();
+    System.out.println("Hello, " + name + "!");
+  }
+}
+```
+
+In this example, we create a Scanner object called scanner and use it to read input from the user. The System.in argument tells the Scanner to read input from the console. We then prompt the user to enter their name using the System.out.print() method, and read their input using the scanner.nextLine() method. Finally, we use the input to print a personalized message to the console.
+
+The Scanner class provides many other methods for reading input, including nextInt(), nextDouble(), and nextBoolean(), which can be used to read different types of data from the user.
+
+Here's an example that uses the nextInt() method to read an integer from the user and calculate its square:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter an integer: ");
+    int number = scanner.nextInt();
+    int square = number * number;
+    System.out.println("The square of " + number + " is " + square);
+  }
+}
+```
+
+In this example, we use the nextInt() method to read an integer from the user, store it in the number variable, calculate its square, and print the result to the console.
+
+It's important to note that the Scanner class can throw exceptions if the input entered by the user is not in the expected format. For example, if you use the nextInt() method to read an integer and the user enters a non-numeric value, the program will throw an exception. You can use exception handling to gracefully handle these errors and prevent the program from crashing.
+
+In summary, the Scanner class is a powerful tool for reading input from the user in Java. It provides many methods for reading different types of data, and can be used to create interactive programs and perform calculations based on user input.
+
 ## For Loop
 
 The for loop is a type of loop in Java that is used to execute a block of code a fixed number of times. This is accomplished by setting up a loop variable, a loop condition, and an update statement. The loop variable is used to track the progress of the loop, the loop condition is used to determine when the loop should terminate, and the update statement is used to modify the loop variable at the end of each iteration.
@@ -208,10 +257,80 @@ When using loops in Java, it is important to follow some best practices to ensur
 ### easy
 1. Write a for loop that prints the numbers from 1 to 10.
 
+Answer:
+
+```java
+for (int i = 1; i <= 10; i++) {
+    System.out.println(i);
+}
+```
+
 2. Write a while loop that prints the even numbers between 0 and 20.
+
+Answer:
+
+```java
+int i = 0;
+while (i <= 20) {
+    System.out.println(i);
+    i += 2;
+}
+```
+
+
 3. Write a do-while loop that prompts the user to enter a number between 1 and 10 and keeps prompting until a valid number is entered.
+
+Answer:
+
+```java
+Scanner scanner = new Scanner(System.in);
+int input;
+
+do {
+    System.out.print("Enter a number between 1 and 10: ");
+    input = scanner.nextInt();
+} while (input < 1 || input > 10);
+
+System.out.println("You entered: " + input);
+```
+
+
 4. Write a for loop that iterates over an array of integers and calculates the sum of all the even numbers.
+
+Answer:
+
+```java
+int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+int sum = 0;
+
+for (int i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 == 0) {
+        sum += numbers[i];
+    }
+}
+
+System.out.println("The sum of the even numbers is: " + sum);
+```
+
+
 5. Write a while loop that generates random numbers between 1 and 100 until a number greater than 90 is generated. Print out the number of iterations it took to generate such a number.
+
+Answer:
+
+```java
+int count = 0;
+int randomNum;
+
+Random random = new Random();
+do {
+    randomNum = random.nextInt(100) + 1;
+    count++;
+} while (randomNum <= 90);
+
+System.out.println("It took " + count + " iterations to generate a number greater than 90.");
+
+```
+
 
 ### medium
 1. Write a program that prints the first 10 numbers in the Fibonacci sequence using a for loop.
@@ -234,3 +353,9 @@ When using loops in Java, it is important to follow some best practices to ensur
 
 
 ## What We Will Learn Next
+
+In today's lecture, we learned about two important concepts in Java programming: loops and the Scanner class. We explored the three main types of loops in Java: the for loop, the while loop, and the do-while loop. We discussed how to set loop conditions, declare loop variables, and perform actions within the loop. We also highlighted some best practices and common mistakes to avoid when using loops in Java.
+
+In addition to loops, we learned about the Scanner class, which is used to read user input from the console. We discussed how to create a Scanner object and use it to read various types of user input, including integers, floating-point numbers, and strings.
+
+In the next lecture, we will continue to build on these fundamentals and explore some new concepts related to Java programming. Specifically, we will focus on arrays, methods, and classes in Java. We will discuss how to declare and use arrays to store multiple values of the same type. We will also explore how to define and call methods in Java, and how to create and use classes to organize our code and create objects. By the end of the lecture, you will have a better understanding of these concepts and be able to use them to write more complex programs in Java.
