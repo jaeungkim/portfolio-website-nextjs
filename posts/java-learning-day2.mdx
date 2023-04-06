@@ -1,0 +1,322 @@
+---
+title: "Learning Java: Begineer's guide - Day 2"
+subtitle: "java-learning-day2"
+date: "2023-04-02"
+summary: "Learning Java and its data structures and algorithms"
+tags: ["Java"]
+---
+
+In a previous lecture, we covered the four pillars of Java OOP: encapsulation, inheritance, polymorphism, and abstraction. These concepts are essential to creating well-structured, modular, and reusable code in Java. We also looked at some examples of each of the four pillars, including how they can be implemented in Java programming. If you missed that lecture or need a refresher, be sure to review the previous materials before moving forward. With a solid understanding of these principles, you'll be well on your way to becoming a skilled Java programmer.
+
+Today, we will be focusing on the basics of Java programming, starting with its variables. We will cover the different types of variables in Java, how to declare and assign values to variables, and common operations that can be performed with variables. By the end of this lecture, you'll have a solid foundation in Java variables and be ready to move on to more advanced concepts in Java programming.
+
+## What are Variables?
+
+In Java, a variable is a named location in memory that can hold a value of a particular data type. Variables are used to store data that can be used and manipulated by your program. There are several types of variables in Java, including:
+
+* **Primitive variables**: hold simple data types such as int, double, boolean, etc.
+* **Reference variables**: hold memory addresses of objects
+* **Class variables**: hold data that is shared among all instances of a class
+* **Local variables**: hold data that is specific to a particular method or block of code
+
+## Declaring Variables in Java
+
+To declare a variable in Java, you need to specify the data type of the variable and give it a name. Here's an example:
+
+```java
+int age;
+```
+
+In this example, we declare a variable named age of type int. We can assign a value to this variable using the assignment operator (=):
+
+```java
+age = 25;
+```
+
+We can also declare and assign a variable in a single statement:
+
+```java
+int age = 25;
+```
+
+## Data Types in Java
+
+Java has several data types that are used to define variables. Here are some of the most commonly used data types in Java:
+
+* **int**: used to store integer values (e.g., 1, 2, 3, etc.)
+* **double**: used to store floating-point values (e.g., 1.5, 2.8, 3.14, etc.)
+* **boolean**: used to store true/false values
+* **char**: used to store single characters (e.g., 'a', 'b', 'c', etc.)
+* **String**: used to store strings of characters (e.g., "Hello", "World", etc.)
+
+## Working with Variables in Java
+
+Once you've declared a variable, you can use it in your code. Here are some common operations you can perform with variables in Java:
+
+* **Assigning values**: use the assignment operator (=) to assign a value to a variable
+* **Reading values**: use the variable name to read the value stored in the variable
+* **Performing arithmetic**: use arithmetic operators (+, -, *, /, %) to perform arithmetic operations on variables
+* **Comparing values**: use comparison operators (&lt;, &gt;, &lt;=, &gt;=, ==, !=) to compare the values of variables
+
+Here's an example of working with variables in Java:
+
+```java
+public class MyProgram {
+    public static void main(String[] args) {
+        int x = 5;
+        int y = 3;
+        int sum = x + y;
+        System.out.println("The sum of " + x + " and " + y + " is " + sum);
+    }
+}
+```
+Above example will output **`The sum of 5 and 3 is 8`**
+
+In this example, we declare two variables (x and y) and assign them the values 5 and 3, respectively. We then declare a third variable (sum) and assign it the value of x + y. Finally, we use the System.out.println() method to print the sum of x and y to the console.
+
+Let's look at another example
+
+```java
+public class MyProgram {
+    public static void main(String[] args) {
+        double radius = 2.5;
+        double circumference = 2 * Math.PI * radius;
+        System.out.println("The circumference of a circle with radius " + radius + " is " + circumference);
+    }
+}
+```
+Abouve example will output **`The circumference of a circle with radius 2.5 is 15.707963267948966`**
+
+In this example, we declare a variable radius of type double and assign it the value 2.5. We then declare a second variable circumference and assign it the value 2 * Math.PI * radius, which calculates the circumference of a circle with the given radius. Finally, we use System.out.println() to print the circumference to the console.
+
+## Interesting Properties of Variables in Java
+
+### Variables are case-sensitive
+
+In Java, variables are case-sensitive, which means that age, Age, and AGE are all different variables. It's important to be consistent in your variable naming to avoid confusion.
+
+### Variables have scope
+
+Variables have a scope, which defines where in your program the variable can be accessed. Local variables are defined within a method or block of code and can only be accessed within that method or block. Instance variables are defined within a class and can be accessed by any method in that class. Class variables (also known as static variables) are defined within a class and can be accessed by any method in that class or any instance of that class.
+
+### Variables have default values
+
+If you declare a variable in Java but don't assign it a value, it will be assigned a default value based on its data type. For example, int variables are assigned a default value of 0, boolean variables are assigned a default value of false, and reference variables are assigned a default value of null.
+
+## Arithemetics in Java
+
+Arithmetic is a fundamental part of Java programming, allowing you to perform calculations and manipulate numerical data in your program. In this blog post, we'll explore some of the basic arithmetic operators in Java, including addition, subtraction, multiplication, division, and modulus. We'll also discuss some things to be careful for when working with arithmetic in Java.
+
+## Basic Arithmetic Operators in Java
+
+Here are the basic arithmetic operators in Java:
+
+* **+**: addition
+* **-**: subtraction
+* *: multiplication
+* **/**: division
+* **%**: modulus (returns the remainder after division)
+
+Here are some examples of using these operators in Java:
+
+```java
+int x = 5;
+int y = 3;
+
+int sum = x + y;
+int difference = x - y;
+int product = x * y;
+int quotient = x / y;
+int remainder = x % y;
+
+System.out.println("The sum of " + x + " and " + y + " is " + sum);
+System.out.println("The difference of " + x + " and " + y + " is " + difference);
+System.out.println("The product of " + x + " and " + y + " is " + product);
+System.out.println("The quotient of " + x + " and " + y + " is " + quotient);
+System.out.println("The remainder of " + x + " divided by " + y + " is " + remainder);
+```
+
+Above Example will output
+
+```code
+The sum of 5 and 3 is 8
+The difference of 5 and 3 is 2
+The product of 5 and 3 is 15
+The quotient of 5 and 3 is 1
+The remainder of 5 divided by 3 is 2
+```
+
+In this example, we declare two variables (x and y) and assign them the values 5 and 3, respectively. We then use the arithmetic operators to calculate the sum, difference, product, quotient, and remainder of x and y, and print the results to the console using System.out.println().
+
+## Things to be careful when working with arithmetics in Java
+
+### Integer Overflow and Underflow
+
+In Java, int variables have a limited range of values that they can represent. If you try to assign a value outside this range, you will encounter an integer overflow or underflow. An overflow occurs when the result of an operation exceeds the maximum value that can be represented by an int. An underflow occurs when the result of an operation is less than the minimum value that can be represented by an int.
+
+Here's an example of integer overflow:
+
+```java
+    int x = Integer.MAX_VALUE;
+    int y = x + 1;
+    System.out.println("The value of x is " + x);
+    System.out.println("The value of y is " + y);
+```
+
+Above Example will output
+
+```code
+The value of x is 2147483647
+The value of y is -2147483648
+```
+
+n Java, int variables are stored in 32 bits of memory. The largest possible value that can be represented by 32 bits is 2147483647 (2^31 - 1). When you add 1 to this value, you get 2147483648, which is larger than the largest value that can be represented by 32 bits.
+
+When a variable exceeds its maximum value, it "wraps around" to its minimum value. This means that the variable starts counting from the minimum value again, as if it had never exceeded its maximum value.
+
+For example, consider an int variable that can store values between -5 and 5, inclusive. If we assign the value 5 to the variable and then add 1, the variable will exceed its maximum value and "wrap around" to its minimum value of -5. The next value of the variable will be -4, and it will continue counting up to 5 before wrapping around again to -5.
+
+In the case of int variables in Java, the maximum value that can be represented is 2147483647, and the minimum value is -2147483648. When an int variable exceeds its maximum value, it wraps around to its minimum value and continues counting up to its maximum value before wrapping around again.
+
+It's important to be aware of this behavior when working with int variables, as it can lead to unexpected results and errors in your code.
+
+### Floating-Point Precision
+
+Floating-point numbers (float and double) have limited precision due to the way they are represented in memory. This can lead to rounding errors when performing arithmetic operations with floating-point numbers.
+
+```java
+double x = 0.1;
+double y = 0.2;
+double sum = x + y;
+System.out.println("The sum of " + x + " and " + y + " is " + sum);
+```
+
+Above Example will output
+
+```code
+The sum of 0.1 and 0.2 is 0.30000000000000004
+```
+
+When working with floating-point numbers, it's important to be aware of the limitations of the floating-point format. In Java, floating-point numbers are represented in binary using a finite number of bits, which means that not all decimal values can be represented exactly.
+
+For example, the decimal values 0.1 and 0.2 cannot be represented exactly in binary floating-point format. When you add these values together in Java, the result will be a value close to 0.3, but with some rounding error due to the limitations of the floating-point format.
+
+In the example I provided, we declared two double variables x and y and assigned them the values 0.1 and 0.2, respectively. We then added x and y and assigned the result to sum. However, because 0.1 and 0.2 cannot be represented exactly in binary floating-point format, the result of the addition will not be exactly 0.3. Instead, it will be a value close to 0.3 with some rounding error. The output of this code will be "The sum of 0.1 and 0.2 is 0.30000000000000004".
+
+To avoid issues with floating-point precision, you can use the BigDecimal class in Java, which allows you to perform arithmetic operations with arbitrary precision. The BigDecimal class stores decimal values as an exact representation of the value, rather than an approximation as with floating-point numbers.
+
+Here's an example:
+
+```java
+import java.math.BigDecimal;
+
+public class Main {
+    public static void main(String[] args) {
+        BigDecimal x = new BigDecimal("0.1");
+        BigDecimal y = new BigDecimal("0.2");
+        BigDecimal sum = x.add(y);
+        System.out.println("The sum of " + x + " and " + y + " is " + sum);
+    }
+}
+```
+
+```code
+The sum of 0.1 and 0.2 is 0.3
+```
+
+In this example, we declare two BigDecimal variables x and y and assign them the values 0.1 and 0.2, respectively, using the BigDecimal constructor that takes a String argument. We then use the add() method of the BigDecimal class to add x and y and assign the result to sum. The output of this code will be "The sum of 0.1 and 0.2 is 0.3", which is the exact result of the addition.
+
+By using the BigDecimal class, you can avoid issues with floating-point precision and perform arithmetic operations with arbitrary precision, but keep in mind that it may be slower and more memory-intensive than using primitive data types like double.
+
+## Increment and Decrement Operators
+
+In Java, there are two increment and decrement operators: ++ and --. These operators are used to add or subtract 1 from a variable, respectively. The placement of the operator in relation to the variable can affect how the operator behaves.
+
+Let's consider the following example:
+
+```java
+int i = 5;
+System.out.println("i is " + i);
+System.out.println("++i is " + ++i);
+System.out.println("i is now " + i);
+System.out.println("i++ is " + i++);
+System.out.println("i is now " + i);
+```
+
+Above example will output
+
+```code
+i is 5
+++i is 6
+i is now 6
+i++ is 6
+i is now 7
+```
+
+In this example, we declare an int variable i and assign it the value 5. We then use the increment operator ++ to add 1 to i before printing its value. Next, we print the value of i, which is now 6. We then use the increment operator ++ again, but this time we place it before the variable i. This means that i is incremented by 1 before its value is used in the print statement. The output of this statement is "++i is 7".
+
+We then print the value of i again, which is now 7. We use the increment operator ++ again, but this time we place it after the variable i. This means that i is incremented by 1, but its previous value is used in the print statement. The output of this statement is "i++ is 7".
+
+Finally, we print the value of i again, which is now 8.
+
+Here's a summary of the behavior of the increment and decrement operators:
+
+### ++i (pre-increment)
+
+The ++i operator adds 1 to the variable i before its value is used. This means that the expression ++i is equivalent to i = i + 1, but the value of i is updated before the expression is evaluated.
+
+Example:
+
+```java
+int i = 5;
+System.out.println(++i); // Output: 6
+```
+
+### i++ (post-increment)
+
+The i++ operator adds 1 to the variable i, but its previous value is used in the expression. This means that the expression i++ is equivalent to i = i + 1, but the value of i is updated after the expression is evaluated.
+
+Example:
+
+```java
+int i = 5;
+System.out.println(i++); // Output: 5
+System.out.println(i);   // Output: 6
+```
+
+### --i (pre-decrement)
+
+The --i operator subtracts 1 from the variable i before its value is used. This means that the expression --i is equivalent to i = i - 1, but the value of i is updated before the expression is evaluated.
+
+Example:
+
+```java
+int i = 5;
+System.out.println(--i); // Output: 4
+```
+
+### i-- (post-decrement)
+
+The i-- operator subtracts 1 from the variable i, but its previous value is used in the expression. This means that the expression i-- is equivalent to i = i - 1, but the value of i is updated after the expression is evaluated.
+
+Example:
+
+```java
+int i = 5;
+System.out.println(i--); // Output: 5
+System.out.println(i);   // Output: 4
+```
+
+It's important to be aware of the placement of the increment and decrement operators, as it can affect the behavior of your code. In general, if you need to use the value of a variable after it has been incremented or decremented, you should use the post-increment or post-decrement operators (i++ or i--). If you need to use the updated value of a variable immediately, you should use the pre-increment or pre-decrement operators (++i or --i).
+
+It's also important to note that the behavior of the increment and decrement operators may differ for different data types. For example, the increment and decrement operators for char variables behave differently than for int variables. Additionally, the behavior of these operators may differ for user-defined classes that override the ++ and -- operators.
+
+In general, you should use the increment and decrement operators with caution, as they can make your code more difficult to read and understand. It's often better to use the += and -= operators instead, which are more explicit and easier to understand. For example, instead of using i++ or i = i + 1, you could use i += 1, which is more concise and easier to understand.
+## summary
+
+Today we covered some fundamental concepts in Java programming, including variables, arithmetic operators, and increment and decrement operators. We learned how to declare variables in Java, assign values to them, and perform arithmetic operations using the basic arithmetic operators +, -, *, /, and %. We also learned about the increment and decrement operators ++ and --, and the differences between the pre-increment, post-increment, pre-decrement, and post-decrement operators.
+
+We also discussed some common issues to be aware of when working with arithmetic in Java, including integer overflow and floating-point precision errors. We learned how to avoid these issues by using the BigDecimal class for arbitrary-precision arithmetic, and by being careful with the types of variables used in arithmetic operations.
+
+In our next lecture, we will continue to build on these fundamentals and explore more advanced topics in Java programming.
+

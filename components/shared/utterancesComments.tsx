@@ -28,20 +28,34 @@ const UtterancesComments: React.FC<UtterancesCommentsProps> = ({ repo }) => {
     return () => {
       elementRef.current?.removeChild(script);
     };
-  }, [repo, themeName]);
+  }, [repo]);
 
   useEffect(() => {
-    const utterancesFrame =
-      document.querySelector<HTMLIFrameElement>(".utterances-frame");
-    if (utterancesFrame) {
-      utterancesFrame.contentWindow?.postMessage(
-        {
-          type: "set-theme",
-          theme: themeName,
-        },
-        "https://utteranc.es"
-      );
+    const script = document.querySelector<HTMLScriptElement>(
+      "script[src='https://utteranc.es/client.js']"
+    );
+
+    if (script) {
+      script.setAttribute("theme", themeName);
     }
+
+    const updateIframeTheme = () => {
+      const utterancesFrame =
+        document.querySelector<HTMLIFrameElement>(".utterances-frame");
+      if (utterancesFrame) {
+        utterancesFrame.contentWindow?.postMessage(
+          {
+            type: "set-theme",
+            theme: themeName,
+          },
+          "https://utteranc.es"
+        );
+      } else {
+        setTimeout(updateIframeTheme, 500);
+      }
+    };
+
+    updateIframeTheme();
   }, [themeName]);
 
   return <div ref={elementRef} />;
