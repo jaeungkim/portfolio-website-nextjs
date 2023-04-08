@@ -5,7 +5,9 @@ interface UtterancesCommentsProps {
   repo: string;
 }
 
-const UtterancesComments: React.FC<UtterancesCommentsProps> = ({ repo }) => {
+export const UtterancesComments: React.FC<UtterancesCommentsProps> = ({
+  repo,
+}) => {
   const { theme } = useTheme();
   const elementRef = useRef<HTMLDivElement>(null);
   const themeName = theme === "dark" ? "github-dark" : "github-light";
@@ -61,4 +63,4 @@ const UtterancesComments: React.FC<UtterancesCommentsProps> = ({ repo }) => {
   return <div ref={elementRef} />;
 };
 
-export default UtterancesComments;
+// export default UtterancesComments;

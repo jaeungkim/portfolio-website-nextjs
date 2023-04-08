@@ -312,6 +312,11 @@ public class Dog {
     private String name;
     private int age;
 
+    public Dog(String name, int age) { //constructor
+        this.name = name;
+        this.age = age;
+    }
+
     public void bark() {
         System.out.println(name + " is barking!");
     }
@@ -340,6 +345,22 @@ Then, we can call the bark() method on the myDog object:
 ```java
 myDog.bark();  // Output: Rufus is barking!
 ```
+
+### "This" keyword and Constructors
+
+The "this" keyword is used to refer to the current instance of a class. In the "Dog" class, the "this" keyword is used in the constructor to set the initial values of the "name" and "age" properties for a new instance of the class.
+
+The "this" keyword is also used in the "setName" and "setAge" methods to refer to the current instance of the "Dog" class. This allows these methods to update the properties of the current instance, rather than some other instance of the class.
+
+he constructor is a special method that is used to create new instances of a class. In the "Dog" class, the constructor takes two arguments, a name and an age, and uses the "this" keyword to set the initial values of the "name" and "age" properties for the new instance.
+
+When you create a new instance of the "Dog" class using the constructor, you can pass in values for the "name" and "age" properties. For example:
+
+```java
+Dog myDog = new Dog("Buddy", 3);
+```
+
+This creates a new instance of the "Dog" class with the name "Buddy" and age "3".
 
 ## Static Methods
 
@@ -683,19 +704,7 @@ cat1.makeSound(); // prints "The cat meows."
 
 In Java, a class is a blueprint or a template for creating objects that share common properties and behaviors. Classes encapsulate the data and behavior of an object, providing a way to organize and structure code. We can create objects of a class by using the new keyword and passing in arguments to a constructor. Inheritance allows us to create specialized classes based on existing ones, and polymorphism allows objects of different classes to be treated as if they are of the same type.
 
-## Abstract Classes and Methods
-
-## Interfaces
-
-## Nested classes
-
-## Generics
-
-## Lambda expressions
-
-## Reflection
-
-## Annotations
-
 
 ## What We Will Learn Next
+
+In the next lecture, we will continue to build on these fundamentals and explore some advanced concepts in Java programming. We'll begin by investigating abstract classes and methods, discussing their importance in providing a foundation for creating more specific subclasses. Next, we'll delve into interfaces, emphasizing their role in defining contracts between classes. Our journey will continue with nested classes, where we'll examine their various types and the benefits they offer. We'll then introduce generics, which enable us to write more flexible and reusable code. As we progress, we'll cover lambda expressions, a concise way to represent functional interfaces in Java, and reflection, a powerful technique that allows us to inspect and manipulate classes, methods, and fields at runtime. Finally, we'll touch upon annotations, discussing their significance in providing metadata for our code. By the end of the lecture, you will have a better understanding of these advanced Java concepts and be able to use them to write more complex programs in this versatile language.

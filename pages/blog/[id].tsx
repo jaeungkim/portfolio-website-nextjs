@@ -10,7 +10,14 @@ import ScrollToTopButton from "../../components/shared/scrollToTopButton";
 import { MDXRemote } from "next-mdx-remote";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import mdxComponents from "../../components/shared/mdxComponents";
-import UtterancesComments from "../../components/shared/utterancesComments";
+// import UtterancesComments from "../../components/shared/utterancesComments";
+import dynamic from "next/dynamic";
+
+const UtterancesComments = dynamic(() =>
+  import("../../components/shared/utterancesComments").then(
+    (mod) => mod.UtterancesComments
+  )
+);
 
 export default function Post({
   postData,
