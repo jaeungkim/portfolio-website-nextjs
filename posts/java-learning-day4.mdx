@@ -244,13 +244,6 @@ When using loops in Java, it is important to follow some best practices to ensur
 
 9. Write a program that prompts the user to enter a number and then checks if the number is a palindrome using a while loop.
 
-```code
-*
-**
-***
-****
-*****
-```
 
 ## Answers for questions
 
@@ -335,22 +328,218 @@ System.out.println("It took " + count + " iterations to generate a number greate
 ### medium
 1. Write a program that prints the first 10 numbers in the Fibonacci sequence using a for loop.
 
+Answer:
+
+```java
+public class Question1 {
+    public static int[] fibonacci(int n) { //question 1
+        int[] sequence = new int[n];
+        if (n >= 1) {
+            sequence[0] = 0;
+        }
+        if (n >= 2) {
+            sequence[1] = 1;
+        }
+        for (int i = 2; i < n; i++) {
+            sequence[i] = sequence[i - 1] + sequence[i - 2];
+        }
+        return sequence;
+    }
+    public static void main(String[] args) {
+        int[] sequence = fibonacci(10);
+        for (int i = 0; i < sequence.length; i++) {
+            System.out.print(sequence[i] + " ");
+        }
+    }
+}
+```
+
 2. Write a program that prompts the user to enter a number and then prints the multiplication table for that number using a for loop.
+
+Answer:
+
+```java
+public class Question2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(num + " x " + i + " = " + (num * i));
+        }
+    }
+}
+```
 
 3. Write a program that calculates the factorial of a given number using a while loop.
 
+Answer:
+
+```java
+import java.util.Scanner;
+
+public class Question3 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        int factorial = 1;
+        int i = 1;
+        while (i <= num) {
+            factorial *= i;
+            i++;
+        }
+
+        System.out.println("Factorial of " + num + " is " + factorial);
+    }
+}
+```
+
 4. Write a program that prompts the user to enter a password and keeps asking for the password until the correct password is entered, using a do-while loop.
+
+Answer:
+
+```java
+import java.util.Scanner;
+
+public class Question4 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String password = "password";
+        String userInput;
+
+        do {
+            System.out.print("Enter the password: ");
+            userInput = input.nextLine();
+        } while (!userInput.equals(password));
+
+        System.out.println("Access granted!");
+    }
+}
+
+```
 
 5. Write a program that prints all the prime numbers between 1 and 100 using a for loop.
 
+Answer:
+
+```java
+public class Question5 {
+    public static void main(String[] args) {
+        for (int i = 2; i <= 100; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+```
+
 6. Write a program that prompts the user to enter a number and then prints all the factors of that number using a for loop.
+
+Answer:
+
+```java
+import java.util.Scanner;
+
+public class Question6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        System.out.print("Factors of " + num + ": ");
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+```
 
 7. Write a program that calculates the sum of all the numbers between 1 and 100 using a while loop.
 
+Answer:
+
+```java
+public class Question7 {
+    public static void main(String[] args) {
+        int sum = 0;
+        int i = 1;
+        while (i <= 100) {
+            sum += i;
+            i++;
+        }
+        System.out.println("Sum of numbers from 1 to 100 is " + sum);
+    }
+}
+
+```
+
 8. Write a program that prompts the user to enter a word and then prints each character of the word on a separate line using a for loop.
+
+Answer:
+
+```java
+import java.util.Scanner;
+
+public class Question8 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
+        String word = input.nextLine();
+
+        for (int i = 0; i < word.length(); i++) {
+            System.out.println(word.charAt(i));
+        }
+    }
+}
+```
 
 9. Write a program that prompts the user to enter a number and then checks if the number is a palindrome using a while loop.
 
+Answer:
+
+```java
+import java.util.Scanner;
+
+public class Question9 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = input.nextInt();
+
+        int originalNum = num;
+        int reversedNum = 0;
+        while (num != 0) {
+            int remainder = num % 10;
+            reversedNum = reversedNum * 10 + remainder;
+            num /= 10;
+        }
+
+        if (originalNum == reversedNum) {
+            System.out.println(originalNum + " is a palindrome.");
+        } else {
+            System.out.println(originalNum + " is not a palindrome.");
+        }
+    }
+}
+```
 
 ## What We Will Learn Next
 

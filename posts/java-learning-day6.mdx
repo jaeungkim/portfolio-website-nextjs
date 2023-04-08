@@ -32,6 +32,82 @@ Building on our foundation in Java methods and classes, today's lecture will tak
 
 ## Abstract Classes and Methods
 
+In object-oriented programming, abstraction is a powerful technique that allows us to model real-world entities while hiding unnecessary details. Abstract classes and methods are key components in achieving abstraction in Java.
+
+An abstract class serves as a blueprint for creating more specific classes, known as subclasses. It is designed to be extended, which means you cannot create an instance of an abstract class directly. Instead, you create instances of its subclasses. Abstract classes often contain abstract methods, which are methods without a body, and are meant to be overridden and implemented by the subclasses.
+
+Abstract classes can also have concrete methods, which provide default behavior that can be inherited by the subclasses.
+
+### When to Use Abstract Classes and Methods
+
+Abstract classes and methods are useful when:
+
+1. You have a group of related classes with common functionality that you want to extract and share.
+2. You want to provide a high-level blueprint for a group of classes, ensuring that they adhere to a specific structure or contract.
+3. You want to prevent the instantiation of a class that should only be extended.
+
+### Defining an Abstract Class
+
+```java
+abstract class Animal {
+    abstract void makeSound();
+
+    void sleep() {
+        System.out.println("The animal is sleeping.");
+    }
+}
+```
+
+In this example, the Animal class is abstract and contains an abstract method makeSound() and a concrete method sleep().
+
+### Defining an Abstract Method
+
+Abstract methods are methods without a body, declared using the abstract keyword before the method signature. They must be implemented by any non-abstract subclass of the abstract class. In our example, the makeSound() method is an abstract method.
+
+
+### Extending an Abstract Class
+
+To create a concrete class that extends an abstract class, use the extends keyword followed by the abstract class name. The concrete class must provide an implementation for all abstract methods in the abstract class.
+
+
+```java
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("The dog barks.");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("The cat meows.");
+    }
+}
+```
+
+In this example, the Dog and Cat classes extend the Animal abstract class and provide their own implementation of the makeSound() method.
+
+### Using an Abstract Class
+
+You cannot create an instance of an abstract class directly. However, you can create instances of its subclasses and use them as if they were instances of the abstract class. This is known as polymorphism.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        Animal myCat = new Cat();
+
+        myDog.makeSound(); // Output: The dog barks.
+        myDog.sleep();     // Output: The animal is sleeping.
+
+        myCat.makeSound(); // Output: The cat meows.
+        myCat.sleep();     // Output: The animal is sleeping.
+    }
+}
+```
+
+In this example, we create instances of the Dog and Cat classes and use them through an Animal reference. This allows us to call the makeSound() and sleep() methods on both instances.
 
 ## Interfaces
 
