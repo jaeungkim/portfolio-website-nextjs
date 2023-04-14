@@ -253,6 +253,213 @@ This example demonstrates the power of 2D arrays and how they can be used to rep
 
 In addition to one- and two-dimensional arrays, Java also supports arrays with more than two dimensions, although these are less commonly used.
 
+## Questions - Arrays
+
+### Arrays and 2D Arrays in Java
+
+1. How do you declare and initialize a one-dimensional array in Java?
+2. What is the difference between a one-dimensional array and a two-dimensional array in Java?
+3. Write a Java Program to find the length of a given array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+// Find the length of the 'numbers' array and print it
+```
+4. Write a Java Program to calculate the sum of all elements in an array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+// Calculate the sum of all elements in the 'numbers' array and print it
+```
+5. Write a Java Program to find the maximum and minimum values in an array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+// Find the maximum and minimum values in the 'numbers' array and print them
+```
+6. Write a Java program to reverse the elements of an array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+// Reverse the elements of the 'numbers' array and print the reversed array
+```
+7. Write a Java program to create a 2D array of size 3x3 and initialize it with the numbers 1 to 9.
+```java
+// Declare and initialize a 3x3 2D array with the numbers 1 to 9
+// Print the 2D array
+```
+8. Write a Java program to calculate the sum of the elements of the main diagonal of a 3x3 2D array.
+```java
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+// Calculate the sum of the elements of the main diagonal and print it
+```
+9. Write a Java program to transpose a 2D array (i.e., swap rows with columns).
+```java
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+// Transpose the 'matrix' 2D array and print the transposed array
+```
+
+## Answers - Arrays
+
+1. How do you declare and initialize a one-dimensional array in Java?
+```java
+// Declare an array of integers
+int[] myArray;
+
+// Initialize the array with specific values
+myArray = new int[]{1, 2, 3, 4, 5};
+
+// Alternatively, you can declare and initialize the array in one step
+int[] myArray = {1, 2, 3, 4, 5};
+```
+2. What is the difference between a one-dimensional array and a two-dimensional array in Java?
+
+A one-dimensional array is a linear data structure that stores a collection of elements of the same type in a contiguous block of memory. Each element can be accessed using a single index.
+
+A two-dimensional array is an array of arrays, often represented as a matrix or a table. It stores elements in rows and columns, and each element can be accessed using two indices: one for the row and one for the column.
+
+Here's an example of declaring and initializing a two-dimensional array in Java:
+
+
+```java
+// Declare a 2D array of integers
+int[][] my2DArray;
+
+// Initialize the 2D array with specific values
+my2DArray = new int[][]{
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Alternatively, you can declare and initialize the 2D array in one step
+int[][] my2DArray = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+```
+3. Write a Java Program to find the length of a given array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+// Find the length of the 'numbers' array and print it
+System.out.println(numbers.length);
+```
+4. Write a Java Program to calculate the sum of all elements in an array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+
+// Calculate the sum of all elements in the 'numbers' array and print it
+
+int sum = 0;
+for(int i = 0 ; i < numbers.length; i++){
+    sum += numbers[i];
+}
+
+System.out.println(sum);
+```
+5. Write a Java Program to find the maximum and minimum values in an array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+
+// Find the maximum and minimum values in the 'numbers' array and print them
+
+int max = numbers[0];
+int min = numbers[0];
+
+for (int i = 0; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+        max = numbers[i];
+    }
+    if (numbers[i] < min) {
+        min = numbers[i];
+    }
+}
+
+System.out.println("Maximum value: " + max);
+System.out.println("Minimum value: " + min);
+
+```
+6. Write a Java program to reverse the elements of an array.
+```java
+int[] numbers = {4, 2, 7, 1, 8};
+
+// Reverse the elements of the 'numbers' array and print the reversed array
+
+int[] reversed = new int[numbers.length];
+
+for (int i = 0; i < numbers.length; i++) {
+    reversed[i] = numbers[numbers.length - 1 - i];
+}
+
+System.out.println("Reversed array: " + Arrays.toString(reversed));
+
+```
+7. Write a Java program to create a 2D array of size 3x3 and initialize it with the numbers 1 to 9.
+```java
+// Declare and initialize a 3x3 2D array with the numbers 1 to 9
+// Print the 2D array
+
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        System.out.print(matrix[i][j] + " ");
+    }
+    System.out.println();
+}
+```
+8. Write a Java program to calculate the sum of the elements of the main diagonal of a 3x3 2D array.
+```java
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+// Calculate the sum of the elements of the main diagonal and print it
+
+int sum = 0;
+
+for (int i = 0; i < matrix.length; i++) {
+    sum += matrix[i][i];
+}
+
+System.out.println("Sum of the main diagonal: " + sum);
+```
+9. Write a Java program to transpose a 2D array (i.e., swap rows with columns).
+```java
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Transpose the 'matrix' 2D array and print the transposed array
+
+int[][] transposed = new int[matrix[0].length][matrix.length];
+
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[0].length; j++) {
+        transposed[j][i] = matrix[i][j];
+    }
+}
+
+for (int i = 0; i < transposed.length; i++) {
+    for (int j = 0; j < transposed[i].length; j++) {
+        System.out.print(transposed[i][j] + " ");
+    }
+    System.out.println();
+}
+```
+
 ## Methods
 
 Methods are a fundamental building block of Java programming. They are used to define a set of instructions that can be executed multiple times throughout the program, reducing code redundancy and promoting code reusability. In this blog, we will explore what methods are, how they work, and how to define and use them in Java.
@@ -515,8 +722,6 @@ System.out.println(factorial(5)); // prints 120
 
 The method calls itself multiple times with decreasing values of n, and eventually reaches the base case when n is equal to 1. Then it returns 1, and the results are multiplied together to give us the final result of 120.
 
-Method recursion is a powerful technique that allows us to solve complex problems by breaking them down into smaller sub-problems. However, it can be inefficient if not used carefully, as each recursive call creates a
-
 ## Classes
 
 In Java, a class is a blueprint or a template for creating objects that share common properties and behaviors. It defines a set of attributes and methods that an object of that class can have. A class encapsulates the data and behavior of an object, providing a way to organize and structure code.
@@ -704,6 +909,140 @@ cat1.makeSound(); // prints "The cat meows."
 
 In Java, a class is a blueprint or a template for creating objects that share common properties and behaviors. Classes encapsulate the data and behavior of an object, providing a way to organize and structure code. We can create objects of a class by using the new keyword and passing in arguments to a constructor. Inheritance allows us to create specialized classes based on existing ones, and polymorphism allows objects of different classes to be treated as if they are of the same type.
 
+## Questions - Methods and Classes
+
+1. What is the difference between a static method and an instance method?
+2. Write a Java class called Vehicle with instance methods startEngine() and stopEngine() that start and stop the vehicle's engine. The class should have an instance variable for the engine status.
+3. Write a Java class called Rectangle with instance methods getArea() and getPerimeter() that calculate the area and perimeter of the rectangle. The class should have instance variables for the length and width of the rectangle.
+4. Write a Java class called MathUtils with static methods add() and subtract() that add and subtract two numbers respectively. The methods should take two arguments and return the result.
+5. Write a Java class called StringUtils with a static method reverse() that takes a string as input and returns the reversed string. For example, if the input string is "hello", the method should return "olleh".
+
+## Answers - Methods and Classes
+
+1. What is the difference between a static method and an instance method?
+
+In Java, the main difference between a static method and a non-static method (also known as an instance method) is the way they are accessed and the context in which they operate.
+
+- Accessing Methods
+
+To call a non-static method, you need to create an instance of the class and call the method on that instance, like this:
+
+```java
+MyClass obj = new MyClass();
+obj.nonStaticMethod();
+```
+
+On the other hand, you can call a static method directly on the class itself, without creating an instance of the class, like this:
+
+```java
+MyClass.staticMethod();
+```
+
+- Context of Execution
+
+A non-static method operates on the instance of the class on which it is called. It has access to the instance variables and methods of that instance. When you call a non-static method, you are invoking it in the context of a particular instance of the class.
+
+A static method, on the other hand, does not operate on any particular instance of the class. It is not tied to any instance variables or methods. Instead, it operates on the class itself. When you call a static method, you are invoking it in the context of the entire class, not a particular instance of the class.
+
+Here's an example to illustrate the difference:
+
+```java
+public class MyClass {
+    public static int staticMethod() {
+        return 1;
+    }
+
+    public int nonStaticMethod() {
+        return 2;
+    }
+}
+```
+
+In this example, staticMethod() is a static method and nonStaticMethod() is a non-static method. You can call staticMethod() like this:
+
+```java
+int result = MyClass.staticMethod();
+```
+
+And you can call nonStaticMethod() like this:
+
+```java
+MyClass obj = new MyClass();
+int result = obj.nonStaticMethod();
+```
+
+To summarize, the main differences between static and non-static methods in Java are in how they are accessed and the context in which they operate. Static methods can be called directly on the class itself and do not operate on any particular instance of the class, while non-static methods require an instance of the class to be created and operate on the instance they are called on.
+
+2. Write a Java class called Vehicle with instance methods startEngine() and stopEngine() that start and stop the vehicle's engine. The class should have an instance variable for the engine status.
+
+```java
+public class Vehicle {
+    private boolean engineStatus;
+
+    public void startEngine() {
+        if (!engineStatus) {
+            System.out.println("Starting engine...");
+            engineStatus = true;
+        } else {
+            System.out.println("Engine is already started.");
+        }
+    }
+
+    public void stopEngine() {
+        if (engineStatus) {
+            System.out.println("Stopping engine...");
+            engineStatus = false;
+        } else {
+            System.out.println("Engine is already stopped.");
+        }
+    }
+}
+```
+3. Write a Java class called Rectangle with instance methods getArea() and getPerimeter() that calculate the area and perimeter of the rectangle. The class should have instance variables for the length and width of the rectangle.
+```java
+public class Rectangle {
+    private int length;
+    private int width;
+
+    public Rectangle(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    public int getArea() {
+        return length * width;
+    }
+
+    public int getPerimeter() {
+        return 2 * (length + width);
+    }
+}
+```
+
+4. Write a Java class called MathUtils with static methods add() and subtract() that add and subtract two numbers respectively. The methods should take two arguments and return the result.
+```java
+public class MathUtils {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+}
+```
+5. Write a Java class called StringUtils with a static method reverse() that takes a string as input and returns the reversed string. For example, if the input string is "hello", the method should return "olleh".
+```java
+public class StringUtils {
+    public static String reverse(String str) {
+        String reversed = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed += str.charAt(i);
+        }
+        return reversed;
+    }
+}
+```
 
 ## What We Will Learn Next
 
