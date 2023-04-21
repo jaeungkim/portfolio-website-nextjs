@@ -27,6 +27,7 @@ By the end of this lecture, you will have a better understanding of how to use a
 Welcome to today's lecture on Java programming! In this lecture, we will dive deeper into some of the core concepts and features of Java, including arrays, methods, and classes. These topics are essential for building more complex and powerful programs in Java, and will help you become a more skilled and versatile Java programmer. So, let's get started!
 
 ## Arrays
+
 Arrays are a fundamental data structure in Java, and are used to store multiple values of the same type in a single variable. Arrays are especially useful when we need to work with large amounts of data or when we need to perform the same operation on a group of values.
 
 To declare an array in Java, we specify the type of the elements in the array, followed by a pair of square brackets []. For example, to declare an array of integers, we would use the following syntax:
@@ -260,31 +261,42 @@ In addition to one- and two-dimensional arrays, Java also supports arrays with m
 1. How do you declare and initialize a one-dimensional array in Java?
 2. What is the difference between a one-dimensional array and a two-dimensional array in Java?
 3. Write a Java Program to find the length of a given array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 // Find the length of the 'numbers' array and print it
 ```
+
 4. Write a Java Program to calculate the sum of all elements in an array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 // Calculate the sum of all elements in the 'numbers' array and print it
 ```
+
 5. Write a Java Program to find the maximum and minimum values in an array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 // Find the maximum and minimum values in the 'numbers' array and print them
 ```
+
 6. Write a Java program to reverse the elements of an array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 // Reverse the elements of the 'numbers' array and print the reversed array
 ```
+
 7. Write a Java program to create a 2D array of size 3x3 and initialize it with the numbers 1 to 9.
+
 ```java
 // Declare and initialize a 3x3 2D array with the numbers 1 to 9
 // Print the 2D array
 ```
+
 8. Write a Java program to calculate the sum of the elements of the main diagonal of a 3x3 2D array.
+
 ```java
 int[][] matrix = {
     {1, 2, 3},
@@ -293,7 +305,9 @@ int[][] matrix = {
 };
 // Calculate the sum of the elements of the main diagonal and print it
 ```
+
 9. Write a Java program to transpose a 2D array (i.e., swap rows with columns).
+
 ```java
 int[][] matrix = {
     {1, 2, 3},
@@ -306,6 +320,7 @@ int[][] matrix = {
 ## Answers - Arrays
 
 1. How do you declare and initialize a one-dimensional array in Java?
+
 ```java
 // Declare an array of integers
 int[] myArray;
@@ -316,6 +331,7 @@ myArray = new int[]{1, 2, 3, 4, 5};
 // Alternatively, you can declare and initialize the array in one step
 int[] myArray = {1, 2, 3, 4, 5};
 ```
+
 2. What is the difference between a one-dimensional array and a two-dimensional array in Java?
 
 A one-dimensional array is a linear data structure that stores a collection of elements of the same type in a contiguous block of memory. Each element can be accessed using a single index.
@@ -323,7 +339,6 @@ A one-dimensional array is a linear data structure that stores a collection of e
 A two-dimensional array is an array of arrays, often represented as a matrix or a table. It stores elements in rows and columns, and each element can be accessed using two indices: one for the row and one for the column.
 
 Here's an example of declaring and initializing a two-dimensional array in Java:
-
 
 ```java
 // Declare a 2D array of integers
@@ -343,13 +358,17 @@ int[][] my2DArray = {
     {7, 8, 9}
 };
 ```
+
 3. Write a Java Program to find the length of a given array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 // Find the length of the 'numbers' array and print it
 System.out.println(numbers.length);
 ```
+
 4. Write a Java Program to calculate the sum of all elements in an array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 
@@ -362,7 +381,9 @@ for(int i = 0 ; i < numbers.length; i++){
 
 System.out.println(sum);
 ```
+
 5. Write a Java Program to find the maximum and minimum values in an array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 
@@ -384,7 +405,9 @@ System.out.println("Maximum value: " + max);
 System.out.println("Minimum value: " + min);
 
 ```
+
 6. Write a Java program to reverse the elements of an array.
+
 ```java
 int[] numbers = {4, 2, 7, 1, 8};
 
@@ -399,7 +422,9 @@ for (int i = 0; i < numbers.length; i++) {
 System.out.println("Reversed array: " + Arrays.toString(reversed));
 
 ```
+
 7. Write a Java program to create a 2D array of size 3x3 and initialize it with the numbers 1 to 9.
+
 ```java
 // Declare and initialize a 3x3 2D array with the numbers 1 to 9
 // Print the 2D array
@@ -417,7 +442,9 @@ for (int i = 0; i < matrix.length; i++) {
     System.out.println();
 }
 ```
+
 8. Write a Java program to calculate the sum of the elements of the main diagonal of a 3x3 2D array.
+
 ```java
 int[][] matrix = {
     {1, 2, 3},
@@ -434,7 +461,9 @@ for (int i = 0; i < matrix.length; i++) {
 
 System.out.println("Sum of the main diagonal: " + sum);
 ```
+
 9. Write a Java program to transpose a 2D array (i.e., swap rows with columns).
+
 ```java
 int[][] matrix = {
     {1, 2, 3},
@@ -478,11 +507,11 @@ To define a method in Java, we use the following syntax:
 }
 ```
 
-* The access modifier specifies the level of access to the method. The four access modifiers in Java are public, private, protected, and default.
-* The static keyword is used to define a static method, which belongs to the class and not to a specific instance of the class.
-* The return type specifies the data type of the value returned by the method. If the method does not return a value, we use the void keyword.
-* The method name is the name of the method.
-* The parameter list is a comma-separated list of input parameters to the method.
+- The access modifier specifies the level of access to the method. The four access modifiers in Java are public, private, protected, and default.
+- The static keyword is used to define a static method, which belongs to the class and not to a specific instance of the class.
+- The return type specifies the data type of the value returned by the method. If the method does not return a value, we use the void keyword.
+- The method name is the name of the method.
+- The parameter list is a comma-separated list of input parameters to the method.
 
 Let's define a simple method that takes two integers as input and returns their sum:
 
@@ -537,6 +566,7 @@ public class Dog {
     }
 }
 ```
+
 In this example, we have a Dog class with three instance methods: bark(), setName(), and setAge(). The bark() method accesses the name variable to print out a message. The setName() and setAge() methods set the name and age variables, respectively.
 
 To call these instance methods, we first need to create a Dog object and set its properties:
@@ -608,6 +638,7 @@ public class Person {
     }
 }
 ```
+
 In this example, we have a Person class with a constructor that takes two parameters: name and age. When we create a new Person object, we need to pass in the name and age values:
 
 ```java
@@ -662,7 +693,6 @@ public class Main {
 
 In this example, we've created a Car object called "car" and used the setter method "setMake()" to set the value of the "make" field to "Toyota". We then used the getter method "getMake()" to retrieve the value of the "make" field and print it to the console. The output is "Toyota".
 
-
 ## Method Overloading
 
 Method overloading is a technique in Java that allows us to define multiple methods with the same name but different parameter lists. The Java compiler uses the parameter list to determine which method to call when the method is invoked.
@@ -680,6 +710,7 @@ public static double sum(double a, double b) {
     return a + b;
 }
 ```
+
 Now we can call the sum() method with either integers or doubles:
 
 ```java
@@ -742,6 +773,7 @@ public class Person {
 ```
 
 In this example, we've defined a class called Person with two attributes, name and age, and a method called printInfo() that prints the person's name and age to the console.
+
 ## Attributes
 
 Attributes, also known as instance variables or fields, represent the state of an object. They are declared within the class body but outside of any methods. Attributes can be of any data type, including primitive types such as int, double, and boolean, and reference types such as String, arrays, and other objects. Here's an example:
@@ -796,10 +828,10 @@ In this example, we've defined a class called BankAccount with an attribute call
 
 Access modifiers determine the level of access that other classes have to the attributes and methods of a class. There are four access modifiers in Java:
 
-* public: The attribute or method can be accessed from any class.
-* private: The attribute or method can only be accessed from within the same class.
-* protected: The attribute or method can be accessed from within the same class or any subclass.
-* default: The attribute or method can be accessed from within the same package.
+- public: The attribute or method can be accessed from any class.
+- private: The attribute or method can only be accessed from within the same class.
+- protected: The attribute or method can be accessed from within the same class or any subclass.
+- default: The attribute or method can be accessed from within the same package.
 
 We specify the access modifier before the attribute or method. Here's an example:
 
@@ -822,6 +854,7 @@ public class Student {
     }
 }
 ```
+
 In this example, we have a Student class with four attributes: name, age, gpa, and major. The access modifiers for these attributes are private, protected, default, and public, respectively.
 
 We've also defined a constructor that takes four parameters: name, age, gpa, and major. The constructor initializes the attributes with the values passed in as arguments using the this keyword, which refers to the current object.
@@ -916,6 +949,29 @@ In Java, a class is a blueprint or a template for creating objects that share co
 3. Write a Java class called Rectangle with instance methods getArea() and getPerimeter() that calculate the area and perimeter of the rectangle. The class should have instance variables for the length and width of the rectangle.
 4. Write a Java class called MathUtils with static methods add() and subtract() that add and subtract two numbers respectively. The methods should take two arguments and return the result.
 5. Write a Java class called StringUtils with a static method reverse() that takes a string as input and returns the reversed string. For example, if the input string is "hello", the method should return "olleh".
+6. Write a java class called Calculator with two instance methods named add and subtract that take two integer parameters and return their sum and difference, respectively, and static methods named multiply and divide that take two integer parameters and return their product and quotient, respectively.
+7. Write two java classes called `Circle` and `GeometryUtility`. The Circle class should have a private instance variable radius and an appropriate constructor. It should also have instance methods for calculating the area and circumference of the circle. The GeometryUtility class should have static methods for calculating the area and circumference of a circle given its radius as an input parameter.
+8. Write a java class called Student grades with the following.
+
+- Private instance variables for the student's name and an array of integer grades.
+- A constructor that takes a name and an array of grades as input parameters.
+- An instance method that calculates the student's average grade.
+- A static method that takes two Student objects as input parameters and returns the student with the higher average grade.
+
+9. Write a java class called Temperature Conversion with the following.
+
+- An instance method named celsiusToFahrenheit that takes a double representing a Celsius temperature and returns the equivalent Fahrenheit temperature.
+- An instance method named fahrenheitToCelsius that takes a double representing a Fahrenheit temperature and returns the equivalent Celsius temperature.
+- A static method named convertCelsiusToFahrenheit that takes a double representing a Celsius temperature and returns the equivalent Fahrenheit temperature.
+- A static method named convertFahrenheitToCelsius that takes a double representing a Fahrenheit temperature and returns the equivalent Celsius temperature.
+
+10. Write a java class called Bank Account with the following.
+
+- Private instance variables for the account holder's name, account number, and balance.
+- A constructor that takes the account holder's name and account number as input parameters and initializes the balance to 0.
+- An instance method to deposit a specified amount into the account.
+- An instance method to withdraw a specified amount from the account.
+- A static method that takes two BankAccount objects as input parameters and transfers a specified amount from one account to the other.
 
 ## Answers - Methods and Classes
 
@@ -998,7 +1054,9 @@ public class Vehicle {
     }
 }
 ```
+
 3. Write a Java class called Rectangle with instance methods getArea() and getPerimeter() that calculate the area and perimeter of the rectangle. The class should have instance variables for the length and width of the rectangle.
+
 ```java
 public class Rectangle {
     private int length;
@@ -1020,6 +1078,7 @@ public class Rectangle {
 ```
 
 4. Write a Java class called MathUtils with static methods add() and subtract() that add and subtract two numbers respectively. The methods should take two arguments and return the result.
+
 ```java
 public class MathUtils {
     public static int add(int a, int b) {
@@ -1031,7 +1090,9 @@ public class MathUtils {
     }
 }
 ```
+
 5. Write a Java class called StringUtils with a static method reverse() that takes a string as input and returns the reversed string. For example, if the input string is "hello", the method should return "olleh".
+
 ```java
 public class StringUtils {
     public static String reverse(String str) {
@@ -1042,6 +1103,157 @@ public class StringUtils {
         return reversed;
     }
 }
+```
+
+6. Write a java class called Calculator with two instance methods named add and subtract that take two integer parameters and return their sum and difference, respectively, and static methods named multiply and divide that take two integer parameters and return their product and quotient, respectively.
+
+```java
+class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int subtract(int a, int b) {
+        return a - b;
+    }
+
+    static int multiply(int a, int b) {
+        return a * b;
+    }
+
+    static int divide(int a, int b) {
+        return a / b;
+    }
+}
+```
+
+7. Write two java classes called `Circle` and `GeometryUtility`. The Circle class should have a private instance variable radius and an appropriate constructor. It should also have instance methods for calculating the area and circumference of the circle. The GeometryUtility class should have static methods for calculating the area and circumference of a circle given its radius as an input parameter.
+
+```java
+class Circle {
+    private double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    double area() {
+        return Math.PI * Math.pow(radius, 2);
+    }
+
+    double circumference() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+class GeometryUtility {
+    static double circleArea(double radius) {
+        return Math.PI * Math.pow(radius, 2);
+    }
+
+    static double circleCircumference(double radius) {
+        return 2 * Math.PI * radius;
+    }
+}
+```
+
+8. Write a java class called Student grades with the following.
+
+- Private instance variables for the student's name and an array of integer grades.
+- A constructor that takes a name and an array of grades as input parameters.
+- An instance method that calculates the student's average grade.
+- A static method that takes two Student objects as input parameters and returns the student with the higher average grade.
+
+```java
+class Student {
+    private String name;
+    private int[] grades;
+
+    Student(String name, int[] grades) {
+        this.name = name;
+        this.grades = grades;
+    }
+
+    double averageGrade() {
+        int sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return (double) sum / grades.length;
+    }
+
+    static Student getHigherAverage(Student s1, Student s2) {
+        return s1.averageGrade() > s2.averageGrade() ? s1 : s2;
+    }
+}
+```
+
+9. Write a java class called Temperature Conversion with the following.
+
+- An instance method named celsiusToFahrenheit that takes a double representing a Celsius temperature and returns the equivalent Fahrenheit temperature.
+- An instance method named fahrenheitToCelsius that takes a double representing a Fahrenheit temperature and returns the equivalent Celsius temperature.
+- A static method named convertCelsiusToFahrenheit that takes a double representing a Celsius temperature and returns the equivalent Fahrenheit temperature.
+- A static method named convertFahrenheitToCelsius that takes a double representing a Fahrenheit temperature and returns the equivalent Celsius temperature.
+
+```java
+class TemperatureConverter {
+    double celsiusToFahrenheit(double celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    double fahrenheitToCelsius(double fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+
+    static double convertCelsiusToFahrenheit(double celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    static double convertFahrenheitToCelsius(double fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+}
+
+```
+
+10. Write a java class called Bank Account with the following.
+
+- Private instance variables for the account holder's name, account number, and balance.
+- A constructor that takes the account holder's name and account number as input parameters and initializes the balance to 0.
+- An instance method to deposit a specified amount into the account.
+- An instance method to withdraw a specified amount from the account.
+- A static method that takes two BankAccount objects as input parameters and transfers a specified amount from one account to the other.
+
+```java
+class BankAccount {
+    private String name;
+    private String accountNumber;
+    private double balance;
+
+    BankAccount(String name, String accountNumber) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.balance = 0;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        balance -= amount;
+    }
+
+    static void transfer(BankAccount from, BankAccount to, double amount) {
+        from.withdraw(amount);
+        to.deposit(amount);
+    }
+
+    double getBalance() {
+        return balance;
+    }
+}
+
 ```
 
 ## What We Will Learn Next
