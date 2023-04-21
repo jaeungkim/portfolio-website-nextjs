@@ -904,43 +904,75 @@ The Student class inherits the name and age attributes and the sayHello() method
 
 ## Polymorphism
 
-Polymorphism is a concept in Java that allows objects of different classes to be treated as if they are objects of the same class. This is achieved through inheritance and method overriding.
+Java Polymorphism is a powerful concept in object-oriented programming that allows you to use a single type (such as a superclass or an interface) to represent multiple related types (such as subclasses or implementations of that interface).
+
+Polymorphism is a combination of two Greek words: "poly" meaning "many," and "morph" meaning "form." In Java, it refers to the ability of an object to take on many forms.
+
+There are two types of polymorphism in Java:
+
+1. Compile-time Polymorphism (Method Overloading)
+
+2. Runtime Polymorphism (Method Overriding)
+
+In compile-time polymorphism, also known as method overloading, you can have multiple methods with the same name in the same class. However, each method must have a different signature (i.e., the number, order, and types of parameters must be different).
 
 Here's an example:
 
 ```java
-public class Animal {
-    public void makeSound() {
-        System.out.println("The animal makes a sound.");
+class Calculation {
+    void add(int a, int b) {
+        System.out.println("Sum is " + (a + b));
+    }
+
+    void add(int a, int b, int c) {
+        System.out.println("Sum is " + (a + b + c));
     }
 }
 
-public class Dog extends Animal {
-    public void makeSound() {
-        System.out.println("The dog barks.");
-    }
-}
-
-public class Cat extends Animal {
-    public void makeSound() {
-        System.out.println("The cat meows.");
+public class Main {
+    public static void main(String[] args) {
+        Calculation myCalculation = new Calculation();
+        myCalculation.add(10, 20); // Output: Sum is 30
+        myCalculation.add(10, 20, 30); // Output: Sum is 60
     }
 }
 ```
 
-In this example, we have three classes: Animal, Dog, and Cat. The Dog and Cat classes inherit the makeSound() method from the Animal class, but provide their own implementation of the method. When we create objects of these classes and call the makeSound() method, the appropriate implementation is called based on the type of the object.
+In this example, we have a class called Calculation with two methods called add(). Each method has a different signature because one takes two parameters and the other takes three. When we call the add() method, the Java compiler decides which version of the method to execute based on the number and types of arguments passed.
+
+2. Runtime Polymorphism (Method Overridng)
+
+In runtime polymorphism, also known as method overriding, you can have a subclass method with the same name and signature as a superclass method. The subclass method overrides the superclass method, which means that when you call the method on a subclass object, the version of the method defined in the subclass is executed instead of the one defined in the superclass.
+
+Here's an example:
 
 ```java
-Animal animal1 = new Animal();
-Dog dog1 = new Dog();
-Cat cat1 = new Cat();
+class Animal {
+    void makeSound() {
+        System.out.println("The animal makes a sound");
+    }
+}
 
-animal1.makeSound(); // prints "The animal makes a sound."
-dog1.makeSound(); // prints "The dog barks."
-cat1.makeSound(); // prints "The cat meows."
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("The dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();
+        Dog myDog = new Dog();
+        myAnimal.makeSound(); // Output: The animal makes a sound
+        myDog.makeSound(); // Output: The dog barks
+    }
+}
 ```
+In this example, we have a superclass called Animal and a subclass called Dog. Both classes have a method called makeSound(), but the Dog class overrides the makeSound() method of the Animal class. When we call the makeSound() method on a Dog object, it executes the version of the method defined in the Dog class.
 
-In Java, a class is a blueprint or a template for creating objects that share common properties and behaviors. Classes encapsulate the data and behavior of an object, providing a way to organize and structure code. We can create objects of a class by using the new keyword and passing in arguments to a constructor. Inheritance allows us to create specialized classes based on existing ones, and polymorphism allows objects of different classes to be treated as if they are of the same type.
+This is a powerful concept in Java because it allows you to write code that is more generic and flexible. You can write methods that take a superclass reference as a parameter, and then pass in objects of different subclasses to execute different versions of the method.
+
+In summary, Java polymorphism is a powerful concept that allows you to use a single type to represent multiple related types. There are two types of polymorphism in Java: compile-time polymorphism (method overloading) and runtime polymorphism (method overriding). Runtime polymorphism allows you to use a superclass reference to refer to a subclass object and execute the version of a method defined in the subclass.
 
 ## Questions - Methods and Classes
 
