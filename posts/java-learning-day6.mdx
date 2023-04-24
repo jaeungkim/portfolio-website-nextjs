@@ -16,19 +16,172 @@ Furthermore, we delved into classes, discussing how they act as blueprints for c
 
 In today's lecture, we will continue to expand our Java programming knowledge by focusing on the following topics:
 
-1. Abstract classes and methods
-2. Interfaces
-3. Nested classes
-4. Generics
-5. Lambda expressions
-6. Reflection
-7. Annotations
+1. Inheritance, 
+2. Polymorphism, 
+3. Encapsulation
+4. Abstract classes and methods
 
 These advanced Java concepts will enable you to write more complex and flexible programs, enhancing your programming expertise in this versatile language.
 
 ## Introduction
 
 Building on our foundation in Java methods and classes, today's lecture will take us deeper into the world of Java programming. We'll explore abstract classes and methods, interfaces, nested classes, generics, lambda expressions, reflection, and annotations. By mastering these advanced topics, you'll be better equipped to tackle sophisticated Java programs and applications. Let's dive in and continue expanding our Java programming knowledge.
+
+## Inheritance
+
+Inheritance is a mechanism in Java that allows us to create a new class by extending an existing class. The new class, called the subclass or child class, inherits the attributes and methods of the existing class, called the superclass or parent class. The subclass can also add its own attributes and methods or override the ones inherited from the superclass.
+
+Here's an example:
+
+```java
+public class Person {
+    protected String name;
+    protected int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void sayHello() {
+        System.out.println("Hello, my name is " + name + " and I am " + age + " years old.");
+    }
+}
+
+public class Student extends Person {
+    private double gpa;
+    private String major;
+
+    public Student(String name, int age, double gpa, String major) {
+        super(name, age);
+        this.gpa = gpa;
+        this.major = major;
+    }
+
+    public void study() {
+        System.out.println(name + " is studying " + major + " and has a GPA of " + gpa + ".");
+    }
+}
+```
+
+In this example, we have a Person class with two attributes: name and age, and a sayHello() method that prints out a greeting. We've also defined a Student class that extends the Person class and adds two attributes: gpa and major, and a study() method that prints out information about the student's major and GPA.
+
+The Student class inherits the name and age attributes and the sayHello() method from the Person class. It also has its own constructor that calls the superclass constructor using the super keyword, and its own study() method that adds new behavior.
+
+## Polymorphism
+
+Java Polymorphism is a powerful concept in object-oriented programming that allows you to use a single type (such as a superclass or an interface) to represent multiple related types (such as subclasses or implementations of that interface).
+
+Polymorphism is a combination of two Greek words: "poly" meaning "many," and "morph" meaning "form." In Java, it refers to the ability of an object to take on many forms.
+
+There are two types of polymorphism in Java:
+
+1. Compile-time Polymorphism (Method Overloading)
+
+2. Runtime Polymorphism (Method Overriding)
+
+In compile-time polymorphism, also known as method overloading, you can have multiple methods with the same name in the same class. However, each method must have a different signature (i.e., the number, order, and types of parameters must be different).
+
+Here's an example:
+
+```java
+class Calculation {
+    void add(int a, int b) {
+        System.out.println("Sum is " + (a + b));
+    }
+
+    void add(int a, int b, int c) {
+        System.out.println("Sum is " + (a + b + c));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculation myCalculation = new Calculation();
+        myCalculation.add(10, 20); // Output: Sum is 30
+        myCalculation.add(10, 20, 30); // Output: Sum is 60
+    }
+}
+```
+
+In this example, we have a class called Calculation with two methods called add(). Each method has a different signature because one takes two parameters and the other takes three. When we call the add() method, the Java compiler decides which version of the method to execute based on the number and types of arguments passed.
+
+2. Runtime Polymorphism (Method Overridng)
+
+In runtime polymorphism, also known as method overriding, you can have a subclass method with the same name and signature as a superclass method. The subclass method overrides the superclass method, which means that when you call the method on a subclass object, the version of the method defined in the subclass is executed instead of the one defined in the superclass.
+
+Here's an example:
+
+```java
+class Animal {
+    void makeSound() {
+        System.out.println("The animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    void makeSound() {
+        System.out.println("The dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();
+        Dog myDog = new Dog();
+        myAnimal.makeSound(); // Output: The animal makes a sound
+        myDog.makeSound(); // Output: The dog barks
+    }
+}
+```
+In this example, we have a superclass called Animal and a subclass called Dog. Both classes have a method called makeSound(), but the Dog class overrides the makeSound() method of the Animal class. When we call the makeSound() method on a Dog object, it executes the version of the method defined in the Dog class.
+
+This is a powerful concept in Java because it allows you to write code that is more generic and flexible. You can write methods that take a superclass reference as a parameter, and then pass in objects of different subclasses to execute different versions of the method.
+
+In summary, Java polymorphism is a powerful concept that allows you to use a single type to represent multiple related types. There are two types of polymorphism in Java: compile-time polymorphism (method overloading) and runtime polymorphism (method overriding). Runtime polymorphism allows you to use a superclass reference to refer to a subclass object and execute the version of a method defined in the subclass.
+
+## Encapsulation
+
+Encapsulation is one of the key concepts of object-oriented programming that helps to keep code organized and maintainable. It is the idea of bundling data and methods that work on that data within a single unit, such as a class in Java. The main goal of encapsulation is to hide the internal details of an object and expose only what is necessary to use it.
+
+In Java, encapsulation is achieved using access modifiers such as public, private, and protected. These modifiers determine the level of access to class members (fields and methods) from outside the class.
+
+Here's an example of encapsulation in Java:
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Invalid age!");
+        }
+    }
+}
+```
+
+In this example, the Person class has two private fields: name and age. These fields are not accessible from outside the class, so they cannot be modified or accessed directly. Instead, we provide public getter and setter methods to access and modify these fields.
+
+The getName() and getAge() methods are getter methods that return the value of the private fields name and age, respectively. These methods are marked as public, so they can be accessed from outside the class.
+
+The setName() and setAge() methods are setter methods that set the value of the private fields name and age, respectively. These methods are also marked as public, so they can be accessed from outside the class. However, before setting the value of age, we check if the value is valid (i.e. greater than 0). If it is not valid, we display an error message.
+
+By encapsulating the data and methods within the Person class, we can ensure that the internal details of the object are hidden from outside the class. This makes it easier to maintain the code and reduces the risk of unintended changes to the object's state.
 
 ## Abstract Classes and Methods
 
@@ -109,14 +262,8 @@ public class Main {
 
 In this example, we create instances of the Dog and Cat classes and use them through an Animal reference. This allows us to call the makeSound() and sleep() methods on both instances.
 
-## Interfaces
+## Questions
 
-## Nested classes
+## Answers
 
-## Generics
-
-## Lambda expressions
-
-## Reflection
-
-## Annotations
+## What We Will Learn Next
