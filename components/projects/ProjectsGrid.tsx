@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProjectSingle from "./ProjectSingle";
 import { projectsData } from "../../data/projectsData";
 import ProjectsFilter from "./ProjectsFilter";
+import { easeInOut, motion } from "framer-motion";
 function ProjectsGrid() {
   const [selectProject, setSelectProject] = useState("");
 
@@ -28,7 +29,9 @@ function ProjectsGrid() {
       </div>
 
       {/* TABLET OR BIGGER */}
-      <div className="hidden sm:flex gap-2">
+      <motion.div
+        className="hidden sm:flex gap-2"
+      >
         <div className="flex flex-col gap-4">
           {filteredProjects
             .slice(0, Math.ceil(filteredProjects.length / 2))
@@ -43,7 +46,7 @@ function ProjectsGrid() {
               <ProjectSingle key={index} {...project} />
             ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
