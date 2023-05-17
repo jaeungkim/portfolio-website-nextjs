@@ -18,9 +18,9 @@ function ProjectsGrid() {
 
   return (
     <section className="mt-16 sm:mt-20">
-      <ProjectsFilter setSelectProject={setSelectProject} />
+      {/* <ProjectsFilter setSelectProject={setSelectProject} /> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {filteredProjects.map((project, index) => (
           <ProjectSingle key={index} {...project} />
         ))}
