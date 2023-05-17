@@ -11,7 +11,7 @@ const ProjectSingle = ({ id, img, title, date, videoSrc }: any) => (
       transition={{
         ease: "easeInOut",
         duration: 0.7,
-        delay: 0.5,
+        delay: 0.25,
       }}
     >
       <motion.div className="will-change-auto w-full h-full relative rounded-md overflow-hidden">
