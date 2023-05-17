@@ -15,8 +15,8 @@ export default function CrypticText({
   const [cryptic, setCryptic] = useState("");
 
   const animate = useCallback(() => {
-    // const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
-    const letters = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ";
+    const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
+    // const letters = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ";
     const repeatDivider = 4;
 
     const timeoutValue =
@@ -71,12 +71,13 @@ export default function CrypticText({
 
   return (
     <span
-      className={clsx("text-inherit truncate block", classNames)}
+      className={clsx("text-inherit truncate block relative", classNames)}
       style={{
         animationDelay: `calc(var(--animation-delay-writing) + ${delay}s)`,
       }}
     >
-      {cryptic}
+      <span className="absolute inset-0">{cryptic}</span>
+      <span className="opacity-0">{text}</span>
     </span>
   );
 }

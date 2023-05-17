@@ -91,9 +91,8 @@ export default function Blog({ allPostsData }: BlogProps) {
                         <CrypticTextDynamic
                           text={title}
                           delay={index * 0.1}
-                          classNames={styles.fadein}
+                          classNames={`${styles.fadein}`}
                         />
-                        {/* <span className="">{title}</span> */}
                       </Link>
                     </h2>
                     <Date dateString={date} mobile={true} />

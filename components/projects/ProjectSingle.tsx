@@ -8,13 +8,13 @@ const ProjectSingle = ({ id, img, title, date, videoSrc }: any) => (
       aria-label="Single Project"
     >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 0.7,
-          delay: 0.15,
-        }}
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // transition={{
+        //   ease: "easeInOut",
+        //   duration: 0.7,
+        //   delay: 0.15,
+        // }}
         className="w-full h-full relative rounded-md overflow-hidden"
       >
         <video
