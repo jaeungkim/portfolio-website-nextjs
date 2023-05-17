@@ -38,15 +38,14 @@ function SocialIcon({ href, IconComponent }) {
 export default function About() {
   return (
     <article>
-      <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-        Hi there 👋
-      </h1>
+      {/* <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+      </h1> */}
       <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
-        I am Jaeung Kim
+        Jae Kim
       </h2>
-      <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
+      {/* <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         You can also call me Jae 🙂.
-      </p>
+      </p> */}
       <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         I am a highly motivated and collaborative software engineer with 2 years
         of experience in designing, building, and maintaining software for

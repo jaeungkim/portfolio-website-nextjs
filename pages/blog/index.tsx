@@ -6,7 +6,8 @@ import Date from "../../components/shared/date";
 import Layout from "../../components/shared/layout";
 import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
-
+import dynamic from "next/dynamic";
+import styles from "../../styles/blog.module.css";
 interface Post {
   id: string;
   title: string;
@@ -18,6 +19,13 @@ interface Post {
 interface BlogProps {
   allPostsData: Post[];
 }
+
+const CrypticTextDynamic = dynamic(
+  () => import("../../components/shared/CrypticText"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -70,7 +78,7 @@ export default function Blog({ allPostsData }: BlogProps) {
 
             {allPostsData
               .filter(postMatchesSelectedTags)
-              .map(({ id, date, summary, title, tags }) => (
+              .map(({ id, date, summary, title, tags }, index) => (
                 <article
                   className="md:grid md:grid-cols-4 md:items-baseline"
                   key={id}
@@ -80,7 +88,12 @@ export default function Blog({ allPostsData }: BlogProps) {
                       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
                       <Link href={`/blog/${id}`}>
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                        <span className="relative z-10">{title}</span>
+                        <CrypticTextDynamic
+                          text={title}
+                          delay={index * 0.1}
+                          classNames={styles.fadein}
+                        />
+                        {/* <span className="">{title}</span> */}
                       </Link>
                     </h2>
                     <Date dateString={date} mobile={true} />
