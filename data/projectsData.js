@@ -4,6 +4,8 @@ export const projectsData = [
   {
     id: 1,
     title: "WebGL Playground",
+    date: "July 26th, 2022",
+    videoSrc: "/videos/jaeungkim.ca.mp4",
     url: "webgl-playground",
     category: "Full Stack",
     img: "/images/webGL_project_main.png",
@@ -99,6 +101,8 @@ export const projectsData = [
   {
     id: 2,
     title: "iClinic Systems",
+    date: "October 16th, 2022",
+    videoSrc: "/videos/aiclinic.ca.mp4",
     url: "iclinic-systems",
     category: "Full Stack",
     img: "/images/iclinic_main.png",
@@ -183,6 +187,8 @@ export const projectsData = [
   {
     id: 3,
     title: "Catalyx.io",
+    date: "January 18, 2021",
+    // videoSrc:  "/images/catalyx_main.png",
     url: "catalyx",
     category: "Full Stack",
     img: "/images/catalyx_main.png",
@@ -269,7 +275,8 @@ export const projectsData = [
   {
     id: 4,
     title: "Architecture Portfolio",
-    url: "suh-architecture",
+    date: "Jul 26, 2021",
+    // videoSrc: "/videos/jaeungkim.ca.mp4",
     category: "Front End",
     img: "/images/namju_portfolio_main.png",
     ProjectHeader: {
@@ -357,6 +364,8 @@ export const projectsData = [
   {
     id: 5,
     title: "Lost Ark Discord Bot",
+    date: "February 23rd, 2022",
+    // videoSrc: "/images/lostark_bot_main.png",
     url: "lostark-discord",
     category: "Back End",
     img: "/images/lostark_bot_main.png",
@@ -433,6 +442,8 @@ export const projectsData = [
   {
     id: 6,
     title: "Circle Market",
+    date: "January 4th, 2023",
+    // videoSrc: "/videos/jaeungkim.ca.mp4",
     url: "circle-market",
     category: "Full Stack",
     img: "/images/circlemarket_main.png",

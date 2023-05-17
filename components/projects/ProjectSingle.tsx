@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProjectSingle = ({ id, img, title, category }) => (
+const ProjectSingle = ({ id, img, title, date, videoSrc }: any) => (
   <Link href={`/project/${id}`} passHref>
     <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className="overflow-hidden rounded-md p-1 shadow-zinc-800/5 ring-1 ring-zinc-900/5 shadow-lg hover:shadow-xl cursor-pointer mb-4 sm:mb-0 bg-white/90 dark:bg-zinc-800/90"
       aria-label="Single Project"
     >
@@ -18,11 +20,27 @@ const ProjectSingle = ({ id, img, title, category }) => (
         }}
         className="w-full h-full relative rounded-md overflow-hidden"
       >
-        <img
+        <video
+          muted
+          autoPlay
+          playsInline
+          loop
+          className="w-full h-full object-cover object-center transform transition-transform duration-500 ease-in-out"
+          poster={img}
+        >
+          <source src={videoSrc} type="video/mp4"></source>
+        </video>
+        {/* <img
           src={img}
           alt="Single Project"
           className="w-full h-full object-cover object-center transform transition-transform duration-500 ease-in-out"
-        />
+        /> */}
+        <div className="absolute bottom-0 left-0 w-full h-full flex justify-between items-end gap-1 p-3 z-20 transition-opacity duration-300 will-change-auto bg-gradient-to-t from-black to-transparent">
+          <h3 className="text-xs text-neutral-200 flex gap-1 justify-start items-center">
+            {title}
+          </h3>
+          <p className="text-xs text-neutral-200">{date}</p>
+        </div>
       </motion.div>
     </motion.div>
   </Link>
