@@ -17,15 +17,6 @@ function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (!initialScreen) {
-      const cursor = new MouseFollower({
-        container: ".mf-container",
-        speed: 0.3,
-      });
-    }
-  }, [initialScreen]);
-
-  useEffect(() => {
     setTimeout(() => {
       setInitialScreen(false);
     }, 3000);
@@ -61,10 +52,8 @@ function App({ Component, pageProps }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.75 }}
           >
-            <div className="mf-container">
-              <Component {...pageProps} />
-              <Analytics />
-            </div>
+            <Component {...pageProps} />
+            <Analytics />
           </motion.div>
           {isAnimating && (
             <motion.div
