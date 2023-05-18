@@ -41,7 +41,7 @@ export default function Loader() {
       transition={{ ease: "easeOut", delay: 1.0, duration: 2.5 }}
       className={`flex justify-center items-center h-screen w-screen absolute top-0 transition-opacity duration-1000 overflow-hidden`}
     >
-      <div className="relative mb-24 sm:mb-0">
+      <div className="relative mb-48 sm:mb-0">
         <p className="text-6xl sm:text-7xl">JAEUNG KIM</p>
         <svg
           className="absolute w-full stroke-black dark:stroke-white"
