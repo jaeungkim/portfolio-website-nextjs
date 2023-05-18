@@ -20,7 +20,7 @@ const ProjectSingle = ({ id, img, title, date, videoSrc }: any) => (
           autoPlay
           playsInline
           loop
-          className="w-full h-full object-cover object-center transform transition-transform duration-500 ease-in-out"
+          className="min-h-[200px] w-full h-full object-cover object-center transform transition-transform duration-500 ease-in-out"
           poster={img}
         >
           <source src={videoSrc} type="video/mp4"></source>

@@ -378,17 +378,17 @@ export const projectsData = [
       {
         id: uuidv4(),
         title: "Lost Ark Discord Bot",
-        img: "/images/lostark_bot_1.png",
+        img: "/images/lostark_bot_main.png",
       },
       {
         id: uuidv4(),
         title: "Lost Ark Discord Bot",
-        img: "/images/lostark_bot_1.png",
+        img: "/images/lostark_bot_main.png",
       },
       {
         id: uuidv4(),
         title: "Lost Ark Discord Bot",
-        img: "/images/lostark_bot_1.png",
+        img: "/images/lostark_bot_main.png",
       },
     ],
     ProjectInfo: {
