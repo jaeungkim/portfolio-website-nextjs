@@ -111,7 +111,11 @@ export default function Navbar() {
 
       {/* Mobile Menu Modal Pop-up */}
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={closeModal}>
+        <Dialog
+          as="div"
+          className="relative z-50 h-screen min-h-screen"
+          onClose={closeModal}
+        >
           <Transition.Child
             key="hi"
             as={Fragment}
@@ -137,7 +141,7 @@ export default function Navbar() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="fixed inset-x-4 top-8 z-40 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
+                <Dialog.Panel className="overflow-visible fixed inset-x-4 top-8 z-40 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 opacity-100 scale-100">
                   <Dialog.Title
                     as="h2"
                     className="flex flex-row w-full items-center justify-between text-sm font-medium text-zinc-600 dark:text-zinc-400"
