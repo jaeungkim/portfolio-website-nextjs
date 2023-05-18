@@ -113,7 +113,7 @@ export default function Navbar() {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="relative z-50 h-screen min-h-screen"
+          className="relative z-[100] h-screen min-h-screen overflow-visible"
           onClose={closeModal}
         >
           <Transition.Child
