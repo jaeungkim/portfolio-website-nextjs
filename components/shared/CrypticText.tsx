@@ -19,15 +19,7 @@ export default function CrypticText({
     // const letters = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ";
     const repeatDivider = 4;
 
-    const timeoutValue =
-      (parseInt(
-        getComputedStyle(document.documentElement)
-          .getPropertyValue("--animation-delay-writing")
-          .replace("s", "")
-      ) +
-        (delay ? delay : 0)) *
-      30 *
-      2;
+    const timeoutValue = 0.1 + (delay ? delay : 0) * 60;
 
     let iteration = 0;
     let elapsed = 0;
@@ -73,7 +65,7 @@ export default function CrypticText({
     <span
       className={clsx("text-inherit truncate block relative", classNames)}
       style={{
-        animationDelay: `calc(var(--animation-delay-writing) + ${delay}s)`,
+        animationDelay: `${delay + 0.1}s)`,
       }}
     >
       <span className="absolute inset-0">{cryptic}</span>
