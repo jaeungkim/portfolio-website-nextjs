@@ -14,14 +14,14 @@ export default function Loader() {
     }
   }, []);
 
-  useEffect(() => {
-    // Disable scroll on mount
-    document.body.style.overflow = "hidden";
-    // Re-enable scroll when component unmounts
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []); // Empty array ensures effect is only run on mount and unmount
+  // useEffect(() => {
+  //   // Disable scroll on mount
+  //   document.body.style.overflow = "hidden";
+  //   // Re-enable scroll when component unmounts
+  //   return () => {
+  //     document.body.style.overflow = "auto";
+  //   };
+  // }, []); // Empty array ensures effect is only run on mount and unmount
 
   const pathVariants = {
     hidden: { pathLength: 0 },
