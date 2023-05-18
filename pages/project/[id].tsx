@@ -36,7 +36,7 @@ function ProjectSingle(props) {
             <div className="mb-10 sm:mb-0" key={project.id}>
               <img
                 src={project.img}
-                className="rounded-xl cursor-pointer shadow-lg sm:shadow-none"
+                className="rounded-xl  shadow-lg sm:shadow-none"
                 alt={project.title}
                 key={project.id}
               />
@@ -66,7 +66,7 @@ function ProjectSingle(props) {
                       href={info.title === "Website" ? info.details : null}
                       className={
                         info.title === "Website" || info.title === "Phone"
-                          ? "hover:underline hover:text-cyan-500 dark:hover:text-cyan-400 cursor-pointer duration-300"
+                          ? "hover:underline hover:text-cyan-500 dark:hover:text-cyan-400  duration-300"
                           : ""
                       }
                       aria-label="Project Website and Phone"

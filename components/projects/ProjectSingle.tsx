@@ -4,7 +4,7 @@ import Link from "next/link";
 const ProjectSingle = ({ id, img, title, date, videoSrc }: any) => (
   <Link href={`/project/${id}`} passHref>
     <motion.div
-      className="will-change-auto overflow-hidden rounded-md p-1 shadow-zinc-800/5 ring-1 ring-zinc-900/5 shadow-lg hover:shadow-xl cursor-pointer mb-4 sm:mb-0 bg-white/90 dark:bg-zinc-800/90"
+      className="will-change-auto overflow-hidden rounded-md p-1 shadow-zinc-800/5 ring-1 ring-zinc-900/5 shadow-lg hover:shadow-xl  mb-4 sm:mb-0 bg-white/90 dark:bg-zinc-800/90"
       aria-label="Single Project"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

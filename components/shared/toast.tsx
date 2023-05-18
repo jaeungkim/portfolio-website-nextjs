@@ -31,7 +31,7 @@ export default function Toast({
         }`}
       >
         <div className="text-gray-700 font-medium">{children}</div>
-        <XMarkIcon onClick={onClose} className="h-5 w-5 cursor-pointer" />
+        <XMarkIcon onClick={onClose} className="h-5 w-5 " />
       </div>
     </Transition>
   );
