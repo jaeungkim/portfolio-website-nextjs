@@ -63,7 +63,10 @@ export default function CrypticText({
 
   return (
     <span
-      className={clsx("text-inherit truncate block relative", classNames)}
+      className={clsx(
+        "text-inherit whitespace-normal truncate block relative",
+        classNames
+      )}
       style={{
         animationDelay: `${delay + 0.1}s)`,
       }}
