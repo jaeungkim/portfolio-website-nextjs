@@ -17,10 +17,7 @@ export default function Layout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Jaeung Kim Blog" />
-        <meta
-          property="og:image"
-          content="https://og-examples.vercel.sh/api/static"
-        />
+        <meta property="og:image" content="https://www.jaeungkim.com/api/og" />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
