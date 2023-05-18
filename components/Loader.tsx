@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Loader() {
-  const [opacityClass, setOpacityClass] = useState("opacity-100");
-
   useEffect(() => {
-    // Start fading out after 3 seconds
-    const timer = setTimeout(() => {
-      setOpacityClass("opacity-0");
-    }, 2500);
-
-    // Clear the timer when the component unmounts
-    return () => clearTimeout(timer);
-  }, []);
+    // Disable scroll on mount
+    document.body.style.overflow = "hidden";
+    // Re-enable scroll when component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []); // Empty array ensures effect is only run on mount and unmount
   return (
-    <div
-      className={`flex justify-center items-center h-screen w-screen absolute top-0 transition-opacity duration-1000 ${opacityClass} overflow-hidden`}
+    <motion.div
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 0 }}
+      transition={{ ease: "easeOut", delay: 1.0, duration: 2.5 }}
+      className={`flex justify-center items-center h-screen w-screen absolute top-0 transition-opacity duration-1000 overflow-hidden`}
     >
       <p className="text-7xl">JAEUNG KIM</p>
-    </div>
+    </motion.div>
   );
 }
