@@ -10,7 +10,7 @@ module.exports = {
     extend: {
       colors: {
         bg_primary_dark: "#35343D",
-        custom_blue:{
+        custom_blue: {
           100: "#054CFF",
         },
         custom_pink: {

@@ -102,7 +102,7 @@ export default function Contact() {
         </div>
       </Toast>
 
-      <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
+      <form onSubmit={handleSubmit} className="mx-auto">
         <div className="mb-4">
           <label
             htmlFor="name"

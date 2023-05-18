@@ -5,7 +5,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:root, html, body {
+:root,
+html,
+body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
