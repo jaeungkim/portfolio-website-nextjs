@@ -14,7 +14,7 @@ export default function Loader() {
   }, []);
   return (
     <div
-      className={`flex justify-center items-center h-screen w-screen absolute top-0 transition-opacity duration-1000 ${opacityClass}`}
+      className={`flex justify-center items-center h-screen w-screen absolute top-0 transition-opacity duration-1000 ${opacityClass} overflow-hidden`}
     >
       <p className="text-7xl">JAEUNG KIM</p>
     </div>
