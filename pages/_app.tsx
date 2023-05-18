@@ -12,15 +12,15 @@ import gsap from "gsap";
 MouseFollower.registerGSAP(gsap);
 
 function App({ Component, pageProps }) {
-  const [initialScreen, setInitialScreen] = useState(true);
+  // const [initialScreen, setInitialScreen] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setInitialScreen(false);
-    }, 3000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setInitialScreen(false);
+  //   }, 3000);
+  // }, []);
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
@@ -42,9 +42,9 @@ function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider enableSystem={true} attribute="class">
-      {initialScreen ? (
+      {/* {initialScreen ? (
         <Loader />
-      ) : (
+      ) : ( */}
         <>
           <motion.div
             initial={{ opacity: 0 }}
@@ -65,7 +65,7 @@ function App({ Component, pageProps }) {
             />
           )}
         </>
-      )}
+      {/* )} */}
     </ThemeProvider>
   );
 }
