@@ -5,11 +5,25 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import "prismjs/themes/prism-okaidia.css";
 import Loader from "../components/Loader";
+import { Analytics } from '@vercel/analytics/react';
+import MouseFollower from "mouse-follower";
+import gsap from "gsap";
+
+MouseFollower.registerGSAP(gsap);
 
 function App({ Component, pageProps }) {
   const [initialScreen, setInitialScreen] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (document.querySelector(".mf-container")) {
+      const cursor = new MouseFollower({
+        container: ".mf-container",
+        speed: 0.3,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,7 +61,10 @@ function App({ Component, pageProps }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.75 }}
           >
-            <Component {...pageProps} />
+            <div className="mf-container">
+              <Component {...pageProps} />
+              <Analytics />
+            </div>
           </motion.div>
           {isAnimating && (
             <motion.div
