@@ -18,7 +18,7 @@ function ProjectsGrid() {
   });
 
   return (
-    <section className="mt-16 sm:mt-20">
+    <section className="mt-14 sm:mt-16">
       {/* <ProjectsFilter setSelectProject={setSelectProject} /> */}
 
       {/* MOBILE */}
@@ -29,9 +29,7 @@ function ProjectsGrid() {
       </div>
 
       {/* TABLET OR BIGGER */}
-      <motion.div
-        className="hidden sm:flex gap-2"
-      >
+      <motion.div className="hidden sm:flex gap-2">
         <div className="flex flex-col gap-4">
           {filteredProjects
             .slice(0, Math.ceil(filteredProjects.length / 2))

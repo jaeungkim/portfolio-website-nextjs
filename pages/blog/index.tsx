@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Date from "../../components/shared/date";
 import Layout from "../../components/shared/layout";
@@ -8,6 +8,7 @@ import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import styles from "../../styles/blog.module.css";
+import React from "react";
 interface Post {
   id: string;
   title: string;
@@ -22,23 +23,28 @@ interface BlogProps {
 
 const CrypticTextDynamic = dynamic(
   () => import("../../components/shared/CrypticText"),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
+
+const MemoizedCrypticTextDynamic = React.memo(CrypticTextDynamic);
 
 export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  function handleTagClick(tag: string) {
-    setSelectedTags((prevSelectedTags) =>
-      prevSelectedTags.includes(tag)
-        ? prevSelectedTags.filter((t) => t !== tag)
-        : [...prevSelectedTags, tag]
-    );
-  }
+  const handleTagClick = useMemo(() => {
+    return (tag: string) => {
+      setSelectedTags((prevSelectedTags) =>
+        prevSelectedTags.includes(tag)
+          ? prevSelectedTags.filter((t) => t !== tag)
+          : [...prevSelectedTags, tag]
+      );
+    };
+  }, []);
 
-  const tags = Array.from(new Set(allPostsData.flatMap((post) => post.tags)));
+  const tags = useMemo(
+    () => Array.from(new Set(allPostsData.flatMap((post) => post.tags))),
+    [allPostsData]
+  );
 
   const postMatchesSelectedTags = (post: Post) =>
     selectedTags.every((tag) => post.tags.includes(tag));
@@ -57,10 +63,10 @@ export default function Blog({ allPostsData }: BlogProps) {
         more. Join me on this journey as I explore the world and share my
         perspective through written word.
       </p>
-      <motion.div className="mt-16 sm:mt-20">
+      <motion.div className="mt-14 sm:mt-16">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
-            <div className="flex flex-wrap justify-center mt-6">
+            <div className="flex flex-wrap justify-center">
               {tags.map((tag) => (
                 <button
                   key={tag}
@@ -88,7 +94,7 @@ export default function Blog({ allPostsData }: BlogProps) {
                       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
                       <Link href={`/blog/${id}`}>
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                        <CrypticTextDynamic
+                        <MemoizedCrypticTextDynamic
                           text={title}
                           delay={index * 0.1}
                           classNames={`${styles.fadein}`}

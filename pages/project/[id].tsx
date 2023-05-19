@@ -10,7 +10,7 @@ function ProjectSingle(props) {
       <BackButton />
       {/* Header */}
       <div>
-        <p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-14 sm:mt-20 mb-7">
+        <p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mt-14 sm:mt-16 mb-7">
           {props.project.ProjectHeader.title}
         </p>
         <div className="flex">

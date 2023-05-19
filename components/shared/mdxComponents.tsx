@@ -1,6 +1,6 @@
 // components/shared/mdxComponents.ts
 import Gist from "./gist";
-import LazyImage from './lazyImage';
+import LazyImage from "./lazyImage";
 
 const mdxComponents = {
   Gist,

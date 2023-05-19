@@ -1,31 +1,4 @@
-// import { motion } from "framer-motion";
-// import { Canvas } from "@react-three/fiber";
-// import { Suspense } from "react";
-// import {
-//   OrbitControls,
-//   Stage,
-//   Html,
-//   PerspectiveCamera,
-// } from "@react-three/drei";
-import Model from "./Model";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-
-// const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
-// const hidden = { opacity: 0, y: -50 };
-
-// function ModelLoader() {
-//   return (
-//     <Suspense
-//       fallback={
-//         <Html center className="text-zinc-600 dark:text-zinc-400">
-//           Loading...
-//         </Html>
-//       }
-//     >
-//       <Model />
-//     </Suspense>
-//   );
-// }
 
 function SocialIcon({ href, IconComponent }) {
   return (
@@ -67,16 +40,6 @@ export default function About() {
           IconComponent={FaInstagram}
         />
       </div>
-
-      {/* <div className="w-full h-96 relative">
-        <Canvas>
-          <PerspectiveCamera makeDefault position={[0, 0, 50]} fov={75} />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[2.5, 8, 5]} intensity={1} />
-          <ModelLoader />
-          <OrbitControls enableZoom={false} enablePan={false} />
-        </Canvas>
-      </div> */}
     </article>
   );
 }
