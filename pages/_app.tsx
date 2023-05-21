@@ -1,25 +1,29 @@
-import "../styles/global.css";
+import "@/styles/global.css";
 import { motion } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import "prismjs/themes/prism-okaidia.css";
-import Loader from "../components/Loader";
-import { Analytics } from "@vercel/analytics/react";
-import MouseFollower from "mouse-follower";
-import gsap from "gsap";
+import dynamic from "next/dynamic";
 
-MouseFollower.registerGSAP(gsap);
+const Loader = dynamic(() => import("../components/Loader"), { ssr: false });
 
-function App({ Component, pageProps }) {
-  const [initialScreen, setInitialScreen] = useState(true);
+function App({ Component, pageProps }: any) {
+  const [initialScreen, setInitialScreen] = useState<null | boolean>(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => {
+    const hasBeenShown = sessionStorage.getItem("initialScreenShown");
+
+    if (!hasBeenShown) {
+      setTimeout(() => {
+        setInitialScreen(false);
+        sessionStorage.setItem("initialScreenShown", "true");
+      }, 3000);
+    } else {
       setInitialScreen(false);
-    }, 3000);
+    }
   }, []);
 
   useEffect(() => {
@@ -40,6 +44,10 @@ function App({ Component, pageProps }) {
     };
   }, [router]);
 
+  if (initialScreen === null) {
+    return null;
+  }
+
   return (
     <ThemeProvider enableSystem={true} attribute="class">
       {initialScreen ? (
@@ -53,7 +61,6 @@ function App({ Component, pageProps }) {
             transition={{ duration: 0.75 }}
           >
             <Component {...pageProps} />
-            <Analytics />
           </motion.div>
           {isAnimating && (
             <motion.div
