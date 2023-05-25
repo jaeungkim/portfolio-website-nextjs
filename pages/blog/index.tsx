@@ -19,13 +19,6 @@ interface BlogProps {
   allPostsData: Post[];
 }
 
-// const CrypticTextDynamic = dynamic(
-//   () => import("../../components/shared/CrypticText"),
-//   { ssr: false }
-// );
-
-// const MemoizedCrypticTextDynamic = React.memo(CrypticTextDynamic);
-
 export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
