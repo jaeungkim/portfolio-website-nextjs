@@ -91,7 +91,7 @@ export default function Model() {
           ref={group}
           object={model}
           scale={[scale, scale, scale]}
-          position={[0, -2.5, 0]}
+          position={[-0.5, -2.5, 0]}
           dispose={null}
         />
       ) : (

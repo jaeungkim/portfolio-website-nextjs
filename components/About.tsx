@@ -32,9 +32,9 @@ export default function About() {
     <div className="md:flex w-full mx-auto">
       <div className="w-full relative mx-auto md:basis-2/6 py-12 h-96 md:h-auto md:py-0 md:pr-4">
         <Canvas className="mx-auto">
-          <PerspectiveCamera makeDefault position={[5, 10, 5]} fov={50} />
+          <PerspectiveCamera makeDefault position={[2.5, 10, 5]} fov={50} />
           <ambientLight />
-          <directionalLight />
+          {/* <directionalLight /> */}
           <ModelLoader />
           <OrbitControls
             enableRotate={true}
