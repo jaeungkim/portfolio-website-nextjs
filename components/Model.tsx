@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AnimationAction, Object3D } from "three";
 import { AnimationClip } from "three";
+import { LoadingManager } from "three";
 
 interface group {
   current: {
@@ -30,7 +31,8 @@ export default function Model() {
 
   const [model, setModel] = useState<Object3D | null>(null);
   const [animation, setAnimation] = useState<AnimationClip[] | null>(null);
-  // const [scale, setScale] = useState(1); // State for scale value
+  const [progress, setProgress] = useState<number>(0);
+  const [loadingComplete, setLoadingComplete] = useState<boolean>(false);
 
   /* Mixer */
   const [mixer] = useState(() => new THREE.AnimationMixer(null));
@@ -38,27 +40,29 @@ export default function Model() {
   const { size } = useThree();
   const scale = Math.min(size.width, size.height) / 100;
 
-  // Update the scale value when the component mounts or the window is resized
-  // useEffect(() => {
-  //   const updateScale = () => {
-  //     const minDimension = Math.min(window.innerWidth, window.innerHeight);
-  //     setScale(minDimension / 50);
-  //   };
-
-  //   updateScale();
-  //   window.addEventListener("resize", updateScale);
-  //   return () => window.removeEventListener("resize", updateScale);
-  // }, []);
-
   // Play the animation when the component mounts
   useEffect(() => {
-    const loader = new GLTFLoader();
-    loader.load("/models/scene.gltf", async (gltf) => {
-      const nodes = await gltf.parser.getDependencies("node");
-      const animations = await gltf.parser.getDependencies("animation");
-      setModel(nodes[0]);
-      setAnimation(animations);
-    });
+    const manager = new THREE.LoadingManager();
+    manager.onProgress = (url, itemsLoaded, itemsTotal) => {
+      const progressPercentage = (itemsLoaded / itemsTotal) * 100;
+      setProgress(progressPercentage);
+    };
+    const loader = new GLTFLoader(manager);
+    loader.load(
+      "/models/scene.gltf",
+      async (gltf) => {
+        const nodes = await gltf.parser.getDependencies("node");
+        const animations = await gltf.parser.getDependencies("animation");
+        setModel(nodes[0]);
+        setAnimation(animations);
+        setLoadingComplete(true);
+      },
+      (progressEvent) => {
+        const progressPercentage =
+          (progressEvent.loaded / progressEvent.total) * 100;
+        setProgress(progressPercentage);
+      }
+    );
   }, []);
 
   /* Set animation */
@@ -91,7 +95,12 @@ export default function Model() {
           dispose={null}
         />
       ) : (
-        <Html>Loading...</Html>
+        <Html
+          className="flex mx-auto w-full justify-center items-center"
+          position={[0, 0, 0]}
+        >
+          <p>Loading... {Math.round(progress)}%</p>
+        </Html>
       )}
     </>
   );
