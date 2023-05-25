@@ -36,6 +36,8 @@ export default function Model() {
 
   /* Mixer */
   const [mixer] = useState(() => new THREE.AnimationMixer(null));
+  const targetProgress = useRef<number>(0);
+  const animationRequestId = useRef<number | null>(null);
 
   const { size } = useThree();
   const scale = Math.min(size.width, size.height) / 100;
@@ -45,7 +47,7 @@ export default function Model() {
     const manager = new THREE.LoadingManager();
     manager.onProgress = (url, itemsLoaded, itemsTotal) => {
       const progressPercentage = (itemsLoaded / itemsTotal) * 100;
-      setProgress(progressPercentage);
+      targetProgress.current = progressPercentage;
     };
     const loader = new GLTFLoader(manager);
     loader.load(
@@ -60,7 +62,7 @@ export default function Model() {
       (progressEvent) => {
         const progressPercentage =
           (progressEvent.loaded / progressEvent.total) * 100;
-        setProgress(progressPercentage);
+        targetProgress.current = progressPercentage;
       }
     );
   }, []);
@@ -76,13 +78,28 @@ export default function Model() {
     }
   }, [animation]);
 
+  const updateProgress = () => {
+    setProgress((prevProgress) =>
+      THREE.MathUtils.lerp(prevProgress, targetProgress.current, 0.1)
+    );
+
+    if (progress < 100) {
+      animationRequestId.current = requestAnimationFrame(updateProgress);
+    }
+  };
+
+  useEffect(() => {
+    animationRequestId.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      cancelAnimationFrame(animationRequestId.current!);
+    };
+  }, []);
+
   /* Animation update */
-  useFrame((_, delta) => mixer.update(delta));
-  /* Rotation */
-  // useFrame(() => {
-  //   if (typeof group.current != "undefined")
-  //     return (group.current.rotation.y += 0.01);
-  // });
+  useFrame((_, delta) => {
+    mixer.update(delta);
+  });
 
   return (
     <>

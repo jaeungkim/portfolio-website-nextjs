@@ -30,7 +30,7 @@ function SocialIcon({ href, IconComponent }) {
 export default function About() {
   return (
     <div className="md:flex w-full mx-auto">
-      <div className="w-full relative mx-auto md:basis-2/6 py-12 h-96 md:h-auto md:py-0 md:pr-4">
+      <div className="w-full relative mx-auto md:basis-3/6 py-12 h-96 md:h-auto md:py-0 md:pr-4">
         <Canvas className="mx-auto">
           <PerspectiveCamera makeDefault position={[2.5, 10, 5]} fov={50} />
           <ambientLight />
@@ -45,7 +45,7 @@ export default function About() {
           />
         </Canvas>
       </div>
-      <article className="md:basis-4/6">
+      <article className="md:basis-3/6">
         {/* <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
       </h1> */}
         <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
