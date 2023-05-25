@@ -1,4 +1,28 @@
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import {
+  OrbitControls,
+  Environment,
+  Html,
+  PerspectiveCamera,
+} from "@react-three/drei";
+import Model from "./Model";
+
+function ModelLoader() {
+  return (
+    <Suspense
+      fallback={
+        <Html center className="text-zinc-600 dark:text-zinc-400">
+          Loading...
+        </Html>
+      }
+    >
+      <Model />
+      <Environment preset="city" />
+    </Suspense>
+  );
+}
 
 function SocialIcon({ href, IconComponent }) {
   return (
@@ -39,6 +63,16 @@ export default function About() {
           href="https://www.instagram.com/jaekiim/"
           IconComponent={FaInstagram}
         />
+      </div>
+
+      <div className="w-full h-96 relative">
+        <Canvas shadows>
+          <PerspectiveCamera makeDefault position={[25, 50, 50]} fov={75} />
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[2.5, 8, 5]} intensity={1} />
+          <ModelLoader />
+          <OrbitControls enableZoom={false} enablePan={false} />
+        </Canvas>
       </div>
     </article>
   );
