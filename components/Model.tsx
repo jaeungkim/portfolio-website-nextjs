@@ -40,7 +40,7 @@ export default function Model() {
   const animationRequestId = useRef<number | null>(null);
 
   const { size } = useThree();
-  const scale = Math.min(size.width, size.height) / 100;
+  const scale = Math.min(size.width, size.height) / 120;
 
   // Play the animation when the component mounts
   useEffect(() => {

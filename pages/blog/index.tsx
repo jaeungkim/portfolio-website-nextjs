@@ -6,8 +6,8 @@ import Date from "../../components/shared/date";
 import Layout from "../../components/shared/layout";
 import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import styles from "../../styles/blog.module.css";
+// import dynamic from "next/dynamic";
+// import styles from "../../styles/blog.module.css";
 import React from "react";
 interface Post {
   id: string;
@@ -21,12 +21,12 @@ interface BlogProps {
   allPostsData: Post[];
 }
 
-const CrypticTextDynamic = dynamic(
-  () => import("../../components/shared/CrypticText"),
-  { ssr: false }
-);
+// const CrypticTextDynamic = dynamic(
+//   () => import("../../components/shared/CrypticText"),
+//   { ssr: false }
+// );
 
-const MemoizedCrypticTextDynamic = React.memo(CrypticTextDynamic);
+// const MemoizedCrypticTextDynamic = React.memo(CrypticTextDynamic);
 
 export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -94,11 +94,7 @@ export default function Blog({ allPostsData }: BlogProps) {
                       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
                       <Link href={`/blog/${id}`}>
                         <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                        <MemoizedCrypticTextDynamic
-                          text={title}
-                          delay={index * 0.1}
-                          classNames={`${styles.fadein}`}
-                        />
+                        <p>{title}</p>
                       </Link>
                     </h2>
                     <Date dateString={date} mobile={true} />
