@@ -60,14 +60,14 @@ export default function About() {
       </h1> */}
         <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
           <MemoizedCrypticTextDynamic
-            text={`Hello`}
-            delay={0.1}
+            text={`Hello I'm Jae`}
+            delay={0.2}
             classNames={`${styles.fadein}`}
           />
         </h2>
-        <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
+        {/* <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
           I'm Jae 🧑🏻‍💻
-        </p>
+        </p> */}
         <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
           I am a highly motivated and collaborative software engineer with 2
           years of experience in designing, building, and maintaining software

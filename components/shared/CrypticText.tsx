@@ -18,7 +18,6 @@ export default function CrypticText({
     const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
     // const letters = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ";
     const repeatDivider = 4;
-
     const timeoutValue = 0.1 + (delay ? delay : 0) * 60;
 
     let iteration = 0;
