@@ -30,12 +30,25 @@ export default function Model() {
 
   const [model, setModel] = useState<Object3D | null>(null);
   const [animation, setAnimation] = useState<AnimationClip[] | null>(null);
+  // const [scale, setScale] = useState(1); // State for scale value
 
   /* Mixer */
   const [mixer] = useState(() => new THREE.AnimationMixer(null));
 
   const { size } = useThree();
-  const scale = Math.min(size.width, size.height) / 60;
+  const scale = Math.min(size.width, size.height) / 100;
+
+  // Update the scale value when the component mounts or the window is resized
+  // useEffect(() => {
+  //   const updateScale = () => {
+  //     const minDimension = Math.min(window.innerWidth, window.innerHeight);
+  //     setScale(minDimension / 50);
+  //   };
+
+  //   updateScale();
+  //   window.addEventListener("resize", updateScale);
+  //   return () => window.removeEventListener("resize", updateScale);
+  // }, []);
 
   // Play the animation when the component mounts
   useEffect(() => {
@@ -74,7 +87,7 @@ export default function Model() {
           ref={group}
           object={model}
           scale={[scale, scale, scale]}
-          position={[0, -7.5, 0]}
+          position={[0, -2.5, 0]}
           dispose={null}
         />
       ) : (
