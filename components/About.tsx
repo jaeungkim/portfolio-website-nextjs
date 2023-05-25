@@ -8,6 +8,7 @@ import {
   PerspectiveCamera,
 } from "@react-three/drei";
 import Model from "./Model";
+import THREE from "three";
 
 function ModelLoader() {
   return (
@@ -19,7 +20,7 @@ function ModelLoader() {
       }
     >
       <Model />
-      <Environment preset="city" />
+      {/* <Environment preset="lobby" /> */}
     </Suspense>
   );
 }
@@ -65,13 +66,19 @@ export default function About() {
         />
       </div>
 
-      <div className="w-full h-96 relative">
-        <Canvas shadows>
-          <PerspectiveCamera makeDefault position={[25, 50, 50]} fov={75} />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[2.5, 8, 5]} intensity={1} />
+      <div className="canvas-wrap w-full relative">
+        <Canvas>
+          <PerspectiveCamera makeDefault position={[5, 10, 5]} fov={100} />
+          <ambientLight />
+          <directionalLight />
           <ModelLoader />
-          <OrbitControls enableZoom={false} enablePan={false} />
+          <OrbitControls
+            enableRotate={true}
+            enableZoom={false}
+            enablePan={false}
+            minPolarAngle={Math.PI / 4}
+            maxPolarAngle={Math.PI / 4}
+          />
         </Canvas>
       </div>
     </article>

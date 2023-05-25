@@ -45,3 +45,7 @@ body {
 ::-webkit-scrollbar-corner {
   background: #fff3;
 }
+
+.canvas-wrap {
+  height: 500px;
+}

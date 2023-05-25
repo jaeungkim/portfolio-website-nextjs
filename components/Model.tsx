@@ -35,12 +35,12 @@ export default function Model() {
   const [mixer] = useState(() => new THREE.AnimationMixer(null));
 
   const { size } = useThree();
-  const scale = Math.min(size.width, size.height) / 5;
+  const scale = Math.min(size.width, size.height) / 60;
 
   // Play the animation when the component mounts
   useEffect(() => {
     const loader = new GLTFLoader();
-    loader.load("/models/dragon.glb", async (gltf) => {
+    loader.load("/models/scene.gltf", async (gltf) => {
       const nodes = await gltf.parser.getDependencies("node");
       const animations = await gltf.parser.getDependencies("animation");
       setModel(nodes[0]);
@@ -74,7 +74,7 @@ export default function Model() {
           ref={group}
           object={model}
           scale={[scale, scale, scale]}
-          position={[0, 2, 0]}
+          position={[0, -7.5, 0]}
           dispose={null}
         />
       ) : (
