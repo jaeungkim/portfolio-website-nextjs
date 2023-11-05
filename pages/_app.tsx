@@ -1,6 +1,6 @@
 import "@/styles/global.css";
 import { motion } from "framer-motion";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import "prismjs/themes/prism-okaidia.css";
@@ -53,7 +53,7 @@ function App({ Component, pageProps }: any) {
       {initialScreen ? (
         <Loader />
       ) : (
-        <>
+        <ThemeInitializer>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -71,10 +71,28 @@ function App({ Component, pageProps }: any) {
               transition={{ duration: 0.75 }}
             />
           )}
-        </>
+        </ThemeInitializer>
       )}
     </ThemeProvider>
   );
+}
+
+function ThemeInitializer({ children }: any) {
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+
+    // Set the theme to the stored theme or 'dark' if not found
+    setTheme(storedTheme || "dark");
+  }, [theme]);
+
+  useEffect(() => {
+    // Store the selected theme in localStorage
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  return children;
 }
 
 export default App;

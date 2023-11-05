@@ -47,7 +47,7 @@ export const projectsData = [
         {
           id: uuidv4(),
           title: "Website",
-          details: "https://jaeungkim.ca",
+          details: "https://github.com/jaeungkim/webGL-playground",
         },
         {
           id: uuidv4(),
