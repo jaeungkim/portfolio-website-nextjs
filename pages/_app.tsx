@@ -49,11 +49,11 @@ function App({ Component, pageProps }: any) {
   }
 
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
+    <ThemeProvider enableSystem={true} attribute="class" defaultTheme="dark">
       {initialScreen ? (
         <Loader />
       ) : (
-        <ThemeInitializer>
+        <>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -71,27 +71,10 @@ function App({ Component, pageProps }: any) {
               transition={{ duration: 0.75 }}
             />
           )}
-        </ThemeInitializer>
+        </>
       )}
     </ThemeProvider>
   );
-}
-
-function ThemeInitializer({ children }: any) {
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-
-    // Only set the theme if it has not already been set
-    if (!theme) {
-      setTheme(storedTheme || "dark");
-    }
-  }, [setTheme, theme]);
-
-  // No need to store the theme on every theme change, as next-themes handles it
-
-  return children;
 }
 
 export default App;
