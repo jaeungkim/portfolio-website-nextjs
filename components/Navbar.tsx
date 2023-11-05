@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
@@ -13,34 +13,31 @@ const navigation = [
 ];
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
-  const renderThemeChanger = () => {
-    const { systemTheme, theme, setTheme } = useTheme();
-    const [isDarkTheme, setIsDarkTheme] = useState(theme === "dark");
+  const { theme, setTheme } = useTheme();
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-    const buttonClassName = `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 ${
-      isDarkTheme
-        ? "text-yellow-300 hover:text-yellow-500"
-        : "text-cyan-500 hover:text-cyan-700"
-    }`;
+  useEffect(() => {
+    // Set isDarkTheme based on the current theme
+    setIsDarkTheme(theme === "dark");
+  }, [theme]);
 
-    const toggleTheme = () => {
-      const newTheme = isDarkTheme ? "light" : "dark";
-      setIsDarkTheme(!isDarkTheme);
-      setTheme(newTheme);
-    };
+  const buttonClassName = `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 ${
+    isDarkTheme
+      ? "text-yellow-300 hover:text-yellow-500"
+      : "text-cyan-500 hover:text-cyan-700"
+  }`;
 
-    const icon = isDarkTheme ? (
-      <SunIcon className="w-5 h-5 text-yellow-400" />
-    ) : (
-      <MoonIcon className="w-5 h-5 text-blue-500" />
-    );
-
-    return (
-      <button onClick={toggleTheme} className={buttonClassName}>
-        {icon}
-      </button>
-    );
+  const toggleTheme = () => {
+    const newTheme = isDarkTheme ? "light" : "dark";
+    setIsDarkTheme(!isDarkTheme);
+    setTheme(newTheme);
   };
+
+  const icon = isDarkTheme ? (
+    <SunIcon className="w-5 h-5 text-yellow-400" />
+  ) : (
+    <MoonIcon className="w-5 h-5 text-blue-500" />
+  );
 
   function closeModal() {
     setIsOpen(false);
@@ -104,7 +101,12 @@ export default function Navbar() {
           </div>
 
           <div className="flex justify-end md:flex-1">
-            <div className="pointer-events-auto">{renderThemeChanger()}</div>
+            <div className="pointer-events-auto">
+              {" "}
+              <button onClick={toggleTheme} className={buttonClassName}>
+                {icon}
+              </button>
+            </div>
           </div>
         </div>
       </div>
