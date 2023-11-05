@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
@@ -11,41 +11,34 @@ const navigation = [
   { name: "Project", href: "/project", current: false },
   { name: "Contact", href: "/contact", current: false },
 ];
+
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  useEffect(() => {
-    // Set isDarkTheme based on the current theme
-    setIsDarkTheme(theme === "dark");
+  const themeButtonClass = useMemo(() => {
+    return `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 ${
+      theme === "dark"
+        ? "text-yellow-300 hover:text-yellow-500"
+        : "text-cyan-500 hover:text-cyan-700"
+    }`;
   }, [theme]);
 
-  const buttonClassName = `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 ${
-    isDarkTheme
-      ? "text-yellow-300 hover:text-yellow-500"
-      : "text-cyan-500 hover:text-cyan-700"
-  }`;
-
   const toggleTheme = () => {
-    const newTheme = isDarkTheme ? "light" : "dark";
-    setIsDarkTheme(!isDarkTheme);
-    setTheme(newTheme);
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
-  const icon = isDarkTheme ? (
-    <SunIcon className="w-5 h-5 text-yellow-400" />
-  ) : (
-    <MoonIcon className="w-5 h-5 text-blue-500" />
-  );
+  const icon = useMemo(() => {
+    return theme === "dark" ? (
+      <SunIcon className="w-5 h-5 text-yellow-400" />
+    ) : (
+      <MoonIcon className="w-5 h-5 text-blue-500" />
+    );
+  }, [theme]);
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
+  const toggleModal = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
 
   return (
     <>
@@ -68,7 +61,7 @@ export default function Navbar() {
             {/* Mobile Menu */}
             <div
               className="pointer-events-auto md:hidden"
-              onClick={() => openModal()}
+              onClick={toggleModal}
             >
               <button
                 className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
@@ -103,7 +96,7 @@ export default function Navbar() {
           <div className="flex justify-end md:flex-1">
             <div className="pointer-events-auto">
               {" "}
-              <button onClick={toggleTheme} className={buttonClassName}>
+              <button onClick={toggleTheme} className={themeButtonClass}>
                 {icon}
               </button>
             </div>
@@ -116,7 +109,7 @@ export default function Navbar() {
         <Dialog
           as="div"
           className="relative z-[100] h-screen min-h-screen overflow-auto"
-          onClose={closeModal}
+          onClose={toggleModal}
         >
           <Transition.Child
             key="hi"

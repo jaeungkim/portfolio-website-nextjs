@@ -83,14 +83,13 @@ function ThemeInitializer({ children }: any) {
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
 
-    // Set the theme to the stored theme or 'dark' if not found
-    setTheme(storedTheme || "dark");
-  }, [theme]);
+    // Only set the theme if it has not already been set
+    if (!theme) {
+      setTheme(storedTheme || "dark");
+    }
+  }, [setTheme, theme]);
 
-  useEffect(() => {
-    // Store the selected theme in localStorage
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  // No need to store the theme on every theme change, as next-themes handles it
 
   return children;
 }
