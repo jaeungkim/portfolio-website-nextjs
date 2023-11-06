@@ -77,25 +77,65 @@ interface BlogProps {
 }
 
 export default function Blog({ allPostsData }: BlogProps) {
+  // Define tab to tags mapping
+  const primaryKeywords = {
+    Study: "leetcode",
+    Travel: "travel",
+    Daily: "vlog",
+  };
+
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const handleTagClick = useMemo(() => {
-    return (tag: string) => {
-      setSelectedTags((prevSelectedTags) =>
-        prevSelectedTags.includes(tag)
-          ? prevSelectedTags.filter((t) => t !== tag)
-          : [...prevSelectedTags, tag]
-      );
-    };
-  }, []);
+  //Tabs
+  const [activeTab, setActiveTab] = useState("Study"); // New state for active tab
 
-  const tags = useMemo(
-    () => Array.from(new Set(allPostsData.flatMap((post) => post.tags))),
-    [allPostsData]
-  );
+  const handleTagClick = (tag: string) => {
+    setSelectedTags((prevSelectedTags) =>
+      prevSelectedTags.includes(tag)
+        ? prevSelectedTags.filter((t) => t !== tag)
+        : [...prevSelectedTags, tag]
+    );
+  };
 
-  const postMatchesSelectedTags = (post: Post) =>
-    selectedTags.every((tag) => post.tags.includes(tag));
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    // Reset the selected tags when switching tabs
+    setSelectedTags([]);
+  };
+
+  const tabs = Object.keys(primaryKeywords);
+
+  // Determine the posts to display based on the active tab's primary keyword
+  const filteredPostsByPrimary = useMemo(() => {
+    return allPostsData.filter((post) =>
+      post.tags
+        .map((t) => t.toLowerCase())
+        .includes(primaryKeywords[activeTab].toLowerCase())
+    );
+  }, [allPostsData, activeTab, primaryKeywords]);
+
+  // Get secondary tags for pills excluding the primary keyword
+  const secondaryTags = useMemo(() => {
+    const allSecondaryTags = new Set<string>();
+    filteredPostsByPrimary.forEach((post) => {
+      post.tags.forEach((tag) => {
+        if (tag.toLowerCase() !== primaryKeywords[activeTab].toLowerCase()) {
+          allSecondaryTags.add(tag);
+        }
+      });
+    });
+    return Array.from(allSecondaryTags);
+  }, [filteredPostsByPrimary, activeTab, primaryKeywords]);
+
+  // Further filter posts by selected secondary tags
+  const finalFilteredPosts = useMemo(() => {
+    if (selectedTags.length === 0) {
+      return filteredPostsByPrimary;
+    }
+    return filteredPostsByPrimary.filter((post) =>
+      selectedTags.every((tag) => post.tags.includes(tag))
+    );
+  }, [filteredPostsByPrimary, selectedTags]);
 
   return (
     <Layout>
@@ -111,11 +151,26 @@ export default function Blog({ allPostsData }: BlogProps) {
         more. Join me on this journey as I explore the world and share my
         perspective through written word.
       </p>
+
+      <div className="flex justify-center">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => handleTabClick(tab)}
+            className={`mx-2 px-4 py-2 text-sm font-medium rounded-full ${
+              activeTab === tab ? "text-white" : "bg-transparent text-cyan-500"
+            }`}
+          >
+            {tab.replace("/", " / ")}
+          </button>
+        ))}
+      </div>
+
       <motion.div className="mt-14 sm:mt-16">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex max-w-3xl flex-col space-y-16">
+          <div className="flex flex-col space-y-16">
             <div className="flex flex-wrap justify-center">
-              {tags.map((tag) => (
+              {secondaryTags.map((tag) => (
                 <button
                   key={tag}
                   onClick={() => handleTagClick(tag)}
@@ -129,7 +184,7 @@ export default function Blog({ allPostsData }: BlogProps) {
                 </button>
               ))}
             </div>
-            {allPostsData.filter(postMatchesSelectedTags).map((post, index) => (
+            {finalFilteredPosts.map((post, index) => (
               <Article post={post} index={index} key={post.id} />
             ))}
           </div>
