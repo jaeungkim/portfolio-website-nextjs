@@ -79,15 +79,15 @@ interface BlogProps {
 export default function Blog({ allPostsData }: BlogProps) {
   // Define tab to tags mapping
   const primaryKeywords = {
+    Daily: "vlog",
     Study: "leetcode",
     Travel: "travel",
-    Daily: "vlog",
   };
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   //Tabs
-  const [activeTab, setActiveTab] = useState("Study"); // New state for active tab
+  const [activeTab, setActiveTab] = useState("Daily"); // New state for active tab
 
   const handleTagClick = (tag: string) => {
     setSelectedTags((prevSelectedTags) =>
