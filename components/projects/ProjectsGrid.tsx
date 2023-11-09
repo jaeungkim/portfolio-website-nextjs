@@ -46,7 +46,7 @@ function ProjectsGrid() {
 
       {/* TABLET OR BIGGER */}
       <div className="hidden sm:flex gap-2">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-1 flex-col gap-4">
           {filteredProjects
             .slice(0, Math.ceil(filteredProjects.length / 2))
             .map((project, index) => {
@@ -67,7 +67,7 @@ function ProjectsGrid() {
               );
             })}
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-1 flex-col gap-4">
           {filteredProjects
             .slice(Math.ceil(filteredProjects.length / 2))
             .map((project, index) => (

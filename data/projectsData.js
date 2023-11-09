@@ -3,9 +3,107 @@ import { v4 as uuidv4 } from "uuid";
 export const projectsData = [
   {
     id: 1,
+    title: "Flashee",
+    date: "October 15th, 2023",
+    videoSrc: "https://storage.googleapis.com/jaeungkim/flashee.mov",
+    url: "flashee",
+    category: "Full Stack",
+    img: "/images/webGL_project_main.png",
+    ProjectHeader: {
+      title: "Flashee",
+      publishDate: "October 15th, 2023",
+      tags: "Full Stack",
+    },
+    ProjectImages: [
+      {
+        id: uuidv4(),
+        title: "Flashee_1",
+        img: "/images/flashee_1.png",
+      },
+      {
+        id: uuidv4(),
+        title: "Flashee_2",
+        img: "/images/flashee_2.png",
+      },
+      {
+        id: uuidv4(),
+        title: "Flashee_3",
+        img: "/images/flashee_3.png",
+      },
+    ],
+    ProjectInfo: {
+      ClientHeading: "About Client",
+      CompanyInfo: [
+        {
+          id: uuidv4(),
+          title: "Name",
+          details: "Flashee",
+        },
+        {
+          id: uuidv4(),
+          title: "Services",
+          details: "Web Development",
+        },
+        {
+          id: uuidv4(),
+          title: "Website",
+          details: "https://flashee.shop",
+        },
+        {
+          id: uuidv4(),
+          title: "Phone",
+          details: "N/A",
+        },
+      ],
+      ObjectivesHeading: "Objective",
+      ObjectivesDetails:
+        "To architect and launch Flashee's e-commerce platform, a visionary project aimed at elevating online shopping experiences through a multi-vendor marketplace. The goal was to deliver a seamless, secure, and accessible shopping platform using the MERN stack complemented by Next.js. My focus was on crafting a user-centric interface, integrating cutting-edge technologies for robust performance, and laying the foundation for a marketplace where security and ease-of-use are paramount.",
+      Technologies: [
+        {
+          title: "Tools & Technologies",
+          techs: [
+            "React",
+            "Next.js",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Supabase",
+            "AWS",
+            "Fly.io",
+            "Shopify Payments"
+          ],
+        },
+      ],
+      ProjectDetailsHeading: "Summary",
+      ProjectDetails: [
+        {
+          id: uuidv4(),
+          details:
+            "Flashee emerged as an innovative e-commerce platform with a mission to offer a diverse, multi-vendor marketplace. As the Full Stack Developer, I orchestrated the development of Flashee, transforming the initial concept into a dynamic and scalable online marketplace. This platform served as a conduit for vendors to seamlessly onboard and connect with customers, facilitated by the integration of Shopify Payments.",
+        },
+        {
+          id: uuidv4(),
+          details:
+            "In crafting Flashee's architecture, I utilized a robust stack comprising React and Next.js for the frontend, coupled with Node.js and Express.js for server-side operations, and MongoDB for database management. The authentication process was strengthened using Supabase, resulting in a notable reduction in security incidents, while AWS and Fly.io provided a cost-effective and reliable infrastructure.",
+        },
+        {
+          id: uuidv4(),
+          details:
+            "The launch strategy was executed with meticulous attention to detail, leading to a successful soft launch that attracted a significant number of merchants, which was critical to early revenue streams. The integration of Shopify Payments was key in decreasing cart abandonment rates and enhancing user trust.",
+        },
+        {
+          id: uuidv4(),
+          details:
+            "Focused UI/UX improvements were implemented to enhance user satisfaction and retention, resulting in a notable increase in engagement and return users. The Flashee platform was developed with the dual goals of performance and user experience in mind, setting a strong foundation for future growth and success.",
+        },
+      ],
+    },
+  },
+  {
+    id: 2,
     title: "WebGL Playground",
     date: "July 26th, 2022",
-    videoSrc: "/videos/jaeungkim.ca.mp4",
+    videoSrc: "https://storage.googleapis.com/jaeungkim/jaeungkim.ca.mp4",
     url: "webgl-playground",
     category: "Full Stack",
     img: "/images/webGL_project_main.png",
@@ -99,10 +197,10 @@ export const projectsData = [
     },
   },
   {
-    id: 2,
+    id: 3,
     title: "iClinic Systems",
     date: "October 16th, 2022",
-    videoSrc: "/videos/aiclinic.ca.mp4",
+    videoSrc: "https://storage.googleapis.com/jaeungkim/aiclinic.ca.mp4",
     url: "iclinic-systems",
     category: "Full Stack",
     img: "/images/iclinic_main.png",
@@ -185,10 +283,10 @@ export const projectsData = [
     },
   },
   {
-    id: 3,
+    id: 4,
     title: "Catalyx.io",
     date: "January 18, 2021",
-    // videoSrc:  "/images/catalyx_main.png",
+    videoSrc:  "https://storage.googleapis.com/jaeungkim/catalyx.mov",
     url: "catalyx",
     category: "Full Stack",
     img: "/images/catalyx_main.png",
@@ -272,95 +370,95 @@ export const projectsData = [
       ],
     },
   },
-  {
-    id: 4,
-    title: "Architecture Portfolio",
-    date: "Jul 26, 2021",
-    // videoSrc: "/videos/jaeungkim.ca.mp4",
-    category: "Front End",
-    img: "/images/namju_portfolio_main.png",
-    ProjectHeader: {
-      title: "Namju Suh",
-      publishDate: "Jul 26, 2021",
-      tags: "UI / Frontend",
-    },
-    ProjectImages: [
-      {
-        id: uuidv4(),
-        title: "Namju Suh",
-        img: "/images/namju_portfolio_main.png",
-      },
-      {
-        id: uuidv4(),
-        title: "Namju Suh",
-        img: "/images/namju_portfolio_main.png",
-      },
-      {
-        id: uuidv4(),
-        title: "Namju Suh",
-        img: "/images/namju_portfolio_main.png",
-      },
-    ],
-    ProjectInfo: {
-      ClientHeading: "About Client",
-      CompanyInfo: [
-        {
-          id: uuidv4(),
-          title: "Name",
-          details: "Nam Ju Suh",
-        },
-        {
-          id: uuidv4(),
-          title: "Services",
-          details: "UI Design & Frontend Development",
-        },
-        {
-          id: uuidv4(),
-          title: "Website",
-          details: "https://www.suhnamju.com/",
-        },
-      ],
-      ObjectivesHeading: "Objective",
-      ObjectivesDetails:
-        "As the creator of the architecture portfolio website for my friend, my objective was to provide a platform for my friend to showcase their work and skills to potential clients or employers. I aimed to design a visually appealing and user-friendly website that highlights my friend's portfolio, experience, and achievements in the field of architecture. ",
-      Technologies: [
-        {
-          title: "Tools & Technologies",
-          techs: [
-            "React",
-            "Next",
-            "JavaScript",
-            "TypeScript",
-            "TailwindCSS",
-            "Dribble",
-          ],
-        },
-      ],
-      ProjectDetailsHeading: "Summary",
-      ProjectDetails: [
-        {
-          id: uuidv4(),
-          details:
-            "Creating the architecture portfolio website for my friend was an exciting project that allowed me to showcase my expertise in web development and project management. Utilizing my knowledge of React, Next.js, and Tailwind, I was able to deliver a visually appealing and user-friendly platform that met the client's requirements for an 'artsy' look.",
-        },
-        {
-          id: uuidv4(),
-          details:
-            "In addition to demonstrating my technical skills, this project also allowed me to practice my project management abilities. Through effective goal setting, scope definition, and timeline management, I was able to deliver the website on time and within budget, while also ensuring that it met the client's expectations.",
-        },
-        {
-          id: uuidv4(),
-          details:
-            "My primary objective for creating this website was to help my friend establish a strong online presence and promote their work to a wider audience. By developing a professional website, I enabled my friend to attract potential clients and employers and establish themselves as a credible and trustworthy professional in the field of architecture.",
-        },
-        {
-          id: uuidv4(),
-          details:
-            "Overall, this project provided an opportunity for me to demonstrate my ability to create high-quality websites that meet client requirements, improve their online presence, and hone my technical and project management skills.",
-        },
-      ],
-    },
-  },
+  // {
+  //   id: 4,
+  //   title: "Architecture Portfolio",
+  //   date: "Jul 26, 2021",
+  //   // videoSrc: "/videos/jaeungkim.ca.mp4",
+  //   category: "Front End",
+  //   img: "/images/namju_portfolio_main.png",
+  //   ProjectHeader: {
+  //     title: "Namju Suh",
+  //     publishDate: "Jul 26, 2021",
+  //     tags: "UI / Frontend",
+  //   },
+  //   ProjectImages: [
+  //     {
+  //       id: uuidv4(),
+  //       title: "Namju Suh",
+  //       img: "/images/namju_portfolio_main.png",
+  //     },
+  //     {
+  //       id: uuidv4(),
+  //       title: "Namju Suh",
+  //       img: "/images/namju_portfolio_main.png",
+  //     },
+  //     {
+  //       id: uuidv4(),
+  //       title: "Namju Suh",
+  //       img: "/images/namju_portfolio_main.png",
+  //     },
+  //   ],
+  //   ProjectInfo: {
+  //     ClientHeading: "About Client",
+  //     CompanyInfo: [
+  //       {
+  //         id: uuidv4(),
+  //         title: "Name",
+  //         details: "Nam Ju Suh",
+  //       },
+  //       {
+  //         id: uuidv4(),
+  //         title: "Services",
+  //         details: "UI Design & Frontend Development",
+  //       },
+  //       {
+  //         id: uuidv4(),
+  //         title: "Website",
+  //         details: "https://www.suhnamju.com/",
+  //       },
+  //     ],
+  //     ObjectivesHeading: "Objective",
+  //     ObjectivesDetails:
+  //       "As the creator of the architecture portfolio website for my friend, my objective was to provide a platform for my friend to showcase their work and skills to potential clients or employers. I aimed to design a visually appealing and user-friendly website that highlights my friend's portfolio, experience, and achievements in the field of architecture. ",
+  //     Technologies: [
+  //       {
+  //         title: "Tools & Technologies",
+  //         techs: [
+  //           "React",
+  //           "Next",
+  //           "JavaScript",
+  //           "TypeScript",
+  //           "TailwindCSS",
+  //           "Dribble",
+  //         ],
+  //       },
+  //     ],
+  //     ProjectDetailsHeading: "Summary",
+  //     ProjectDetails: [
+  //       {
+  //         id: uuidv4(),
+  //         details:
+  //           "Creating the architecture portfolio website for my friend was an exciting project that allowed me to showcase my expertise in web development and project management. Utilizing my knowledge of React, Next.js, and Tailwind, I was able to deliver a visually appealing and user-friendly platform that met the client's requirements for an 'artsy' look.",
+  //       },
+  //       {
+  //         id: uuidv4(),
+  //         details:
+  //           "In addition to demonstrating my technical skills, this project also allowed me to practice my project management abilities. Through effective goal setting, scope definition, and timeline management, I was able to deliver the website on time and within budget, while also ensuring that it met the client's expectations.",
+  //       },
+  //       {
+  //         id: uuidv4(),
+  //         details:
+  //           "My primary objective for creating this website was to help my friend establish a strong online presence and promote their work to a wider audience. By developing a professional website, I enabled my friend to attract potential clients and employers and establish themselves as a credible and trustworthy professional in the field of architecture.",
+  //       },
+  //       {
+  //         id: uuidv4(),
+  //         details:
+  //           "Overall, this project provided an opportunity for me to demonstrate my ability to create high-quality websites that meet client requirements, improve their online presence, and hone my technical and project management skills.",
+  //       },
+  //     ],
+  //   },
+  // },
   {
     id: 5,
     title: "Lost Ark Discord Bot",
@@ -485,7 +583,7 @@ export const projectsData = [
         {
           id: uuidv4(),
           title: "Website",
-          details: "https://www.circlemarket.ca/",
+          details: "https://github.com/kiwoonjung/circle-market-front-end",
         },
       ],
       ObjectivesHeading: "Objective",
