@@ -13,6 +13,9 @@ function App({ Component, pageProps }: any) {
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
 
+  // Check if the current route is /about
+  const isResumePage = router.pathname === "/resume";
+
   useEffect(() => {
     const hasBeenShown = sessionStorage.getItem("initialScreenShown");
 
@@ -46,6 +49,11 @@ function App({ Component, pageProps }: any) {
 
   if (initialScreen === null) {
     return null;
+  }
+
+  // Render only the component for /about page without ThemeProvider or other layout elements
+  if (isResumePage) {
+    return <Component {...pageProps} />;
   }
 
   return (
