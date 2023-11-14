@@ -4,7 +4,7 @@ import { HiOutlineMail } from "react-icons/hi";
 
 export default function About() {
   return (
-    <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#212121]">
+    <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F]">
       {/* HEADER  */}
       <div className="md:grid md:grid-cols-3 gap-4">
         <div className="flex justify-center md:justify-normal">

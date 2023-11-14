@@ -17,12 +17,12 @@ function App({ Component, pageProps }: any) {
   const isResumePage = router.pathname === "/resume";
 
   useEffect(() => {
-    const hasBeenShown = sessionStorage.getItem("initialScreenShown");
+    const hasBeenShown = localStorage.getItem("initialScreenShown");
 
     if (!hasBeenShown) {
       setTimeout(() => {
         setInitialScreen(false);
-        sessionStorage.setItem("initialScreenShown", "true");
+        localStorage.setItem("initialScreenShown", "true");
       }, 3000);
     } else {
       setInitialScreen(false);
