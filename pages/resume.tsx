@@ -131,39 +131,31 @@ export default function About() {
             Vancouver, BC, Canada
           </p>
           <p className="text-base font-normal text-[#808080] italic">
-            Full Stack Developer
+            Front End Developer
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
+            <li>통합 의류 쇼핑 마켓플레이스(E-Commerce) 스타트업</li>
             <li>
-              MERN 스택과 Next.js를 사용하여 Shopify Marketplaces가 원활하게
-              통합된 정교한 전자상거래 플랫폼 개발
+              첫 번째 개발자로 입사하여 사내에 필요한 모든 프론트엔드 서비스
+              기획/개발/배포/운영
             </li>
             <li>
-              Supabase 및 제3자 로그인 키트를 통해 플랫폼 보안 및 사용자 접근성
-              향상, 계정 보안 사고 40% 감소
+              Shopify Marketplaces가 원활하게 통합된 정교한 E-Commerce 플랫폼 개발
             </li>
             <li>
-              AWS와 Fly.io로 전체 애플리케이션 생명주기 관리, 인프라 비용 30%
-              절감 및 시스템 신뢰성 향상
+              Supabase 및 서드파티(Instagram, TikTok) 로그인 키트를 통해 플랫폼 보안 및 사용자 접근성
+              향상
             </li>
             <li>
-              신속한 온보딩 과정을 촉진하여 소프트 런칭 당일 1개 이상의 상인이
-              참여, 초기 수익 창출에 기여
+              Google Analytics을 적용하여 마케팅팀을 도와 서비스 사용자 데이터
+              분석
             </li>
             <li>
               Shopify Payments를 사용한 결제 게이트웨이 통합, 카트 포기 감소 및
               성공적인 거래 증가
             </li>
             <li>
-              분석 및 보고 도구 구현, 데이터 주도 문화 및 의사결정 효율성 20%
-              개선
-            </li>
-            <li>
-              확장 가능하고 고성능 인프라 엔지니어링, 플랫폼 최적화로 트래픽 및
-              수요 증가 효율적 처리
-            </li>
-            <li>
-              UI/UX 개선 구현으로 사용자 참여 25% 증가 및 사용자 유지율 15% 상승
+              신속한 온보딩 과정을 촉진하여 소프트 런칭 당일 초기 수익 창출에 기여
             </li>
           </ul>
         </div>
@@ -191,25 +183,28 @@ export default function About() {
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
-              Developed enterprise-grade application, utilizing MEAN stack and
-              latest 3D technologies including WebGL, Three.js, and GSAP
+              병원 및 클리닉 네트워크를 대상으로 하는 EMR(Electronic Medical
+              Records) SaaS 스타트업
             </li>
             <li>
-              Successfully implemented Redux for centralized state management,
-              ensuring efficient data flow, and reducing data retrieval times
+              WebGL 기술을 적극 활용하여 사내 마케팅 프로젝트 전체를 독자적으로
+              설계 및 구현, 현대적인 웹 경험 제공
             </li>
             <li>
-              Architected scalable and maintainable server-side applications
-              using Node.js and other frameworks, supported by REST APIs
+              기술적 지식이 없는 경영진도 사용 가능한 사내 인력 및 근태 관리
+              어드민 포털 개발 및 운영, 효과적인 직원 관리 지원
+            </li>
+            <li>AWS 인프라 및 NoSQL 데이터베이스 모델링, 서버 구축 및 관리</li>
+            <li>전반적인 백엔드 구현, 인프라 구축, 이벤트 설계 및 RESTful API 개발</li>
+            <li>
+              클라이언트 사용 가능한 CRUD API 구현
             </li>
             <li>
-              Designed a robust database schema and executed MongoDB queries
-              with precision, ensuring data consistency and integrity
+              이벤트 구독 시 자동 이메일 발송 기능을 포함한 어드민 시스템 구축
+              (AWS SES, Node.js, Angular)
             </li>
-            <li>
-              Automated deployment procedures with CI/CD, reducing build times
-              and enabling seamless deployment of new features and updates
-            </li>
+            <li>NGINX를 이용한 인프라 구축 및 무중단 배포로 운영</li>
+            <li>GitHub Action을 기반으로 CI/CD 구성</li>
           </ul>
         </div>
       </div>
@@ -235,26 +230,27 @@ export default function About() {
             Front End Developer
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
+            <li>캐나다에 위치한 암호화폐 거래소 스타트업</li>
             <li>
-              Identified and addressed software defects in React single page
-              apps, ensuring high-quality code and seamless user experience
+              React 기반의 컴포넌트 아키텍처 설계 및 프론트엔드 생태계 구축으로
+              기업의 기술 기반 강화
             </li>
             <li>
-              Assisted with the migration of legacy REST API to GraphQL with
-              Apollo, improving backend connection and app performance
+              Redux를 활용하여 효율적인 상태 관리 및 데이터 흐름 최적화로
+              애플리케이션의 반응 속도 및 성능 향상
             </li>
             <li>
-              Refactored and optimized the frontend codebase to increase website
-              performance by 70% while adhering to SEO principles
+              AWS Lambda@Edge와 Facebook Open Graph를 사용해 소셜 미디어용 URL
+              미리보기 기능 구현
+            </li>
+            <li>Apollo로 REST API를 GraphQL로 마이그레이션, 앱 성능 개선</li>
+            <li>
+              프론트엔드 최적화로 웹사이트 성능, 접근성, SEO 등 기존에 부족했던
+              부분들을 전반적으로 개선
             </li>
             <li>
-              Successfully integrated custom global components and frontend
-              libraries to support the development of future company products
-            </li>
-            <li>
-              Integrated multiple third-party systems, including Mobilum,
-              enabling customers to use credit cards to purchase
-              cryptocurrencies
+              다양한 외부 시스템을 성공적으로 통합, 고객이 신용카드를 이용해
+              암호화폐를 구입할수 있는 기능 구현
             </li>
           </ul>
         </div>
