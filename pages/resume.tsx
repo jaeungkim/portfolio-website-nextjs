@@ -140,22 +140,20 @@ export default function About() {
               기획/개발/배포/운영
             </li>
             <li>
-              Shopify Marketplaces가 원활하게 통합된 정교한 E-Commerce 플랫폼 개발
+              Shopify Marketplaces가 원활하게 통합된 정교한 E-Commerce 플랫폼
+              개발
             </li>
             <li>
-              Supabase 및 서드파티(Instagram, TikTok) 로그인 키트를 통해 플랫폼 보안 및 사용자 접근성
-              향상
-            </li>
-            <li>
-              Google Analytics을 적용하여 마케팅팀을 도와 서비스 사용자 데이터
-              분석
+              Supabase 및 서드파티(Instagram, TikTok 등) 로그인 키트를 통해 플랫폼
+              보안 및 사용자 접근성 향상
             </li>
             <li>
               Shopify Payments를 사용한 결제 게이트웨이 통합, 카트 포기 감소 및
               성공적인 거래 증가
             </li>
             <li>
-              신속한 온보딩 과정을 촉진하여 소프트 런칭 당일 초기 수익 창출에 기여
+              신속한 온보딩 과정을 촉진하여 소프트 런칭 당일 초기 수익 창출에
+              기여
             </li>
           </ul>
         </div>
@@ -195,15 +193,18 @@ export default function About() {
               어드민 포털 개발 및 운영, 효과적인 직원 관리 지원
             </li>
             <li>AWS 인프라 및 NoSQL 데이터베이스 모델링, 서버 구축 및 관리</li>
-            <li>전반적인 백엔드 구현, 인프라 구축, 이벤트 설계 및 RESTful API 개발</li>
             <li>
-              클라이언트 사용 가능한 CRUD API 구현
+              전반적인 백엔드 구현, 인프라 구축, 이벤트 설계 및 RESTful API 개발
             </li>
+            <li>클라이언트 사용 가능한 CRUD API 구현</li>
             <li>
               이벤트 구독 시 자동 이메일 발송 기능을 포함한 어드민 시스템 구축
               (AWS SES, Node.js, Angular)
             </li>
             <li>NGINX를 이용한 인프라 구축 및 무중단 배포로 운영</li>
+            <li>
+              Google Analytics을 적용하여 서비스 사용자 데이터 분석
+            </li>
             <li>GitHub Action을 기반으로 CI/CD 구성</li>
           </ul>
         </div>
@@ -259,12 +260,12 @@ export default function About() {
       <hr className="my-11"></hr>
 
       {/* Projects  */}
-      <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
+      {/* <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
         Project.
-      </div>
+      </div> */}
 
       {/* WebGL Playground */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           WebGL Playground
         </div>
@@ -277,10 +278,10 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11"></hr> */}
 
       {/* Lost Ark Bot */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Discord Bot
         </div>
@@ -293,10 +294,10 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11"></hr> */}
 
       {/* Lental */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Lental
         </div>
@@ -309,10 +310,10 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11"></hr> */}
 
       {/* Caffeine Holic */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Caffeine Holic
         </div>
@@ -324,7 +325,7 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11"></hr> */}
 
       {/* Skills */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
