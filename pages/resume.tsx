@@ -85,17 +85,18 @@ export default function About() {
         </div>
         <div className="col-span-2">
           <p className="text-base mb-4 font-normal">
-            스타트업 환경에서 웹 서비스의 설계, 개발, 배포 및 운영을 통해 2년
-            간의 경험을 쌓은 프론트엔드 개발자로서, 웹 서비스에 생동감을
+            스타트업 환경에서 웹 서비스의 설계, 개발, 배포 및 운영을 통해
+            2년간의 경험을 쌓은 프론트엔드 개발자로서, 웹 서비스에 생동감을
             불어넣는 모션 구현을 통해 사용자 경험을 풍부하게 만드는 것을
             좋아합니다.
           </p>
           <p className="text-base mb-4">
             웹 기술의 빠른 변화에 발맞추어, 지속적인 학습을 통해 최신 트렌드,
-            보안 문제, 그리고 시스템 효율성에 관한 지식을 꾸준히 확장해왔습니다.
-            이러한 노력은 프로젝트에 혁신적인 아이디어를 적용하고 비즈니스의
-            성장을 도모하는 데 큰 도움이 되었습니다. 또한, 자동화와 프로세스
-            최적화에 집중함으로써 작업 효율성을 상당히 높일 수 있었습니다.
+            보안 문제, 그리고 시스템 효율성에 관한 지식을 꾸준히 확장해
+            왔습니다. 이러한 노력은 프로젝트에 혁신적인 아이디어를 적용하고
+            비즈니스의 성장을 도모하는 데 큰 도움이 되었습니다. 또한, 자동화와
+            프로세스 최적화에 집중함으로써 작업 효율성을 상당히 높일 수
+            있었습니다.
           </p>
           <p className="text-base">
             성공적인 프로젝트는 원활한 커뮤니케이션에서 비롯된다는 것을 이해하고
@@ -144,8 +145,8 @@ export default function About() {
               개발
             </li>
             <li>
-              Supabase 및 서드파티(Instagram, TikTok 등) 로그인 키트를 통해 플랫폼
-              보안 및 사용자 접근성 향상
+              Supabase 및 서드파티(Instagram, TikTok 등) 로그인 키트를 통해
+              플랫폼 보안 및 사용자 접근성 향상
             </li>
             <li>
               Shopify Payments를 사용한 결제 게이트웨이 통합, 카트 포기 감소 및
@@ -202,9 +203,7 @@ export default function About() {
               (AWS SES, Node.js, Angular)
             </li>
             <li>NGINX를 이용한 인프라 구축 및 무중단 배포로 운영</li>
-            <li>
-              Google Analytics을 적용하여 서비스 사용자 데이터 분석
-            </li>
+            <li>Google Analytics을 적용하여 서비스 사용자 데이터 분석</li>
             <li>GitHub Action을 기반으로 CI/CD 구성</li>
           </ul>
         </div>
