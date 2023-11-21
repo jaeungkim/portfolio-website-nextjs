@@ -150,7 +150,7 @@ export const projectsData = [
         {
           id: uuidv4(),
           title: "Phone",
-          details: "778-581-3502",
+          details: "",
         },
       ],
       ObjectivesHeading: "Objective",
