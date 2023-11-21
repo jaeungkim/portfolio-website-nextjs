@@ -259,72 +259,74 @@ export default function About() {
       <hr className="my-11"></hr>
 
       {/* Projects  */}
-      {/* <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
+      <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
         Project.
-      </div> */}
-
-      {/* WebGL Playground */}
-      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          WebGL Playground
-        </div>
-        <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc">
-            <li>
-              portfolio website created using latest 3D technologies including:
-              WebGL, Three.js, GSAP, and Blender
-            </li>
-          </ul>
-        </div>
       </div>
-      <hr className="my-11"></hr> */}
-
-      {/* Lost Ark Bot */}
-      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Discord Bot
-        </div>
-        <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc">
-            <li>
-              discord bot that helps gamers organize parties, currently used by
-              more than 500 active users. Built with Discord.js
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11"></hr> */}
 
       {/* Lental */}
-      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Lental
         </div>
         <div className="col-span-2">
           <ul className="text-base font-normal pl-8 list-disc">
             <li>
-              off-campus housing/rental property search web app designed for
-              students by students
+              <a
+                className="text-cyan-500 hover:underline hover:underline-offset-2"
+                href="https://www.youtube.com/watch?v=sIZqCxLnLSY&ab_channel=LentalRents"
+                target="_blank"
+              >
+                학생들이 만든 학생들을 위한 교내 하우징 및 부동산 검색 웹
+                어플리케이션
+              </a>
             </li>
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr> */}
+      <hr className="my-11"></hr>
 
-      {/* Caffeine Holic */}
-      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* Lost Ark Bot */}
+      <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Caffeine Holic
+          Discord Bot
         </div>
         <div className="col-span-2">
           <ul className="text-base font-normal pl-8 list-disc">
             <li>
-              e-Commerce café site created with HTML5, CSS, Vanilla JS, and PHP
+              <a
+                className="text-cyan-500 hover:underline hover:underline-offset-2"
+                href="https://github.com/jaeungkim/lostark_bot"
+                target="_blank"
+              >
+                Discord.js 로 제작된 파티/레이드 서칭 툴, 1000명 이상의 사용자
+              </a>
             </li>
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr> */}
+      <hr className="my-11"></hr>
+
+      {/* WebGL Playground */}
+      <div className="md:grid md:grid-cols-3 md:gap-4">
+        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
+          WebGL Playground
+        </div>
+        <div className="col-span-2">
+          <ul className="text-base font-normal pl-8 list-disc">
+            <li>
+              <a
+                className="text-cyan-500 hover:underline hover:underline-offset-2"
+                href="https://github.com/jaeungkim/webGL-playground"
+                target="_blank"
+              >
+                WebGL, GSAP, Three.js 등을 사용하여 만든 3D 개발자 포트폴리오
+                탬플릿
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr className="my-11"></hr>
 
       {/* Skills */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
