@@ -439,12 +439,12 @@ export default function About() {
       <hr className="my-11"></hr>
 
       {/* ETC */}
-      <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
+      {/* <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
         ETC.
-      </div>
+      </div> */}
 
       {/* UBC */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           2010.09
         </div>
@@ -454,10 +454,10 @@ export default function About() {
           </p>
           <p className="text-base font-normal text-[#808080] italic">회원</p>
         </div>
-      </div>
+      </div> */}
 
       <footer className="pt-[150px] flex flex-col items-center justify-center">
-        <p className="text-base">감사합니다 😊</p>
+        <p className="text-base">감사합니다.</p>
         <div className="my-[50px] text-sm text-[#808080] text-center">
           <p>Last updated: 2023.11.14</p>
           <a className="hover:text-cyan-500" href="https://www.jaeungkim.com">
