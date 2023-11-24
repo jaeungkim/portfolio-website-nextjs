@@ -1,49 +1,52 @@
 import "@/styles/global.css";
-import { motion } from "framer-motion";
-import { ThemeProvider, useTheme } from "next-themes";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import "prismjs/themes/prism-okaidia.css";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { ThemeProvider } from "next-themes";
+import { useRouter } from "next/router";
+import { useEffect, useState, FC } from "react";
 
-const Loader = dynamic(() => import("../components/Loader"), { ssr: false });
+const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
 
-function App({ Component, pageProps }: any) {
-  const [initialScreen, setInitialScreen] = useState<null | boolean>(true);
+interface AppProps {
+  Component: FC;
+  pageProps: any; // You can replace 'any' with a more specific type if available
+}
+
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+  const [initialScreen, setInitialScreen] = useState<boolean | null>(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
 
-  // Check if the current route is /about
   const isResumePage = router.pathname === "/resume";
 
   useEffect(() => {
-    const hasBeenShown = localStorage.getItem("initialScreenShown");
+    const handleInitialScreen = () => {
+      const hasBeenShown = localStorage.getItem("initialScreenShown");
 
-    if (!hasBeenShown) {
-      setTimeout(() => {
+      if (!hasBeenShown) {
+        setTimeout(() => {
+          setInitialScreen(false);
+          localStorage.setItem("initialScreenShown", "true");
+        }, 3000);
+      } else {
         setInitialScreen(false);
-        localStorage.setItem("initialScreenShown", "true");
-      }, 3000);
-    } else {
-      setInitialScreen(false);
-    }
+      }
+    };
+
+    handleInitialScreen();
   }, []);
 
   useEffect(() => {
-    const handleRouteChangeStart = () => {
-      setIsAnimating(true);
-    };
+    const handleRouteChange = (isStart: boolean) => () =>
+      setIsAnimating(isStart);
 
-    const handleRouteChangeComplete = () => {
-      setIsAnimating(false);
-    };
-
-    router.events.on("routeChangeStart", handleRouteChangeStart);
-    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    router.events.on("routeChangeStart", handleRouteChange(true));
+    router.events.on("routeChangeComplete", handleRouteChange(false));
 
     return () => {
-      router.events.off("routeChangeStart", handleRouteChangeStart);
-      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+      router.events.off("routeChangeStart", handleRouteChange(true));
+      router.events.off("routeChangeComplete", handleRouteChange(false));
     };
   }, [router]);
 
@@ -51,7 +54,6 @@ function App({ Component, pageProps }: any) {
     return null;
   }
 
-  // Render only the component for /about page without ThemeProvider or other layout elements
   if (isResumePage) {
     return <Component {...pageProps} />;
   }
@@ -61,15 +63,13 @@ function App({ Component, pageProps }: any) {
       {initialScreen ? (
         <Loader />
       ) : (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.75 }}
-          >
-            <Component {...pageProps} />
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.75 }}
+        >
+          <Component {...pageProps} />
           {isAnimating && (
             <motion.div
               key={router.route}
@@ -79,10 +79,10 @@ function App({ Component, pageProps }: any) {
               transition={{ duration: 0.75 }}
             />
           )}
-        </>
+        </motion.div>
       )}
     </ThemeProvider>
   );
-}
+};
 
 export default App;

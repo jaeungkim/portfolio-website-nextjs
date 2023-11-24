@@ -1,35 +1,37 @@
-import Layout from "../../components/shared/layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import Layout from "@/components/shared/layout";
 import Head from "next/head";
-import utilStyles from "../../styles/utils.module.css";
+import utilStyles from "@/styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
-import ViewCounter from "../../components/shared/viewCounter";
-import ScrollIndicator from "../../components/shared/scrollIndicator";
-import BackButton from "../../components/shared/backButton";
-import ScrollToTopButton from "../../components/shared/scrollToTopButton";
 import { MDXRemote } from "next-mdx-remote";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
-import mdxComponents from "../../components/shared/mdxComponents";
-// import UtterancesComments from "../../components/shared/utterancesComments";
 import dynamic from "next/dynamic";
+import ScrollIndicator from "@/components/shared/scrollIndicator";
+import ScrollToTopButton from "@/components/shared/scrollToTopButton";
+import BackButton from "@/components/shared/backButton";
+import ViewCounter from "@/components/shared/viewCounter";
+import mdxComponents from "../../components/shared/mdxComponents";
+import { getAllPostIds, getPostData } from "@/lib/posts";
 
+// Dynamic import for UtterancesComments
 const UtterancesComments = dynamic(() =>
-  import("../../components/shared/utterancesComments").then(
+  import("@/components/shared/utterancesComments").then(
     (mod) => mod.UtterancesComments
   )
 );
 
-export default function Post({
-  postData,
-}: {
-  postData: {
-    id: string;
-    title: string;
-    date: string;
-    tags: string[];
-    contentHtml: MDXRemoteSerializeResult;
-  };
-}) {
+interface PostData {
+  id: string;
+  title: string;
+  date: string;
+  tags: string[];
+  contentHtml: MDXRemoteSerializeResult;
+}
+
+interface PostProps {
+  postData: PostData;
+}
+
+export default function Post({ postData }: PostProps) {
   return (
     <Layout>
       <Head>
@@ -39,7 +41,7 @@ export default function Post({
       <ScrollToTopButton />
       <BackButton />
       <ViewCounter slug={postData.id} />
-      <article className="prose prose-tr:border-none lg:prose-xl dark:prose-invert mx-auto overflow-auto">
+      <article className="prose lg:prose-lg dark:prose-invert mx-auto overflow-auto !max-w-none">
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div key={postData.id}>
           <MDXRemote {...postData.contentHtml} components={mdxComponents} />
