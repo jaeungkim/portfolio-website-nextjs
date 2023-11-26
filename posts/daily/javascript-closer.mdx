@@ -1,0 +1,107 @@
+---
+title: "Closer in JavaScript"
+subtitle: "javascript-closer"
+date: "2023-11-22"
+summary: "Explanation of Closer in JavaScript with Examples"
+tags: ["Vlog", "JavaScript"]
+---
+
+## Detailed Introduction to JavaScript Closures
+
+### What Are Closures in JavaScript?
+
+* A closure in JavaScript is a function that has access to its own scope, the scope of the outer function, and the global scope. This unique ability allows closures to remember and access variables from an outer function even after the outer function has finished execution.
+
+## The Concept of Lexical Scoping
+
+* JavaScript uses lexical scoping, which means that the scope of a variable is defined by its location within the source code. Closures take advantage of this by retaining access to variables in their lexical scope.
+
+## Deep Dive into Closure Mechanics
+
+### Creation and Functioning of Closures
+
+* Every time a JavaScript function is invoked, a new execution context is created for that function. This context includes the scope chain. When a function is declared inside another function, the inner function's scope chain includes the scope of the outer function.
+
+Example 1: Basic Closure
+
+```js
+function greetingCreator(greeting) {
+    return function(name) {
+        console.log(greeting + ', ' + name);
+    }
+}
+const sayHello = greetingCreator('Hello');
+sayHello('Alice');  // Output: "Hello, Alice"
+```
+
+In this example, sayHello becomes a closure that has access to greeting from the outer greetingCreator function.
+
+### Preserving States in Closures
+
+* Closures can hold onto state between function calls. This is a powerful feature for things like data encapsulation and creating private variables.
+
+Example 2: Counter Function
+
+```js
+function createCounter() {
+    let count = 0;
+    return function() {
+        return ++count;
+    }
+}
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+```
+
+Here, createCounter returns a closure that maintains the state of count between calls.
+
+## Advanced Closure Usage
+
+### Memory Management and Garbage Collection
+
+* Closures can impact memory usage because they retain references to outer variables. Understanding this is vital to prevent memory leaks in applications.
+
+### Creating Private Methods and Variables
+
+* JavaScript does not have private methods or variables natively. Closures allow for the simulation of private methods, which can enhance encapsulation and security.
+
+Example 3: Emulating Private Variables
+
+```js
+function createBankAccount() {
+    let balance = 0;
+    return {
+        deposit: function(amount) { balance += amount; },
+        withdraw: function(amount) { balance -= amount; },
+        getBalance: function() { return balance; }
+    };
+}
+const account = createBankAccount();
+account.deposit(100);
+console.log(account.getBalance()); // 100
+```
+
+This pattern creates a closure that makes balance effectively private.
+
+## Practical Applications of Closures
+
+### Data Encapsulation and Modularity
+
+* By using closures, JavaScript developers can encapsulate data, protecting variables and methods from being accessed externally, thus enhancing modularity.
+
+### Event Handlers and Callbacks
+
+* Closures are widely used in JavaScript for event handling and callbacks, especially in asynchronous operations. They enable the callback functions to access the environment in which they were declared.
+
+### Functional Programming
+
+* Closures are a key concept in functional programming paradigms in JavaScript. They facilitate functions like currying and function composition.
+
+## Conclusion and Best Practices
+
+Closures are a core concept in JavaScript, offering powerful capabilities such as state preservation, data encapsulation, and the creation of private methods. Understanding closures is crucial for effective JavaScript programming, particularly in complex applications and functional programming.
+
+Best practices with closures include mindful management of memory and careful design to avoid unintentional retention of large objects, leading to memory leaks.
+
+By mastering closures, developers can write more efficient, maintainable, and robust JavaScript code, harnessing the full potential of this versatile language.
