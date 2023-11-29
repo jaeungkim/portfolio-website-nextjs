@@ -1,0 +1,180 @@
+---
+title: "Frontend Basic Questions for Interview (JavaScript)"
+subtitle: "javascript-frontend-basic-questions-for-interview"
+date: "2023-11-20"
+summary: "Combination of possible questions asked on frontend during interviews"
+tags: ["Vlog", "JavaScript"]
+---
+
+## Real-World Frontend Interview Questions Collection
+
+There are many other posts related to frontend technical interviews, but there are too many, so I'll try to summarize a bit. I hope it will be helpful for interviewers who are unsure about what questions to ask.
+
+### Importance of Frontend Languages
+
+- ⭐⭐⭐⭐⭐: These are things that you must accurately know if you dream of being a frontend engineer. Not knowing even one can be seen as a reason for disqualification. Make sure you know them before you go.
+- ⭐⭐⭐⭐: You should know more than 90% of these. It's not good to answer a lot; you need to answer accurately. If you want to say you are a frontend engineer, these are essential.
+- ⭐⭐⭐: Important questions about JavaScript frameworks, plugins, and other uses.
+- ⭐⭐: Light and basic questions.
+- ⭐: Knowing them gives extra points, but not knowing them doesn't significantly impact the selection. And other things.
+
+The importance is subjective but based on the content commonly asked during an hour-long interview.
+
+* Note: It would be more helpful to find and understand the answers to these questions on your own. Since I was not selected, it's hard to say that my answers are correct. I will only introduce related links. Personally, if you know 90% of the questions between 3-5 stars, you should be able to pass the interview.*
+
+## ⭐⭐⭐⭐⭐
+
+1. [Explain how Web Page gets displayed to end user step by step.](#answer1)
+2. [Explain hoisting](#answer2)
+3. [What is Closure? Explain thoroughly with examples](#answer3)
+4. Differnece between `let`, `const`, `var`
+4. List hooks in React and explain their cases. What are the differences?
+5. Promise in JavaScript (Difference between synchronous and asynchronous in details)
+
+## ⭐⭐⭐⭐
+
+6. What is Proxy in JavaScript? Explain thoroughly with examples.
+7. Different types of objects in JavaScript
+8. Loops in JavaScript and differences
+9. Generator Function in JavaScript
+10. `this` in JavaScript
+11. What exactly is JavaScript. What kind of language is it?
+12. Event Loop in JavaScript.
+* Microtask Queue and Task Queue
+13. What is Event Bubbling
+
+
+## ⭐⭐⭐
+
+14. Difference between Object and Map
+
+
+## ⭐⭐
+
+## ⭐
+
+## Answers
+
+<a id="answer1"></a>
+### 1. Explain how Web Page gets displayed to end user step by step.
+    - 1. URL Entry: The user enters a URL in the browser.
+    - 2. DNS Lookup: The browser performs a DNS lookup to find the IP address of the server hosting the website.
+    - 3. Browser Sends HTTP Request: The browser sends an HTTP request to the server at the resolved IP address.
+    - 4. Server Responds: The server processes the request and sends back the requested HTML file along with associated resources like CSS, JavaScript, images, etc.
+    - 5. Browser Parses HTML: The browser begins parsing the HTML document and converts elements into DOM (Document Object Model) nodes, forming a structure that represents the content of the page.
+    - 6. CSS Parsing and CSSOM Creation: The browser parses CSS files and creates the CSSOM (CSS Object Model), which contains style information.
+    - 7. JavaScript Processing: If there's JavaScript, the browser executes it, which can modify the DOM and CSSOM.
+    - 9. Render Tree Construction: The browser constructs the Render Tree from the DOM and CSSOM, which contains information about the content that needs to be rendered on the page.
+    - 10. Layout Calculation: The browser calculates the layout of each visible element on the page.
+    - 11. Painting: The browser paints the content on the screen, turning the Render Tree into pixels displayed to the user.
+    - 12. JavaScript Modification (if applicable): JavaScript may run again to modify the page after it is initially rendered, leading to updates in the content.
+
+<a id="answer2"></a>
+### 2. Explain hoisting
+    1. Variable Hoisting:
+        * var Declarations: If you declare a variable using var, it is hoisted to the top of its functional or global scope. However, only the declaration is hoisted, not the initialization. If you try to use the variable before the point where it is declared and initialized, it will have a value of undefined.
+
+        ```js
+        console.log(x); // undefined
+        var x = 5;
+        console.log(x); // 5
+        ```
+
+        * let and const Declarations: Variables declared with let and const are also hoisted, but they remain in a "temporal dead zone" from the start of the block until the declaration is reached. Accessing them before the declaration results in a ReferenceError.
+
+        ```js
+        console.log(y); // ReferenceError: y is not defined
+        let y = 5;
+        ```
+
+    2. Function Hoisting:
+        * Function Declarations: Function declarations are hoisted entirely to the top of their containing scope, meaning you can call a function before its declaration in the code.
+
+        ```js
+        hello(); // "Hello, world!"
+        function hello() {
+            console.log("Hello, world!");
+        }
+        ```
+
+        * Function Expressions: Function expressions, on the other hand, are not hoisted. If a function is defined as part of an expression (including functions defined using const, let, or var), it won't be available until the execution reaches the point where the expression is defined.
+
+        ```js
+        hi(); // TypeError: hi is not a function
+        var hi = function() {
+            console.log("Hi!");
+        };
+        ```
+
+<a id="answer3"></a>
+### 3. What is Closure? Explain thoroughly with examples
+
+A closure in JavaScript is a powerful and fundamental concept where a function retains access to its lexical scope even when that function is executed outside of its lexical scope. This behavior allows the function to remember and access variables from the scope in which it was declared, regardless of where it's being executed.
+
+#### Understanding Lexical Scope
+
+Before diving into closures, it's important to understand lexical scope. Lexical scope means that the accessibility of variables is determined by the physical location of the variables in the written code (i.e., their lexical environment). Nested functions have access to variables declared in their outer scope.
+
+#### How Closures Work
+
+A closure is created every time a function is defined. To see a closure in action, consider the following example:
+
+```js
+function outerFunction() {
+    let outerVariable = 'I am outside!';
+
+    function innerFunction() {
+        console.log(outerVariable); // Access outerVariable
+    }
+
+    return innerFunction;
+}
+
+let myInnerFunction = outerFunction();
+myInnerFunction(); // Logs: 'I am outside!'
+```
+
+In this example:
+
+1. `outerFunction` creates a local variable `outerVariable` and an `innerFunction` that accesses `outerVariable`.
+2. `outerFunction` then returns `innerFunction`.
+3. Even after `outerFunction` has finished executing and its execution context is gone, `myInnerFunction` (which is `innerFunction`) still has access to `outerVariable`. This is a closure.
+
+#### Why Closures Are Useful
+
+Closures have several practical uses, such as:
+
+1. **Data Encapsulation**: They allow for private variables and functions. Only the functions defined within the same scope as these "private" variables can access them.
+2. **Creating Factory Functions**: You can create functions that generate other functions, each with their own private scope and variables.
+3. **Event Handlers and Callbacks**: Closures are often used in event handlers and callbacks to maintain state and access data that was in scope when the handler or callback was created.
+
+#### Example: Data Encapsulation
+
+Here’s an example that demonstrates data encapsulation using closures:
+
+```js
+function createCounter() {
+    let count = 0;
+
+    return {
+        increment: function() { count++; },
+        decrement: function() { count--; },
+        getCount: function() { return count; }
+    };
+}
+
+let counter = createCounter();
+counter.increment();
+counter.increment();
+console.log(counter.getCount()); // 2
+counter.decrement();
+console.log(counter.getCount()); // 1
+```
+
+In this example, `count` is encapsulated within `createCounter`. The `counter` object can access and modify `count` via the `increment`, `decrement`, and `getCount` methods, but there's no way to directly access `count` from outside. This is a classic use of closures to encapsulate data.
+
+#### Why Closures Matter
+
+Closures are a fundamental aspect of functional programming in JavaScript and are essential for writing more secure and maintainable code. They allow for powerful patterns like modules and help in managing state in a controlled manner. Understanding closures is crucial for advanced JavaScript programming.
+
+In summary closer is "when you have a function defined inside of another function, that inner function has access to the variables and scope of the outer function even if the outer function finishes executing and those variables are no longer accessible outside of that function."

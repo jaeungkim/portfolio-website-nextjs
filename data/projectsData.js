@@ -47,7 +47,7 @@ export const projectsData = [
         {
           id: uuidv4(),
           title: "Website",
-          details: "https://flashee.shop",
+          details: "https://flashee.app",
         },
         {
           id: uuidv4(),

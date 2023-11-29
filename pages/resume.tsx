@@ -123,7 +123,7 @@ export default function About() {
         <div className="col-span-2">
           <Link
             className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
-            href="https://flashee.shop"
+            href="https://flashee.app"
             target="_blank"
           >
             <p>Flashee</p>
