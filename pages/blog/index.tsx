@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Layout from "@/components/shared/layout";
-import { getSortedPostsData } from "../../lib/posts";
+import { getSortedPostsData } from "@/lib/posts";
 import Article from "@/components/blog/Article";
 interface Post {
   id: string;

@@ -1,5 +1,5 @@
-import ProjectsGrid from "../../components/projects/ProjectsGrid";
-import Layout from "../../components/shared/layout";
+import ProjectsGrid from "@/components/projects/ProjectsGrid";
+import Layout from "@/components/shared/layout";
 function index() {
   return (
     <Layout>

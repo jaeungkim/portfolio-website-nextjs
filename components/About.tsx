@@ -40,7 +40,7 @@ function SocialIcon({ href, IconComponent }) {
 export default function About() {
   return (
     <div className="md:flex w-full">
-      <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4">
+      <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px]">
         <Canvas>
           <PerspectiveCamera makeDefault position={[2.5, 10, 5]} fov={50} />
           <ambientLight />
@@ -75,6 +75,21 @@ export default function About() {
           but I also have experiences working as a designer and product owner
           depending on the needs of the company.
         </p>
+        <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
+          웹 기술의 빠른 변화에 발맞추어, 지속적인 학습을 통해 최신 트렌드, 보안
+          문제, 그리고 시스템 효율성에 관한 지식을 꾸준히 확장해 왔습니다.
+          이러한 노력은 프로젝트에 혁신적인 아이디어를 적용하고 비즈니스의
+          성장을 도모하는 데 큰 도움이 되었습니다. 또한, 자동화와 프로세스
+          최적화에 집중함으로써 작업 효율성을 상당히 높일 수 있었습니다.
+        </p>
+        <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
+          성공적인 프로젝트는 원활한 커뮤니케이션에서 비롯된다는 것을 이해하고
+          있습니다. 팀원들과의 페어 프로그래밍을 통해 지식과 아이디어를 공유하는
+          것을 즐기며, 모든 이들과 긍정적이고 열린 마음으로 소통합니다. 이러한
+          경험들은 저를 더 나은 개발자로 성장시키는 원동력이 되었고, 계속해서
+          새로운 기술을 배우고 전문성을 키우는 데 집중하고 있습니다.
+        </p>
+
         <div className="mt-6 flex gap-6">
           <SocialIcon
             href="https://github.com/jaeungkim"

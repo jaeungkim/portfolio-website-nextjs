@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import Date from "../../components/shared/date";
+import Date from "@/components/shared/date";
 
 interface Post {
   id: string;

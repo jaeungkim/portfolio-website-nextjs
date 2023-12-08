@@ -9,7 +9,7 @@ import ScrollIndicator from "@/components/shared/scrollIndicator";
 import ScrollToTopButton from "@/components/shared/scrollToTopButton";
 import BackButton from "@/components/shared/backButton";
 import ViewCounter from "@/components/shared/viewCounter";
-import mdxComponents from "../../components/shared/mdxComponents";
+import mdxComponents from "@/components/shared/mdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 
 // Dynamic import for UtterancesComments

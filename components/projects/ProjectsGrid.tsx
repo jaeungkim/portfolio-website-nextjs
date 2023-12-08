@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 import ProjectSingle from "./ProjectSingle";
-import { projectsData } from "../../data/projectsData";
+import { projectsData } from "@/data/projectsData";
 
 function ProjectsGrid() {
   const [selectProject, setSelectProject] = useState("");
