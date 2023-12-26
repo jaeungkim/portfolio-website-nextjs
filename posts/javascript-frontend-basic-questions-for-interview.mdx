@@ -10,29 +10,12 @@ tags: ["Vlog", "JavaScript"]
 
 There are many other posts related to frontend technical interviews, but there are too many, so I'll try to summarize a bit. I hope it will be helpful for interviewers who are unsure about what questions to ask.
 
-### Importance of Frontend Languages
-
-- ⭐⭐⭐⭐⭐: These are things that you must accurately know if you dream of being a frontend engineer. Not knowing even one can be seen as a reason for disqualification. Make sure you know them before you go.
-- ⭐⭐⭐⭐: You should know more than 90% of these. It's not good to answer a lot; you need to answer accurately. If you want to say you are a frontend engineer, these are essential.
-- ⭐⭐⭐: Important questions about JavaScript frameworks, plugins, and other uses.
-- ⭐⭐: Light and basic questions.
-- ⭐: Knowing them gives extra points, but not knowing them doesn't significantly impact the selection. And other things.
-
-The importance is subjective but based on the content commonly asked during an hour-long interview.
-
-* Note: It would be more helpful to find and understand the answers to these questions on your own. Since I was not selected, it's hard to say that my answers are correct. I will only introduce related links. Personally, if you know 90% of the questions between 3-5 stars, you should be able to pass the interview.*
-
-## ⭐⭐⭐⭐⭐
-
 1. [Explain how Web Page gets displayed to end user step by step.](#answer1)
 2. [Explain hoisting with `let`, `const`, `var`, and also functional](#answer2)
 3. [What is Closure? Explain thoroughly with examples](#answer3)
 4. Callback in JavaScript
 5. Promise in JavaScript (Difference between synchronous and asynchronous in details)
 6. How does inheritance work in JavaScript?
-## ⭐⭐⭐⭐
-
-
 7. [`this` in JavaScript](#answer6)
 8. What exactly is JavaScript. What kind of language is it?
 9. Event Loop in JavaScript
@@ -44,16 +27,39 @@ The importance is subjective but based on the content commonly asked during an h
 15. Local Storage vs Session Storage vs Cookie
 16. Different types of Cookie
 17. Pros and Cons of SSR and CSR
-
-## ⭐⭐⭐
-
 18. Difference between Object and Map
 19. What is Proxy in JavaScript? Explain thoroughly with examples.
 20. Different types of objects in JavaScript
 21. Loops in JavaScript and differences
-## ⭐⭐
 
-## ⭐
+## React Questions
+22. What is React?
+23. What are the major features of React?
+24. What is state in React?
+25. What are props in React?
+26. What is the difference between state and props?
+27. Why should we not update the state directly?
+28. What is the purpose of callback functions as an argument of setState()?
+29. What is "key" prop and what is the benefit of using it in arrays of elements?
+30. What is the use of refs?
+31. What is Virtual DOM?
+32. How does Virtual DOM work?
+33. What are the lifecycle methods of React?
+34. What are the advantages of React?
+35. What are the limitations of React?
+36. How do you memoize a component?
+37. What is the lifecycle methods order in mounting?
+38. Is it possible to use React without rendering HTML?
+39. How to update a component every second?
+40. What are hooks?
+41. What is the difference between Real DOM and Virtual DOM?
+42. How to fetch data with React Hooks?
+43. What is the use of useEffect React Hooks?
+44. What are Custom Hooks?
+45. Explain Strict Mode in React.
+46. How to prevent re-renders in React?
+47. How to pass data between react components?
+48. [Explain about types of Hooks in React](#answer48).
 
 ## Answers
 
@@ -191,3 +197,20 @@ please refer to my blog
 
 <a id="answer6"></a>
 ### 6. `this` in JavaScript
+
+<a id="answer48"></a>
+### 48. Explain about types of Hooks in React
+
+1. Built-in Hooks: The built-in Hooks are divided into 2 parts as given below:
+
+* Basic Hooks
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useState()</mark>: This functional component is used to set and retrieve the state.
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useEffect()</mark>: It enables for performing the side effects in the functional components.
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useContext()</mark>: It is used for creating common data that is to be accessed by the components hierarchy without having to pass the props down to each level.
+* Additional Hooks
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useReducer()</mark>: It is used when there is a complex state logic that is having several sub-values or when the upcoming state is dependent on the previous state. It will also enable you to optimization of component performance that will trigger deeper updates as it is permitted to pass the dispatch down instead of callbacks.
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useMemo()</mark>: This will be used for recomputing the memoized value when there is a change in one of the dependencies. This optimization will help for avoiding expensive calculations on each render.
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useCallback()</mark>: This is useful while passing callbacks into the optimized child components and depends on the equality of reference for the prevention of unneeded renders.
+    * <mark style={{ backgroundColor: '#0ED7B5', padding: '4px', borderRadius: '10px' }}>useRef()</mark>: It will permit creating a reference to the DOM element directly within the functional component.
+
+2. Custom Hooks: A custom Hook is basically a function of JavaScript. The Custom Hook working is similar to a regular function. The “use” at the beginning of the Custom Hook Name is required for React to understand that this is a custom Hook and also it will describe that this specific function follows the rules of Hooks. Moreover, developing custom Hooks will enable you for extracting component logic from within reusable functions.
