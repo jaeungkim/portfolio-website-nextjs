@@ -8,7 +8,7 @@ export const projectsData = [
     videoSrc: "https://storage.googleapis.com/jaeungkim/flashee.mov",
     url: "flashee",
     category: "Full Stack",
-    img: "/images/webGL_project_main.png",
+    img: "/images/flashee_1.png",
     ProjectHeader: {
       title: "Flashee",
       publishDate: "October 15th, 2023",
@@ -70,7 +70,7 @@ export const projectsData = [
             "Supabase",
             "AWS",
             "Fly.io",
-            "Shopify Payments"
+            "Shopify Payments",
           ],
         },
       ],
@@ -286,7 +286,7 @@ export const projectsData = [
     id: 4,
     title: "Catalyx.io",
     date: "January 18, 2021",
-    videoSrc:  "https://storage.googleapis.com/jaeungkim/catalyx.mov",
+    videoSrc: "https://storage.googleapis.com/jaeungkim/catalyx.mov",
     url: "catalyx",
     category: "Full Stack",
     img: "/images/catalyx_main.png",
