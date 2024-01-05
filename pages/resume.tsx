@@ -3,6 +3,72 @@ import Link from "next/link";
 import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
+// Function to calculate experience duration
+const calculateExperience = (startDate, endDate = null) => {
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : new Date();
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+
+  // Include the end month in the total count
+  if (end.getDate() >= start.getDate()) {
+    months++;
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  // Normalize the total months to the correct number of years and months
+  years += Math.floor(months / 12);
+  months %= 12;
+
+  // If there are 0 years, don't display the years part
+  const yearDisplay = years > 0 ? `${years}년 ` : "";
+  return `${yearDisplay}${months}개월`;
+};
+
+const experiences = [
+  { start: "2024-01-01", end: null }, // Ongoing job
+  { start: "2023-07-01", end: "2023-10-01" },
+  { start: "2022-07-01", end: "2023-06-01" },
+  { start: "2021-01-01", end: "2022-05-01" },
+  // Add other experiences as needed
+];
+
+const calculateTotalExperience = (experiences) => {
+  let totalMonths = 0;
+
+  experiences.forEach((exp) => {
+    const start = new Date(exp.start);
+    const end = exp.end ? new Date(exp.end) : new Date();
+
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+
+    // Include the end month in the total count
+    if (end.getDate() >= start.getDate()) {
+      months++;
+    }
+
+    // Adjust for negative months and convert years to months
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    totalMonths += years * 12 + months;
+  });
+
+  // Convert total months back into years and remaining months
+  const totalYears = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
+
+  // Format the display for years and months
+  const yearDisplay = totalYears > 0 ? `${totalYears}년 ` : "";
+  return `${yearDisplay}${remainingMonths}개월`;
+};
+
 export default function About() {
   return (
     <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F]">
@@ -120,10 +186,39 @@ export default function About() {
         {/* pill of total */}
         <div className="mt-2">
           <p className="text-xs py-1 px-4 bg-cyan-200 rounded-full">
-            총 2년 9개월
+            총 {calculateTotalExperience(experiences)}
           </p>
         </div>
       </div>
+
+      {/* e8ight */}
+      <div className="md:grid md:grid-cols-3 md:gap-4">
+        <div className="md:text-right md:px-4 w-full">
+          <p className="text-2xl font-medium text-[#808080] ">
+            2024.01 ~ PRESENT
+          </p>
+          <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
+            {calculateExperience("2024-01-01")}
+          </p>
+        </div>
+
+        <div className="col-span-2">
+          <Link
+            className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
+            href="https://flashee.app"
+            target="_blank"
+          >
+            <p>이에이트</p>
+          </Link>
+          <p className="text-base font-normal text-[#808080] italic mt-4">
+            플랫폼 개발팀 프론트엔드 개발자
+          </p>
+          <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
+            <li>플랫폼 개발팀 프론트엔드 개발자</li>
+          </ul>
+        </div>
+      </div>
+      <hr className="my-11"></hr>
 
       {/* Flashee */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -132,7 +227,7 @@ export default function About() {
             2023.07 ~ 2023.10
           </p>
           <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            4개월
+            {calculateExperience("2023-07-01", "2023-10-01")}
           </p>
         </div>
 
@@ -189,7 +284,7 @@ export default function About() {
             2022.07 ~ 2023.06
           </p>
           <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            1년
+            {calculateExperience("2022-07-01", "2023-06-01")}
           </p>
         </div>
         <div className="col-span-2">
@@ -243,7 +338,7 @@ export default function About() {
             2021.01 ~ 2022.05
           </p>
           <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            1년 5개월
+            {calculateExperience("2021-01-01", "2022-05-01")}
           </p>
         </div>
         <div className="col-span-2">
@@ -538,7 +633,7 @@ export default function About() {
       <footer className="pt-[150px] flex flex-col items-center justify-center">
         <p className="text-base">감사합니다.</p>
         <div className="my-[50px] text-sm text-[#808080] text-center">
-          <p>Last updated: 2023.11.14</p>
+          <p>Last updated: 2024.01.05</p>
           <a className="hover:text-cyan-500" href="https://www.jaeungkim.com">
             @jaeungkim
           </a>
