@@ -205,7 +205,7 @@ export default function About() {
         <div className="col-span-2">
           <Link
             className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
-            href="https://flashee.app"
+            href="https://e8ight.co.kr"
             target="_blank"
           >
             <p>이에이트</p>
