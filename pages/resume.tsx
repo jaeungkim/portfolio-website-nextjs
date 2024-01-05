@@ -120,7 +120,7 @@ export default function About() {
         {/* pill of total */}
         <div className="mt-2">
           <p className="text-xs py-1 px-4 bg-cyan-200 rounded-full">
-            총 2년 10개월
+            총 2년 9개월
           </p>
         </div>
       </div>
@@ -240,10 +240,10 @@ export default function About() {
       <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="md:text-right md:px-4 w-full">
           <p className="text-2xl font-medium text-[#808080] ">
-            2021.01 ~ 2022.06
+            2021.01 ~ 2022.05
           </p>
           <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            1년 6개월
+            1년 5개월
           </p>
         </div>
         <div className="col-span-2">
