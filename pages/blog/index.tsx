@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import Layout from "@/components/shared/layout";
 import { getSortedPostsData } from "@/lib/posts";
 import Article from "@/components/blog/Article";
+
 interface Post {
   id: string;
   title: string;
   date: string;
   summary: string;
   tags: string[];
+  category: string; // Add this line to include the category property
 }
 
 interface BlogProps {
@@ -18,17 +20,11 @@ interface BlogProps {
 }
 
 export default function Blog({ allPostsData }: BlogProps) {
-  // Define tab to tags mapping
-  const primaryKeywords = {
-    Daily: "vlog",
-    Study: "leetcode",
-    Travel: "travel",
-  };
-
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   //Tabs
-  const [activeTab, setActiveTab] = useState("Daily"); // New state for active tab
+  const [activeTab, setActiveTab] = useState("daily"); // New state for active tab
+  const categories = ["Daily", "Studying", "Travel"];
 
   const handleTagClick = (tag: string) => {
     setSelectedTags((prevSelectedTags) =>
@@ -39,44 +35,38 @@ export default function Blog({ allPostsData }: BlogProps) {
   };
 
   const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
-    // Reset the selected tags when switching tabs
-    setSelectedTags([]);
+    setActiveTab(tab.toLowerCase());
+    setSelectedTags([]); // Reset tags when changing category
   };
 
-  const tabs = Object.keys(primaryKeywords);
-
-  // Determine the posts to display based on the active tab's primary keyword
-  const filteredPostsByPrimary = useMemo(() => {
-    return allPostsData.filter((post) =>
-      post.tags
-        .map((t) => t.toLowerCase())
-        .includes(primaryKeywords[activeTab].toLowerCase())
+  // Filter posts by category
+  const filteredPostsByCategory = useMemo(() => {
+    return allPostsData.filter(
+      (post) => post.category.toLowerCase() === activeTab
     );
-  }, [allPostsData, activeTab, primaryKeywords]);
+  }, [allPostsData, activeTab]);
 
-  // Get secondary tags for pills excluding the primary keyword
+  // Get unique secondary tags for the selected category
   const secondaryTags = useMemo(() => {
-    const allSecondaryTags = new Set<string>();
-    filteredPostsByPrimary.forEach((post) => {
+    const tagsSet = new Set<string>();
+    filteredPostsByCategory.forEach((post) => {
       post.tags.forEach((tag) => {
-        if (tag.toLowerCase() !== primaryKeywords[activeTab].toLowerCase()) {
-          allSecondaryTags.add(tag);
+        if (tag.toLowerCase() !== activeTab) {
+          tagsSet.add(tag);
         }
       });
     });
-    return Array.from(allSecondaryTags);
-  }, [filteredPostsByPrimary, activeTab, primaryKeywords]);
+    return Array.from(tagsSet);
+  }, [filteredPostsByCategory, activeTab]);
 
-  // Further filter posts by selected secondary tags
+  // Further filter posts by selected tags
   const finalFilteredPosts = useMemo(() => {
-    if (selectedTags.length === 0) {
-      return filteredPostsByPrimary;
-    }
-    return filteredPostsByPrimary.filter((post) =>
-      selectedTags.every((tag) => post.tags.includes(tag))
-    );
-  }, [filteredPostsByPrimary, selectedTags]);
+    return selectedTags.length === 0
+      ? filteredPostsByCategory
+      : filteredPostsByCategory.filter((post) =>
+          selectedTags.every((tag) => post.tags.includes(tag))
+        );
+  }, [filteredPostsByCategory, selectedTags]);
 
   return (
     <Layout>
@@ -94,15 +84,17 @@ export default function Blog({ allPostsData }: BlogProps) {
       </p>
 
       <div className="flex justify-center">
-        {tabs.map((tab) => (
+        {categories.map((category) => (
           <button
-            key={tab}
-            onClick={() => handleTabClick(tab)}
+            key={category}
+            onClick={() => handleTabClick(category)}
             className={`mx-2 px-4 py-2 text-sm font-medium rounded-full ${
-              activeTab === tab ? "text-white" : "bg-transparent text-cyan-500"
+              activeTab === category.toLowerCase()
+                ? "text-white"
+                : "bg-transparent text-cyan-500"
             }`}
           >
-            {tab.replace("/", " / ")}
+            {category}
           </button>
         ))}
       </div>

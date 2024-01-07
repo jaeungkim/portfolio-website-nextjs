@@ -25,21 +25,41 @@ function getPostMetadata(fileName) {
   };
 }
 
+const categories = ["daily", "studying", "travel"];
+
 export function getSortedPostsData() {
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map(getPostMetadata);
+  let allPostsData = [];
+
+  categories.forEach((category) => {
+    const categoryDirectory = path.join(postsDirectory, category);
+    const fileNames = fs.readdirSync(categoryDirectory);
+
+    const postsData = fileNames
+      .map((fileName) => {
+        const id = fileName.replace(/\.mdx$/, "");
+        const fullPath = path.join(categoryDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const matterResult = matter(fileContents);
+
+        // Include only posts with non-empty tags array
+        if (matterResult.data.tags && matterResult.data.tags.length > 0) {
+          return {
+            id,
+            category,
+            ...(matterResult.data as {
+              date: string;
+              title: string;
+              tags: string[];
+            }),
+          };
+        }
+      })
+      .filter((post) => post != null); // Remove undefined entries from the array
+
+    allPostsData = allPostsData.concat(postsData);
+  });
 
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
-}
-
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
-
-  return fileNames.map((fileName) => ({
-    params: {
-      id: fileName.replace(/\.mdx$/, ""),
-    },
-  }));
 }
 
 export async function getPostData(id: string) {
