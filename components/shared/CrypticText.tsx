@@ -63,7 +63,7 @@ export default function CrypticText({
   return (
     <span
       className={clsx(
-        "text-inherit whitespace-normal truncate block relative",
+        "text-inherit whitespace-normal truncate block relative overflow-visible p-[2px]",
         classNames
       )}
       style={{

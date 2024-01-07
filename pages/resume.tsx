@@ -204,7 +204,7 @@ export default function About() {
 
         <div className="col-span-2">
           <Link
-            className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
+            className="text-2xl font-medium hover:text-cyan-500"
             href="https://e8ight.co.kr"
             target="_blank"
           >
@@ -233,7 +233,7 @@ export default function About() {
 
         <div className="col-span-2">
           <Link
-            className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
+            className="text-2xl font-medium hover:text-cyan-500"
             href="https://flashee.app"
             target="_blank"
           >
@@ -243,7 +243,7 @@ export default function About() {
             밴쿠버, 캐나다
           </p>
           <p className="text-base font-normal text-[#808080] italic">
-            프론트엔드 웹 개발자
+            프론트엔드 개발자
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>통합 의류 쇼핑 마켓플레이스(E-Commerce) 스타트업</li>
@@ -289,7 +289,7 @@ export default function About() {
         </div>
         <div className="col-span-2">
           <Link
-            className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
+            className="text-2xl font-medium hover:text-cyan-500"
             href="https://www.aiclinic.ca"
             target="_blank"
           >
@@ -299,7 +299,7 @@ export default function About() {
             밴쿠버, 캐나다
           </p>
           <p className="text-base font-normal text-[#808080] italic">
-            풀스택 웹 개발자
+            풀스택 개발자
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
@@ -343,7 +343,7 @@ export default function About() {
         </div>
         <div className="col-span-2">
           <Link
-            className="text-2xl font-medium hover:text-cyan-500 underline underline-offset-2"
+            className="text-2xl font-medium hover:text-cyan-500"
             href="https://www.catalyx.io"
             target="_blank"
           >
@@ -353,7 +353,7 @@ export default function About() {
             밴쿠버, 캐나다
           </p>
           <p className="text-base font-normal text-[#808080] italic">
-            프론트엔드 웹 개발자
+            프론트엔드 개발자
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>캐나다에 위치한 암호화폐 거래소 스타트업</li>
@@ -399,7 +399,7 @@ export default function About() {
             <li>
               <a
                 className="text-cyan-500 hover:underline hover:underline-offset-2"
-                href="https://www.youtube.com/watch?v=sIZqCxLnLSY&ab_channel=LentalRents"
+                href="https://github.com/jaeungkim/jaeung-kim-IS24-full-stack-competition-req97073"
                 target="_blank"
               >
                 깃허브 소스 코드
@@ -464,7 +464,7 @@ export default function About() {
       <hr className="my-11"></hr>
 
       {/* WebGL Playground */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           WebGL Playground
         </div>
@@ -488,7 +488,7 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11"></hr> */}
 
       {/* Skills */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
@@ -577,9 +577,13 @@ export default function About() {
           2013.09 ~ 2020.04
         </div>
         <div className="col-span-2">
-          <p className="text-2xl font-medium mb-2">
-            브리티시 컬럼비아 대학교 (4년제)
-          </p>
+          <Link
+            className="text-2xl font-medium hover:text-cyan-500"
+            href="https://www.ubc.ca/"
+            target="_blank"
+          >
+            <p className="mb-2">브리티시 컬럼비아 대학교 (4년제)</p>
+          </Link>
           <p className="text-base font-normal text-[#808080] italic">
             컴퓨터 과학과 졸업
           </p>
@@ -592,9 +596,13 @@ export default function About() {
           2008.09 ~ 2013.06
         </div>
         <div className="col-span-2">
-          <p className="text-2xl font-medium mb-2">
-            세미아무 세컨더리 중고등학교
-          </p>
+          <Link
+            className="text-2xl font-medium hover:text-cyan-500"
+            href="https://www.surreyschools.ca/semiahmoo"
+            target="_blank"
+          >
+            <p>세미아무 세컨더리 학교</p>
+          </Link>
         </div>
       </div>
       <hr className="my-11"></hr>
