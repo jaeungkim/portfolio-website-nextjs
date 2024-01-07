@@ -53,6 +53,7 @@ export default function Navbar() {
                   alt="profileLogo"
                   width="36"
                   height="36"
+                  priority
                 />
               </Link>
             </div>

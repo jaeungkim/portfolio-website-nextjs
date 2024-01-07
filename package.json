@@ -8,7 +8,9 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
-    "@next/mdx": "^13.4.3",
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^13.5.6",
     "@react-three/drei": "^9.69.2",
     "@react-three/fiber": "^8.13.0",
     "@remark-embedder/core": "^3.0.1",

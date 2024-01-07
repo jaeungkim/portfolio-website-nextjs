@@ -1,10 +1,10 @@
 // components/shared/mdxComponents.ts
 import Gist from "./gist";
-import LazyImage from "./lazyImage";
+import Image from 'next/image';
 
 const mdxComponents = {
   Gist,
-  img: (props) => <LazyImage {...props} />,
+  Image,
 };
 
 export default mdxComponents;
