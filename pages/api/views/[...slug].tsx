@@ -7,7 +7,8 @@ export default async function handler(
 ) {
   // increment the views
   if (req.method === "POST") {
-    const slug = req.query.slug as string;
+    const slugParts = req.query.slug;
+    const slug = Array.isArray(slugParts) ? slugParts.join("/") : slugParts;
     const ref = db.ref(`views/${slug}`);
     const { snapshot } = await ref.transaction((currentViews: number) => {
       if (currentViews === null) {

@@ -195,7 +195,7 @@ export default function About() {
       <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="md:text-right md:px-4 w-full">
           <p className="text-2xl font-medium text-[#808080] ">
-            2024.01 ~ PRESENT
+            2024.01 ~
           </p>
           <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
             {calculateExperience("2024-01-01")}
@@ -628,7 +628,7 @@ export default function About() {
 
       <div className="md:grid md:grid-cols-3 md:gap-4 mt-11">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          2023.12 ~ 현재
+          2023.12 ~
         </div>
         <div className="col-span-2">
           <p className="text-2xl font-medium mb-2">

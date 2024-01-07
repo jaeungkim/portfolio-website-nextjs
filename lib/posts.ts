@@ -6,25 +6,6 @@ import prism from "remark-prism";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-function getPostMetadata(fileName) {
-  const id = fileName.replace(/\.mdx$/, "");
-
-  const match = id.match(/^([\w-]+)/);
-  const slug = match ? match[1] : "";
-
-  const fullPath = path.join(postsDirectory, fileName);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-
-  const matterResult = matter(fileContents);
-
-  return {
-    id,
-    slug,
-    tags: matterResult.data.tags || [],
-    ...(matterResult.data as { date: string; title: string }),
-  };
-}
-
 const categories = ["daily", "studying", "travel"];
 
 export function getSortedPostsData() {
@@ -37,14 +18,15 @@ export function getSortedPostsData() {
     const postsData = fileNames
       .map((fileName) => {
         const id = fileName.replace(/\.mdx$/, "");
+        // Include the category in the id
+        const fullId = `${category}/${id}`;
         const fullPath = path.join(categoryDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const matterResult = matter(fileContents);
 
-        // Include only posts with non-empty tags array
         if (matterResult.data.tags && matterResult.data.tags.length > 0) {
           return {
-            id,
+            id: fullId, // Use the fullId including the category
             category,
             ...(matterResult.data as {
               date: string;
@@ -54,20 +36,47 @@ export function getSortedPostsData() {
           };
         }
       })
-      .filter((post) => post != null); // Remove undefined entries from the array
-
+      .filter((post) => post != null);
     allPostsData = allPostsData.concat(postsData);
   });
 
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getPostData(id: string) {
-  const fullPath = path.join(postsDirectory, `${id}.mdx`);
+export function getAllPostIds() {
+  let paths = [];
+
+  categories.forEach((category) => {
+    const categoryDirectory = path.join(postsDirectory, category);
+    const fileNames = fs.readdirSync(categoryDirectory);
+
+    const categoryPaths = fileNames.map((fileName) => {
+      const postId = fileName.replace(/\.mdx$/, "");
+      return {
+        params: {
+          id: [category, postId], // Update this to be an array
+        },
+      };
+    });
+
+    paths = paths.concat(categoryPaths);
+  });
+
+  return paths;
+}
+
+export async function getPostData(id: string[]) {
+  const [category, postId] = id;
+
+  if (!category || !postId) {
+    throw new Error(`Invalid post ID: ${id.join("/")}`);
+  }
+
+  const fullPath = path.join(postsDirectory, category, `${postId}.mdx`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
-  const match = id.match(/^([\w-]+)/);
-  const slug = match ? match[1] : "";
+  // postId itself is the slug, no need to use match
+  const slug = postId;
 
   const matterResult = matter(fileContents);
 
@@ -80,7 +89,7 @@ export async function getPostData(id: string) {
 
   return {
     slug,
-    id,
+    id: id.join("/"), // Concatenate category and postId for the full ID
     tags: matterResult.data.tags || [],
     contentHtml,
     ...(matterResult.data as { date: string; title: string }),
