@@ -41,7 +41,7 @@ export default function Post({ postData }: PostProps) {
       <ScrollToTopButton />
       <BackButton />
       <ViewCounter slug={postData.id} />
-      <article className="prose lg:prose-lg dark:prose-invert mx-auto overflow-auto !max-w-none">
+      <article className="prose lg:prose-lg dark:prose-invert prose-a:text-cyan-600 hover:prose-a:text-cyan-500 mx-auto overflow-auto !max-w-none">
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div key={postData.id}>
           <MDXRemote {...postData.contentHtml} components={mdxComponents} />
