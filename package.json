@@ -30,7 +30,6 @@
     "gray-matter": "^4.0.3",
     "gsap": "^3.11.5",
     "hast-util-sanitize": "^4.1.0",
-    "medium-to-markdown": "^1.0.0",
     "motion": "^10.16.2",
     "mouse-follower": "^1.1.2",
     "next": "latest",
