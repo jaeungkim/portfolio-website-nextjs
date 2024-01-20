@@ -10,7 +10,7 @@ const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
 
 interface AppProps {
   Component: FC;
-  pageProps: any; // You can replace 'any' with a more specific type if available
+  pageProps: any;
 }
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {

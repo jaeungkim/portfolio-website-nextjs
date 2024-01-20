@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import Layout from "@/components/shared/layout";
 import { getSortedPostsData } from "@/lib/posts";
@@ -21,7 +21,7 @@ interface BlogProps {
 
 export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
+  const [decryptName, setDecryptName] = useState<string>();
   //Tabs
   const [activeTab, setActiveTab] = useState("daily"); // New state for active tab
   const categories = ["Daily", "Studying", "Travel"];
@@ -68,6 +68,66 @@ export default function Blog({ allPostsData }: BlogProps) {
         );
   }, [filteredPostsByCategory, selectedTags]);
 
+  useEffect(() => {
+    async function decryptAndRetrieveData() {
+      try {
+        console.log("Attempting to retrieve data from localStorage");
+        console.log("localStorage keys available:", Object.keys(localStorage));
+
+        const encryptedData = localStorage.getItem("encryptedUserInfo");
+        const iv = localStorage.getItem("userInfoIV");
+        const base64Key = localStorage.getItem("encryptionKey");
+
+        if (!encryptedData || !iv || !base64Key) {
+          console.error("No encrypted data, IV, or key found in Local Storage");
+          console.log("encryptedData:", encryptedData);
+          console.log("IV:", iv);
+          console.log("Key:", base64Key);
+          return;
+        }
+
+        const encryptedBuffer = Uint8Array.from(atob(encryptedData), (c) =>
+          c.charCodeAt(0)
+        );
+        const ivBuffer = Uint8Array.from(atob(iv), (c) => c.charCodeAt(0));
+        const keyBuffer = Uint8Array.from(atob(base64Key), (c) =>
+          c.charCodeAt(0)
+        );
+
+        // Import the key
+        const key = await window.crypto.subtle.importKey(
+          "raw",
+          keyBuffer,
+          {
+            name: "AES-GCM",
+            length: 256,
+          },
+          true,
+          ["decrypt"]
+        );
+
+        const decryptedData = await window.crypto.subtle.decrypt(
+          {
+            name: "AES-GCM",
+            iv: ivBuffer,
+          },
+          key,
+          encryptedBuffer
+        );
+
+        const dec = new TextDecoder();
+        const decryptedStr = dec.decode(decryptedData);
+        const userInfo = JSON.parse(decryptedStr);
+        console.log(userInfo);
+        setDecryptName(userInfo.name);
+      } catch (error) {
+        console.error("Error decrypting or retrieving data:", error);
+      }
+    }
+
+    decryptAndRetrieveData();
+  }, []);
+
   return (
     <Layout>
       <Head>
@@ -76,6 +136,7 @@ export default function Blog({ allPostsData }: BlogProps) {
       <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
         Blog
       </h1>
+      <p>{decryptName}</p>
       <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         Welcome to my personal blog, where I share my thoughts and experiences
         on various topics including technology, travel, personal development and
