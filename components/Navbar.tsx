@@ -4,6 +4,7 @@ import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -15,6 +16,17 @@ const navigation = [
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { i18n } = useTranslation(); // Initialize i18n
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Change language with i18n
+  };
+
+  const languageSwitcherClass = useMemo(() => {
+    return `flex gap-2 text-xs group rounded-full py-2 bg-white/90 px-3 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 ${
+      theme === "dark" ? "hover:bg-zinc-700" : "hover:bg-zinc-100"
+    }`;
+  }, [theme]);
 
   const themeButtonClass = useMemo(() => {
     return `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 ${
@@ -43,7 +55,7 @@ export default function Navbar() {
   return (
     <>
       <div className="w-full mx-auto max-w-7xl lg:px-8">
-        <div className="relative px-4 sm:px-8 lg:px-12 flex gap-4">
+        <div className="relative px-4 sm:px-8 lg:px-12 flex gap-4 items-center">
           <div className="flex flex-1">
             <div className="h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
               <Link className="pointer-events-auto" href="/">
@@ -95,8 +107,13 @@ export default function Navbar() {
           </div>
 
           <div className="flex justify-end md:flex-1">
-            <div className="pointer-events-auto">
-              {" "}
+            <div className="pointer-events-auto flex gap-2">
+              <div className={languageSwitcherClass}>
+                <button onClick={() => changeLanguage("ko")}>KOR</button>
+                <button onClick={() => changeLanguage("en")}>ENG</button>
+              </div>
+
+              {/* Theme Switcher */}
               <button onClick={toggleTheme} className={themeButtonClass}>
                 {icon}
               </button>

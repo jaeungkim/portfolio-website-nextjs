@@ -631,7 +631,7 @@ export default function About({ lastUpdated }) {
         </div>
         <div className="col-span-2">
           <p className="text-2xl font-medium mb-2">
-            캐나다 밴쿠버 이민 (캐나다 시민권자)
+            캐나다 밴쿠버 이민 (캐나다 시민권자)
           </p>
           <p className="text-base font-normal text-[#808080] italic">
             영어 원어민 수준

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 type CrypticTextDynamicProps = {
   text: string;
@@ -13,16 +13,15 @@ export default function CrypticText({
   delay,
 }: CrypticTextDynamicProps) {
   const [cryptic, setCryptic] = useState("");
+  const animationRef = useRef<number>();
 
   const animate = useCallback(() => {
     const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
-    // const letters = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ";
     const repeatDivider = 4;
     const timeoutValue = 0.1 + (delay ? delay : 0) * 60;
 
     let iteration = 0;
     let elapsed = 0;
-    let animation: number;
 
     function animateCallback() {
       elapsed++;
@@ -39,7 +38,7 @@ export default function CrypticText({
           .join("");
 
         if (iteration >= text.length) {
-          cancelAnimationFrame(animation);
+          cancelAnimationFrame(animationRef.current);
         }
         iteration += text.length * 0.04;
 
@@ -48,22 +47,27 @@ export default function CrypticText({
         iteration++;
       }
 
-      animation = requestAnimationFrame(animateCallback);
+      animationRef.current = requestAnimationFrame(animateCallback);
     }
 
     animateCallback();
-
-    return () => cancelAnimationFrame(animation);
   }, [delay, text]);
 
   useEffect(() => {
     animate();
-  }, [animate]);
+
+    // Cleanup function
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [animate, text]); // Added 'text' to dependency array
 
   return (
     <span
       className={clsx(
-        "text-inherit whitespace-normal truncate block relative overflow-visible p-[2px]",
+        "text-inherit whitespace-normal truncate block relative overflow-visible",
         classNames
       )}
       style={{
