@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-
+import fs from "fs";
+import path from "path";
+import { format } from "date-fns";
 // Function to calculate experience duration
 const calculateExperience = (startDate, endDate = null) => {
   const start = new Date(startDate);
@@ -69,12 +71,12 @@ const calculateTotalExperience = (experiences) => {
   return `${yearDisplay}${remainingMonths}개월`;
 };
 
-export default function About() {
+export default function About({ lastUpdated }) {
   return (
     <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F]">
       {/* HEADER  */}
       <div className="md:grid md:grid-cols-3 gap-4">
-        <div className="flex justify-center md:justify-normal">
+        <div className="flex justify-center md:justify-normal mb-11 md:mb-0">
           {" "}
           <img
             className="w-full aspect-[35/45] max-w-[240px] object-cover rounded-md"
@@ -146,7 +148,7 @@ export default function About() {
 
       {/* Introduce */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="font-semibold text-cyan-500 text-3xl uppercase">
+        <div className="font-semibold text-cyan-500 text-3xl uppercase mb-11">
           Introduce.
         </div>
         <div className="col-span-2">
@@ -185,7 +187,7 @@ export default function About() {
         </div>
         {/* pill of total */}
         <div className="mt-2">
-          <p className="text-xs py-1 px-4 bg-cyan-200 rounded-full">
+          <p className="text-xs py-1 px-4 bg-cyan-200 rounded-full whitespace-nowrap">
             총 {calculateTotalExperience(experiences)}
           </p>
         </div>
@@ -193,13 +195,15 @@ export default function About() {
 
       {/* e8ight */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="md:text-right md:px-4 w-full">
-          <p className="text-2xl font-medium text-[#808080] ">
+        <div className="w-full flex md:block md:text-right md:px-4 mb-4">
+          <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2024.01 ~
           </p>
-          <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            {calculateExperience("2024-01-01")}
-          </p>
+          <div className="flex justify-center ml-auto items-center align-middle">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+              {calculateExperience("2024-01-01")}
+            </p>
+          </div>
         </div>
 
         <div className="col-span-2">
@@ -211,10 +215,13 @@ export default function About() {
             <p>이에이트</p>
           </Link>
           <p className="text-base font-normal text-[#808080] italic mt-4">
-            플랫폼 개발팀 프론트엔드 개발자
+            플랫폼 개발팀 프론트엔드 개발자 | 주임 연구원
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
-            <li>플랫폼 개발팀 프론트엔드 개발자</li>
+            <li>
+              시뮬레이션으로 연결하여 새로운 디지털 세계를 만드는 플랫폼 개발
+              기업
+            </li>
           </ul>
         </div>
       </div>
@@ -222,13 +229,15 @@ export default function About() {
 
       {/* Flashee */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="md:text-right md:px-4 w-full">
-          <p className="text-2xl font-medium text-[#808080] ">
+        <div className="w-full flex md:block md:text-right md:px-4 mb-4">
+          <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2023.07 ~ 2023.10
           </p>
-          <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            {calculateExperience("2023-07-01", "2023-10-01")}
-          </p>
+          <div className="flex justify-center ml-auto items-center align-middle">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+              {calculateExperience("2023-07-01", "2023-10-01")}
+            </p>
+          </div>
         </div>
 
         <div className="col-span-2">
@@ -239,7 +248,7 @@ export default function About() {
           >
             <p>Flashee</p>
           </Link>
-          <p className="text-base font-normal text-[#808080] italic mt-2 mb-4">
+          <p className="text-base font-normal text-[#808080] italic mt-4 mb-4">
             밴쿠버, 캐나다
           </p>
           <p className="text-base font-normal text-[#808080] italic">
@@ -279,13 +288,15 @@ export default function About() {
 
       {/* iClinic Systems */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="md:text-right md:px-4 w-full">
-          <p className="text-2xl font-medium text-[#808080] ">
+        <div className="w-full flex md:block md:text-right md:px-4 mb-4">
+          <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2022.07 ~ 2023.06
           </p>
-          <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            {calculateExperience("2022-07-01", "2023-06-01")}
-          </p>
+          <div className="flex justify-center ml-auto items-center align-middle">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+              {calculateExperience("2022-07-01", "2023-06-01")}
+            </p>
+          </div>
         </div>
         <div className="col-span-2">
           <Link
@@ -295,7 +306,7 @@ export default function About() {
           >
             <p>iClinic Systems Inc.</p>
           </Link>
-          <p className="text-base font-normal text-[#808080] italic mt-2 mb-4">
+          <p className="text-base font-normal text-[#808080] italic mt-4 mb-4">
             밴쿠버, 캐나다
           </p>
           <p className="text-base font-normal text-[#808080] italic">
@@ -333,13 +344,15 @@ export default function About() {
 
       {/* Catalyx */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="md:text-right md:px-4 w-full">
-          <p className="text-2xl font-medium text-[#808080] ">
+        <div className="w-full flex md:block md:text-right md:px-4 mb-4">
+          <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2021.01 ~ 2022.05
           </p>
-          <p className="font-medium text-xs mt-2 py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto">
-            {calculateExperience("2021-01-01", "2022-05-01")}
-          </p>
+          <div className="flex justify-center ml-auto items-center align-middle">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+              {calculateExperience("2021-01-01", "2022-05-01")}
+            </p>
+          </div>
         </div>
         <div className="col-span-2">
           <Link
@@ -349,7 +362,7 @@ export default function About() {
           >
             <p>Catalx Management Ltd.</p>
           </Link>
-          <p className="text-base font-normal text-[#808080] italic mt-2 mb-4">
+          <p className="text-base font-normal text-[#808080] italic mt-4 mb-4">
             밴쿠버, 캐나다
           </p>
           <p className="text-base font-normal text-[#808080] italic">
@@ -634,14 +647,13 @@ export default function About() {
           <p className="text-2xl font-medium mb-2">
             한국 F-4 재외동포 비자로 거주 중
           </p>
-          {/* <p className="text-base font-normal text-[#808080] italic">영어 원어민 수준</p> */}
         </div>
       </div>
 
       <footer className="pt-[150px] flex flex-col items-center justify-center">
         <p className="text-base">감사합니다.</p>
         <div className="my-[50px] text-sm text-[#808080] text-center">
-          <p>Last updated: 2024.01.05</p>
+          <p>Last updated: {lastUpdated}</p>
           <a className="hover:text-cyan-500" href="https://www.jaeungkim.com">
             @jaeungkim
           </a>
@@ -649,4 +661,15 @@ export default function About() {
       </footer>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), "pages", "resume.tsx");
+  const fileStats = fs.statSync(filePath);
+
+  return {
+    props: {
+      lastUpdated: format(fileStats.mtime, "yyyy.MM.dd"),
+    },
+  };
 }
