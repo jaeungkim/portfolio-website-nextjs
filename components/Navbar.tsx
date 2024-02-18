@@ -108,10 +108,10 @@ export default function Navbar() {
 
           <div className="flex justify-end md:flex-1">
             <div className="pointer-events-auto flex gap-2">
-              <div className={languageSwitcherClass}>
+              {/* <div className={languageSwitcherClass}>
                 <button onClick={() => changeLanguage("ko")}>KOR</button>
                 <button onClick={() => changeLanguage("en")}>ENG</button>
-              </div>
+              </div> */}
 
               {/* Theme Switcher */}
               <button onClick={toggleTheme} className={themeButtonClass}>

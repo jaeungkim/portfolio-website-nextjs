@@ -154,7 +154,7 @@ export default function About({ lastUpdated }) {
         <div className="col-span-2">
           <p className="text-base mb-4 font-normal">
             해외 스타트업 환경에서 웹 서비스의 설계, 개발, 배포 및 운영을 통해
-            2년간의 경험을 쌓은 개발자로서, 웹 서비스에 생동감을 불어넣는 모션
+            3년간의 경험을 쌓은 개발자로서, 웹 서비스에 생동감을 불어넣는 모션
             구현을 통해 사용자 경험을 풍부하게 만드는 것을 좋아합니다.
           </p>
           <p className="text-base mb-4">
