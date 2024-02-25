@@ -66,11 +66,39 @@ export default function About() {
           />
         </h2>
         <p className="mt-4 mb-4 text-base text-zinc-600 dark:text-zinc-400">
-          I'm a software developer from Vancouver, Canada 🇨🇦.
+          Hey, I'm Jae. I've graduated from{" "}
+          <span>
+            <a
+              href="https://www.ubc.ca/"
+              target="_blank"
+              className="hover:text-[#0055B7]"
+            >
+              University of British Columbia{" "}
+            </a>
+          </span>
+          with Computer Science degree back in 2020, and since then, I've been
+          working as a software developer.
         </p>
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
-          Currently, I been living in South Korea for about 3 years now. Welcome
-          to my digital playground 😈
+          This is my personal space on the internet dedicated to showcasing my
+          writing, various projects, tutorials, art pieces, and any other
+          content I'm passionate about sharing. Dive into the blog or check out
+          the projects page for a glimpse of my work.
+        </p>
+        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
+          Currently, I am living in South Korea working at
+          <span>
+            <a
+              href="https://e8ight.co.kr/"
+              target="_blank"
+              className="hover:text-cyan-500"
+            >
+              {" "}
+              E8ight{" "}
+            </a>
+          </span>
+          as a frontend developer, located at lotte world tower, sixth-tallest
+          building in the world.
         </p>
 
         <div className="mt-6 flex gap-6">
