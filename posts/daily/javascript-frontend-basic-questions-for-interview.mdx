@@ -82,7 +82,7 @@ There are many other posts related to frontend technical interviews, but there a
     1. Variable Hoisting:
         * var Declarations: If you declare a variable using var, it is hoisted to the top of its functional or global scope. However, only the declaration is hoisted, not the initialization. If you try to use the variable before the point where it is declared and initialized, it will have a value of undefined.
 
-        ```js
+        ```tsx
         console.log(x); // undefined
         var x = 5;
         console.log(x); // 5
@@ -90,7 +90,7 @@ There are many other posts related to frontend technical interviews, but there a
 
         * let and const Declarations: Variables declared with let and const are also hoisted, but they remain in a "temporal dead zone" from the start of the block until the declaration is reached. Accessing them before the declaration results in a ReferenceError.
 
-        ```js
+        ```tsx
         console.log(y); // ReferenceError: y is not defined
         let y = 5;
         ```
@@ -98,7 +98,7 @@ There are many other posts related to frontend technical interviews, but there a
     2. Function Hoisting:
         * Function Declarations: Function declarations are hoisted entirely to the top of their containing scope, meaning you can call a function before its declaration in the code.
 
-        ```js
+        ```tsx
         hello(); // "Hello, world!"
         function hello() {
             console.log("Hello, world!");
@@ -107,7 +107,7 @@ There are many other posts related to frontend technical interviews, but there a
 
         * Function Expressions: Function expressions, on the other hand, are not hoisted. If a function is defined as part of an expression (including functions defined using const, let, or var), it won't be available until the execution reaches the point where the expression is defined.
 
-        ```js
+        ```tsx
         hi(); // TypeError: hi is not a function
         var hi = function() {
             console.log("Hi!");
@@ -127,7 +127,7 @@ Before diving into closures, it's important to understand lexical scope. Lexical
 
 A closure is created every time a function is defined. To see a closure in action, consider the following example:
 
-```js
+```tsx
 function outerFunction() {
     let outerVariable = 'I am outside!';
 
@@ -160,7 +160,7 @@ Closures have several practical uses, such as:
 
 Here’s an example that demonstrates data encapsulation using closures:
 
-```js
+```tsx
 function createCounter() {
     let count = 0;
 

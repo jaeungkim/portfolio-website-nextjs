@@ -12,7 +12,7 @@ Objects in JavaScript, just as in many other programming languages, can be compa
 
 > A cup has a color, a design, weight, a material it is made of, etc. The same way, JavaScript objects can have properties, which define their characteristics.
 
-```js
+```tsx
 const myHonda = {
   color: "red",
   wheels: 4,
@@ -26,7 +26,7 @@ Now, we will look at some object basics and its manipulation methods.
 
 ### Return array of values from an Object: [Object.values()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values)
 
-```js
+```tsx
 const coffee = {
   roast: "dark",
   type: "black",
@@ -40,7 +40,7 @@ const coffeeStat = Object.values(coffee);
 
 ### Return array of keys from an Object: [Object.keys()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 
-```js
+```tsx
 const coffee = {
   roast: "dark",
   type: "black",
@@ -54,7 +54,7 @@ const coffeeKeys = Object.keys(coffee);
 
 #### Return an array of keys+values: [Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
 
-```js
+```tsx
 const coffee = {
   roast: "dark",
   type: "black",
@@ -68,7 +68,7 @@ const entries = Object.entries(coffee);
 
 ### Merging Object with Spread:
 
-```js
+```tsx
 const firstArray = [1, 2, 3, 4];
 const secondArray = [5, 6, 7, 8];
 
@@ -84,7 +84,7 @@ const combined = [...firstArray, ...secondArray];
 
 Create an array of coffee that’s not over $4
 
-```js
+```tsx
 const coffees = [3.2, 5.6, 1.2, 5.2, 2.2, 6.3];
 const cheapCoffees = coffees.filter((coffee) => coffee < 4); // cheapCoffees will be equal to [3.2, 1.2, 2.2]
 ```
@@ -95,7 +95,7 @@ const cheapCoffees = coffees.filter((coffee) => coffee < 4); // cheapCoffees wil
 
 Create an array that adds $ to the beginning of each price of coffee.
 
-```js
+```tsx
 const coffees = [3.2, 5.6, 1.2, 5.2, 2.2, 6.3];
 const coffeePrice = coffees.map((coffee) => "$" + coffee);
 // coffeePrice will be equal to [$3.2, $5.6, $1.2, $5.2, $2.2, $6.3]
@@ -107,7 +107,7 @@ const coffeePrice = coffees.map((coffee) => "$" + coffee);
 
 Output the sum of the coffee
 
-```js
+```tsx
 const coffees = [3.2, 5.6, 1.2, 5.2, 2.2, 6.3];
 const total = coffees.reduce(
   (accumulator, currentValue) => accumulator + currentValue
@@ -121,7 +121,7 @@ const total = coffees.reduce(
 
 check if there is a coffee price of 1.2 in an array
 
-```js
+```tsx
 const coffees = [3.2, 5.6, 1.2, 5.2, 2.2, 6.3];
 const containsPrice = coffees.some((coffee) => coffee === 1.2);
 // containsPrice will return true
@@ -133,7 +133,7 @@ const containsPrice = coffees.some((coffee) => coffee === 1.2);
 
 check if all coffee price exceeds a dollar.
 
-```js
+```tsx
 const coffees = [3.2, 5.6, 1.2, 5.2, 2.2, 6.3];
 const allCoffee = coffees.every((coffee) => coffee > 1.0);
 // allCoffee will return true
@@ -145,7 +145,7 @@ const allCoffee = coffees.every((coffee) => coffee > 1.0);
 
 check if the coffee price of 6.3 is in the array
 
-```js
+```tsx
 const coffees = [3.2, 5.6, 1.2, 5.2, 2.2, 6.3];
 const coffeePrice = coffees.includes(6.3);
 // coffeePrice will return true

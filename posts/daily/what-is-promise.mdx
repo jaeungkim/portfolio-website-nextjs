@@ -57,7 +57,7 @@ The `then()` method is used with the callback when the promise is successfully f
 
 The syntax of `then()` the method is:
 
-```js
+```tsx
 promiseObject.then(onFulfilled, onRejected);
 ```
 
@@ -69,13 +69,13 @@ The `catch()` method is used with the callback when the promise is rejected or i
 
 Firstly, we use a constructor to create a Promise object:
 
-```js
+```tsx
 const myPromise = new Promise();
 ```
 
 It takes two parameters, one for success (resolve) and one for fail (reject):
 
-```js
+```tsx
 const myPromise = new Promise((resolve, reject) => {
   // condition
 });
@@ -83,7 +83,7 @@ const myPromise = new Promise((resolve, reject) => {
 
 Finally, there will be a condition. If the condition is met, the Promise will be resolved, otherwise it will be rejected:
 
-```js
+```tsx
 const myPromise = new Promise((resolve, reject) => {
     let condition;
 
@@ -101,7 +101,7 @@ So we have created our first Promise. Now let’s use it.
 
 If you revisit the Fig1.2 in this post, you’ll see that there are 2 cases: One for resolved promises and one for rejected. If the Promise gets resolved (success case), then something will happen next (depends on what we do with the successful Promise).
 
-```js
+```tsx
 myPromise.then();
 ```
 
@@ -109,7 +109,7 @@ The then( ) method is called after the Promise is resolved. Then we can decide w
 
 For example, let’s log the message to the console that we got from the Promise:
 
-```js
+```tsx
 myPromise.then((message) => {
   console.log(message);
 });
@@ -122,7 +122,7 @@ However, the then( ) method is only for resolved Promises. What if the Promise f
 Likewise, we attach the then( ) method. We can also directly attach the
 catch( ) method right after then( ):
 
-```js
+```tsx
 myPromise
   .then((message) => {
     console.log(message);

@@ -1,5 +1,5 @@
 import "@/styles/global.css";
-import "prismjs/themes/prism-okaidia.css";
+// import "prismjs/themes/prism-tomorrow.css";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ThemeProvider } from "next-themes";

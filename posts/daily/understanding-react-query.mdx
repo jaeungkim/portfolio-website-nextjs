@@ -41,7 +41,7 @@ The basic structure of `useQuery` includes:
 
 Suppose you want to fetch a list of todos from an API.
 
-```js
+```tsx
 import { useQuery } from 'react-query';
 
 const fetchTodos = async () => {
@@ -75,7 +75,7 @@ In this example:
 
 Dynamic query keys enable you to fetch data based on variables, like fetching a specific item by its ID.
 
-```js
+```tsx
 const fetchTodo = async (todoId) => {
   const response = await fetch(`https://api.example.com/todos/${todoId}`);
   return response.json();
@@ -94,7 +94,7 @@ Here, the query key is an array: `['todo', todoId]`. React Query treats each uni
 
 Sometimes you need to run queries based on the outcome of another. `useQuery` allows for dependent queries using the `enabled` option.
 
-```js
+```tsx
 function UserProfile({ userId }) {
   const { data: user } = useQuery(['user', userId], fetchUser);
 
@@ -114,7 +114,7 @@ Imagine you have an application where you need to fetch user data from an API ba
 
 #### Step 1: Define the Fetch Function
 
-```js
+```tsx
 const fetchUsers = async ({ queryKey }) => {
   const [_key, { search, page }] = queryKey;
   const response = await fetch(`https://api.example.com/users?search=${search}&page=${page}`);
@@ -126,7 +126,7 @@ In `fetchUsers`, we destructure the `queryKey` to access the search term and pag
 
 #### Step 2: Use the useQuery Hook with Options
 
-```js
+```tsx
 import { useQuery } from 'react-query';
 
 function UsersList({ search, page }) {
@@ -173,7 +173,7 @@ The fundamental components of `useMutation` include:
 
 Suppose you have a form for adding new todos:
 
-```js
+```tsx
 import { useMutation, useQueryClient } from 'react-query';
 
 const addTodo = async (newTodo) => {
@@ -215,7 +215,7 @@ In this example:
 
 Optimistic updates provide a smoother user experience by updating the UI before the mutation is confirmed by the server.
 
-```js
+```tsx
 function TodoForm() {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(addTodo, {
@@ -254,7 +254,7 @@ Imagine you're developing a feature for a social media application that allows u
 
 #### Step 1: Define the Mutation Function
 
-```js
+```tsx
 const updateUserProfile = async (userData) => {
   const response = await fetch(`https://api.example.com/user/profile`, {
     method: 'PUT',
@@ -271,7 +271,7 @@ const updateUserProfile = async (userData) => {
 In `updateUserProfile`, we send a PUT request to update the user's profile.
 #### Step 2: Use the useMutation Hook with Advanced Options
 
-```js
+```tsx
 import { useMutation, useQueryClient } from 'react-query';
 
 function UserProfileForm({ user }) {

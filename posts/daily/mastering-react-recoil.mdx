@@ -26,7 +26,7 @@ Before diving into implementation, it's crucial to understand a few key concepts
 
 Atoms are the core building blocks of Recoil's state management. To define an atom, you need to give it a unique key and an initial value:
 
-```js
+```tsx
 import { atom } from 'recoil';
 
 const counterState = atom({
@@ -37,7 +37,7 @@ const counterState = atom({
 
 You can then use the ***useRecoilState*** hook to manage this state within your components:
 
-```js
+```tsx
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { counterState } from './store';
@@ -58,7 +58,7 @@ function Counter() {
 
 Selectors allow you to derive or transform state in a composable way. For example, you can create a selector to double the count:
 
-```js
+```tsx
 import { selector } from 'recoil';
 import { counterState } from './store';
 
@@ -73,7 +73,7 @@ const doubleCountState = selector({
 
 To use this selector, you can utilize the useRecoilValue hook in your component:
 
-```js
+```tsx
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { doubleCountState } from './store';

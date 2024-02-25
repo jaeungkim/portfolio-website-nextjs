@@ -14,7 +14,7 @@ Securing user data is a critical concern in web development. As React developers
 
 The `useSecureStore` hook is responsible for securely storing data. It takes a `key` and `data` as arguments. The data is stored securely when the component mounts or when the data changes.
 
-```js
+```tsx
 import { useEffect } from "react";
 import secureStorage from "react-secure-storage";
 export function useSecureStore(key, data) {
@@ -37,7 +37,7 @@ export function useSecureStore(key, data) {
 
 The `useSecureRetrieve` hook is for retrieving data securely. It accepts a `key` and a `setData` function, which is used to update your component's state with the retrieved data.
 
-```js
+```tsx
 export function useSecureRetrieve(key, setData) {
   useEffect(() => {
     async function retrieveData() {
@@ -65,7 +65,7 @@ Now let's see how we can use these hooks in our components to store and retrieve
 
 Imagine you have a user profile component, and you want to store the user's information securely.
 
-```js
+```tsx
 import React from "react";
 import { useSecureStore } from "./hooks/useSecureStorage";
 
@@ -87,7 +87,7 @@ export default UserProfile;
 
 Now, if you want to retrieve and display this information in another component, you can use the useSecureRetrieve hook.
 
-```js
+```tsx
 import React, { useState } from "react";
 import { useSecureRetrieve } from "./hooks/useSecureStorage";
 
