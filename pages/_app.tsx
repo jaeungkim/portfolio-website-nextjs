@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 import { useRouter } from "next/router";
 import { useEffect, useState, FC } from "react";
-import "@/locales/i18n";
+// import "@/locales/i18n";
 
 const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
 

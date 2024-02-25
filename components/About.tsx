@@ -60,22 +60,17 @@ export default function About() {
       <article className="md:basis-4/6 lg:basis-3/6">
         <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
           <MemoizedCrypticTextDynamic
-            text={t(`About.title`)}
+            text="Hello I'm Jay Kim"
             delay={0.1}
             classNames={`${styles.fadein}`}
           />
         </h2>
         <p className="mt-4 mb-4 text-base text-zinc-600 dark:text-zinc-400">
-          {t(`About.first-paragraph`)}
+          I'm a software developer from Vancouver, Canada 🇨🇦.
         </p>
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
-          {t(`About.second-paragraph`)}
-        </p>
-        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
-          {t(`About.third-paragraph`)}
-        </p>
-        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
-          {t(`About.fourth-paragraph`)}
+          Currently, I been living in South Korea for about 3 years now. Welcome
+          to my digital playground 😈
         </p>
 
         <div className="mt-6 flex gap-6">
