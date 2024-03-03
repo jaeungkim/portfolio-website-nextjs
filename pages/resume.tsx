@@ -598,10 +598,10 @@ export default function About({ lastUpdated }) {
             href="https://www.ubc.ca/"
             target="_blank"
           >
-            <p className="mb-2">브리티시 컬럼비아 대학교 (4년제)</p>
+            <p className="mb-2">University of British Columbia (4년제)</p>
           </Link>
           <p className="text-base font-normal text-[#808080] italic">
-            컴퓨터 과학과 졸업
+            Bachelor of Science - Major in Computer Science
           </p>
         </div>
       </div>
@@ -617,7 +617,7 @@ export default function About({ lastUpdated }) {
             href="https://www.surreyschools.ca/semiahmoo"
             target="_blank"
           >
-            <p>세미아무 세컨더리 학교</p>
+            <p>Semiahmoo Secondary School</p>
           </Link>
         </div>
       </div>
