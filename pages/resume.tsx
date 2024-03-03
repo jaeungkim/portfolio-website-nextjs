@@ -517,6 +517,8 @@ export default function About({ lastUpdated }) {
             <li>React</li>
             <li>Next.js</li>
             <li>Angular</li>
+            <li>React Query</li>
+            <li>Recoil</li>
             <li>Redux</li>
             <li>JavaScript</li>
             <li>TypeScript</li>
@@ -534,6 +536,7 @@ export default function About({ lastUpdated }) {
         <div className="col-span-2">
           <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
             <li>Node.js</li>
+            <li>Nest.js</li>
             <li>Express.js</li>
           </ul>
         </div>
