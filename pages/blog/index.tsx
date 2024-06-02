@@ -22,7 +22,7 @@ export default function Blog({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [decryptName, setDecryptName] = useState<string>();
   const [activeTab, setActiveTab] = useState("daily");
-  const categories = ["Daily", "Studying", "Travel"];
+  const categories = ["Daily", "Studying"];
 
   const handleTagClick = (tag: string) => {
     setSelectedTags((prevSelectedTags) =>
@@ -73,7 +73,7 @@ export default function Blog({ allPostsData }: BlogProps) {
       </h1>
       <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         Welcome to my personal blog, where I share my thoughts and experiences
-        on various topics including technology, travel, personal development and
+        on various topics including technology, personal development and
         more. Join me on this journey as I explore the world and share my
         perspective through written word.
       </p>

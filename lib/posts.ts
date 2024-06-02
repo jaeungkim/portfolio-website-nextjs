@@ -6,7 +6,7 @@ import prism from "remark-prism";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-const categories = ["daily", "studying", "travel"];
+const categories = ["daily", "studying"];
 
 export function getSortedPostsData() {
   let allPostsData = [];
