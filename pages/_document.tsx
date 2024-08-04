@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
-    <html lang="en-us" className="h-full">
+    <Html lang="en-us" className="h-full">
       <Head>
         <link rel="shortcut icon" href="/static/favicon.ico" />
         <link
@@ -13,6 +13,6 @@ export default function Document() {
         <Main />
         <NextScript />
       </body>
-    </html>
+    </Html>
   );
 }
