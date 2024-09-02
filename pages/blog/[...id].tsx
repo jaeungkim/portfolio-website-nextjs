@@ -64,7 +64,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // Ensure params.id is treated as an array
   if (!params || !Array.isArray(params.id)) {
     return { notFound: true };
   }

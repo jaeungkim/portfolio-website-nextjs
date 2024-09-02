@@ -153,8 +153,8 @@ export default function About({ lastUpdated }) {
         </div>
         <div className="col-span-2">
           <p className="text-base mb-4 font-normal">
-            해외 스타트업 환경에서 웹 서비스의 설계, 개발, 배포 및 운영을 통해
-            3년간의 경험을 쌓은 개발자로서, 웹 서비스에 생동감을 불어넣는 모션
+            스타트업 환경에서 웹 서비스의 설계, 개발, 배포 및 운영을 통해{` `}
+            {calculateTotalExperience(experiences)}{` `}간의 경험을 쌓은 개발자로서, 웹 서비스에 생동감을 불어넣는 모션
             구현을 통해 사용자 경험을 풍부하게 만드는 것을 좋아합니다.
           </p>
           <p className="text-base mb-4">
@@ -214,6 +214,9 @@ export default function About({ lastUpdated }) {
           >
             <p>이에이트</p>
           </Link>
+          <p className="text-base font-normal text-[#808080] italic mt-4 mb-4">
+            잠실, 대한민국
+          </p>
           <p className="text-base font-normal text-[#808080] italic mt-4">
             플랫폼 개발팀 프론트엔드 개발자 | 주임 연구원
           </p>
@@ -222,6 +225,9 @@ export default function About({ lastUpdated }) {
               시뮬레이션으로 연결하여 새로운 디지털 세계를 만드는 플랫폼 개발
               기업
             </li>
+            <li>NDXPRO ADMIN WEB 개발</li>
+            <li>EPC 프로젝트 개발</li>
+            <li>연합 트윈 포털 개발</li>
           </ul>
         </div>
       </div>
@@ -598,7 +604,7 @@ export default function About({ lastUpdated }) {
             href="https://www.ubc.ca/"
             target="_blank"
           >
-            <p className="mb-2">University of British Columbia (4년제)</p>
+            <p className="mb-2">University of British Columbia</p>
           </Link>
           <p className="text-base font-normal text-[#808080] italic">
             Bachelor of Science - Major in Computer Science
