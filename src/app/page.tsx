@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
     return (
-        <div className="md:flex w-full">
+        <div className="md:flex w-full h-full">
             <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px] md:mt-12">
 
             </div>
