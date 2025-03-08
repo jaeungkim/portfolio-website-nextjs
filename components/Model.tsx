@@ -1,124 +1,81 @@
-import { useAnimations, useGLTF, Html } from "@react-three/drei";
-import { useLoader, useThree, useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
 import * as THREE from "three";
-import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { AnimationAction, Object3D } from "three";
-import { AnimationClip } from "three";
-import { LoadingManager } from "three";
-
-interface group {
-  current: {
-    rotation: {
-      x: number;
-      y: number;
-    };
-  };
-}
-
-interface actions {
-  current: {
-    idle: {
-      play: () => void;
-    };
-  };
-}
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export default function Model() {
   /* Refs */
-  const group: group = useRef();
-  const actions: actions = useRef();
+  const group = useRef();
+  const mixer = useRef(new THREE.AnimationMixer(null));
+  const targetProgress = useRef(0);
+  const animationRequestId = useRef(null);
 
-  const [model, setModel] = useState<Object3D | null>(null);
-  const [animation, setAnimation] = useState<AnimationClip[] | null>(null);
-  const [progress, setProgress] = useState<number>(0);
-  const [loadingComplete, setLoadingComplete] = useState<boolean>(false);
+  /* State */
+  const [model, setModel] = useState(null);
+  const [progress, setProgress] = useState(0);
 
-  /* Mixer */
-  const [mixer] = useState(() => new THREE.AnimationMixer(null));
-  const targetProgress = useRef<number>(0);
-  const animationRequestId = useRef<number | null>(null);
-
+  /* Get viewport size for scaling */
   const { size } = useThree();
   const scale = Math.min(size.width, size.height) / 120;
 
-  // Play the animation when the component mounts
   useEffect(() => {
     const manager = new THREE.LoadingManager();
-    manager.onProgress = (url, itemsLoaded, itemsTotal) => {
-      const progressPercentage = (itemsLoaded / itemsTotal) * 100;
-      targetProgress.current = progressPercentage;
+    manager.onProgress = (_, loaded, total) => {
+      targetProgress.current = (loaded / total) * 100;
     };
+
     const loader = new GLTFLoader(manager);
     loader.load(
       "/models/scene.gltf",
-      async (gltf) => {
-        const nodes = await gltf.parser.getDependencies("node");
-        const animations = await gltf.parser.getDependencies("animation");
-        setModel(nodes[0]);
-        setAnimation(animations);
-        setLoadingComplete(true);
+      (gltf) => {
+        const [firstNode] = gltf.scene.children;
+        setModel(firstNode);
+
+        if (gltf.animations.length) {
+          const action = mixer.current.clipAction(
+            gltf.animations[0],
+            firstNode
+          );
+          action.play();
+        }
       },
       (progressEvent) => {
-        const progressPercentage =
+        targetProgress.current =
           (progressEvent.loaded / progressEvent.total) * 100;
-        targetProgress.current = progressPercentage;
       }
     );
   }, []);
 
-  /* Set animation */
+  /* Progress animation */
   useEffect(() => {
-    if (animation && typeof group.current != "undefined") {
-      actions.current = {
-        idle: mixer.clipAction(animation[0], group.current as Object3D),
-      };
-      actions.current.idle.play();
-      return () => animation.forEach((clip) => mixer.uncacheClip(clip));
-    }
-  }, [animation]);
-
-  const updateProgress = () => {
-    setProgress((prevProgress) =>
-      THREE.MathUtils.lerp(prevProgress, targetProgress.current, 0.1)
-    );
-
-    if (progress < 100) {
-      animationRequestId.current = requestAnimationFrame(updateProgress);
-    }
-  };
-
-  useEffect(() => {
-    animationRequestId.current = requestAnimationFrame(updateProgress);
-
-    return () => {
-      cancelAnimationFrame(animationRequestId.current!);
+    const updateProgress = () => {
+      setProgress((prev) =>
+        THREE.MathUtils.lerp(prev, targetProgress.current, 0.1)
+      );
+      if (progress < 100)
+        animationRequestId.current = requestAnimationFrame(updateProgress);
     };
+    animationRequestId.current = requestAnimationFrame(updateProgress);
+    return () => cancelAnimationFrame(animationRequestId.current);
   }, []);
 
-  /* Animation update */
-  useFrame((_, delta) => {
-    mixer.update(delta);
-  });
+  /* Update animation on each frame */
+  useFrame((_, delta) => mixer.current.update(delta));
 
-  return (
-    <>
-      {model ? (
-        <primitive
-          ref={group}
-          object={model}
-          scale={[scale, scale, scale]}
-          position={[-0.5, -2.5, 0]}
-          dispose={null}
-        />
-      ) : (
-        <Html
-          className="flex mx-auto w-full justify-center items-center"
-          position={[0, 0, 0]}
-        >
-          <p>Loading... {Math.round(progress)}%</p>
-        </Html>
-      )}
-    </>
+  return model ? (
+    <primitive
+      ref={group}
+      object={model}
+      scale={[scale, scale, scale]}
+      position={[-0.5, -2.5, 0]}
+    />
+  ) : (
+    <Html
+      className="flex mx-auto w-full justify-center items-center"
+      position={[0, 0, 0]}
+    >
+      <p>Loading... {Math.round(progress)}%</p>
+    </Html>
   );
 }

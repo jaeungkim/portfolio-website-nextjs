@@ -1,34 +1,49 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const ProjectSingle = ({ id, img, title, date, videoSrc }: any) => (
-  <Link href={`/project/${id}`} passHref>
+interface ProjectProps {
+  id: string;
+  img: string;
+  title: string;
+  date: string;
+  videoSrc: string;
+}
+
+const transitionConfig = {
+  ease: "easeInOut",
+  duration: 0.7,
+  delay: 0.25,
+};
+
+const ProjectSingle: React.FC<ProjectProps> = ({
+  id,
+  img,
+  title,
+  date,
+  videoSrc,
+}) => (
+  <Link href={`/project/${id}`}>
     <motion.div
-      className="will-change-auto overflow-hidden rounded-md p-1 shadow-zinc-800/5 ring-1 ring-zinc-900/5 shadow-lg hover:shadow-xl  mb-4 sm:mb-0 bg-white/90 dark:bg-zinc-800/90"
+      className="overflow-hidden rounded-md p-1 shadow-lg ring-1 ring-zinc-900/5 hover:shadow-xl mb-4 sm:mb-0 bg-white/90 dark:bg-zinc-800/90"
       aria-label="Single Project"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{
-        ease: "easeInOut",
-        duration: 0.7,
-        delay: 0.25,
-      }}
+      transition={transitionConfig}
     >
-      <motion.div className="will-change-auto w-full h-full relative rounded-md overflow-hidden">
+      <motion.div className="relative rounded-md overflow-hidden">
         <video
           muted
           autoPlay
           playsInline
           loop
-          className="min-h-[200px] w-full h-full object-cover object-center transform transition-transform duration-500 ease-in-out"
+          className="w-full h-full object-cover object-center transition-transform duration-500 ease-in-out min-h-[200px]"
           poster={img}
+          aria-hidden="true"
         >
-          <source src={videoSrc} type="video/mp4"></source>
+          <source src={videoSrc} type="video/mp4" />
         </video>
-        <div className="absolute bottom-0 left-0 w-full h-full flex justify-between items-end gap-1 p-3 z-20 will-change-auto transition-opacity duration-300 bg-gradient-to-t from-black to-transparent">
-          <h3 className="text-xs text-neutral-200 flex gap-1 justify-start items-center">
-            {title}
-          </h3>
+        <div className="absolute bottom-0 left-0 w-full p-3 flex justify-between items-end bg-gradient-to-t from-black to-transparent">
+          <h3 className="text-xs text-neutral-200">{title}</h3>
           <p className="text-xs text-neutral-200">{date}</p>
         </div>
       </motion.div>

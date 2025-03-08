@@ -4,56 +4,69 @@ import { useInView } from "react-intersection-observer";
 import ProjectSingle from "./ProjectSingle";
 import { projectsData } from "@/data/projectsData";
 
-function ProjectsGrid() {
-  const [selectProject, setSelectProject] = useState("");
+const ProjectItem = ({ project, index }: { project: any; index: number }) => {
+  const [ref, inView] = useInView({ triggerOnce: true });
 
-  const capitalizeFirstLetter = (string) =>
-    string.charAt(0).toUpperCase() + string.slice(1);
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.01 }}
+    >
+      <ProjectSingle {...project} />
+    </motion.div>
+  );
+};
+
+function ProjectsGrid() {
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const filteredProjects = useMemo(
     () =>
-      projectsData.filter((project) => {
-        const category = capitalizeFirstLetter(project.category);
-        return !selectProject || category.includes(selectProject);
-      }),
-    [selectProject]
+      selectedCategory
+        ? projectsData.filter(
+            (project) =>
+              project.category.toLowerCase() === selectedCategory.toLowerCase()
+          )
+        : projectsData,
+    [selectedCategory]
   );
 
-  const renderProject = (project, index) => {
-    const [ref, inView] = useInView({ triggerOnce: true });
-    const animationProps = {
-      initial: { opacity: 0, y: 20 },
-      animate: inView ? { opacity: 1, y: 0 } : {},
-      transition: { duration: 0.6, delay: index * 0.01 },
-    };
+  const mobileView = useMemo(
+    () =>
+      filteredProjects.map((project, index) => (
+        <ProjectItem key={project.id} project={project} index={index} />
+      )),
+    [filteredProjects]
+  );
 
+  const desktopView = useMemo(() => {
+    const midpoint = Math.ceil(filteredProjects.length / 2);
     return (
-      <motion.div key={project.id} ref={ref} {...animationProps}>
-        <ProjectSingle {...project} />
-      </motion.div>
+      <div className="hidden sm:flex gap-2">
+        <div className="flex flex-1 flex-col gap-4">
+          {filteredProjects.slice(0, midpoint).map((project, index) => (
+            <ProjectItem key={project.id} project={project} index={index} />
+          ))}
+        </div>
+        <div className="flex flex-1 flex-col gap-4">
+          {filteredProjects.slice(midpoint).map((project, index) => (
+            <ProjectItem
+              key={project.id}
+              project={project}
+              index={index + midpoint}
+            />
+          ))}
+        </div>
+      </div>
     );
-  };
+  }, [filteredProjects]);
 
   return (
     <section className="mt-14 sm:mt-16">
-      {/* MOBILE */}
-      <div className="grid grid-cols-1 sm:hidden gap-2">
-        {filteredProjects.map(renderProject)}
-      </div>
-
-      {/* TABLET OR BIGGER */}
-      <div className="hidden sm:flex gap-2">
-        <div className="flex flex-1 flex-col gap-4">
-          {filteredProjects
-            .slice(0, Math.ceil(filteredProjects.length / 2))
-            .map(renderProject)}
-        </div>
-        <div className="flex flex-1 flex-col gap-4">
-          {filteredProjects
-            .slice(Math.ceil(filteredProjects.length / 2))
-            .map(renderProject)}
-        </div>
-      </div>
+      <div className="grid grid-cols-1 sm:hidden gap-2">{mobileView}</div>
+      {desktopView}
     </section>
   );
 }

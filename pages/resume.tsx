@@ -596,7 +596,7 @@ export default function About({ lastUpdated }) {
       {/* UBC */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          2013.09 ~ 2020.04
+          2020.04
         </div>
         <div className="col-span-2">
           <Link
@@ -608,53 +608,6 @@ export default function About({ lastUpdated }) {
           </Link>
           <p className="text-base font-normal text-[#808080] italic">
             Bachelor of Science - Major in Computer Science
-          </p>
-        </div>
-      </div>
-
-      {/* Secondary School */}
-      <div className="md:grid md:grid-cols-3 md:gap-4 mt-11">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          2008.09 ~ 2013.06
-        </div>
-        <div className="col-span-2">
-          <Link
-            className="text-2xl font-medium hover:text-cyan-500"
-            href="https://www.surreyschools.ca/semiahmoo"
-            target="_blank"
-          >
-            <p>Semiahmoo Secondary School</p>
-          </Link>
-        </div>
-      </div>
-      <hr className="my-11"></hr>
-
-      {/* ETC */}
-      <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
-        ETC.
-      </div>
-
-      <div className="md:grid md:grid-cols-3 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          2008.08
-        </div>
-        <div className="col-span-2">
-          <p className="text-2xl font-medium mb-2">
-            캐나다 밴쿠버 이민 (캐나다 시민권자)
-          </p>
-          <p className="text-base font-normal text-[#808080] italic">
-            영어 원어민 수준
-          </p>
-        </div>
-      </div>
-
-      <div className="md:grid md:grid-cols-3 md:gap-4 mt-11">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          2023.12 ~
-        </div>
-        <div className="col-span-2">
-          <p className="text-2xl font-medium mb-2">
-            한국 F-4 재외동포 비자로 거주 중
           </p>
         </div>
       </div>

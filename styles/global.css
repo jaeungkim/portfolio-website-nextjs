@@ -1,10 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 :root,
 html,
@@ -12,13 +7,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-*,
-html,
-body {
-  padding: 0;
-  margin: 0;
 }
 
 /* Dark Palette Theme #1 */
@@ -48,5 +36,22 @@ body {
 }
 
 .noto-font {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
+}
+@layer utilities {
+  .fadein {
+    opacity: 0.001;
+    animation: fade-in 0.75s ease both;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0.001;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 type CrypticTextDynamicProps = {
   text: string;
@@ -10,69 +10,52 @@ type CrypticTextDynamicProps = {
 export default function CrypticText({
   text,
   classNames,
-  delay,
+  delay = 0,
 }: CrypticTextDynamicProps) {
   const [cryptic, setCryptic] = useState("");
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
 
   const animate = useCallback(() => {
     const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
-    const repeatDivider = 4;
-    const timeoutValue = 0.1 + (delay ? delay : 0) * 60;
+    const timeoutValue = 0.1 + delay * 60;
+    let iteration = 0,
+      elapsed = 0;
 
-    let iteration = 0;
-    let elapsed = 0;
-
-    function animateCallback() {
-      elapsed++;
-
-      if (elapsed > timeoutValue && elapsed % repeatDivider === 0) {
-        const encryption = text
-          .split("")
-          .map((_, index) => {
-            if (index < iteration) {
-              return text[index];
-            }
-            return letters[Math.floor(Math.random() * letters.length)];
-          })
-          .join("");
-
-        if (iteration >= text.length) {
-          cancelAnimationFrame(animationRef.current);
-        }
-        iteration += text.length * 0.04;
-
-        setCryptic(encryption);
-
-        iteration++;
+    const animateCallback = () => {
+      if (++elapsed > timeoutValue && elapsed % 4 === 0) {
+        setCryptic(
+          text
+            .split("")
+            .map((char, index) =>
+              index < iteration
+                ? char
+                : letters[Math.floor(Math.random() * letters.length)]
+            )
+            .join("")
+        );
+        if (iteration >= text.length)
+          return cancelAnimationFrame(animationRef.current!);
+        iteration += text.length * 0.04 + 1;
       }
-
       animationRef.current = requestAnimationFrame(animateCallback);
-    }
+    };
 
     animateCallback();
-  }, [delay, text]);
+  }, [text, delay]);
 
   useEffect(() => {
     animate();
-
-    // Cleanup function
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [animate, text]); // Added 'text' to dependency array
+    return () =>
+      animationRef.current && cancelAnimationFrame(animationRef.current);
+  }, [animate]);
 
   return (
     <span
       className={clsx(
-        "text-inherit whitespace-normal truncate block relative overflow-visible",
+        "leading-normal whitespace-normal truncate block relative overflow-visible",
         classNames
       )}
-      style={{
-        animationDelay: `${delay + 0.1}s)`,
-      }}
+      style={{ animationDelay: `${delay + 0.1}s` }}
     >
       <span className="absolute inset-0">{cryptic}</span>
       <span className="opacity-0">{text}</span>

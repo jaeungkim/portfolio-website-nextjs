@@ -1,6 +1,5 @@
 import Layout from "@/components/shared/layout";
 import Head from "next/head";
-import utilStyles from "@/styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -8,27 +7,22 @@ import dynamic from "next/dynamic";
 import ScrollIndicator from "@/components/shared/scrollIndicator";
 import ScrollToTopButton from "@/components/shared/scrollToTopButton";
 import BackButton from "@/components/shared/backButton";
-import ViewCounter from "@/components/shared/viewCounter";
 import mdxComponents from "@/components/shared/mdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 
-// Dynamic import for UtterancesComments
+// Dynamic import for comments to improve performance
 const UtterancesComments = dynamic(() =>
   import("@/components/shared/utterancesComments").then(
     (mod) => mod.UtterancesComments
   )
 );
 
-interface PostData {
-  id: string;
-  title: string;
-  date: string;
-  tags: string[];
-  contentHtml: MDXRemoteSerializeResult;
-}
-
 interface PostProps {
-  postData: PostData;
+  postData: {
+    id: string;
+    title: string;
+    contentHtml: MDXRemoteSerializeResult;
+  };
 }
 
 export default function Post({ postData }: PostProps) {
@@ -40,38 +34,28 @@ export default function Post({ postData }: PostProps) {
       <ScrollIndicator />
       <ScrollToTopButton />
       <BackButton />
-      <ViewCounter slug={postData.id} />
+
       <article className="prose lg:prose-lg dark:prose-invert prose-a:text-cyan-600 hover:prose-a:text-cyan-500 mx-auto overflow-auto !max-w-none">
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div key={postData.id}>
-          <MDXRemote {...postData.contentHtml} components={mdxComponents} />
-        </div>
+        <h1 className="text-4xl font-bold mb-6">{postData.title}</h1>
+        <MDXRemote {...postData.contentHtml} components={mdxComponents} />
       </article>
-      <div>
-        <h1 className={utilStyles.headingXl}>Comments</h1>
+
+      <section className="mt-16">
+        <h2 className="text-2xl font-bold">Comments</h2>
         <UtterancesComments repo="jaeungkim/portfolio-website-nextjs" />
-      </div>
+      </section>
     </Layout>
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
-  return {
-    paths,
-    fallback: false,
-  };
-};
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: getAllPostIds(),
+  fallback: false,
+});
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params || !Array.isArray(params.id)) {
-    return { notFound: true };
-  }
+  if (!params?.id || !Array.isArray(params.id)) return { notFound: true };
 
   const postData = await getPostData(params.id);
-  return {
-    props: {
-      postData,
-    },
-  };
+  return { props: { postData } };
 };
