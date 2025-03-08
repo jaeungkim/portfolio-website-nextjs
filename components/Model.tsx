@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -6,18 +6,18 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export default function Model() {
   /* Refs */
-  const group = useRef();
-  const mixer = useRef(new THREE.AnimationMixer(null));
+  const group = useRef<THREE.Group>(null);
+  const mixer = useRef<THREE.AnimationMixer | null>(null);
   const targetProgress = useRef(0);
-  const animationRequestId = useRef(null);
+  const animationRequestId = useRef<number | null>(null);
 
   /* State */
-  const [model, setModel] = useState(null);
+  const [model, setModel] = useState<THREE.Object3D | null>(null);
   const [progress, setProgress] = useState(0);
 
-  /* Get viewport size for scaling */
+  /* Viewport Scaling */
   const { size } = useThree();
-  const scale = Math.min(size.width, size.height) / 120;
+  const scale = useMemo(() => Math.min(size.width, size.height) / 120, [size]);
 
   useEffect(() => {
     const manager = new THREE.LoadingManager();
@@ -29,39 +29,56 @@ export default function Model() {
     loader.load(
       "/models/scene.gltf",
       (gltf) => {
-        const [firstNode] = gltf.scene.children;
+        const firstNode = gltf.scene.children[0];
         setModel(firstNode);
 
         if (gltf.animations.length) {
-          const action = mixer.current.clipAction(
-            gltf.animations[0],
-            firstNode
-          );
+          mixer.current = new THREE.AnimationMixer(firstNode);
+          const action = mixer.current.clipAction(gltf.animations[0]);
           action.play();
         }
       },
-      (progressEvent) => {
-        targetProgress.current =
-          (progressEvent.loaded / progressEvent.total) * 100;
+      (event) => {
+        targetProgress.current = (event.loaded / event.total) * 100;
       }
     );
+
+    return () => {
+      if (mixer.current) mixer.current.stopAllAction();
+    };
   }, []);
 
-  /* Progress animation */
+  /* Smooth Progress Animation */
   useEffect(() => {
     const updateProgress = () => {
-      setProgress((prev) =>
-        THREE.MathUtils.lerp(prev, targetProgress.current, 0.1)
-      );
-      if (progress < 100)
+      setProgress((prev) => {
+        const newProgress = THREE.MathUtils.lerp(
+          prev,
+          targetProgress.current,
+          0.1
+        );
+        return Math.abs(newProgress - prev) < 0.5
+          ? targetProgress.current
+          : newProgress;
+      });
+
+      if (progress < 100) {
         animationRequestId.current = requestAnimationFrame(updateProgress);
+      }
     };
+
     animationRequestId.current = requestAnimationFrame(updateProgress);
-    return () => cancelAnimationFrame(animationRequestId.current);
+
+    return () => {
+      if (animationRequestId.current)
+        cancelAnimationFrame(animationRequestId.current);
+    };
   }, []);
 
   /* Update animation on each frame */
-  useFrame((_, delta) => mixer.current.update(delta));
+  useFrame((_, delta) => {
+    if (mixer.current) mixer.current.update(delta);
+  });
 
   return model ? (
     <primitive

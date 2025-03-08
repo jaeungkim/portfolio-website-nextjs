@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useEffect, useState, useRef, useCallback } from "react";
 
-type CrypticTextDynamicProps = {
+type CrypticTextProps = {
   text: string;
   classNames?: string;
   delay?: number;
@@ -11,19 +11,19 @@ export default function CrypticText({
   text,
   classNames,
   delay = 0,
-}: CrypticTextDynamicProps) {
-  const [cryptic, setCryptic] = useState("");
-  const animationRef = useRef<number>(0);
+}: CrypticTextProps) {
+  const [cryptic, setCryptic] = useState(text);
+  const animationRef = useRef<number | null>(null);
 
   const animate = useCallback(() => {
     const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
-    const timeoutValue = 0.1 + delay * 60;
-    let iteration = 0,
-      elapsed = 0;
+    const timeoutValue = delay * 60;
+    let iteration = 0;
+    let elapsed = 0;
 
-    const animateCallback = () => {
-      if (++elapsed > timeoutValue && elapsed % 4 === 0) {
-        setCryptic(
+    const updateText = () => {
+      if (elapsed > timeoutValue) {
+        setCryptic(() =>
           text
             .split("")
             .map((char, index) =>
@@ -33,32 +33,38 @@ export default function CrypticText({
             )
             .join("")
         );
-        if (iteration >= text.length)
-          return cancelAnimationFrame(animationRef.current!);
-        iteration += text.length * 0.04 + 1;
+
+        iteration = Math.min(iteration + 1, text.length);
+        if (iteration >= text.length) {
+          cancelAnimationFrame(animationRef.current!);
+          return;
+        }
       }
-      animationRef.current = requestAnimationFrame(animateCallback);
+
+      elapsed++;
+      animationRef.current = requestAnimationFrame(updateText);
     };
 
-    animateCallback();
+    animationRef.current = requestAnimationFrame(updateText);
   }, [text, delay]);
 
   useEffect(() => {
+    setCryptic(text.replace(/./g, " "));
     animate();
-    return () =>
-      animationRef.current && cancelAnimationFrame(animationRef.current);
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
   }, [animate]);
 
   return (
     <span
       className={clsx(
-        "leading-normal whitespace-normal truncate block relative overflow-visible",
+        "leading-normal relative block overflow-hidden",
         classNames
       )}
-      style={{ animationDelay: `${delay + 0.1}s` }}
     >
       <span className="absolute inset-0">{cryptic}</span>
-      <span className="opacity-0">{text}</span>
+      <span className="opacity-0 ">{text}</span>
     </span>
   );
 }

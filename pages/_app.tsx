@@ -13,31 +13,32 @@ interface AppProps {
 }
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  const [initialScreen, setInitialScreen] = useState<boolean>(true);
+  const [initialScreen, setInitialScreen] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
   const isResumePage = router.pathname === "/resume";
 
   useEffect(() => {
     if (!localStorage.getItem("initialScreenShown")) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setInitialScreen(false);
         localStorage.setItem("initialScreenShown", "true");
       }, 3000);
-    } else {
-      setInitialScreen(false);
+      return () => clearTimeout(timer);
     }
+    setInitialScreen(false);
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = (start: boolean) => () => setIsAnimating(start);
+    const handleRouteChangeStart = () => setIsAnimating(true);
+    const handleRouteChangeComplete = () => setIsAnimating(false);
 
-    router.events.on("routeChangeStart", handleRouteChange(true));
-    router.events.on("routeChangeComplete", handleRouteChange(false));
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
 
     return () => {
-      router.events.off("routeChangeStart", handleRouteChange(true));
-      router.events.off("routeChangeComplete", handleRouteChange(false));
+      router.events.off("routeChangeStart", handleRouteChangeStart);
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
   }, [router.events]);
 
