@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useCallback } from "react";
 import Layout from "../components/shared/layout";
 import Toast from "../components/shared/toast";
 
@@ -9,12 +9,14 @@ interface IFormData {
   message: string;
 }
 
+const initialFormData: IFormData = {
+  name: "",
+  email: "",
+  message: "",
+};
+
 export default function Contact() {
-  const [formData, setFormData] = useState<IFormData>({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState<IFormData>(initialFormData);
   const [formErrors, setFormErrors] = useState<Partial<IFormData>>({});
   const [toast, setToast] = useState<{
     message: string;
@@ -22,11 +24,13 @@ export default function Contact() {
   } | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    },
+    []
+  );
 
   const validateForm = (): Partial<IFormData> => {
     const errors: Partial<IFormData> = {};
@@ -47,8 +51,8 @@ export default function Contact() {
     try {
       const { status } = await axios.post("/api/sendgrid", formData);
       if (status === 200) {
-        setToast({ message: "Contact successfully sent!!", status: "success" });
-        setFormData({ name: "", email: "", message: "" });
+        setToast({ message: "Contact successfully sent!", status: "success" });
+        setFormData(initialFormData);
         setFormErrors({});
       }
     } catch {
@@ -78,62 +82,27 @@ export default function Contact() {
       )}
 
       <form onSubmit={handleSubmit} className="mx-auto">
-        {["name", "email", "message"].map((field) => (
-          <div key={field} className="mb-4">
-            <label
-              htmlFor={field}
-              className="block font-medium text-gray-700 dark:text-zinc-200"
-            >
-              {field.charAt(0).toUpperCase() + field.slice(1)}:
-            </label>
-            {field === "message" ? (
-              <textarea
-                id={field}
-                name={field}
-                rows={5}
-                value={formData[field as keyof IFormData]}
-                onChange={handleChange}
-                className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur 
-                           dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 
-                           ${
-                             formErrors[field as keyof IFormData]
-                               ? "border-red-500"
-                               : ""
-                           }`}
-              />
-            ) : (
-              <input
-                type={field === "email" ? "email" : "text"}
-                id={field}
-                name={field}
-                value={formData[field as keyof IFormData]}
-                onChange={handleChange}
-                className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur 
-                           dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 
-                           ${
-                             formErrors[field as keyof IFormData]
-                               ? "border-red-500"
-                               : ""
-                           }`}
-              />
-            )}
-            {formErrors[field as keyof IFormData] && (
-              <p className="text-red-500 text-sm mt-1">
-                {formErrors[field as keyof IFormData]}
-              </p>
-            )}
-          </div>
+        {(["name", "email", "message"] as const).map((field) => (
+          <FormInput
+            key={field}
+            field={field}
+            value={formData[field]}
+            error={formErrors[field]}
+            onChange={handleChange}
+          />
         ))}
+
         <div className="text-left">
           <button
             type="submit"
             disabled={loading}
             className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white 
-                       ${
-                         loading
-                           ? "bg-gray-400 cursor-wait"
-                           : "bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                       }`}
+                      ${
+                        loading
+                          ? "bg-gray-400 cursor-wait"
+                          : "bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      }
+                      `}
           >
             {loading ? "Loading..." : "Submit"}
           </button>
@@ -142,3 +111,49 @@ export default function Contact() {
     </Layout>
   );
 }
+
+// **Reusable Input Component**
+interface FormInputProps {
+  field: "name" | "email" | "message";
+  value: string;
+  error?: string;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
+
+const FormInput = ({ field, value, error, onChange }: FormInputProps) => {
+  const isTextArea = field === "message";
+  return (
+    <div className="mb-4">
+      <label
+        htmlFor={field}
+        className="block font-medium text-gray-700 dark:text-zinc-200"
+      >
+        {field.charAt(0).toUpperCase() + field.slice(1)}:
+      </label>
+      {isTextArea ? (
+        <textarea
+          id={field}
+          name={field}
+          rows={5}
+          value={value}
+          onChange={onChange}
+          className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur 
+                      dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 
+                      ${error ? "border-red-500" : ""}`}
+        />
+      ) : (
+        <input
+          type={field === "email" ? "email" : "text"}
+          id={field}
+          name={field}
+          value={value}
+          onChange={onChange}
+          className={`mt-1 block w-full px-4 py-2 rounded-md bg-white/90 text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur 
+                      dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20 focus:border-cyan-500 focus:ring-cyan-500 
+                      ${error ? "border-red-500" : ""}`}
+        />
+      )}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+    </div>
+  );
+};

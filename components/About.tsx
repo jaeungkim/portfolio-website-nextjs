@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, memo, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-import { useTranslation } from "react-i18next";
 
 // Lazy load Model for better performance
 const Model = dynamic(() => import("./Model"), { ssr: false });
@@ -37,8 +36,6 @@ const SocialIcon = memo(
 );
 
 export default function About() {
-  const { t } = useTranslation();
-
   // Memoized Lights to prevent re-renders
   const Lights = useMemo(
     () => (

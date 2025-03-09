@@ -4,7 +4,6 @@ import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -16,7 +15,6 @@ const navigation = [
 export default function Navbar() {
   let [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { i18n } = useTranslation(); // Initialize i18n
 
   const themeButtonClass = useMemo(() => {
     return `group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 ${

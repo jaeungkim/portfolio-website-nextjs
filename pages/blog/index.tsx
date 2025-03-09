@@ -45,11 +45,15 @@ export default function Blog({ allPostsData }: BlogProps) {
 
   const availableTags = useMemo(() => {
     const tagSet = new Set<string>();
-    filteredPosts.forEach((post) =>
-      post.tags.forEach(
-        (tag) => tag.toLowerCase() !== activeTab && tagSet.add(tag)
-      )
-    );
+    filteredPosts.forEach((post) => {
+      if (Array.isArray(post.tags)) {
+        post.tags.forEach((tag) => {
+          if (tag.toLowerCase() !== activeTab) {
+            tagSet.add(tag);
+          }
+        });
+      }
+    });
     return Array.from(tagSet);
   }, [filteredPosts, activeTab]);
 
@@ -57,8 +61,10 @@ export default function Blog({ allPostsData }: BlogProps) {
     () =>
       selectedTags.length === 0
         ? filteredPosts
-        : filteredPosts.filter((post) =>
-            selectedTags.every((tag) => post.tags.includes(tag))
+        : filteredPosts.filter(
+            (post) =>
+              Array.isArray(post.tags) &&
+              selectedTags.every((tag) => post.tags.includes(tag))
           ),
     [filteredPosts, selectedTags]
   );

@@ -1,20 +1,23 @@
-import Layout from "@/components/shared/layout";
 import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import dynamic from "next/dynamic";
+
+import Layout from "@/components/shared/layout";
 import ScrollIndicator from "@/components/shared/scrollIndicator";
 import ScrollToTopButton from "@/components/shared/scrollToTopButton";
 import BackButton from "@/components/shared/backButton";
 import mdxComponents from "@/components/shared/mdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 
-// Dynamic import for comments to improve performance
-const UtterancesComments = dynamic(() =>
-  import("@/components/shared/utterancesComments").then(
-    (mod) => mod.UtterancesComments
-  )
+// Dynamically import comments to improve performance
+const UtterancesComments = dynamic(
+  () =>
+    import("@/components/shared/utterancesComments").then(
+      (mod) => mod.UtterancesComments
+    ),
+  { ssr: false }
 );
 
 interface PostProps {
@@ -31,6 +34,7 @@ export default function Post({ postData }: PostProps) {
       <Head>
         <title>{postData.title}</title>
       </Head>
+
       <ScrollIndicator />
       <ScrollToTopButton />
       <BackButton />
@@ -48,12 +52,18 @@ export default function Post({ postData }: PostProps) {
   );
 }
 
+/**
+ * Generate static paths for all posts.
+ */
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getAllPostIds(),
   fallback: false,
 });
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+/**
+ * Fetch post data at build time.
+ */
+export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   if (!params?.id || !Array.isArray(params.id)) return { notFound: true };
 
   const postData = await getPostData(params.id);

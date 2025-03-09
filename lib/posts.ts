@@ -4,67 +4,60 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import prism from "remark-prism";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+// Define posts directory and categories
+const POSTS_DIR = path.join(process.cwd(), "posts");
+const CATEGORIES = ["daily", "studying"];
 
-const categories = ["daily", "studying"];
-
+/**
+ * Get all sorted posts data from available categories.
+ */
 export function getSortedPostsData() {
-  let allPostsData = [];
+  return CATEGORIES.flatMap((category) => {
+    const categoryDir = path.join(POSTS_DIR, category);
 
-  categories.forEach((category) => {
-    const categoryDirectory = path.join(postsDirectory, category);
-    const fileNames = fs.readdirSync(categoryDirectory);
+    // Check if category directory exists
+    if (!fs.existsSync(categoryDir)) return [];
 
-    const postsData = fileNames
+    return fs
+      .readdirSync(categoryDir)
       .map((fileName) => {
-        const id = fileName.replace(/\.mdx$/, "");
-        // Include the category in the id
-        const fullId = `${category}/${id}`;
-        const fullPath = path.join(categoryDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, "utf8");
-        const matterResult = matter(fileContents);
+        const filePath = path.join(categoryDir, fileName);
+        const fileContents = fs.readFileSync(filePath, "utf8");
+        const { data } = matter(fileContents);
 
-        if (matterResult.data.tags && matterResult.data.tags.length > 0) {
-          return {
-            id: fullId, // Use the fullId including the category
-            category,
-            ...(matterResult.data as {
-              date: string;
-              title: string;
-              tags: string[];
-            }),
-          };
-        }
+        if (!data.title || !data.date) return null;
+
+        return {
+          id: `${category}/${fileName.replace(/\.mdx$/, "")}`,
+          category,
+          ...(data as { date: string; title: string; tags?: string[] }),
+        };
       })
-      .filter((post) => post != null);
-    allPostsData = allPostsData.concat(postsData);
+      .filter(Boolean) // Remove null values
+      .sort((a, b) => (a.date < b.date ? 1 : -1));
   });
-
-  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
+/**
+ * Get all post IDs formatted for Next.js dynamic routing.
+ */
 export function getAllPostIds() {
-  let paths = [];
+  return CATEGORIES.flatMap((category) => {
+    const categoryDir = path.join(POSTS_DIR, category);
 
-  categories.forEach((category) => {
-    const categoryDirectory = path.join(postsDirectory, category);
-    const fileNames = fs.readdirSync(categoryDirectory);
+    if (!fs.existsSync(categoryDir)) return [];
 
-    const categoryPaths = fileNames.map((fileName) => {
-      const postId = fileName.replace(/\.mdx$/, "");
-      return {
-        params: {
-          id: [category, postId], // Update this to be an array
-        },
-      };
-    });
-
-    paths = paths.concat(categoryPaths);
+    return fs.readdirSync(categoryDir).map((fileName) => ({
+      params: {
+        id: [category, fileName.replace(/\.mdx$/, "")],
+      },
+    }));
   });
-
-  return paths;
 }
 
+/**
+ * Fetch post data by category and post ID.
+ */
 export async function getPostData(id: string[]) {
   const [category, postId] = id;
 
@@ -72,26 +65,27 @@ export async function getPostData(id: string[]) {
     throw new Error(`Invalid post ID: ${id.join("/")}`);
   }
 
-  const fullPath = path.join(postsDirectory, category, `${postId}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const filePath = path.join(POSTS_DIR, category, `${postId}.mdx`);
 
-  // postId itself is the slug, no need to use match
-  const slug = postId;
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Post not found: ${id.join("/")}`);
+  }
 
-  const matterResult = matter(fileContents);
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { content, data } = matter(fileContents);
 
-  const contentHtml = await serialize(matterResult.content, {
+  const contentHtml = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [prism],
     },
-    scope: matterResult.data,
+    scope: data,
   });
 
   return {
-    slug,
-    id: id.join("/"), // Concatenate category and postId for the full ID
-    tags: matterResult.data.tags || [],
+    slug: postId,
+    id: id.join("/"),
+    tags: data.tags || [],
     contentHtml,
-    ...(matterResult.data as { date: string; title: string }),
+    ...(data as { date: string; title: string }),
   };
 }
