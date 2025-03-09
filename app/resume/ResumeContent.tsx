@@ -2,88 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import fs from "fs";
-import path from "path";
-import { format } from "date-fns";
+import {
+  calculateExperience,
+  calculateTotalExperience,
+} from "@/app/utils/resume";
+import { experiences } from "@/app/constants/resume";
 
-const calculateExperience = (startDate, endDate = null) => {
-  const start = new Date(startDate);
-  const end = endDate ? new Date(endDate) : new Date();
-  let years = end.getFullYear() - start.getFullYear();
-  let months = end.getMonth() - start.getMonth();
-
-  if (end.getDate() >= start.getDate()) {
-    months++;
-  }
-
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
-
-  years += Math.floor(months / 12);
-  months %= 12;
-
-  if (years > 0 && months > 0) {
-    return `${years}년 ${months}개월`;
-  } else if (years > 0) {
-    return `${years}년`;
-  } else {
-    return `${months}개월`;
-  }
-};
-
-const experiences = [
-  { start: "2024-01-01", end: null }, // Ongoing job
-  { start: "2023-07-01", end: "2023-10-01" },
-  { start: "2022-07-01", end: "2023-06-01" },
-  { start: "2021-01-01", end: "2022-05-01" },
-  // Add other experiences as needed
-];
-
-const calculateTotalExperience = (experiences) => {
-  let totalMonths = 0;
-
-  experiences.forEach((exp) => {
-    const start = new Date(exp.start);
-    const end = exp.end ? new Date(exp.end) : new Date();
-
-    let years = end.getFullYear() - start.getFullYear();
-    let months = end.getMonth() - start.getMonth();
-
-    // Include the end month in the total count
-    if (end.getDate() >= start.getDate()) {
-      months++;
-    }
-
-    // Adjust for negative months and convert years to months
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-    totalMonths += years * 12 + months;
-  });
-
-  // Convert total months back into years and remaining months
-  const totalYears = Math.floor(totalMonths / 12);
-  const remainingMonths = totalMonths % 12;
-
-  // Format the display for years and months
-  const yearDisplay = totalYears > 0 ? `${totalYears}년 ` : "";
-  return `${yearDisplay}${remainingMonths}개월`;
-};
-
-export default function About({ lastUpdated }) {
+export default function ResumeContent({ lastUpdated }) {
   return (
     <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F] dark:text-zinc-400">
       {/* HEADER  */}
       <div className="md:grid md:grid-cols-3 gap-4">
         <div className="flex justify-center md:justify-normal mb-11 md:mb-0">
           {" "}
-          <img
-            className="w-full aspect-[35/45] max-w-[240px] object-cover rounded-md"
+          <Image
+            className="w-full max-w-[240px] object-cover rounded-sm"
             src="/images/resume_img.JPG"
             alt="profileLogo"
+            width={240}
+            height={309}
           />
         </div>
 
@@ -671,15 +608,4 @@ export default function About({ lastUpdated }) {
       </footer>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "pages/resume", "index.tsx");
-  const fileStats = fs.statSync(filePath);
-
-  return {
-    props: {
-      lastUpdated: format(fileStats.mtime, "yyyy.MM.dd"),
-    },
-  };
 }

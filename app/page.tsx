@@ -4,76 +4,20 @@ import {
   FaInstagram,
   FaRegFilePdf,
 } from "react-icons/fa";
-import { Canvas } from "@react-three/fiber";
-import { Suspense, memo, useMemo } from "react";
-import dynamic from "next/dynamic";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import SocialIcon from "./components/shared/SocialIcon";
+import ModelContainer from "./components/model/ModelContainer";
+import CrypticText from "./components/CrypticText";
 
-// Lazy load Model for better performance
-const Model = dynamic(() => import("./Model"), { ssr: false });
-
-// Lazy load CrypticText component
-const CrypticTextDynamic = dynamic(
-  () => import("@/components/shared/CrypticText"),
-  { ssr: false }
-);
-const MemoizedCrypticTextDynamic = memo(CrypticTextDynamic);
-
-const SocialIcon = memo(
-  ({
-    href,
-    IconComponent,
-  }: {
-    href: string;
-    IconComponent: React.ComponentType<{ className?: string }>;
-  }) => (
-    <a
-      className="group -m-1 p-1"
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={href}
-    >
-      <IconComponent className="size-6 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </a>
-  )
-);
-
-export default function About() {
-  const Lights = useMemo(
-    () => (
-      <>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 10, 5]} intensity={1} />
-      </>
-    ),
-    []
-  );
-
+export default function Page() {
   return (
     <div className="md:flex w-full">
-      {/* 3D Model Section */}
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px] md:mt-12">
-        <Canvas shadows frameloop="demand">
-          <PerspectiveCamera makeDefault position={[2.5, 5, 6]} fov={75} />
-          {Lights}
-          <Suspense fallback={null}>
-            <Model />
-          </Suspense>
-          <OrbitControls
-            enableRotate
-            enableZoom={true}
-            enablePan={true}
-            minPolarAngle={Math.PI / 2}
-            maxPolarAngle={Math.PI / 2}
-          />
-        </Canvas>
+        <ModelContainer />
       </div>
 
-      {/* About Section */}
       <article className="md:basis-4/6 lg:basis-3/6">
         <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          <MemoizedCrypticTextDynamic
+          <CrypticText
             text="Hello I'm Jay Kim"
             delay={0.1}
             classNames="fadein"
