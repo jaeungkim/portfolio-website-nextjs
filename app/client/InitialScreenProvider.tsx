@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { ThemeProvider } from "next-themes";
 
-const Loader = dynamic(() => import("@/components/Loader"), { ssr: false });
+const Loader = dynamic(() => import("@/app/components/Loader"), { ssr: false });
 
 export default function InitialScreenProvider({
   children,

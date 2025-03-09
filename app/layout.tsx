@@ -3,9 +3,9 @@ import { Noto_Sans_KR } from "next/font/google";
 import { Suspense } from "react";
 import "./global.css";
 import Head from "next/head";
-import InitialScreenProvider from "./client/InitialScreenProvider";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/Footer";
+import InitialScreenProvider from "@/app/client/InitialScreenProvider";
+import Navbar from "@/app//components/navbar/Navbar";
+import Footer from "@/app/components/Footer";
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
