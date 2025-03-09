@@ -19,7 +19,6 @@ const CrypticTextDynamic = dynamic(
 );
 const MemoizedCrypticTextDynamic = memo(CrypticTextDynamic);
 
-// Memoized Social Icon Component
 const SocialIcon = memo(
   ({
     href,
@@ -41,7 +40,6 @@ const SocialIcon = memo(
 );
 
 export default function About() {
-  // Memoized Lights to prevent re-renders
   const Lights = useMemo(
     () => (
       <>
@@ -57,7 +55,7 @@ export default function About() {
       {/* 3D Model Section */}
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px] md:mt-12">
         <Canvas shadows frameloop="demand">
-          <PerspectiveCamera makeDefault position={[2.5, 5, 5]} fov={50} />
+          <PerspectiveCamera makeDefault position={[2.5, 5, 6]} fov={75} />
           {Lights}
           <Suspense fallback={null}>
             <Model />
@@ -65,7 +63,7 @@ export default function About() {
           <OrbitControls
             enableRotate
             enableZoom={true}
-            enablePan={false}
+            enablePan={true}
             minPolarAngle={Math.PI / 2}
             maxPolarAngle={Math.PI / 2}
           />

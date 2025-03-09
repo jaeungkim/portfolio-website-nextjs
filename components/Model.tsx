@@ -26,16 +26,15 @@ export default function Model() {
       targetProgress.current = (loaded / total) * 100;
     };
 
-    // ✅ Initialize Draco Loader
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("models/draco/"); // Ensure Draco decoder files are in /public/draco/
+    dracoLoader.setDecoderPath("models/draco/");
     dracoLoader.setDecoderConfig({ type: "wasm" });
 
     const loader = new GLTFLoader(manager);
-    loader.setDRACOLoader(dracoLoader); // ✅ Use Draco with GLTFLoader
+    loader.setDRACOLoader(dracoLoader);
 
     loader.load(
-      "/models/scene-draco.glb", // Make sure you use the DRACO-compressed GLB file
+      "/models/scene-draco.glb",
       (gltf) => {
         const firstNode = gltf.scene.children[0];
         setModel(firstNode);
@@ -56,7 +55,7 @@ export default function Model() {
 
     return () => {
       if (mixer.current) mixer.current.stopAllAction();
-      dracoLoader.dispose(); // Cleanup Draco Loader
+      dracoLoader.dispose();
     };
   }, []);
 
@@ -86,7 +85,6 @@ export default function Model() {
     };
   }, []);
 
-  /* Update animation on each frame */
   useFrame((_, delta) => {
     if (mixer.current) mixer.current.update(delta);
   });

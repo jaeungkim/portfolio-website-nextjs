@@ -13,19 +13,23 @@ interface AppProps {
 }
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
-  const [initialScreen, setInitialScreen] = useState(true);
-  const router = useRouter();
+  const [initialScreen, setInitialScreen] = useState(() => {
+    return (
+      typeof window !== "undefined" &&
+      !localStorage.getItem("initialScreenShown")
+    );
+  });
 
   useEffect(() => {
-    if (!localStorage.getItem("initialScreenShown")) {
+    if (initialScreen) {
       const timer = setTimeout(() => {
         setInitialScreen(false);
         localStorage.setItem("initialScreenShown", "true");
-      }, 3000);
+      }, 1000);
+
       return () => clearTimeout(timer);
     }
-    setInitialScreen(false);
-  }, []);
+  }, [initialScreen]);
 
   if (initialScreen) return <Loader />;
 
