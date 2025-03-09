@@ -5,14 +5,13 @@ import { HiOutlineMail } from "react-icons/hi";
 import fs from "fs";
 import path from "path";
 import { format } from "date-fns";
-// Function to calculate experience duration
+
 const calculateExperience = (startDate, endDate = null) => {
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : new Date();
   let years = end.getFullYear() - start.getFullYear();
   let months = end.getMonth() - start.getMonth();
 
-  // Include the end month in the total count
   if (end.getDate() >= start.getDate()) {
     months++;
   }
@@ -22,13 +21,16 @@ const calculateExperience = (startDate, endDate = null) => {
     months += 12;
   }
 
-  // Normalize the total months to the correct number of years and months
   years += Math.floor(months / 12);
   months %= 12;
 
-  // If there are 0 years, don't display the years part
-  const yearDisplay = years > 0 ? `${years}년 ` : "";
-  return `${yearDisplay}${months}개월`;
+  if (years > 0 && months > 0) {
+    return `${years}년 ${months}개월`;
+  } else if (years > 0) {
+    return `${years}년`;
+  } else {
+    return `${months}개월`;
+  }
 };
 
 const experiences = [
@@ -73,14 +75,14 @@ const calculateTotalExperience = (experiences) => {
 
 export default function About({ lastUpdated }) {
   return (
-    <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F]">
+    <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F] dark:text-zinc-400">
       {/* HEADER  */}
       <div className="md:grid md:grid-cols-3 gap-4">
         <div className="flex justify-center md:justify-normal mb-11 md:mb-0">
           {" "}
           <img
             className="w-full aspect-[35/45] max-w-[240px] object-cover rounded-md"
-            src="/images/profile_1.jpeg"
+            src="/images/resume_img.JPG"
             alt="profileLogo"
           />
         </div>
@@ -144,26 +146,26 @@ export default function About({ lastUpdated }) {
           </div>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Introduce */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
         <div className="font-semibold text-cyan-500 text-3xl uppercase mb-11">
-          Introduce.
+          Introduce
         </div>
         <div className="col-span-2">
           <p className="text-base mb-4 font-normal">
-            스타트업 환경에서 웹 서비스의 설계, 개발, 배포 및 운영을 통해{` `}
-            {calculateTotalExperience(experiences)}{` `}간의 경험을 쌓은 개발자로서, 웹 서비스에 생동감을 불어넣는 모션
+            웹 서비스의 설계, 개발, 배포 및 운영을 통해{` `}
+            {calculateTotalExperience(experiences)}
+            {` `}간의 경험을 쌓은 개발자로서, 웹 서비스에 생동감을 불어넣는 모션
             구현을 통해 사용자 경험을 풍부하게 만드는 것을 좋아합니다.
           </p>
           <p className="text-base mb-4">
             웹 기술의 빠른 변화에 발맞추어, 지속적인 학습을 통해 최신 트렌드,
-            보안 문제, 그리고 시스템 효율성에 관한 지식을 꾸준히 확장해
-            왔습니다. 이러한 노력은 프로젝트에 혁신적인 아이디어를 적용하고
-            비즈니스의 성장을 도모하는 데 큰 도움이 되었습니다. 또한, 자동화와
-            프로세스 최적화에 집중함으로써 작업 효율성을 상당히 높일 수
-            있었습니다.
+            시스템 효율성에 관한 지식을 꾸준히 확장해 왔습니다. 이러한 노력은
+            프로젝트에 혁신적인 아이디어를 적용하고 비즈니스의 성장을 도모하는
+            데 큰 도움이 되었습니다. 또한, 자동화와 프로세스 최적화에
+            집중함으로써 작업 효율성을 상당히 높일 수 있었습니다.
           </p>
           <p className="text-base mb-4">
             성공적인 프로젝트는 원활한 커뮤니케이션에서 비롯된다는 것을 이해하고
@@ -178,16 +180,16 @@ export default function About({ lastUpdated }) {
           </p>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Work Experience */}
       <div className="flex justify-between">
         <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
-          Work Experience.
+          Work Experience
         </div>
         {/* pill of total */}
         <div className="mt-2">
-          <p className="text-xs py-1 px-4 bg-cyan-200 rounded-full whitespace-nowrap">
+          <p className="text-xs py-1 px-4 bg-cyan-200 rounded-full whitespace-nowrap dark:text-zinc-800">
             총 {calculateTotalExperience(experiences)}
           </p>
         </div>
@@ -200,7 +202,7 @@ export default function About({ lastUpdated }) {
             2024.01 ~
           </p>
           <div className="flex justify-center ml-auto items-center align-middle">
-            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4 dark:text-zinc-800">
               {calculateExperience("2024-01-01")}
             </p>
           </div>
@@ -225,13 +227,24 @@ export default function About({ lastUpdated }) {
               시뮬레이션으로 연결하여 새로운 디지털 세계를 만드는 플랫폼 개발
               기업
             </li>
-            <li>NDXPRO ADMIN WEB 개발</li>
-            <li>EPC 프로젝트 개발</li>
-            <li>연합 트윈 포털 개발</li>
+            <li>
+              다양한 사내 프로젝트에서 프론트엔드 초기 기획 및 아키텍처 설계를
+              주도
+            </li>
+            <li>
+              사내 공용으로 활용할 수 있는 프론트엔드 컴포넌트 및 라이브러리
+              개발
+            </li>
+            <li>
+              오픈 소스 라이브러리를 도입하여 핵심 기능을 구현, 커스터마이징 및
+              고도화
+            </li>
+            <li>사내 공용 프로젝트 내 디자인 시스템을 도입</li>
+            <li>제품 내 기술적 개선 포인트를 주도적으로 발굴하고 해결</li>
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Flashee */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -240,7 +253,7 @@ export default function About({ lastUpdated }) {
             2023.07 ~ 2023.10
           </p>
           <div className="flex justify-center ml-auto items-center align-middle">
-            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4 dark:text-zinc-800">
               {calculateExperience("2023-07-01", "2023-10-01")}
             </p>
           </div>
@@ -290,7 +303,7 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* iClinic Systems */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -299,7 +312,7 @@ export default function About({ lastUpdated }) {
             2022.07 ~ 2023.06
           </p>
           <div className="flex justify-center ml-auto items-center align-middle">
-            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4 dark:text-zinc-800">
               {calculateExperience("2022-07-01", "2023-06-01")}
             </p>
           </div>
@@ -346,7 +359,7 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Catalyx */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -355,7 +368,7 @@ export default function About({ lastUpdated }) {
             2021.01 ~ 2022.05
           </p>
           <div className="flex justify-center ml-auto items-center align-middle">
-            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4">
+            <p className="font-medium text-xs py-1 px-4 bg-cyan-200 rounded-full w-fit ml-auto md:mt-4 dark:text-zinc-800">
               {calculateExperience("2021-01-01", "2022-05-01")}
             </p>
           </div>
@@ -398,12 +411,50 @@ export default function About({ lastUpdated }) {
         </div>
       </div>
 
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Projects  */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
-        Project.
+        Projects
       </div>
+
+      <div className="md:grid md:grid-cols-3 md:gap-4">
+        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
+          React Gantt Chart
+        </div>
+        <div className="col-span-2">
+          <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
+            <li>
+              <p>
+                React 기반의 오픈 소스 Gantt 차트 프로젝트를 개발하고 있습니다.
+              </p>
+            </li>
+            <li>
+              <p>
+                Vite, Zustand, Tailwind, Shadcn/ui 을 활용하여 프론트엔드에
+                가볍고 성능이 뛰어난 Gantt 차트를 구현하며, Drag & Drop, 태스크
+                종속성, 줌 & 패닝 등의 다양한 기능을 제공합니다.
+              </p>
+            </li>
+            <li>
+              <p>
+                프로젝트를 통해 커뮤니티와 협업하며 유지보수 및 기능 개선을
+                진행하고 있습니다.
+              </p>
+            </li>
+            <li>
+              <a
+                className="text-cyan-500 hover:underline hover:underline-offset-2"
+                href="https://github.com/jaeungkim/react-gantt-chart"
+                target="_blank"
+              >
+                깃허브 소스 코드
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* BC Public Service */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -411,7 +462,7 @@ export default function About({ lastUpdated }) {
           BC Public Service
         </div>
         <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc gap-2">
+          <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
               <p className="">비씨주 직원 및 프로젝트 관리 어플리케이션</p>
             </li>
@@ -427,7 +478,7 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Lental */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -435,7 +486,7 @@ export default function About({ lastUpdated }) {
           Lental
         </div>
         <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc gap-2">
+          <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
               <p className="">
                 학생들이 만든 학생들을 위한 교내 하우징 및 부동산 검색 웹
@@ -454,7 +505,7 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Lost Ark Bot */}
       <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -480,7 +531,7 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* WebGL Playground */}
       {/* <div className="md:grid md:grid-cols-3 md:gap-4">
@@ -507,11 +558,11 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr> */}
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr> */}
 
       {/* Skills */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
-        SKill.
+        SKill
       </div>
 
       <div className="md:grid md:grid-cols-3 md:gap-4 mb-8">
@@ -522,9 +573,9 @@ export default function About({ lastUpdated }) {
           <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
             <li>React</li>
             <li>Next.js</li>
-            <li>Angular</li>
             <li>React Query</li>
             <li>Recoil</li>
+            <li>Zustand</li>
             <li>Redux</li>
             <li>JavaScript</li>
             <li>TypeScript</li>
@@ -544,6 +595,8 @@ export default function About({ lastUpdated }) {
             <li>Node.js</li>
             <li>Nest.js</li>
             <li>Express.js</li>
+            <li>PostgreSQL</li>
+            <li>MongoDB</li>
           </ul>
         </div>
       </div>
@@ -555,14 +608,9 @@ export default function About({ lastUpdated }) {
         <div className="col-span-2">
           <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
             <li>AWS</li>
-            <li>MySQL</li>
-            <li>GraphQL</li>
-            <li>PostgreSQL</li>
-            <li>MongoDB</li>
             <li>NGINX</li>
             <li>Docker</li>
-            <li>Webpack</li>
-            <li>Google Analytics</li>
+            <li>Jenkins</li>
           </ul>
         </div>
       </div>
@@ -586,7 +634,7 @@ export default function About({ lastUpdated }) {
           </ul>
         </div>
       </div>
-      <hr className="my-11"></hr>
+      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Education */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
@@ -626,7 +674,7 @@ export default function About({ lastUpdated }) {
 }
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "pages", "resume.tsx");
+  const filePath = path.join(process.cwd(), "pages/resume", "index.tsx");
   const fileStats = fs.statSync(filePath);
 
   return {

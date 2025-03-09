@@ -1,4 +1,9 @@
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaRegFilePdf,
+} from "react-icons/fa";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, memo, useMemo } from "react";
 import dynamic from "next/dynamic";
@@ -30,7 +35,7 @@ const SocialIcon = memo(
       rel="noopener noreferrer"
       aria-label={href}
     >
-      <IconComponent className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+      <IconComponent className="size-6 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </a>
   )
 );
@@ -127,6 +132,7 @@ export default function About() {
             href="https://www.instagram.com/jaekiim/"
             IconComponent={FaInstagram}
           />
+          <SocialIcon href="/resume" IconComponent={FaRegFilePdf} />
         </div>
       </article>
     </div>

@@ -15,7 +15,6 @@ interface AppProps {
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [initialScreen, setInitialScreen] = useState(true);
   const router = useRouter();
-  const isResumePage = router.pathname === "/resume";
 
   useEffect(() => {
     if (!localStorage.getItem("initialScreenShown")) {
@@ -28,7 +27,6 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     setInitialScreen(false);
   }, []);
 
-  if (isResumePage) return <Component {...pageProps} />;
   if (initialScreen) return <Loader />;
 
   return (
