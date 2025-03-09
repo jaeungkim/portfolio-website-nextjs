@@ -1,24 +1,8 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-:root,
-html,
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Dark Palette Theme #1 */
-[data-theme="light"] {
-  --bg-primary: #35343d;
-  --indicator-primary: #ffdbd8;
-}
-
-[data-theme="dark"] {
-  --bg-primary: #35343d;
-  --indicator-primary: #ffdbd8;
-}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
 ::-webkit-scrollbar {
   height: 5px;

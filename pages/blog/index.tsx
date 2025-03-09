@@ -85,7 +85,7 @@ export default function Blog({ allPostsData }: BlogProps) {
             onClick={() => handleTabClick(category)}
             className={`mx-2 px-4 py-2 text-sm font-medium rounded-full ${
               activeTab === category.toLowerCase()
-                ? "text-white"
+                ? "dark:text-white"
                 : "bg-transparent text-cyan-500"
             }`}
           >

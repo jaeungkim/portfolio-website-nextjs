@@ -14,7 +14,6 @@ interface AppProps {
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [initialScreen, setInitialScreen] = useState(true);
-  const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
   const isResumePage = router.pathname === "/resume";
 
@@ -29,41 +28,12 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     setInitialScreen(false);
   }, []);
 
-  useEffect(() => {
-    const handleRouteChangeStart = () => setIsAnimating(true);
-    const handleRouteChangeComplete = () => setIsAnimating(false);
-
-    router.events.on("routeChangeStart", handleRouteChangeStart);
-    router.events.on("routeChangeComplete", handleRouteChangeComplete);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChangeStart);
-      router.events.off("routeChangeComplete", handleRouteChangeComplete);
-    };
-  }, [router.events]);
-
   if (isResumePage) return <Component {...pageProps} />;
   if (initialScreen) return <Loader />;
 
   return (
-    <ThemeProvider enableSystem attribute="class" defaultTheme="dark">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.75 }}
-      >
-        <Component {...pageProps} />
-        {isAnimating && (
-          <motion.div
-            key={router.route}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.75 }}
-          />
-        )}
-      </motion.div>
+    <ThemeProvider defaultTheme="dark">
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 };
