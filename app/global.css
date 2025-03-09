@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyan-700;
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff3;
+}
+
+.noto-font {
+  font-family: "Noto Sans KR", sans-serif;
+}
+@layer utilities {
+  .fadein {
+    opacity: 0.001;
+    animation: fade-in 0.75s ease both;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0.001;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

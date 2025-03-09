@@ -40,23 +40,14 @@ const SocialIcon = memo(
 );
 
 export default function About() {
-  const Lights = useMemo(
-    () => (
-      <>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 10, 5]} intensity={1} />
-      </>
-    ),
-    []
-  );
-
   return (
     <div className="md:flex w-full">
       {/* 3D Model Section */}
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px] md:mt-12">
         <Canvas shadows frameloop="demand">
           <PerspectiveCamera makeDefault position={[2.5, 5, 6]} fov={75} />
-          {Lights}
+          <ambientLight intensity={0.5} />
+          <directionalLight position={[5, 10, 5]} intensity={1} />
           <Suspense fallback={null}>
             <Model />
           </Suspense>
