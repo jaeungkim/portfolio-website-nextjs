@@ -6,7 +6,10 @@ import fs from "fs";
 import path from "path";
 import { format } from "date-fns";
 
-const calculateExperience = (startDate, endDate = null) => {
+const calculateExperience = (
+  startDate: string,
+  endDate: string | null = null
+) => {
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : new Date();
   let years = end.getFullYear() - start.getFullYear();
@@ -224,22 +227,21 @@ export default function About({ lastUpdated }) {
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
-              시뮬레이션으로 연결하여 새로운 디지털 세계를 만드는 플랫폼 개발
-              기업
+              다양한 사내 프로젝트에서 유지보수성과 확장성을 고려한 프론트엔드
+              구조 설계 및 공통 개발 환경 개선
             </li>
             <li>
-              다양한 사내 프로젝트에서 프론트엔드 초기 기획 및 아키텍처 설계를
-              주도
+              대규모 데이터와 복잡한 UI 환경에서 가상스크롤 및 비동기 처리 등을
+              적용하여 렌더링 성능 최적화
             </li>
             <li>
-              사내 공용으로 활용할 수 있는 프론트엔드 컴포넌트 및 라이브러리
-              개발
+              오픈소스 라이브러리의 설계 방식을 참고하여 사내 라이브러리를
+              커스터마이징하여 고도화 및 효율화
             </li>
             <li>
-              오픈 소스 라이브러리를 도입하여 핵심 기능을 구현, 커스터마이징 및
-              고도화
+              사내 공통 라이브러리와 디자인 시스템을 구축하여 일관성 있는
+              UI/UX를 제공하고, 개발 생산성과 협업 효율을 높임
             </li>
-            <li>사내 공용 프로젝트 내 디자인 시스템을 도입</li>
             <li>제품 내 기술적 개선 포인트를 주도적으로 발굴하고 해결</li>
           </ul>
         </div>
