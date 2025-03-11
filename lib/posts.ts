@@ -34,7 +34,10 @@ export function getSortedPostsData() {
         };
       })
       .filter(Boolean) // Remove null values
-      .sort((a, b) => (a.date < b.date ? 1 : -1));
+      .sort((a, b) => {
+        if (!a || !b) return 0;
+        return a.date < b.date ? 1 : -1;
+      });
   });
 }
 
