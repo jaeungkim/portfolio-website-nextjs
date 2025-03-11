@@ -1,19 +1,9 @@
-import Head from "next/head";
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import Layout from "@/components/shared/layout";
-import Article from "@/components/blog/Article";
-import { getSortedPostsData } from "@/lib/posts";
-import { GetStaticProps } from "next";
+"use client";
 
-interface Post {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  tags: string[];
-  category: string;
-}
+import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
+import Article from "./Article";
+import { Post } from "@/app/constants/blog";
 
 interface BlogProps {
   allPostsData: Post[];
@@ -21,7 +11,7 @@ interface BlogProps {
 
 const categories = ["Daily", "Studying"];
 
-export default function Blog({ allPostsData }: BlogProps) {
+export default function BlogContent({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState("daily");
 
@@ -70,11 +60,7 @@ export default function Blog({ allPostsData }: BlogProps) {
   );
 
   return (
-    <Layout>
-      <Head>
-        <title>Jaeung Kim - Blog</title>
-      </Head>
-
+    <>
       <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
         Blog
       </h1>
@@ -135,11 +121,6 @@ export default function Blog({ allPostsData }: BlogProps) {
           </div>
         </div>
       </motion.div>
-    </Layout>
+    </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
-  return { props: { allPostsData } };
-};

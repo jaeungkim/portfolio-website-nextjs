@@ -1,3 +1,5 @@
+"use client";
+
 import { useTheme } from "next-themes";
 import React, { useEffect, useRef, useCallback } from "react";
 
@@ -20,20 +22,15 @@ export const UtterancesComments: React.FC<UtterancesCommentsProps> = ({
         { type: "set-theme", theme: themeName },
         "https://utteranc.es"
       );
-    } else {
-      setTimeout(updateIframeTheme, 500);
     }
   }, [themeName]);
 
   useEffect(() => {
     if (!elementRef.current) return;
 
-    // Remove existing script if any
-    while (elementRef.current.firstChild) {
-      elementRef.current.removeChild(elementRef.current.firstChild);
-    }
+    // Ensure Utterances is only added once
+    if (elementRef.current.hasChildNodes()) return;
 
-    // Create Utterances script
     const script = document.createElement("script");
     script.src = "https://utteranc.es/client.js";
     script.async = true;
@@ -42,11 +39,13 @@ export const UtterancesComments: React.FC<UtterancesCommentsProps> = ({
     script.setAttribute("issue-term", "pathname");
     script.setAttribute("label", "comment");
     script.setAttribute("theme", themeName);
-    elementRef.current.appendChild(script);
 
-    // Update theme dynamically
+    elementRef.current.appendChild(script);
+  }, [repo]);
+
+  useEffect(() => {
     updateIframeTheme();
-  }, [repo, themeName, updateIframeTheme]);
+  }, [themeName, updateIframeTheme]);
 
   return <div ref={elementRef} />;
 };
