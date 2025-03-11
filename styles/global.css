@@ -19,9 +19,6 @@
   background: #fff3;
 }
 
-.noto-font {
-  font-family: "Noto Sans KR", sans-serif;
-}
 @layer utilities {
   .fadein {
     opacity: 0.001;

@@ -2,14 +2,7 @@ import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Date from "@/components/shared/date";
-
-interface Post {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  tags: string[];
-}
+import { Post } from "@/app/constants/blog";
 
 interface ArticleProps {
   post: Post;

@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation"; // ✅ CORRECT for App Router
 import { FiArrowLeft } from "react-icons/fi";
 
 export default function BackButton() {
