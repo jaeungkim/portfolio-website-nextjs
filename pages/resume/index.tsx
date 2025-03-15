@@ -300,14 +300,14 @@ export default function About({ lastUpdated }) {
                     </li>
                     <li>
                       웹 브라우저에서 폴더 단위의 대량 문서 업로드를 지원하기
-                      위해 webkitdirectory API 활용
+                      위해 import 의 webkitdirectory 활용
                     </li>
                     <li>
                       도면 문서의 버전 관리, 이력 추적 기능을 구현하여 도면의
                       변경 사항을 효율적으로 관리
                     </li>
                     <li>
-                      다양한 도면 파일 포맷(PDF, CAD, 이미지 등)의 미리보기
+                      다양한 도면 파일 포맷의 미리보기
                       기능을 지원하여 사용자 편의성 향상
                     </li>
                   </ul>
