@@ -255,10 +255,6 @@ export default function About({ lastUpdated }) {
                       관리를 위한 간트 차트 자체 개발
                     </li>
                     <li>
-                      Native 웹 스타일링 기법으로 가볍고 성능이 최적화된 Bar
-                      차트 UI 구현
-                    </li>
-                    <li>
                       계획 대비 실적 현황을 통합적으로 시각화하여 프로젝트 진척
                       현황을 명확하게 파악할 수 있도록 UI 설계 및 개발
                     </li>
@@ -267,8 +263,7 @@ export default function About({ lastUpdated }) {
                       의존관계를 직관적으로 표현하는 화살표 연결 UI 개발
                     </li>
                     <li>
-                      Bar 요소의 Drag & Drop 인터랙션을 통해 착수일 및 완료일을
-                      쉽고 빠르게 조정할 수 있는 기능 구현
+                    간트 차트 내 Bar 차트 드래그 인터랙션으로 착수일 및 완료일 (날짜)을 손쉽게 수정하는 기능 개발
                     </li>
                     <li>
                       BOM 트리 구조 내 Task의 순서 및 부모-자식 계층을 Drag &
