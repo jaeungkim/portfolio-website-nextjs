@@ -352,7 +352,7 @@ export default function About({ lastUpdated }) {
                   즐겨찾기 기능으로 사용자 맞춤형 대시보드를 구현
                 </li>
                 <li>
-                  SVG 기반 2D Viewer에서 특정 영역 클릭 시 smooth scroll 하여
+                  SVG 기반 2D Viewer에서 특정 영역 클릭 시 줌인 하여
                   세부 도면을 직관적으로 탐색할 수 있는 기능 개발
                 </li>
                 <li>
