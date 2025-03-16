@@ -5,14 +5,15 @@ import { HiOutlineMail } from "react-icons/hi";
 import {
   calculateExperience,
   calculateTotalExperience,
+  calculateTotalExperienceInYears,
 } from "@/app/utils/resume";
 import { experiences } from "@/app/constants/resume";
 
 export default function ResumeContent({ lastUpdated }) {
   return (
-    <div className="relative text-3xl mt-9 px-4 sm:px-8 lg:px-12 md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto noto-font text-[#37352F] dark:text-zinc-400">
+    <div className="px-4 sm:px-8 md:px-12 xl:px-20 py-10 max-w-7xl mx-auto text-[#37352F] dark:text-zinc-400">
       {/* HEADER  */}
-      <div className="md:grid md:grid-cols-3 gap-4">
+      <div className="md:grid md:grid-cols-4 gap-4">
         <div className="flex justify-center md:justify-normal mb-11 md:mb-0">
           {" "}
           <Image
@@ -24,7 +25,7 @@ export default function ResumeContent({ lastUpdated }) {
           />
         </div>
 
-        <div className="flex flex-col gap-4 justify-center md:col-span-2">
+        <div className="flex flex-col gap-4 justify-center md:col-span-3">
           <p className="text-5xl mb-4 text-cyan-500 font-bold w-full">
             KIM JAEUNG <span className="text-base">(김재웅)</span>
           </p>
@@ -86,15 +87,15 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Introduce */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="font-semibold text-cyan-500 text-3xl uppercase mb-11">
           Introduce
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <p className="text-base mb-4 font-normal">
             웹 서비스의 기획과 설계부터 개발, 배포 및 운영까지 전반적인 과정을
-            경험하며 {calculateTotalExperienceInYears(experiences)}간 꾸준히 성장해온
-            프론트엔드 개발자입니다.
+            경험하며 {calculateTotalExperienceInYears(experiences)}간 꾸준히
+            성장해온 프론트엔드 개발자입니다.
           </p>
           <p className="text-base mb-4">
             성능 최적화와 효율적인 코드 설계를 통해 사용자 중심의 쾌적한 환경을
@@ -132,7 +133,7 @@ export default function ResumeContent({ lastUpdated }) {
       </div>
 
       {/* e8ight */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="w-full flex md:block md:text-right md:px-4 mb-4">
           <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2024.01 ~
@@ -144,7 +145,7 @@ export default function ResumeContent({ lastUpdated }) {
           </div>
         </div>
 
-        <div className="col-span-2">
+        <div className="col-span-3">
           <Link
             className="text-2xl font-medium hover:text-cyan-500"
             href="https://e8ight.co.kr"
@@ -418,7 +419,7 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Flashee */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="w-full flex md:block md:text-right md:px-4 mb-4">
           <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2023.07 ~ 2023.10
@@ -430,7 +431,7 @@ export default function ResumeContent({ lastUpdated }) {
           </div>
         </div>
 
-        <div className="col-span-2">
+        <div className="col-span-3">
           <Link
             className="text-2xl font-medium hover:text-cyan-500"
             href="https://flashee.app"
@@ -477,7 +478,7 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* iClinic Systems */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="w-full flex md:block md:text-right md:px-4 mb-4">
           <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2022.07 ~ 2023.06
@@ -488,7 +489,7 @@ export default function ResumeContent({ lastUpdated }) {
             </p>
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <Link
             className="text-2xl font-medium hover:text-cyan-500"
             href="https://www.aiclinic.ca"
@@ -537,7 +538,7 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Catalyx */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="w-full flex md:block md:text-right md:px-4 mb-4">
           <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
             2021.01 ~ 2022.05
@@ -548,7 +549,7 @@ export default function ResumeContent({ lastUpdated }) {
             </p>
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <Link
             className="text-2xl font-medium hover:text-cyan-500"
             href="https://www.catalyx.io"
@@ -593,11 +594,11 @@ export default function ResumeContent({ lastUpdated }) {
         OPEN SOURCE
       </div>
 
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           React Gantt Chart
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
               <p>
@@ -632,11 +633,11 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* BC Public Service */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           BC Public Service
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
               <p className="">비씨주 직원 및 프로젝트 관리 어플리케이션</p>
@@ -656,11 +657,11 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Lental */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Lental
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
               <p className="">
@@ -683,11 +684,11 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Lost Ark Bot */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Discord Bot
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <ul className="text-base font-normal pl-8 list-disc gap-2">
             <li>
               <p className="">
@@ -709,11 +710,11 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* WebGL Playground */}
-      {/* <div className="md:grid md:grid-cols-3 md:gap-4">
+      {/* <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           WebGL Playground
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <ul className="text-base font-normal pl-8 list-disc gap-2">
             <li>
               <a className="">
@@ -740,12 +741,12 @@ export default function ResumeContent({ lastUpdated }) {
         SKill
       </div>
 
-      <div className="md:grid md:grid-cols-3 md:gap-4 mb-8">
+      <div className="md:grid md:grid-cols-4 md:gap-4 mb-8">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Frontend
         </div>
-        <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
+        <div className="col-span-3">
+          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
             <li>React</li>
             <li>Next.js</li>
             <li>React Query</li>
@@ -764,12 +765,12 @@ export default function ResumeContent({ lastUpdated }) {
         </div>
       </div>
 
-      <div className="md:grid md:grid-cols-3 md:gap-4 mb-8">
+      <div className="md:grid md:grid-cols-4 md:gap-4 mb-8">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Backend
         </div>
-        <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
+        <div className="col-span-3">
+          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
             <li>Node.js</li>
             <li>Nest.js</li>
             <li>Express.js</li>
@@ -779,12 +780,12 @@ export default function ResumeContent({ lastUpdated }) {
         </div>
       </div>
 
-      <div className="md:grid md:grid-cols-3 md:gap-4 mb-8">
+      <div className="md:grid md:grid-cols-4 md:gap-4 mb-8">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           DevOps
         </div>
-        <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
+        <div className="col-span-3">
+          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
             <li>AWS</li>
             <li>NGINX</li>
             <li>Docker</li>
@@ -793,12 +794,12 @@ export default function ResumeContent({ lastUpdated }) {
         </div>
       </div>
 
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           Misc.
         </div>
-        <div className="col-span-2">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-3 gap-2">
+        <div className="col-span-3">
+          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
             <li>Java</li>
             <li>Agile/Scrum</li>
             <li>Jira</li>
@@ -820,11 +821,11 @@ export default function ResumeContent({ lastUpdated }) {
       </div>
 
       {/* UBC */}
-      <div className="md:grid md:grid-cols-3 md:gap-4">
+      <div className="md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
           2020.04
         </div>
-        <div className="col-span-2">
+        <div className="col-span-3">
           <Link
             className="text-2xl font-medium hover:text-cyan-500"
             href="https://www.ubc.ca/"

@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import ResumeContent from "./ResumeContent";
 
 export default async function ResumePage() {
-  const filePath = path.join(process.cwd(), "app", "resume", "page.tsx");
+  const filePath = path.join(process.cwd(), "app", "(resume)", "resume", "page.tsx");
   let lastUpdated = "Unknown";
   try {
     const fileStats = await fs.stat(filePath);

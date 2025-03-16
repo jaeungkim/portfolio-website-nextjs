@@ -4,9 +4,10 @@ import {
   FaInstagram,
   FaRegFilePdf,
 } from "react-icons/fa";
-import SocialIcon from "./components/shared/SocialIcon";
-import ModelContainer from "./components/model/ModelContainer";
-import CrypticText from "./components/CrypticText";
+
+import SocialIcon from "../components/shared/SocialIcon";
+import ModelContainer from "../components/model/ModelContainer";
+import CrypticText from "../components/CrypticText";
 
 export default function Page() {
   return (
@@ -70,10 +71,10 @@ export default function Page() {
             href="https://www.linkedin.com/in/jaeungkim0526/"
             IconComponent={FaLinkedin}
           />
-          <SocialIcon
+          {/* <SocialIcon
             href="https://www.instagram.com/jaekiim/"
             IconComponent={FaInstagram}
-          />
+          /> */}
           <SocialIcon href="/resume" IconComponent={FaRegFilePdf} />
         </div>
       </article>

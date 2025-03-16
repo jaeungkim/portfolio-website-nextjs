@@ -5,7 +5,6 @@ export const navigation = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
   { name: "Project", href: "/project" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export default function NavLinks() {

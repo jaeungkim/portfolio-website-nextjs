@@ -73,9 +73,10 @@ export default function BlogContent({ allPostsData }: BlogProps) {
       <div className="flex justify-center">
         {categories.map((category) => (
           <button
+            type="button"
             key={category}
             onClick={() => handleTabClick(category)}
-            className={`cursor-pointer border border-solid border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 mx-2 my-1 px-3 py-1 text-sm font-medium rounded-full ${
+            className={`border border-solid border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 mx-2 my-1 px-3 py-1 text-sm font-medium rounded-full ${
               activeTab === category.toLowerCase()
                 ? "dark:text-white"
                 : "bg-transparent text-cyan-500"

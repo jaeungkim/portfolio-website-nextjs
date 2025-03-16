@@ -3,31 +3,10 @@ import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { Post, PostData } from "@/app/constants/blog";
 
 const POSTS_DIR = path.join(process.cwd(), "posts");
 const CATEGORIES = ["daily", "studying"];
-
-interface Post {
-  id: string;
-  title: string;
-  date: string;
-  summary: string;
-  tags?: string[];
-  category: string;
-}
-
-interface PostData {
-  slug: string;
-  id: string;
-  tags: string[];
-  contentHtml: MDXRemoteSerializeResult<
-    Record<string, unknown>,
-    Record<string, unknown>
-  >;
-  date: string;
-  title: string;
-  summary: string;
-}
 
 /**
  * Get all sorted posts from available categories.
@@ -55,7 +34,7 @@ export function getSortedPostsData(): Post[] {
           category,
         };
       })
-      .filter(Boolean) // Remove null values
+      .filter((post): post is Post => post !== null) // Remove null values and assert type
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); // Sort by newest first
   });
 }
