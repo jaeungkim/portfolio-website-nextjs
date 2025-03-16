@@ -5,9 +5,9 @@ import {
   FaRegFilePdf,
 } from "react-icons/fa";
 
-import SocialIcon from "../components/shared/SocialIcon";
-import ModelContainer from "../components/model/ModelContainer";
-import CrypticText from "../components/CrypticText";
+import SocialIcon from "@/app/components/shared/SocialIcon";
+import ModelContainer from "@/app/components/model/ModelContainer";
+import CrypticText from "@/app/components/CrypticText";
 
 export default function Page() {
   return (

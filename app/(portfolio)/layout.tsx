@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/navbar/Navbar";
+import Footer from "@/app/components/Footer";
+import Navbar from "@/app/components/navbar/Navbar";
 
 export default function PortfolioLayout({
   children,
