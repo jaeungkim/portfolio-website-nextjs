@@ -9,9 +9,10 @@ import { format } from "date-fns";
 const calculateExperience = (
   startDate: string,
   endDate: string | null = null
-) => {
+): string => {
   const start = new Date(startDate);
   const end = endDate ? new Date(endDate) : new Date();
+
   let years = end.getFullYear() - start.getFullYear();
   let months = end.getMonth() - start.getMonth();
 
@@ -24,57 +25,103 @@ const calculateExperience = (
     months += 12;
   }
 
-  years += Math.floor(months / 12);
-  months %= 12;
+  const totalMonths = years * 12 + months;
 
-  if (years > 0 && months > 0) {
-    return `${years}년 ${months}개월`;
-  } else if (years > 0) {
-    return `${years}년`;
+  if (totalMonths <= 0) return `1개월`;
+
+  const finalYears = Math.floor(totalMonths / 12);
+  const finalMonths = totalMonths % 12;
+
+  if (finalYears > 0 && finalMonths > 0) {
+    return `${finalYears}년 ${finalMonths}개월`;
+  } else if (finalYears > 0) {
+    return `${finalYears}년`;
   } else {
-    return `${months}개월`;
+    return `${finalMonths}개월`;
   }
 };
 
-const experiences = [
-  { start: "2024-01-01", end: null }, // Ongoing job
-  { start: "2023-07-01", end: "2023-10-01" },
-  { start: "2022-07-01", end: "2023-06-01" },
-  { start: "2021-01-01", end: "2022-05-01" },
-  // Add other experiences as needed
-];
-
-const calculateTotalExperience = (experiences) => {
+const calculateTotalExperience = (
+  experiences: { start: string; end: string | null }[]
+): string => {
   let totalMonths = 0;
 
-  experiences.forEach((exp) => {
-    const start = new Date(exp.start);
-    const end = exp.end ? new Date(exp.end) : new Date();
+  experiences.forEach(({ start, end }) => {
+    const startDate = new Date(start);
+    const endDate = end ? new Date(end) : new Date();
 
-    let years = end.getFullYear() - start.getFullYear();
-    let months = end.getMonth() - start.getMonth();
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
 
-    // Include the end month in the total count
-    if (end.getDate() >= start.getDate()) {
+    if (endDate.getDate() >= startDate.getDate()) {
       months++;
     }
 
-    // Adjust for negative months and convert years to months
     if (months < 0) {
       years--;
       months += 12;
     }
-    totalMonths += years * 12 + months;
+
+    const diffMonths = years * 12 + months;
+
+    totalMonths += diffMonths <= 0 ? 1 : diffMonths;
   });
 
-  // Convert total months back into years and remaining months
   const totalYears = Math.floor(totalMonths / 12);
   const remainingMonths = totalMonths % 12;
 
-  // Format the display for years and months
-  const yearDisplay = totalYears > 0 ? `${totalYears}년 ` : "";
-  return `${yearDisplay}${remainingMonths}개월`;
+  if (totalYears > 0 && remainingMonths > 0) {
+    return `${totalYears}년 ${remainingMonths}개월`;
+  } else if (totalYears > 0) {
+    return `${totalYears}년`;
+  } else {
+    return `${remainingMonths}개월`;
+  }
 };
+
+const calculateTotalExperienceInYears = (
+  experiences: { start: string; end: string | null }[]
+): string => {
+  let totalMonths = 0;
+
+  experiences.forEach(({ start, end }) => {
+    const startDate = new Date(start);
+    const endDate = end ? new Date(end) : new Date();
+
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
+
+    if (endDate.getDate() >= startDate.getDate()) {
+      months++;
+    }
+
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    const diffMonths = years * 12 + months;
+
+    totalMonths += diffMonths <= 0 ? 1 : diffMonths;
+  });
+
+  const totalYears = Math.floor(totalMonths / 12);
+
+  // 최소 1년 보장하고 싶다면 아래 return 사용
+  // return `${totalYears > 0 ? totalYears : 1}년`;
+
+  return `${totalYears}년`;
+};
+
+
+// 테스트 데이터
+const experiences = [
+  { start: "2024-01-01", end: null },
+  { start: "2023-07-01", end: "2023-10-01" },
+  { start: "2022-07-01", end: "2023-06-01" },
+  { start: "2021-01-01", end: "2022-05-01" },
+  { start: "2024-03-01", end: "2024-03-02" }, // 1일 차이도 최소 1개월 처리
+];
 
 export default function About({ lastUpdated }) {
   return (
@@ -159,7 +206,7 @@ export default function About({ lastUpdated }) {
         <div className="col-span-2">
           <p className="text-base mb-4 font-normal">
             웹 서비스의 기획과 설계부터 개발, 배포 및 운영까지 전반적인 과정을
-            경험하며 {calculateTotalExperience(experiences)}간 꾸준히 성장해온
+            경험하며 {calculateTotalExperienceInYears(experiences)}간 꾸준히 성장해온
             프론트엔드 개발자입니다.
           </p>
           <p className="text-base mb-4">
@@ -263,7 +310,8 @@ export default function About({ lastUpdated }) {
                       의존관계를 직관적으로 표현하는 화살표 연결 UI 개발
                     </li>
                     <li>
-                    간트 차트 내 Bar 차트 드래그 인터랙션으로 착수일 및 완료일 (날짜)을 손쉽게 수정하는 기능 개발
+                      간트 차트 내 Bar 차트 드래그 인터랙션으로 착수일 및 완료일
+                      (날짜)을 손쉽게 수정하는 기능 개발
                     </li>
                     <li>
                       BOM 트리 구조 내 Task의 순서 및 부모-자식 계층을 Drag &
@@ -274,7 +322,8 @@ export default function About({ lastUpdated }) {
                       이전에 변경사항을 즉시 반영, 사용자 경험(UX) 향상
                     </li>
                     <li>
-                    React Query setQueryData로 하위 노드를 캐시에 저장하여 불필요한 네트워크 호출 절감
+                      React Query setQueryData로 하위 노드를 캐시에 저장하여
+                      불필요한 네트워크 호출 절감
                     </li>
                     <li>
                       React Window를 활용한 Virtualization 적용으로 대규모
@@ -307,8 +356,8 @@ export default function About({ lastUpdated }) {
                       변경 사항을 효율적으로 관리
                     </li>
                     <li>
-                      다양한 도면 파일 포맷의 미리보기
-                      기능을 지원하여 사용자 편의성 향상
+                      다양한 도면 파일 포맷의 미리보기 기능을 지원하여 사용자
+                      편의성 향상
                     </li>
                   </ul>
                 </li>
@@ -352,8 +401,8 @@ export default function About({ lastUpdated }) {
                   즐겨찾기 기능으로 사용자 맞춤형 대시보드를 구현
                 </li>
                 <li>
-                  SVG 기반 2D Viewer에서 특정 영역 클릭 시 줌인 하여
-                  세부 도면을 직관적으로 탐색할 수 있는 기능 개발
+                  SVG 기반 2D Viewer에서 특정 영역 클릭 시 줌인 하여 세부 도면을
+                  직관적으로 탐색할 수 있는 기능 개발
                 </li>
                 <li>
                   복잡한 SVG 위에서 마우스 이벤트를 활용해 텍스트, 직선, 곡선
@@ -574,6 +623,10 @@ export default function About({ lastUpdated }) {
             <li>
               WebGL 기술을 적극 활용하여 사내 마케팅 프로젝트 전체를 독자적으로
               설계 및 구현, 현대적인 웹 경험 제공
+            </li>
+            <li>
+              Framer Motion과 GSAP 기반의 인터랙션 및 애니메이션 구현으로
+              직관적이고 몰입감 있는 사용자 경험 제공
             </li>
             <li>
               기술적 지식이 없는 경영진도 사용 가능한 사내 인력 및 근태 관리
