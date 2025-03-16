@@ -1,13 +1,13 @@
-const withTM = require("next-transpile-modules")([
-  "three",
-  "@react-three/fiber",
-]);
+// const withTM = require("next-transpile-modules")([
+//   "three",
+//   "@react-three/fiber",
+// ]);
 
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
 });
 
-module.exports = withTM(
+module.exports = (
   withMDX({
     pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
     images: {

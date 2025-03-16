@@ -8,30 +8,39 @@ import { getPostData } from "@/lib/posts";
 import MDXClient from "./MDXClient";
 import { UtterancesComments } from "./UtterancesComments";
 
-interface PostPageProps {
-  params: { id: string[] };
-}
-
-export async function generateMetadata({
-  params,
-}: PostPageProps): Promise<Metadata> {
-  if (params.id.length !== 2) return { title: "Post Not Found" };
+export async function generateMetadata({ params }: any) {
+  if (!params?.id || params.id.length !== 2) {
+    return {
+      title: "Post Not Found",
+    };
+  }
 
   const [category, slug] = params.id.map(decodeURIComponent);
 
   const postData = await getPostData([category, slug]);
-  if (!postData) return { title: "Post Not Found" };
+  if (!postData) {
+    return {
+      title: "Post Not Found",
+    };
+  }
 
-  return { title: postData.title, description: postData.summary || "" };
+  return {
+    title: postData.title,
+    description: postData.summary || "",
+  };
 }
 
-export default async function PostPage({ params }: PostPageProps) {
-  if (params.id.length !== 2) return notFound();
+export default async function PostPage({ params }: any) {
+  if (!params?.id || params.id.length !== 2) {
+    notFound();
+  }
 
   const [category, slug] = params.id.map(decodeURIComponent);
 
   const postData = await getPostData([category, slug]);
-  if (!postData) return notFound();
+  if (!postData) {
+    notFound();
+  }
 
   return (
     <>

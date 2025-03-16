@@ -8,9 +8,6 @@ import { Post, PostData } from "@/app/constants/blog";
 const POSTS_DIR = path.join(process.cwd(), "posts");
 const CATEGORIES = ["daily", "studying"];
 
-/**
- * Get all sorted posts from available categories.
- */
 export function getSortedPostsData(): Post[] {
   return CATEGORIES.flatMap((category) => {
     const categoryDir = path.join(POSTS_DIR, category);
@@ -34,16 +31,13 @@ export function getSortedPostsData(): Post[] {
           category,
         };
       })
-      .filter((post): post is Post => post !== null) // Remove null values and assert type
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); // Sort by newest first
+      .filter((post): post is Post => post !== null)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   });
 }
 
-/**
- * Fetch post data by category and post ID.
- */
 export async function getPostData(
-  id: string | string[]
+  id: string[] | string
 ): Promise<PostData | null> {
   const postIdArray = Array.isArray(id) ? id : id.split("/");
   if (postIdArray.length !== 2) return null;
@@ -55,7 +49,7 @@ export async function getPostData(
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(fileContents);
 
-  const contentHtml = await serialize(content);
+  const contentHtml: MDXRemoteSerializeResult = await serialize(content);
 
   return {
     slug: postId,
