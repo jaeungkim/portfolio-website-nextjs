@@ -78,10 +78,10 @@ export default function Blog({ allPostsData }: BlogProps) {
       <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
         Blog
       </h1>
-      <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
+      {/* <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
         Welcome to my personal blog, where I share thoughts and experiences on
         technology, personal development, and more.
-      </p>
+      </p> */}
 
       {/* Category Tabs */}
       <div className="flex justify-center">
@@ -89,7 +89,7 @@ export default function Blog({ allPostsData }: BlogProps) {
           <button
             key={category}
             onClick={() => handleTabClick(category)}
-            className={`mx-2 px-4 py-2 text-sm font-medium rounded-full ${
+            className={`cursor-pointer border border-solid border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 mx-2 my-1 px-3 py-1 text-sm font-medium rounded-full ${
               activeTab === category.toLowerCase()
                 ? "dark:text-white"
                 : "bg-transparent text-cyan-500"
