@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Date from "@/app/components/shared/date";
-import { Post } from "@/app/constants/blog";
+import { Post } from "@/app/types/blog";
 
 interface ArticleProps {
   post: Post;

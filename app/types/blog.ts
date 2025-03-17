@@ -9,15 +9,12 @@ export interface Post {
   category: string;
 }
 
-export interface PostData {
+export type PostData = {
   slug: string;
   id: string;
   tags: string[];
-  contentHtml: MDXRemoteSerializeResult<
-    Record<string, unknown>,
-    Record<string, unknown>
-  >;
+  contentHtml: MDXRemoteSerializeResult;
   date: string;
   title: string;
   summary: string;
-}
+};

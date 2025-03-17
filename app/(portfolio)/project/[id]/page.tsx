@@ -4,8 +4,9 @@ import { FiClock, FiTag } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProjectSinglePage({ params }: any) {
-  const projectId = parseInt(params.id ?? "", 10);
+export default async function ProjectSinglePage({ params }) {
+  const { id } = await params;
+  const projectId = parseInt(id ?? "", 10);
   const project = projectsData.find((item) => item.id === projectId);
 
   if (!project) {

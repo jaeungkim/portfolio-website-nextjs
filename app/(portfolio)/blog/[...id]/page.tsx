@@ -1,23 +1,28 @@
+export const dynamic = "force-dynamic";
+
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { getPostData } from "@/lib/posts";
 
 import BackButton from "@/app/components/BackButton";
 import ScrollIndicator from "@/app/components/ScrollIndicator";
 import ScrollToTopButton from "@/app/components/ScrollToTopButton";
-import { getPostData } from "@/lib/posts";
 import MDXClient from "./MDXClient";
 import { UtterancesComments } from "./UtterancesComments";
 
-export async function generateMetadata({ params }: any) {
-  if (!params?.id || params.id.length !== 2) {
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  if (!id || id.length !== 2) {
     return {
       title: "Post Not Found",
     };
   }
 
-  const [category, slug] = params.id.map(decodeURIComponent);
+  const [category, slug] = id.map(decodeURIComponent);
 
   const postData = await getPostData([category, slug]);
+
   if (!postData) {
     return {
       title: "Post Not Found",
@@ -30,14 +35,17 @@ export async function generateMetadata({ params }: any) {
   };
 }
 
-export default async function PostPage({ params }: any) {
-  if (!params?.id || params.id.length !== 2) {
+export default async function PostPage({ params }) {
+  const { id } = await params;
+
+  if (!id || id.length !== 2) {
     notFound();
   }
 
-  const [category, slug] = params.id.map(decodeURIComponent);
+  const [category, slug] = id.map(decodeURIComponent);
 
   const postData = await getPostData([category, slug]);
+
   if (!postData) {
     notFound();
   }

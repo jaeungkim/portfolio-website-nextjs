@@ -26,7 +26,7 @@ export default function Navbar() {
 
   const themeButtonClass = useMemo(() => {
     const base =
-      "group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10";
+      "cursor-pointer group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10";
     return theme === "dark"
       ? `${base} text-yellow-300 hover:text-yellow-500`
       : `${base} text-cyan-500 hover:text-cyan-700`;
@@ -75,6 +75,7 @@ export default function Navbar() {
           <div className="flex flex-1 justify-end md:justify-center">
             {/* Mobile Menu Button */}
             <button
+              type="button"
               onClick={toggleModal}
               className="pointer-events-auto md:hidden group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200"
             >
@@ -84,15 +85,14 @@ export default function Navbar() {
             <nav className="pointer-events-auto hidden md:block">
               <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200">
                 {navigation.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      prefetch={false}
-                      className="relative block px-3 py-2 transition hover:text-cyan-500 dark:hover:text-cyan-400"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    prefetch={false}
+                    className="relative block px-3 py-2 transition hover:text-cyan-500 dark:hover:text-cyan-400"
+                  >
+                    {item.name}
+                  </Link>
                 ))}
               </ul>
             </nav>
@@ -101,9 +101,9 @@ export default function Navbar() {
           {/* Theme Toggle */}
           <div className="flex justify-end md:flex-1">
             <button
+              type="button"
               onClick={toggleTheme}
               className={themeButtonClass}
-              aria-label="Toggle Theme"
             >
               {icon}
             </button>
@@ -143,7 +143,6 @@ export default function Navbar() {
                     <XMarkIcon
                       className="w-5 cursor-pointer"
                       onClick={closeModal}
-                      aria-hidden="true"
                     />
                   </DialogTitle>
 

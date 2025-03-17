@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
-  const allPostsData = await getSortedPostsData(); // Fetch on server
+  const allPostsData = await getSortedPostsData();
 
   return (
     <Suspense fallback={<p>Loading...</p>}>

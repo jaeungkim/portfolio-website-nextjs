@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
 import Article from "./Article";
-import { Post } from "@/app/constants/blog";
+import { Post } from "@/app/types/blog";
 
 interface BlogProps {
   allPostsData: Post[];
@@ -64,10 +64,6 @@ export default function BlogContent({ allPostsData }: BlogProps) {
       <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
         Blog
       </h1>
-      {/* <p className="my-6 text-base text-zinc-600 dark:text-zinc-400">
-        Welcome to my personal blog, where I share thoughts and experiences on
-        technology, personal development, and more.
-      </p> */}
 
       {/* Category Tabs */}
       <div className="flex justify-center">
