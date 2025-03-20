@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+      },
       colors: {
         bg_primary_dark: "#35343D",
         custom_blue: {

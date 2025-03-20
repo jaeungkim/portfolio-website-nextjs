@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import localFont from "next/font/local";
 import { Suspense } from "react";
 import "./global.css";
 import Head from "next/head";
 import InitialScreenProvider from "@/app/client/InitialScreenProvider";
-import Navbar from "@/app//components/navbar/Navbar";
-import Footer from "@/app/components/Footer";
 
-const notoSansKr = Noto_Sans_KR({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const pretendard = localFont({
+  src: "../public/fonts/pretendard/Pretendard-Regular.woff2",
+  display: "swap",
+  variable: "--font-pretendard",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${pretendard.variable}`}>
       <Head>
         <link rel="shortcut icon" href="/static/favicon.ico" />
         <link
@@ -31,7 +30,7 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
         />
       </Head>
-      <body className={`${notoSansKr.className} noto-font antialiased`}>
+      <body className={`${pretendard.className} antialiased`}>
         <InitialScreenProvider>{children}</InitialScreenProvider>
       </body>
     </html>
