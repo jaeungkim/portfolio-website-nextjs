@@ -41,9 +41,9 @@ export default function Page() {
 
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
           This is my personal space on the internet dedicated to showcasing my
-          writing, various projects, tutorials, art pieces, and any other
-          content I'm passionate about sharing. Dive into the blog or check out
-          the projects page for a glimpse of my work.
+          writing, various projects, tutorials, and any other content I'm
+          passionate about sharing. Dive into the blog or check out the projects
+          page for a glimpse of my work.
         </p>
 
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
