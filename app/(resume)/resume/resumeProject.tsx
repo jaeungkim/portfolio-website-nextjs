@@ -40,7 +40,7 @@ export default function ResumeProject() {
       <Divider />
 
       <ProjectSection
-        title="BC Government (IS24 Full Stack Challenge)"
+        title="BC Government"
         description={[
           "BC 주정부에서 주최한 IS24 Full Stack Competition 과제로 개발한 직원 관리 시스템입니다.",
           "조직 내 직원과 팀 정보를 효율적으로 관리할 수 있도록 사용자 친화적인 인터페이스와 기능을 구현했습니다.",
