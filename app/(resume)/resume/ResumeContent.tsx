@@ -8,6 +8,7 @@ import {
   calculateTotalExperienceInYears,
 } from "@/app/utils/resume";
 import { experiences } from "@/app/constants/resume";
+import ResumeProject from "./resumeProject";
 
 export default function ResumeContent({ lastUpdated }) {
   return (
@@ -122,7 +123,7 @@ export default function ResumeContent({ lastUpdated }) {
       {/* Work Experience */}
       <div className="flex justify-between">
         <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
-          Work & Project
+          Work
         </div>
         {/* pill of total */}
         <div className="mt-2">
@@ -590,151 +591,7 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
       {/* Projects  */}
-      <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
-        OPEN SOURCE
-      </div>
-
-      <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          React Gantt Chart
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
-            <li>
-              <p>
-                React 기반의 오픈 소스 Gantt 차트 프로젝트를 개발하고 있습니다.
-              </p>
-            </li>
-            <li>
-              <p>
-                Vite, Zustand, Tailwind, Shadcn/ui 을 활용하여 프론트엔드에
-                가볍고 성능이 뛰어난 Gantt 차트를 구현하며, Drag & Drop, 태스크
-                종속성, 줌 & 패닝 등의 다양한 기능을 제공합니다.
-              </p>
-            </li>
-            <li>
-              <p>
-                프로젝트를 통해 커뮤니티와 협업하며 유지보수 및 기능 개선을
-                진행하고 있습니다.
-              </p>
-            </li>
-            <li>
-              <a
-                className="text-cyan-500 hover:underline hover:underline-offset-2"
-                href="https://github.com/jaeungkim/react-gantt-chart"
-                target="_blank"
-              >
-                깃허브 소스 코드
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
-
-      {/* BC Public Service */}
-      <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          BC Public Service
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
-            <li>
-              <p className="">비씨주 직원 및 프로젝트 관리 어플리케이션</p>
-            </li>
-            <li>
-              <a
-                className="text-cyan-500 hover:underline hover:underline-offset-2"
-                href="https://github.com/jaeungkim/jaeung-kim-IS24-full-stack-competition-req97073"
-                target="_blank"
-              >
-                깃허브 소스 코드
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
-
-      {/* Lental */}
-      <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Lental
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc flex flex-col gap-2">
-            <li>
-              <p className="">
-                학생들이 만든 학생들을 위한 교내 하우징 및 부동산 검색 웹
-                어플리케이션
-              </p>
-            </li>
-            <li>
-              <a
-                className="text-cyan-500 hover:underline hover:underline-offset-2"
-                href="https://www.youtube.com/watch?v=sIZqCxLnLSY&ab_channel=LentalRents"
-                target="_blank"
-              >
-                프로젝트 소개 영상
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
-
-      {/* Lost Ark Bot */}
-      <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Discord Bot
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc gap-2">
-            <li>
-              <p className="">
-                Discord.js 로 제작된 파티/레이드 서칭 툴, 1000명 이상의 사용자
-              </p>
-            </li>
-            <li>
-              <a
-                className="text-cyan-500 hover:underline hover:underline-offset-2"
-                href="https://github.com/jaeungkim/lostark_bot"
-                target="_blank"
-              >
-                깃허브 소스 코드
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
-
-      {/* WebGL Playground */}
-      {/* <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          WebGL Playground
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc gap-2">
-            <li>
-              <a className="">
-                WebGL, GSAP, Three.js 등을 사용하여 만든 3D 개발자 포트폴리오
-                탬플릿
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-cyan-500 hover:underline hover:underline-offset-2"
-                href="https://github.com/jaeungkim/webGL-playground"
-                target="_blank"
-              >
-                깃허브 소스 코드
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr> */}
+     <ResumeProject />
 
       {/* Skills */}
       <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
