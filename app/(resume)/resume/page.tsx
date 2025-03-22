@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { format } from "date-fns";
-import ResumeContent from "./resumeContent";
+import ResumeContent from "./resumeMain";
 
 export default async function ResumePage() {
   const filePath = path.join(
