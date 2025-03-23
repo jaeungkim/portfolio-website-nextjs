@@ -1,0 +1,12 @@
+{
+  "greeting": "Hello, I'm Jay Kim",
+  "intro": "Hey, I'm a frontend developer with 4 years of experience, focusing on creating user-friendly UI.",
+  "description1": "This is my personal website, where I share my writing, projects, and various other content I want to showcase.",
+  "description2": "Currently, I'm working as a frontend developer at E8ight on the Platform Development Team, and developing B2B SaaS platforms like PMIS (Project Management Information System) and EPC (Engineering, Procurement, Construction) solutions.",
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram",
+    "resume": "Resume"
+  }
+}
