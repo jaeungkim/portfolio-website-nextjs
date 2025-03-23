@@ -50,11 +50,11 @@ export default function ResumeWork() {
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
-              사내 프론트엔드 팀을 위한 공통 템플릿 구축으로 초기 개발 환경 세팅
+              사내 프론트엔드 팀을 위해 공통 템플릿 구축으로 초기 개발 환경 세팅
               시간 단축
             </li>
             <li>
-              디자인 시스템 및 공통 컴포넌트 개발, Storybook 문서화를 통해
+              디자인 시스템 및 공통 컴포넌트 개발, Storybook을 통해
               디자이너와 소통 및 개발 협업 효율 향상
             </li>
             <li>
@@ -62,12 +62,10 @@ export default function ResumeWork() {
               (10초→2초)
             </li>
             <li>
-              데이터 처리 및 화면 표시 방식을 개선하여 대규모 데이터도 빠르고
-              가볍게 표시할 수 있도록 성능 향상
+              대규모 데이터도 빠르고 가볍게 표시할 수 있도록 Virtualization을 활용하여 성능 향상
             </li>
             <li>
-              사용자 피드백을 적극 반영해 복잡한 플랫폼 인터페이스를 전면 개편,
-              사용자 중심 사용성 개선
+              NDXPRO v2 사용자 피드백을 기반으로 UI/UX를 개선, 인터페이스를 개선하고 사용자 작업 효율성을 향상
             </li>
           </ul>
           <div className="ml-4">
