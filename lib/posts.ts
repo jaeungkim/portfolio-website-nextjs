@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { Post, PostData } from "@/app/types/blog";
+import { Post, PostData } from "@/src/app/types/blog";
 
 /* Constants */
 const POSTS_DIR = path.join(process.cwd(), "posts");
