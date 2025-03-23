@@ -1,14 +1,4 @@
-import Image from "next/image";
-// import Link from "next/link";
 import { Link } from "@/src/i18n/routing";
-import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-import {
-  calculateExperience,
-  calculateTotalExperience,
-  calculateTotalExperienceInYears,
-} from "@/src/app/utils/resume";
-import { experiences } from "@/src/app/constants/resume";
 
 import ResumeProject from "./resumeProject";
 import ResumeIntroduce from "./resumeIntroduce";
@@ -18,7 +8,7 @@ import ResumeHeader from "./resumeHeader";
 
 export default function ResumeContent({ lastUpdated }) {
   return (
-    <div className=" text-[#37352F] dark:text-zinc-400">
+    <div className="text-[#37352F] dark:text-zinc-400">
       {/* HEADER  */}
       <ResumeHeader />
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>

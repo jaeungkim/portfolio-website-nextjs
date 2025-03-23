@@ -1,8 +1,8 @@
 {
-  "greeting": "Hello, I'm Jay Kim",
-  "intro": "Hey, I'm a frontend developer with 4 years of experience, focusing on creating user-friendly UI.",
-  "description1": "This is my personal website, where I share my writing, projects, and various other content I want to showcase.",
-  "description2": "Currently, I'm working as a frontend developer at E8ight on the Platform Development Team, and developing B2B SaaS platforms like PMIS (Project Management Information System) and EPC (Engineering, Procurement, Construction) solutions.",
+  "greeting": "Hello I'm Jay Kim",
+  "intro": "Hey, I'm Jae. I've graduated from the University of British Columbia with a Computer Science degree back in 2020, and since then, I've been working as a software developer.",
+  "description1": "This is my personal space on the internet dedicated to showcasing my writing, various projects, tutorials, and any other content I'm passionate about sharing. Dive into the blog or check out the projects page for a glimpse of my work.",
+  "description2": "Currently, I am living in South Korea working at E8ight as a frontend developer, located at Lotte World Tower, the sixth-tallest building in the world.",
   "social": {
     "github": "GitHub",
     "linkedin": "LinkedIn",

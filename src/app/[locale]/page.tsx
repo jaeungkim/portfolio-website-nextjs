@@ -50,7 +50,7 @@ export default function Page() {
             href="https://www.instagram.com/jaekiim/"
             IconComponent={FaInstagram}
           /> */}
-          <SocialIcon href="/resume" IconComponent={FaRegFilePdf} />
+          {/* <SocialIcon href="/resume" IconComponent={FaRegFilePdf} /> */}
         </div>
       </article>
     </div>
