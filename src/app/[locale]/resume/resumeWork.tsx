@@ -4,7 +4,7 @@ import {
   calculateTotalExperience,
 } from "@/src/app/utils/resume";
 // import Link from "next/link";
-import { Link } from '@/src/i18n/routing';
+import { Link } from "@/src/i18n/routing";
 
 export default function ResumeWork() {
   return (
@@ -50,22 +50,25 @@ export default function ResumeWork() {
           </p>
           <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
             <li>
-              다양한 사내 프로젝트에서 유지보수성과 확장성을 고려한 프론트엔드
-              구조 설계 및 공통 개발 환경 개선
-            </li>
-            {/* <li>
-              대규모 데이터와 복잡한 UI 환경에서 가상스크롤 및 비동기 처리 등을
-              적용하여 렌더링 성능 최적화
-            </li> */}
-            <li>
-              오픈소스 라이브러리의 설계 방식을 참고하여 사내 라이브러리를
-              커스터마이징하여 고도화 및 효율화
+              사내 프론트엔드 팀을 위한 공통 템플릿 구축으로 초기 개발 환경 세팅
+              시간 단축
             </li>
             <li>
-              사내 공통 라이브러리와 디자인 시스템을 구축하여 일관성 있는
-              UI/UX를 제공하고, 개발 생산성과 협업 효율을 높임
+              디자인 시스템 및 공통 컴포넌트 개발, Storybook 문서화를 통해
+              디자이너와 소통 및 개발 협업 효율 향상
             </li>
-            <li>제품 내 기술적 개선 포인트를 주도적으로 발굴하고 해결</li>
+            <li>
+              네트워크 및 렌더링 최적화로 주요 제품의 초기 로딩 속도 약 80% 개선
+              (10초→2초)
+            </li>
+            <li>
+              데이터 처리 및 화면 표시 방식을 개선하여 대규모 데이터도 빠르고
+              가볍게 표시할 수 있도록 성능 향상
+            </li>
+            <li>
+              사용자 피드백을 적극 반영해 복잡한 플랫폼 인터페이스를 전면 개편,
+              사용자 중심 사용성 개선
+            </li>
           </ul>
           <div className="ml-4">
             <div className="mt-4">
@@ -75,36 +78,30 @@ export default function ResumeWork() {
                   <strong>간트 차트 (WBS 기반) 개발 및 성능 최적화</strong>
                   <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
                     <li>
-                      WBS(Work Breakdown Structure)를 기반으로 프로젝트 일정
-                      관리를 위한 간트 차트 자체 개발
+                      외부 라이브러리의 한계를 극복하기 위한 자체 간트 차트 개발
                     </li>
                     <li>
-                      계획 대비 실적 현황을 통합적으로 시각화하여 프로젝트 진척
+                      계획 대비 실적 현황을 시각화하여 프로젝트 진척
                       현황을 명확하게 파악할 수 있도록 UI 설계 및 개발
                     </li>
                     <li>
-                      SVG Path를 활용하여 FS, SS, SF, FF 등 다양한 Task 간
-                      의존관계를 직관적으로 표현하는 화살표 연결 UI 개발
+                      SVG Path를 활용하여 FS, SS, SF, FF 의 Task
+                      의존관계를 직관적으로 표현하는 연결 UI 개발
                     </li>
                     <li>
                       간트 차트 내 Bar 차트 드래그 인터랙션으로 착수일 및 완료일
                       (날짜)을 손쉽게 수정하는 기능 개발
                     </li>
                     <li>
-                      BOM 트리 구조 내 Task의 순서 및 부모-자식 계층을 Drag &
-                      Drop 방식으로 쉽게 재구성할 수 있는 UI 개발
+                      BOM 트리 구조 내 Task의 순서 및 계층을 드래그앤드롭 방식으로 쉽게 재구성할 수 있는 UI 개발
                     </li>
                     <li>
-                      Optimistic UI를 도입하여 사용자 인터랙션 시 백엔드 응답
-                      이전에 변경사항을 즉시 반영, 사용자 경험(UX) 향상
+                      Optimistic UI를 도입하여 백엔드 응답
+                      이전에 변경사항을 즉시 반영, 사용자 경험 향상
                     </li>
                     <li>
-                      React Query setQueryData로 하위 노드를 캐시에 저장하여
-                      불필요한 네트워크 호출 절감
-                    </li>
-                    <li>
-                      React Window를 활용한 Virtualization 적용으로 대규모
-                      데이터 환경에서 DOM 렌더링 성능 최적화
+                      가상화를 도입해 DOM 렌더링
+                      성능을 최적화하여 화면 렌더링 속도를 40% 개선
                     </li>
                   </ul>
                 </li>
@@ -138,7 +135,7 @@ export default function ResumeWork() {
                     </li>
                   </ul>
                 </li>
-                <li>
+                {/* <li>
                   <strong>일기예보(천후표) 캘린더 기능 개발</strong>
                   <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
                     <li>
@@ -146,17 +143,16 @@ export default function ResumeWork() {
                       캘린더를 구현하여 작업 효율성 향상
                     </li>
                   </ul>
-                </li>
+                </li> */}
 
-                <li>
+                {/* <li>
                   <strong>효율적인 팀 협업 환경 구축</strong>
                   <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
                     <li>
-                      Storybook으로 공용 컴포넌트를 개발하고 문서화하여
-                      디자이너와 효율적인 커뮤니케이션 및 협업 프로세스 구축
+                     
                     </li>
                   </ul>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="mt-4">
@@ -169,8 +165,9 @@ export default function ResumeWork() {
               </Link>
               <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
                 <li>
-                  React Grid Layout을 분석 및 커스터마이징하여 사용자가 자유롭게
-                  구성할 수 있는 맞춤형 대시보드 기능 개발
+                  기존의 정적인 대시보드가 다양한 고객사의 요구사항에 대응하기
+                  어려웠던 문제를 해결하기 위해, React Grid Layout을 도입하여
+                  사용자가 자유롭게 구성 가능한 동적 대시보드를 구축.
                 </li>
                 <li>
                   미리보기 카드를 통해 데이터를 병렬로 확인하고, 자유로운 배치와
@@ -233,9 +230,9 @@ export default function ResumeWork() {
                       강화하고 일관성 있는 개발 문화 정착
                     </li>
                     <li>
-                      Husky, pre-commit Hook, MR Template 등을 도입하여 커밋
-                      단계에서 코드 정적 분석 및 포맷팅 자동화를 구현하고, 코드
-                      리뷰 품질 기준을 강화하여 안정적인 협업 환경 구축
+                      Husky, pre-commit Hook, 등을 도입하여 커밋 단계에서 코드
+                      정적 분석 및 포맷팅 자동화를 구현하고, 코드 리뷰 품질
+                      기준을 강화하여 안정적인 협업 환경 구축
                     </li>
                   </ul>
                 </li>
