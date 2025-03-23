@@ -83,10 +83,10 @@ export default function ResumeWork() {
       → 좌표 계산 및 경로 최적화로 복잡한 프로젝트 환경에서도 높은 가독성과 성능 유지
    </li>
    <li>
-      <strong>BOM 트리 및 간트 바 차트의 드래그앤드롭 인터랙션을 통해 Task 순서, 계층 및 일정을 직관적으로 수정할 수 있는 기능 제공
+      BOM 트리 및 간트 바 차트의 드래그앤드롭 인터랙션을 통해 Task 순서, 계층 및 일정을 직관적으로 수정할 수 있는 기능 제공
    </li>
    <li>
-      <strong>Task 일정 및 구조 변경 기능에 Optimistic UI 패턴 적용  
+      Task 일정 및 구조 변경 기능에 Optimistic UI 패턴 적용  
       → Drag & Drop 인터랙션 시 서버 응답 전 상태 선반영 및 실패 시 롤백 처리로 데이터 무결성과 UX 일관성 확보
    </li>
    <li>
