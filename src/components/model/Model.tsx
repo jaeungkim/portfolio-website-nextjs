@@ -37,7 +37,7 @@ export default function Model() {
       ref={groupRef}
       object={gltf.scene}
       scale={[scale, scale, scale]}
-      position={[1, -2, 1]}
+      position={[-0.5, -2.5, 0]}
     />
   );
 }
