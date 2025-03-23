@@ -74,83 +74,52 @@ export default function ResumeWork() {
               <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-3">
                 <li>
                   <strong>간트 차트 (WBS 기반) 개발 및 성능 최적화</strong>
-                  <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
-                    <li>
-                      외부 라이브러리의 한계를 극복하기 위한 자체 간트 차트 개발
-                    </li>
-                    <li>
-                      계획 대비 실적 현황을 시각화하여 프로젝트 진척
-                      현황을 명확하게 파악할 수 있도록 UI 설계 및 개발
-                    </li>
-                    <li>
-                      SVG Path를 활용하여 FS, SS, SF, FF 의 Task
-                      의존관계를 직관적으로 표현하는 연결 UI 개발
-                    </li>
-                    <li>
-                      간트 차트 내 Bar 차트 드래그 인터랙션으로 착수일 및 완료일
-                      (날짜)을 손쉽게 수정하는 기능 개발
-                    </li>
-                    <li>
-                      BOM 트리 구조 내 Task의 순서 및 계층을 드래그앤드롭 방식으로 쉽게 재구성할 수 있는 UI 개발
-                    </li>
-                    <li>
-                      Optimistic UI를 도입하여 백엔드 응답
-                      이전에 변경사항을 즉시 반영, 사용자 경험 향상
-                    </li>
-                    <li>
-                      가상화를 도입해 DOM 렌더링
-                      성능을 최적화하여 화면 렌더링 속도를 40% 개선
-                    </li>
-                  </ul>
+                 <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
+   <li>
+      외부 라이브러리의 한계를 극복하고, 복잡한 프로젝트 관리 데이터를 직관적으로 시각화하기 위해 WBS 기반 React 커스텀 간트 차트 아키텍처를 설계 및 구현
+   </li>
+   <li>
+      복잡한 Task 의존관계(FS, SS, SF, FF)를 SVG Path 기반 커스텀 연결선 렌더링 로직으로 구현  
+      → 좌표 계산 및 경로 최적화로 복잡한 프로젝트 환경에서도 높은 가독성과 성능 유지
+   </li>
+   <li>
+      <strong>BOM 트리 및 간트 바 차트의 드래그앤드롭 인터랙션을 통해 Task 순서, 계층 및 일정을 직관적으로 수정할 수 있는 기능 제공
+   </li>
+   <li>
+      <strong>Task 일정 및 구조 변경 기능에 Optimistic UI 패턴 적용  
+      → Drag & Drop 인터랙션 시 서버 응답 전 상태 선반영 및 실패 시 롤백 처리로 데이터 무결성과 UX 일관성 확보
+   </li>
+   <li>
+      가상 스크롤링(Virtualization) 및 Lazy Loading을 적용하여 수천 개 Task 데이터의 렌더링 성능을 최적화하고, DOM 렌더링 성능 40% 개선
+   </li>
+</ul>
                 </li>
 
                 <li>
                   <strong>도면 관리 시스템 개발</strong>
                   <ul className="pl-5 list-[circle] flex flex-col gap-2 mt-1">
+                        <li>
+      폴더 및 파일을 트리 구조로 시각화하는 재귀 컴포넌트 아키텍처 설계 및 구현, 대용량 데이터 렌더링 최적화 및 상태 동기화 고려
+    </li>
+                    
+    <li>
+      웹 기반 File Explorer 인터페이스 구현, 운영체제 수준의 다중 선택, 컨텍스트 메뉴 및 단축키 지원으로 데스크탑 수준의 사용자 경험 제공
+    </li>
+                      <li>
+      Drag & Drop 인터랙션과 파일 시스템 이벤트 처리를 통해 폴더 및 파일 이동, 복사 등 파일 관리 기능 구현
+    </li>
+
+                   <li>
+      webkitdirectory와 비동기 업로드 처리로 폴더 단위 대량 문서 업로드 지원, 업로드 중 UI 반응성 유지 및 에러 핸들링 최적화
+    </li>
+                   <li>
+      도면 문서의 버전 관리 및 변경 이력 추적 시스템 설계, 파일 변경 내역과 리비전 관리로 프로젝트 변경 사항 관리
+    </li>
                     <li>
-                      재귀적 컴포넌트를 통해 폴더 및 파일을 트리 구조로
-                      시각화하여 직관적인 문서 관리 환경 제공
-                    </li>
-                    <li>
-                      웹 기반의 File Explorer 인터페이스를 구축하고, 운영체제
-                      수준의 단축키 및 사용자 친화적 기능 제공
-                    </li>
-                    <li>
-                      로컬 환경에서 익숙한 Drag & Drop 인터페이스를 적용하여
-                      파일과 폴더를 관리할 수 있도록 기능 구현
-                    </li>
-                    <li>
-                      웹 브라우저에서 폴더 단위의 대량 문서 업로드를 지원하기
-                      위해 import 의 webkitdirectory 활용
-                    </li>
-                    <li>
-                      도면 문서의 버전 관리, 이력 추적 기능을 구현하여 도면의
-                      변경 사항을 효율적으로 관리
-                    </li>
-                    <li>
-                      다양한 도면 파일 포맷의 미리보기 기능을 지원하여 사용자
-                      편의성 향상
-                    </li>
+      주요 도면 파일 포맷(PDF, CAD 등)의 Web Viewer 및 미리보기 기능 개발
+    </li>
                   </ul>
                 </li>
-                {/* <li>
-                  <strong>일기예보(천후표) 캘린더 기능 개발</strong>
-                  <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
-                    <li>
-                      OpenWeather API를 활용해 프로젝트 일정과 연동된 날씨 예측
-                      캘린더를 구현하여 작업 효율성 향상
-                    </li>
-                  </ul>
-                </li> */}
-
-                {/* <li>
-                  <strong>효율적인 팀 협업 환경 구축</strong>
-                  <ul className="pl-5 list-[circle] flex flex-col gap-1 mt-1">
-                    <li>
-                     
-                    </li>
-                  </ul>
-                </li> */}
               </ul>
             </div>
             <div className="mt-4">
@@ -163,30 +132,26 @@ export default function ResumeWork() {
               </Link>
               <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
                 <li>
-                  기존의 정적인 대시보드가 다양한 고객사의 요구사항에 대응하기
-                  어려웠던 문제를 해결하기 위해, React Grid Layout을 도입하여
-                  사용자가 자유롭게 구성 가능한 동적 대시보드를 구축.
+                 사용자 경험과 UI 유연성 강화를 위해, React Grid Layout 기반의 사용자 정의형 동적 대시보드 아키텍처를 주도적으로 설계 및 도입
                 </li>
                 <li>
                   미리보기 카드를 통해 데이터를 병렬로 확인하고, 자유로운 배치와
                   즐겨찾기 기능으로 사용자 맞춤형 대시보드를 구현
                 </li>
-                <li>
-                  SVG 기반 2D Viewer에서 특정 영역 클릭 시 줌인 하여 세부 도면을
-                  직관적으로 탐색할 수 있는 기능 개발
-                </li>
-                <li>
-                  복잡한 SVG 위에서 마우스 이벤트를 활용해 텍스트, 직선, 곡선
-                  마크업을 생성하고, 직관적인 사용자 인터랙션을 구현
-                </li>
-                <li>
-                  확대·축소 시에도 마크업 요소의 정확한 위치와 비율을 유지하도록
-                  SVG 좌표 변환 및 스케일 처리 로직 적용
-                </li>
-                <li>
-                  마크업 요소에 대한 생성, 수정, 삭제 기능을 제공하여 도면
-                  편집과 주석 기능의 직관성을 강화
-                </li>
+                  <li>
+    SVG 기반 2D Viewer에 줌인/아웃 및 클릭 이벤트를 연동하여, 복잡한 도면 내 세부 영역을 직관적으로 탐색 가능하도록 기능 구현
+  </li>
+                  <li>
+    SVG 상에서 마우스 이벤트 기반으로 텍스트, 직선, 곡선 등의 마크업 도구 제공, 직관적인 도면 주석 및 편집 인터랙션 설계
+  </li>
+
+             <li>
+    확대·축소 시에도 마크업 요소의 위치와 비율이 정확하게 유지되도록 SVG 좌표 변환 및 스케일 처리 로직 적용
+  </li>
+              <li>
+    마크업 요소 생성, 수정, 삭제 기능을 통해 도면 편집 프로세스를 최적화하고, 사용자 워크플로우의 효율성 개선
+  </li>
+
                 <li>
                   iframe의 postMessage API를 활용하여 협력 업체와의 3D Viewer와
                   연동하고 원활한 데이터 통신 기능 구현
@@ -238,14 +203,12 @@ export default function ResumeWork() {
                 <li>
                   <strong>인증 및 사용자 관리 기능 개선</strong>
                   <ul className="pl-5 list-[circle] flex flex-col gap-2 mt-1">
-                    <li>
-                      기존 로그인 및 회원가입 기능의 레거시 코드를 전면
-                      리팩토링하여 인증 프로세스 안정성 및 유지보수성 향상
-                    </li>
-                    <li>
-                      Axios Interceptor를 통한 인증 세션 관리 및 토큰 자동 갱신
-                      프로세스를 최적화하여 사용자 세션 안정성 강화
-                    </li>
+                   <li>
+      기존 로그인 및 회원가입 기능의 레거시 코드를 전면 리팩토링하여 인증 프로세스의 안정성 및 유지보수성 향상
+    </li>
+                   <li>
+      Axios Interceptor를 활용해 인증 토큰 갱신 및 세션 만료 처리 로직을 개선, 사용자 세션의 안정성과 보안성 강화
+    </li>
                   </ul>
                 </li>
 
@@ -255,22 +218,20 @@ export default function ResumeWork() {
                   </strong>
                   <ul className="pl-5 list-[circle] flex flex-col gap-2 mt-1">
                     <li>
-                      디지털 트윈 NGSI-LD 표준 데이터 모델 기반의 Attribute,
-                      Data Model, Relationship 생성 및 관리 기능 담당
-                    </li>
-                    <li>
-                      React Flow를 활용하여 데이터 모델과 관계를 직관적으로
-                      시각화하고, 사용자 중심의 데이터 모델링 환경 제공
-                    </li>
-                    <li>
-                      Excel Import/Export 기능을 구현하여 대규모 데이터를
-                      효율적으로 일괄 등록 및 다운로드할 수 있도록 지원
-                    </li>
+      디지털 트윈 NGSI-LD 표준 기반의 Attribute, Data Model, Relationship 생성 및 관리 기능 설계 및 개발
+    </li>
 
-                    <li>
-                      Excel 업로드 시 Client 측 유효성 검사를 적용하고, 각 셀 및
-                      행의 오류를 UI에 시각화하여 사용자 편의성 개선
-                    </li>
+    <li>
+      React Flow를 활용하여 복잡한 데이터 모델 간 관계를 직관적으로 시각화하고, 사용자 중심의 데이터 모델링 UX 제공
+    </li>
+
+    <li>
+      Excel Import/Export 기능을 통해 대규모 데이터의 일괄 등록 및 다운로드 프로세스를 최적화하여 데이터 관리 효율성 강화
+    </li>
+
+    <li>
+      Excel 업로드 시 클라이언트 측 유효성 검증 및 셀/행 단위 오류 시각화를 통해 데이터 입력 정확성과 사용자 편의성 개선
+    </li>
                   </ul>
                 </li>
               </ul>
@@ -283,17 +244,16 @@ export default function ResumeWork() {
 
               <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
                 <li>
-                  다수의 기관이 참여한 디지털 트윈 연구 과제에서, 3세부 주관
-                  기업 소속으로 연합 포털 플랫폼 프론트엔드 개발을 담당
-                </li>
-                <li>
-                  메인 프론트엔드 개발자로서 과제 목표에 맞춰 기관별 기능을 포털
-                  플랫폼에 통합하고, 데이터 접근성과 사용성을 향상
-                </li>
-                <li>
-                  여러 기관이 사용하는 포털 특성을 고려하여 반응형 웹 플랫폼으로
-                  개발하고, 사용자 경험을 개선한 직관적인 UI 구현
-                </li>
+  다수 기관이 참여한 디지털 트윈 연구 과제에서 주관 기업 소속 메인 프론트엔드 개발자로 참여
+</li>
+
+<li>
+  기관별 기능을 통합하는 연합 포털 플랫폼 아키텍처 설계 및 개발, 데이터 접근성과 사용성 최적화
+</li>
+
+<li>
+  다기관 환경을 고려한 반응형 웹 UI/UX 설계로 사용자 접근성 및 편의성 향상
+</li>
               </ul>
             </div>
           </div>
