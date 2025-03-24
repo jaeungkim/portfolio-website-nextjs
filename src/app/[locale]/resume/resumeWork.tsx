@@ -143,14 +143,11 @@ export default function ResumeWork() {
           "WebGL",
           "GSAP",
           "Motion",
-          "RESTful API",
           "Node.js",
           "Express.js",
+          "MongoDB",
           "AWS",
-          "NoSQL",
-          "NGINX",
           "GitHub Actions",
-          "Google Analytics",
         ]}
         details={[
           "병원 및 클리닉 네트워크를 대상으로 하는 EMR(Electronic Medical Records) SaaS 스타트업",
