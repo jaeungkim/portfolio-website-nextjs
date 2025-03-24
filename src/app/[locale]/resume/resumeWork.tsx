@@ -130,20 +130,17 @@ export default function ResumeWork() {
               >
                 <p>NDXPRO EPC</p>
               </Link>
-              <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">
-                <li>
-                 사용자 경험과 UI 유연성 강화를 위해, React Grid Layout 기반의 사용자 정의형 동적 대시보드 아키텍처를 주도적으로 설계 및 도입
-                </li>
-                <li>
-                  미리보기 카드를 통해 데이터를 병렬로 확인하고, 자유로운 배치와
-                  즐겨찾기 기능으로 사용자 맞춤형 대시보드를 구현
-                </li>
-                  <li>
+              <ul className="py-4 text-base font-normal pl-8 list-disc flex flex-col gap-2">               
+ <li>
+      SVG 기반 2D 도면 뷰어 및 마크업 기능 설계 및 구현
+      <ul className="pl-5 list-[circle] flex flex-col gap-2 mt-1">
+              <li>
     SVG 기반 2D Viewer에 줌인/아웃 및 클릭 이벤트를 연동하여, 복잡한 도면 내 세부 영역을 직관적으로 탐색 가능하도록 기능 구현
   </li>
                   <li>
     SVG 상에서 마우스 이벤트 기반으로 텍스트, 직선, 곡선 등의 마크업 도구 제공, 직관적인 도면 주석 및 편집 인터랙션 설계
   </li>
+
 
              <li>
     확대·축소 시에도 마크업 요소의 위치와 비율이 정확하게 유지되도록 SVG 좌표 변환 및 스케일 처리 로직 적용
@@ -152,6 +149,18 @@ export default function ResumeWork() {
     마크업 요소 생성, 수정, 삭제 기능을 통해 도면 편집 프로세스를 최적화하고, 사용자 워크플로우의 효율성 개선
   </li>
 
+      </ul>
+    </li>
+ <li>
+                 사용자 경험과 UI 유연성 강화를 위해, React Grid Layout 기반의 사용자 정의형 동적 대시보드 아키텍처를 주도적으로 설계 및 도입
+                </li>
+                <li>
+                  미리보기 카드를 통해 데이터를 병렬로 확인하고, 자유로운 배치와
+                  즐겨찾기 기능으로 사용자 맞춤형 대시보드를 구현
+                </li>
+
+
+          
                 <li>
                   iframe의 postMessage API를 활용하여 협력 업체와의 3D Viewer와
                   연동하고 원활한 데이터 통신 기능 구현
