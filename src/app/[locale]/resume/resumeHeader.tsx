@@ -47,21 +47,6 @@ export default function ResumeHeader() {
 
           <div className="flex gap-4">
             <div className="">
-              <FaRss className="w-6 h-6" />
-            </div>
-            <div className="flex justify-center items-center align-middle">
-              <a
-                className="text-base hover:text-cyan-500 underline underline-offset-2"
-                href="https://www.jaeungkim.com/blog"
-                target="_blank"
-              >
-                https://jaeungkim.com/blog
-              </a>
-            </div>
-          </div>
-
-          <div className="flex gap-4">
-            <div className="">
               <FaLinkedin className="w-6 h-6" />
             </div>
             <div className="flex justify-center items-center align-middle">
