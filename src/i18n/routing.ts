@@ -7,6 +7,9 @@ export const routing = defineRouting({
 
   // 기본 로케일 설정
   defaultLocale: "kr",
+
+  //localeDetection: false
+  localeDetection: false
 });
 
 // Next.js 탐색 API에 대한 경량 래퍼
