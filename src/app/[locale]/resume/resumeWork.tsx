@@ -64,9 +64,6 @@ export default function ResumeWork() {
             <li>
               대규모 데이터도 빠르고 가볍게 표시할 수 있도록 Virtualization을 활용하여 성능 향상
             </li>
-            <li>
-              NDXPRO v2 사용자 피드백을 기반으로 UI/UX를 개선, 인터페이스를 개선하고 사용자 작업 효율성을 향상
-            </li>
           </ul>
           <div className="ml-4">
             <div className="mt-4">
