@@ -6,7 +6,7 @@ export default function resumeIntroduce() {
     <>
       {/* Introduce */}
       <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="font-semibold text-cyan-500 text-3xl uppercase mb-11">
+        <div className="font-semibold text-cyan-500 text-3xl uppercase mb-4">
           Introduce
         </div>
         <div className="col-span-3">

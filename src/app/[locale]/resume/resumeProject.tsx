@@ -1,7 +1,9 @@
+import SkillPill from "./SkillPill";
+
 export default function ResumeProject() {
   return (
-    <div className="space-y-20">
-      <h2 className="text-3xl font-semibold text-cyan-500 uppercase">
+    <div className="">
+      <h2 className="mb-11 text-3xl font-semibold text-cyan-500 uppercase">
         Open Source & Project
       </h2>
 
@@ -156,13 +158,6 @@ const ProjectSection = ({ title, description, link, skills }) => (
       </div>
     </div>
   </div>
-);
-
-// Pill 컴포넌트
-const SkillPill = ({ name }) => (
-  <span className="border border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 px-3 py-1 text-sm font-medium rounded-full bg-transparent">
-    {name}
-  </span>
 );
 
 // Divider 컴포넌트

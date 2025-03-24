@@ -23,7 +23,7 @@ export default function ResumeContent({ lastUpdated }) {
       <ResumeSkill />
 
       {/* Education */}
-      <div className="mb-11 font-semibold text-cyan-500 text-3xl uppercase">
+      <div className="mb-4 font-semibold text-cyan-500 text-3xl uppercase">
         Education
       </div>
 

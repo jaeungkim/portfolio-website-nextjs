@@ -6,7 +6,7 @@ export default function ResumeHeader() {
   return (
     <>
       <div className="md:grid md:grid-cols-4 gap-4">
-        <div className="flex justify-center md:justify-normal mb-11 md:mb-0">
+        <div className="flex justify-center md:justify-normal mb-4 md:mb-0">
           {" "}
           <Image
             className="w-full max-w-[240px] object-cover rounded-sm"
