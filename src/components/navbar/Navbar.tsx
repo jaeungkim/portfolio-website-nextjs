@@ -17,7 +17,7 @@ import LocaleSwitcher from "../LocaleSwitcher";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: '/resume'},
-  { name: "Blog", href: "/blog" },
+  // { name: "Blog", href: "/blog" },
   // { name: "Project", href: "/project" },
 ];
 
