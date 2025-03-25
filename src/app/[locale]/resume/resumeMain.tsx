@@ -16,7 +16,6 @@ export default function ResumeContent({ lastUpdated }) {
       <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
       {/* Work Experience */}
       <ResumeWork />
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
       {/* Projects  */}
       <ResumeProject />
       {/* Skills */}
