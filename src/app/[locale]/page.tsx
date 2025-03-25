@@ -25,15 +25,15 @@ export default function Page() {
         </h2>
 
         <p className="mt-4 mb-4 text-base text-zinc-600 dark:text-zinc-400">
-          {t("intro")}
+          {t("about.intro")}
         </p>
 
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
-          {t("description1")}
+          {t("about.description1")}
         </p>
 
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
-          {t("description2")}
+          {t("about.description2")}
         </p>
 
         {/* Social Links */}
