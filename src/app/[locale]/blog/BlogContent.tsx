@@ -9,7 +9,7 @@ interface BlogProps {
   allPostsData: Post[];
 }
 
-const categories = ["Daily", "Studying"];
+const categories = ["Daily", "Personal"];
 
 export default function BlogContent({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);

@@ -7,7 +7,7 @@ import { Post, PostData } from "@/src/app/types/blog";
 
 /* Constants */
 const POSTS_DIR = path.join(process.cwd(), "posts");
-const CATEGORIES = ["daily", "studying"] as const;
+const CATEGORIES = ["daily", "personal"] as const;
 
 /* Helpers */
 const isValidCategory = (
