@@ -44,8 +44,9 @@ export default function BlogContent({ allPostsData }: BlogProps) {
         });
       }
     });
-    return Array.from(tagSet);
+    return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
   }, [filteredPosts, activeTab]);
+  
 
   const displayedPosts = useMemo(
     () =>
