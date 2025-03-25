@@ -21,7 +21,7 @@ export default function Page() {
 
       <article className="md:basis-4/6 lg:basis-3/6">
         <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          <CrypticText text={t("greeting")} delay={0.1} classNames="fadein" />
+          <CrypticText text={t("about.greeting")} delay={0.1} classNames="fadein" />
         </h2>
 
         <p className="mt-4 mb-4 text-base text-zinc-600 dark:text-zinc-400">
