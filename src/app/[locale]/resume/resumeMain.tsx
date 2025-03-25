@@ -5,8 +5,11 @@ import ResumeIntroduce from "./resumeIntroduce";
 import ResumeWork from "./resumeWork";
 import ResumeSkill from "./resumeSkill";
 import ResumeHeader from "./resumeHeader";
+import { useTranslations } from "next-intl";
 
 export default function ResumeContent({ lastUpdated }) {
+  const t = useTranslations("resume");
+
   return (
     <div className="text-[#37352F] dark:text-zinc-400">
       {/* HEADER  */}
@@ -46,7 +49,7 @@ export default function ResumeContent({ lastUpdated }) {
       </div>
 
       <footer className="pt-[150px] flex flex-col items-center justify-center">
-        <p className="text-base">감사합니다.</p>
+        <p className="text-base">{t("footer")}</p>
         <div className="my-[50px] text-sm text-[#808080] text-center">
           <p>Last updated: {lastUpdated}</p>
           <a className="hover:text-cyan-500" href="https://www.jaeungkim.com">

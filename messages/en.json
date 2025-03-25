@@ -7,10 +7,10 @@
   },
   "resume": {
     "introduce": {
-    "paragraph1": "Hello, I’m a frontend developer with {years} of hands on experience building web applications from early planning through to deployment and maintenance. I care about performance, maintainability, and creating interfaces that feel smooth and intuitive.",
-    "paragraph2": "I enjoy writing clean code that others can pick up and understand. I regularly explore new tools, libraries, and techniques — adopting what genuinely improves my workflow or enhances the user experience. I’m always learning and striving to grow in both depth and breadth as a developer.",
-    "paragraph3": "I’m a Canadian citizen currently living in Korea on an F-4 visa. I’ve worked with people from many different backgrounds and believe strong communication is one of the most important parts of building great products together."
-  },
+      "paragraph1": "Hello, I’m a frontend developer with {years} of hands on experience building web applications from early planning through to deployment and maintenance. I care about performance, maintainability, and creating interfaces that feel smooth and intuitive.",
+      "paragraph2": "I enjoy writing clean code that others can pick up and understand. I regularly explore new tools, libraries, and techniques — adopting what genuinely improves my workflow or enhances the user experience. I’m always learning and striving to grow in both depth and breadth as a developer.",
+      "paragraph3": "I’m a Canadian citizen currently living in Korea on an F-4 visa. I’ve worked with people from many different backgrounds and believe strong communication is one of the most important parts of building great products together."
+    },
     "work": {
       "e8ight": {
         "period": "2024.01 ~",
@@ -116,7 +116,58 @@
           "Collaborated closely with designers to improve the overall user experience and interface design"
         ]
       }
-    }
+    },
+
+    "projects": {
+      "react-gantt-chart": {
+        "title": "React Gantt Chart",
+        "description": [
+          "Open-source alternative to paid or inflexible Gantt chart solutions",
+          "Lightweight, extensible design for personal and professional use",
+          "Continuously improved based on community feedback"
+        ]
+      },
+      "portfolio-website": {
+        "title": "Portfolio Website",
+        "description": [
+          "Centralizes personal projects and articles in one place",
+          "Incorporates latest trends in frontend development with fully responsive experience",
+          "Prioritizes intuitive structure, clean design, and performance optimization"
+        ]
+      },
+      "bc-government": {
+        "title": "BC Government",
+        "description": [
+          "Created for the BC government’s IS24 Full Stack Competition",
+          "Offers a user-friendly interface for managing employees and teams",
+          "Built with a full-stack approach and deployed via Docker"
+        ]
+      },
+      "lostark-bot": {
+        "title": "Lost Ark Discord Bot",
+        "description": [
+          "Simplifies party and raid recruitment on Discord",
+          "Allows quick party creation and management through simple commands",
+          "Enhanced and maintained with community feedback"
+        ]
+      },
+      "webgl-playground": {
+        "title": "WebGL Playground",
+        "description": [
+          "Experimental 3D interaction project for the web",
+          "Features 3D scenes responsive to user input and various visual effects"
+        ]
+      },
+      "lental": {
+        "title": "Lental",
+        "description": [
+          "Housing search platform for UBC students",
+          "Developed as a capstone project to tackle off-campus housing challenges",
+          "Supports student-listed properties with an intuitive UI and filtering"
+        ]
+      }
+    },
+    "footer": "Warm Regards"
   },
 
   "utils": {

@@ -54,3 +54,69 @@ export const experiences = [
     skills: ["React", "GraphQL", "AWS"],
   }, // catalyx
 ];
+
+export const projectsResume = [
+  {
+    id: "react-gantt-chart",
+    link: {
+      label: "GitHub Repository",
+      url: "https://github.com/jaeungkim/react-gantt-chart",
+    },
+    skills: ["React", "Vite", "Zustand", "Tailwind CSS", "Shadcn/ui"],
+  },
+  {
+    id: "portfolio-website",
+    link: {
+      label: "GitHub Repository",
+      url: "https://github.com/jaeungkim/portfolio-website-nextjs",
+    },
+    skills: [
+      "Next 15 (App)",
+      "Tailwind CSS",
+      "Shadcn/ui",
+      "i18n",
+      "GSAP",
+      "Framer Motion",
+      "Three.js",
+    ],
+  },
+  {
+    id: "bc-government",
+    link: {
+      label: "GitHub Repository",
+      url: "https://github.com/jaeungkim/moti-is24-code-challenge",
+    },
+    skills: [
+      "React",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Docker",
+    ],
+  },
+  {
+    id: "lostark-bot",
+    link: {
+      label: "GitHub Repository",
+      url: "https://github.com/jaeungkim/lostark_bot",
+    },
+    skills: ["Node.js", "Discord.js", "Heroku", "JavaScript"],
+  },
+  {
+    id: "webgl-playground",
+    link: {
+      label: "GitHub Repository",
+      url: "https://github.com/jaeungkim/webGL-playground",
+    },
+    skills: ["React", "Three.js", "WebGL", "GSAP", "Motion"],
+  },
+  {
+    id: "lental",
+    link: {
+      label: "YouTube Demo",
+      url: "https://www.youtube.com/watch?v=sIZqCxLnLSY&ab_channel=LentalRents",
+    },
+    skills: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Travis CI"],
+  },
+];
