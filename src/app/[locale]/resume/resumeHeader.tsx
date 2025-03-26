@@ -1,25 +1,28 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
 export default function ResumeHeader() {
+  const t = useTranslations();
+
   return (
     <>
       <div className="md:grid md:grid-cols-4 gap-4">
         <div className="flex justify-center md:justify-normal mb-4 md:mb-0">
           {" "}
           <Image
-            className="w-full max-w-[240px] object-cover rounded-sm"
+            className="w-full max-w-[200px] h-[260px] object-cover rounded-sm"
             src="/images/resume_img.JPG"
             alt="profileLogo"
-            width={240}
-            height={309}
+            width={1080}
+            height={1440}
           />
         </div>
 
         <div className="flex flex-col gap-4 justify-center md:col-span-3">
           <p className="text-5xl mb-4 text-cyan-500 font-bold w-full">
-            KIM JAEUNG <span className="text-base">(김재웅)</span>
+            {t("about.name")}
           </p>
           <div className="flex gap-4">
             <div className="">

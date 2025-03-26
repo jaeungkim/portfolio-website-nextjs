@@ -30,7 +30,7 @@ export default async function PortfolioLayout({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <Navbar />
       <main className="relative sm:px-8 mt-9 mx-auto max-w-7xl lg:px-8">
-        <div className="relative px-4 sm:px-8 lg:px-8 max-w-3xl lg:max-w-5xl mx-auto">
+        <div className="relative px-4 max-w-3xl lg:max-w-5xl mx-auto">
           <Suspense>{children}</Suspense>
         </div>
       </main>

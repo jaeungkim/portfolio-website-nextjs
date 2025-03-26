@@ -15,7 +15,7 @@ const WorkSection = ({
   return (
     <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-6 my-8">
       {/* Left Side */}
-      <div className="mb-4 md:mb-0 flex flex-col items-start md:items-end md:px-4">
+      <div className="mb-4 md:mb-0 flex flex-col items-start md:items-end">
         {/* 근무 기간 */}
         <p className="text-2xl font-medium text-[#808080] whitespace-nowrap">
           {period}
