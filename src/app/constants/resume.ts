@@ -11,8 +11,6 @@ export const experiences = [
       "Tailwind CSS",
       "Storybook",
       "Motion",
-      "WebRTC",
-      "Socket.io",
     ],
   }, // e8ight
   {
