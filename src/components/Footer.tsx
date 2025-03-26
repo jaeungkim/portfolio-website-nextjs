@@ -4,7 +4,7 @@ import { Link } from "@/src/i18n/routing";
 const menuItems = [
   { label: "Home", url: "/" },
   { label: "About", url: '/resume" ' },
-  // { label: "Blog", url: "/blog" },
+  { label: "Blog", url: "/blog" },
   // { label: "Project", url: "/project" },
 ];
 
