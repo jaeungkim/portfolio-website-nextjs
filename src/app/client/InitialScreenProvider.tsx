@@ -30,5 +30,5 @@ export default function InitialScreenProvider({
 
   if (initialScreen) return <Loader />;
 
-  return <ThemeProvider defaultTheme="dark">{children}</ThemeProvider>;
+  return <>{children}</>;
 }
