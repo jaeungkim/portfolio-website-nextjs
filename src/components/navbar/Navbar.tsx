@@ -27,8 +27,7 @@ export default function Navbar() {
   const [_, startTransition] = useTransition();
 
   const themeButtonClass = useMemo(() => {
-    const base =
-      "cursor-pointer group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10";
+    const base = "cursor-pointer group p-1 transition";
     return theme === "dark"
       ? `${base} text-yellow-300 hover:text-yellow-500`
       : `${base} text-cyan-500 hover:text-cyan-700`;

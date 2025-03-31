@@ -57,10 +57,10 @@ export const projectsResume = [
   {
     id: "react-gantt-chart",
     link: {
-      label: "GitHub Repository",
-      url: "https://github.com/jaeungkim/react-gantt-chart",
+      label: "Demo",
+      url: "https://jaeungkim.com/gantt-chart",
     },
-    skills: ["React", "Vite", "Zustand", "Tailwind CSS", "Shadcn/ui"],
+    skills: ["React", "Vite", "Zustand"],
   },
   {
     id: "portfolio-website",
@@ -71,7 +71,6 @@ export const projectsResume = [
     skills: [
       "Next 15 (App)",
       "Tailwind CSS",
-      "Shadcn/ui",
       "i18n",
       "GSAP",
       "Framer Motion",
