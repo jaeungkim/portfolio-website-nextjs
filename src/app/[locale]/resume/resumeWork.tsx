@@ -33,6 +33,7 @@ export default function ResumeWork() {
         const projects = job.projects
           ? Object.values(job.projects).map((project: any) => ({
               title: project.title,
+              description: project.description,
               link: project.link,
               tasks: Object.values(project.tasks).map((task: any) => ({
                 title: task.title,

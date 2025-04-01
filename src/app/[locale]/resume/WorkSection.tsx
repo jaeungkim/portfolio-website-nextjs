@@ -69,7 +69,7 @@ const WorkSection = ({
         {projects?.length > 0 && (
           <div className="space-y-8">
             {projects.map((project, idx) => (
-              <div key={idx} className="space-y-4">
+              <div key={idx} className="">
                 {project.link ? (
                   <Link
                     className="text-base font-medium text-cyan-400 hover:text-cyan-500"
@@ -79,11 +79,14 @@ const WorkSection = ({
                     <p>{project.title}</p>
                   </Link>
                 ) : (
-                  <p className="text-base font-medium text-cyan-400">
+                  <p className="text-base font-medium text-cyan-400 ">
                     {project.title}
                   </p>
                 )}
 
+                <p className="pl-5 md:pl-8 font-bold text-base py-2">
+                  {project.description}
+                </p>
                 <ul className="list-disc space-y-2 pl-5 md:pl-8 text-base font-normal">
                   {project.tasks.map((task, tIdx) => (
                     <li key={tIdx}>
