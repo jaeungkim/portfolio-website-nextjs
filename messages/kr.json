@@ -104,7 +104,7 @@
 
             "tasks": {
               "nextjs_frontend": {
-                "title": "Next.js 기반 로그인/회원가입 프로세스 구현"
+                "title": "Next.js 기반 로그인/회원가입 프로세스 구현",
                 "subtasks": [
                   "SSO(Knox) 및 일반 로그인 두 가지 프로세스를 모두 처리하는 UI 및 로직 설계",
                   "SSO 사용자의 최초 로그인 시 사용자 정보 자동 등록 흐름 처리",
