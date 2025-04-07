@@ -56,7 +56,7 @@ export default async function PostPage({ params }) {
       <ScrollToTopButton />
       <BackButton />
 
-      <article className="prose lg:prose-lg dark:prose-invert prose-a:text-cyan-600 hover:prose-a:text-cyan-500 mx-auto overflow-auto max-w-3xl">
+      <article className="prose dark:prose-invert mx-auto overflow-auto max-w-3xl">
         <h1 className="text-4xl font-bold mb-6">{postData.title}</h1>
         <MDXClient source={postData.contentHtml} />
       </article>

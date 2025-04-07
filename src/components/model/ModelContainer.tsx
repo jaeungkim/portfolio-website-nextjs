@@ -12,7 +12,7 @@ const Model = dynamic(() => import("./Model"), { ssr: false });
 export default function ModelContainer() {
   return (
     <Canvas shadows>
-      <PerspectiveCamera makeDefault position={[2.5, 5, 6]} fov={75} />
+      <PerspectiveCamera makeDefault position={[2.5, 5, 7]} fov={55} />
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 10, 5]} intensity={1} />
       <Suspense fallback={<Loader />}>
