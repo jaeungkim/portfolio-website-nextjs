@@ -14,7 +14,7 @@ export default function Page() {
   const t = useTranslations();
 
   return (
-    <div className="md:flex w-full">
+    <div className="md:flex w-full md:pt-16">
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px]">
         <ModelContainer />
       </div>
@@ -38,6 +38,10 @@ export default function Page() {
 
         <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
           {t("about.description2")}
+        </p>
+
+        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
+          {t("about.description3")}
         </p>
 
         {/* Social Links */}
