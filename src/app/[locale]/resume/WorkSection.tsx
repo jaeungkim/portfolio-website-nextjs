@@ -1,5 +1,6 @@
 import { Link } from "@/src/i18n/routing";
 import SkillPill from "./SkillPill";
+import ExternalLink from "@/src/components/ExternalLink";
 
 const WorkSection = ({
   period,
@@ -29,13 +30,13 @@ const WorkSection = ({
       {/* Right Side */}
       <div className="col-span-3 space-y-4 md:space-y-6">
         {/* 회사명 */}
-        <Link
-          className="text-2xl font-medium hover:text-cyan-500"
-          href={link}
-          target="_blank"
-        >
-          <p>{company}</p>
-        </Link>
+        {link ? (
+          <ExternalLink additionalClassName="text-2xl font-medium" link={link}>
+            {company}
+          </ExternalLink>
+        ) : (
+          <p className="text-2xl font-medium">{company}</p>
+        )}
 
         {/* 위치/직책 */}
         <div className="space-y-1">
@@ -71,13 +72,12 @@ const WorkSection = ({
             {projects.map((project, idx) => (
               <div key={idx} className="">
                 {project.link ? (
-                  <Link
-                    className="text-base font-medium text-cyan-400 hover:text-cyan-500"
-                    href={project.link}
-                    target="_blank"
+                  <ExternalLink
+                    additionalClassName="text-base"
+                    link={project.link}
                   >
                     <p>{project.title}</p>
-                  </Link>
+                  </ExternalLink>
                 ) : (
                   <p className="text-base font-medium text-cyan-400 ">
                     {project.title}

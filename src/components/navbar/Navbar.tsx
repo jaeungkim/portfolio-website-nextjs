@@ -18,7 +18,6 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/resume" },
   { name: "Blog", href: "/blog" },
-  // { name: "Project", href: "/project" },
 ];
 
 export default function Navbar() {
@@ -26,26 +25,26 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [_, startTransition] = useTransition();
 
-  const themeButtonClass = useMemo(() => {
+  const themeButtonClass = () => {
     const base = "cursor-pointer group p-1 transition";
     return theme === "dark"
       ? `${base} text-yellow-300 hover:text-yellow-500`
       : `${base} text-cyan-500 hover:text-cyan-700`;
-  }, [theme]);
+  };
 
-  const toggleTheme = useCallback(() => {
+  const toggleTheme = () => {
     startTransition(() => {
       setTheme(theme === "dark" ? "light" : "dark");
     });
-  }, [theme, setTheme]);
+  };
 
-  const toggleModal = useCallback(() => {
+  const toggleModal = () => {
     setIsOpen((prev) => !prev);
-  }, []);
+  };
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     requestAnimationFrame(() => setIsOpen(false));
-  }, []);
+  };
 
   const icon =
     theme === "dark" ? (
@@ -55,7 +54,7 @@ export default function Navbar() {
     );
 
   return (
-    <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4">
+    <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4 h-[72px]">
       <div className="w-full mx-auto max-w-7xl lg:px-8">
         <div className="relative px-4 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Left: Logo */}
@@ -80,7 +79,6 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    prefetch={false}
                     className="relative block px-3 py-2 transition hover:text-cyan-500 dark:hover:text-cyan-400"
                   >
                     {item.name}
@@ -97,7 +95,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              className={themeButtonClass}
+              className={themeButtonClass()}
             >
               {icon}
             </button>
@@ -131,7 +129,7 @@ export default function Navbar() {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </TransitionChild>
 
-          <div className="fixed inset-0 overflow-y-auto backdrop-blur bg-zinc-800/40 dark:bg-black/80">
+          <div className="fixed inset-0 overflow-y-auto backdrop-blur bg-neutral-200 dark:bg-black/80">
             <div className="flex items-center justify-center p-4 text-center">
               <TransitionChild
                 as={Fragment}
@@ -157,7 +155,6 @@ export default function Navbar() {
                         <li key={item.name} className="py-2">
                           <Link
                             href={item.href}
-                            prefetch={false}
                             onClick={closeModal}
                             className="block w-full text-left"
                           >

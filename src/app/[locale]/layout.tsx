@@ -29,10 +29,8 @@ export default async function PortfolioLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <Navbar />
-      <main className="relative sm:px-8 mt-9 mx-auto max-w-7xl lg:px-8">
-        <div className="relative px-4 max-w-3xl lg:max-w-5xl mx-auto">
-          <Suspense>{children}</Suspense>
-        </div>
+      <main className="grow min-h-[calc(100%-285px)] relative mx-auto max-w-5xl px-8">
+        <Suspense>{children}</Suspense>
       </main>
       <Footer />
     </NextIntlClientProvider>

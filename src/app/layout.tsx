@@ -36,7 +36,9 @@ export default async function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
         />
       </Head>
-      <body className={`dark ${pretendard.className} antialiased`}>
+      <body
+        className={`flex flex-col min-h-svh dark ${pretendard.className} antialiased`}
+      >
         <ThemeProvider defaultTheme="dark">
           <InitialScreenProvider>{children}</InitialScreenProvider>
         </ThemeProvider>
