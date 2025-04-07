@@ -15,12 +15,12 @@ export default function Page() {
 
   return (
     <div className="md:flex w-full">
-      <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px] md:mt-12">
+      <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px]">
         <ModelContainer />
       </div>
 
       <article className="md:basis-4/6 lg:basis-3/6">
-        <h2 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+        <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-2xl">
           <CrypticText
             text={t("about.greeting")}
             delay={0.1}

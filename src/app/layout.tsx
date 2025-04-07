@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./global.css";
 import Head from "next/head";
 import InitialScreenProvider from "@/src/app/client/InitialScreenProvider";
-import { setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { routing } from "../i18n/routing";
 import { ThemeProvider } from "next-themes";
+import "@/src/app/styles/globals.css";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",

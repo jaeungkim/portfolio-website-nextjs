@@ -1,5 +1,4 @@
-// import Link from "next/link";
-import { Link } from '@/src/i18n/routing';
+import { Link } from "@/src/i18n/routing";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Date from "@/src/components/shared/date";

@@ -1,35 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/blog/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.tsx"],
   theme: {
     extend: {
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
       },
       colors: {
-        bg_primary_dark: "#35343D",
-        custom_blue: {
-          100: "#054CFF",
-        },
-        custom_pink: {
-          100: "#FFDBD8",
-          200: "#FFCECF",
-          300: "#ff059B",
-        },
-        custom_yellow: {
-          100: "#EFD5C0",
-          200: "#EFD5C0",
-        },
-        custom_grey: {
-          100: "#E4E2DA",
-          200: "#F9F9F9",
+        neutral: {
+          50: "#fafafa",
+          100: "#f5f5f5",
+          150: "#ededed",
+          200: "#e5e5e5",
+          250: "#dedede",
+          300: "#d4d4d4",
+          350: "#b5b5b5",
+          400: "#a3a3a3",
+          450: "#8a8a8a",
+          470: "#808080",
+          500: "#737373",
+          600: "#525252",
+          700: "#404040",
+          750: "#363636",
+          800: "#262626",
+          900: "#171717",
         },
       },
     },
+    plugins: [require("@tailwindcss/typography")],
   },
-  plugins: [require("@tailwindcss/typography")],
 };

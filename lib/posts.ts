@@ -4,6 +4,10 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { Post, PostData } from "@/src/app/types/blog";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
 
 /* Constants */
 const POSTS_DIR = path.join(process.cwd(), "posts");
@@ -103,7 +107,12 @@ export async function getPostData(
       return null;
     }
 
-    const contentHtml: MDXRemoteSerializeResult = await serialize(content);
+    const contentHtml: MDXRemoteSerializeResult = await serialize(content, {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm, remarkBreaks],
+        rehypePlugins: [rehypePrettyCode, rehypeSlug],
+      },
+    });
 
     return {
       slug: postId,

@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+@theme {
+  --text-primary: #171717; /* neutral.900 */
+  --text-secondary: #404040; /* neutral.700 */
+  --text-tertiary: #525252; /* neutral.600 */
+  --text-mute: #737373; /* neutral.500 */
+
+  --bg-primary: #fafafa; /* neutral.50 */
+  --bg-secondary: #ededed; /* neutral.150 */
+  --bg-tertiary: #e5e5e5; /* neutral.200 */
+  --bg-mute: #dedede; /* neutral.250 */
+}
+
+@layer base {
+  @variant dark {
+    --text-primary: #e5e5e5; /* you had text-neutral-200 */
+    --text-secondary: #b5b5b5; /* neutral.350 */
+    --text-tertiary: #a3a3a3; /* neutral.400 */
+    --text-mute: #808080; /* neutral.470 */
+
+    --bg-primary: #171717; /* neutral.900 */
+    --bg-secondary: #262626; /* neutral.800 */
+    --bg-tertiary: #363636; /* neutral.750 */
+    --bg-mute: #262626; /* neutral.800 again */
+  }
+}
+@layer utilities {
+  /* Base prose */
+  .prose {
+    color: var(--text-secondary);
+  }
+
+  .prose strong,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose thead th {
+    color: var(--text-primary);
+  }
+
+  .prose code {
+    font-family: var(--font-mono), Consolas, Monaco, "Andale Mono", monospace;
+  }
+
+  .prose code:not(:where(pre *)) {
+    color: var(--text-primary);
+    border-radius: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    content: none;
+  }
+
+  .prose pre::-webkit-scrollbar {
+    display: none;
+  }
+
+  .prose pre {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .fadein {
+    opacity: 0.001;
+    animation: fade-in 0.75s ease both;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0.001;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
