@@ -40,7 +40,7 @@ export default function ResumeHeader() {
             </div>
             <div className="flex justify-center items-center align-middle">
               <ExternalLink link="https://github.com/jaeungkim">
-                https://github.com/jaeungkim
+                GitHub
               </ExternalLink>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function ResumeHeader() {
             </div>
             <div className="flex justify-center items-center align-middle">
               <ExternalLink link="https://www.linkedin.com/in/jaeungkim0526">
-                https://linkedin.com/in/jaeungkim0526
+                LinkedIn
               </ExternalLink>
             </div>
           </div>
