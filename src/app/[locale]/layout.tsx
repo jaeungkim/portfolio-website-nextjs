@@ -28,7 +28,7 @@ export default async function PortfolioLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <div className="size-full bg-neutral-100 dark:bg-neutral-900">
+      <div className="bg-neutral-100 dark:bg-neutral-850">
 <Navbar />
       <main className="w-full grow relative mx-auto max-w-5xl px-8">
         <Suspense>{children}</Suspense>
