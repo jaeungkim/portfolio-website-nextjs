@@ -37,11 +37,13 @@ export default async function RootLayout({
         />
       </Head>
       <body
-        className={`flex flex-col min-h-svh dark ${pretendard.className} antialiased`}
+        className={`flex flex-col min-h-svh dark ${pretendard.className} antialiased bg-neutral-0 dark:bg-neutral-850`}
       >
+        {/* <div className=""> */}
         <ThemeProvider defaultTheme="dark">
           <InitialScreenProvider>{children}</InitialScreenProvider>
         </ThemeProvider>
+        {/* </div> */}
       </body>
     </html>
   );

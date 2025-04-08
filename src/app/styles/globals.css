@@ -1,20 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *));
-@custom-variant light (&:where(.light .light *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  --text-primary: #171717; /* neutral.900 */
-  --text-secondary: #404040; /* neutral.700 */
-  --text-tertiary: #525252; /* neutral.600 */
-  --text-mute: #737373; /* neutral.500 */
-
-  --bg-primary: #fafafa; /* neutral.50 */
-  --bg-secondary: #ededed; /* neutral.150 */
-  --bg-tertiary: #e5e5e5; /* neutral.200 */
-  --bg-mute: #dedede; /* neutral.250 */
-
   --color-neutral-0: #ffffff;
   --color-neutral-50: #f8f8f8;
   --color-neutral-100: #f1f1f1;
@@ -38,28 +28,30 @@
   --color-neutral-1000: #000000;
 }
 
-@layer base {
-  body {
-    background-color: #f1f1f1;
-  }
-  @variant dark {
-    body {
-      background-color: #17212B;
-    }
-  }
-}
 @layer utilities {
-  /* Base prose */
   .prose {
-    color: var(--text-secondary);
+    color: var(--color-neutral-700);
   }
-
   .prose strong,
   .prose h2,
   .prose h3,
   .prose h4,
   .prose thead th {
-    color: var(--text-primary);
+    color: var(--color-neutral-900);
+  }
+
+  @variant dark {
+    .prose {
+      color: var(--color-neutral-300);
+    }
+
+    .prose strong,
+    .prose h2,
+    .prose h3,
+    .prose h4,
+    .prose thead th {
+      color: var(--color-neutral-50);
+    }
   }
 
   .fadein {

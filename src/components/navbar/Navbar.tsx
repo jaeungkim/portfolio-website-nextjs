@@ -54,62 +54,60 @@ export default function Navbar() {
     );
 
   return (
-    <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4 h-[72px]">
-      <div className="w-full mx-auto max-w-7xl lg:px-8">
-        <div className="relative px-4 sm:px-8 lg:px-12 flex items-center justify-between">
-          {/* Left: Logo */}
-          <div className="flex flex-1">
-            <Link href="/" className="pointer-events-auto">
-              <Image
-                src="/images/ill_prof.jpeg"
-                alt="profileLogo"
-                width={36}
-                height={36}
-                priority
-                className="h-10 w-10 rounded-full object-cover"
-              />
-            </Link>
-          </div>
+    <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4 h-[64px]">
+      <div className="size-full mx-auto max-w-7xl relative px-4 sm:px-8 lg:px-12 flex items-center justify-between">
+        {/* Left: Logo */}
+        <div className="flex flex-1">
+          <Link href="/" className="pointer-events-auto">
+            <Image
+              src="/images/ill_prof.jpeg"
+              alt="profileLogo"
+              width={36}
+              height={36}
+              priority
+              className="size-8 rounded-full object-cover"
+            />
+          </Link>
+        </div>
 
-          {/* Center: Desktop Navigation */}
-          <div className="hidden md:flex md:flex-1 md:justify-center">
-            <nav className="pointer-events-auto">
-              <ul className="flex rounded-full px-3 text-sm font-medium text-zinc-800 backdrop-blur  dark:text-zinc-200">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="relative block px-3 py-2 transition hover:text-neutral-500 dark:hover:text-neutral-400"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </ul>
-            </nav>
-          </div>
+        {/* Center: Desktop Navigation */}
+        <div className="hidden md:flex md:flex-1 md:justify-center">
+          <nav className="pointer-events-auto">
+            <ul className="flex rounded-full px-3 text-sm font-medium text-zinc-800 backdrop-blur  dark:text-zinc-200">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="relative block px-3 py-2 transition hover:text-neutral-500 dark:hover:text-neutral-400"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
-          {/* Right: LocaleSwitcher, Theme Button, and Mobile Menu */}
-          <div className="flex gap-2 justify-end flex-1">
-            <LocaleSwitcher />
+        {/* Right: LocaleSwitcher, Theme Button, and Mobile Menu */}
+        <div className="flex gap-2 justify-end flex-1">
+          <LocaleSwitcher />
 
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className={themeButtonClass()}
+          >
+            {icon}
+          </button>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
             <button
               type="button"
-              onClick={toggleTheme}
-              className={themeButtonClass()}
+              onClick={toggleModal}
+              className="pointer-events-auto group flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800  backdrop-blur dark:text-zinc-200"
             >
-              {icon}
+              Menu
             </button>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button
-                type="button"
-                onClick={toggleModal}
-                className="pointer-events-auto group flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800  backdrop-blur dark:text-zinc-200"
-              >
-                Menu
-              </button>
-            </div>
           </div>
         </div>
       </div>
