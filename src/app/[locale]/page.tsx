@@ -5,21 +5,21 @@ import {
   FaRegFilePdf,
 } from "react-icons/fa";
 
-import SocialIcon from "@/src/components/shared/SocialIcon";
+import SocialIcon from "@/src/components/common/SocialIcon";
 import ModelContainer from "@/src/components/model/ModelContainer";
-import CrypticText from "@/src/components/CrypticText";
+import CrypticText from "@/src/components/common/CrypticText";
 import { useTranslations } from "next-intl";
 
 export default function Page() {
   const t = useTranslations();
 
   return (
-    <div className="md:flex w-full md:pt-16">
-      <div className="w-full relative md:basis-2/6 lg:basis-3/6 py-4 h-96 md:h-auto md:py-1 md:pr-4 max-h-[350px]">
+    <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
+      <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-96 md:h-auto md:pr-4 max-h-[350px]">
         <ModelContainer />
       </div>
 
-      <article className="md:basis-4/6 lg:basis-3/6">
+      <article className="basis-1/2">
         <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-2xl">
           <CrypticText
             text={t("about.greeting")}

@@ -3,14 +3,14 @@ import { Link } from "@/src/i18n/routing";
 
 const menuItems = [
   { label: "Home", url: "/" },
-  { label: "About", url: '/resume" ' },
+  { label: "About", url: "/resume" },
   { label: "Blog", url: "/blog" },
   // { label: "Project", url: "/project" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="mt-32 backdrop-blur h-[85px] w-full border-t border-zinc-100 py-8 dark:border-zinc-700/40">
+    <footer className="mt-32 backdrop-blur w-full border-t border-zinc-100 py-8 dark:border-zinc-700/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <nav className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">

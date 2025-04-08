@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { NextIntlClientProvider, useMessages, hasLocale } from "next-intl";
 import Footer from "@/src/components/Footer";
 import Navbar from "@/src/components/navbar/Navbar";
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+import LocaleSwitcher from "@/src/components/common/LocaleSwitcher";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import Head from "next/head";
 import localFont from "next/font/local";
@@ -29,7 +29,7 @@ export default async function PortfolioLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <Navbar />
-      <main className="grow min-h-[calc(100%-285px)] relative mx-auto max-w-5xl px-8">
+      <main className="w-full grow relative mx-auto max-w-5xl px-8">
         <Suspense>{children}</Suspense>
       </main>
       <Footer />

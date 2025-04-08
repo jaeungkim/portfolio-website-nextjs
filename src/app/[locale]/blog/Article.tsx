@@ -1,7 +1,7 @@
 import { Link } from "@/src/i18n/routing";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import Date from "@/src/components/shared/date";
+import Date from "@/src/components/common/Date";
 import { Post } from "@/src/app/types/blog";
 
 interface ArticleProps {

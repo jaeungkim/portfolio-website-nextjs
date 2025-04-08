@@ -1,83 +1,69 @@
+import ResumeTitle from "./components/ResumeTitle";
+
+const skillCategories = [
+  {
+    title: "Frontend",
+    skills: [
+      "React",
+      "Next.js",
+      "React Query",
+      "Recoil",
+      "Zustand",
+      "Redux",
+      "JavaScript",
+      "TypeScript",
+      "WebGL",
+      "Three.js",
+      "GSAP",
+      "Tailwind",
+      "Storybook",
+      "Figma",
+    ],
+  },
+  {
+    title: "Backend",
+    skills: ["Node.js", "Nest.js", "Express.js", "PostgreSQL", "MongoDB"],
+  },
+  {
+    title: "DevOps",
+    skills: ["AWS", "NGINX", "Docker", "Jenkins"],
+  },
+  {
+    title: "Misc.",
+    skills: [
+      "Java",
+      "Agile/Scrum",
+      "Jira",
+      "Confluence",
+      "Git",
+      "GitHub",
+      "GitLab",
+      "BitBucket",
+      "Slack",
+      "VS Code",
+    ],
+  },
+];
+
 export default function ResumeSkill() {
   return (
-    <>
-      <div className="mb-4 font-semibold text-cyan-500 text-3xl uppercase">
-        SKill
-      </div>
+    <div className="text-neutral-700 dark:text-neutral-300">
+      <ResumeTitle title="Skills" />
 
-      <div className="md:grid md:grid-cols-4 md:gap-4 mb-8">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Frontend
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
-            <li>React</li>
-            <li>Next.js</li>
-            <li>React Query</li>
-            <li>Recoil</li>
-            <li>Zustand</li>
-            <li>Redux</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>WebGL</li>
-            <li>Three.js</li>
-            <li>GSAP</li>
-            <li>Tailwind</li>
-            <li>Storybook</li>
-            <li>Figma</li>
-          </ul>
-        </div>
+      <div className="mt-8 space-y-8">
+        {skillCategories.map(({ title, skills }) => (
+          <div key={title} className="md:grid md:grid-cols-4 md:gap-2">
+            <div className="text-2xl font-medium text-neutral-600 dark:text-neutral-400 mb-2 md:mb-0">
+              {title}
+            </div>
+            <ul className="col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 pl-5 list-disc text-base font-normal">
+              {skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-
-      <div className="md:grid md:grid-cols-4 md:gap-4 mb-8">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Backend
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
-            <li>Node.js</li>
-            <li>Nest.js</li>
-            <li>Express.js</li>
-            <li>PostgreSQL</li>
-            <li>MongoDB</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="md:grid md:grid-cols-4 md:gap-4 mb-8">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          DevOps
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
-            <li>AWS</li>
-            <li>NGINX</li>
-            <li>Docker</li>
-            <li>Jenkins</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-[#808080] md:text-right md:px-4">
-          Misc.
-        </div>
-        <div className="col-span-3">
-          <ul className="text-base font-normal pl-8 list-disc grid grid-cols-4 gap-2">
-            <li>Java</li>
-            <li>Agile/Scrum</li>
-            <li>Jira</li>
-            <li>Confluence</li>
-            <li>Git</li>
-            <li>GitHub</li>
-            <li>GitLab</li>
-            <li>BitBucket</li>
-            <li>Slack</li>
-            <li>VS Code</li>
-          </ul>
-        </div>
-      </div>
-      <hr className="my-11 h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
-    </>
+    </div>
   );
 }

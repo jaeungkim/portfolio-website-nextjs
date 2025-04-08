@@ -12,7 +12,7 @@ import { XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Link } from "@/src/i18n/routing";
-import LocaleSwitcher from "../LocaleSwitcher";
+import LocaleSwitcher from "../common/LocaleSwitcher";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -66,7 +66,7 @@ export default function Navbar() {
                 width={36}
                 height={36}
                 priority
-                className="h-10 w-10 rounded-full object-cover bg-zinc-100 dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-900/5 dark:ring-white/10"
+                className="h-10 w-10 rounded-full object-cover"
               />
             </Link>
           </div>
@@ -74,12 +74,12 @@ export default function Navbar() {
           {/* Center: Desktop Navigation */}
           <div className="hidden md:flex md:flex-1 md:justify-center">
             <nav className="pointer-events-auto">
-              <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200">
+              <ul className="flex rounded-full px-3 text-sm font-medium text-zinc-800 backdrop-blur  dark:text-zinc-200">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="relative block px-3 py-2 transition hover:text-cyan-500 dark:hover:text-cyan-400"
+                    className="relative block px-3 py-2 transition hover:text-neutral-500 dark:hover:text-neutral-400"
                   >
                     {item.name}
                   </Link>
@@ -105,7 +105,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={toggleModal}
-                className="pointer-events-auto group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200"
+                className="pointer-events-auto group flex items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-800  backdrop-blur dark:text-zinc-200"
               >
                 Menu
               </button>

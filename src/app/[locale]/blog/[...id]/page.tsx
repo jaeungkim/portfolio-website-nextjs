@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { getPostData } from "@/lib/posts";
 
-import BackButton from "@/src/components/BackButton";
-import ScrollIndicator from "@/src/components/ScrollIndicator";
-import ScrollToTopButton from "@/src/components/ScrollToTopButton";
+import BackButton from "@/src/components/common/BackButton";
+import ScrollIndicator from "@/src/components/common/ScrollIndicator";
+import ScrollToTopButton from "@/src/components/common/ScrollToTopButton";
 import MDXClient from "./MDXClient";
 import { UtterancesComments } from "./UtterancesComments";
 
