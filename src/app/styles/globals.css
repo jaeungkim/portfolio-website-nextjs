@@ -40,21 +40,11 @@
 
 @layer base {
   body {
-    background-color: var(--bg-secondary);
+    background-color: #f1f1f1;
   }
   @variant dark {
-    --text-primary: #e5e5e5; /* you had text-neutral-200 */
-    --text-secondary: #b5b5b5; /* neutral.350 */
-    --text-tertiary: #a3a3a3; /* neutral.400 */
-    --text-mute: #808080; /* neutral.470 */
-
-    --bg-primary: #171717; /* neutral.900 */
-    --bg-secondary: #262626; /* neutral.800 */
-    --bg-tertiary: #363636; /* neutral.750 */
-    --bg-mute: #262626; /* neutral.800 again */
-    
     body {
-      background-color: var(--bg-secondary);
+      background-color: #17212B;
     }
   }
 }
