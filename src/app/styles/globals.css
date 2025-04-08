@@ -39,6 +39,9 @@
 }
 
 @layer base {
+  body {
+    background-color: var(--bg-secondary);
+  }
   @variant dark {
     --text-primary: #e5e5e5; /* you had text-neutral-200 */
     --text-secondary: #b5b5b5; /* neutral.350 */
@@ -49,6 +52,10 @@
     --bg-secondary: #262626; /* neutral.800 */
     --bg-tertiary: #363636; /* neutral.750 */
     --bg-mute: #262626; /* neutral.800 again */
+    
+    body {
+      background-color: var(--bg-secondary);
+    }
   }
 }
 @layer utilities {
