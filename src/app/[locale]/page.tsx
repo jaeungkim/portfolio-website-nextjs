@@ -8,10 +8,10 @@ import {
 import SocialIcon from "@/src/components/common/SocialIcon";
 import ModelContainer from "@/src/components/model/ModelContainer";
 import CrypticText from "@/src/components/common/CrypticText";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function Page() {
-  const t = useTranslations();
+export default async function Page() {
+  const t = await getTranslations();
 
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
@@ -20,7 +20,7 @@ export default function Page() {
       </div>
 
       <article className="basis-1/2">
-        <h2 className="text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-2xl">
+        <h2 className="text-3xl font-bold  text-zinc-800 dark:text-zinc-100 sm:text-2xl">
           <CrypticText
             text={t("about.greeting")}
             delay={0.1}

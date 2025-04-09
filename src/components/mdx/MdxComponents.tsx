@@ -1,4 +1,3 @@
-// components/mdxComponents.tsx
 import CodeBlock from "@/src/components/mdx/CodeBlock";
 import Image from "next/image";
 

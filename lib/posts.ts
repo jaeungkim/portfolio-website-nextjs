@@ -2,129 +2,114 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { Post, PostData } from "@/src/app/types/blog";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 
+import type { Post, PostData } from "@/src/app/types/blog";
+
 /* Constants */
 const POSTS_DIR = path.join(process.cwd(), "posts");
-const CATEGORIES = ["daily", "personal"] as const;
+export const CATEGORIES = ["daily", "personal"] as const;
+type Category = (typeof CATEGORIES)[number];
 
-/* Helpers */
-const isValidCategory = (
-  category: string
-): category is (typeof CATEGORIES)[number] =>
+/* Utils */
+const isValidCategory = (category: string): category is Category =>
   CATEGORIES.includes(category as any);
 
-const parsePostFile = (category: string, fileName: string): Post | null => {
-  const filePath = path.join(POSTS_DIR, category, fileName);
+const getPostFilePath = (category: string, fileName: string) =>
+  path.join(POSTS_DIR, category, fileName);
 
-  try {
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(fileContents);
+/* Core: Parse Frontmatter from MDX */
+function extractPostMetadata(
+  category: Category,
+  fileName: string,
+  content: string
+): Post | null {
+  const { data } = matter(content);
+  const title = data.title as string | undefined;
+  const date = data.date as string | undefined;
+  const summary = (data.summary as string) ?? "";
+  const tags = (data.tags as string[]) ?? [];
 
-    const title = data.title as string | undefined;
-    const date = data.date as string | undefined;
-    const summary = (data.summary as string) ?? "";
-    const tags = (data.tags as string[]) ?? [];
+  if (!title || !date) return null;
 
-    if (!title || !date) {
-      console.warn(`Missing required fields in ${filePath}`);
-      return null;
-    }
+  return {
+    id: `${category}/${fileName.replace(/\.mdx$/, "")}`,
+    title,
+    date,
+    summary,
+    tags,
+    category,
+  };
+}
 
-    return {
-      id: `${category}/${fileName.replace(/\.mdx$/, "")}`,
-      title,
-      date,
-      summary,
-      tags,
-      category,
-    };
-  } catch (error) {
-    console.error(`Error reading post file ${filePath}`, error);
-    return null;
-  }
-};
-
-/* Get all posts sorted by date */
+/* Public: Get All Posts (sorted) */
 export function getSortedPostsData(): Post[] {
   return CATEGORIES.flatMap((category) => {
     const categoryDir = path.join(POSTS_DIR, category);
-
-    if (!fs.existsSync(categoryDir)) {
-      console.warn(`Category directory not found: ${categoryDir}`);
-      return [];
-    }
+    if (!fs.existsSync(categoryDir)) return [];
 
     return fs
       .readdirSync(categoryDir)
-      .filter((fileName) => fileName.endsWith(".mdx"))
-      .map((fileName) => parsePostFile(category, fileName))
+      .filter((file) => file.endsWith(".mdx"))
+      .map((fileName) => {
+        const fullPath = getPostFilePath(category, fileName);
+        try {
+          const content = fs.readFileSync(fullPath, "utf8");
+          return extractPostMetadata(category, fileName, content);
+        } catch (err) {
+          console.warn(`Error reading ${fullPath}:`, err);
+          return null;
+        }
+      })
       .filter((post): post is Post => post !== null);
   }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-/* Get a single post's data */
+/* Public: Get Single Post by ID */
 export async function getPostData(
   id: string[] | string
 ): Promise<PostData | null> {
-  const postIdArray = Array.isArray(id) ? id : id.split("/");
+  const [category, slug] = Array.isArray(id) ? id : id.split("/");
 
-  if (postIdArray.length !== 2) {
-    console.warn(`Invalid post ID format: ${id}`);
-    return null;
-  }
+  if (!isValidCategory(category) || !slug) return null;
 
-  const [category, postId] = postIdArray;
-
-  if (!isValidCategory(category)) {
-    console.warn(`Invalid category: ${category}`);
-    return null;
-  }
-
-  const filePath = path.join(POSTS_DIR, category, `${postId}.mdx`);
-
-  if (!fs.existsSync(filePath)) {
-    console.warn(`Post not found: ${filePath}`);
-    return null;
-  }
+  const filePath = getPostFilePath(category, `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) return null;
 
   try {
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { content, data } = matter(fileContents);
+    const rawContent = fs.readFileSync(filePath, "utf8");
+    const { data, content } = matter(rawContent);
 
     const title = data.title as string | undefined;
     const date = data.date as string | undefined;
     const summary = (data.summary as string) ?? "";
     const tags = (data.tags as string[]) ?? [];
 
-    if (!title || !date) {
-      console.warn(`Missing required fields in post ${filePath}`);
-      return null;
-    }
+    if (!title || !date) return null;
 
     const contentHtml: MDXRemoteSerializeResult = await serialize(content, {
       mdxOptions: {
         remarkPlugins: [remarkGfm, remarkBreaks],
         rehypePlugins: [rehypePrettyCode, rehypeSlug],
+        format: "mdx",
       },
     });
 
     return {
-      slug: postId,
-      id: `${category}/${postId}`,
+      id: `${category}/${slug}`,
+      slug,
+      title,
+      date,
+      summary,
       tags,
       contentHtml,
-      date,
-      title,
-      summary,
     };
   } catch (error) {
-    console.error(`Error processing post ${filePath}`, error);
+    console.error(`Error processing post at ${filePath}`, error);
     return null;
   }
 }

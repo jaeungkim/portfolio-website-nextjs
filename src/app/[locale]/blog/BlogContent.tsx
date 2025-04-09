@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Article from "./Article";
 import { Post } from "@/src/app/types/blog";
 
@@ -15,53 +15,45 @@ export default function BlogContent({ allPostsData }: BlogProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState("daily");
 
-  const handleTagClick = (tag: string) =>
+  const handleTagClick = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
-
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab.toLowerCase());
-    setSelectedTags([]);
   };
 
-  const filteredPosts = useMemo(
-    () =>
-      allPostsData.filter((post) =>
-        post.category.toLowerCase().includes(activeTab)
-      ),
-    [allPostsData, activeTab]
+  const handleTabClick = (tab: string) => {
+    const normalized = tab.toLowerCase();
+    if (normalized !== activeTab) {
+      setActiveTab(normalized);
+      setSelectedTags([]); // reset tags on tab change
+    }
+  };
+
+  // Filter by category
+  const filteredPosts = allPostsData.filter(
+    (post) => post.category.toLowerCase() === activeTab
   );
 
-  const availableTags = useMemo(() => {
-    const tagSet = new Set<string>();
-    filteredPosts.forEach((post) => {
-      if (Array.isArray(post.tags)) {
-        post.tags.forEach((tag) => {
-          if (tag.toLowerCase() !== activeTab) {
-            tagSet.add(tag);
-          }
-        });
-      }
-    });
-    return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
-  }, [filteredPosts, activeTab]);
+  // Get unique tags from filtered posts (excluding the active category name as tag)
+  const tagSet = new Set<string>();
+  for (const post of filteredPosts) {
+    for (const tag of post.tags || []) {
+      if (tag.toLowerCase() !== activeTab) tagSet.add(tag);
+    }
+  }
+  const availableTags = Array.from(tagSet).sort((a, b) => a.localeCompare(b));
 
-  const displayedPosts = useMemo(
-    () =>
-      selectedTags.length === 0
-        ? filteredPosts
-        : filteredPosts.filter(
-            (post) =>
-              Array.isArray(post.tags) &&
-              selectedTags.every((tag) => post.tags.includes(tag))
-          ),
-    [filteredPosts, selectedTags]
-  );
+  // Filter posts by selected tags
+  const displayedPosts =
+    selectedTags.length === 0
+      ? filteredPosts
+      : filteredPosts.filter((post) =>
+          selectedTags.every((tag) => post.tags?.includes(tag))
+        );
 
   return (
     <>
-      <h1 className="mb-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+      <h1 className="mb-4 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
         Blog
       </h1>
 
@@ -70,22 +62,26 @@ export default function BlogContent({ allPostsData }: BlogProps) {
           Currently renovating my blog page...!
         </p>
       </div>
+
       {/* Category Tabs */}
       <div className="flex justify-center">
-        {categories.map((category) => (
-          <button
-            type="button"
-            key={category}
-            onClick={() => handleTabClick(category)}
-            className={`border border-solid border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 mx-2 my-1 px-3 py-1 text-sm font-medium rounded-full ${
-              activeTab === category.toLowerCase()
-                ? "dark:text-white"
-                : "bg-transparent text-cyan-500"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
+        {categories.map((category) => {
+          const normalized = category.toLowerCase();
+          return (
+            <button
+              key={category}
+              onClick={() => handleTabClick(category)}
+              className={`border border-solid mx-2 my-1 px-3 py-1 text-sm font-medium rounded-full
+                ${
+                  activeTab === normalized
+                    ? "bg-neutral-800 text-white"
+                    : "border-neutral-500 text-neutral-500 dark:border-neutral-800 dark:text-neutral-400"
+                }`}
+            >
+              {category}
+            </button>
+          );
+        })}
       </div>
 
       {/* Filter Tags */}
@@ -97,8 +93,8 @@ export default function BlogContent({ allPostsData }: BlogProps) {
               onClick={() => handleTagClick(tag)}
               className={`mx-2 my-1 px-3 py-1 border rounded-full text-sm font-medium ${
                 selectedTags.includes(tag)
-                  ? "bg-zinc-500 text-zinc-50 dark:bg-zinc-800 dark:text-zinc-100"
-                  : "border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
+                  ? "bg-neutral-500 text-white dark:bg-neutral-800 dark:text-white"
+                  : "border-neutral-500 text-neutral-500 dark:border-neutral-800 dark:text-neutral-400"
               }`}
             >
               {tag}
@@ -109,11 +105,11 @@ export default function BlogContent({ allPostsData }: BlogProps) {
 
       {/* Blog Posts */}
       <motion.div className="mt-14 sm:mt-16">
-        <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+        <div className="md:border-l md:border-neutral-100 md:pl-6 md:dark:border-neutral-700/40">
           <div className="flex flex-col space-y-16">
             {displayedPosts.length > 0 ? (
               displayedPosts.map((post, index) => (
-                <Article post={post} index={index} key={post.id} />
+                <Article key={post.id} post={post} index={index} />
               ))
             ) : (
               <p className="text-center text-gray-500 dark:text-gray-400">
