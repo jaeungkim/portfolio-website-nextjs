@@ -4,7 +4,6 @@ import { getPostData } from "@/lib/posts";
 import BackButton from "@/src/components/common/BackButton";
 import ScrollIndicator from "@/src/components/common/ScrollIndicator";
 import ScrollToTopButton from "@/src/components/common/ScrollToTopButton";
-import MDXClient from "./MDXClient";
 import { UtterancesComments } from "./UtterancesComments";
 
 export default async function PostPage({ params }) {
@@ -30,7 +29,7 @@ export default async function PostPage({ params }) {
 
       <article className="prose dark:prose-invert mx-auto overflow-auto max-w-3xl">
         <h1 className="text-4xl font-bold mb-6">{postData.title}</h1>
-        <MDXClient source={postData.contentHtml} />
+        {postData.content}
       </article>
 
       <section className="mt-16">

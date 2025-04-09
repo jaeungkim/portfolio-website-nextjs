@@ -1,115 +1,127 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
-import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
-
+import { mdxComponents } from "@/src/components/mdx/MdxComponents";
 import type { Post, PostData } from "@/src/app/types/blog";
 
-/* Constants */
-const POSTS_DIR = path.join(process.cwd(), "posts");
+const POSTS_DIR = path.resolve(process.cwd(), "posts");
 export const CATEGORIES = ["daily", "personal"] as const;
 type Category = (typeof CATEGORIES)[number];
 
-/* Utils */
 const isValidCategory = (category: string): category is Category =>
-  CATEGORIES.includes(category as any);
+  CATEGORIES.includes(category as Category);
 
-const getPostFilePath = (category: string, fileName: string) =>
-  path.join(POSTS_DIR, category, fileName);
+const mdxOpts = {
+  parseFrontmatter: true,
+  mdxOptions: {
+    remarkPlugins: [remarkGfm, remarkBreaks],
+    rehypePlugins: [rehypePrettyCode, rehypeSlug],
+    format: "mdx" as const,
+  },
+};
 
-/* Core: Parse Frontmatter from MDX */
-function extractPostMetadata(
+const readFile = (filePath: string) => {
+  try {
+    return fs.readFileSync(filePath, "utf8");
+  } catch {
+    return null;
+  }
+};
+
+const extractPost = async (
   category: Category,
-  fileName: string,
-  content: string
-): Post | null {
-  const { data } = matter(content);
-  const title = data.title as string | undefined;
-  const date = data.date as string | undefined;
-  const summary = (data.summary as string) ?? "";
-  const tags = (data.tags as string[]) ?? [];
+  filePath: string,
+  fileName: string
+): Promise<Post | null> => {
+  const raw = readFile(filePath);
+  if (!raw) return null;
 
-  if (!title || !date) return null;
+  try {
+    const { frontmatter } = await compileMDX<{
+      title: string;
+      date: string;
+      summary?: string;
+      tags?: string[];
+    }>({ source: raw, options: mdxOpts });
 
-  return {
-    id: `${category}/${fileName.replace(/\.mdx$/, "")}`,
-    title,
-    date,
-    summary,
-    tags,
-    category,
-  };
-}
+    if (!frontmatter.title || !frontmatter.date) return null;
 
-/* Public: Get All Posts (sorted) */
-export function getSortedPostsData(): Post[] {
-  return CATEGORIES.flatMap((category) => {
-    const categoryDir = path.join(POSTS_DIR, category);
-    if (!fs.existsSync(categoryDir)) return [];
+    return {
+      id: `${category}/${fileName.replace(/\.mdx$/, "")}`,
+      title: frontmatter.title,
+      date: frontmatter.date,
+      summary: frontmatter.summary ?? "",
+      tags: frontmatter.tags ?? [],
+      category,
+    };
+  } catch {
+    return null;
+  }
+};
 
-    return fs
-      .readdirSync(categoryDir)
-      .filter((file) => file.endsWith(".mdx"))
-      .map((fileName) => {
-        const fullPath = getPostFilePath(category, fileName);
-        try {
-          const content = fs.readFileSync(fullPath, "utf8");
-          return extractPostMetadata(category, fileName, content);
-        } catch (err) {
-          console.warn(`Error reading ${fullPath}:`, err);
-          return null;
-        }
-      })
-      .filter((post): post is Post => post !== null);
-  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
+export const getSortedPostsData = async (): Promise<Post[]> => {
+  const posts: Post[] = [];
 
-/* Public: Get Single Post by ID */
-export async function getPostData(
+  await Promise.all(
+    CATEGORIES.map(async (category) => {
+      const dir = path.join(POSTS_DIR, category);
+      if (!fs.existsSync(dir)) return;
+
+      const files = fs.readdirSync(dir).filter((f) => f.endsWith(".mdx"));
+
+      await Promise.all(
+        files.map(async (file) => {
+          const post = await extractPost(category, path.join(dir, file), file);
+          if (post) posts.push(post);
+        })
+      );
+    })
+  );
+
+  return posts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+};
+
+export const getPostData = async (
   id: string[] | string
-): Promise<PostData | null> {
+): Promise<PostData | null> => {
   const [category, slug] = Array.isArray(id) ? id : id.split("/");
 
   if (!isValidCategory(category) || !slug) return null;
 
-  const filePath = getPostFilePath(category, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
+  const filePath = path.join(POSTS_DIR, category, `${slug}.mdx`);
+  const raw = readFile(filePath);
+  if (!raw) return null;
 
   try {
-    const rawContent = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(rawContent);
-
-    const title = data.title as string | undefined;
-    const date = data.date as string | undefined;
-    const summary = (data.summary as string) ?? "";
-    const tags = (data.tags as string[]) ?? [];
-
-    if (!title || !date) return null;
-
-    const contentHtml: MDXRemoteSerializeResult = await serialize(content, {
-      mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkBreaks],
-        rehypePlugins: [rehypePrettyCode, rehypeSlug],
-        format: "mdx",
-      },
+    const { content, frontmatter } = await compileMDX<{
+      title: string;
+      date: string;
+      summary?: string;
+      tags?: string[];
+    }>({
+      source: raw,
+      options: mdxOpts,
+      components: mdxComponents,
     });
+
+    if (!frontmatter.title || !frontmatter.date) return null;
 
     return {
       id: `${category}/${slug}`,
       slug,
-      title,
-      date,
-      summary,
-      tags,
-      contentHtml,
+      title: frontmatter.title,
+      date: frontmatter.date,
+      summary: frontmatter.summary ?? "",
+      tags: frontmatter.tags ?? [],
+      content,
     };
-  } catch (error) {
-    console.error(`Error processing post at ${filePath}`, error);
+  } catch {
     return null;
   }
-}
+};

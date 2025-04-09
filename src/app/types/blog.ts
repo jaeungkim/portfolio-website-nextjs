@@ -1,5 +1,3 @@
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
-
 export interface Post {
   id: string;
   title: string;
@@ -13,7 +11,7 @@ export type PostData = {
   slug: string;
   id: string;
   tags: string[];
-  contentHtml: MDXRemoteSerializeResult;
+  content: React.ReactNode;
   date: string;
   title: string;
   summary: string;
