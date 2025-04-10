@@ -9,7 +9,6 @@ import localFont from "next/font/local";
 import { Metadata } from "next";
 import { routing } from "@/src/i18n/routing";
 import { notFound } from "next/navigation";
-import InitialScreenProvider from "@/src/app/client/InitialScreenProvider";
 
 type Params = Promise<{ locale: never }>;
 
