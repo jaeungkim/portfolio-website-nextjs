@@ -53,16 +53,6 @@ export default function BlogContent({ allPostsData }: BlogProps) {
 
   return (
     <>
-      <h1 className="mb-4 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
-        Blog
-      </h1>
-
-      <div className="py-4">
-        <p className="text-gray-500 dark:text-gray-400">
-          Currently renovating my blog page...!
-        </p>
-      </div>
-
       {/* Category Tabs */}
       <div className="flex justify-center">
         {categories.map((category) => {

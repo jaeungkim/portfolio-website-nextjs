@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Head from "next/head";
-import InitialScreenProvider from "@/src/app/client/InitialScreenProvider";
-import { ThemeProvider } from "next-themes";
 import "@/src/app/styles/globals.css";
+import ThemeProvider from "@/src/components/common/ThemeProvider";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",
@@ -29,21 +27,17 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <Head>
-        <link rel="shortcut icon" href="/static/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css"
-        />
-      </Head>
       <body
-        className={`flex flex-col min-h-svh dark ${pretendard.className} antialiased bg-neutral-0 dark:bg-neutral-850`}
+        className={`flex flex-col min-h-svh ${pretendard.className} antialiased bg-neutral-0 dark:bg-neutral-850`}
       >
-        {/* <div className=""> */}
-        <ThemeProvider defaultTheme="dark">
-          <InitialScreenProvider>{children}</InitialScreenProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
         </ThemeProvider>
-        {/* </div> */}
       </body>
     </html>
   );
