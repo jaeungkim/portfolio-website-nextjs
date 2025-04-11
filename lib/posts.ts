@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -24,9 +24,9 @@ const mdxOpts = {
   },
 };
 
-const readFile = (filePath: string) => {
+const readFile = async (filePath: string): Promise<string | null> => {
   try {
-    return fs.readFileSync(filePath, "utf8");
+    return await fs.readFile(filePath, "utf8");
   } catch {
     return null;
   }
@@ -37,7 +37,7 @@ const extractPost = async (
   filePath: string,
   fileName: string
 ): Promise<Post | null> => {
-  const raw = readFile(filePath);
+  const raw = await readFile(filePath);
   if (!raw) return null;
 
   try {
@@ -64,27 +64,29 @@ const extractPost = async (
 };
 
 export const getSortedPostsData = async (): Promise<Post[]> => {
-  const posts: Post[] = [];
-
-  await Promise.all(
+  const postsPerCategory = await Promise.all(
     CATEGORIES.map(async (category) => {
       const dir = path.join(POSTS_DIR, category);
-      if (!fs.existsSync(dir)) return;
+      try {
+        const files = await fs.readdir(dir);
+        const mdxFiles = files.filter((f) => f.endsWith(".mdx"));
 
-      const files = fs.readdirSync(dir).filter((f) => f.endsWith(".mdx"));
+        const posts = await Promise.all(
+          mdxFiles.map((file) =>
+            extractPost(category, path.join(dir, file), file)
+          )
+        );
 
-      await Promise.all(
-        files.map(async (file) => {
-          const post = await extractPost(category, path.join(dir, file), file);
-          if (post) posts.push(post);
-        })
-      );
+        return posts.filter(Boolean) as Post[];
+      } catch {
+        return [];
+      }
     })
   );
 
-  return posts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return postsPerCategory.flat().sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 };
 
 export const getPostData = async (
@@ -95,7 +97,7 @@ export const getPostData = async (
   if (!isValidCategory(category) || !slug) return null;
 
   const filePath = path.join(POSTS_DIR, category, `${slug}.mdx`);
-  const raw = readFile(filePath);
+  const raw = await readFile(filePath);
   if (!raw) return null;
 
   try {

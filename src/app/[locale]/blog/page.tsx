@@ -1,4 +1,3 @@
-// app/blog/page.tsx
 import { Suspense } from "react";
 import BlogContentLoader from "./BlogContentLoader";
 import type { Metadata } from "next";

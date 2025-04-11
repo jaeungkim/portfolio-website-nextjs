@@ -25,16 +25,14 @@ export default function BlogContent({ allPostsData }: BlogProps) {
     const normalized = tab.toLowerCase();
     if (normalized !== activeTab) {
       setActiveTab(normalized);
-      setSelectedTags([]); // reset tags on tab change
+      setSelectedTags([]);
     }
   };
 
-  // Filter by category
   const filteredPosts = allPostsData.filter(
     (post) => post.category.toLowerCase() === activeTab
   );
 
-  // Get unique tags from filtered posts (excluding the active category name as tag)
   const tagSet = new Set<string>();
   for (const post of filteredPosts) {
     for (const tag of post.tags || []) {
@@ -43,7 +41,6 @@ export default function BlogContent({ allPostsData }: BlogProps) {
   }
   const availableTags = Array.from(tagSet).sort((a, b) => a.localeCompare(b));
 
-  // Filter posts by selected tags
   const displayedPosts =
     selectedTags.length === 0
       ? filteredPosts
@@ -53,7 +50,6 @@ export default function BlogContent({ allPostsData }: BlogProps) {
 
   return (
     <>
-      {/* Category Tabs */}
       <div className="flex justify-center">
         {categories.map((category) => {
           const normalized = category.toLowerCase();
@@ -74,7 +70,6 @@ export default function BlogContent({ allPostsData }: BlogProps) {
         })}
       </div>
 
-      {/* Filter Tags */}
       {availableTags.length > 0 && (
         <div className="flex flex-wrap justify-center mt-6">
           {availableTags.map((tag) => (
@@ -93,7 +88,6 @@ export default function BlogContent({ allPostsData }: BlogProps) {
         </div>
       )}
 
-      {/* Blog Posts */}
       <motion.div className="mt-14 sm:mt-16">
         <div className="md:border-l md:border-neutral-100 md:pl-6 md:dark:border-neutral-700/40">
           <div className="flex flex-col space-y-16">

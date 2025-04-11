@@ -24,7 +24,6 @@ const Article: React.FC<ArticleProps> = ({ post, index }) => {
         href={`/blog/${post.id}`}
         className="md:col-span-3 group relative flex flex-col items-start"
       >
-        {/* Hover background effect */}
         <div
           aria-hidden="true"
           className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"
