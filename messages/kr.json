@@ -30,25 +30,15 @@
         "projects": {
           "ndxpro_pmis": {
             "title": "NDXPRO PMIS",
-            "description": "프로젝트의 일정 및 자원 관리 웹 솔루션",
+            "description": "프로젝트 전체적인 관리를 통합한 웹 솔루션",
+            "link": "https://spiny-learning-4b9.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4?pvs=74",
             "tasks": {
               "gantt_chart": {
-                "title": "간트 차트 (WBS 기반) 개발 및 성능 최적화",
+                "title": "WBS 기반 Gantt Chart 커스텀 구현",
                 "subtasks": [
-                  "복잡한 프로젝트 데이터를 시각화하기 위해 커스텀 간트 차트 아키텍처를 설계 및 구현",
-                  "Task 의존관계(FS, SS, SF, FF)를 SVG Path 기반 로직으로 구현 → 좌표 계산 및 경로 최적화로 복잡한 프로젝트 환경에서도 높은 가독성과 유지",
-                  "BOM 트리 및 간트 바 차트의 드래그앤드롭 인터랙션을 통해 Task 순서, 계층 및 일정을 수정할 수 있는 기능 제공",
-                  "Task 일정 및 구조 변경 기능에 Tanstack Query 기반 Optimistic UI 패턴 적용 → 드래그앤드롭 인터랙션 시 서버 응답 전 상태 선반영 및 실패 시 롤백 처리로 데이터 무결성과 UX 일관성 확보",
-                  "가상화(Virtualization)를 적용하여 수천 개 Task 데이터의 렌더링 성능을 최적화하고, DOM 렌더링 성능 40% 개선"
-                ]
-              },
-              "drawing_system": {
-                "title": "도면 관리 시스템 개발",
-                "subtasks": [
-                  "폴더 및 파일을 트리 구조로 시각화하는 재귀 컴포넌트 아키텍처 설계 및 구현, 대용량 데이터 렌더링 최적화",
-                  "웹 기반 File Explorer 인터페이스 구현, 운영체제 수준의 단축키 지원",
-                  "webkitdirectory와 비동기 업로드 처리로 폴더 단위 대량 문서 업로드 지원, 업로드 중 UI 반응성 유지",
-                  "도면 문서의 버전 관리 및 변경 이력 추적 시스템 설계, 파일 변경 내역과 리비전 관리로 프로젝트 변경 사항 관리"
+                  "복잡한 프로젝트 데이터를 시각화하기 위해 Gantt Chart 아키텍처를 직접 설계 및 구현",
+                  "구현된 모든 인터랙션에 Optimistic UI 적용으로 실시간 구조/일정 수정 기능 구현",
+                  "가상화를 적용하여 수천 개 Task 데이터의 렌더링 성능을 최적화하고, DOM 렌더링 성능 40% 개선"
                 ]
               }
             }
