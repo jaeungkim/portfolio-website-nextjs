@@ -9,104 +9,103 @@
   },
   "resume": {
     "introduce": {
-      "paragraph1": "Hello, I’m a frontend developer with {years} of hands on experience building web applications from early planning through to deployment and maintenance. I care about performance, maintainability, and creating interfaces that feel smooth and intuitive.",
-      "paragraph2": "I enjoy writing clean code that others can pick up and understand. I regularly explore new tools, libraries, and techniques — adopting what genuinely improves my workflow or enhances the user experience. I’m always learning and striving to grow in both depth and breadth as a developer.",
-      "paragraph3": "I’m a Canadian citizen currently living in Korea on an F-4 visa. I’ve worked with people from many different backgrounds and believe strong communication is one of the most important parts of building great products together."
+      "paragraph1": "Hello, I’m a frontend developer experienced in all stages of building web services, from planning and architecture to development, deployment, and maintenance. I’ve continuously grown by engaging deeply throughout the entire process.",
+      "paragraph2": "I prioritize writing clear and understandable code that anyone can easily maintain, always striving for robust and efficient solutions. I am constantly learning and improving, driven by the goal of reaching the highest levels in frontend development.",
+      "paragraph3": "I’m a Canadian citizen currently living in Korea on an F-4 visa. I strongly believe communication is essential for growth as a developer and actively engage in technical discussions with colleagues and participate in community activities to learn and grow together."
     },
     "work": {
       "e8ight": {
-        "period": "2024.01 ~",
-        "company": "E8ight",
-        "location": "Seoul, South Korea",
-        "position": "Frontend Developer (Platform)",
+        "period": "2024.01 ~ Present",
+        "company": "E8IGHT",
+        "link": "https://e8ight.co.kr/ndxpro/",
+        "location": "Jamsil, South Korea",
+        "position": "Frontend Developer, Platform Team",
         "details": [
-          "Established a reusable frontend template to accelerate development setup across internal projects",
-          "Built and maintained a shared design system and component library, improving collaboration with designers via Storybook",
-          "Improved initial load time of key products by ~80% through network and rendering optimizations (10s → 2s)",
-          "Applied virtualization techniques to enable smooth rendering of large-scale datasets"
+          "Designed and improved frontend architecture focusing on productivity and scalability",
+          "Improved team technical standards and promoted knowledge sharing through regular code reviews and tech sessions",
+          "Established stable and rapid deployment processes by improving CI/CD pipelines",
+          "Conducted technical demos for global partners and actively participated in external tech seminars and conferences"
         ],
         "projects": {
           "ndxpro_pmis": {
             "title": "NDXPRO PMIS",
-            "description": "프로젝트의 일정 및 자원 관리 웹앱.",
-            "link": "https://www.notion.so/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4",
+            "description": "Web solution for integrated project management",
+            "link": "https://spiny-learning-4b9.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4?pvs=74",
             "tasks": {
               "gantt_chart": {
-                "title": "간트 차트 (WBS 기반) 개발 및 성능 최적화",
+                "title": "WBS based Gantt Chart Development",
                 "subtasks": [
-                  "WBS 기반 Gantt Chart 커스텀 구현 및 Task 의존성(FS/SS/FF/SF) SVG 시각화",
-                  "간트 바 및 트리 구조 Drag & Drop + Optimistic UI 적용으로 실시간 구조/일정 수정 UX 제공",
-                  "Virtualization 및 Lazy Loading 기반 트리/도면 뷰 렌더링 최적화 (수천 개 노드 대응)"
+                  "Designed and implemented a custom Gantt chart architecture to visualize complex project data",
+                  "Implemented real time editing of task structure and schedules using drag and drop interactions with optimistic UI",
+                  "Optimized rendering performance for thousands of tasks using virtualization and lazy loading, improving DOM rendering performance by 40%"
+                ]
+              },
+              "document_system": {
+                "title": "Document Management System",
+                "subtasks": [
+                  "Architected and implemented a recursive folder navigation system",
+                  "Developed custom hooks for keyboard based range and multi selection",
+                  "Integrated file uploading and version management systems",
+                  "Implemented a step by step feedback UI for document upload and version history"
                 ]
               }
             }
           },
           "ndxpro_epc": {
             "title": "NDXPRO EPC",
-            "description": "설계, 조달, 시공 전 과정을 1D·2D·3D 데이터로 통합 시각화하는 웹 솔루션",
-            "link": "https://www.youtube.com/watch?v=ZjW2mqULi_k&ab_channel=E8%7C%EC%9D%B4%EC%97%90%EC%9D%B4%ED%8A%B8",
+            "description": "Web solution integrating design, procurement, and construction data across 1D, 2D, and 3D visualizations",
+            "link": "https://spiny-learning-4b9.notion.site/NDXPRO-EPC-1d4c3276c40c8056a15cd797331f9d02",
             "tasks": {
               "viewer_markup": {
-                "title": "2D 도면 뷰어 및 마크업 기능 설계 및 구현",
+                "title": "2D Drawing Viewer and Markup Tools",
                 "subtasks": [
-                  "SVG 기반 2D Viewer에 확대·축소 및 클릭 이벤트를 연동하여, 도면 내 세부 영역을 탐색 가능하도록 기능 구현",
-                  "텍스트, 직선, 곡선 등의 마크업 도구 제공, 도면 편집 UI 설계",
-                  "확대·축소 시에도 마크업 요소의 위치와 비율이 정확하게 유지되도록 SVG 좌표 변환 및 스케일 처리 로직 적용",
-                  "마크업 요소 생성 및 삭제 기능을 통해 도면 편집 프로세스를 최적화"
+                  "Built SVG based 2D viewer with interactive zoom and markup functionalities, maintaining accurate positions and scales",
+                  "Provided markup tools (text, lines, curves) for intuitive editing within drawings",
+                  "Optimized drawing editing workflow through efficient markup interactions"
                 ]
               },
               "dashboard_layout": {
-                "title": "사용자화 가능한 그리드 레이아웃 대시보드 설계 및 구현",
+                "title": "Customizable Grid Layout Dashboard",
                 "subtasks": [
-                  "React Grid Layout 라이브러리를 커스터마이징하여 동적 대시보드 아키텍처를 주도적으로 설계 및 도입",
-                  "iframe의 postMessage API를 활용하여 협력 업체와의 3D Viewer를 연동하고 원활한 데이터 통신 기능 구현"
+                  "Designed and implemented dynamic dashboard layouts using a customized React Grid Layout",
+                  "Integrated communication with external partners’ 3D viewers through iframe and postMessage API"
                 ]
               }
             }
           },
-
           "ndxpro_admin_web": {
             "title": "NDXPRO ADMIN WEB",
-            "description": "NGSI-LD 기반 디지털 트윈 데이터를 정제하고 모델링·운영하는 NDXPRO 핵심 플랫폼",
+            "description": "Core NDXPRO platform for managing and modeling NGSI LD based digital twin data",
+            "link": "https://spiny-learning-4b9.notion.site/NDXPRO-ADMIN-WEB-1d4c3276c40c8083a95fc77d3410331e?pvs=4",
             "tasks": {
               "data_manager": {
-                "title": "Data Manager V3 기능 개발 및 고도화",
+                "title": "Data Manager V3 Development and Enhancement",
                 "subtasks": [
-                  "디지털 트윈 NGSI-LD 표준 데이터 모델 기반의 Attribute, Data Model, Relationship 생성 및 관리 기능 담당",
-                  "React Flow를 활용하여 데이터 모델과 관계를 직관적으로 시각화하고, 사용자 중심의 데이터 모델링 환경 제공",
-                  "Excel Import/Export 기능을 구현하여 대규모 데이터를 효율적으로 일괄 등록 및 다운로드할 수 있도록 지원",
-                  "Excel 업로드 시 Client 측 유효성 검사를 적용하고, 각 셀 및 행의 오류를 UI에 시각화하여 사용자 편의성 개선"
+                  "Developed and managed creation of Attributes, Data Models, and Relationships based on NGSI LD standards",
+                  "Visualized data models and relationships intuitively using React Flow",
+                  "Implemented efficient batch data management through Excel import/export features with client side validation"
                 ]
               },
               "user_auth": {
-                "title": "인증 및 사용자 관리 기능 개선",
+                "title": "Authentication and User Management Improvements",
                 "subtasks": [
-                  "기존 로그인 및 회원가입 기능의 레거시 코드를 전면 리팩토링하여 인증 프로세스 안정성 및 유지보수성 향상",
-                  "Axios Interceptor를 통한 인증 세션 관리 및 토큰 자동 갱신 프로세스를 최적화하여 사용자 세션 안정성 강화"
+                  "Refactored legacy login and signup code, enhancing stability and maintainability of authentication processes",
+                  "Optimized token refresh and session management using Axios Interceptors"
                 ]
               }
             }
           },
-
           "samsung_thync": {
-            "title": "Samsung Thync ",
-            "description": "상일동 삼성물산 BEMS 시스템의 Unreal 앱 내 사용자·자산 관리를 위한 웹뷰 기반의 관리 시스템",
-            "link": "https://www.youtube.com/watch?v=ZjW2mqULi_k&ab_channel=E8%7C%EC%9D%B4%EC%97%90%EC%9D%B4%ED%8A%B8",
+            "title": "Samsung Thync",
+            "description": "Web based admin system integrated into Samsung BEMS Unreal app for user and asset management",
+            "link": "https://spiny-learning-4b9.notion.site/Samsung-Thync-1d4c3276c40c805aaab4ebde962f5d00?pvs=4",
             "tasks": {
-              "viewer_markup": {
-                "title": "2D Drawing Viewer & Markup Tools",
+              "nextjs_frontend": {
+                "title": "Unreal Integration and User Management System",
                 "subtasks": [
-                  "Implemented an SVG-based 2D viewer with zoom and interaction capabilities for exploring complex drawings",
-                  "Built markup tools (text, lines, curves) and interactions for editing within the viewer",
-                  "Applied precise SVG coordinate scaling to maintain markup element positioning during zooming",
-                  "Streamlined the drawing editing workflow with create/delete markup interactions"
-                ]
-              },
-              "dashboard_layout": {
-                "title": "Customizable Dashboard with Grid Layout",
-                "subtasks": [
-                  "Led the integration of a dynamic dashboard system using a customized React Grid Layout",
-                  "Enabled seamless communication between embedded 3D viewer and main app using postMessage API"
+                  "Designed authentication workflows supporting both SSO and standard logins",
+                  "Implemented automatic user registration and permission approval processes on first login",
+                  "Built login, registration, and permission management APIs using NestJS due to backend resource constraints"
                 ]
               }
             }
@@ -119,12 +118,10 @@
         "location": "Vancouver, Canada",
         "position": "Frontend Developer",
         "details": [
-          "Joined as the first developer and led the end-to-end planning, development, deployment, and maintenance of all frontend services for a unified clothing marketplace startup",
-          "Built a robust E-Commerce platform with seamless integration of multiple Shopify marketplaces",
-          "Improved user authentication and security through integration with Supabase and third-party login providers (Instagram, TikTok, etc.)",
-          "Integrated Shopify Payments to reduce cart abandonment and increase successful transactions",
-          "Set up a scalable cloud environment using AWS and Fly.io",
-          "Contributed to early revenue generation by enabling rapid onboarding and supporting a successful soft launch"
+          "First developer at a unified clothing marketplace startup, responsible for frontend planning, development, and deployment",
+          "Developed a robust ecommerce platform integrated with multiple Shopify marketplaces",
+          "Enhanced platform security and accessibility using Supabase and third party login integrations (Instagram, TikTok)",
+          "Integrated Shopify Payments to reduce cart abandonment and improve transaction success rates"
         ]
       },
       "iclinic": {
@@ -133,15 +130,10 @@
         "location": "Vancouver, Canada",
         "position": "Full Stack Developer",
         "details": [
-          "Developed a full marketing microsite using WebGL to deliver a modern, interactive web experience",
-          "Built immersive UI interactions with Framer Motion and GSAP, enhancing user engagement",
-          "Designed and maintained an internal admin portal for workforce and attendance management, accessible to non-technical stakeholders",
-          "Managed AWS infrastructure, backend services, NoSQL data modeling, and server deployments",
-          "Developed and maintained RESTful APIs with full CRUD capabilities for client-facing applications",
-          "Implemented automated email workflows using AWS SES and Node.js within an Angular-based admin dashboard",
-          "Deployed backend services using NGINX with zero-downtime strategies",
-          "Applied Google Analytics to analyze and improve user engagement",
-          "Set up CI/CD pipelines using GitHub Actions for reliable and efficient deployments"
+          "Built and maintained a modern, interactive marketing site using WebGL",
+          "Implemented engaging UI animations and interactions using Framer Motion and GSAP",
+          "Designed and operated an intuitive internal workforce management portal accessible to nontechnical stakeholders",
+          "Managed backend implementation, AWS infrastructure, NoSQL databases, and CI/CD pipelines"
         ]
       },
       "catalyx": {
@@ -150,14 +142,13 @@
         "location": "Vancouver, Canada",
         "position": "Frontend Developer",
         "details": [
-          "Integrated multiple third-party systems to enable credit card purchases of cryptocurrencies",
-          "Migrated REST APIs to GraphQL using Apollo, significantly improving app performance and flexibility",
-          "Built a social sharing preview feature using AWS Lambda@Edge and Facebook Open Graph",
-          "Collaborated closely with designers to improve the overall user experience and interface design"
+          "Strengthened technical foundations by designing React component architecture",
+          "Integrated third party systems enabling credit card cryptocurrency purchases",
+          "Built social media URL preview functionality using AWS Lambda@Edge and Facebook Open Graph",
+          "Collaborated with designers to significantly improve overall UI/UX"
         ]
       }
     },
-
     "projects": {
       "react-gantt-chart": {
         "title": "React Gantt Chart",
