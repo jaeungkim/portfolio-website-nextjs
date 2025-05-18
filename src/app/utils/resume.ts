@@ -6,7 +6,7 @@ interface Experience {
 }
 
 export function useExperienceFormatter() {
-  const t = useTranslations("utils");
+  const t = useTranslations("common.utils");
 
   const formatYear = (count: number) =>
     t(count > 1 ? "year_plural" : "year", { count });

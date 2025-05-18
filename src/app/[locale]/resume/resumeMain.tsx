@@ -6,10 +6,10 @@ import ResumeHeader from "./resumeHeader";
 import { useTranslations } from "next-intl";
 import Spacing from "@/src/components/common/Spacing";
 import ResumeEducation from "./resumeEducation";
+import { getTranslations } from "next-intl/server";
 
 export default function ResumeContent({ lastUpdated }) {
   const t = useTranslations("resume");
-
   return (
     <div className="py-4">
       {/* HEADER  */}

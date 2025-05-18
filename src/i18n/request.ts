@@ -1,17 +1,26 @@
 import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
+const NAMESPACES = ["common", "home", "resume"];
+
 export default getRequestConfig(async ({ requestLocale }) => {
-  // 이는 일반적으로 `[locale]` 세그먼트에 해당합니다.
   let locale = await requestLocale;
 
-  // 유효한 로캘이 사용되었는지 확인하세요.
   if (!locale || !routing.locales.includes(locale as never)) {
     locale = routing.defaultLocale;
   }
 
+  const messages: Record<string, any> = {};
+
+  await Promise.all(
+    NAMESPACES.map(async (ns) => {
+      const mod = await import(`../../messages/${locale}/${ns}.json`);
+      messages[ns] = mod.default;
+    })
+  );
+
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default, // 상대 경로 확인, messages 폴더에 JSON 파일이 있어야 함
+    messages,
   };
 });

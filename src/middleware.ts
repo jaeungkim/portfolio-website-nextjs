@@ -1,5 +1,3 @@
-// root
-// ├── middleware.ts
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing"; // 경로를 잘 설정해주세요.
 

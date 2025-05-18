@@ -3,9 +3,10 @@ import Image from "next/image";
 import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import ExternalLink from "@/src/components/common/ExternalLink";
+import { getTranslations } from "next-intl/server";
 
 export default function ResumeHeader() {
-  const t = useTranslations();
+  const t = useTranslations("home");
 
   return (
     <>
@@ -21,7 +22,9 @@ export default function ResumeHeader() {
         </div>
 
         <div className="flex flex-col gap-2 justify-center md:col-span-3">
-          <p className="text-4xl my-4 font-bold w-full">{t("about.name")}</p>
+          <p className="text-4xl my-4 font-bold w-full">
+            {t("about.name")}
+          </p>
           <div className="flex gap-4">
             <div className="">
               <HiOutlineMail className="size-6" />

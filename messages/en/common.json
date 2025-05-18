@@ -1,0 +1,9 @@
+{
+  "utils": {
+    "year": "{count} year",
+    "month": "{count} month",
+    "year_plural": "{count} years",
+    "month_plural": "{count} months",
+    "yearAndMonth": "{year} {month}"
+  }
+}

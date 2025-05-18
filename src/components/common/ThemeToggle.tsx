@@ -13,7 +13,7 @@ export default function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; // SSR hydration mismatch 방지
+  if (!mounted) return null;
 
   const isDark = theme === "dark";
 

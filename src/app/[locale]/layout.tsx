@@ -1,37 +1,38 @@
-import { Suspense } from "react";
-import { NextIntlClientProvider, useMessages, hasLocale } from "next-intl";
-import Footer from "@/src/components/Footer";
-import Navbar from "@/src/components/navbar/Navbar";
-import LocaleSwitcher from "@/src/components/common/LocaleSwitcher";
-import { getMessages, setRequestLocale } from "next-intl/server";
-import Head from "next/head";
-import localFont from "next/font/local";
-import { Metadata } from "next";
-import { routing } from "@/src/i18n/routing";
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
+import Navbar from "@/src/components/navbar/Navbar";
+import Footer from "@/src/components/Footer";
+import ThemeProvider from "@/src/components/common/ThemeProvider";
+import { getMessages } from "next-intl/server";
+import { Suspense } from "react";
 
-type Params = Promise<{ locale: never }>;
-
-export default async function PortfolioLayout({
+export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  params: Params;
-}>) {
+  params: { locale: string };
+}) {
   const { locale } = await params;
+
   if (!["en", "kr"].includes(locale)) {
     notFound();
   }
-  const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <Navbar />
-      <main className="w-full grow relative mx-auto max-w-5xl px-8">
-        <Suspense>{children}</Suspense>
-      </main>
-      <Footer />
+    <NextIntlClientProvider locale={locale}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Navbar />
+        <main className="w-full grow relative mx-auto max-w-5xl px-8">
+          <Suspense>{children}</Suspense>
+        </main>
+        <Footer />
+      </ThemeProvider>
     </NextIntlClientProvider>
   );
 }

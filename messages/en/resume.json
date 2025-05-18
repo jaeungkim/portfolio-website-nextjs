@@ -1,0 +1,193 @@
+{
+  "introduce": {
+    "paragraph1": "Hello, I’m a frontend developer experienced in all stages of building web services, from planning and architecture to development, deployment, and maintenance. I’ve continuously grown by engaging deeply throughout the entire process.",
+    "paragraph2": "I prioritize writing clear and understandable code that anyone can easily maintain, always striving for robust and efficient solutions. I am constantly learning and improving, driven by the goal of reaching the highest levels in frontend development.",
+    "paragraph3": "I’m a Canadian citizen currently living in Korea on an F-4 visa. I strongly believe communication is essential for growth as a developer and actively engage in technical discussions with colleagues and participate in community activities to learn and grow together."
+  },
+  "work": {
+    "e8ight": {
+      "period": "2024.01 ~ Present",
+      "company": "E8IGHT",
+      "link": "https://e8ight.co.kr/ndxpro/",
+      "location": "Jamsil, South Korea",
+      "position": "Frontend Developer, Platform Team",
+      "details": [
+        "Designed and improved frontend architecture focusing on productivity and scalability",
+        "Improved team technical standards and promoted knowledge sharing through regular code reviews and tech sessions",
+        "Established stable and rapid deployment processes by improving CI/CD pipelines",
+        "Conducted technical demos for global partners and actively participated in external tech seminars and conferences"
+      ],
+      "projects": {
+        "ndxpro_pmis": {
+          "title": "NDXPRO PMIS",
+          "description": "Web solution for integrated project management",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4?pvs=74",
+          "tasks": {
+            "gantt_chart": {
+              "title": "WBS based Gantt Chart Development",
+              "subtasks": [
+                "Designed and implemented a custom Gantt chart architecture to visualize complex project data",
+                "Implemented real time editing of task structure and schedules using drag and drop interactions with optimistic UI",
+                "Optimized rendering performance for thousands of tasks using virtualization and lazy loading, improving DOM rendering performance by 40%"
+              ]
+            },
+            "document_system": {
+              "title": "Document Management System",
+              "subtasks": [
+                "Architected and implemented a recursive folder navigation system",
+                "Developed custom hooks for keyboard based range and multi selection",
+                "Integrated file uploading and version management systems",
+                "Implemented a step by step feedback UI for document upload and version history"
+              ]
+            }
+          }
+        },
+        "ndxpro_epc": {
+          "title": "NDXPRO EPC",
+          "description": "Web solution integrating design, procurement, and construction data across 1D, 2D, and 3D visualizations",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-EPC-1d4c3276c40c8056a15cd797331f9d02",
+          "tasks": {
+            "viewer_markup": {
+              "title": "2D Drawing Viewer and Markup Tools",
+              "subtasks": [
+                "Built SVG based 2D viewer with interactive zoom and markup functionalities, maintaining accurate positions and scales",
+                "Provided markup tools (text, lines, curves) for intuitive editing within drawings",
+                "Optimized drawing editing workflow through efficient markup interactions"
+              ]
+            },
+            "dashboard_layout": {
+              "title": "Customizable Grid Layout Dashboard",
+              "subtasks": [
+                "Designed and implemented dynamic dashboard layouts using a customized React Grid Layout",
+                "Integrated communication with external partners’ 3D viewers through iframe and postMessage API"
+              ]
+            }
+          }
+        },
+        "ndxpro_admin_web": {
+          "title": "NDXPRO ADMIN WEB",
+          "description": "Core NDXPRO platform for managing and modeling NGSI LD based digital twin data",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-ADMIN-WEB-1d4c3276c40c8083a95fc77d3410331e?pvs=4",
+          "tasks": {
+            "data_manager": {
+              "title": "Data Manager V3 Development and Enhancement",
+              "subtasks": [
+                "Developed and managed creation of Attributes, Data Models, and Relationships based on NGSI LD standards",
+                "Visualized data models and relationships intuitively using React Flow",
+                "Implemented efficient batch data management through Excel import/export features with client side validation"
+              ]
+            },
+            "user_auth": {
+              "title": "Authentication and User Management Improvements",
+              "subtasks": [
+                "Refactored legacy login and signup code, enhancing stability and maintainability of authentication processes",
+                "Optimized token refresh and session management using Axios Interceptors"
+              ]
+            }
+          }
+        },
+        "samsung_thync": {
+          "title": "Samsung Thync",
+          "description": "Web based admin system integrated into Samsung BEMS Unreal app for user and asset management",
+          "link": "https://spiny-learning-4b9.notion.site/Samsung-Thync-1d4c3276c40c805aaab4ebde962f5d00?pvs=4",
+          "tasks": {
+            "nextjs_frontend": {
+              "title": "Unreal Integration and User Management System",
+              "subtasks": [
+                "Designed authentication workflows supporting both SSO and standard logins",
+                "Implemented automatic user registration and permission approval processes on first login",
+                "Built login, registration, and permission management APIs using NestJS due to backend resource constraints"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "flashee": {
+      "period": "2023.07 ~ 2023.10",
+      "company": "Flashee",
+      "location": "Vancouver, Canada",
+      "position": "Frontend Developer",
+      "details": [
+        "First developer at a unified clothing marketplace startup, responsible for frontend planning, development, and deployment",
+        "Developed a robust ecommerce platform integrated with multiple Shopify marketplaces",
+        "Enhanced platform security and accessibility using Supabase and third party login integrations (Instagram, TikTok)",
+        "Integrated Shopify Payments to reduce cart abandonment and improve transaction success rates"
+      ]
+    },
+    "iclinic": {
+      "period": "2022.07 ~ 2023.06",
+      "company": "iClinic Systems Inc.",
+      "location": "Vancouver, Canada",
+      "position": "Full Stack Developer",
+      "details": [
+        "Built and maintained a modern, interactive marketing site using WebGL",
+        "Implemented engaging UI animations and interactions using Framer Motion and GSAP",
+        "Designed and operated an intuitive internal workforce management portal accessible to nontechnical stakeholders",
+        "Managed backend implementation, AWS infrastructure, NoSQL databases, and CI/CD pipelines"
+      ]
+    },
+    "catalyx": {
+      "period": "2021.01 ~ 2022.05",
+      "company": "Catalx Management Ltd.",
+      "location": "Vancouver, Canada",
+      "position": "Frontend Developer",
+      "details": [
+        "Strengthened technical foundations by designing React component architecture",
+        "Integrated third party systems enabling credit card cryptocurrency purchases",
+        "Built social media URL preview functionality using AWS Lambda@Edge and Facebook Open Graph",
+        "Collaborated with designers to significantly improve overall UI/UX"
+      ]
+    }
+  },
+  "projects": {
+    "react-gantt-chart": {
+      "title": "React Gantt Chart",
+      "description": [
+        "Open-source alternative to paid or inflexible Gantt chart solutions",
+        "Lightweight, extensible design for personal and professional use",
+        "Continuously improved based on community feedback"
+      ]
+    },
+    "portfolio-website": {
+      "title": "Portfolio Website",
+      "description": [
+        "Centralizes personal projects and articles in one place",
+        "Incorporates latest trends in frontend development with fully responsive experience",
+        "Prioritizes intuitive structure, clean design, and performance optimization"
+      ]
+    },
+    "bc-government": {
+      "title": "BC Government",
+      "description": [
+        "Created for the BC government’s IS24 Full Stack Competition",
+        "Offers a user-friendly interface for managing employees and teams",
+        "Built with a full-stack approach and deployed via Docker"
+      ]
+    },
+    "lostark-bot": {
+      "title": "Lost Ark Discord Bot",
+      "description": [
+        "Simplifies party and raid recruitment on Discord",
+        "Allows quick party creation and management through simple commands",
+        "Enhanced and maintained with community feedback"
+      ]
+    },
+    "webgl-playground": {
+      "title": "WebGL Playground",
+      "description": [
+        "Experimental 3D interaction project for the web",
+        "Features 3D scenes responsive to user input and various visual effects"
+      ]
+    },
+    "lental": {
+      "title": "Lental",
+      "description": [
+        "Housing search platform for UBC students",
+        "Developed as a capstone project to tackle off-campus housing challenges",
+        "Supports student-listed properties with an intuitive UI and filtering"
+      ]
+    }
+  },
+  "footer": "Warm Regards"
+}
