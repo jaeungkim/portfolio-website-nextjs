@@ -11,12 +11,6 @@
       "link": "https://e8ight.co.kr/ndxpro/",
       "location": "Jamsil, South Korea",
       "position": "Frontend Developer, Platform Team",
-      "details": [
-        "Designed and improved frontend architecture focusing on productivity and scalability",
-        "Improved team technical standards and promoted knowledge sharing through regular code reviews and tech sessions",
-        "Established stable and rapid deployment processes by improving CI/CD pipelines",
-        "Conducted technical demos for global partners and actively participated in external tech seminars and conferences"
-      ],
       "projects": {
         "ndxpro_pmis": {
           "title": "NDXPRO PMIS",
