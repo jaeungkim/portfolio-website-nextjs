@@ -7,7 +7,7 @@ import { UtterancesComments } from "@/src/components/blog/UtterancesComments";
 import { Link } from "@/src/i18n/routing";
 
 interface Params {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function PostPage({ params }: Params) {
