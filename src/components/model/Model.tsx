@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
@@ -11,26 +10,44 @@ export default function Model() {
   const groupRef = useRef<THREE.Group>(null);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
 
-  /* Viewport Scaling */
-  const { size } = useThree();
-  const scale = Math.min(size.width, size.height) / 120;
+  // Viewport-based scale
+  const scale = useThree(
+    (state) => Math.min(state.size.width, state.size.height) / 120
+  );
 
-  /* Load Model using `useLoader` */
-  const gltf = useLoader(GLTFLoader, "/models/scene-draco.glb", (loader) => {
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("/models/draco/");
-    dracoLoader.setDecoderConfig({ type: "wasm" });
-    loader.setDRACOLoader(dracoLoader);
+  // Memoize DRACO loader setup
+  const gltf = useLoader(
+    GLTFLoader,
+    "/models/scene-draco.glb",
+    useMemo(
+      () => (loader: GLTFLoader) => {
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath("/models/draco/");
+        dracoLoader.setDecoderConfig({ type: "wasm" });
+        loader.setDRACOLoader(dracoLoader);
+      },
+      []
+    )
+  );
+
+  // Animation setup
+  useEffect(() => {
+    if (!gltf.animations.length || !gltf.scene) return;
+
+    const mixer = new THREE.AnimationMixer(gltf.scene);
+    mixer.clipAction(gltf.animations[0])?.play();
+    mixerRef.current = mixer;
+
+    return () => {
+      mixer.stopAllAction();
+      mixerRef.current = null;
+    };
+  }, [gltf]);
+
+  // Animation frame update
+  useFrame((_, delta) => {
+    mixerRef.current?.update(delta);
   });
-
-  /* Setup Animation */
-  if (gltf.animations.length && !mixerRef.current) {
-    mixerRef.current = new THREE.AnimationMixer(gltf.scene);
-    mixerRef.current.clipAction(gltf.animations[0]).play();
-  }
-
-  /* Animation Update */
-  useFrame((_, delta) => mixerRef.current?.update(delta));
 
   return (
     <primitive
