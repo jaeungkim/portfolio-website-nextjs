@@ -1,30 +1,22 @@
 import { Suspense } from "react";
-import BlogContentLoader from "./BlogContentLoader";
 import type { Metadata } from "next";
+import BlogContent from "@/src/components/blog/BlogContent";
 
 export const metadata: Metadata = {
   title: "Jaeung Kim - Blog",
-  description: "Welcome to my personal blog",
+  description: "A collection of photo stories",
 };
 
-export default function Blog() {
+export default function BlogPage() {
   return (
-    <>
-      <h1 className="mb-4 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
+    <div className="px-4 py-10 max-w-5xl mx-auto">
+      <h1 className="mb-8 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
         Blog
       </h1>
 
-      <div className="py-4">
-        <p className="text-gray-500 dark:text-gray-400">
-          Currently renovating my blog page...!
-        </p>
-      </div>
-
-      <Suspense
-        fallback={<p className="text-center mt-10">Loading posts...</p>}
-      >
-        <BlogContentLoader />
+      <Suspense fallback={<p className="text-center mt-10">Loading posts...</p>}>
+        <BlogContent />
       </Suspense>
-    </>
+    </div>
   );
 }

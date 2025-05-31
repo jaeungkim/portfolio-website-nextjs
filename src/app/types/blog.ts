@@ -4,7 +4,6 @@ export interface Post {
   date: string;
   summary: string;
   tags: string[];
-  category: string;
 }
 
 export type PostData = {

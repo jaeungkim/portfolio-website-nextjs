@@ -1,8 +1,10 @@
-import { Link } from "@/src/i18n/routing";
+"use client";
+
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import Date from "@/src/components/common/Date";
 import { Post } from "@/src/app/types/blog";
+import { Link } from "@/src/i18n/routing";
 
 interface ArticleProps {
   post: Post;
