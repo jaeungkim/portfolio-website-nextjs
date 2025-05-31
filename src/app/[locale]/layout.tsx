@@ -13,7 +13,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
   if (!["en", "kr"].includes(locale)) {
     notFound();
