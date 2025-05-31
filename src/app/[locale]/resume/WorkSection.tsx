@@ -1,5 +1,5 @@
 import { Link } from "@/src/i18n/routing";
-import SkillPill from "./SkillPill";
+import SkillPill from "./components/SkillPill";
 import ExternalLink from "@/src/components/common/ExternalLink";
 import Pill from "@/src/components/common/Pill";
 
@@ -81,7 +81,7 @@ const WorkSection = ({
                 <p className="pl-2 md:pl-4 font-bold text-base py-2">
                   {project.description}
                 </p>
-                <ul className="list-disc space-y-2 pl-5 md:pl-8 text-base font-normal">
+                <ul className="list-disc space-y-2 pl-5 text-base font-normal">
                   {project.tasks.map((task, tIdx) => (
                     <li key={tIdx}>
                       {task.title && (

@@ -11,6 +11,13 @@
       "link": "https://e8ight.co.kr/ndxpro/",
       "location": "잠실, 대한민국",
       "position": "플랫폼 개발팀 프론트엔드 개발자 | 주임 연구원",
+      "details": [
+        "CRA와 NPM 환경을 Vite와 Yarn Berry(PnP)로 전환하여 Docker 기반 CI 빌드 시간을 기존 10분에서 1~2분 수준으로 대폭 단축",
+        "Sentry를 사내 리눅스 서버에 Self-Hosted 방식으로 구축하여 오류 추적 체계 중앙화 및 운영 안정성 강화",
+        "사내 프론트엔드 공통 템플릿(i18n, Prettier/ESLint, 필수 라이브러리, Storybook 기반 디자인 시스템 포함) 제작 및 배포 → 초기 세팅 시간 단축 및 개발 환경 표준화",
+        "코드 리뷰 및 기술 세션을 통한 팀 내 기술 품질 향상과 지식 공유 문화 확산",
+        "NIPA(정보통신산업진흥원) 주관 GSMP 프로그램에 선정되어 워싱턴 D.C. 현지 행사 참가 → 팀 대표로서 글로벌 파트너 대상 기술 소개 및 협업 기회 발굴"
+      ],
       "projects": {
         "ndxpro_pmis": {
           "title": "NDXPRO PMIS",

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Link } from "@/src/i18n/routing";
 import LocaleSwitcher from "../common/LocaleSwitcher";
 import ThemeToggle from "../common/ThemeToggle";
-// import MobileMenuButton from "./MobileMenuButton";
 
 const navigation = [
   { name: "Home", href: "/" },

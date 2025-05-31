@@ -7,10 +7,15 @@ export const experiences = [
       "React",
       "TypeScript",
       "Recoil",
+      "Zustand",
       "Tanstack Query",
+      "Tanstack Virtual",
       "Tailwind CSS",
       "Storybook",
       "Motion",
+      "Sentry",
+      "Docker",
+      "Jenkins",
     ],
   }, // e8ight
   {

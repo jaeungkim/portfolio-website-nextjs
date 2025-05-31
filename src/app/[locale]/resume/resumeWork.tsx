@@ -1,6 +1,6 @@
 import { experiences } from "@/src/app/constants/resume";
 import { Link } from "@/src/i18n/routing";
-import SkillPill from "./SkillPill";
+import SkillPill from "./components/SkillPill";
 import WorkSection from "./WorkSection";
 import { useExperienceUtils } from "@/src/app/utils/resume";
 import { useTranslations } from "next-intl";
@@ -8,18 +8,17 @@ import ResumeTitle from "./components/ResumeTitle";
 import Pill from "@/src/components/common/Pill";
 
 export default function ResumeWork() {
-  const { calculateExperience, calculateTotalExperience } =
-    useExperienceUtils();
   const t = useTranslations("resume");
-
   const jobData = t.raw("work");
   const jobKeys = Object.keys(jobData);
+
+  const { calculateExperience, calculateTotalExperience } =
+    useExperienceUtils();
 
   return (
     <>
       <div className="flex justify-between items-center">
         <ResumeTitle title="Experiences" />
-        {/* pill of total */}
 
         <Pill name={calculateTotalExperience(experiences)} />
       </div>
