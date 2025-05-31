@@ -27,9 +27,6 @@ const sentryWebpackOptions = {
   silent: !process.env.CI,
   authToken: process.env.SENTRY_AUTH_TOKEN,
   widenClientFileUpload: true,
-  reactComponentAnnotation: {
-    enabled: true,
-  },
 };
 
 // Compose all plugins
