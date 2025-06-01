@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="px-4 py-10 max-w-5xl mx-auto">
-      <h1 className="mb-8 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
-        Blog
+    <div className="py-4 max-w-5xl mx-auto">
+      <h1 className="mb-12 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
+        Travel
       </h1>
 
       <Suspense fallback={<p className="text-center mt-10">Loading posts...</p>}>
