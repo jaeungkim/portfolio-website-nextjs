@@ -4,7 +4,7 @@ import Image from "next/image";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { Post, PostData } from "@/src/types/blog";
 import { cache } from "react";
-import DynamicImage from "@/src/components/image/dynamic-image";
+import DynamicImage from "@/src/components/image/BlurImage";
 
 // === Constants ===
 const POSTS_DIR = path.join(process.cwd(), "posts");
