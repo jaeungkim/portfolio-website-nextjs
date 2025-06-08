@@ -7,6 +7,7 @@ import * as Sentry from "@sentry/nextjs";
 const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 
 Sentry.init({
+  enabled: process.env.NODE_ENV === "production",
   dsn: process.env.SENTRY_DSN,
   integrations: [nodeProfilingIntegration()],
   // Tracing must be enabled for profiling to work
