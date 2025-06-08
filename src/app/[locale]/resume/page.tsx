@@ -1,5 +1,3 @@
-export const dynamic = "force-static";
-
 import ResumeProject from "@/src/components/resume/resumeProject";
 import ResumeIntroduce from "@/src/components/resume/resumeIntroduce";
 import ResumeWork from "@/src/components/resume/resumeWork";
