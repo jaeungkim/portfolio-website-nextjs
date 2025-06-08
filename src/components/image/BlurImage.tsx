@@ -1,21 +1,19 @@
-import Image, { type ImageProps } from "next/image";
+import Image from "next/image";
 
-import getBase64 from "@/src/utils/getBase64";
+interface Props {
+  url: string;
+  alt?: string;
+}
 
-const BlurImage = async ({ url, alt }: ImageProps & { url: string }) => {
-  const { base64, img } = await getBase64(url);
-
+const BlurImage = ({ url, alt }: Props) => {
   return (
     <Image
-      {...img}
+      src={url}
       alt={alt || ""}
       width={1080}
       height={1440}
       quality={75}
-      src={url}
-      placeholder="blur"
       className="rounded-[2px]"
-      blurDataURL={base64}
     />
   );
 };

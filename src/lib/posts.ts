@@ -7,8 +7,11 @@ import { cache } from "react";
 import BlurImage from "@/src/components/image/BlurImage";
 
 // === Constants ===
-const POSTS_DIR = path.join(process.cwd(), "posts");
-const mdxComponents = { img: BlurImage, BlurImage };
+const POSTS_DIR = path.join(process.cwd(), "src", "posts");
+const mdxComponents = {
+  img: BlurImage,
+  BlurImage,
+};
 
 type Frontmatter = {
   title: string;
