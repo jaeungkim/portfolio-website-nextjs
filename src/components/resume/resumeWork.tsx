@@ -1,9 +1,9 @@
 import { experiences } from "@/src/constants/resume";
 import { Link } from "@/src/i18n/routing";
-import SkillPill from "./components/SkillPill";
+import SkillPill from "../common/SkillPill";
 import WorkSection from "./WorkSection";
 import { getExperienceUtils } from "@/src/utils/resume";
-import ResumeTitle from "./components/ResumeTitle";
+import ResumeTitle from "./ResumeTitle";
 import Pill from "@/src/components/common/Pill";
 import { getTranslations } from "next-intl/server";
 

@@ -1,14 +1,12 @@
-import {
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaRegFilePdf,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import SocialIcon from "@/src/components/common/SocialIcon";
-import ModelContainer from "@/src/components/model/ModelContainer";
 import CrypticText from "@/src/components/common/CrypticText";
 import { getTranslations } from "next-intl/server";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+const Model3D = dynamic(() => import("@/src/components/model/ModelContainer"));
 
 export default async function Page() {
   const t = await getTranslations("home");
@@ -16,7 +14,9 @@ export default async function Page() {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-96 md:h-auto md:pr-4 max-h-[350px]">
-        <ModelContainer />
+        <Suspense fallback={<span className="text-sm">Loading…</span>}>
+          <Model3D />
+        </Suspense>
       </div>
 
       <article className="basis-1/2">
@@ -44,7 +44,6 @@ export default async function Page() {
           {t("about.description3")}
         </p>
 
-        {/* Social Links */}
         <div className="mt-6 flex gap-6">
           <SocialIcon
             href="https://github.com/jaeungkim"
@@ -54,11 +53,6 @@ export default async function Page() {
             href="https://www.linkedin.com/in/jaeungkim0526/"
             IconComponent={FaLinkedin}
           />
-          {/* <SocialIcon
-            href="https://www.instagram.com/jaekiim/"
-            IconComponent={FaInstagram}
-          /> */}
-          {/* <SocialIcon href="/resume" IconComponent={FaRegFilePdf} /> */}
         </div>
       </article>
     </div>

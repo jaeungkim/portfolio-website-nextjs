@@ -1,98 +1,67 @@
-// lib/experience.ts
+import { cache } from "react";
 import { getTranslations } from "next-intl/server";
 
-interface Experience {
+export interface Experience {
   start: string;
-  end: string | null;
+  end?: string | null;
 }
 
-function calculateExperienceParts(
-  startDate: string,
-  endDate: string | null = null
-) {
-  const start = new Date(startDate);
-  const end = endDate ? new Date(endDate) : new Date();
+function monthsBetween(startISO: string, endISO?: string | null): number {
+  const start = new Date(startISO);
+  const end = endISO ? new Date(endISO) : new Date();
 
   let years = end.getFullYear() - start.getFullYear();
   let months = end.getMonth() - start.getMonth();
 
-  if (end.getDate() >= start.getDate()) {
-    months++;
-  }
-
+  if (end.getDate() >= start.getDate()) months++;
   if (months < 0) {
     years--;
     months += 12;
   }
 
-  const totalMonths = years * 12 + months;
-  const finalYears = Math.floor(totalMonths / 12);
-  const finalMonths = totalMonths % 12;
-
-  return { totalMonths, years: finalYears, months: finalMonths };
+  return Math.max(1, years * 12 + months);
 }
 
-export async function getExperienceUtils() {
+const getFormatter = cache(async () => {
   const t = await getTranslations("common.utils");
 
-  const formatYear = (count: number) =>
-    t(count > 1 ? "year_plural" : "year", { count });
+  const yearTxt = (n: number) =>
+    t(n === 1 ? "year" : "year_plural", { count: n });
+  const monthTxt = (n: number) =>
+    t(n === 1 ? "month" : "month_plural", { count: n });
+  const yearMonthTxt = (y: number, m: number) =>
+    t("yearAndMonth", { year: yearTxt(y), month: monthTxt(m) });
 
-  const formatMonth = (count: number) =>
-    t(count > 1 ? "month_plural" : "month", { count });
-
-  const formatYearAndMonth = (year: number, month: number) =>
-    t("yearAndMonth", {
-      year: formatYear(year),
-      month: formatMonth(month),
-    });
-
-  const calculateExperience = (
-    startDate: string,
-    endDate: string | null = null
-  ): string => {
-    const { years, months, totalMonths } = calculateExperienceParts(
-      startDate,
-      endDate
-    );
-
-    if (totalMonths <= 0) return formatMonth(1);
-    if (years > 0 && months > 0) return formatYearAndMonth(years, months);
-    if (years > 0) return formatYear(years);
-    return formatMonth(months);
+  const format = (total: number) => {
+    const y = Math.floor(total / 12);
+    const m = total % 12;
+    if (y && m) return yearMonthTxt(y, m);
+    return y ? yearTxt(y) : monthTxt(m);
   };
 
-  const calculateTotalExperience = (experiences: Experience[]): string => {
-    let totalMonths = 0;
-    experiences.forEach(({ start, end }) => {
-      const { totalMonths: diff } = calculateExperienceParts(start, end);
-      totalMonths += diff <= 0 ? 1 : diff;
-    });
+  return { format };
+});
 
-    const years = Math.floor(totalMonths / 12);
-    const months = totalMonths % 12;
+export async function getExperienceUtils() {
+  const { format } = await getFormatter();
 
-    if (years > 0 && months > 0) return formatYearAndMonth(years, months);
-    if (years > 0) return formatYear(years);
-    return formatMonth(months);
-  };
+  const experienceForRange = (start: string, end?: string | null) =>
+    format(monthsBetween(start, end));
 
-  const calculateTotalExperienceInYears = (
-    experiences: Experience[]
-  ): string => {
-    let totalMonths = 0;
-    experiences.forEach(({ start, end }) => {
-      const { totalMonths: diff } = calculateExperienceParts(start, end);
-      totalMonths += diff <= 0 ? 1 : diff;
-    });
+  const sumMonths = (items: Experience[]) =>
+    items.reduce((acc, cur) => acc + monthsBetween(cur.start, cur.end), 0);
 
-    const years = Math.floor(totalMonths / 12);
-    return formatYear(years > 0 ? years : 1);
+  const totalExperience = (items: Experience[]) => format(sumMonths(items));
+
+  const totalExperienceYearsOnly = (items: Experience[]) => {
+    const months = sumMonths(items);
+    const rounded = Math.floor(months / 12) * 12 || 12;
+    return format(rounded);
   };
 
   return {
-    calculateExperience,
-    calculateTotalExperience,
-    calculateTotalExperienceInYears,
+    calculateExperience: experienceForRange,
+    calculateTotalExperience: totalExperience,
+    calculateTotalExperienceInYears: totalExperienceYearsOnly,
   };
 }

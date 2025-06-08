@@ -1,4 +1,4 @@
-import ResumeTitle from "@/src/app/[locale]/resume/components/ResumeTitle";
+import ResumeTitle from "@/src/components/resume/ResumeTitle";
 import ExternalLink from "@/src/components/common/ExternalLink";
 
 export default function ResumeEducation() {

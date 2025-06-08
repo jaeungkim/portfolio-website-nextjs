@@ -1,11 +1,12 @@
-import ResumeProject from "./resumeProject";
-import ResumeIntroduce from "./resumeIntroduce";
-import ResumeWork from "./resumeWork";
-import ResumeSkill from "./resumeSkill";
-import ResumeHeader from "./resumeHeader";
+export const dynamic = "force-static";
+
+import ResumeProject from "@/src/components/resume/resumeProject";
+import ResumeIntroduce from "@/src/components/resume/resumeIntroduce";
+import ResumeWork from "@/src/components/resume/resumeWork";
+import ResumeSkill from "@/src/components/resume/resumeSkill";
+import ResumeHeader from "@/src/components/resume/resumeHeader";
 import Spacing from "@/src/components/common/Spacing";
-import ResumeEducation from "./resumeEducation";
-import ExternalLink from "@/src/components/common/ExternalLink";
+import ResumeEducation from "@/src/components/resume/resumeEducation";
 import { getTranslations } from "next-intl/server";
 
 export default async function Resume() {

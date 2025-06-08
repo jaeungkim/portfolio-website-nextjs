@@ -1,62 +1,60 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 
 type CrypticTextProps = {
   text: string;
   classNames?: string;
-  delay?: number;
+  delay?: number; // seconds
 };
+
+const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
 
 export default function CrypticText({
   text,
   classNames,
   delay = 0,
 }: CrypticTextProps) {
-  const [cryptic, setCryptic] = useState(text);
-  const animationRef = useRef<number | null>(null);
+  const spanRef = useRef<HTMLSpanElement>(null);
 
-  const animate = useCallback(() => {
-    const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
-    const timeoutValue = delay * 60;
-    let iteration = 0;
-    let elapsed = 0;
+  useEffect(() => {
+    const el = spanRef.current;
+    if (!el) return;
 
-    const updateText = () => {
-      if (elapsed > timeoutValue) {
-        setCryptic(() =>
-          text
-            .split("")
-            .map((char, index) =>
-              index < iteration
-                ? char
-                : letters[Math.floor(Math.random() * letters.length)]
-            )
-            .join("")
-        );
+    const delayFrames = Math.round(delay * 60);
+    let frame = 0;
+    let reveal = 0;
+    let rafId: number;
 
-        iteration = Math.min(iteration + 1, text.length);
-        if (iteration >= text.length) {
-          cancelAnimationFrame(animationRef.current!);
+    const animate = () => {
+      if (frame >= delayFrames) {
+        const output = text
+          .split("")
+          .map((ch, idx) =>
+            idx < reveal
+              ? ch
+              : letters[Math.floor(Math.random() * letters.length)]
+          )
+          .join("");
+
+        el.textContent = output;
+
+        reveal += 1;
+        if (reveal > text.length) {
+          el.textContent = text; // ensure final state is the true text
           return;
         }
       }
-
-      elapsed++;
-      animationRef.current = requestAnimationFrame(updateText);
+      frame += 1;
+      rafId = requestAnimationFrame(animate);
     };
 
-    animationRef.current = requestAnimationFrame(updateText);
+    el.textContent = " ".repeat(text.length);
+    rafId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(rafId);
   }, [text, delay]);
-
-  useEffect(() => {
-    setCryptic(text.replace(/./g, " "));
-    animate();
-    return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-    };
-  }, [animate]);
 
   return (
     <span
@@ -65,8 +63,8 @@ export default function CrypticText({
         classNames
       )}
     >
-      <span className="absolute inset-0">{cryptic}</span>
-      <span className="opacity-0 ">{text}</span>
+      <span ref={spanRef} className="absolute inset-0" />
+      <span className="opacity-0">{text}</span>
     </span>
   );
 }

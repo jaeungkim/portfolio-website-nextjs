@@ -113,12 +113,4 @@ export const projectsResume = [
     },
     skills: ["React", "Three.js", "WebGL", "GSAP", "Motion"],
   },
-  {
-    id: "lental",
-    link: {
-      label: "YouTube Demo",
-      url: "https://www.youtube.com/watch?v=sIZqCxLnLSY&ab_channel=LentalRents",
-    },
-    skills: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Travis CI"],
-  },
 ];

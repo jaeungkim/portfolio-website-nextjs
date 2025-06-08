@@ -1,4 +1,4 @@
-import ResumeTitle from "./components/ResumeTitle";
+import ResumeTitle from "./ResumeTitle";
 
 const skillCategories = [
   {

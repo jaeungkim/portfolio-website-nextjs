@@ -1,6 +1,6 @@
 import { projectsResume } from "@/src/constants/resume";
-import SkillPill from "./components/SkillPill";
-import ResumeTitle from "./components/ResumeTitle";
+import SkillPill from "../common/SkillPill";
+import ResumeTitle from "./ResumeTitle";
 import Pill from "@/src/components/common/Pill";
 import ExternalLink from "@/src/components/common/ExternalLink";
 import { getTranslations } from "next-intl/server";

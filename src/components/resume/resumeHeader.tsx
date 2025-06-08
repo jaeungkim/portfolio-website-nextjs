@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import ExternalLink from "@/src/components/common/ExternalLink";
 import { getTranslations } from "next-intl/server";

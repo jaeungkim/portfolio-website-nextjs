@@ -1,5 +1,5 @@
 import { Link } from "@/src/i18n/routing";
-import SkillPill from "./components/SkillPill";
+import SkillPill from "../common/SkillPill";
 import ExternalLink from "@/src/components/common/ExternalLink";
 import Pill from "@/src/components/common/Pill";
 

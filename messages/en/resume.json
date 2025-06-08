@@ -181,14 +181,6 @@
         "Experimental project exploring interactive 3D scenes in the browser",
         "Tested custom shader effects, user inputs, and dynamic environments"
       ]
-    },
-    "lental": {
-      "title": "Lental",
-      "description": [
-        "Capstone project built for UBC students to simplify off-campus housing search",
-        "Enabled students to post and browse listings with powerful filters and clean UI",
-        "Solved a real-world problem through direct user interviews and iteration"
-      ]
     }
   },
   "footer": "Warm regards"

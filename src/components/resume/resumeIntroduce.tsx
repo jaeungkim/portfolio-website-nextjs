@@ -1,7 +1,7 @@
 import { experiences } from "@/src/constants/resume";
 import { getTranslations } from "next-intl/server";
 import { getExperienceUtils } from "@/src/utils/resume";
-import ResumeTitle from "@/src/app/[locale]/resume/components/ResumeTitle";
+import ResumeTitle from "@/src/components/resume/ResumeTitle";
 
 export default async function resumeIntroduce() {
   const t = await getTranslations("resume.introduce");
