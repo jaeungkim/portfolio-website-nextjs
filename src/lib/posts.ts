@@ -1,107 +1,85 @@
 import fs from "fs/promises";
 import path from "path";
-import Image from "next/image";
-import { compileMDX } from "next-mdx-remote/rsc";
-import type { Post, PostData } from "@/src/types/blog";
 import { cache } from "react";
+import { compileMDX } from "next-mdx-remote/rsc";
 import BlurImage from "@/src/components/image/BlurImage";
-
-// === Constants ===
-const POSTS_DIR = path.join(process.cwd(), "src", "posts");
-const mdxComponents = {
-  img: BlurImage,
-  BlurImage,
-};
+import { Post } from "@/src/types/blog";
 
 type Frontmatter = {
   title: string;
   date: string;
-  summary?: string;
-  tags?: string[];
+  summary: string;
 };
 
-// === Utils ===
-const readFileSafe = async (filePath: string): Promise<string | null> => {
-  try {
-    return await fs.readFile(filePath, "utf8");
-  } catch {
-    return null;
-  }
-};
+const POSTS_DIR = path.join(process.cwd(), "src", "posts");
+const mdxComponents = { img: BlurImage, BlurImage };
 
-const parsePost = async (
-  raw: string,
-  fileName: string
-): Promise<Post | null> => {
-  try {
-    const { frontmatter } = await compileMDX<Frontmatter>({
-      source: raw,
-      options: { parseFrontmatter: true },
-    });
+function extractFrontmatter(raw: string): Frontmatter | null {
+  const match = raw.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return null;
 
-    if (!frontmatter.title || !frontmatter.date) return null;
+  const yaml = Object.fromEntries(
+    match[1]
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean)
+      .map((l) => {
+        const [key, ...rest] = l.split(":");
+        const value = rest.join(":").trim();
+        return [
+          key,
+          value.startsWith("[")
+            ? JSON.parse(value)
+            : value.replace(/^["']|["']$/g, ""),
+        ];
+      })
+  ) as Frontmatter;
 
-    return {
-      id: fileName.replace(/\.mdx$/, ""),
-      title: frontmatter.title,
-      date: frontmatter.date,
-      summary: frontmatter.summary ?? "",
-      tags: frontmatter.tags ?? [],
-    };
-  } catch {
-    return null;
-  }
-};
-
-// === Public API ===
+  return yaml.title && yaml.date ? yaml : null;
+}
 
 export const getSortedPostsData = cache(async (): Promise<Post[]> => {
-  try {
-    const files = await fs.readdir(POSTS_DIR);
-    const mdxFiles = files.filter((f) => f.endsWith(".mdx"));
+  const files = (await fs.readdir(POSTS_DIR)).filter((f) => f.endsWith(".mdx"));
 
-    const posts = await Promise.all(
-      mdxFiles.map(async (file) => {
-        const raw = await readFileSafe(path.join(POSTS_DIR, file));
-        return raw ? await parsePost(raw, file) : null;
-      })
-    );
+  const posts = await Promise.all(
+    files.map(async (file) => {
+      const raw = await fs.readFile(path.join(POSTS_DIR, file), "utf8");
+      const fm = extractFrontmatter(raw);
+      return fm
+        ? {
+            id: file.replace(/\.mdx$/, ""),
+            title: fm.title,
+            date: fm.date,
+            summary: fm.summary,
+          }
+        : null;
+    })
+  );
 
-    return posts
-      .filter((post): post is Post => Boolean(post))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  } catch {
-    return [];
-  }
+  return posts
+    .filter((post): post is Post => post !== null)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 });
 
-export const getPostData = cache(
-  async (slug: string): Promise<PostData | null> => {
-    const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
-    const raw = await readFileSafe(filePath);
-    if (!raw) return null;
+export const getPostData = cache(async (slug: string) => {
+  const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
+  const raw = await fs.readFile(filePath, "utf8").catch(() => null);
+  if (!raw) return null;
 
-    try {
-      const { content, frontmatter } = await compileMDX<Frontmatter>({
-        source: raw,
-        options: { parseFrontmatter: true },
-        components: mdxComponents,
-      });
+  const { content, frontmatter } = await compileMDX<Frontmatter>({
+    source: raw,
+    components: mdxComponents,
+    options: { parseFrontmatter: true },
+  });
 
-      if (!frontmatter.title || !frontmatter.date) return null;
+  if (!frontmatter.title || !frontmatter.date) return null;
 
-      return {
-        id: slug,
-        slug,
-        title: frontmatter.title,
-        date: frontmatter.date,
-        summary: frontmatter.summary ?? "",
-        tags: frontmatter.tags ?? [],
-        content,
-      };
-    } catch (e) {
-      console.error("MDX compilation failed:", e);
-      return null;
-    }
-  }
-);
+  return {
+    id: slug,
+    slug,
+    title: frontmatter.title,
+    date: frontmatter.date,
+    summary: frontmatter.summary,
+    content,
+  };
+});
