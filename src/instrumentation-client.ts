@@ -5,9 +5,17 @@
 import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
-  enabled: process.env.NODE_ENV === 'production',
+  enabled: process.env.NODE_ENV === "production",
   dsn: process.env.SENTRY_DSN,
-
+  beforeSend(event) {
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname === "localhost"
+    ) {
+      return null;
+    }
+    return event;
+  },
   // Add optional integrations for additional features
   integrations: [
     Sentry.browserTracingIntegration(),

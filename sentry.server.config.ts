@@ -9,6 +9,15 @@ const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 Sentry.init({
   enabled: process.env.NODE_ENV === "production",
   dsn: process.env.SENTRY_DSN,
+  beforeSend(event) {
+    if (
+      typeof window !== "undefined" &&
+      window.location.hostname === "localhost"
+    ) {
+      return null;
+    }
+    return event;
+  },
   integrations: [nodeProfilingIntegration()],
   // Tracing must be enabled for profiling to work
   tracesSampleRate: 1.0, //  Capture 100% of the transactions
