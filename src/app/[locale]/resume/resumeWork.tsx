@@ -1,8 +1,8 @@
-import { experiences } from "@/src/app/constants/resume";
+import { experiences } from "@/src/constants/resume";
 import { Link } from "@/src/i18n/routing";
 import SkillPill from "./components/SkillPill";
 import WorkSection from "./WorkSection";
-import { useExperienceUtils } from "@/src/app/utils/resume";
+import { useExperienceUtils } from "@/src/utils/resume";
 import { useTranslations } from "next-intl";
 import ResumeTitle from "./components/ResumeTitle";
 import Pill from "@/src/components/common/Pill";

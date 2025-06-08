@@ -1,6 +1,6 @@
-import { experiences } from "@/src/app/constants/resume";
+import { experiences } from "@/src/constants/resume";
 import { useTranslations } from "next-intl";
-import { useExperienceUtils } from "@/src/app/utils/resume";
+import { useExperienceUtils } from "@/src/utils/resume";
 import ResumeTitle from "@/src/app/[locale]/resume/components/ResumeTitle";
 
 export default function resumeIntroduce() {

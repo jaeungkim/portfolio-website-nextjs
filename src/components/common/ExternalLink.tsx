@@ -1,4 +1,4 @@
-import { cn } from "@/src/app/utils/cn";
+import { cn } from "@/src/utils/cn";
 
 export default function ExternalLink({
   link,

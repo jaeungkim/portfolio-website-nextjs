@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { projectsResume } from "@/src/app/constants/resume";
+import { projectsResume } from "@/src/constants/resume";
 import SkillPill from "./components/SkillPill";
 import ResumeTitle from "./components/ResumeTitle";
 import Pill from "@/src/components/common/Pill";

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getPostData } from "@/lib/posts";
+import { getPostData } from "@/src/lib/posts";
 
 import ScrollIndicator from "@/src/components/common/ScrollIndicator";
 import ScrollToTopButton from "@/src/components/common/ScrollToTopButton";

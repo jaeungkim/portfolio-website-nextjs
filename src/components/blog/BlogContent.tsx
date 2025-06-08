@@ -1,4 +1,4 @@
-import { getSortedPostsData } from "@/lib/posts";
+import { getSortedPostsData } from "@/src/lib/posts";
 import Article from "./Article";
 
 export default async function BlogContent() {
