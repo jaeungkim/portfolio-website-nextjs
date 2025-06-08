@@ -9,6 +9,8 @@
   "dependencies": {
     "@next/mdx": "^15.3.3",
     "@plaiceholder/next": "^3.0.0",
+    "@sentry/nextjs": "^9.27.0",
+    "@sentry/profiling-node": "^9.24.0",
     "@types/next": "^9.0.0",
     "@types/react-dom": "^19.1.6",
     "@vercel/analytics": "^1.5.0",
@@ -29,6 +31,9 @@
   "devDependencies": {
     "@heroicons/react": "^2.2.0",
     "@jaeungkim/gantt-chart": "^0.2.4",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/core": "^2.0.1",
+    "@opentelemetry/sdk-trace-base": "^2.0.1",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
     "@tailwindcss/postcss": "^4.1.8",
