@@ -8,7 +8,7 @@ import DynamicImage from "@/src/components/image/BlurImage";
 
 // === Constants ===
 const POSTS_DIR = path.join(process.cwd(), "posts");
-const mdxComponents = { Image, DynamicImage };
+const mdxComponents = { img: DynamicImage, DynamicImage };
 
 type Frontmatter = {
   title: string;
