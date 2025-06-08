@@ -9,10 +9,9 @@ import SocialIcon from "@/src/components/common/SocialIcon";
 import ModelContainer from "@/src/components/model/ModelContainer";
 import CrypticText from "@/src/components/common/CrypticText";
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
 
-export default function Page() {
-  const t = useTranslations("home");
+export default async function Page() {
+  const t = await getTranslations("home");
 
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">

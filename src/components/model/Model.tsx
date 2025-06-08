@@ -30,7 +30,6 @@ export default function Model() {
     )
   );
 
-  // Animation setup
   useEffect(() => {
     if (!gltf.animations.length || !gltf.scene) return;
 
@@ -44,7 +43,6 @@ export default function Model() {
     };
   }, [gltf]);
 
-  // Animation frame update
   useFrame((_, delta) => {
     mixerRef.current?.update(delta);
   });

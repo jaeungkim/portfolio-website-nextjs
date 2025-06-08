@@ -1,26 +1,9 @@
-import { useTranslations } from "next-intl";
+// lib/experience.ts
+import { getTranslations } from "next-intl/server";
 
 interface Experience {
   start: string;
   end: string | null;
-}
-
-export function useExperienceFormatter() {
-  const t = useTranslations("common.utils");
-
-  const formatYear = (count: number) =>
-    t(count > 1 ? "year_plural" : "year", { count });
-
-  const formatMonth = (count: number) =>
-    t(count > 1 ? "month_plural" : "month", { count });
-
-  const formatYearAndMonth = (year: number, month: number) =>
-    t("yearAndMonth", {
-      year: formatYear(year),
-      month: formatMonth(month),
-    });
-
-  return { formatYear, formatMonth, formatYearAndMonth };
 }
 
 function calculateExperienceParts(
@@ -49,9 +32,20 @@ function calculateExperienceParts(
   return { totalMonths, years: finalYears, months: finalMonths };
 }
 
-export function useExperienceUtils() {
-  const { formatYear, formatMonth, formatYearAndMonth } =
-    useExperienceFormatter();
+export async function getExperienceUtils() {
+  const t = await getTranslations("common.utils");
+
+  const formatYear = (count: number) =>
+    t(count > 1 ? "year_plural" : "year", { count });
+
+  const formatMonth = (count: number) =>
+    t(count > 1 ? "month_plural" : "month", { count });
+
+  const formatYearAndMonth = (year: number, month: number) =>
+    t("yearAndMonth", {
+      year: formatYear(year),
+      month: formatMonth(month),
+    });
 
   const calculateExperience = (
     startDate: string,
@@ -63,7 +57,6 @@ export function useExperienceUtils() {
     );
 
     if (totalMonths <= 0) return formatMonth(1);
-
     if (years > 0 && months > 0) return formatYearAndMonth(years, months);
     if (years > 0) return formatYear(years);
     return formatMonth(months);

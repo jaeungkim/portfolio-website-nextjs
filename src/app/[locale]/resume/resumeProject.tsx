@@ -1,12 +1,12 @@
-import { useTranslations } from "next-intl";
 import { projectsResume } from "@/src/constants/resume";
 import SkillPill from "./components/SkillPill";
 import ResumeTitle from "./components/ResumeTitle";
 import Pill from "@/src/components/common/Pill";
 import ExternalLink from "@/src/components/common/ExternalLink";
+import { getTranslations } from "next-intl/server";
 
-export default function ResumeProject() {
-  const t = useTranslations("resume");
+export default async function ResumeProject() {
+  const t = await getTranslations("resume");
   const projectsData = t.raw("projects") as Record<
     string,
     { title: string; description: string[] }

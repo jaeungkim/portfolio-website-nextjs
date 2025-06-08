@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, Loader } from "@react-three/drei";
 import { Suspense } from "react";

@@ -3,13 +3,13 @@ import ResumeIntroduce from "./resumeIntroduce";
 import ResumeWork from "./resumeWork";
 import ResumeSkill from "./resumeSkill";
 import ResumeHeader from "./resumeHeader";
-import { useTranslations } from "next-intl";
 import Spacing from "@/src/components/common/Spacing";
 import ResumeEducation from "./resumeEducation";
 import ExternalLink from "@/src/components/common/ExternalLink";
+import { getTranslations } from "next-intl/server";
 
-export default function Resume() {
-  const t = useTranslations("resume");
+export default async function Resume() {
+  const t = await getTranslations("resume");
 
   return (
     <div className="py-4">

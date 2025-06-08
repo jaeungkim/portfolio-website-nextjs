@@ -1,11 +1,11 @@
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FaFacebookF, FaGithub, FaLinkedin, FaRss } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import ExternalLink from "@/src/components/common/ExternalLink";
+import { getTranslations } from "next-intl/server";
 
-export default function ResumeHeader() {
-  const t = useTranslations("home");
+export default async function ResumeHeader() {
+  const t = await getTranslations("home");
 
   return (
     <>

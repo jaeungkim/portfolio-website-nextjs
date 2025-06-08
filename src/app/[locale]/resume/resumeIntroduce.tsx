@@ -1,11 +1,11 @@
 import { experiences } from "@/src/constants/resume";
-import { useTranslations } from "next-intl";
-import { useExperienceUtils } from "@/src/utils/resume";
+import { getTranslations } from "next-intl/server";
+import { getExperienceUtils } from "@/src/utils/resume";
 import ResumeTitle from "@/src/app/[locale]/resume/components/ResumeTitle";
 
-export default function resumeIntroduce() {
-  const t = useTranslations("resume.introduce");
-  const { calculateTotalExperienceInYears } = useExperienceUtils();
+export default async function resumeIntroduce() {
+  const t = await getTranslations("resume.introduce");
+  const { calculateTotalExperienceInYears } = await getExperienceUtils();
   const years = calculateTotalExperienceInYears(experiences);
 
   return (

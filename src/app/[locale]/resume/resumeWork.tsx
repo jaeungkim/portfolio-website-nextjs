@@ -2,18 +2,18 @@ import { experiences } from "@/src/constants/resume";
 import { Link } from "@/src/i18n/routing";
 import SkillPill from "./components/SkillPill";
 import WorkSection from "./WorkSection";
-import { useExperienceUtils } from "@/src/utils/resume";
-import { useTranslations } from "next-intl";
+import { getExperienceUtils } from "@/src/utils/resume";
 import ResumeTitle from "./components/ResumeTitle";
 import Pill from "@/src/components/common/Pill";
+import { getTranslations } from "next-intl/server";
 
-export default function ResumeWork() {
-  const t = useTranslations("resume");
+export default async function ResumeWork() {
+  const t = await getTranslations("resume");
   const jobData = t.raw("work");
   const jobKeys = Object.keys(jobData);
 
   const { calculateExperience, calculateTotalExperience } =
-    useExperienceUtils();
+    await getExperienceUtils();
 
   return (
     <>
