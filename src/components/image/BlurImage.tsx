@@ -2,7 +2,7 @@ import Image, { type ImageProps } from "next/image";
 
 import getBase64 from "@/src/utils/getBase64";
 
-const DynamicImage = async ({
+const BlurImage = async ({
   url,
   ...props
 }: ImageProps & { url: string }) => {
@@ -22,4 +22,4 @@ const DynamicImage = async ({
   );
 };
 
-export default DynamicImage;
+export default BlurImage;
