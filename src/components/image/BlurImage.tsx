@@ -8,6 +8,7 @@ const BlurImage = async ({
 }: ImageProps & { url: string }) => {
   const base64 = await getBase64(url);
 
+  console.log('base64', base64);
   return (
     <Image
       {...props}
