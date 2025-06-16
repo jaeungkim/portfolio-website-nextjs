@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-import ExternalLink from "@/src/components/common/ExternalLink";
+import ExternalLink from "@/src/components/common/buttons/ExternalLink";
 import { getTranslations } from "next-intl/server";
+import MailIcon from "@/src/components/common/icons/iconComponents/MailIcon";
+import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
+import Icon from "@/src/components/common/icons/Icon";
+import LinkedInIcon from "@/src/components/common/icons/iconComponents/LinkedInIcon";
 
 export default async function ResumeHeader() {
   const t = await getTranslations("home");
@@ -22,40 +24,28 @@ export default async function ResumeHeader() {
 
         <div className="flex flex-col gap-4 justify-center md:col-span-3">
           <p className="text-4xl font-bold w-full">{t("about.name")}</p>
-          <div className="flex gap-4">
-            <div className="">
-              <HiOutlineMail className="size-6" />
-            </div>
-            <div className="flex justify-center items-center align-middle">
-              <a
-                className="border-solid border-b border-neutral-700 leading-5 hover:border-neutral-200 transition-all duration-300 ease-in-out font-bold"
-                href="mailto:jaewoongkim95@gmail.com"
-              >
-                jaewoongkim95@gmail.com
-              </a>
-            </div>
+          <div className="w-fit group gap-2 flex items-center align-middle">
+            <Icon icon={MailIcon} className="size-6" />
+            <a
+              className="border-solid border-b border-neutral-700 leading-5 hover:border-neutral-200 transition-all duration-300 ease-in-out font-bold"
+              href="mailto:jaewoongkim95@gmail.com"
+            >
+              jaewoongkim95@gmail.com
+            </a>
           </div>
 
-          <div className="flex gap-4">
-            <div className="">
-              <FaGithub className="size-6" />
-            </div>
-            <div className="flex justify-center items-center align-middle">
-              <ExternalLink link="https://github.com/jaeungkim">
-                GitHub
-              </ExternalLink>
-            </div>
+          <div className="w-fit group gap-2 flex items-center align-middle">
+            <Icon icon={GithubIcon} className="size-6" />
+            <ExternalLink link="https://github.com/jaeungkim">
+              GitHub
+            </ExternalLink>
           </div>
 
-          <div className="flex gap-4">
-            <div className="">
-              <FaLinkedin className="size-6" />
-            </div>
-            <div className="flex justify-center items-center align-middle">
-              <ExternalLink link="https://www.linkedin.com/in/jaeungkim0526">
-                LinkedIn
-              </ExternalLink>
-            </div>
+          <div className="w-fit flex gap-2 items-center align-middle group">
+            <Icon icon={LinkedInIcon} className="size-6" />
+            <ExternalLink link="https://www.linkedin.com/in/jaeungkim0526">
+              LinkedIn
+            </ExternalLink>
           </div>
         </div>
       </div>

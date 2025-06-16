@@ -2,7 +2,7 @@ import { projectsResume } from "@/src/constants/resume";
 import SkillPill from "../common/SkillPill";
 import ResumeTitle from "./ResumeTitle";
 import Pill from "@/src/components/common/Pill";
-import ExternalLink from "@/src/components/common/ExternalLink";
+import ExternalLink from "@/src/components/common/buttons/ExternalLink";
 import { getTranslations } from "next-intl/server";
 
 export default async function ResumeProject() {

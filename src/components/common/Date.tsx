@@ -1,4 +1,4 @@
-import { parseISO, format } from "date-fns";
+import dayjs from "dayjs";
 import clsx from "clsx";
 
 interface DateProps {
@@ -7,7 +7,7 @@ interface DateProps {
 }
 
 export default function Date({ dateString, mobile }: DateProps) {
-  const date = parseISO(dateString);
+  const date = dayjs(dateString);
 
   return (
     <time
@@ -22,7 +22,7 @@ export default function Date({ dateString, mobile }: DateProps) {
           <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
         </span>
       )}
-      {format(date, "LLLL d, yyyy")}
+      {date.format("MMMM D, YYYY")}
     </time>
   );
 }

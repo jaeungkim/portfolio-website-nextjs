@@ -1,5 +1,5 @@
 import ResumeTitle from "@/src/components/resume/ResumeTitle";
-import ExternalLink from "@/src/components/common/ExternalLink";
+import ExternalLink from "@/src/components/common/buttons/ExternalLink";
 
 export default function ResumeEducation() {
   return (

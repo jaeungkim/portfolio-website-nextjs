@@ -3,7 +3,7 @@ import postsJson from "@/src/posts.json";
 import fs from "fs/promises";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
-import BlurImage from "@/src/components/image/BlurImage";
+import BlurImage from "@/src/components/common/image/BlurImage";
 import { Post } from "@/src/types/blog";
 
 type Frontmatter = { title: string; date: string; summary: string };

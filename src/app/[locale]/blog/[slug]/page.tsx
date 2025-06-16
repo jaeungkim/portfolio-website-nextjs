@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getPostData } from "@/src/lib/posts";
 
 import ScrollIndicator from "@/src/components/common/ScrollIndicator";
-import ScrollToTopButton from "@/src/components/common/ScrollToTopButton";
+import ScrollToTopButton from "@/src/components/common/buttons/ScrollToTopButton";
 import { UtterancesComments } from "@/src/components/blog/UtterancesComments";
 import { Link } from "@/src/i18n/routing";
 

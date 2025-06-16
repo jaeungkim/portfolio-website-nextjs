@@ -1,10 +1,10 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-
-import SocialIcon from "@/src/components/common/SocialIcon";
 import CrypticText from "@/src/components/common/CrypticText";
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
+import LinkedInIcon from "@/src/components/common/icons/iconComponents/LinkedInIcon";
+import SocialIcon from "@/src/components/common/icons/SocialIcon";
 
 const Model3D = dynamic(() => import("@/src/components/model/ModelContainer"));
 
@@ -47,11 +47,11 @@ export default async function Page() {
         <div className="mt-6 flex gap-6">
           <SocialIcon
             href="https://github.com/jaeungkim"
-            IconComponent={FaGithub}
+            IconComponent={GithubIcon}
           />
           <SocialIcon
             href="https://www.linkedin.com/in/jaeungkim0526/"
-            IconComponent={FaLinkedin}
+            IconComponent={LinkedInIcon}
           />
         </div>
       </article>

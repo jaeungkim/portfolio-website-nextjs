@@ -1,6 +1,6 @@
 import { Link } from "@/src/i18n/routing";
 import SkillPill from "../common/SkillPill";
-import ExternalLink from "@/src/components/common/ExternalLink";
+import ExternalLink from "@/src/components/common/buttons/ExternalLink";
 import Pill from "@/src/components/common/Pill";
 
 const WorkSection = ({
