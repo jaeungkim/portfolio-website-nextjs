@@ -2,9 +2,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "postbuild": "tsx src/scripts/build-blog-index.ts",
-    "dev": "yarn gen:posts && next dev",
-    "gen:posts": "tsx src/scripts/build-blog-index.ts"
+    "dev": "next dev"
   },
   "dependencies": {
     "@next/mdx": "^15.3.3",
