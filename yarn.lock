@@ -5104,7 +5104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion@npm:^12.16.0":
+"motion@npm:^12.19.2":
   version: 12.19.2
   resolution: "motion@npm:12.19.2"
   dependencies:
@@ -5796,7 +5796,7 @@ __metadata:
     dayjs: "npm:^1.11.13"
     gray-matter: "npm:^4.0.3"
     i18next: "npm:^25.2.1"
-    motion: "npm:^12.16.0"
+    motion: "npm:^12.19.2"
     next: "npm:latest"
     next-intl: "npm:^4.1.0"
     next-mdx-remote: "npm:^5.0.0"
