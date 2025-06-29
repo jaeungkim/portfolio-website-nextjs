@@ -6,65 +6,174 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import BlurImage from "@/src/components/common/image/BlurImage";
 import type { Post, PostData } from "@/src/types/blog";
 
-type Frontmatter = { title: string; date: string; summary?: string };
+// Types for better type safety
+type Frontmatter = {
+  title: string;
+  date: string;
+  summary?: string;
+};
 
+// Constants for better maintainability
 const POSTS_DIR = path.join(process.cwd(), "src", "posts");
-const mdxComponents = { img: BlurImage, BlurImage };
+const MDX_EXTENSION = ".mdx";
 
+// MDX components configuration
+const mdxComponents = {
+  img: BlurImage,
+  BlurImage,
+};
+
+/**
+ * Get all MDX files from the posts directory
+ */
+async function getMdxFiles(): Promise<string[]> {
+  try {
+    const files = await fs.readdir(POSTS_DIR);
+    return files.filter((file) => file.endsWith(MDX_EXTENSION));
+  } catch (error) {
+    console.error("Error reading posts directory:", error);
+    return [];
+  }
+}
+
+/**
+ * Extract frontmatter from MDX file content
+ */
+function extractFrontmatter(fileContent: string): Frontmatter {
+  const { data } = matter(fileContent);
+  return data as Frontmatter;
+}
+
+/**
+ * Convert filename to post ID (remove .mdx extension)
+ */
+function filenameToId(filename: string): string {
+  return filename.replace(MDX_EXTENSION, "");
+}
+
+/**
+ * Parse a single MDX file into a Post object
+ */
+async function parseMdxFile(filename: string): Promise<Post> {
+  const filePath = path.join(POSTS_DIR, filename);
+
+  try {
+    const fileContent = await fs.readFile(filePath, "utf8");
+    const frontmatter = extractFrontmatter(fileContent);
+
+    return {
+      id: filenameToId(filename),
+      title: frontmatter.title,
+      date: frontmatter.date,
+      summary: frontmatter.summary ?? "",
+    };
+  } catch (error) {
+    console.error(`Error parsing file ${filename}:`, error);
+    throw new Error(`Failed to parse post: ${filename}`);
+  }
+}
+
+/**
+ * Sort posts by date (newest first)
+ */
+function sortPostsByDate(posts: Post[]): Post[] {
+  return posts.sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateB - dateA; // Newest first
+  });
+}
+
+/**
+ * Get all posts sorted by date (newest first)
+ * Cached for performance
+ */
 export const getSortedPostsData = cache(async (): Promise<Post[]> => {
-  const files = (await fs.readdir(POSTS_DIR)).filter((f) => f.endsWith(".mdx"));
+  const mdxFiles = await getMdxFiles();
 
-  const posts = await Promise.all(
-    files.map(async (file) => {
-      const raw = await fs.readFile(path.join(POSTS_DIR, file), "utf8");
-      const { data } = matter(raw);
-      const frontmatter = data as Frontmatter;
+  if (mdxFiles.length === 0) {
+    return [];
+  }
 
-      return {
-        id: file.replace(/\.mdx$/, ""),
-        title: data.title,
-        date: data.date,
-        summary: data.summary ?? "",
-      } satisfies Post;
-    })
-  );
+  try {
+    const posts = await Promise.all(
+      mdxFiles.map((filename) => parseMdxFile(filename))
+    );
 
-  return posts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+    return sortPostsByDate(posts);
+  } catch (error) {
+    console.error("Error getting sorted posts:", error);
+    return [];
+  }
 });
 
-export const getAllPostSlugs = cache(async () => {
-  return (await fs.readdir(POSTS_DIR))
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""));
+/**
+ * Get all post slugs (filenames without extension)
+ * Cached for performance
+ */
+export const getAllPostSlugs = cache(async (): Promise<string[]> => {
+  const mdxFiles = await getMdxFiles();
+  return mdxFiles.map((filename) => filenameToId(filename));
 });
 
+/**
+ * Check if a file exists
+ */
+async function fileExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Validate frontmatter has required fields
+ */
+function validateFrontmatter(frontmatter: Frontmatter): boolean {
+  return !!(frontmatter.title && frontmatter.date);
+}
+
+/**
+ * Get post data by slug
+ * Cached for performance
+ */
 export const getPostData = cache(
   async (slug: string): Promise<PostData | null> => {
-    const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
-    let raw: string;
-    try {
-      raw = await fs.readFile(filePath, "utf8");
-    } catch {
+    const filePath = path.join(POSTS_DIR, `${slug}${MDX_EXTENSION}`);
+
+    // Check if file exists first
+    if (!(await fileExists(filePath))) {
       return null;
     }
 
-    const { content, frontmatter } = await compileMDX<Frontmatter>({
-      source: raw,
-      components: mdxComponents,
-      options: { parseFrontmatter: true },
-    });
+    try {
+      const fileContent = await fs.readFile(filePath, "utf8");
 
-    if (!frontmatter.title || !frontmatter.date) return null;
+      const { content, frontmatter } = await compileMDX<Frontmatter>({
+        source: fileContent,
+        components: mdxComponents,
+        options: { parseFrontmatter: true },
+      });
 
-    return {
-      slug,
-      id: slug,
-      content,
-      date: frontmatter.date,
-      title: frontmatter.title,
-      summary: frontmatter.summary ?? "",
-    };
+      // Validate required frontmatter fields
+      if (!validateFrontmatter(frontmatter)) {
+        console.warn(`Invalid frontmatter for post: ${slug}`);
+        return null;
+      }
+
+      return {
+        slug,
+        id: slug,
+        content,
+        date: frontmatter.date,
+        title: frontmatter.title,
+        summary: frontmatter.summary ?? "",
+      };
+    } catch (error) {
+      console.error(`Error getting post data for ${slug}:`, error);
+      return null;
+    }
   }
 );

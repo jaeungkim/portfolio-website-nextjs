@@ -1,4 +1,4 @@
-import { default as dynamicImport } from "next/dynamic";
+import dynamic from "next/dynamic";
 import { getTranslations } from "next-intl/server";
 import CrypticText from "@/src/components/common/CrypticText";
 import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
@@ -7,16 +7,11 @@ import SocialIcon from "@/src/components/common/icons/SocialIcon";
 import { routing } from "@/src/i18n/routing";
 import { Suspense } from "react";
 
-const Model3D = dynamicImport(
-  () => import("@/src/components/model/ModelContainer")
-);
+const Model3D = dynamic(() => import("@/src/components/model/ModelContainer"));
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
-
-export const dynamic = "force-static";
-export const dynamicParams = false;
 
 export default async function Home({
   params,

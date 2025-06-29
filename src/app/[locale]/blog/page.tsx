@@ -1,14 +1,16 @@
 import Article from "@/src/components/blog/Article";
 import { getSortedPostsData } from "@/src/utils/posts";
 import type { Metadata } from "next";
+import { routing } from "@/src/i18n/routing";
 
 export const metadata: Metadata = {
   title: "Jaeung Kim - Blog",
   description: "A collection of photo stories",
 };
 
-/** ⬇️  Guarantees pure SSG */
-export const dynamic = "force-static";
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function BlogPage() {
   const posts = await getSortedPostsData();
