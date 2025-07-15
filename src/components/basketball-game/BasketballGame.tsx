@@ -16,24 +16,56 @@ export default function BasketballGame({ className }: BasketballGameProps) {
 
   useEffect(() => {
     if (!ok || !holder.current || gRef.current) return
+    
+    const getGameSize = () => {
+      const container = holder.current!
+      const rect = container.getBoundingClientRect()
+      return { 
+        width: Math.max(rect.width, 320), 
+        height: Math.max(rect.height, 480) 
+      }
+    }
+    
     import('phaser').then((Ph) => {
       P = Ph.default ?? (Ph as any)
+      const { width, height } = getGameSize()
+      
       gRef.current = new P.Game({
         type: P.AUTO,
         parent: holder.current,
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width,
+        height,
         backgroundColor: '#87CEEB',
-        scale: { mode: P.Scale.RESIZE, autoCenter: P.Scale.CENTER_BOTH },
+        scale: { 
+          mode: P.Scale.FIT,
+          autoCenter: P.Scale.CENTER_BOTH,
+          width,
+          height
+        },
         physics: { default: 'matter', matter: { gravity: { x: 0, y: 1 }, debug: false } },
         scene: { preload, create, update }
       })
+      
+      const handleResize = () => {
+        if (gRef.current) {
+          const { width: newWidth, height: newHeight } = getGameSize()
+          gRef.current.scale.resize(newWidth, newHeight)
+        }
+      }
+      
+      window.addEventListener('resize', handleResize)
+      window.addEventListener('orientationchange', handleResize)
+      
+      return () => {
+        window.removeEventListener('resize', handleResize)
+        window.removeEventListener('orientationchange', handleResize)
+      }
     })
     return () => gRef.current?.destroy(true)
   }, [ok])
 
-  return ok ? <div ref={holder} className={`w-full h-full ${className ?? ''}`} />
-            : <div className="flex items-center justify-center h-full"><span>Loading…</span></div>
+  return ok ? <div ref={holder} className={`w-full h-full min-h-[480px] max-h-screen ${className ?? ''}`} style={{ height: '100dvh' }} />
+            : <div className="flex items-center justify-center h-full min-h-[480px] max-h-screen" style={{ height: '100dvh' }}><span>Loading…</span></div>
 }
 
 /* ————— game‑wide refs (easy “any” to skip TS fuss) ————— */
