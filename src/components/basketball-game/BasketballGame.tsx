@@ -21,7 +21,12 @@ export default function BasketballGame({ className }: BasketballGameProps) {
 
     const size = () => {
       const r = holder.current!.getBoundingClientRect();
-      return { w: Math.max(r.width, 320), h: Math.max(r.height, 480) };
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      return { 
+        w: Math.max(r.width || viewportWidth, 320), 
+        h: Math.max(r.height || viewportHeight, 480) 
+      };
     };
     const { w, h } = size();
 
@@ -33,18 +38,36 @@ export default function BasketballGame({ className }: BasketballGameProps) {
         width: w,
         height: h,
         backgroundColor: "#000000",
-        scale: { mode: P.Scale.FIT, autoCenter: P.Scale.CENTER_BOTH },
+        scale: { 
+          mode: P.Scale.RESIZE, 
+          autoCenter: P.Scale.CENTER_BOTH,
+          parent: holder.current,
+          width: '100%',
+          height: '100%'
+        },
         physics: { default: "arcade", arcade: { gravity: { x: 0, y: 250 } } },
         scene: { preload, create, update },
       });
 
       const onResize = () => {
         const { w, h } = size();
-        gameRef.current!.scale.resize(w, h);
+        if (gameRef.current) {
+          gameRef.current.scale.resize(w, h);
+          gameRef.current.scale.refresh();
+        }
       };
+      
+      // Handle orientation changes on mobile
+      const onOrientationChange = () => {
+        setTimeout(onResize, 100); // Small delay to ensure orientation change is complete
+      };
+      
       window.addEventListener("resize", onResize);
+      window.addEventListener("orientationchange", onOrientationChange);
+      
       return () => {
         window.removeEventListener("resize", onResize);
+        window.removeEventListener("orientationchange", onOrientationChange);
       };
     });
 
@@ -55,7 +78,12 @@ export default function BasketballGame({ className }: BasketballGameProps) {
     <div
       ref={holder}
       className={`w-full h-full ${className ?? ""}`}
-      style={{ height: "100dvh" }}
+      style={{ 
+        height: "100dvh",
+        width: "100vw",
+        overflow: "hidden",
+        position: "relative"
+      }}
     />
   ) : (
     <div
@@ -85,6 +113,7 @@ let start = { x: 0, y: 0 };
 let score = 0,
   rimY = 0;
 let frontSensor: any, middleSensor: any, scoreSensor: any;
+let scaleRatio: number; // For smart scaling across devices
 
 /* ───────── preload ───────── */
 function preload(this: Phaser.Scene) {
@@ -100,6 +129,20 @@ function preload(this: Phaser.Scene) {
 /* ───────── create ───────── */
 function create(this: Phaser.Scene) {
   const { width: W, height: H } = this.scale;
+  
+  // Calculate smart scale ratio based on device
+  const baseWidth = 800; // Base width for scaling calculations
+  const baseHeight = 600; // Base height for scaling calculations
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  
+  // Smart scaling that accounts for DPR and screen size
+  const widthRatio = W / baseWidth;
+  const heightRatio = H / baseHeight;
+  scaleRatio = Math.min(widthRatio, heightRatio) / Math.max(devicePixelRatio, 1);
+  
+  // Clamp scale ratio to reasonable bounds
+  scaleRatio = Math.max(0.5, Math.min(scaleRatio, 2.0));
+  
   shootPos = { x: W * 0.3, y: H - 90 };
 
   /* Responsive background */
@@ -133,18 +176,19 @@ function create(this: Phaser.Scene) {
   
 
   /* player sprite */
-  const SCALE = 0.6; // 1024 × 0.34 ≈ 348‑px tall
+  const SCALE = 0.75 * scaleRatio; // Scale based on device
   player = this.add
     .sprite(shootPos.x, shootPos.y, "player")
-    .setOrigin(1, 0.75)
-    .setScale(SCALE)
+    .setOrigin(0.75, 0.75)
+    .setScale(SCALE * 1.5)
     .play("dribble");
   /* physics ball */
   const HAND_Y = -75 * SCALE; // hand offset from feet
+  const ballSize = 100 * scaleRatio * 1.5; // Scale ball size
   ball = this.physics.add
     .image(shootPos.x, shootPos.y + HAND_Y, "ball")
-    .setDisplaySize(100, 100)
-    .setCircle(50)
+    .setDisplaySize(ballSize, ballSize)
+    .setCircle(ballSize / 2)
     .setBounce(0.65)
     .setFriction(0)
     .setImmovable(true)
@@ -162,7 +206,10 @@ function create(this: Phaser.Scene) {
     ease: "Sine.easeInOut",
   });
 
-  scoreTxt = this.add.text(20, 20, "Score: 0", { fontSize: "24px" });
+  scoreTxt = this.add.text(20, 20, "Score: 0", { 
+    fontSize: `${56 * scaleRatio}px`,
+    color: "#ffffff"
+  });
   traj = this.add.graphics();
 
   /* ───── input ───── */
@@ -254,8 +301,8 @@ function update(this: Phaser.Scene) {
 
 /* ───────── hoop helper (Realistic basketball hoop) ───────── */
 function buildHoop(scene: Phaser.Scene, x: number, y: number) {
-  const IRON = 6;          // rim thickness (smaller)
-  const INNER = 80;        // clear opening (much smaller for realistic ball-to-hoop ratio)
+  const IRON = 10 * scaleRatio;          // rim thickness (scaled)
+  const INNER = 150 * scaleRatio;        // clear opening (scaled)
   const HALF = INNER / 2;
 
   /* solid left / right irons (tiny circles) */
@@ -278,7 +325,7 @@ function buildHoop(scene: Phaser.Scene, x: number, y: number) {
   /* Backboard asset */
   const backboard = scene.add.image(x + 50, y, "backboard");
   backboard.setOrigin(0.615, 0.25);
-  backboard.setScale(0.4); // Make backboard smaller (60% of original size)
+  backboard.setScale(0.75 * scaleRatio); // Scale backboard based on device
   
   /* Rim with realistic details */
   const rim = scene.add.ellipse(x, y, INNER + IRON, IRON, 0xff6600);
