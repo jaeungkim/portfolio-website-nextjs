@@ -1,396 +1,382 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type Phaser from "phaser";
-import { m } from "motion/dist/react";
 
 interface BasketballGameProps {
-  className?: string;
+	className?: string;
 }
-let P: typeof Phaser;
 
-/* ─────────── React wrapper ─────────── */
+/* ───────── helper ───────── */
+const getScaleFactor = (w: number, h: number) => {
+	const SHORT = Math.min(w, h);
+	const REF = 600; // tweak to taste
+	return Math.max(0.5, Math.min(SHORT / REF, 1));
+};
+
+/* ───────── React wrapper ───────── */
+let P: any;
+
 export default function BasketballGame({ className }: BasketballGameProps) {
-  const holder = useRef<HTMLDivElement>(null);
-  const gameRef = useRef<Phaser.Game | null>(null);
-  const [ready, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
+	const holder = useRef<HTMLDivElement>(null);
+	const game = useRef<any>(null);
+	const [boot, setBoot] = useState(false);
+	useEffect(() => setBoot(true), []);
 
-  useEffect(() => {
-    if (!ready || !holder.current || gameRef.current) return;
+	useEffect(() => {
+		if (!boot || !holder.current || game.current) return;
 
-    const size = () => {
-      const r = holder.current!.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      return { 
-        w: Math.max(r.width || viewportWidth, 320), 
-        h: Math.max(r.height || viewportHeight, 480) 
-      };
-    };
-    const { w, h } = size();
+		// Cache DOM reference
+		const holderElement = holder.current;
 
-    import("phaser").then((Ph) => {
-      P = Ph.default ?? (Ph as any);
-      gameRef.current = new P.Game({
-        type: P.AUTO,
-        parent: holder.current,
-        width: w,
-        height: h,
-        backgroundColor: "#000000",
-        scale: { 
-          mode: P.Scale.RESIZE, 
-          autoCenter: P.Scale.CENTER_BOTH,
-          parent: holder.current,
-          width: '100%',
-          height: '100%'
-        },
-        physics: { default: "arcade", arcade: { gravity: { x: 0, y: 250 } } },
-        scene: { preload, create, update },
-      });
+		const size = () => {
+			const r = holderElement.getBoundingClientRect();
+			return {
+				w: Math.max(r.width || innerWidth, 320),
+				h: Math.max(r.height || innerHeight, 480),
+			};
+		};
+		const { w, h } = size();
 
-      const onResize = () => {
-        const { w, h } = size();
-        if (gameRef.current) {
-          gameRef.current.scale.resize(w, h);
-          gameRef.current.scale.refresh();
-        }
-      };
-      
-      // Handle orientation changes on mobile
-      const onOrientationChange = () => {
-        setTimeout(onResize, 100); // Small delay to ensure orientation change is complete
-      };
-      
-      window.addEventListener("resize", onResize);
-      window.addEventListener("orientationchange", onOrientationChange);
-      
-      return () => {
-        window.removeEventListener("resize", onResize);
-        window.removeEventListener("orientationchange", onOrientationChange);
-      };
-    });
+		import("phaser").then((Ph) => {
+			P = Ph;
+			game.current = new P.Game({
+				type: P.CANVAS, // Use Canvas for better performance on mobile
+				parent: holderElement,
+				width: w,
+				height: h,
+				backgroundColor: "#000",
+				scale: { mode: P.Scale.RESIZE, autoCenter: P.Scale.CENTER_BOTH },
+				physics: { default: "arcade", arcade: { gravity: { y: 250 } } },
+				scene: { preload, create, update },
+				// Performance optimizations
+				render: {
+					pixelArt: false,
+					antialias: false, // Disable antialiasing for better performance
+				},
+			});
 
-    return () => gameRef.current?.destroy(true);
-  }, [ready]);
+			// Cache resize function
+			const onResize = () => {
+				const { w, h } = size();
+				game.current.scale.resize(w, h);
 
-  return ready ? (
-    <div
-      ref={holder}
-      className={`w-full h-full ${className ?? ""}`}
-      style={{ 
-        height: "100dvh",
-        width: "100vw",
-        overflow: "hidden",
-        position: "relative"
-      }}
-    />
-  ) : (
-    <div
-      className="flex items-center justify-center h-full"
-      style={{ height: "100dvh" }}
-    >
-      <span>Loading…</span>
-    </div>
-  );
+				/* rescale persistent sprites */
+				if (player && ball) {
+					const f = getScaleFactor(w, h);
+					player.setScale((h * 0.25) / 477);
+					const s = h * 0.06;
+					ball.setDisplaySize(s, s);
+				}
+			};
+
+			// Use passive listeners for better performance
+			addEventListener("resize", onResize, { passive: true });
+			addEventListener("orientationchange", onResize, { passive: true });
+		});
+
+		return () => {
+			game.current?.destroy(true);
+			game.current = null;
+		};
+	}, [boot]);
+
+	return boot ? (
+		<div
+			ref={holder}
+			className={`w-full h-full ${className ?? ""}`}
+			style={{ width: "100vw", height: "100dvh", overflow: "hidden" }}
+		/>
+	) : (
+		<div className="flex items-center justify-center h-full" style={{ height: "100dvh" }}>
+			Loading…
+		</div>
+	);
 }
 
-/* ───────── Scene‑scope vars ───────── */
-let player: any;
-let ball: any;
-let traj: any;
-let scoreTxt: any;
-let playerTween: any;
-let ballTween: any;
-let irons: any;
+/* ───────── Scene‑scope stuff ───────── */
+let player: any, ball: any, traj: any, scoreTxt: any, ballTween: any;
+let irons: any, frontSensor: any, middleSensor: any, scoreSensor: any;
+let ground: any; // Cache ground reference
 
-let shootPos: { x: number; y: number };
-let releaseY: number;
-let dragging = false,
-  shot = false,
-  canScore = false;
+let shootPos = { x: 0, y: 0 };
+let releaseY = 0;
 let start = { x: 0, y: 0 };
-let score = 0,
-  rimY = 0;
-let frontSensor: any, middleSensor: any, scoreSensor: any;
-let scaleRatio: number; // For smart scaling across devices
+
+let dragging = false, shot = false, canScore = false;
+let bounceCount = 0, resetting = false, score = 0, rimY = 0, scaleFactor = 1;
+
+// Cache frequently used values
+let lastTrajUpdate = 0;
+const TRAJ_UPDATE_INTERVAL = 16; // ~60fps
+const RESET_DELAY = 150;
+const FADE_DURATION = 250;
 
 /* ───────── preload ───────── */
-function preload(this: Phaser.Scene) {
-  this.load.image("ball", "/assets/basketball.png");
-  this.load.image("background", "/assets/background.png");
-  this.load.image("backboard", "/assets/backboard.png");
-  this.load.spritesheet("player", "/assets/player-dribble-sheet.png", {
-    frameWidth: 1280 / 4,
-    frameHeight: 477,
-  });
+function preload(this: any) {
+	// Load assets with optimized settings
+	this.load.image("ball", "/assets/basketball.png");
+	this.load.image("background", "/assets/background.png");
+	this.load.image("backboard", "/assets/backboard.png");
+	this.load.spritesheet("player", "/assets/player-dribble-sheet.png", {
+		frameWidth: 1280 / 4,
+		frameHeight: 477,
+	});
 }
 
 /* ───────── create ───────── */
-function create(this: Phaser.Scene) {
-  const { width: W, height: H } = this.scale;
-  
-  // Calculate smart scale ratio based on device
-  const baseWidth = 800; // Base width for scaling calculations
-  const baseHeight = 600; // Base height for scaling calculations
-  const devicePixelRatio = window.devicePixelRatio || 1;
-  
-  // Smart scaling that accounts for DPR and screen size
-  const widthRatio = W / baseWidth;
-  const heightRatio = H / baseHeight;
-  scaleRatio = Math.min(widthRatio, heightRatio) / Math.max(devicePixelRatio, 1);
-  
-  // Clamp scale ratio to reasonable bounds
-  scaleRatio = Math.max(0.5, Math.min(scaleRatio, 2.0));
-  
-  shootPos = { x: W * 0.3, y: H - 90 };
+function create(this: any) {
+	const { width: W, height: H } = this.scale;
+	scaleFactor = getScaleFactor(W, H);
 
-  /* Responsive background */
-  const background = this.add.image(W / 2, H / 2, "background");
-  background.setDisplaySize(W, H);
-  background.setOrigin(0.5, 0.5);
-  // background.setAlpha(0.8); // Make background brighter and more visible
+	shootPos = { x: W * 0.28, y: H - 90 * scaleFactor };
 
-  /* dribble animation */
-  this.anims.create({
-    key: "dribble",
-    frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
-    frameRate: 6,
-    repeat: -1,
-  });
+	/* background */
+	this.add.image(W / 2, H / 2, "background").setDisplaySize(W, H).setOrigin(0.5);
 
-  /* invisible boundaries */
-  this.physics.add.staticGroup([
-    this.add.rectangle(-10, H / 2, 20, H).setOrigin(0.5, 0.5),
-    this.add.rectangle(W + 10, H / 2, 20, H).setOrigin(0.5, 0.5),
-  ]);
-  ({
-    irons,
-    frontSensor,
-    middleSensor,
-    scoreSensor,
-    rimTop: rimY,
-  } = buildHoop(this, W * 0.72, H * 0.32));
-  
-  
-  
+	/* player anim */
+	this.anims.create({
+		key: "dribble",
+		frames: this.anims.generateFrameNumbers("player", { start: 0, end: 3 }),
+		frameRate: 8,
+		repeat: -1,
+	});
 
-  /* player sprite */
-  const SCALE = 0.75 * scaleRatio; // Scale based on device
-  player = this.add
-    .sprite(shootPos.x, shootPos.y, "player")
-    .setOrigin(0.75, 0.75)
-    .setScale(SCALE * 1.5)
-    .play("dribble");
-  /* physics ball */
-  const HAND_Y = -75 * SCALE; // hand offset from feet
-  const ballSize = 100 * scaleRatio * 1.5; // Scale ball size
-  ball = this.physics.add
-    .image(shootPos.x, shootPos.y + HAND_Y, "ball")
-    .setDisplaySize(ballSize, ballSize)
-    .setCircle(ballSize / 2)
-    .setBounce(0.65)
-    .setFriction(0)
-    .setImmovable(true)
-    .setGravityY(1000);
+	/* player sprite */
+	const playerScale = (H * 0.25) / 477;
+	player = this.add
+		.sprite(shootPos.x, shootPos.y, "player")
+		.setOrigin(0.75)
+		.setScale(playerScale)
+		.play("dribble");
 
-  releaseY = shootPos.y + HAND_Y;
+	/* ball */
+	const ballSize = H * 0.06;
+	const handOffset = -75 * playerScale;
+	ball = this.physics.add
+		.image(shootPos.x, shootPos.y + handOffset, "ball")
+		.setDisplaySize(ballSize, ballSize)
+		.setCircle(ballSize / 2)
+		.setBounce(0.65)
+		.setImmovable(true)
+		.setGravityY(1000);
+	releaseY = ball.y;
 
-  ball.body.setEnable(false);
-  ballTween = this.tweens.add({
-    targets: ball,
-    y: releaseY + 100,
-    yoyo: true,
-    duration: 600,
-    repeat: -1,
-    ease: "Sine.easeInOut",
-  });
+	ball.body.setEnable(false);
+	ballTween = this.tweens.add({
+		targets: ball,
+		y: releaseY + 100 * scaleFactor,
+		yoyo: true,
+		duration: 600,
+		repeat: -1,
+		ease: "Sine.easeInOut",
+	});
 
-  scoreTxt = this.add.text(20, 20, "Score: 0", { 
-    fontSize: `${56 * scaleRatio}px`,
-    color: "#ffffff"
-  });
-  traj = this.add.graphics();
+	/* score text */
+	scoreTxt = this.add.text(20, 20, "Score: 0", {
+		fontSize: `${28 * scaleFactor}px`,
+		color: "#fff",
+	});
 
-  /* ───── input ───── */
-  this.input.on("pointerdown", (p) => {
-    if (ballTween) ballTween.stop();
-    dragging = true;
-    start = { x: p.x, y: p.y };
-    ball.body.setEnable(true);
-    ball.body.setAllowGravity(false);
-    ball.setVelocity(0, 0);
-    ball.setImmovable(true);
-    ball.setPosition(shootPos.x, releaseY);
-  });
+	traj = this.add.graphics();
 
-  let lastTrajUpdate = 0;
-  this.input.on("pointermove", (p) => {
-    if (dragging && Date.now() - lastTrajUpdate > 16) {
-      // ~60fps
-      drawTraj.call(this, p.x - start.x, start.y - p.y);
-      lastTrajUpdate = Date.now();
-    }
-  });
+	/* ground */
+	ground = this.add.rectangle(W / 2, H + 10, W, 20).setOrigin(0.5);
+	this.physics.add.existing(ground, true);
 
-  this.input.on("pointerup", (p) => {
-    if (!dragging) return;
-    dragging = false;
-    traj.clear();
-    ball.body.enable = true;
-    ball.body.setAllowGravity(true);
-    ball.setImmovable(false);
-    ball.setFriction(0);
+	/* hoop */
+	({ irons, frontSensor, middleSensor, scoreSensor, rimTop: rimY } = buildHoop(
+		this,
+		W * 0.7,
+		H * 0.27,
+		scaleFactor
+	));
 
-    const dx = p.x - start.x;
-    const dy = start.y - p.y;
-    const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-    const power = Math.min(distance * 35, 1300);
+	/* ───── input ───── */
+	this.input.on("pointerdown", (p: any) => {
+		if (resetting || shot || !ballTween) return;
 
-    const vx = (dx / distance) * power;
-    const vy = (-dy / distance) * power;
+		ballTween.stop();
+		ballTween = null;
 
-    ball.setVelocity(vx, vy);
-    canScore = shot = true;
-  });
+		dragging = true;
+		start = { x: p.x, y: p.y };
 
-/* ─ collisions ─ */
-this.physics.add.collider(ball, irons);              // side irons stop the ball
-  
-// manual bounce when ball grazes underside of rim sensor
-this.physics.add.overlap(ball, frontSensor, () => {
-  if (ball.body.velocity.y > 0 && ball.y < rimY) {
-    ball.setVelocity(ball.body.velocity.x * 0.5, -ball.body.velocity.y * 0.6);
-  }
-});
+		ball.body.setEnable(true).setAllowGravity(false);
+		ball.setVelocity(0).setImmovable(true).setPosition(shootPos.x, releaseY);
+	});
 
-// detect when ball goes through the hoop
-this.physics.add.overlap(ball, middleSensor, () => {
-  if (canScore && ball.body.velocity.y > 0) {
-    canScore = false;
-    scoreTxt.setText(`Score: ${(score += 2)}`);
-  }
-});
+	this.input.on("pointermove", (p: any) => {
+		if (!dragging) return;
+		
+		// Optimize trajectory updates
+		const now = performance.now();
+		if (now - lastTrajUpdate < TRAJ_UPDATE_INTERVAL) return;
+		lastTrajUpdate = now;
+		
+		drawTraj.call(this, p.x - start.x, start.y - p.y);
+	});
+
+	this.input.on("pointerup", (p: any) => {
+		if (!dragging) return;
+		dragging = false;
+		traj.clear();
+
+		const dx = p.x - start.x,
+			dy = start.y - p.y;
+		const dist = Math.max(Math.hypot(dx, dy), 1);
+		const power = Math.min(dist * 35, 1300);
+
+		ball.body.setAllowGravity(true);
+		ball.setImmovable(false);
+		ball.setVelocity((dx / dist) * power, (-dy / dist) * power);
+
+		shot = canScore = true;
+		bounceCount = 0;
+	});
+
+	/* ───── collisions ───── */
+	this.physics.add.collider(ball, irons);
+
+	this.physics.add.overlap(ball, frontSensor, () => {
+		if (ball.body.velocity.y > 0 && ball.y < rimY) {
+			ball.setVelocity(ball.body.velocity.x * 0.8, -ball.body.velocity.y * 0.6);
+		}
+	});
+
+	this.physics.add.overlap(ball, middleSensor, () => {
+		if (canScore && ball.body.velocity.y > 0) {
+			canScore = false;
+			score += 2;
+			scoreTxt.setText(`Score: ${score}`);
+		}
+	});
+
+	this.physics.add.collider(ball, ground, () => {
+		if (!shot || resetting) return;
+
+		bounceCount++;
+
+		if (bounceCount === 1) {
+			resetting = true;
+			ball.setBounce(0.3);
+
+			this.time.delayedCall(RESET_DELAY, () => {
+				this.tweens.add({
+					targets: ball,
+					alpha: 0,
+					duration: FADE_DURATION,
+					onComplete: () => {
+						ballTween?.stop();
+						ballTween = null;
+						ball.body.setEnable(false);
+						ball.setVelocity(0).setPosition(shootPos.x, releaseY).setAlpha(1);
+
+						shot = resetting = false;
+						canScore = false;
+
+						ballTween = this.tweens.add({
+							targets: ball,
+							y: releaseY + 100 * scaleFactor,
+							yoyo: true,
+							duration: 600,
+							repeat: -1,
+							ease: "Sine.easeInOut",
+						});
+					},
+				});
+			});
+		}
+	});
 }
 
 /* ───────── update ───────── */
-function update(this: Phaser.Scene) {
-  const { width: W, height: H } = this.scale;
-  const stopped =
-    Math.abs(ball.body.velocity.x) < 0.05 &&
-    Math.abs(ball.body.velocity.y) < 0.05 &&
-    ball.y > shootPos.y - 50;
+function update(this: any) {
+	// Early return if no shot in progress
+	if (!shot) return;
 
-      if (shot && (ball.y > H + 60 || ball.x < -60 || ball.x > W + 60 || stopped)) {
-      shot = false;
-      ball.body.setEnable(false);
-      ball.setPosition(shootPos.x, releaseY);
-      
-      // Always create a new tween instead of trying to restart
-      ballTween = this.tweens.add({
-        targets: ball,
-        y: releaseY + 100,
-        yoyo: true,
-        duration: 600,
-        repeat: -1,
-        ease: "Sine.easeInOut",
-      });
-    }
+	const { width: W, height: H } = this.scale;
+	
+	// Only check bounds if ball is way out
+	if (ball.y > H + 200 || ball.x < -200 || ball.x > W + 200) {
+		ballTween?.stop();
+		ballTween = null;
+		ball.body.setEnable(false);
+		ball.setVelocity(0).setPosition(shootPos.x, releaseY).setAlpha(1);
+		shot = resetting = canScore = false;
+
+		ballTween = this.tweens.add({
+			targets: ball,
+			y: releaseY + 100 * scaleFactor,
+			yoyo: true,
+			duration: 600,
+			repeat: -1,
+			ease: "Sine.easeInOut",
+		});
+	}
 }
 
+/* ───────── hoop helper ───────── */
+function buildHoop(scene: any, x: number, y: number, f: number) {
+	const IRON = 10 * f,
+		INNER = 150 * f,
+		HALF = INNER / 2;
 
-/* ───────── hoop helper (Realistic basketball hoop) ───────── */
-function buildHoop(scene: Phaser.Scene, x: number, y: number) {
-  const IRON = 10 * scaleRatio;          // rim thickness (scaled)
-  const INNER = 150 * scaleRatio;        // clear opening (scaled)
-  const HALF = INNER / 2;
+	const irons = scene.physics.add.staticGroup();
+	irons.create(x - HALF, y, undefined).setCircle(IRON);
+	irons.create(x + HALF, y, undefined).setCircle(IRON);
 
-  /* solid left / right irons (tiny circles) */
-  const irons = scene.physics.add.staticGroup();
-  irons.create(x - HALF, y, undefined).setCircle(IRON).setOrigin(0.5);
-  irons.create(x + HALF, y, undefined).setCircle(IRON).setOrigin(0.5);
+	const front = scene.add.zone(x, y, INNER - IRON * 2, IRON);
+	const middle = scene.add.zone(x, y + IRON, INNER - IRON * 2, 4);
+	const score = scene.add.zone(x, y + IRON + 15 * f, INNER - 16 * f, 6);
+	scene.physics.add.existing(front, true);
+	scene.physics.add.existing(middle, true);
+	scene.physics.add.existing(score, true);
 
-  /* front‑rim strip — SENSOR, not collider */
-  const frontSensor = scene.add.zone(x, y, INNER - IRON * 2, IRON);
-  scene.physics.add.existing(frontSensor, true);
+	scene.add
+		.image(x + 50 * f, y, "backboard")
+		.setOrigin(0.615, 0.25)
+		.setScale(0.5 * f);
 
-  /* middle hoop sensor - detects when ball goes through the rim */
-  const middleSensor = scene.add.zone(x, y + IRON + 8, INNER - IRON * 2, 4);
-  scene.physics.add.existing(middleSensor, true);
+	scene.add.ellipse(x, y, INNER + IRON, IRON, 0xff6600).setStrokeStyle(2 * f, 0xcc5500);
+	scene.add.ellipse(x, y, INNER - 1, IRON - 1, 0xff6600).setStrokeStyle(1, 0xcc5500);
 
-  /* score strip much lower, also sensor */
-  const scoreSensor = scene.add.zone(x, y + IRON + 15, INNER - 16, 6);
-  scene.physics.add.existing(scoreSensor, true);
-
-  /* Backboard asset */
-  const backboard = scene.add.image(x + 50, y, "backboard");
-  backboard.setOrigin(0.615, 0.25);
-  backboard.setScale(0.75 * scaleRatio); // Scale backboard based on device
-  
-  /* Rim with realistic details */
-  const rim = scene.add.ellipse(x, y, INNER + IRON, IRON, 0xff6600);
-  rim.setStrokeStyle(3, 0xcc5500);
-  
-  // Rim inner edge (thicker rim effect)
-  const rimInner = scene.add.ellipse(x, y, INNER - 1, IRON - 1, 0xff6600);
-  rimInner.setStrokeStyle(1, 0xcc5500);
-  
-  // Rim mounting brackets
-  const bracket = scene.add.graphics();
-  bracket.lineStyle(2, 0x444444);
-  
-  // Left bracket
-  bracket.lineBetween(x + 50, y, x + 20, y);
-  bracket.lineBetween(x + 20, y, x + 20, y - 6);
-  bracket.lineBetween(x + 20, y - 6, x + 17, y - 6);
-  bracket.lineBetween(x + 17, y - 6, x + 17, y + 6);
-  bracket.lineBetween(x + 17, y + 6, x + 20, y + 6);
-  bracket.lineBetween(x + 20, y + 6, x + 20, y);
-  
-  // Right bracket
-  bracket.lineBetween(x + 50, y, x + 20, y);
-  bracket.lineBetween(x + 20, y, x + 20, y - 6);
-  bracket.lineBetween(x + 20, y - 6, x + 17, y - 6);
-  bracket.lineBetween(x + 17, y - 6, x + 17, y + 6);
-  bracket.lineBetween(x + 17, y + 6, x + 20, y + 6);
-  bracket.lineBetween(x + 20, y + 6, x + 20, y);
-
-  return { irons, frontSensor, middleSensor, scoreSensor, rimTop: y };
+	return {
+		irons,
+		frontSensor: front,
+		middleSensor: middle,
+		scoreSensor: score,
+		rimTop: y,
+	};
 }
 
 /* ───────── trajectory preview ───────── */
 function drawTraj(this: any, dx: number, dy: number) {
-  traj.clear();
-  const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-  const power = Math.min(distance * 0.25, 1200);
+	traj.clear();
 
-  const vx0 = (dx / distance) * power;
-  const vy0 = (-dy / distance) * power * 1.1;
+	const dist = Math.max(Math.hypot(dx, dy), 1);
+	const power = Math.min(dist * 0.25, 1200);
 
-  const maxDots = 20;
-  const dt = 1 / 60;
-  const gravity = 350;
+	let vx = (dx / dist) * power;
+	let vy = (-dy / dist) * power * 1.1;
+	let x = ball.x,
+		y = ball.y;
 
-  let x = ball.x;
-  let y = ball.y;
-  let vx = vx0;
-  let vy = vy0;
+	const dt = 1 / 60,
+		g = 350,
+		dots = 20;
 
-  for (let i = 0; i < maxDots; i++) {
-    vx *= 0.995;
-    vy += gravity * dt;
-    x += vx * dt * 60;
-    y += vy * dt * 60;
+	for (let i = 0; i < dots; i++) {
+		vx *= 0.995;
+		vy += g * dt;
+		x += vx * dt * 60;
+		y += vy * dt * 60;
 
-    const dotSize = 3;
-    let color = 0x00ff00;
-    if (i > maxDots * 0.5) color = 0xffff00;
-    if (i > maxDots * 0.8) color = 0xff6600;
+		traj.fillStyle(
+			i > dots * 0.8 ? 0xff6600 : i > dots * 0.5 ? 0xffff00 : 0x00ff00
+		);
+		traj.fillCircle(x, y, 3);
 
-    traj.fillStyle(color);
-    traj.fillCircle(x, y, dotSize);
-
-    const { width: W, height: H } = this.scale;
-    if (x < -50 || x > W + 50 || y > H + 50) break;
-  }
+		const { width: W, height: H } = this.scale;
+		if (y > H || x < 0 || x > W) break;
+	}
 }
