@@ -112,7 +112,7 @@ class BasketballGame {
         const playerScale = (H * 0.25) / 477;
         this.player = this.add
           .sprite(this.shootPos.x, this.shootPos.y, "player")
-          .setOrigin(0.75)
+          .setOrigin(0.8)
           .setScale(playerScale)
           .play("dribble");
 
@@ -133,15 +133,17 @@ class BasketballGame {
           .setScale(0.35 * this.scaleFactor);
 
         // Ball (create after backboard but before rim)
-        const ballSize = H * 0.08;
+        const ballSize = H * 0.125;
         const handOffset = -75 * playerScale;
         this.ball = this.physics.add
           .image(this.shootPos.x, this.shootPos.y + handOffset, "ball")
           .setDisplaySize(ballSize, ballSize)
-          .setCircle(ballSize / 2)
+          // .setOrigin(0.5, 0.5)
+          .setCircle(ballSize, 175,175)
           .setBounce(0.65)
-          .setImmovable(true)
+          // .setImmovable(true)
           .setGravityY(1000);
+
         this.releaseY = this.ball.y;
 
         this.ball.body.setEnable(false);
@@ -163,7 +165,7 @@ class BasketballGame {
         this.rimY = hoopData.rimTop;
 
         // Ground (create after hoop)
-        this.ground = this.add.rectangle(W / 2, H + 10, W, 20).setOrigin(0.5);
+        this.ground = this.add.rectangle(W / 2, H - 50, W, 20).setOrigin(0.5);
         this.physics.add.existing(this.ground, true);
 
         // Input handlers
@@ -208,7 +210,7 @@ class BasketballGame {
           const dx = p.x - this.start.x;
           const dy = this.start.y - p.y;
           const dist = Math.max(Math.hypot(dx, dy), 1);
-          const power = Math.min(dist * 325, 1200);
+          const power = Math.min(dist * 255, 1100);
 
           this.ball.body.setAllowGravity(true);
           this.ball.setImmovable(false);
@@ -355,10 +357,10 @@ class BasketballGame {
         this.traj.clear();
 
         const dist = Math.max(Math.hypot(dx, dy), 1);
-        const power = Math.min(dist * 0.25, 1200);
+        const power = Math.min(dist * 0.2, 1000);
 
         let vx = (dx / dist) * power;
-        let vy = (-dy / dist) * power * 1.1;
+        let vy = (-dy / dist) * power;
         let x = this.ball.x;
         let y = this.ball.y;
 
@@ -399,7 +401,7 @@ class BasketballGame {
       },
       physics: {
         default: "arcade",
-        arcade: { gravity: { x: 0, y: 250 } },
+        arcade: { gravity: { x: 0, y: 250 }, debug: true },
       },
       render: {
         pixelArt: false,
