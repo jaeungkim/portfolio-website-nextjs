@@ -19,7 +19,7 @@ class BasketballGame {
 
       const script = document.createElement("script");
       script.src =
-        "https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js";
+        "https://cdn.jsdelivr.net/npm/phaser@3.87.0/dist/phaser.min.js";
       script.onload = () => resolve();
       script.onerror = () => {
         console.error("Failed to load Phaser from CDN");
@@ -157,11 +157,10 @@ class BasketballGame {
         });
 
         // Hoop & Rim (create last so they appear in front of ball)
-        const hoopData = this.buildHoop(W * 0.71, H * 0.375);
+        const hoopData = this.buildHoop(W * 0.71, H * 0.42);
         this.irons = hoopData.irons;
-        this.frontSensor = hoopData.frontSensor;
         this.middleSensor = hoopData.middleSensor;
-        this.scoreSensor = hoopData.scoreSensor;
+        // this.scoreSensor = hoopData.scoreSensor;
         this.rimY = hoopData.rimTop;
 
         // Ground (create after hoop)
@@ -210,7 +209,7 @@ class BasketballGame {
           const dx = p.x - this.start.x;
           const dy = this.start.y - p.y;
           const dist = Math.max(Math.hypot(dx, dy), 1);
-          const power = Math.min(dist * 255, 1100);
+          const power = Math.min(dist * 7, 1100); // Unified scaling factor and max
 
           this.ball.body.setAllowGravity(true);
           this.ball.setImmovable(false);
@@ -224,20 +223,12 @@ class BasketballGame {
       setupCollisions() {
         this.physics.add.collider(this.ball, this.irons);
 
-        this.physics.add.overlap(this.ball, this.frontSensor, () => {
-          if (this.ball.body.velocity.y > 0 && this.ball.y < this.rimY) {
-            this.ball.setVelocity(
-              this.ball.body.velocity.x * 0.8,
-              -this.ball.body.velocity.y * 0.6
-            );
-          }
-        });
-
         this.physics.add.overlap(this.ball, this.middleSensor, () => {
           if (this.canScore && this.ball.body.velocity.y > 0) {
             this.canScore = false;
             this.score += 2;
             this.scoreTxt.setText(`Score: ${this.score}`);
+            this.animateSwish(); // Animate swish on score
           }
         });
 
@@ -318,39 +309,237 @@ class BasketballGame {
 
       buildHoop(x, y) {
         const f = this.scaleFactor;
-        const IRON = 10 * f;
-        const INNER = 100 * f;
-        const HALF = INNER / 2;
+        const RIM_RADIUS = 8 * f; // Larger rim thickness for better visibility
+        const HOOP_WIDTH = 100 * f;
+        const SENSOR_THICKNESS = 4 * f;
+        const HALF_WIDTH = HOOP_WIDTH / 2;
 
+        // Create two rim circles using graphics objects for proper circular collision
         const irons = this.physics.add.staticGroup();
-        irons.create(x - HALF, y, undefined).setCircle(IRON);
-        irons.create(x + HALF, y, undefined).setCircle(IRON);
+        
+        // Create left rim circle (transparent)
+        const leftRimGraphics = this.add.circle(x - HALF_WIDTH, y, RIM_RADIUS, 0x000000, 0);
+        this.physics.add.existing(leftRimGraphics, true);
+        leftRimGraphics.body.setCircle(RIM_RADIUS);
+        irons.add(leftRimGraphics);
+        
+        // Create right rim circle (transparent)
+        const rightRimGraphics = this.add.circle(x + HALF_WIDTH, y, RIM_RADIUS, 0x000000, 0);
+        this.physics.add.existing(rightRimGraphics, true);
+        rightRimGraphics.body.setCircle(RIM_RADIUS);
+        irons.add(rightRimGraphics);
 
-        // Create invisible collision sensors using physics bodies only
-        const front = this.physics.add.staticGroup();
-        const middle = this.physics.add.staticGroup();
-        const score = this.physics.add.staticGroup();
+        // Create one middle sensor for the hoop opening (transparent, full width)
+        const middleSensor = this.physics.add.staticGroup();
+        const middle = middleSensor.create(x, y + RIM_RADIUS, undefined);
+        middle.setSize(HOOP_WIDTH - 2 * RIM_RADIUS, SENSOR_THICKNESS);
+        middle.setVisible(false); // Make it invisible
 
-        front.create(x, y, undefined).setSize(INNER - IRON * 2, IRON);
-        middle.create(x, y + IRON, undefined).setSize(INNER - IRON * 2, 4);
-        score
-          .create(x, y + IRON + 15 * f, undefined)
-          .setSize(INNER - 16 * f, 6);
+        // Create realistic basketball net
+        this.createRealisticNet(x, y, HOOP_WIDTH - 2 * RIM_RADIUS);
 
-        this.add
-          .ellipse(x, y, INNER + IRON, IRON, 0xff6600)
-          .setStrokeStyle(2 * f, 0xcc5500);
-        this.add
-          .ellipse(x, y, INNER - 1, IRON - 1, 0xff6600)
-          .setStrokeStyle(1, 0xcc5500);
+        // Create realistic hoop structure
+        this.createHoopStructure(x, y, HOOP_WIDTH, RIM_RADIUS);
 
         return {
           irons,
-          frontSensor: front,
-          middleSensor: middle,
-          scoreSensor: score,
+          middleSensor: middleSensor,
           rimTop: y,
         };
+      }
+
+      createRealisticNet(x, y, width) {
+        const f = this.scaleFactor;
+        const netHeight = 40 * f;
+        const netWidth = width;
+        const lineSpacing = 3 * f;
+        const netColor = 0x424242;
+        const netAlpha = 0.9;
+
+        // Create net container positioned exactly at the rim
+        this.net = this.add.container(x, y);
+
+        // Draw vertical net lines starting from rim level
+        const numLines = Math.floor(netWidth / lineSpacing);
+        this.netLines = [];
+
+        for (let i = 0; i <= numLines; i++) {
+          const lineX = (i * lineSpacing) - (netWidth / 2);
+          const line = this.add.graphics();
+          line.lineStyle(1.5 * f, netColor, netAlpha);
+          
+          // Draw net line starting exactly from rim level
+          line.beginPath();
+          line.moveTo(lineX, 0);
+          
+          // Create realistic curve for each line (narrowing at bottom)
+          for (let j = 1; j <= 8; j++) {
+            const yPos = (j / 8) * netHeight;
+            const progress = j / 8;
+            // Curve that narrows the net at the bottom
+            const curveOffset = Math.sin(progress * Math.PI) * 2 * f;
+            const narrowing = progress * 0.4;
+            const adjustedX = lineX * (1 - narrowing) + curveOffset;
+            line.lineTo(adjustedX, yPos);
+          }
+          
+          line.strokePath();
+          this.net.add(line);
+          this.netLines.push(line);
+        }
+
+        // Add horizontal lines for net texture
+        const horizontalLines = 6;
+        for (let i = 1; i <= horizontalLines; i++) {
+          const lineY = (i / horizontalLines) * netHeight;
+          const progress = i / horizontalLines;
+          const lineWidth = netWidth * (1 - progress * 0.4);
+          
+          const line = this.add.graphics();
+          line.lineStyle(0.8 * f, netColor, netAlpha * 0.7);
+          line.beginPath();
+          line.moveTo(-lineWidth / 2, lineY);
+          line.lineTo(lineWidth / 2, lineY);
+          line.strokePath();
+          this.net.add(line);
+        }
+
+        // Add net bottom with realistic gathering
+        const bottomLine = this.add.graphics();
+        bottomLine.lineStyle(2 * f, netColor, netAlpha);
+        bottomLine.beginPath();
+        bottomLine.moveTo(-netWidth * 0.15, netHeight);
+        bottomLine.lineTo(netWidth * 0.15, netHeight);
+        bottomLine.strokePath();
+        this.net.add(bottomLine);
+      }
+
+      createHoopStructure(x, y, width, rimRadius) {
+        const f = this.scaleFactor;
+        
+        // Create rim with slight curves on sides (like real basketball rim)
+        const rimGraphics = this.add.graphics();
+        rimGraphics.lineStyle(4 * f, 0xff6600, 1);
+        rimGraphics.beginPath();
+        
+        // Start from left side with slight curve
+        rimGraphics.moveTo(x - width/2, y);
+        
+        // Draw flat middle section
+        rimGraphics.lineTo(x + width/2, y);
+        
+        rimGraphics.strokePath();
+      }
+
+      animateSwish() {
+        if (!this.net || !this.netLines) return;
+
+        // Get ball position and velocity for realistic rim-based animation
+        const ballX = this.ball.x;
+        const ballY = this.ball.y;
+        const ballVelX = this.ball.body.velocity.x;
+        const ballVelY = this.ball.body.velocity.y;
+        const ballSpeed = Math.sqrt(ballVelX * ballVelX + ballVelY * ballVelY);
+
+        // Calculate where ball hits the rim (horizontal position)
+        const rimX = this.net.x;
+        const rimY = this.net.y;
+        const rimWidth = this.netLines.length * 3 * this.scaleFactor;
+        const rimLeft = rimX - rimWidth / 2;
+        const rimRight = rimX + rimWidth / 2;
+        
+        // Determine rim contact point
+        let rimContactX = ballX;
+        if (ballX < rimLeft) rimContactX = rimLeft;
+        if (ballX > rimRight) rimContactX = rimRight;
+        
+        // Calculate distance from rim contact point
+        const distanceFromContact = Math.abs(ballX - rimContactX);
+        const maxInfluence = 30 * this.scaleFactor;
+
+        // Realistic net animation based on ball trajectory and rim contact
+        this.netLines.forEach((line, index) => {
+          const lineX = rimX + (index * 3 * this.scaleFactor) - (this.netLines.length * 1.5 * this.scaleFactor);
+          const distanceFromLine = Math.abs(rimContactX - lineX);
+          
+          if (distanceFromLine < maxInfluence) {
+            // Calculate realistic movement based on ball trajectory
+            const influence = 1 - (distanceFromLine / maxInfluence);
+            const baseForce = ballSpeed * 0.005 * influence;
+            
+            // Horizontal movement based on ball direction
+            const horizontalForce = (ballVelX / ballSpeed) * baseForce * 3;
+            
+            // Vertical movement based on ball hitting rim
+            const verticalForce = Math.abs(ballVelY / ballSpeed) * baseForce * 2;
+            
+            // Apply realistic cloth movement
+            this.tweens.add({
+              targets: line,
+              x: line.x + horizontalForce,
+              y: line.y + verticalForce,
+              duration: 120,
+              ease: 'Sine.easeOut',
+              onComplete: () => {
+                // Spring back with realistic bounce
+                this.tweens.add({
+                  targets: line,
+                  x: line.x - horizontalForce * 0.6,
+                  y: line.y - verticalForce * 0.4,
+                  duration: 180,
+                  ease: 'Sine.easeInOut',
+                  onComplete: () => {
+                    // Final settling with slight oscillation
+                    this.tweens.add({
+                      targets: line,
+                      x: line.x + horizontalForce * 0.2,
+                      y: line.y + verticalForce * 0.1,
+                      duration: 150,
+                      ease: 'Sine.easeInOut',
+                      onComplete: () => {
+                        // Last settling motion
+                        this.tweens.add({
+                          targets: line,
+                          x: line.x - horizontalForce * 0.1,
+                          y: line.y - verticalForce * 0.05,
+                          duration: 100,
+                          ease: 'Sine.easeInOut'
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+
+        // Overall net movement based on ball impact
+        const netInfluence = 1 - (distanceFromContact / (rimWidth / 2));
+        const overallPushX = (ballVelX / ballSpeed) * netInfluence * 1.5;
+        
+        this.tweens.add({
+          targets: this.net,
+          x: this.net.x + overallPushX,
+          duration: 150,
+          ease: 'Sine.easeOut',
+          onComplete: () => {
+            this.tweens.add({
+              targets: this.net,
+              x: this.net.x - overallPushX * 0.5,
+              duration: 200,
+              ease: 'Sine.easeInOut',
+              onComplete: () => {
+                this.tweens.add({
+                  targets: this.net,
+                  x: this.net.x + overallPushX * 0.2,
+                  duration: 150,
+                  ease: 'Sine.easeInOut'
+                });
+              }
+            });
+          }
+        });
       }
 
       drawTraj(dx, dy) {
@@ -401,7 +590,7 @@ class BasketballGame {
       },
       physics: {
         default: "arcade",
-        arcade: { gravity: { x: 0, y: 250 }, debug: true },
+        arcade: { gravity: { x: 0, y: 250 }, debug: false },
       },
       render: {
         pixelArt: false,
