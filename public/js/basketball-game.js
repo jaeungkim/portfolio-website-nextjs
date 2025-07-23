@@ -127,10 +127,21 @@ class BasketballGame {
         // Backboard (create first so it appears behind everything)
         const backboardX = W * 0.7 + 50 * this.scaleFactor;
         const backboardY = H * 0.27;
-        this.add
+        const backboardScale = 0.35 * this.scaleFactor;
+        const backboardImage = this.add
           .image(backboardX, backboardY, "backboard")
           .setOrigin(0.615, 0.25)
-          .setScale(0.35 * this.scaleFactor);
+          .setScale(backboardScale);
+        
+        // Calculate backboard's actual dimensions and position hoop consistently
+        const backboardWidth = backboardImage.width * backboardScale;
+        const backboardHeight = backboardImage.height * backboardScale;
+        const backboardLeftEdge = backboardX - (backboardWidth * 0.615); // Account for origin
+        const backboardTopEdge = backboardY - (backboardHeight * 0.25); // Account for origin
+        
+        // Position hoop at 1/3 of backboard width and consistent height relative to backboard
+        const hoopX = backboardLeftEdge + (backboardWidth / 2);
+        const hoopY = backboardTopEdge + (backboardHeight * 0.55); // 60% down from top of backboard
 
         // Ball (create after backboard but before rim)
         const ballSize = H * 0.125;
@@ -157,7 +168,7 @@ class BasketballGame {
         });
 
         // Hoop & Rim (create last so they appear in front of ball)
-        const hoopData = this.buildHoop(W * 0.71, H * 0.42);
+        const hoopData = this.buildHoop(hoopX, hoopY);
         this.irons = hoopData.irons;
         this.middleSensor = hoopData.middleSensor;
         // this.scoreSensor = hoopData.scoreSensor;
@@ -309,7 +320,7 @@ class BasketballGame {
 
       buildHoop(x, y) {
         const f = this.scaleFactor;
-        const RIM_RADIUS = 8 * f; // Larger rim thickness for better visibility
+        const RIM_RADIUS = 8 * f;
         const HOOP_WIDTH = 100 * f;
         const SENSOR_THICKNESS = 4 * f;
         const HALF_WIDTH = HOOP_WIDTH / 2;
@@ -333,19 +344,34 @@ class BasketballGame {
         const middleSensor = this.physics.add.staticGroup();
         const middle = middleSensor.create(x, y + RIM_RADIUS, undefined);
         middle.setSize(HOOP_WIDTH - 2 * RIM_RADIUS, SENSOR_THICKNESS);
-        middle.setVisible(false); // Make it invisible
+        middle.setVisible(false);
 
-        // Create realistic basketball net
-        this.createRealisticNet(x, y, HOOP_WIDTH - 2 * RIM_RADIUS);
-
-        // Create realistic hoop structure
-        this.createHoopStructure(x, y, HOOP_WIDTH, RIM_RADIUS);
+        // Create rim and net at the same base position
+        const rimY = y;
+        this.createHoopStructure(x, rimY, HOOP_WIDTH, RIM_RADIUS);
+        this.createRealisticNet(x, rimY, HOOP_WIDTH - 2 * RIM_RADIUS);
 
         return {
           irons,
           middleSensor: middleSensor,
-          rimTop: y,
+          rimTop: rimY,
         };
+      }
+
+      createHoopStructure(x, y, width, rimRadius) {
+        const f = this.scaleFactor;
+        const rimThickness = 4.8 * f; // 1.2 times thicker (4 * 1.2 = 4.8)
+        
+        // Create simple linear basketball rim (no curves)
+        const rimGraphics = this.add.graphics();
+        rimGraphics.lineStyle(rimThickness, 0xff6600, 1);
+        rimGraphics.beginPath();
+        
+        // Draw a simple straight horizontal line
+        rimGraphics.moveTo(x - width/2, y);
+        rimGraphics.lineTo(x + width/2, y);
+        
+        rimGraphics.strokePath();
       }
 
       createRealisticNet(x, y, width) {
@@ -356,7 +382,7 @@ class BasketballGame {
         const netColor = 0x424242;
         const netAlpha = 0.9;
 
-        // Create net container positioned exactly at the rim
+        // Create net container positioned exactly at the rim level
         this.net = this.add.container(x, y);
 
         // Draw vertical net lines starting from rim level
@@ -412,23 +438,6 @@ class BasketballGame {
         bottomLine.lineTo(netWidth * 0.15, netHeight);
         bottomLine.strokePath();
         this.net.add(bottomLine);
-      }
-
-      createHoopStructure(x, y, width, rimRadius) {
-        const f = this.scaleFactor;
-        
-        // Create rim with slight curves on sides (like real basketball rim)
-        const rimGraphics = this.add.graphics();
-        rimGraphics.lineStyle(4 * f, 0xff6600, 1);
-        rimGraphics.beginPath();
-        
-        // Start from left side with slight curve
-        rimGraphics.moveTo(x - width/2, y);
-        
-        // Draw flat middle section
-        rimGraphics.lineTo(x + width/2, y);
-        
-        rimGraphics.strokePath();
       }
 
       animateSwish() {
