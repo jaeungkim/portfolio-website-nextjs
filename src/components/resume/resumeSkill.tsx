@@ -4,8 +4,8 @@ const skillCategories = [
   {
     title: "Frontend",
     skills: [
-      "React",
       "Next.js",
+      "React",
       "React Query",
       "Recoil",
       "Zustand",

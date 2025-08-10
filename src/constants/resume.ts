@@ -4,6 +4,7 @@ export const experiences = [
     start: "2024-01-08",
     end: null,
     skills: [
+      "Next.js",
       "React",
       "TypeScript",
       "Recoil",
