@@ -20,6 +20,36 @@
         "NIPA(정보통신산업진흥원) 주관 GSMP 프로그램에 선정되어 워싱턴 D.C. 현지 행사 참가 → 팀 대표로서 글로벌 파트너 대상 기술 소개 및 협업 기회 발굴"
       ],
       "projects": {
+        "ndx_cloud": {
+          "title": "NDX CLOUD",
+          "description": "드론·지상 촬영 이미지를 사진측량 기반으로 정사영상 지도, 3D 모델, 포인트클라우드를 생성·시각화하는 클라우드 플랫폼",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-KCLOUD-24bc3276c40c80b4afcef5f74478cbb5",
+          "tasks": {
+            "organization_management": {
+              "title": "조직 및 회원 관리 시스템",
+              "subtasks": [
+                "조직/프로젝트/사이트/데이터셋 계층 구조 및 권한 매트릭스 설계",
+                "회원 초대, 역할 변경, 멤버 제거 등 조직 관리 UI 구현",
+                "다중 조직 전환 및 권한 기반 UI 제어 기능 개발"
+              ]
+            },
+            "project_invitation": {
+              "title": "프로젝트 및 초대 관리",
+              "subtasks": [
+                "프로젝트 생성/수정/삭제 및 멤버 초대 기능 구현",
+                "초대 만료·재발송 처리 및 실시간 상태 표시 기능 개발",
+                "OWNER/EDITOR/VIEWER 권한별 접근 제어 적용"
+              ]
+            },
+            "admin_web": {
+              "title": "운영팀용 Admin 백오피스 구축",
+              "subtasks": [
+                "기업 회원가입 승인/반려 기능 구현",
+                "PGP(크레딧) 충전/사용 관리 기능 개발"
+              ]
+            }
+          }
+        },
         "ndxpro_pmis": {
           "title": "NDXPRO PMIS",
           "description": "프로젝트 전체적인 관리를 통합한 웹 솔루션",
