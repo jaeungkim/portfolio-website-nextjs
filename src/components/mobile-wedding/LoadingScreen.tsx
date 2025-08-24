@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { motion } from "motion/react";
 
 gsap.registerPlugin(DrawSVGPlugin);
 
@@ -18,8 +19,8 @@ const ANIMATION_CONFIG = {
 } as const;
 
 const SVG_ASSETS = {
-  welcome: "/images/welcome.svg",
-  wedding: "/images/to-our-wedding.svg",
+  welcome: "/images/mobile-wedding/loading/welcome.svg",
+  wedding: "/images/mobile-wedding/loading/to-our-wedding.svg",
 } as const;
 
 type Props = { onLoadingComplete: () => void };
@@ -119,7 +120,11 @@ export default function LoadingScreen({ onLoadingComplete }: Props) {
 
   if (loadingError) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-red-50">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-red-50"
+      >
         <div className="text-center text-red-800">
           <p className="text-lg font-semibold mb-2">Loading Error</p>
           <p className="text-sm opacity-75">{loadingError}</p>
@@ -130,19 +135,23 @@ export default function LoadingScreen({ onLoadingComplete }: Props) {
             Retry
           </button>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 1.1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="fixed inset-0 z-50 flex items-center justify-center"
     >
       <div className="text-center select-none max-w-[280px] mx-auto">
         <div ref={welcomeRef} className="mb-8 inline-block" />
         <div ref={weddingRef} className="inline-block" />
       </div>
-    </div>
+    </motion.div>
   );
 }
