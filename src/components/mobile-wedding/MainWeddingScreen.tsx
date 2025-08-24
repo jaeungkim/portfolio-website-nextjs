@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
@@ -41,19 +41,48 @@ const heroVariants = {
   },
 };
 
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" as const },
+  },
+};
+
+const sections = [
+  {
+    title: "Join Us in Celebration",
+    content: "We're excited to share this special day with you. Come celebrate love, laughter, and new beginnings as we start our journey together.",
+    bgColor: "bg-white",
+  },
+  {
+    title: "The Perfect Day",
+    content: "Every detail has been carefully planned to create memories that will last a lifetime. From the flowers to the music, everything tells our story.",
+    bgColor: "bg-gray-50",
+  },
+  {
+    title: "RSVP & Details",
+    content: "Please let us know if you can attend. We can't wait to celebrate this beautiful moment with our family and friends.",
+    bgColor: "bg-white",
+  },
+  {
+    title: "Love & Gratitude",
+    content: "Thank you for being part of our special day. Your presence and well wishes mean the world to us as we begin this new chapter.",
+    bgColor: "bg-gray-50",
+  },
+];
+
 export default function MainWeddingScreen() {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    sectionRefs.current.forEach((section, index) => {
+  const setupScrollAnimations = useCallback(() => {
+    sectionRefs.current.forEach((section) => {
       if (!section) return;
 
       gsap.fromTo(
         section,
-        {
-          y: 100,
-          opacity: 0,
-        },
+        { y: 100, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -68,9 +97,12 @@ export default function MainWeddingScreen() {
         }
       );
     });
-
-    return () => ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
+
+  useEffect(() => {
+    setupScrollAnimations();
+    return () => ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  }, [setupScrollAnimations]);
 
   return (
     <motion.div
@@ -87,23 +119,19 @@ export default function MainWeddingScreen() {
       >
         <Image
           src="/images/mobile-wedding/gallery/main23.jpeg"
-          alt="Main"
+          alt="Wedding Hero"
           fill
           className="object-cover"
           priority
+          sizes="100vw"
         />
 
-        {/* Text Overlay - Bottom positioned with elegant fonts */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end justify-center pb-20">
           <div className="text-center text-white px-6 max-w-3xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.4,
-                duration: 0.8,
-                ease: "easeOut" as const,
-              }}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
               className="mb-6"
             >
               <h1 className="text-3xl md:text-4xl font-light mb-3 tracking-[0.2em] uppercase">
@@ -115,13 +143,10 @@ export default function MainWeddingScreen() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.6,
-                duration: 0.8,
-                ease: "easeOut" as const,
-              }}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2 }}
               className="space-y-2"
             >
               <p className="text-sm md:text-base font-light italic leading-relaxed tracking-wide">
@@ -136,70 +161,23 @@ export default function MainWeddingScreen() {
       </motion.div>
 
       <div className="bg-white">
-        <motion.div
-          ref={(el) => {
-            sectionRefs.current[0] = el;
-          }}
-          className="py-20 px-6 text-center"
-          variants={sectionVariants}
-        >
-          <h2 className="text-3xl font-serif text-gray-800 mb-4">
-            Join Us in Celebration
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We're excited to share this special day with you. Come celebrate
-            love, laughter, and new beginnings as we start our journey together.
-          </p>
-        </motion.div>
-
-        <motion.div
-          ref={(el) => {
-            sectionRefs.current[1] = el;
-          }}
-          className="py-20 px-6 bg-gray-50 text-center"
-          variants={sectionVariants}
-        >
-          <h2 className="text-3xl font-serif text-gray-800 mb-4">
-            The Perfect Day
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Every detail has been carefully planned to create memories that will
-            last a lifetime. From the flowers to the music, everything tells our
-            story.
-          </p>
-        </motion.div>
-
-        <motion.div
-          ref={(el) => {
-            sectionRefs.current[2] = el;
-          }}
-          className="py-20 px-6 text-center"
-          variants={sectionVariants}
-        >
-          <h2 className="text-3xl font-serif text-gray-800 mb-4">
-            RSVP & Details
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Please let us know if you can attend. We can't wait to celebrate
-            this beautiful moment with our family and friends.
-          </p>
-        </motion.div>
-
-        <motion.div
-          ref={(el) => {
-            sectionRefs.current[3] = el;
-          }}
-          className="py-20 px-6 bg-gray-50 text-center"
-          variants={sectionVariants}
-        >
-          <h2 className="text-3xl font-serif text-gray-800 mb-4">
-            Love & Gratitude
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Thank you for being part of our special day. Your presence and well
-            wishes mean the world to us as we begin this new chapter.
-          </p>
-        </motion.div>
+        {sections.map((section, index) => (
+          <motion.div
+            key={section.title}
+            ref={(el) => {
+              sectionRefs.current[index] = el;
+            }}
+            className={`py-20 px-6 text-center ${section.bgColor}`}
+            variants={sectionVariants}
+          >
+            <h2 className="text-3xl font-serif text-gray-800 mb-4">
+              {section.title}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {section.content}
+            </p>
+          </motion.div>
+        ))}
       </div>
     </motion.div>
   );

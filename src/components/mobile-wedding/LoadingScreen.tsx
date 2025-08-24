@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-import { motion } from "motion/react";
 
 gsap.registerPlugin(DrawSVGPlugin);
 
@@ -29,57 +28,50 @@ export default function LoadingScreen({ onLoadingComplete }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const welcomeRef = useRef<HTMLDivElement>(null);
   const weddingRef = useRef<HTMLDivElement>(null);
-  const [svgsLoaded, setSvgsLoaded] = useState(false);
-  const [loadingError, setLoadingError] = useState<string | null>(null);
+  const [isReady, setIsReady] = useState(false);
+
+  const loadSvg = useCallback(async (url: string): Promise<string> => {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to load SVG: ${response.status}`);
+    }
+    return response.text();
+  }, []);
 
   useEffect(() => {
-    const preloadSvgs = async () => {
+    const initializeSvgs = async () => {
       try {
         const [welcomeSvg, weddingSvg] = await Promise.all([
-          fetch(SVG_ASSETS.welcome).then((r) => {
-            if (!r.ok)
-              throw new Error(`Failed to load welcome SVG: ${r.status}`);
-            return r.text();
-          }),
-          fetch(SVG_ASSETS.wedding).then((r) => {
-            if (!r.ok)
-              throw new Error(`Failed to load wedding SVG: ${r.status}`);
-            return r.text();
-          }),
+          loadSvg(SVG_ASSETS.welcome),
+          loadSvg(SVG_ASSETS.wedding),
         ]);
 
         if (welcomeRef.current && weddingRef.current) {
           welcomeRef.current.innerHTML = welcomeSvg;
           weddingRef.current.innerHTML = weddingSvg;
-          setSvgsLoaded(true);
+          setIsReady(true);
         }
       } catch (error) {
-        console.error("Failed to preload SVG assets:", error);
-        setLoadingError(
-          error instanceof Error ? error.message : "Unknown error"
-        );
+        console.error("SVG loading failed:", error);
         onLoadingComplete();
       }
     };
 
-    preloadSvgs();
-  }, [onLoadingComplete]);
+    initializeSvgs();
+  }, [loadSvg, onLoadingComplete]);
 
   useGSAP(
     () => {
-      if (!svgsLoaded || loadingError) return;
+      if (!isReady) return;
 
       const animatePaths = (svg: SVGSVGElement) => {
         const paths = Array.from(svg.querySelectorAll("path"));
-
+        
         gsap.set(paths, {
           stroke: ANIMATION_CONFIG.paths.stroke,
           strokeWidth: ANIMATION_CONFIG.paths.strokeWidth,
           fill: "none",
-          attr: {
-            "stroke-linecap": "round",
-            "stroke-linejoin": "round",
-          },
+          attr: { "stroke-linecap": "round", "stroke-linejoin": "round" },
           drawSVG: "0% 0%",
         });
 
@@ -108,50 +100,22 @@ export default function LoadingScreen({ onLoadingComplete }: Props) {
 
       [welcome, wedding].forEach(configureSvg);
 
-      const tl = gsap.timeline({ onComplete: onLoadingComplete });
-      tl.add(animatePaths(welcome)).add(animatePaths(wedding));
+      gsap.timeline({ onComplete: onLoadingComplete })
+        .add(animatePaths(welcome))
+        .add(animatePaths(wedding));
     },
-    {
-      scope: containerRef,
-      dependencies: [svgsLoaded, loadingError, onLoadingComplete],
-      revertOnUpdate: true,
-    }
+    { scope: containerRef, dependencies: [isReady, onLoadingComplete] }
   );
 
-  if (loadingError) {
-    return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-red-50"
-      >
-        <div className="text-center text-red-800">
-          <p className="text-lg font-semibold mb-2">Loading Error</p>
-          <p className="text-sm opacity-75">{loadingError}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      </motion.div>
-    );
-  }
-
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 1.1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white"
     >
       <div className="text-center select-none max-w-[280px] mx-auto">
         <div ref={welcomeRef} className="mb-8 inline-block" />
         <div ref={weddingRef} className="inline-block" />
       </div>
-    </motion.div>
+    </div>
   );
 }
