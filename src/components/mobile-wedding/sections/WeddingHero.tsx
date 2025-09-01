@@ -25,7 +25,7 @@ const textVariants = {
 export default function WeddingHero() {
   return (
     <motion.div
-      className="relative h-screen"
+      className="relative h-[90vh]"
       variants={heroVariants}
       initial="hidden"
       animate="visible"

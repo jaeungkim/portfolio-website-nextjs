@@ -15,7 +15,7 @@ const sectionVariants = {
 export default function Introduction() {
   return (
     <motion.div
-      className="h-screen flex flex-col items-center justify-center px-6 text-center bg-gray-50"
+      className="h-[90vh] flex flex-col items-center justify-center px-6 text-center bg-gray-50"
       variants={sectionVariants}
     >
       <h2 className="text-3xl font-serif text-gray-800 mb-8">
