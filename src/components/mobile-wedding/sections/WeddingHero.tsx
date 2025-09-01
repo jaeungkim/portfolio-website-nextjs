@@ -25,13 +25,13 @@ const textVariants = {
 export default function WeddingHero() {
   return (
     <motion.div
-      className="relative h-[90vh]"
+      className="relative h-[90svh]"
       variants={heroVariants}
       initial="hidden"
       animate="visible"
     >
       <Image
-        src="/images/mobile-wedding/gallery/main23.jpeg"
+        src="/images/mobile-wedding/gallery/main24.jpeg"
         alt="Wedding Hero"
         fill
         className="object-cover"
@@ -39,38 +39,36 @@ export default function WeddingHero() {
         sizes="100vw"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end justify-center pb-20">
-        <div className="text-center text-white px-6 max-w-3xl mx-auto">
-          <motion.div
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            className="mb-6"
-          >
-            <h1 className="text-3xl md:text-4xl font-light mb-3 tracking-[0.2em] uppercase">
-              Our Wedding Day
-            </h1>
-            <p className="text-sm md:text-base font-light mb-4 tracking-[0.3em] uppercase">
-              — Sun, May 18th, 2025 —
-            </p>
-          </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent flex items-end justify-center pb-16">
+          <div className="text-center text-white px-6 max-w-2xl mx-auto">
+            <motion.div
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              className="mb-8"
+            >
+              <h1 className="text-2xl md:text-3xl font-light mb-4 tracking-[0.15em]">
+                Our Wedding Day
+              </h1>
+              <div className="w-16 h-px bg-white/60 mx-auto mb-4"></div>
+              <p className="text-sm md:text-base font-light tracking-[0.2em]">
+                — 2025년 5월 18일 일요일 —
+              </p>
+            </motion.div>
 
-          <motion.div
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
-            className="space-y-2"
-          >
-            <p className="text-sm md:text-base font-light italic leading-relaxed tracking-wide">
-              Forever begins with a single step,
-            </p>
-            <p className="text-sm md:text-base font-light italic leading-relaxed tracking-wide">
-              And love guides us every step of the way.
-            </p>
-          </motion.div>
+            <motion.div
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.3 }}
+              className="space-y-3"
+            >
+              <p className="text-sm md:text-base font-light leading-relaxed">
+                "함께 걷는 길, 그 길 위에 우리의 사랑이 피어납니다"
+              </p>
+            </motion.div>
+          </div>
         </div>
-      </div>
     </motion.div>
   );
 }

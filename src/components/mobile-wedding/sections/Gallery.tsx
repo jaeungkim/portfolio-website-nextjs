@@ -34,32 +34,38 @@ const galleryImages = [
 export default function Gallery() {
   return (
     <motion.div
-      className="h-[90vh] flex flex-col items-center justify-center px-6 text-center bg-gray-50"
+      className="h-[90svh] flex flex-col items-center justify-center px-6 text-center bg-gray-50"
       variants={sectionVariants}
     >
-      <h2 className="text-3xl font-serif text-gray-800 mb-8">
-        Our Wedding Gallery
-      </h2>
-      <div className="max-w-2xl mx-auto">
-        <div className="grid grid-cols-1 gap-4">
-          {galleryImages.map((src, index) => (
-            <motion.div
-              key={src}
-              variants={imageVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative h-48 rounded-lg overflow-hidden shadow-lg"
-            >
-              <Image
-                src={src}
-                alt={`Wedding photo ${index + 1}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </motion.div>
-          ))}
+      <div className="text-center space-y-8">
+        <div className="space-y-4">
+          <h2 className="text-2xl font-light text-gray-700 tracking-wide">
+            우리의 갤러리
+          </h2>
+          <div className="w-12 h-px bg-gray-300 mx-auto"></div>
+        </div>
+        
+        <div className="max-w-lg mx-auto">
+          <div className="grid grid-cols-1 gap-6">
+            {galleryImages.map((src, index) => (
+              <motion.div
+                key={src}
+                variants={imageVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="relative h-56 rounded-lg overflow-hidden shadow-sm border border-gray-100"
+              >
+                <Image
+                  src={src}
+                  alt={`Wedding photo ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </motion.div>
