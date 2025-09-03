@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface LightboxProps {
   isOpen: boolean;
@@ -9,8 +10,15 @@ interface LightboxProps {
   initialIndex: number;
 }
 
-export default function Lightbox({ isOpen, onClose, images, initialIndex }: LightboxProps) {
+export default function Lightbox({
+  isOpen,
+  onClose,
+  images,
+  initialIndex,
+}: LightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
 
   useEffect(() => {
     setCurrentIndex(initialIndex);
@@ -34,95 +42,124 @@ export default function Lightbox({ isOpen, onClose, images, initialIndex }: Ligh
     };
   }, [isOpen, onClose]);
 
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const goToPrevious = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const goToNext = () => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchStartY.current = e.targetTouches[0].clientY;
   };
 
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartX.current || !touchStartY.current) return;
 
-  if (!isOpen) return null;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchStartX.current - touchEndX;
+    const diffY = Math.abs(touchStartY.current - touchEndY);
+
+    if (Math.abs(diffX) > 50 && diffY < 100) {
+      diffX > 0 ? goToNext() : goToPrevious();
+    }
+
+    touchStartX.current = 0;
+    touchStartY.current = 0;
+  };
 
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center"
-        onClick={onClose}
-      >
-        <div className="relative w-full h-full flex items-center justify-center">
+      {isOpen && (
+        <motion.div
+          key="lightbox-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.3, ease: "easeIn" } }}
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md"
+          onClick={onClose}
+        >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20, transition: { duration: 0.3, ease: "easeIn" } }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="relative h-full w-full bg-white overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {/* Close Button */}
           <motion.button
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2, ease: "easeIn" } }}
+            transition={{ delay: 0.2, duration: 0.2 }}
             onClick={onClose}
-            className="absolute top-3 right-3 z-10 text-gray-500 text-lg w-8 h-8 flex items-center justify-center bg-white/70 rounded-full backdrop-blur-sm hover:bg-white/80 transition-colors duration-200"
+            className="absolute top-2 right-2 z-20 w-10 h-10 flex items-center justify-center text-gray-300"
           >
-            ×
+            <X size={20} />
           </motion.button>
 
           {/* Navigation Arrows */}
           <motion.button
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20, transition: { duration: 0.3, ease: "easeIn" } }}
             transition={{ delay: 0.3, duration: 0.3 }}
             onClick={(e) => {
               e.stopPropagation();
               goToPrevious();
             }}
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 text-white text-lg w-8 h-8 flex items-center justify-center hover:bg-black/10 transition-colors duration-200"
+            className="flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300"
           >
-            ‹
+            <ChevronLeft size={24} />
           </motion.button>
 
           <motion.button
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20, transition: { duration: 0.3, ease: "easeIn" } }}
             transition={{ delay: 0.4, duration: 0.3 }}
             onClick={(e) => {
               e.stopPropagation();
               goToNext();
             }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 text-white text-lg w-8 h-8 flex items-center justify-center hover:bg-black/10 transition-colors duration-200"
+            className="flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300"
           >
-            ›
+            <ChevronRight size={24} />
           </motion.button>
 
-          {/* Image */}
+          {/* Image Container */}
           <motion.div
             key={currentIndex}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative w-full h-full flex items-center justify-center p-6"
-            onClick={(e) => e.stopPropagation()}
+            exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.3, ease: "easeIn" } }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="relative w-full h-full flex items-center justify-center"
           >
             <Image
               src={images[currentIndex]}
-              alt={`Gallery image ${currentIndex + 1}`}
+              alt={`Wedding photo ${currentIndex + 1}`}
               fill
               className="object-contain"
-              sizes="100vw"
+              sizes="(max-width: 768px) 90vw, 800px"
               priority
             />
           </motion.div>
 
           {/* Page Indicator */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10, transition: { duration: 0.3, ease: "easeIn" } }}
             transition={{ delay: 0.5, duration: 0.3 }}
-            className="absolute bottom-3 left-1/2 -translate-x-1/2 text-gray-500 text-xs bg-white/70 px-2 py-1 rounded-full backdrop-blur-sm"
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/20 text-white text-sm rounded-full backdrop-blur-sm"
           >
             {currentIndex + 1} / {images.length}
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
+      )}
     </AnimatePresence>
   );
 }

@@ -12,6 +12,7 @@
     "dayjs": "^1.11.13",
     "gsap": "^3.13.0",
     "i18next": "^25.2.1",
+    "lucide-react": "^0.542.0",
     "motion": "^12.23.12",
     "next": "latest",
     "next-mdx-remote": "^5.0.0",
