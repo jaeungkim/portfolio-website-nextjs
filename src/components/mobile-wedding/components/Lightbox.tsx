@@ -36,8 +36,10 @@ export default function Lightbox({
     };
   }, [onClose]);
 
-  const goToPrevious = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const goToNext = () => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  const goToPrevious = () =>
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  const goToNext = () =>
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
@@ -62,62 +64,53 @@ export default function Lightbox({
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.9, y: 20, transition: { duration: 0.3, ease: "easeIn" } }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
       className="relative h-full w-full bg-white overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Close Button */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2, ease: "easeIn" } }}
-        transition={{ delay: 0.2, duration: 0.2 }}
+      <button
+        type="button"
         onClick={onClose}
-        className="absolute top-2 right-2 z-20 w-10 h-10 flex items-center justify-center text-gray-300"
+        className="cursor-pointer absolute top-2 right-2 z-20 w-10 h-10 flex items-center justify-center text-gray-300 "
       >
         <X size={20} />
-      </motion.button>
+      </button>
 
       {/* Navigation Arrows */}
-      <motion.button
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -20, transition: { duration: 0.3, ease: "easeIn" } }}
-        transition={{ delay: 0.3, duration: 0.3 }}
+      <button
+        type="button"
         onClick={(e) => {
           e.stopPropagation();
           goToPrevious();
         }}
-        className="flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300"
+        className="cursor-pointer flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300 "
       >
         <ChevronLeft size={24} />
-      </motion.button>
+      </button>
 
-      <motion.button
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 20, transition: { duration: 0.3, ease: "easeIn" } }}
-        transition={{ delay: 0.4, duration: 0.3 }}
+      <button
+        type="button"
         onClick={(e) => {
           e.stopPropagation();
           goToNext();
         }}
-        className="flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300"
+        className="cursor-pointer flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300"
       >
         <ChevronRight size={24} />
-      </motion.button>
+      </button>
 
       {/* Image Container */}
       <motion.div
         key={currentIndex}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.3, ease: "easeIn" } }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: -100, opacity: 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className="relative w-full h-full flex items-center justify-center"
       >
         <Image
@@ -131,15 +124,9 @@ export default function Lightbox({
       </motion.div>
 
       {/* Page Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 10, transition: { duration: 0.3, ease: "easeIn" } }}
-        transition={{ delay: 0.5, duration: 0.3 }}
-        className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/20 text-white text-sm rounded-full backdrop-blur-sm"
-      >
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/20 text-white text-sm rounded-full backdrop-blur-sm">
         {currentIndex + 1} / {images.length}
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

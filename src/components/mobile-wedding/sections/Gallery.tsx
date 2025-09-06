@@ -61,7 +61,7 @@ export default function Gallery({ images }: GalleryProps) {
         isOpen={lightboxIndex !== null}
         onClose={closeLightbox}
         overlayClassName="bg-black/60 backdrop-blur-md"
-        className="max-w-none mx-0 w-full h-full bg-transparent shadow-none"
+        className="max-w-none mx-[48px] w-full h-[75vh] bg-white rounded-lg shadow-xl"
         closeOnOverlayClick={true}
         closeOnEscape={true}
       >
