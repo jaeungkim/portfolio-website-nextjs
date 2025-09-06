@@ -11,7 +11,6 @@ export default function HowWeMet() {
     const section = sectionRef.current;
     if (!section) return;
 
-    // Custom animation for this standard viewport-height section
     gsap.fromTo(
       section,
       { y: 80, opacity: 0 },
@@ -22,7 +21,7 @@ export default function HowWeMet() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top center", // Trigger when section reaches viewport center
+          start: "top center",
           end: "bottom center",
           toggleActions: "play none none reverse",
           scrub: false,

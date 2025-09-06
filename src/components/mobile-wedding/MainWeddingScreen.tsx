@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
@@ -8,7 +8,6 @@ import Gallery from "./sections/Gallery";
 import HowWeMet from "./sections/HowWeMet";
 import BankInfo from "./sections/BankInfo";
 import Epilogue from "./sections/Epilogue";
-import Lightbox from "./components/Lightbox";
 
 const IMAGES = [
   "/images/mobile-wedding/gallery/main.jpeg",
@@ -32,15 +31,6 @@ const SECTIONS = [
 ];
 
 export default function MainWeddingScreen() {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const openLightbox = (index: number) => {
-    setSelectedImageIndex(index);
-    setLightboxOpen(true);
-  };
-
-  const closeLightbox = () => setLightboxOpen(false);
 
   // GSAP animations are now handled individually in each section component
 
@@ -76,7 +66,7 @@ export default function MainWeddingScreen() {
             return (
               <React.Fragment key={`group-${section.key}`}>
                 <SectionComponent />
-                <Gallery onOpenLightbox={openLightbox} images={IMAGES} />
+                <Gallery images={IMAGES} />
               </React.Fragment>
             );
           }
@@ -87,13 +77,6 @@ export default function MainWeddingScreen() {
             </div>
           );
         })}
-
-        <Lightbox
-          isOpen={lightboxOpen}
-          onClose={closeLightbox}
-          images={IMAGES}
-          initialIndex={selectedImageIndex}
-        />
       </div>
     </motion.div>
   );

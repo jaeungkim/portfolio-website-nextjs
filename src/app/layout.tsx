@@ -24,6 +24,7 @@ export default function RootLayout({
         className={`flex flex-col min-h-svh ${pretendard.className} antialiased bg-neutral-0 dark:bg-neutral-850`}
       >
         {children}
+        <div id="modal-root"></div>
       </body>
     </html>
   );

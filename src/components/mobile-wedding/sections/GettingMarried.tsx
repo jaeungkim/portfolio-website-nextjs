@@ -13,7 +13,6 @@ export default function GettingMarried() {
     const poem = poemRef.current;
     const message = messageRef.current;
 
-    // Animation for the poem/quote section
     if (poem) {
       gsap.fromTo(
         poem,
@@ -25,7 +24,7 @@ export default function GettingMarried() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: poem,
-            start: "top 80%", // Trigger when poem comes into view
+            start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
             scrub: false,
@@ -34,7 +33,6 @@ export default function GettingMarried() {
       );
     }
 
-    // Animation for the wedding message and image section
     if (message) {
       gsap.fromTo(
         message,
@@ -46,7 +44,7 @@ export default function GettingMarried() {
           ease: "power2.out",
           scrollTrigger: {
             trigger: message,
-            start: "top 75%", // Trigger when message section comes into view
+            start: "top 75%",
             end: "bottom 25%",
             toggleActions: "play none none reverse",
             scrub: false,
@@ -62,8 +60,11 @@ export default function GettingMarried() {
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
-      <blockquote ref={poemRef}>
-        <p className="leading-relaxed mt-[120px]">
+      <blockquote ref={poemRef} className="mt-[120px]">
+        <p className="text-[#5F89B8] mb-[64px] font-bold">
+          소중한 분들을 초대합니다.
+        </p>
+        <p className="leading-relaxed ">
           서로의 이름을 부르는 것만으로도
           <br />
           사랑의 깊이를 확인할 수 있는 두 사람이
@@ -85,7 +86,7 @@ export default function GettingMarried() {
 
       <div ref={messageRef} className="pt-[120px]">
         <p className="leading-relaxed">
-          저희 결혼합니다💕
+          <span className="font-bold">저희 결혼합니다 💕</span>
           <br />
           <br />
           귀한 마음으로 결혼식에 찾아오셔서

@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ContactModal from "../components/ContactModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,7 @@ const sectionVariants = {
 
 export default function Introduction() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -62,7 +64,7 @@ export default function Introduction() {
             className="aspect-square"
           />
           <p className="text-sm text-center">
-            <span className="text-[#5F89B8]">신랑</span>김재웅
+            <span className="text-[#5F89B8]">신랑 </span>김재웅
           </p>
           <div className="flex flex-col gap-2 mt-4 items-center">
             <p>
@@ -83,7 +85,7 @@ export default function Introduction() {
             className="aspect-square"
           />
           <p className="text-sm text-center">
-            <span className="text-[#BB7273]">신부</span>고아라
+            <span className="text-[#BB7273]">신부 </span>고아라
           </p>
           <div className="flex flex-col gap-2 mt-4 items-center">
             <p>
@@ -96,6 +98,20 @@ export default function Introduction() {
           </div>
         </div>
       </div>
-    </motion.div>
-  );
-}
+       <div className="mt-[120px] flex items-center justify-center">
+         <button
+           type="button"
+           onClick={() => setIsContactModalOpen(true)}
+           className="cursor-pointer shadow-md bg-white rounded-full px-16 py-2 text-sm text-center w-fit border-solid border border-neutral-300 hover:border-neutral-400 transition-all duration-300 ease-in-out font-bold"
+         >
+           혼주에게 연락하기
+         </button>
+       </div>
+
+       <ContactModal
+         isOpen={isContactModalOpen}
+         onClose={() => setIsContactModalOpen(false)}
+       />
+      </motion.div>
+    );
+  }
