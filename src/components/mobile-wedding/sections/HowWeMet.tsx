@@ -16,40 +16,67 @@ const timelineEvents: TimelineEvent[] = [
   {
     id: "first-meeting",
     year: "2016",
-    title: "First Meeting",
-    description: "We met in Bali and it was love at first sight.",
-    image: "/images/mobile-wedding/gallery/main.jpeg",
+    title: "첫 만남",
+    description: "발리에서 우연히 만나 첫눈에 반했어요.",
+    image: "/images/mobile-wedding/gallery/jae1.jpeg",
   },
   {
     id: "first-date",
     year: "2017",
-    title: "First Date",
-    description: "Our first official date in Seoul.",
+    title: "첫 데이트",
+    description: "서울에서 첫 공식 데이트, 시작이었어요.",
     image: "/images/mobile-wedding/gallery/main.jpeg",
   },
   {
-    id: "first-anniversary",
+    id: "travel-together",
     year: "2018",
-    title: "1 Year Together",
-    description: "Celebrating our first year together.",
-    image: "/images/mobile-wedding/gallery/main.jpeg",
+    title: "첫 여행",
+    description: "함께한 첫 여행, 추억이 가득했어요.",
+    image: "/images/mobile-wedding/gallery/main22.jpeg",
+  },
+  {
+    id: "moving-in",
+    year: "2019",
+    title: "동거 시작",
+    description: "함께 살기 시작한 소중한 시간들.",
+    image: "/images/mobile-wedding/gallery/ara1.png",
+  },
+  {
+    id: "pandemic-year",
+    year: "2020",
+    title: "함께한 팬데믹",
+    description: "어려운 시기에도 서로를 지지했어요.",
+    image: "/images/mobile-wedding/gallery/main23.jpeg",
+  },
+  {
+    id: "trip-to-canada",
+    year: "2021",
+    title: "캐나다 여행",
+    description: "캐나다로의 특별한 여행 기억.",
+    image: "/images/mobile-wedding/gallery/jae2.png",
+  },
+  {
+    id: "second-anniversary",
+    year: "2022",
+    title: "5년 동거",
+    description: "함께한 5년, 더 단단해진 우리.",
+    image: "/images/mobile-wedding/gallery/main24.jpeg",
   },
   {
     id: "engagement",
     year: "2023",
-    title: "Engagement",
-    description: "The day he proposed under the cherry blossoms.",
-    image: "/images/mobile-wedding/gallery/main.jpeg",
+    title: "프러포즈",
+    description: "벚꽃 아래서 청혼받은 아름다운 날.",
+    image: "/images/mobile-wedding/gallery/jae3.png",
   },
   {
     id: "wedding-day",
     year: "2024",
-    title: "Wedding Day!",
-    description: "Our beautiful wedding day surrounded by loved ones.",
+    title: "결혼식",
+    description: "사랑하는 사람들과 함께한 축복의 날.",
     image: "/images/mobile-wedding/gallery/main.jpeg",
   },
 ];
-
 export default function HowWeMet() {
   const containerRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -67,12 +94,12 @@ export default function HowWeMet() {
     });
 
     const horizontalTween = gsap.to(".timeline-panel", {
-      xPercent: "-=500",
+      xPercent: `-=${(timelinePanels.length - 1) * 100}`,
       ease: "none",
       scrollTrigger: {
         trigger: container,
         start: "top top",
-        end: "+=1500px",
+        end: `+=${(timelinePanels.length - 1) * 100}%`,
         scrub: true,
         invalidateOnRefresh: true,
         pin: true,
@@ -109,27 +136,14 @@ export default function HowWeMet() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen w-full overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{ willChange: "transform" }}
     >
       <div
         ref={galleryRef}
-        className="flex h-full w-full"
-        style={{ flexShrink: 0, minHeight: "100vh" }}
+        className="flex w-full"
+        style={{ flexShrink: 0, minHeight: "90vh" }}
       >
-        <div className="timeline-panel absolute inset-0 flex items-center justify-center">
-          <div className="container mx-auto px-6 flex items-center justify-center h-full">
-            <div className="text-center">
-              <h2 className="text-3xl font-light text-gray-800 tracking-wide mb-4">
-                Our Love Story
-              </h2>
-              <div className="w-16 h-px bg-gray-300 mx-auto mb-8"></div>
-              <div className="inline-flex items-center gap-2 text-gray-500 text-sm">
-                <span>👈 Scroll down to see our story 👉</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {timelineEvents.map((event) => (
           <div
@@ -138,14 +152,14 @@ export default function HowWeMet() {
             style={{ width: "100%", height: "100%" }}
           >
             <div className="container mx-auto px-6 flex items-center justify-center h-full">
-              <div className="max-w-md mx-auto rounded-2xl shadow-lg p-8 border border-gray-100">
-                <div className="text-center mb-6">
-                  <div className="text-4xl font-bold text-gray-800">
+              <div className="mx-auto w-full max-w-md h-full rounded-2xl shadow-lg p-6 bg-white border border-gray-100 flex flex-col">
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-bold text-gray-800">
                     {event.year}
                   </div>
                 </div>
 
-                <div className="relative mb-6 rounded-xl h-64 flex items-center justify-center overflow-hidden">
+                <div className="relative mb-4 rounded-xl flex-1 flex items-center justify-center overflow-hidden flex-shrink-0">
                   {event.image ? (
                     <img
                       src={event.image}
@@ -154,17 +168,17 @@ export default function HowWeMet() {
                     />
                   ) : (
                     <div className="text-center text-gray-500">
-                      <div className="text-5xl mb-3">📸</div>
-                      <div className="text-base">{event.year} Memory</div>
+                      <div className="text-4xl mb-2">📸</div>
+                      <div className="text-sm">{event.year} Memory</div>
                     </div>
                   )}
                 </div>
 
-                <div className="text-center">
-                  <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+                <div className="text-center flex-shrink-0 flex flex-col justify-center">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
                     {event.title}
                   </h3>
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {event.description}
                   </p>
                 </div>
