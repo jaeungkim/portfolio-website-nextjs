@@ -80,7 +80,7 @@ export default function MainWeddingScreen() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="w-full max-w-md mx-auto">
+      <div className="w-full max-w-md mx-auto border border-solid shadow-md border-neutral-200">
         <WeddingHero />
 
         {SECTIONS.map((section, index) => {
