@@ -1,22 +1,44 @@
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-    },
-  },
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HowWeMet() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // Custom animation for this standard viewport-height section
+    gsap.fromTo(
+      section,
+      { y: 80, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top center", // Trigger when section reaches viewport center
+          end: "bottom center",
+          toggleActions: "play none none reverse",
+          scrub: false,
+        },
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <motion.div
-      className="h-[90svh] flex flex-col items-center justify-center px-6 text-center bg-white"
-      variants={sectionVariants}
+    <div
+      ref={sectionRef}
+      className="h-[90svh] flex flex-col items-center justify-center px-6 text-center"
     >
       <div className="text-center space-y-8">
         <div className="space-y-4">
@@ -52,6 +74,6 @@ export default function HowWeMet() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

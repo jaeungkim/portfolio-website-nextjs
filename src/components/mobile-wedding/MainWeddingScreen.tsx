@@ -1,6 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
@@ -11,8 +9,6 @@ import HowWeMet from "./sections/HowWeMet";
 import BankInfo from "./sections/BankInfo";
 import Epilogue from "./sections/Epilogue";
 import Lightbox from "./components/Lightbox";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const IMAGES = [
   "/images/mobile-wedding/gallery/main.jpeg",
@@ -36,7 +32,6 @@ const SECTIONS = [
 ];
 
 export default function MainWeddingScreen() {
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -47,31 +42,7 @@ export default function MainWeddingScreen() {
 
   const closeLightbox = () => setLightboxOpen(false);
 
-  useEffect(() => {
-    const refs = sectionRefs.current;
-    refs.forEach((section) => {
-      if (!section) return;
-
-      gsap.fromTo(
-        section,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-
-    return () => ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  }, []);
+  // GSAP animations are now handled individually in each section component
 
   return (
     <motion.div
@@ -80,7 +51,22 @@ export default function MainWeddingScreen() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="w-full max-w-md mx-auto border border-solid shadow-md border-neutral-200">
+      <div 
+        style={{
+          width: "100%",
+          maxWidth: "28rem",
+          margin: "0 auto",
+          border: "1px solid #e5e5e5",
+          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+          backgroundImage: "url('/images/mobile-wedding/bg_img_white.jpg')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "auto",
+          backgroundAttachment: "local",
+          willChange: "auto",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden"
+        }}
+      >
         <WeddingHero />
 
         {SECTIONS.map((section, index) => {
@@ -89,31 +75,14 @@ export default function MainWeddingScreen() {
           if (section.key === "wedding-location") {
             return (
               <React.Fragment key={`group-${section.key}`}>
-                <div
-                  ref={(el) => {
-                    if (el) sectionRefs.current[index] = el;
-                  }}
-                >
-                  <SectionComponent />
-                </div>
-                <div
-                  ref={(el) => {
-                    if (el) sectionRefs.current[index + 1] = el;
-                  }}
-                >
-                  <Gallery onOpenLightbox={openLightbox} images={IMAGES} />
-                </div>
+                <SectionComponent />
+                <Gallery onOpenLightbox={openLightbox} images={IMAGES} />
               </React.Fragment>
             );
           }
 
           return (
-            <div
-              key={section.key}
-              ref={(el) => {
-                if (el) sectionRefs.current[index + (index >= 3 ? 1 : 0)] = el;
-              }}
-            >
+            <div key={section.key}>
               <SectionComponent />
             </div>
           );

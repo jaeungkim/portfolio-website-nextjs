@@ -15,7 +15,7 @@ const sectionVariants = {
 export default function WeddingLocation() {
   return (
     <motion.div
-      className="h-[90svh] flex flex-col items-center justify-center px-6 text-center bg-white"
+      className="h-[90svh] flex flex-col items-center justify-center px-6 text-center"
       variants={sectionVariants}
     >
       <div className="text-center space-y-8">

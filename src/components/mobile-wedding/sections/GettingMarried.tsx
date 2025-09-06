@@ -1,25 +1,68 @@
-import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-    },
-  },
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function GettingMarried() {
+  const poemRef = useRef<HTMLQuoteElement>(null);
+  const messageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const poem = poemRef.current;
+    const message = messageRef.current;
+
+    // Animation for the poem/quote section
+    if (poem) {
+      gsap.fromTo(
+        poem,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: poem,
+            start: "top 80%", // Trigger when poem comes into view
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+            scrub: false,
+          },
+        }
+      );
+    }
+
+    // Animation for the wedding message and image section
+    if (message) {
+      gsap.fromTo(
+        message,
+        { y: 80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: message,
+            start: "top 75%", // Trigger when message section comes into view
+            end: "bottom 25%",
+            toggleActions: "play none none reverse",
+            scrub: false,
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <motion.div
-      className="flex flex-col items-center justify-center text-center"
-      variants={sectionVariants}
-    >
-      <blockquote>
+    <div className="flex flex-col items-center justify-center text-center">
+      <blockquote ref={poemRef}>
         <p className="leading-relaxed mt-[120px]">
           서로의 이름을 부르는 것만으로도
           <br />
@@ -40,7 +83,7 @@ export default function GettingMarried() {
         </footer>
       </blockquote>
 
-      <div className="pt-[120px]">
+      <div ref={messageRef} className="pt-[120px]">
         <p className="leading-relaxed">
           저희 결혼합니다💕
           <br />
@@ -58,6 +101,6 @@ export default function GettingMarried() {
           className="shadow-sm rounded pt-[48px]"
         />
       </div>
-    </motion.div>
+    </div>
   );
 }
