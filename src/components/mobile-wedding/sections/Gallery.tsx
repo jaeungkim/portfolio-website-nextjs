@@ -1,20 +1,11 @@
 import Image from "next/image";
-import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Modal from "@/src/components/common/Modal/Modal";
 import Lightbox from "../components/Lightbox";
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-    },
-  },
-};
+gsap.registerPlugin(ScrollTrigger);
 
 interface GalleryProps {
   images: string[];
@@ -22,6 +13,7 @@ interface GalleryProps {
 
 export default function Gallery({ images }: GalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -31,11 +23,40 @@ export default function Gallery({ images }: GalleryProps) {
     setLightboxIndex(null);
   };
 
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    // Animation for the gallery section
+    if (section) {
+      gsap.fromTo(
+        section,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+            scrub: false,
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
     <>
-      <motion.div
-        className="h-[90svh] w-full flex flex-col items-center justify-center px-6 text-center"
-        variants={sectionVariants}
+      <div
+        ref={sectionRef}
+        className="h-[90svh] w-full flex flex-col items-center justify-center px-6 text-center py-[84px]"
       >
         <h1 className="h-8 text-xl font-medium text-center mb-[64px]">갤러리</h1>
 
@@ -55,7 +76,7 @@ export default function Gallery({ images }: GalleryProps) {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       <Modal
         isOpen={lightboxIndex !== null}

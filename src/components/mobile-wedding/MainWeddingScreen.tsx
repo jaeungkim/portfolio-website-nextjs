@@ -41,7 +41,8 @@ export default function MainWeddingScreen() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <div 
+      <div
+        className="relative"
         style={{
           width: "100%",
           maxWidth: "28rem",
@@ -52,9 +53,9 @@ export default function MainWeddingScreen() {
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
           backgroundAttachment: "local",
-          willChange: "auto",
-          transform: "translateZ(0)",
-          backfaceVisibility: "hidden"
+          // willChange: "auto",
+          // transform: "translateZ(0)",
+          // backfaceVisibility: "hidden"
         }}
       >
         <WeddingHero />

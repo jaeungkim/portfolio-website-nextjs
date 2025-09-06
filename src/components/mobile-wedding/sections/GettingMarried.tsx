@@ -59,8 +59,8 @@ export default function GettingMarried() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center text-center">
-      <blockquote ref={poemRef} className="mt-[120px]">
+    <div className="py-[84px] flex flex-col items-center justify-center text-center">
+      <blockquote ref={poemRef}>
         <p className="text-[#5F89B8] mb-[64px] font-bold">
           소중한 분들을 초대합니다.
         </p>
