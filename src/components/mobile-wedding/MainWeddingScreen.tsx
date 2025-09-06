@@ -31,9 +31,6 @@ const SECTIONS = [
 ];
 
 export default function MainWeddingScreen() {
-
-  // GSAP animations are now handled individually in each section component
-
   return (
     <motion.div
       className="min-h-screen flex justify-center text-neutral-700"
@@ -48,14 +45,12 @@ export default function MainWeddingScreen() {
           maxWidth: "28rem",
           margin: "0 auto",
           border: "1px solid #e5e5e5",
-          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+          boxShadow:
+            "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
           backgroundImage: "url('/images/mobile-wedding/bg_img_white.jpg')",
           backgroundRepeat: "repeat",
           backgroundSize: "auto",
           backgroundAttachment: "local",
-          // willChange: "auto",
-          // transform: "translateZ(0)",
-          // backfaceVisibility: "hidden"
         }}
       >
         <WeddingHero />

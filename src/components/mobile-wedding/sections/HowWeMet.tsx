@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,8 +100,8 @@ export default function HowWeMet() {
       scrollTrigger: {
         trigger: container,
         start: "top top",
-        end: `+=${(timelinePanels.length - 1) * 100}%`,
-        scrub: true,
+        end: `+=${(timelinePanels.length - 1) * 50}%`,
+        scrub: 0.5,
         invalidateOnRefresh: true,
         pin: true,
       },
@@ -142,16 +143,15 @@ export default function HowWeMet() {
       <div
         ref={galleryRef}
         className="flex w-full"
-        style={{ flexShrink: 0, minHeight: "90vh" }}
+        style={{ flexShrink: 0, minHeight: "100vh" }}
       >
-
         {timelineEvents.map((event) => (
           <div
             key={event.id}
             className="timeline-panel absolute inset-0 flex items-center justify-center"
             style={{ width: "100%", height: "100%" }}
           >
-            <div className="container mx-auto px-6 flex items-center justify-center h-full">
+            <div className="container px-6 flex items-center justify-center h-3/4 m-auto">
               <div className="mx-auto w-full max-w-md h-full rounded-2xl shadow-lg p-6 bg-white border border-gray-100 flex flex-col">
                 <div className="text-center mb-4">
                   <div className="text-3xl font-bold text-gray-800">
@@ -161,9 +161,10 @@ export default function HowWeMet() {
 
                 <div className="relative mb-4 rounded-xl flex-1 flex items-center justify-center overflow-hidden flex-shrink-0">
                   {event.image ? (
-                    <img
+                    <Image
                       src={event.image}
                       alt={`${event.year} Memory`}
+                      fill
                       className="w-full h-full object-cover"
                     />
                   ) : (
