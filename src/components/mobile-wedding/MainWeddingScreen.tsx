@@ -74,13 +74,13 @@ export default function MainWeddingScreen() {
                   onToggleTimeline={toggleTimeline}
                   showTimeline={showTimeline}
                 />
-                {showTimeline && <HowWeMet key="how-we-met-timeline" />}
+                {/* {showTimeline && <HowWeMet key="how-we-met-timeline" />} */}
               </React.Fragment>
             );
           }
 
           return (
-            <div key={section.key}>
+            <div key={section.key} data-section={section.key}>
               <SectionComponent />
             </div>
           );

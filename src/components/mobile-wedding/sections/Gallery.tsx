@@ -59,7 +59,7 @@ export default function Gallery({ images, onToggleTimeline, showTimeline }: Gall
     <>
       <div
         ref={sectionRef}
-        className="h-[90svh] w-full flex flex-col items-center justify-center px-6 text-center py-[84px]"
+        className="w-full flex flex-col items-center justify-center px-6 text-center py-[84px]"
       >
         <h1 className="h-8 text-xl font-medium text-center mb-[64px]">갤러리</h1>
 
@@ -82,12 +82,12 @@ export default function Gallery({ images, onToggleTimeline, showTimeline }: Gall
         </div>
 
         {/* Timeline Button */}
-        <button
+        {/* <button
           onClick={onToggleTimeline}
           className="mt-8 px-6 py-3 bg-pink-100 hover:bg-pink-200 text-pink-800 rounded-full font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
         >
           {showTimeline ? "연대기 닫기" : "우리가 어떻게 만났는지 보기"}
-        </button>
+        </button> */}
       </div>
 
       <Modal
