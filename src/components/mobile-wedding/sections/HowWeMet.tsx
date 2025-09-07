@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -82,7 +83,7 @@ export default function HowWeMet() {
   const containerRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const container = containerRef.current;
     const gallery = galleryRef.current;
 
@@ -104,6 +105,9 @@ export default function HowWeMet() {
         scrub: 0.5,
         invalidateOnRefresh: true,
         pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        fastScrollEnd: true,
       },
     });
 
@@ -128,11 +132,7 @@ export default function HowWeMet() {
         );
       }
     });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+  }, { scope: containerRef });
 
   return (
     <section

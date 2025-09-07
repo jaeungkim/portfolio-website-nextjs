@@ -9,9 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface GalleryProps {
   images: string[];
+  onToggleTimeline: () => void;
+  showTimeline: boolean;
 }
 
-export default function Gallery({ images }: GalleryProps) {
+export default function Gallery({ images, onToggleTimeline, showTimeline }: GalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -22,6 +24,7 @@ export default function Gallery({ images }: GalleryProps) {
   const closeLightbox = () => {
     setLightboxIndex(null);
   };
+
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -76,6 +79,14 @@ export default function Gallery({ images }: GalleryProps) {
             </div>
           ))}
         </div>
+
+        {/* Timeline Button */}
+        <button
+          onClick={onToggleTimeline}
+          className="mt-8 px-6 py-3 bg-pink-100 hover:bg-pink-200 text-pink-800 rounded-full font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
+        >
+          {showTimeline ? "연대기 닫기" : "우리가 어떻게 만났는지 보기"}
+        </button>
       </div>
 
       <Modal
@@ -94,6 +105,7 @@ export default function Gallery({ images }: GalleryProps) {
           />
         )}
       </Modal>
+
     </>
   );
 }

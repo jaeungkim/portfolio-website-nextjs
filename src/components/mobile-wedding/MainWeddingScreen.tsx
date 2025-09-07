@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
@@ -25,12 +25,17 @@ const SECTIONS = [
   { component: GettingMarried, key: "getting-married" },
   { component: Introduction, key: "introduction" },
   { component: WeddingLocation, key: "wedding-location" },
-  { component: HowWeMet, key: "how-we-met" },
   { component: BankInfo, key: "bank-info" },
   { component: Epilogue, key: "epilogue" },
 ];
 
 export default function MainWeddingScreen() {
+  const [showTimeline, setShowTimeline] = useState(false);
+
+  const toggleTimeline = () => {
+    setShowTimeline(!showTimeline);
+  };
+
   return (
     <motion.div
       className="min-h-screen flex justify-center text-neutral-700"
@@ -62,7 +67,8 @@ export default function MainWeddingScreen() {
             return (
               <React.Fragment key={`group-${section.key}`}>
                 <SectionComponent />
-                <Gallery images={IMAGES} />
+                <Gallery images={IMAGES} onToggleTimeline={toggleTimeline} showTimeline={showTimeline} />
+                {showTimeline && <HowWeMet key="how-we-met-timeline" />}
               </React.Fragment>
             );
           }
