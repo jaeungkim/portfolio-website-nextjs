@@ -106,8 +106,9 @@ export default function HowWeMet() {
         invalidateOnRefresh: true,
         pin: true,
         pinSpacing: true,
-        anticipatePin: 1,
+        anticipatePin: 0,
         fastScrollEnd: true,
+        refreshPriority: -1,
       },
     });
 
