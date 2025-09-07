@@ -1,66 +1,10 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function GettingMarried() {
-  const poemRef = useRef<HTMLQuoteElement>(null);
-  const messageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const poem = poemRef.current;
-    const message = messageRef.current;
-
-    if (poem) {
-      gsap.fromTo(
-        poem,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: poem,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-            scrub: false,
-          },
-        }
-      );
-    }
-
-    if (message) {
-      gsap.fromTo(
-        message,
-        { y: 80, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.0,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: message,
-            start: "top 75%",
-            end: "bottom 25%",
-            toggleActions: "play none none reverse",
-            scrub: false,
-          },
-        }
-      );
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
 
   return (
-    <div className="py-[84px] flex flex-col items-center justify-center text-center">
-      <blockquote ref={poemRef}>
+    <div className="py-[64px] flex flex-col items-center justify-center text-center">
+      <blockquote>
         <p className="text-[#5F89B8] mb-[64px] font-bold">
           소중한 분들을 초대합니다.
         </p>
@@ -84,7 +28,7 @@ export default function GettingMarried() {
         </footer>
       </blockquote>
 
-      <div ref={messageRef} className="pt-[120px]">
+      <div className="pt-[120px]">
         <p className="leading-relaxed">
           <span className="font-bold">저희 결혼합니다 🤍</span>
           <br />

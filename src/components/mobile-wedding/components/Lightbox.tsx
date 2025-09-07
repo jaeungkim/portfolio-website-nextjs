@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface LightboxProps {
@@ -15,52 +15,74 @@ export default function Lightbox({
   onClose,
 }: LightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const touchStartX = useRef<number>(0);
-  const touchStartY = useRef<number>(0);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const imagesLength = images.length;
 
-  useEffect(() => {
-    setCurrentIndex(initialIndex);
-  }, [initialIndex]);
+  // Optimized navigation functions
+  const goToPrevious = useCallback(() =>
+    setCurrentIndex((prev) => (prev === 0 ? imagesLength - 1 : prev - 1)), [imagesLength]
+  );
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") goToPrevious();
-      if (e.key === "ArrowRight") goToNext();
-    };
+  const goToNext = useCallback(() =>
+    setCurrentIndex((prev) => (prev === imagesLength - 1 ? 0 : prev + 1)), [imagesLength]
+  );
 
-    document.addEventListener("keydown", handleKeyDown);
+  // Optimized touch handling
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const touch = e.targetTouches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onClose]);
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
 
-  const goToPrevious = () =>
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const goToNext = () =>
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    const touchEnd = e.changedTouches[0];
+    const diffX = touchStartRef.current.x - touchEnd.clientX;
+    const diffY = Math.abs(touchStartRef.current.y - touchEnd.clientY);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.targetTouches[0].clientX;
-    touchStartY.current = e.targetTouches[0].clientY;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStartX.current || !touchStartY.current) return;
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-    const diffX = touchStartX.current - touchEndX;
-    const diffY = Math.abs(touchStartY.current - touchEndY);
-
+    // Optimized swipe detection
     if (Math.abs(diffX) > 50 && diffY < 100) {
       diffX > 0 ? goToNext() : goToPrevious();
     }
 
-    touchStartX.current = 0;
-    touchStartY.current = 0;
-  };
+    touchStartRef.current = null;
+  }, [goToNext, goToPrevious]);
+
+  // Optimized keyboard handling
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "Escape":
+          onClose();
+          break;
+        case "ArrowLeft":
+          goToPrevious();
+          break;
+        case "ArrowRight":
+          goToNext();
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, goToPrevious, goToNext]);
+
+  // Update current index when initialIndex changes
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
+
+  // Optimized event handlers
+  const handlePreviousClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    goToPrevious();
+  }, [goToPrevious]);
+
+  const handleNextClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    goToNext();
+  }, [goToNext]);
 
   return (
     <motion.div
@@ -76,33 +98,34 @@ export default function Lightbox({
       <button
         type="button"
         onClick={onClose}
-        className="cursor-pointer absolute top-2 right-2 z-20 w-10 h-10 flex items-center justify-center text-gray-300 "
+        className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+        aria-label="Close lightbox"
       >
         <X size={20} />
       </button>
 
-      {/* Navigation Arrows */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          goToPrevious();
-        }}
-        className="cursor-pointer flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300 "
-      >
-        <ChevronLeft size={24} />
-      </button>
+      {/* Navigation Arrows - Only show if multiple images */}
+      {imagesLength > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={handlePreviousClick}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={24} />
+          </button>
 
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          goToNext();
-        }}
-        className="cursor-pointer flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-gray-300"
-      >
-        <ChevronRight size={24} />
-      </button>
+          <button
+            type="button"
+            onClick={handleNextClick}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Next image"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </>
+      )}
 
       {/* Image Container */}
       <motion.div
@@ -123,10 +146,12 @@ export default function Lightbox({
         />
       </motion.div>
 
-      {/* Page Indicator */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/20 text-white text-sm rounded-full backdrop-blur-sm">
-        {currentIndex + 1} / {images.length}
-      </div>
+      {/* Page Indicator - Only show if multiple images */}
+      {imagesLength > 1 && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-4 py-2 text-neutral-400 text-sm font-medium">
+          {currentIndex + 1} / {imagesLength}
+        </div>
+      )}
     </motion.div>
   );
 }

@@ -1,8 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useState, useEffect } from "react";
 
 interface TimeLeft {
   days: number;
@@ -12,7 +8,6 @@ interface TimeLeft {
 }
 
 export default function WeddingCalendar() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -22,35 +17,6 @@ export default function WeddingCalendar() {
 
   // Wedding date: October 25th, 2024 at 11:30 AM
   const weddingDate = new Date("2025-10-25T11:30:00");
-
-  useEffect(() => {
-    const section = sectionRef.current;
-
-    // Animation for the wedding calendar section
-    if (section) {
-      gsap.fromTo(
-        section,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-            scrub: false,
-          },
-        }
-      );
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -94,16 +60,8 @@ export default function WeddingCalendar() {
   };
 
   return (
-    <div ref={sectionRef} className="py-[84px] px-6">
+    <div className="py-[64px] px-6">
       <div className="flex flex-col items-center space-y-8">
-        {/* Title */}
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-medium text-neutral-900">Wedding Day</h1>
-          <div className="text-sm text-neutral-600 space-y-1">
-            <p className="font-mono">2024.10.25. 금요일 오전 11시 30분</p>
-          </div>
-        </div>
-
         {/* Wedding Calendar */}
         <div className="bg-white rounded-2xl border border-neutral-100 shadow-lg p-8 w-full max-w-sm">
           <div className="text-center mb-6">

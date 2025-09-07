@@ -1,11 +1,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 import ContactModal from "../components/ContactModal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -20,41 +16,11 @@ const sectionVariants = {
 };
 
 export default function Introduction() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-
-    // Animation for the whole introduction section
-    if (section) {
-      gsap.fromTo(
-        section,
-        { y: 100, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-            scrub: false,
-          },
-        }
-      );
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
   return (
-    <motion.div variants={sectionVariants} className="py-[84px]">
-      <div ref={sectionRef}>
+    <motion.div variants={sectionVariants} className="py-[64px]">
+      <div>
         <div className="flex gap-4 justify-center">
           <div className="flex flex-col gap-2">
             <Image
@@ -99,7 +65,7 @@ export default function Introduction() {
             </div>
           </div>
         </div>
-        <div className="mt-[120px] flex items-center justify-center">
+        <div className="mt-[64px] flex items-center justify-center">
           <button
             type="button"
             onClick={() => setIsContactModalOpen(true)}

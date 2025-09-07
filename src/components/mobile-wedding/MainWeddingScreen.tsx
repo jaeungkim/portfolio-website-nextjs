@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
 import Introduction from "./sections/Introduction";
 import WeddingLocation from "./sections/WeddingLocation";
 import WeddingCalendar from "./sections/WeddingCalendar";
 import Gallery from "./sections/Gallery";
-import HowWeMet from "./sections/HowWeMet";
 import BankInfo from "./sections/BankInfo";
 import Epilogue from "./sections/Epilogue";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const ANIMATION_CONFIG = {
+  y: 100,
+  opacity: 0,
+  duration: 1.2,
+  ease: "power2.out",
+  scrollTrigger: {
+    start: "top 80%",
+    end: "bottom 20%",
+    toggleActions: "play none none reverse",
+    scrub: false,
+  },
+};
 
 const IMAGES = [
   "/images/mobile-wedding/gallery/main.jpeg",
@@ -37,6 +53,41 @@ export default function MainWeddingScreen() {
   const toggleTimeline = () => {
     setShowTimeline(!showTimeline);
   };
+
+  // Ultra-simple GSAP setup - One config for all sections
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Get all sections and animate each with same config
+      const sections = gsap.utils.toArray<HTMLElement>("[data-section]");
+
+      sections.forEach((section) => {
+        const sectionKey = section.getAttribute("data-section");
+
+        // Ensure element starts in initial state
+        gsap.set(section, {
+          y: ANIMATION_CONFIG.y,
+          opacity: ANIMATION_CONFIG.opacity,
+        });
+
+        gsap.fromTo(
+          section,
+          { y: ANIMATION_CONFIG.y, opacity: ANIMATION_CONFIG.opacity },
+          {
+            y: 0,
+            opacity: 1,
+            duration: ANIMATION_CONFIG.duration,
+            ease: ANIMATION_CONFIG.ease,
+            scrollTrigger: {
+              trigger: section,
+              ...ANIMATION_CONFIG.scrollTrigger,
+            },
+          }
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, [showTimeline]);
 
   return (
     <motion.div
@@ -68,13 +119,16 @@ export default function MainWeddingScreen() {
           if (section.key === "wedding-calendar") {
             return (
               <React.Fragment key={`group-${section.key}`}>
-                <SectionComponent />
-                <Gallery
-                  images={IMAGES}
-                  onToggleTimeline={toggleTimeline}
-                  showTimeline={showTimeline}
-                />
-                {/* {showTimeline && <HowWeMet key="how-we-met-timeline" />} */}
+                <div data-section={section.key}>
+                  <SectionComponent />
+                </div>
+                <div data-section="gallery">
+                  <Gallery
+                    images={IMAGES}
+                    onToggleTimeline={toggleTimeline}
+                    showTimeline={showTimeline}
+                  />
+                </div>
               </React.Fragment>
             );
           }
