@@ -4,6 +4,7 @@ import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
 import Introduction from "./sections/Introduction";
 import WeddingLocation from "./sections/WeddingLocation";
+import WeddingCalendar from "./sections/WeddingCalendar";
 import Gallery from "./sections/Gallery";
 import HowWeMet from "./sections/HowWeMet";
 import BankInfo from "./sections/BankInfo";
@@ -24,6 +25,7 @@ const IMAGES = [
 const SECTIONS = [
   { component: GettingMarried, key: "getting-married" },
   { component: Introduction, key: "introduction" },
+  { component: WeddingCalendar, key: "wedding-calendar" },
   { component: WeddingLocation, key: "wedding-location" },
   { component: BankInfo, key: "bank-info" },
   { component: Epilogue, key: "epilogue" },
@@ -63,11 +65,15 @@ export default function MainWeddingScreen() {
         {SECTIONS.map((section, index) => {
           const SectionComponent = section.component;
 
-          if (section.key === "wedding-location") {
+          if (section.key === "wedding-calendar") {
             return (
               <React.Fragment key={`group-${section.key}`}>
                 <SectionComponent />
-                <Gallery images={IMAGES} onToggleTimeline={toggleTimeline} showTimeline={showTimeline} />
+                <Gallery
+                  images={IMAGES}
+                  onToggleTimeline={toggleTimeline}
+                  showTimeline={showTimeline}
+                />
                 {showTimeline && <HowWeMet key="how-we-met-timeline" />}
               </React.Fragment>
             );

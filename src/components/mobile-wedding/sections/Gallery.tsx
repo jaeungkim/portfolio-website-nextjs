@@ -74,6 +74,7 @@ export default function Gallery({ images, onToggleTimeline, showTimeline }: Gall
                 src={src}
                 alt={`Photo ${index + 1}`}
                 fill
+                sizes="(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
                 className="object-cover"
               />
             </div>

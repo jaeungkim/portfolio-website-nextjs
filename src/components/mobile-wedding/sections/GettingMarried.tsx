@@ -86,7 +86,7 @@ export default function GettingMarried() {
 
       <div ref={messageRef} className="pt-[120px]">
         <p className="leading-relaxed">
-          <span className="font-bold">저희 결혼합니다 💕</span>
+          <span className="font-bold">저희 결혼합니다 🤍</span>
           <br />
           <br />
           귀한 마음으로 결혼식에 찾아오셔서
