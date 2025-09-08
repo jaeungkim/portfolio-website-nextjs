@@ -11,6 +11,7 @@ interface BankAccount {
   accountNumber: string;
   bankName: string;
   accountHolder: string;
+  kakaoPayUrl?: string; // Optional - only show button if URL exists
 }
 
 interface BankSection {
@@ -29,16 +30,26 @@ const BANK_SECTIONS: BankSection[] = [
       {
         id: "groom-1",
         name: "신랑",
-        accountNumber: "1111-1111-1111-1111",
+        accountNumber: "390401-04-083015",
         bankName: "국민은행",
         accountHolder: "KIM JAEUNG",
+        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
       },
       {
         id: "groom-2",
         name: "신랑 어머니",
-        accountNumber: "2222-2222-2222-2222",
-        bankName: "카카오뱅크",
+        accountNumber: "285-21-0209-832",
+        bankName: "국민은행",
         accountHolder: "김화영",
+        // No KakaoPay URL - only copy button will be shown
+      },
+      {
+        id: "groom-3",
+        name: "신랑 아버지",
+        accountNumber: "390401-04-083015",
+        bankName: "국민은행",
+        accountHolder: "김정호",
+        // No KakaoPay URL - only copy button will be shown
       },
     ],
   },
@@ -53,6 +64,7 @@ const BANK_SECTIONS: BankSection[] = [
         accountNumber: "3333-3333-3333-3333",
         bankName: "카카오뱅크",
         accountHolder: "고아라",
+        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
       },
       {
         id: "bride-2",
@@ -60,6 +72,7 @@ const BANK_SECTIONS: BankSection[] = [
         accountNumber: "4444-4444-4444-4444",
         bankName: "카카오뱅크",
         accountHolder: "음현희",
+        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
       },
     ],
   },
@@ -91,12 +104,9 @@ export default function BankInfo() {
     }
   };
 
-  const handleKakaoPayClick = (
-    accountNumber: string,
-    accountHolder: string
-  ) => {
-    console.log("카카오페이 버튼 클릭:", { accountNumber, accountHolder });
-    // TODO: Implement KakaoPay integration later
+  const handleKakaoPayClick = (kakaoPayUrl: string) => {
+    // Open the specific KakaoPay link for this account in new tab
+    window.open(kakaoPayUrl, "_blank");
   };
 
   return (
@@ -168,7 +178,7 @@ export default function BankInfo() {
                           >
                             {/* Account Info */}
                             <div className="space-y-2 flex-1">
-                              <h4 className="text-sm font-medium text-neutral-800">
+                              <h4 className={`text-sm font-medium ${section.color}`}>
                                 {account.name}
                               </h4>
                               <div className="space-y-1">
@@ -193,24 +203,23 @@ export default function BankInfo() {
                                 <Copy size={12} />
                                 복사
                               </button>
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  handleKakaoPayClick(
-                                    account.accountNumber,
-                                    account.accountHolder
-                                  )
-                                }
-                                className="cursor-pointer flex items-center justify-center gap-1 py-2 px-2 bg-[#F9EB37] rounded-md text-xs font-medium"
-                              >
-                                <Image
-                                  src="/assets/pay.png"
-                                  alt="KakaoPay"
-                                  width={43}
-                                  height={43}
-                                  className="object-contain"
-                                />
-                              </button>
+                              {account.kakaoPayUrl && (
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    handleKakaoPayClick(account.kakaoPayUrl!)
+                                  }
+                                  className="cursor-pointer flex items-center justify-center gap-1 py-2 px-2 bg-[#F9EB37] rounded-md text-xs font-medium"
+                                >
+                                  <Image
+                                    src="/assets/pay.png"
+                                    alt="KakaoPay"
+                                    width={43}
+                                    height={43}
+                                    className="object-contain"
+                                  />
+                                </button>
+                              )}
                             </div>
                           </div>
                         ))}

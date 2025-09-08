@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { usePortal } from "@/src/hooks/usePortal";
 import { useEffect } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ModalProps {
   isOpen: boolean;
@@ -53,7 +54,10 @@ export default function Modal({
   return (
     <Portal>
       <motion.div
-        className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white/20 backdrop-blur-sm ${overlayClassName}`}
+        className={twMerge(
+          "fixed inset-0 z-[9999] flex items-center justify-center bg-white/20 backdrop-blur-sm",
+          overlayClassName
+        )}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
@@ -64,7 +68,10 @@ export default function Modal({
         }}
       >
         <motion.div
-          className={`bg-white rounded-lg shadow-xl mx-4 w-full max-w-md ${className}`}
+          className={twMerge(
+            "bg-white rounded-lg shadow-xl mx-4 w-full max-w-md",
+            className
+          )}
           initial={{ scale: 0.8, opacity: 0, y: 50 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
