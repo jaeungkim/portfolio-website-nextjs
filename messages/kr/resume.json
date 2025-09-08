@@ -25,6 +25,16 @@
           "description": "드론·지상 촬영 이미지를 사진측량 기반으로 정사영상 지도, 3D 모델, 포인트클라우드를 생성·시각화하는 클라우드 플랫폼",
           "link": "https://spiny-learning-4b9.notion.site/NDXPRO-KCLOUD-24bc3276c40c80b4afcef5f74478cbb5",
           "tasks": {
+            "performance_optimization": {
+              "title": "대용량 이미지 메타데이터 처리 최적화",
+              "subtasks": [
+                "JPEG APP1 마커 분석을 통한 선택적 데이터 읽기로 메모리 96% 절약 (20GB → 800MB)",
+                "병렬 처리 구현 활용으로 메타데이터 추출 시간 95% 단축 (6분 40초 → 20초)",
+                "AWS S3 Presigned URL 방식으로 브라우저 ↔ S3 직접 연결 구현",
+                "Presigned URL 배치 요청 및 동시 스트림 업로드로 처리 효율성 극대화",
+                "백엔드 의존성 제거로 업로드 시간 50% 단축 (20분 → 10분) 및 서버 부하 70% 감소"
+              ]
+            },
             "organization_management": {
               "title": "조직 및 회원 관리 시스템",
               "subtasks": [
@@ -38,7 +48,7 @@
               "subtasks": [
                 "프로젝트 생성/수정/삭제 및 멤버 초대 기능 구현",
                 "초대 만료·재발송 처리 및 실시간 상태 표시 기능 개발",
-                "OWNER/EDITOR/VIEWER 권한별 접근 제어 적용"
+                "권한별 접근 제어 적용"
               ]
             },
             "admin_web": {
