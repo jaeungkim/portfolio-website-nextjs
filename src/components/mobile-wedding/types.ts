@@ -83,8 +83,8 @@ export interface TouchPosition {
 
 // SVG 로더 훅 반환 타입
 export interface SvgLoaderReturn {
-  welcomeRef: React.RefObject<HTMLDivElement>;
-  weddingRef: React.RefObject<HTMLDivElement>;
+  welcomeRef: React.RefObject<HTMLDivElement | null>;
+  weddingRef: React.RefObject<HTMLDivElement | null>;
 }
 
 // 웨딩 애니메이션 훅 타입

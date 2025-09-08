@@ -6,48 +6,23 @@ import {
   GALLERY_IMAGES,
   WEDDING_SECTIONS,
   MOBILE_CONTAINER_STYLES,
+  BGM_CONFIG,
 } from "./constants";
 import type { MainWeddingScreenProps } from "./types";
 import { useWeddingAnimations } from "./hooks/useWeddingAnimations";
+import { BGMPlayer } from "./components/BGM";
 
-import dynamic from "next/dynamic";
-import { ComponentType } from "react";
-
-// 섹션 컴포넌트 동적 임포트로 번들 크기 최적화
-const WeddingHero = dynamic(() => import("./sections/WeddingHero"), {
-  loading: () => <div className="h-[90svh] bg-gray-100 animate-pulse" />,
-});
-
-const GettingMarried = dynamic(() => import("./sections/GettingMarried"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
-
-const Introduction = dynamic(() => import("./sections/Introduction"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
-
-const WeddingLocation = dynamic(() => import("./sections/WeddingLocation"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
-
-const WeddingCalendar = dynamic(() => import("./sections/WeddingCalendar"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
-
-const Gallery = dynamic(() => import("./sections/Gallery"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
-
-const BankInfo = dynamic(() => import("./sections/BankInfo"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
-
-const Epilogue = dynamic(() => import("./sections/Epilogue"), {
-  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
-});
+import WeddingHero from "./sections/WeddingHero";
+import GettingMarried from "./sections/GettingMarried";
+import Introduction from "./sections/Introduction";
+import WeddingLocation from "./sections/WeddingLocation";
+import WeddingCalendar from "./sections/WeddingCalendar";
+import Gallery from "./sections/Gallery";
+import BankInfo from "./sections/BankInfo";
+import Epilogue from "./sections/Epilogue";
 
 // 섹션 컴포넌트 타입 매핑
-const SECTION_COMPONENTS: Record<string, ComponentType<any>> = {
+const SECTION_COMPONENTS = {
   GettingMarried,
   Introduction,
   WeddingCalendar,
@@ -104,6 +79,14 @@ export default function MainWeddingScreen({}: MainWeddingScreenProps = {}) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
+      {/* BGM 플레이어 - 부동 음악 컨트롤 */}
+      <BGMPlayer
+        src={BGM_CONFIG.src}
+        autoPlay={BGM_CONFIG.autoPlay}
+        loop={BGM_CONFIG.loop}
+        volume={BGM_CONFIG.volume}
+      />
+
       <div className="relative" style={MOBILE_CONTAINER_STYLES}>
         <WeddingHero />
         {WEDDING_SECTIONS.map(renderSection)}

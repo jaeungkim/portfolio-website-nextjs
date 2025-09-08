@@ -18,6 +18,14 @@ export const SVG_PATHS = {
   wedding: "/images/mobile-wedding/loading/to-our-wedding.svg",
 } as const;
 
+// BGM 설정
+export const BGM_CONFIG = {
+  src: "/audio/wedding-bgm.mp3", // 웨딩 BGM 파일 경로
+  autoPlay: true,
+  loop: true,
+  volume: 0.3, // 볼륨 30%
+} as const;
+
 // 갤러리 이미지 목록
 export const GALLERY_IMAGES = [
   "/images/mobile-wedding/gallery/main.jpeg",

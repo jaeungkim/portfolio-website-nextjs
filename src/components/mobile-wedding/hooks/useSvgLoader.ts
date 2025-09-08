@@ -14,8 +14,8 @@ gsap.registerPlugin(DrawSVGPlugin);
 export function useSvgLoader(
   onLoadingComplete: LoadingScreenProps["onLoadingComplete"]
 ): SvgLoaderReturn {
-  const welcomeRef = useRef<HTMLDivElement>(null);
-  const weddingRef = useRef<HTMLDivElement>(null);
+  const welcomeRef = useRef<HTMLDivElement | null>(null);
+  const weddingRef = useRef<HTMLDivElement | null>(null);
   const [isReady, setIsReady] = useState(false);
 
   // SVG 파일 로드
