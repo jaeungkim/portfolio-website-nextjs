@@ -1,13 +1,10 @@
+"use client";
+
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-
-interface LightboxProps {
-  images: string[];
-  initialIndex: number;
-  onClose: () => void;
-}
+import type { LightboxProps } from "../types";
 
 export default function Lightbox({
   images,
@@ -18,37 +15,41 @@ export default function Lightbox({
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const imagesLength = images.length;
 
-  // Optimized navigation functions
-  const goToPrevious = useCallback(() =>
-    setCurrentIndex((prev) => (prev === 0 ? imagesLength - 1 : prev - 1)), [imagesLength]
-  );
+  // 네비게이션 함수들
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? imagesLength - 1 : prev - 1));
+  };
 
-  const goToNext = useCallback(() =>
-    setCurrentIndex((prev) => (prev === imagesLength - 1 ? 0 : prev + 1)), [imagesLength]
-  );
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === imagesLength - 1 ? 0 : prev + 1));
+  };
 
-  // Optimized touch handling
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+  // 터치 이벤트 핸들러
+  const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.targetTouches[0];
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
-  }, []);
+  };
 
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchStartRef.current) return;
 
     const touchEnd = e.changedTouches[0];
     const diffX = touchStartRef.current.x - touchEnd.clientX;
     const diffY = Math.abs(touchStartRef.current.y - touchEnd.clientY);
 
-    // Optimized swipe detection
+    // 스와이프 감지
     if (Math.abs(diffX) > 50 && diffY < 100) {
-      diffX > 0 ? goToNext() : goToPrevious();
+      if (diffX > 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
     }
 
     touchStartRef.current = null;
-  }, [goToNext, goToPrevious]);
+  };
 
-  // Optimized keyboard handling
+  // 키보드 이벤트 핸들러
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
@@ -66,23 +67,23 @@ export default function Lightbox({
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose, goToPrevious, goToNext]);
+  }, [onClose]);
 
-  // Update current index when initialIndex changes
+  // 초기 인덱스 변경 감지
   useEffect(() => {
     setCurrentIndex(initialIndex);
   }, [initialIndex]);
 
-  // Optimized event handlers
-  const handlePreviousClick = useCallback((e: React.MouseEvent) => {
+  // 클릭 이벤트 핸들러
+  const handlePreviousClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     goToPrevious();
-  }, [goToPrevious]);
+  };
 
-  const handleNextClick = useCallback((e: React.MouseEvent) => {
+  const handleNextClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     goToNext();
-  }, [goToNext]);
+  };
 
   return (
     <motion.div

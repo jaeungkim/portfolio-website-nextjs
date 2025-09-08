@@ -1,7 +1,9 @@
-import { useState, useCallback } from "react";
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Copy } from "lucide-react";
-import Image from "next/image";
 
 interface BankAccount {
   id: string;
@@ -32,9 +34,9 @@ const BANK_SECTIONS: BankSection[] = [
         accountHolder: "KIM JAEUNG",
       },
       {
-        id: "groom-3",
+        id: "groom-2",
         name: "신랑 어머니",
-        accountNumber: "1111-1111-1111-1111",
+        accountNumber: "2222-2222-2222-2222",
         bankName: "카카오뱅크",
         accountHolder: "김화영",
       },
@@ -48,14 +50,14 @@ const BANK_SECTIONS: BankSection[] = [
       {
         id: "bride-1",
         name: "신부",
-        accountNumber: "1111-1111-1111-1111",
+        accountNumber: "3333-3333-3333-3333",
         bankName: "카카오뱅크",
         accountHolder: "고아라",
       },
       {
-        id: "bride-3",
+        id: "bride-2",
         name: "신부 어머니",
-        accountNumber: "1111-1111-1111-1111",
+        accountNumber: "4444-4444-4444-4444",
         bankName: "카카오뱅크",
         accountHolder: "음현희",
       },
@@ -65,10 +67,10 @@ const BANK_SECTIONS: BankSection[] = [
 
 export default function BankInfo() {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
-    new Set(["groom", "bride"])
+    new Set()
   );
 
-  const toggleSection = useCallback((sectionId: string) => {
+  const toggleSection = (sectionId: string) => {
     setExpandedSections((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(sectionId)) {
@@ -78,64 +80,24 @@ export default function BankInfo() {
       }
       return newSet;
     });
-  }, []);
+  };
 
-  const copyAccountNumber = useCallback(async (accountNumber: string) => {
+  const copyAccountNumber = async (accountNumber: string) => {
     try {
       await navigator.clipboard.writeText(accountNumber);
-      // You could add a toast notification here
+      console.log("계좌번호 복사됨:", accountNumber);
     } catch (err) {
-      console.error("Failed to copy account number:", err);
+      console.error("계좌번호 복사 실패:", err);
     }
-  }, []);
+  };
 
-  const openKakaoPay = useCallback(
-    async (accountNumber: string, accountHolder: string) => {
-      // Note: For production, consider using KakaoPay's official APIs:
-      // - 코드송금 받기 (Receive Code Transfer): https://developers.kakaopay.com/docs/moneytransfer/sendmoney.link/sendmoney-link-common
-      // - 정산하기 (Settlement): For splitting costs among multiple recipients
-
-      // Current implementation: Copy account details and open KakaoPay
-      const accountDetails = `${accountHolder}\n${accountNumber}`;
-
-      try {
-        // Copy account details to clipboard
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(accountDetails);
-        } else {
-          // Fallback for older browsers - create temporary textarea
-          const textArea = document.createElement("textarea");
-          textArea.value = accountDetails;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-        }
-
-        // Try to open KakaoPay app first
-        const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-        if (isMobile) {
-          // Mobile: Try app scheme first, then web fallback
-          window.location.href = `kakaotalk://kakaopay/main`;
-
-          // Fallback to web version after a short delay
-          setTimeout(() => {
-            window.open("https://web.kakaopay.com", "_blank");
-          }, 1500);
-        } else {
-          // Desktop: Open web version directly
-          window.open("https://web.kakaopay.com", "_blank");
-        }
-
-      } catch (error) {
-        console.error("Failed to copy account details:", error);
-        // Fallback: Just open KakaoPay
-        window.open("https://web.kakaopay.com", "_blank");
-      }
-    },
-    []
-  );
+  const handleKakaoPayClick = (
+    accountNumber: string,
+    accountHolder: string
+  ) => {
+    console.log("카카오페이 버튼 클릭:", { accountNumber, accountHolder });
+    // TODO: Implement KakaoPay integration later
+  };
 
   return (
     <div className="py-[84px] px-6">
@@ -222,22 +184,24 @@ export default function BankInfo() {
                             {/* Action Buttons */}
                             <div className="flex flex-col gap-2 w-20">
                               <button
+                                type="button"
                                 onClick={() =>
                                   copyAccountNumber(account.accountNumber)
                                 }
-                                className="flex items-center justify-center gap-1 py-2 px-2 bg-white border border-neutral-200 rounded-md text-xs font-medium text-neutral-700"
+                                className="cursor-pointer flex items-center justify-center gap-1 py-2 px-2 bg-white border border-neutral-200 rounded-md text-xs font-medium text-neutral-700"
                               >
                                 <Copy size={12} />
                                 복사
                               </button>
                               <button
+                                type="button"
                                 onClick={() =>
-                                  openKakaoPay(
+                                  handleKakaoPayClick(
                                     account.accountNumber,
                                     account.accountHolder
                                   )
                                 }
-                                className="flex items-center justify-center gap-1 py-2 px-2 bg-[#F9EB37] rounded-md text-xs font-medium"
+                                className="cursor-pointer flex items-center justify-center gap-1 py-2 px-2 bg-[#F9EB37] rounded-md text-xs font-medium"
                               >
                                 <Image
                                   src="/assets/pay.png"

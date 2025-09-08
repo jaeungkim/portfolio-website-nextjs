@@ -1,13 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Modal from "@/src/components/common/Modal/Modal";
 import Lightbox from "../components/Lightbox";
-
-interface GalleryProps {
-  images: string[];
-  onToggleTimeline: () => void;
-  showTimeline: boolean;
-}
+import type { GalleryProps } from "../types";
 
 export default function Gallery({
   images,
@@ -16,49 +13,59 @@ export default function Gallery({
 }: GalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Optimized event handlers
-  const openLightbox = useCallback((index: number) => {
+  const openLightbox = (index: number) => {
     setLightboxIndex(index);
-  }, []);
+  };
 
-  const closeLightbox = useCallback(() => {
+  const closeLightbox = () => {
     setLightboxIndex(null);
-  }, []);
+  };
 
   return (
     <>
-      <div className="py-[84px] px-6">
+      <section className="py-[84px] px-6" aria-labelledby="gallery-heading">
         <div className="flex flex-col items-center space-y-12">
           {/* Header Section */}
-          <div className="text-center space-y-6">
-            <h1 className="text-2xl font-medium text-neutral-900 tracking-wide">
+          <header className="text-center space-y-6">
+            <h1
+              id="gallery-heading"
+              className="text-2xl font-medium text-neutral-900 tracking-wide"
+            >
               갤러리
             </h1>
-            <div className="w-12 h-px bg-neutral-300 mx-auto"></div>
-          </div>
+            <div
+              className="w-12 h-px bg-neutral-300 mx-auto"
+              aria-hidden="true"
+            ></div>
+          </header>
 
           {/* Gallery Grid */}
           <div className="w-full max-w-md">
-            <div className="grid grid-cols-3 gap-2">
+            <div
+              className="grid grid-cols-3 gap-2"
+              role="grid"
+              aria-label="웨딩 사진 갤러리"
+            >
               {images.map((src, index) => (
-                <div
+                <button
                   key={`${src}-${index}`}
-                  className="relative aspect-[3/4] rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                  className="relative aspect-[3/4] rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
                   onClick={() => openLightbox(index)}
+                  aria-label={`웨딩 사진 ${index + 1} 확대 보기`}
                 >
                   <Image
                     src={src}
-                    alt={`Photo ${index + 1}`}
+                    alt={`웨딩 사진 ${index + 1}`}
                     fill
                     sizes="(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
                     className="object-cover hover:scale-105 transition-transform duration-300"
                   />
-                </div>
+                </button>
               ))}
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <Modal
         isOpen={lightboxIndex !== null}
