@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
 import {
   GALLERY_IMAGES,
@@ -14,6 +14,7 @@ import { BGMPlayer } from "./components/BGM";
 
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
+import GettingMarried2 from "./sections/GettingMarried2";
 import Introduction from "./sections/Introduction";
 import WeddingLocation from "./sections/WeddingLocation";
 import WeddingCalendar from "./sections/WeddingCalendar";
@@ -24,57 +25,32 @@ import Epilogue from "./sections/Epilogue";
 // 섹션 컴포넌트 타입 매핑
 const SECTION_COMPONENTS = {
   GettingMarried,
+  GettingMarried2,
   Introduction,
   WeddingCalendar,
+  Gallery,
   WeddingLocation,
   BankInfo,
   Epilogue,
 } as const;
 
 export default function MainWeddingScreen({}: MainWeddingScreenProps = {}) {
-  const [showTimeline, setShowTimeline] = useState(false);
-
-  const toggleTimeline = () => {
-    setShowTimeline(!showTimeline);
-  };
-
   // GSAP 애니메이션 훅 사용
-  useWeddingAnimations([showTimeline]);
+  useWeddingAnimations();
 
   // 섹션 렌더링 함수
   const renderSection = (section: (typeof WEDDING_SECTIONS)[number]) => {
-    const SectionComponent =
+    const Component =
       SECTION_COMPONENTS[
         section.componentName as keyof typeof SECTION_COMPONENTS
       ];
 
-    if (section.key === "wedding-calendar") {
-      return (
-        <div key={`group-${section.key}`}>
-          <div data-section={section.key}>
-            <SectionComponent />
-          </div>
-          <div data-section="gallery">
-            <Gallery
-              images={GALLERY_IMAGES}
-              onToggleTimeline={toggleTimeline}
-              showTimeline={showTimeline}
-            />
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div key={section.key} data-section={section.key}>
-        <SectionComponent />
-      </div>
-    );
+    return <Component key={section.key} />;
   };
 
   return (
     <motion.div
-      className="min-h-screen flex justify-center text-neutral-700"
+      className="min-h-screen flex justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}

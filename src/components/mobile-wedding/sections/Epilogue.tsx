@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import SectionContainer from "../components/SectionContainer";
 
 export default function Epilogue() {
   const [timeTogether, setTimeTogether] = useState("");
@@ -36,40 +37,38 @@ export default function Epilogue() {
   }, []);
 
   return (
-    <div className="py-[84px]">
-      <div className="flex flex-col items-center space-y-12">
-        <div className="text-center space-y-6">
-          <h1 className="text-2xl font-medium text-neutral-900 tracking-wide">
-            함께한 시간
-          </h1>
-          <div className="w-12 h-px bg-neutral-300 mx-auto"></div>
-        </div>
-
-        <div className="text-center">
-          <p className="text-lg text-neutral-700">"{timeTogether}"</p>
-        </div>
-
-        <div className="w-full">
-          <Image
-            src="/images/mobile-wedding/gallery/main22.jpeg"
-            alt="Epilogue"
-            width={448}
-            height={1000}
-          />
-        </div>
-
-        <footer className="text-center space-y-4 py-8">
-          <div className="space-y-2">
-            <p className="text-lg font-medium text-neutral-800 tracking-wide">
-              김재웅 & 고아라
-            </p>
-            <div className="w-8 h-px bg-neutral-300 mx-auto"></div>
-          </div>
-          <p className="text-xs text-neutral-400 leading-relaxed">
-            COPYRIGHT © jaeungkim. All rights reserved.
-          </p>
-        </footer>
+    <SectionContainer sectionKey="epilogue">
+      <div className="text-center space-y-6">
+        <h1 className="text-2xl font-medium text-neutral-900 tracking-wide">
+          함께한 시간
+        </h1>
+        <div className="w-12 h-px bg-neutral-300 mx-auto"></div>
       </div>
-    </div>
+
+      <div className="text-center">
+        <p className="text-lg text-neutral-700">"{timeTogether}"</p>
+      </div>
+
+      <div className="w-full">
+        <Image
+          src="/images/mobile-wedding/gallery/main22.jpeg"
+          alt="Epilogue"
+          width={448}
+          height={1000}
+        />
+      </div>
+
+      <footer className="text-center space-y-4 py-8">
+        <div className="space-y-2">
+          <p className="text-lg font-medium text-neutral-800 tracking-wide">
+            김재웅 & 고아라
+          </p>
+          <div className="w-8 h-px bg-neutral-300 mx-auto"></div>
+        </div>
+        <p className="text-xs text-neutral-400 leading-relaxed">
+          COPYRIGHT © jaeungkim. All rights reserved.
+        </p>
+      </footer>
+    </SectionContainer>
   );
 }

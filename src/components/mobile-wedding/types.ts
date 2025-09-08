@@ -5,11 +5,7 @@ export interface WeddingSection {
 }
 
 // 갤러리 컴포넌트 인터페이스
-export interface GalleryProps {
-  images: readonly string[];
-  onToggleTimeline: () => void;
-  showTimeline: boolean;
-}
+export interface GalleryProps {}
 
 // 로딩 화면 컴포넌트 인터페이스
 export interface LoadingScreenProps {
@@ -95,7 +91,6 @@ export interface WeddingAnimationsHook {
 // 컴포넌트 상태 인터페이스
 export interface ComponentState {
   isLoading?: boolean;
-  showTimeline?: boolean;
   lightboxIndex?: number | null;
   isReady?: boolean;
 }
@@ -116,5 +111,4 @@ export interface LoadingState {
 export type ClickHandler = (event: React.MouseEvent) => void;
 export type TouchHandler = (event: React.TouchEvent) => void;
 export type KeyboardHandler = (event: KeyboardEvent) => void;
-export type ToggleHandler = () => void;
 export type CloseHandler = () => void;

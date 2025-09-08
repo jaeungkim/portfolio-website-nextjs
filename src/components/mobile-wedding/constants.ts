@@ -23,7 +23,7 @@ export const BGM_CONFIG = {
   src: "/audio/wedding-bgm.mp3", // 웨딩 BGM 파일 경로
   autoPlay: true,
   loop: true,
-  volume: 0.3, // 볼륨 30%
+  volume: 0.3,
 } as const;
 
 // 갤러리 이미지 목록
@@ -42,12 +42,87 @@ export const GALLERY_IMAGES = [
 // 섹션 컴포넌트 설정
 export const WEDDING_SECTIONS = [
   { componentName: "GettingMarried", key: "getting-married" },
+  { componentName: "GettingMarried2", key: "getting-married2" },
   { componentName: "Introduction", key: "introduction" },
   { componentName: "WeddingCalendar", key: "wedding-calendar" },
+  { componentName: "Gallery", key: "gallery" },
   { componentName: "WeddingLocation", key: "wedding-location" },
   { componentName: "BankInfo", key: "bank-info" },
   { componentName: "Epilogue", key: "epilogue" },
 ] as const;
+
+export interface BankAccount {
+  id: string;
+  name: string;
+  accountNumber: string;
+  bankName: string;
+  accountHolder: string;
+  kakaoPayUrl?: string;
+}
+
+export interface BankSection {
+  id: string;
+  title: string;
+  color: string;
+  accounts: BankAccount[];
+}
+
+export const BANK_SECTIONS: BankSection[] = [
+  {
+    id: "groom",
+    title: "신랑측",
+    color: "text-[#5F89B8]",
+    accounts: [
+      {
+        id: "groom-1",
+        name: "신랑",
+        accountNumber: "390401-04-083015",
+        bankName: "국민은행",
+        accountHolder: "KIM JAEUNG",
+        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
+      },
+      {
+        id: "groom-2",
+        name: "신랑 어머니",
+        accountNumber: "285-21-0209-832",
+        bankName: "국민은행",
+        accountHolder: "김화영",
+        // No KakaoPay URL - only copy button will be shown
+      },
+      {
+        id: "groom-3",
+        name: "신랑 아버지",
+        accountNumber: "390401-04-083015",
+        bankName: "국민은행",
+        accountHolder: "김정호",
+        // No KakaoPay URL - only copy button will be shown
+      },
+    ],
+  },
+  {
+    id: "bride",
+    title: "신부측",
+    color: "text-[#BB7273]",
+    accounts: [
+      {
+        id: "bride-1",
+        name: "신부",
+        accountNumber: "3333-3333-3333-3333",
+        bankName: "카카오뱅크",
+        accountHolder: "고아라",
+        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
+      },
+      {
+        id: "bride-2",
+        name: "신부 어머니",
+        accountNumber: "4444-4444-4444-4444",
+        bankName: "카카오뱅크",
+        accountHolder: "음현희",
+        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
+      },
+    ],
+  },
+];
 
 // 스타일 설정
 export const MOBILE_CONTAINER_STYLES = {
