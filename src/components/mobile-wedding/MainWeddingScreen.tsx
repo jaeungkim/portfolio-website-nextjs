@@ -14,20 +14,13 @@ import { BGMPlayer } from "./components/BGM";
 
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
-import GettingMarried2 from "./sections/GettingMarried2";
-import Introduction from "./sections/Introduction";
 import WeddingLocation from "./sections/WeddingLocation";
-import WeddingCalendar from "./sections/WeddingCalendar";
 import Gallery from "./sections/Gallery";
 import BankInfo from "./sections/BankInfo";
 import Epilogue from "./sections/Epilogue";
 
-// 섹션 컴포넌트 타입 매핑
 const SECTION_COMPONENTS = {
   GettingMarried,
-  GettingMarried2,
-  Introduction,
-  WeddingCalendar,
   Gallery,
   WeddingLocation,
   BankInfo,

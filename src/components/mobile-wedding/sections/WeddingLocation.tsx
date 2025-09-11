@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { useNaverMap } from "./hooks/useNaverMap";
 
 import NaverMap from "./components/NaverMap";
 import NavigationButtons from "./components/NavigationButtons";
 import SectionContainer from "../components/SectionContainer";
+import ContactModal from "../components/ContactModal";
 
 const VENUE_COORDINATES = {
   lat: 37.5555,
@@ -16,6 +17,8 @@ const VENUE_COORDINATES = {
 };
 
 export default function WeddingLocation() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   const mapRef = useRef<HTMLDivElement>(null);
 
   const { mapLoaded, initializeMap } = useNaverMap(mapRef, VENUE_COORDINATES);
@@ -95,6 +98,21 @@ export default function WeddingLocation() {
           🚗 자가용 이용 시 주차장 입구에서 안내를 받아주세요
         </p>
       </div>
+
+      <div className="mt-[64px] flex items-center justify-center">
+        <button
+          type="button"
+          onClick={() => setIsContactModalOpen(true)}
+          className="cursor-pointer shadow-md bg-white rounded-full px-16 py-2 text-sm text-center w-fit border-solid border border-neutral-300 hover:border-neutral-400 transition-all duration-300 ease-in-out font-bold"
+        >
+          혼주에게 연락하기
+        </button>
+      </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </SectionContainer>
   );
 }

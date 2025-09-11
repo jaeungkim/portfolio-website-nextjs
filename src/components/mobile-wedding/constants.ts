@@ -28,23 +28,21 @@ export const BGM_CONFIG = {
 
 // 갤러리 이미지 목록
 export const GALLERY_IMAGES = [
-  "/images/mobile-wedding/gallery/main.jpeg",
-  "/images/mobile-wedding/gallery/main22.jpeg",
-  "/images/mobile-wedding/gallery/main23.jpeg",
-  "/images/mobile-wedding/gallery/main24.jpeg",
-  "/images/mobile-wedding/gallery/EB44B0AD-92D7-46BF-AC01-C0780C0C7A29_1_102_o.jpeg",
-  "/images/mobile-wedding/gallery/main.jpeg",
-  "/images/mobile-wedding/gallery/main22.jpeg",
-  "/images/mobile-wedding/gallery/main23.jpeg",
-  "/images/mobile-wedding/gallery/main24.jpeg",
+  "/images/mobile-wedding/gallery/wedding.jpeg",
+  "/images/mobile-wedding/gallery/wedding2.jpeg",
+  "/images/mobile-wedding/gallery/wedding3.jpeg",
+  "/images/mobile-wedding/gallery/wedding4.jpeg",
+  "/images/mobile-wedding/gallery/wedding5.jpeg",
+  "/images/mobile-wedding/gallery/wedding6.jpeg",
+  "/images/mobile-wedding/gallery/wedding7.jpeg",
+  "/images/mobile-wedding/gallery/wedding8.jpeg",
+  "/images/mobile-wedding/gallery/wedding9.jpeg",
+  "/images/mobile-wedding/gallery/wedding10.jpeg",
 ] as const;
 
 // 섹션 컴포넌트 설정
 export const WEDDING_SECTIONS = [
   { componentName: "GettingMarried", key: "getting-married" },
-  { componentName: "GettingMarried2", key: "getting-married2" },
-  { componentName: "Introduction", key: "introduction" },
-  { componentName: "WeddingCalendar", key: "wedding-calendar" },
   { componentName: "Gallery", key: "gallery" },
   { componentName: "WeddingLocation", key: "wedding-location" },
   { componentName: "BankInfo", key: "bank-info" },

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { LightboxProps } from "../types";
 
@@ -13,6 +13,12 @@ export default function Lightbox({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const imagesLength = images.length;
 
+  // Touch gesture state
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const touchEndY = useRef<number | null>(null);
+
   // Navigation functions
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? imagesLength - 1 : prev - 1));
@@ -21,6 +27,52 @@ export default function Lightbox({
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === imagesLength - 1 ? 0 : prev + 1));
   }, [imagesLength]);
+
+  // Touch gesture handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    if (
+      !touchStartX.current ||
+      !touchEndX.current ||
+      !touchStartY.current ||
+      !touchEndY.current
+    ) {
+      return;
+    }
+
+    const deltaX = touchStartX.current - touchEndX.current;
+    const deltaY = touchStartY.current - touchEndY.current;
+    const minSwipeDistance = 50; // 최소 스와이프 거리
+
+    // 수평 스와이프가 수직 스와이프보다 클 때만 처리
+    if (
+      Math.abs(deltaX) > Math.abs(deltaY) &&
+      Math.abs(deltaX) > minSwipeDistance
+    ) {
+      if (deltaX > 0) {
+        // 왼쪽으로 스와이프 - 다음 이미지
+        goToNext();
+      } else {
+        // 오른쪽으로 스와이프 - 이전 이미지
+        goToPrevious();
+      }
+    }
+
+    // 터치 상태 초기화
+    touchStartX.current = null;
+    touchStartY.current = null;
+    touchEndX.current = null;
+    touchEndY.current = null;
+  }, [goToNext, goToPrevious]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -43,7 +95,12 @@ export default function Lightbox({
   }, [onClose, goToPrevious, goToNext]);
 
   return (
-    <div className="relative h-[80vh] w-full overflow-hidden">
+    <div
+      className="relative h-[80vh] w-full overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Close Button */}
       <button
         type="button"

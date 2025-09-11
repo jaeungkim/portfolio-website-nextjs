@@ -10,6 +10,10 @@ import SectionContainer from "../components/SectionContainer";
 export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  // 갤러리 그리드에는 최대 9개 이미지만 표시
+  const GALLERY_DISPLAY_LIMIT = 9;
+  const displayImages = GALLERY_IMAGES.slice(0, GALLERY_DISPLAY_LIMIT);
+
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
   };
@@ -41,7 +45,7 @@ export default function Gallery() {
           role="grid"
           aria-label="웨딩 사진 갤러리"
         >
-          {GALLERY_IMAGES.map((src, index) => (
+          {displayImages.map((src, index) => (
             <button
               key={`${src}-${index}`}
               className="relative aspect-[3/4] rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"

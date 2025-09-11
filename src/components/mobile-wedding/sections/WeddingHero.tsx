@@ -25,9 +25,9 @@ const HERO_ANIMATION = {
   },
 } as const;
 
-const HERO_IMAGE = "/images/mobile-wedding/gallery/main24.jpeg";
-const WEDDING_DATE = "2025년 5월 18일 일요일";
-const WEDDING_QUOTE = "함께 걷는 길, 그 길 위에 우리의 사랑이 피어납니다";
+const HERO_IMAGE = "/images/mobile-wedding/gallery/wedding13.jpeg";
+const WEDDING_DATE = "2025년 10월 25일 토요일";
+const WEDDING_QUOTE = "어디든, 너와 함께라면";
 
 export default function WeddingHero() {
   return (

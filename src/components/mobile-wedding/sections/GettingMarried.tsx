@@ -1,31 +1,29 @@
 import SectionContainer from "../components/SectionContainer";
+import Image from "next/image";
 
 export default function GettingMarried() {
   return (
     <SectionContainer sectionKey="getting-married">
-      <blockquote>
-        <p className="text-[#5F89B8] mb-[64px] font-bold">
-          소중한 분들을 초대합니다.
-        </p>
-        <p className="leading-relaxed ">
-          서로의 이름을 부르는 것만으로도
-          <br />
-          사랑의 깊이를 확인할 수 있는 두 사람이
-          <br />
-          꽃과 나무처럼 걸어와서
-          <br />
-          서로의 모든 것이 되기 위해
-          <br />
-          오랜 기다림 끝에 혼례식을 치르는 날<br />
-          세상은 더욱 아름다워라
-        </p>
-
-        <footer className="pt-[12px]">
-          <cite className="text-sm opacity-75">
-            &lt;사랑의 사람들이여&gt;, 이해인
-          </cite>
-        </footer>
-      </blockquote>
+      <p className="text-[#5F89B8] mb-[64px] font-bold text-lg">
+        결혼식은 생략하며, 일가친척이 모여
+        <br />
+        식사하는 자리로 결혼을 대신하고자 합니다.
+      </p>
+      <Image
+        src="/images/mobile-wedding/gallery/wedding12.jpeg"
+        alt="저희 결혼 사진"
+        width={448}
+        height={1000}
+        className="shadow-sm rounded  mb-[64px] w-full"
+      />
+      <p className="leading-relaxed font-bold text-left">
+        미래는 누구도 알 수 없고,<br />
+        가끔은 막연한 두려움이 밀려오기도 하지만,<br />
+        그럼에도 불구하고,<br />
+        저희는 저희만의 결혼식과<br />
+        저희만의 삶을<br />
+        사랑하며 살아가려고 합니다.
+      </p>
     </SectionContainer>
   );
 }
