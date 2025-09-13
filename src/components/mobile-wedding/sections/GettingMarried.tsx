@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function GettingMarried() {
   return (
     <SectionContainer sectionKey="getting-married">
-      <p className="text-[#5F89B8] mb-[112px] font-bold text-lg text-center leading-6">
+      <p className="text-[#5F89B8] py-[64px] pb-[128px] font-bold text-lg text-center leading-6">
         결혼식은 생략하며, 일가친척이 모여
         <br />
         식사하는 자리로 결혼을 대신하고자 합니다.
