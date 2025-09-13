@@ -1,50 +1,94 @@
 "use client";
 
-import { useState } from "react";
-import ContactModal from "../components/ContactModal";
+import { motion } from "motion/react";
 import SectionContainer from "../components/SectionContainer";
-import Image from "next/image";
 
 export default function GettingMarried() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<"groom" | "bride">("groom");
-
   return (
     <SectionContainer sectionKey="getting-married">
-      <div className="flex flex-col items-center justify-center py-[82px] pb-[166px] text-[#5F89B8] font-bold text-lg text-center space-y-8">
-        <p>결혼식은 생략하며, 일가친척이 모여</p>
-        <p>식사하는 자리로 결혼을 대신하고자 합니다.</p>
-      </div>
-      <Image
-        src="/images/mobile-wedding/gallery/wedding12.jpeg"
-        alt="저희 결혼 사진"
-        width={448}
-        height={1000}
-        className="shadow-md rounded mb-[64px] w-full"
-      />
-      <div className="flex flex-col items-center justify-center space-y-4">
-        <p>미래는 누구도 알 수 없고,</p>
-        <p>가끔은 막연한 두려움이 밀려오기도 하지만,</p>
-        <p>그럼에도 불구하고</p>
-        <p>저희는 저희만의 결혼식과</p>
-        <p>저희만의 삶을</p>
-        <p>사랑하며 살아가려고 합니다.</p>
-      </div>
-      <div className="mt-[32px] flex items-center justify-center">
-        <button
-          onClick={() => setIsContactModalOpen(true)}
-          className="cursor-pointer shadow-md bg-white rounded-full px-16 py-2 text-sm text-center w-fit border-solid border border-neutral-300 hover:border-neutral-400 transition-all duration-300 ease-in-out font-bold"
+      <div className="relative flex flex-col items-center justify-center py-[128px] text-[#5F89B8] font-bold text-lg text-center space-y-8 mx-8 overflow-hidden">
+        {/* Subtle floating hearts in different colors */}
+        <motion.div
+          className="absolute top-8 left-8 opacity-20"
+          animate={{
+            y: [-5, 5, -5],
+            rotate: [0, 5, 0, -5, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
-          축하 연락하기
-        </button>
-      </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#5F89B8">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </motion.div>
 
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+        <motion.div
+          className="absolute top-16 right-12 opacity-18"
+          animate={{
+            y: [5, -5, 5],
+            x: [-2, 2, -2],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#FFB6C1">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </motion.div>
+
+        {/* Main text content */}
+        <p>화려한 예식 대신 소박하고,</p>
+        <p>따뜻한 만남을 선택했습니다.</p>
+        <p>가족과 친척들이 한자리에 모여 정을 나누고,</p>
+        <p>함께하는 식사 자리를 통해</p>
+        <p>새로운 시작을 축하하고자 합니다.</p>
+        <p>작은 모임이지만 큰 행복이 깃든</p>
+        <p>소중한 날이 되기를 바랍니다.</p>
+
+        {/* Gentle floating hearts in mixed colors */}
+        <motion.div
+          className="absolute bottom-8 left-6 opacity-25"
+          animate={{
+            y: [-3, 3, -3],
+            rotate: [0, 8, 0, -8, 0],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB6C1">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-12 right-8 opacity-22"
+          animate={{
+            y: [3, -3, 3],
+            x: [1, -1, 1],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3,
+          }}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#5F89B8">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </motion.div>
+      </div>
     </SectionContainer>
   );
 }

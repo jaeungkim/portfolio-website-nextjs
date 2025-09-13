@@ -13,6 +13,7 @@ import { useWeddingAnimations } from "./hooks/useWeddingAnimations";
 
 import WeddingHero from "./sections/WeddingHero";
 import GettingMarried from "./sections/GettingMarried";
+import GettingMarried2 from "./sections/GettingMarried2";
 import WeddingLocation from "./sections/WeddingLocation";
 import Gallery from "./sections/Gallery";
 import BankInfo from "./sections/BankInfo";
@@ -20,6 +21,7 @@ import Epilogue from "./sections/Epilogue";
 
 const SECTION_COMPONENTS = {
   GettingMarried,
+  GettingMarried2,
   Gallery,
   WeddingLocation,
   BankInfo,

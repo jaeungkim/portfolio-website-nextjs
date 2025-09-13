@@ -43,6 +43,7 @@ export const GALLERY_IMAGES = [
 // 섹션 컴포넌트 설정
 export const WEDDING_SECTIONS = [
   { componentName: "GettingMarried", key: "getting-married" },
+  { componentName: "GettingMarried2", key: "getting-married2" },
   { componentName: "Gallery", key: "gallery" },
   { componentName: "WeddingLocation", key: "wedding-location" },
   { componentName: "BankInfo", key: "bank-info" },

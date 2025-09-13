@@ -48,7 +48,7 @@ export default function Gallery() {
           {displayImages.map((src, index) => (
             <button
               key={`${src}-${index}`}
-              className="relative aspect-[3/4] rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
+              className="relative aspect-[3/4] rounded-md overflow-hidden shadow-sm  transition-shadow duration-300 cursor-pointer "
               onClick={() => openLightbox(index)}
               aria-label={`웨딩 사진 ${index + 1} 확대 보기`}
             >
@@ -57,7 +57,7 @@ export default function Gallery() {
                 alt={`웨딩 사진 ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
-                className="object-cover hover:scale-105 transition-transform duration-300"
+                className="object-cover transition-transform duration-300"
               />
             </button>
           ))}
