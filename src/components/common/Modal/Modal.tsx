@@ -1,16 +1,14 @@
-import { motion, AnimatePresence } from "motion/react";
-import { usePortal } from "@/src/hooks/usePortal";
-import { useEffect } from "react";
-import { twMerge } from "tailwind-merge";
+'use client';
+
+import { AnimatePresence, motion } from "motion/react";
+import { X } from "lucide-react";
+import Portal from "./Portal";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
   className?: string;
-  overlayClassName?: string;
-  closeOnOverlayClick?: boolean;
-  closeOnEscape?: boolean;
 }
 
 export default function Modal({
@@ -18,68 +16,39 @@ export default function Modal({
   onClose,
   children,
   className = "",
-  overlayClassName = "",
-  closeOnOverlayClick = true,
-  closeOnEscape = true,
 }: ModalProps) {
-  const Portal = usePortal("modal-root");
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!closeOnEscape || !isOpen) return;
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isOpen, onClose, closeOnEscape]);
-
   if (!isOpen) return null;
 
   return (
     <Portal>
-      <motion.div
-        className={twMerge(
-          "fixed inset-0 z-[9999] flex items-center justify-center bg-white/20 backdrop-blur-sm",
-          overlayClassName
-        )}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        onClick={(e) => {
-          if (closeOnOverlayClick && e.target === e.currentTarget) {
-            onClose();
-          }
-        }}
-      >
+      <AnimatePresence>
         <motion.div
-          className={twMerge(
-            "bg-white rounded-lg shadow-xl mx-4 w-full max-w-md",
-            className
-          )}
-          initial={{ scale: 0.8, opacity: 0, y: 50 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          onClick={(e) => e.stopPropagation()}
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
         >
-          {children}
+          <motion.div
+            className={`bg-white rounded-lg shadow-xl mx-4 p-4 w-full max-w-md relative ${className}`}
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 p-1 hover:bg-gray-100 rounded-full text-gray-500 hover:text-gray-700 transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            {children}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </AnimatePresence>
     </Portal>
   );
 }

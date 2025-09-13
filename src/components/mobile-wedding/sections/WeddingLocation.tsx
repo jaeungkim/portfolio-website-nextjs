@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useNaverMap } from "./hooks/useNaverMap";
 
 import NaverMap from "./components/NaverMap";
 import SectionContainer from "../components/SectionContainer";
-import ContactModal from "../components/ContactModal";
 
 const VENUE_COORDINATES = {
   lat: 37.5555,
@@ -16,20 +15,13 @@ const VENUE_COORDINATES = {
 };
 
 export default function WeddingLocation() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-
   const mapRef = useRef<HTMLDivElement>(null);
-
   const { mapLoaded, initializeMap } = useNaverMap(mapRef, VENUE_COORDINATES);
 
-  // Initialize map when component mounts
-  React.useEffect(() => {
-    initializeMap();
-  }, [initializeMap]);
+  useEffect(() => initializeMap(), [initializeMap]);
 
   return (
     <SectionContainer sectionKey="wedding-location">
-      {/* Header Section */}
       <div className="text-center space-y-6">
         <h1 className="text-2xl font-medium text-neutral-900 tracking-wide">
           오시는 길
@@ -37,7 +29,6 @@ export default function WeddingLocation() {
         <div className="w-12 h-px bg-neutral-300 mx-auto"></div>
       </div>
 
-      {/* Venue Information */}
       <div className="text-center space-y-3">
         <h2 className="text-xl font-light text-neutral-800 tracking-wide">
           경복궁 서교점
@@ -47,12 +38,10 @@ export default function WeddingLocation() {
         </p>
       </div>
 
-      {/* Map Section */}
       <div className="w-full flex justify-center">
         <NaverMap mapRef={mapRef} mapLoaded={mapLoaded} />
       </div>
 
-      {/* Parking Information */}
       <div className="rounded-2xl p-4 w-full ">
         <div className="text-center space-y-4">
           <div className="space-y-2">
@@ -83,7 +72,6 @@ export default function WeddingLocation() {
         </div>
       </div>
 
-      {/* Additional Info */}
       <div className="text-center space-y-2 max-w-xs">
         <p className="text-xs text-neutral-500 leading-relaxed">
           대중교통 이용 시 홍대입구역 1번 출구에서 도보 10분 거리
@@ -92,21 +80,6 @@ export default function WeddingLocation() {
           자가용 이용 시 주차장 입구에서 안내를 받아주세요
         </p>
       </div>
-
-      <div className="mt-[32px] flex items-center justify-center">
-        <button
-          type="button"
-          onClick={() => setIsContactModalOpen(true)}
-          className="cursor-pointer shadow-md bg-white rounded-full px-16 py-2 text-sm text-center w-fit border-solid border border-neutral-300 hover:border-neutral-400 transition-all duration-300 ease-in-out font-bold"
-        >
-          혼주에게 연락하기
-        </button>
-      </div>
-
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      />
     </SectionContainer>
   );
 }

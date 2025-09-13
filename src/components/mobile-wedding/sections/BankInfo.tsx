@@ -6,11 +6,14 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Copy } from "lucide-react";
 import SectionContainer from "../components/SectionContainer";
 import { BANK_SECTIONS } from "../constants";
+import { useToast } from "../../../hooks/useToast";
+import Toaster from "../../common/Toast";
 
 export default function BankInfo() {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     new Set()
   );
+  const { toasts, toast } = useToast();
 
   const toggleSection = (sectionId: string) => {
     setExpandedSections((prev) => {
@@ -27,20 +30,16 @@ export default function BankInfo() {
   const copyAccountNumber = async (accountNumber: string) => {
     try {
       await navigator.clipboard.writeText(accountNumber);
-      console.log("계좌번호 복사됨:", accountNumber);
+      toast("계좌번호가 복사되었습니다.");
     } catch (err) {
       console.error("계좌번호 복사 실패:", err);
+      toast("복사에 실패했습니다.");
     }
-  };
-
-  const handleKakaoPayClick = (kakaoPayUrl: string) => {
-    // Open the specific KakaoPay link for this account in new tab
-    window.open(kakaoPayUrl, "_blank");
   };
 
   return (
     <SectionContainer sectionKey="bank-info">
-      {/* Header Section */}
+
       <div className="text-center space-y-6">
         <h1 className="text-2xl font-medium text-neutral-900 tracking-wide">
           마음 전하실 곳
@@ -48,7 +47,6 @@ export default function BankInfo() {
         <div className="w-12 h-px bg-neutral-300 mx-auto"></div>
       </div>
 
-      {/* Introduction Text */}
       <div className="text-center space-y-3">
         <p className="text-sm text-neutral-600 leading-relaxed">
           멀리서도 축하의 마음을 전하고 싶으신 분들을 위해
@@ -62,7 +60,6 @@ export default function BankInfo() {
         </p>
       </div>
 
-      {/* Bank Account Sections */}
       <div className="w-full space-y-4">
         {BANK_SECTIONS.map((section) => {
           const isExpanded = expandedSections.has(section.id);
@@ -72,7 +69,6 @@ export default function BankInfo() {
               key={section.id}
               className="bg-white rounded-lg border border-neutral-200 shadow-sm"
             >
-              {/* Section Header */}
               <button
                 onClick={() => toggleSection(section.id)}
                 className="w-full flex items-center justify-between px-4 py-2 text-left"
@@ -133,23 +129,6 @@ export default function BankInfo() {
                               <Copy size={12} />
                               복사
                             </button>
-                            {account.kakaoPayUrl && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  handleKakaoPayClick(account.kakaoPayUrl!)
-                                }
-                                className="cursor-pointer flex items-center justify-center gap-1 py-2 px-2 bg-[#F9EB37] rounded-md text-xs font-medium"
-                              >
-                                <Image
-                                  src="/assets/pay.png"
-                                  alt="KakaoPay"
-                                  width={43}
-                                  height={43}
-                                  className="object-contain"
-                                />
-                              </button>
-                            )}
                           </div>
                         </div>
                       ))}
@@ -161,6 +140,11 @@ export default function BankInfo() {
           );
         })}
       </div>
+
+      {/* Toast Notifications */}
+      <Toaster
+        toasts={toasts}
+      />
     </SectionContainer>
   );
 }

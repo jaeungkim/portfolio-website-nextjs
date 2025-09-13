@@ -67,10 +67,7 @@ export default function Gallery() {
       <Modal
         isOpen={lightboxIndex !== null}
         onClose={closeLightbox}
-        // overlayClassName="bg-black/60 backdrop-blur-sm"
         className="mx-0"
-        closeOnOverlayClick={true}
-        closeOnEscape={true}
       >
         {lightboxIndex !== null && (
           <Lightbox

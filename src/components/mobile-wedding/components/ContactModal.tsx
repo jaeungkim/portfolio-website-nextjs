@@ -1,109 +1,124 @@
+import { motion, AnimatePresence } from "motion/react";
+import { Phone, MessageSquare } from "lucide-react";
 import Modal from "@/src/components/common/Modal/Modal";
-import { motion } from "motion/react";
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
+  activeTab: "groom" | "bride";
+  setActiveTab: (tab: "groom" | "bride") => void;
 }
 
-export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
-  const groomParents = [
-    {
-      name: "아버지 김정호",
-      phone: "010-1234-5678",
-    },
-    {
-      name: "어머니 김화영",
-      phone: "010-2450-5987",
-    },
-  ];
+const CONTACTS = {
+  groom: [
+    { name: "김재웅", relationship: "", phone: "010-5750-5595" },
+    { name: "김정호", relationship: "아버지", phone: "010-2450-5987" },
+    { name: "김화영", relationship: "어머니", phone: "010-2450-5987" },
+  ],
+  bride: [
+    { name: "고아라", relationship: "", phone: "010-7540-5595" },
+    { name: "음현희", relationship: "어머니", phone: "010-9460-1406" },
+  ],
+};
 
-  const brideParents = [
-    {
-      name: "어머니 음현희",
-      phone: "010-4567-8901",
-    },
-  ];
+export default function ContactModal({
+  isOpen,
+  onClose,
+  activeTab,
+  setActiveTab,
+}: ContactModalProps) {
+  const currentContacts = CONTACTS[activeTab];
 
-  const handlePhoneClick = (phone: string) => {
-    window.open(`tel:${phone}`);
-  };
-
-  const handleEmailClick = (email: string) => {
-    window.open(`mailto:${email}`);
-  };
+  const handlePhoneClick = (phone: string) => window.open(`tel:${phone}`);
+  const handleMessageClick = (phone: string) => window.open(`sms:${phone}`);
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      closeOnOverlayClick={true}
-      closeOnEscape={true}
-    >
-      {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900">
-          혼주에게 연락하기
-        </h2>
-        <button
-          onClick={onClose}
-          className="p-1 hover:bg-gray-100 rounded-full transition-colors text-gray-500 text-xl font-bold"
-        >
-          ×
-        </button>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <div className="pt-8 pb-6 border-b border-neutral-200">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-neutral-800">
+            축하 연락하기
+          </h2>
+          <p className="text-sm text-neutral-500 mt-1">
+            직접 축하의 마음을 전해보세요
+          </p>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-6">
-        <div className="grid grid-cols-2 gap-6">
-          {/* 신랑측 */}
-          <div>
-            <h3 className="text-sm font-medium text-[#5F89B8] mb-4">신랑측</h3>
-            <div className="space-y-4">
-              {groomParents.map((parent, index) => (
-                <div key={index} className="space-y-2">
-                  <p className="text-sm font-medium text-gray-900">
-                    {parent.name}
-                  </p>
-                  <div className="flex gap-2">
-                    <motion.button
-                      onClick={() => handlePhoneClick(parent.phone)}
-                      className="flex items-center justify-center w-8 h-8 bg-[#5F89B8] bg-opacity-10 rounded-full hover:bg-opacity-20 transition-colors text-[#5F89B8] text-sm"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      📞
-                    </motion.button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="flex border-b border-neutral-200">
+        {(["groom", "bride"] as const).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`flex-1 py-4 text-center text-sm font-medium transition-colors ${
+              activeTab === tab
+                ? "text-neutral-800 border-b-2 border-neutral-800"
+                : "text-neutral-500"
+            }`}
+          >
+            {tab === "groom" ? "신랑에게" : "신부에게"}
+          </button>
+        ))}
+      </div>
 
-          {/* 신부측 */}
-          <div>
-            <h3 className="text-sm font-medium text-[#BB7273] mb-4">신부측</h3>
-            <div className="space-y-4">
-              {brideParents.map((parent, index) => (
-                <div key={index} className="space-y-2">
-                  <p className="text-sm font-medium text-gray-900">
-                    {parent.name}
-                  </p>
+      <div className="p-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            className="h-[360px] flex flex-col"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+          >
+            <div className="flex-1 space-y-4">
+              {currentContacts.map((contact, index) => (
+                <motion.div
+                  key={`${activeTab}-${contact.name}`}
+                  className="bg-white rounded-lg p-4 shadow-sm border border-neutral-200"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.15,
+                    delay: index * 0.03,
+                    ease: "easeOut",
+                  }}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <p className="text-sm font-medium text-neutral-800">
+                        {contact.name}
+                      </p>
+                      {contact.relationship && (
+                        <p className="text-xs text-neutral-500">
+                          {contact.relationship}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                   <div className="flex gap-2">
                     <motion.button
-                      onClick={() => handlePhoneClick(parent.phone)}
-                      className="flex items-center justify-center w-8 h-8 bg-[#BB7273] bg-opacity-10 rounded-full hover:bg-opacity-20 transition-colors text-[#BB7273] text-sm"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handleMessageClick(contact.phone)}
+                      className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 text-neutral-700 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
                     >
-                      📞
+                      <MessageSquare className="w-4 h-4" /> 문자 보내기
+                    </motion.button>
+                    <motion.button
+                      onClick={() => handlePhoneClick(contact.phone)}
+                      className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
+                        activeTab === "groom"
+                          ? "bg-[#5F89B8]/50 text-neutral-800"
+                          : "bg-[#BB7273]/50 text-neutral-800"
+                      }`}
+                    >
+                      <Phone className="w-4 h-4" /> 전화하기
                     </motion.button>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </Modal>
   );

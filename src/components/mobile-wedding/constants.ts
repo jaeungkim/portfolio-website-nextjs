@@ -55,7 +55,6 @@ export interface BankAccount {
   accountNumber: string;
   bankName: string;
   accountHolder: string;
-  kakaoPayUrl?: string;
 }
 
 export interface BankSection {
@@ -77,7 +76,6 @@ export const BANK_SECTIONS: BankSection[] = [
         accountNumber: "390401-04-083015",
         bankName: "국민은행",
         accountHolder: "KIM JAEUNG",
-        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
       },
       {
         id: "groom-2",
@@ -105,18 +103,16 @@ export const BANK_SECTIONS: BankSection[] = [
       {
         id: "bride-1",
         name: "신부",
-        accountNumber: "3333-3333-3333-3333",
-        bankName: "카카오뱅크",
+        accountNumber: "547802-04-069698",
+        bankName: "국민은행",
         accountHolder: "고아라",
-        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
       },
       {
         id: "bride-2",
         name: "신부 어머니",
-        accountNumber: "4444-4444-4444-4444",
-        bankName: "카카오뱅크",
+        accountNumber: "17089151010350",
+        bankName: "농협은행",
         accountHolder: "음현희",
-        kakaoPayUrl: "https://qr.kakaopay.com/FekG1fWkE",
       },
     ],
   },
