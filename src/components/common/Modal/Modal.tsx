@@ -25,10 +25,14 @@ export default function Modal({
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const targetElementRef = useRef<HTMLElement | null>(null);
+  const scrollPositionRef = useRef<number>(0);
 
   // Prevent scroll when modal is open using body-scroll-lock
   useEffect(() => {
     if (isOpen && modalRef.current) {
+      // Store scroll position before disabling scroll
+      scrollPositionRef.current = window.scrollY;
+
       // Store the target element for later cleanup
       targetElementRef.current = modalRef.current;
 
@@ -39,6 +43,12 @@ export default function Modal({
     } else if (!isOpen && targetElementRef.current) {
       // Re-enable body scroll using the stored target element
       enableBodyScroll(targetElementRef.current);
+
+      // Restore scroll position
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollPositionRef.current);
+      });
+
       targetElementRef.current = null;
     }
 
