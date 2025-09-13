@@ -57,14 +57,20 @@ export default function Epilogue() {
       </div>
 
       <div className="px-6 py-4">
-        <blockquote className="text-center space-y-2">
-          <p className="text-base italic text-neutral-700 leading-relaxed">
-            "가장 중요한 건 우리가 함께 한다는 거야."
+        <div className="text-center space-y-1">
+          <p className="text-sm italic text-neutral-700 leading-relaxed">
+            "인생은 모두가 함께하는 여행이다.
           </p>
-          <footer className="text-xs text-neutral-500 font-medium">
-            - 영화 '토이스토리' 중
-          </footer>
-        </blockquote>
+          <p className="text-sm italic text-neutral-700 leading-relaxed">
+            매일매일 사는 동안 우리가 할 수 있는 건
+          </p>
+          <p className="text-sm italic text-neutral-700 leading-relaxed">
+            최선을 다해 이 멋진 여행을 만끽하는 것이다."
+          </p>
+        </div>
+        <p className="mt-6 text-xs text-center text-neutral-500 font-medium">
+          - 영화 '어바웃타임' 중
+        </p>
       </div>
 
       <div className="w-full">

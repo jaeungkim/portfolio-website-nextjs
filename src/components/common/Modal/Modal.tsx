@@ -3,7 +3,11 @@
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 import Portal from "./Portal";
 
 interface ModalProps {
@@ -20,21 +24,30 @@ export default function Modal({
   className = "",
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const targetElementRef = useRef<HTMLElement | null>(null);
 
   // Prevent scroll when modal is open using body-scroll-lock
   useEffect(() => {
     if (isOpen && modalRef.current) {
+      // Store the target element for later cleanup
+      targetElementRef.current = modalRef.current;
+
       // Disable body scroll and allow scroll only within modal
       disableBodyScroll(modalRef.current, {
         reserveScrollBarGap: true, // Prevent layout shift
       });
-    } else {
-      // Re-enable body scroll
-      enableBodyScroll(modalRef.current!);
+    } else if (!isOpen && targetElementRef.current) {
+      // Re-enable body scroll using the stored target element
+      enableBodyScroll(targetElementRef.current);
+      targetElementRef.current = null;
     }
 
     // Cleanup on unmount
     return () => {
+      if (targetElementRef.current) {
+        enableBodyScroll(targetElementRef.current);
+        targetElementRef.current = null;
+      }
       clearAllBodyScrollLocks();
     };
   }, [isOpen]);
@@ -51,18 +64,18 @@ export default function Modal({
             transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={onClose}
           >
-          <motion.div
-            ref={modalRef}
-            className={`bg-white rounded-lg shadow-xl mx-4 p-4 w-full max-w-md relative ${className}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{
-              opacity: 0,
-              transition: { duration: 0.2, ease: "easeIn" },
-            }}
-            transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-            onClick={(event) => event.stopPropagation()}
-          >
+            <motion.div
+              ref={modalRef}
+              className={`bg-white rounded-lg shadow-xl mx-4 p-4 w-full max-w-md relative ${className}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.2, ease: "easeIn" },
+              }}
+              transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+              onClick={(event) => event.stopPropagation()}
+            >
               <button
                 onClick={onClose}
                 className="absolute top-3 right-3 z-50 p-1 hover:bg-gray-100 rounded-full text-gray-500 hover:text-gray-700 transition-colors"
