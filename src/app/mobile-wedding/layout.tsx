@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ScrollToTopButton from "@/src/components/common/buttons/ScrollToTopButton";
 
 export const metadata: Metadata = {
   title: "김재웅 ♥ 고아라의 결혼식",
@@ -13,5 +14,10 @@ export default function MobileWeddingLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="light">{children}</div>;
+  return (
+    <div className="light relative">
+      {children}
+      <ScrollToTopButton />
+    </div>
+  );
 }

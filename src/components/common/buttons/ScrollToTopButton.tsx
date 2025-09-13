@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import clsx from "clsx";
+import { motion } from "motion/react";
+import { ArrowUp } from "lucide-react";
 
 export default function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
@@ -22,22 +23,18 @@ export default function ScrollToTopButton() {
   };
 
   return (
-    <button
+    <motion.button
       onClick={scrollToTop}
-      className={clsx(
-        "fixed bottom-5 right-5 p-3 rounded-full shadow-lg transition-opacity duration-300",
-        "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white",
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
-      )}
-      aria-label="Scroll to top"
+      className={`fixed bottom-5 right-5 z-50 size-6 rounded-full bg-black/20 border border-neutral-300 flex items-center justify-center backdrop-blur-sm`}
+      aria-label="맨 위로"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: visible ? 1 : 0 }}
+      style={{ pointerEvents: visible ? "auto" : "none" }}
     >
-      <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-        <path
-          fillRule="evenodd"
-          d="M10 5.293l4.646 4.647a1 1 0 01-1.414 1.414L10 8.414l-3.232 2.94a1 1 0 01-1.31-1.518l4-3.75a1 1 0 011.414 0z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </button>
+      <ArrowUp className="w-4 h-4 text-neutral-100" />
+    </motion.button>
   );
 }

@@ -86,14 +86,13 @@ const SoundwaveIcon = ({ isPlaying }: { isPlaying: boolean }) => {
   const bars = 5;
   const barW = 2;
   const gap = 1;
-  const baseY = 1;
-  const baseH = 6;
+  const baseY = 0;
+  const baseH = 12;
   const vbW = bars * barW + (bars - 1) * gap;
-  const vbH = 8;
+  const vbH = 12;
 
-  const keyframes = [1, 3, 0.6, 2.5, 1.1, 2.2, 0.8, 1.8, 1];
-  const dur = 3;
-  const stagger = 0.1;
+  const dur = 1.2;
+  const stagger = 0.15;
 
   return (
     <motion.div
@@ -125,13 +124,12 @@ const SoundwaveIcon = ({ isPlaying }: { isPlaying: boolean }) => {
                     transformBox: "fill-box",
                     transformOrigin: "bottom",
                   }}
-                  animate={{ scaleY: keyframes }}
+                  animate={{ scaleY: [0.3, 1, 0.3] }}
                   transition={{
                     duration: dur,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: i * stagger,
-                    repeatType: "reverse",
                   }}
                 />
               );
