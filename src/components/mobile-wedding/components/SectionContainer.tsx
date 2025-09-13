@@ -17,7 +17,7 @@ export default function SectionContainer({
   return (
     <div
       data-section={sectionKey}
-      className={`py-[64px] px-4 flex flex-col items-center space-y-12 ${className}`}
+      className={`py-[112px] px-4 flex flex-col items-center space-y-12 ${className}`}
       {...props}
     >
       {children}

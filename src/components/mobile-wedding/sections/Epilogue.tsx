@@ -51,7 +51,7 @@ export default function Epilogue() {
 
       <div className="w-full">
         <Image
-          src="/images/mobile-wedding/gallery/main22.jpeg"
+          src="/images/mobile-wedding/gallery/wedding10.jpeg"
           alt="Epilogue"
           width={448}
           height={1000}

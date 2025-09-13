@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { BGMPlayer } from "../components/BGM";
+import { BGM_CONFIG } from "../constants";
 
 // 애니메이션 설정 상수
 const HERO_ANIMATION = {
@@ -31,7 +33,13 @@ const WEDDING_QUOTE = "어디든, 너와 함께라면";
 
 export default function WeddingHero() {
   return (
-    <motion.div className="relative h-[90svh]" {...HERO_ANIMATION.container}>
+    <div className="relative h-[90svh]" {...HERO_ANIMATION.container}>
+      <BGMPlayer
+        src={BGM_CONFIG.src}
+        loop={BGM_CONFIG.loop}
+        volume={BGM_CONFIG.volume}
+      />
+
       <Image
         src={HERO_IMAGE}
         alt="웨딩 히어로 이미지"
@@ -43,7 +51,7 @@ export default function WeddingHero() {
 
       <div className="absolute inset-0 flex items-end justify-center pb-16">
         <div className="text-center text-white px-6 max-w-2xl mx-auto">
-          <motion.div {...HERO_ANIMATION.title} className="mb-8">
+          <div {...HERO_ANIMATION.title} className="mb-8">
             <h1 className="text-2xl md:text-3xl font-light mb-4 tracking-[0.15em]">
               Our Wedding Day
             </h1>
@@ -54,15 +62,15 @@ export default function WeddingHero() {
             <p className="text-sm md:text-base font-light tracking-[0.2em]">
               — {WEDDING_DATE} —
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div {...HERO_ANIMATION.subtitle} className="space-y-3">
+          <div {...HERO_ANIMATION.subtitle} className="space-y-3">
             <p className="text-sm md:text-base font-light leading-relaxed">
               "{WEDDING_QUOTE}"
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

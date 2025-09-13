@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { Play, Pause } from "lucide-react";
 
 export interface BGMProps {
   src?: string;
-  autoPlay?: boolean;
   loop?: boolean;
   volume?: number;
   className?: string;
@@ -19,7 +19,6 @@ export interface BGMToggleProps {
 export const useBGM = (
   src?: string,
   options: {
-    autoPlay?: boolean;
     loop?: boolean;
     volume?: number;
   } = {}
@@ -27,17 +26,7 @@ export const useBGM = (
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const { autoPlay = true, loop = true, volume = 0.3 } = options;
-
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
-        audioRef.current = null;
-      }
-    };
-  }, []);
+  const { loop = true, volume = 0.3 } = options;
 
   useEffect(() => {
     if (!src) return;
@@ -52,44 +41,32 @@ export const useBGM = (
 
     audioRef.current = audio;
 
-    if (autoPlay) {
-      const playAudio = async () => {
-        try {
-          await audio.play();
-        } catch (err) {
-          // Autoplay failed, audio ready for manual play
-        }
-      };
-      playAudio();
-    }
-
     return () => {
       audio.pause();
       audio.src = "";
+      audioRef.current = null;
     };
-  }, [src, loop, volume, autoPlay]);
+  }, [src, loop, volume]);
 
-  const play = async () => {
+  function play() {
     if (!audioRef.current) return;
-    try {
-      await audioRef.current.play();
-    } catch (err) {
-      // Play failed
-    }
-  };
+    audioRef.current.play().catch((err) => {
+      console.error("Audio playback failed:", err);
+    });
+  }
 
-  const pause = () => {
+  function pause() {
     if (!audioRef.current) return;
     audioRef.current.pause();
-  };
+  }
 
-  const toggle = () => {
+  function toggle() {
     if (isPlaying) {
       pause();
     } else {
       play();
     }
-  };
+  }
 
   return {
     isPlaying,
@@ -99,51 +76,56 @@ export const useBGM = (
   };
 };
 
-export const BGM: React.FC<BGMProps> = ({ src, autoPlay = true, loop = true, volume = 0.3 }) => {
-  useBGM(src, { autoPlay, loop, volume });
+export function BGM({ src, loop = true, volume = 0.3 }: BGMProps) {
+  useBGM(src, { loop, volume });
   return null;
-};
+}
 
-export const BGMToggle: React.FC<BGMToggleProps> = ({ isPlaying, onToggle, className = "" }) => {
+export function BGMToggle({
+  isPlaying,
+  onToggle,
+  className = "",
+}: BGMToggleProps) {
   return (
     <button
       onClick={onToggle}
-      className={`fixed top-4 right-4 z-50 w-8 h-8 rounded-full bg-black/20 backdrop-blur-sm border border-gray-300 flex items-center justify-center hover:bg-black/30 transition-colors duration-200 ${className}`}
-      aria-label={isPlaying ? "배경음악 일시정지" : "배경음악 재생"}
-      title={isPlaying ? "배경음악 일시정지" : "배경음악 재생"}
+      className={`absolute top-3 right-3 z-50 size-6 rounded-full bg-black/20 border border-neutral-500 flex items-center justify-center ${
+        className || ""
+      }`}
+      aria-label={isPlaying ? "일시정지" : "재생"}
     >
       {!isPlaying ? (
-        <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="currentColor">
-          <path d="M8 5v14l11-7z" />
-        </svg>
+        <Play className="w-3 h-3 text-neutral-100" />
       ) : (
-        <svg viewBox="0 0 24 24" className="w-4 h-4 text-white" fill="currentColor">
-          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-        </svg>
+        <Pause className="w-3 h-3 text-neutral-100" />
       )}
     </button>
   );
-};
+}
 
-export const BGMPlayer: React.FC<{
+export function BGMPlayer({
+  src,
+  loop,
+  volume,
+  className,
+}: {
   src?: string;
-  autoPlay?: boolean;
   loop?: boolean;
   volume?: number;
   className?: string;
-}> = (props) => {
-  const { isPlaying, toggle } = useBGM(props.src, {
-    autoPlay: props.autoPlay,
-    loop: props.loop,
-    volume: props.volume,
-  });
+}) {
+  const { isPlaying, toggle } = useBGM(src, { loop, volume });
 
   return (
     <>
-      <BGM {...props} />
-      <BGMToggle isPlaying={isPlaying} onToggle={toggle} className={props.className} />
+      <BGM src={src} loop={loop} volume={volume} />
+      <BGMToggle
+        isPlaying={isPlaying}
+        onToggle={toggle}
+        className={className}
+      />
     </>
   );
-};
+}
 
 export default BGM;

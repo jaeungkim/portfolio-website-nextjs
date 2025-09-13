@@ -5,7 +5,6 @@ import React, { useRef, useState } from "react";
 import { useNaverMap } from "./hooks/useNaverMap";
 
 import NaverMap from "./components/NaverMap";
-import NavigationButtons from "./components/NavigationButtons";
 import SectionContainer from "../components/SectionContainer";
 import ContactModal from "../components/ContactModal";
 
@@ -53,13 +52,8 @@ export default function WeddingLocation() {
         <NaverMap mapRef={mapRef} mapLoaded={mapLoaded} />
       </div>
 
-      {/* Navigation Buttons */}
-      <div className="w-full flex justify-center">
-        <NavigationButtons venue={VENUE_COORDINATES} />
-      </div>
-
       {/* Parking Information */}
-      <div className="bg-neutral-50 rounded-2xl p-8 w-full max-w-sm">
+      <div className="rounded-2xl p-4 w-full ">
         <div className="text-center space-y-4">
           <div className="space-y-2">
             <h3 className="text-lg font-medium text-neutral-800 tracking-wide">
@@ -70,7 +64,7 @@ export default function WeddingLocation() {
 
           <div className="space-y-3 text-sm text-neutral-700 leading-relaxed">
             <p>
-              주차요원의 친절한 안내를 받아
+              주차요원의 안내를 받아
               <br />
               <span className="font-medium">내부 주차장</span>을 이용해 주시기
               바랍니다.
@@ -92,14 +86,14 @@ export default function WeddingLocation() {
       {/* Additional Info */}
       <div className="text-center space-y-2 max-w-xs">
         <p className="text-xs text-neutral-500 leading-relaxed">
-          📍 대중교통 이용 시 홍대입구역 1번 출구에서 도보 10분 거리
+          대중교통 이용 시 홍대입구역 1번 출구에서 도보 10분 거리
         </p>
         <p className="text-xs text-neutral-500 leading-relaxed">
-          🚗 자가용 이용 시 주차장 입구에서 안내를 받아주세요
+          자가용 이용 시 주차장 입구에서 안내를 받아주세요
         </p>
       </div>
 
-      <div className="mt-[64px] flex items-center justify-center">
+      <div className="mt-[32px] flex items-center justify-center">
         <button
           type="button"
           onClick={() => setIsContactModalOpen(true)}
