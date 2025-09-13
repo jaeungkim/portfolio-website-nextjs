@@ -18,15 +18,43 @@ export default function Modal({
   children,
   className = "",
 }: ModalProps) {
-  // Prevent body scroll when modal is open (traditional approach)
+  // Prevent scroll when modal is open (webview-compatible approach)
   useEffect(() => {
     if (isOpen) {
-      // Store current overflow to restore later
-      const originalOverflow = document.body.style.overflow;
+      // Store original styles
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalBodyPosition = document.body.style.position;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      const originalBodyTouchAction = document.body.style.touchAction;
+      const originalHtmlTouchAction = document.documentElement.style.touchAction;
+
+      // Webview-compatible scroll prevention
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
+
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.scrollbarGutter = "stable";
+
+      // Prevent touch scrolling (especially for webviews)
+      document.body.style.touchAction = "none";
+      document.documentElement.style.touchAction = "none";
 
       return () => {
-        document.body.style.overflow = originalOverflow;
+        // Restore original styles
+        document.body.style.overflow = originalBodyOverflow || "";
+        document.body.style.position = originalBodyPosition || "";
+        document.body.style.width = "";
+        document.body.style.top = "";
+        document.body.style.touchAction = originalBodyTouchAction || "";
+
+        document.documentElement.style.overflow = originalHtmlOverflow || "";
+        document.documentElement.style.scrollbarGutter = "";
+        document.documentElement.style.touchAction = originalHtmlTouchAction || "";
+
+        // Restore scroll position
+        window.scrollTo(0, parseInt(document.body.style.top || "0") * -1);
       };
     }
   }, [isOpen]);
