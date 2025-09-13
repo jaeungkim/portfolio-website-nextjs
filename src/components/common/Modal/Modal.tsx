@@ -25,41 +25,24 @@ export default function Modal({
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const targetElementRef = useRef<HTMLElement | null>(null);
-  const scrollPositionRef = useRef<number>(0);
 
-  // Prevent scroll when modal is open using body-scroll-lock with scroll position preservation
+  // Prevent scroll when modal is open using body-scroll-lock (proper implementation)
   useEffect(() => {
     if (isOpen && modalRef.current) {
-      // Store scroll position before any changes
-      scrollPositionRef.current = window.scrollY;
-
       // Store the target element for later cleanup
       targetElementRef.current = modalRef.current;
 
-      // Prevent the scroll jump by fixing body position before disabling scroll
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPositionRef.current}px`;
-      document.body.style.width = '100%';
-
-      // Disable body scroll and allow scroll only within modal
+      // Use body-scroll-lock with proper options for mobile
       disableBodyScroll(modalRef.current, {
-        reserveScrollBarGap: true, // Prevent layout shift
+        reserveScrollBarGap: true,
+        allowTouchMove: (el) => {
+          // Allow touch move only within the modal
+          return el === modalRef.current || modalRef.current?.contains(el);
+        }
       });
     } else if (!isOpen && targetElementRef.current) {
       // Re-enable body scroll using the stored target element
       enableBodyScroll(targetElementRef.current);
-
-      // Restore scroll position and body styles
-      const scrollY = scrollPositionRef.current;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-
-      // Restore scroll position after styles are reset
-      requestAnimationFrame(() => {
-        window.scrollTo(0, scrollY);
-      });
-
       targetElementRef.current = null;
     }
 
@@ -69,10 +52,6 @@ export default function Modal({
         enableBodyScroll(targetElementRef.current);
         targetElementRef.current = null;
       }
-      // Reset body styles
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
       clearAllBodyScrollLocks();
     };
   }, [isOpen]);
