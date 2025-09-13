@@ -37,7 +37,7 @@ export default function Epilogue() {
   }, []);
 
   return (
-    <SectionContainer sectionKey="epilogue">
+    <SectionContainer className="text-neutral-700" sectionKey="epilogue">
       <div className="text-center space-y-6">
         <h1 className="text-2xl font-medium text-neutral-900 tracking-wide">
           함께한 시간
@@ -47,6 +47,24 @@ export default function Epilogue() {
 
       <div className="text-center">
         <p className="text-lg text-neutral-700">"{timeTogether}"</p>
+      </div>
+
+      <div className="flex flex-col items-center justify-center space-y-4">
+        <p>그리고 우리는 서로의 손을 잡고 걸어가며</p>
+        <p>오늘의 약속을 기억하겠습니다.</p>
+        <p>웃음과 눈물이 섞인 이 길에서 항상 서로를 아끼며</p>
+        <p className="font-semibold">행복하게 잘살겠습니다.</p>
+      </div>
+
+      <div className="px-6 py-4">
+        <blockquote className="text-center space-y-2">
+          <p className="text-base italic text-neutral-700 leading-relaxed">
+            "가장 중요한 건 우리가 함께 한다는 거야."
+          </p>
+          <footer className="text-xs text-neutral-500 font-medium">
+            - 영화 '토이스토리' 중
+          </footer>
+        </blockquote>
       </div>
 
       <div className="w-full">

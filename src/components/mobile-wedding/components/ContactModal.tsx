@@ -29,11 +29,8 @@ export default function ContactModal({
 }: ContactModalProps) {
   const currentContacts = CONTACTS[activeTab];
 
-  const handlePhoneClick = (phone: string) => window.open(`tel:${phone}`);
-  const handleMessageClick = (phone: string) => window.open(`sms:${phone}`);
-
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} className="mx-0">
       <div className="pt-8 pb-6 border-b border-neutral-200">
         <div className="text-center">
           <h2 className="text-xl font-semibold text-neutral-800">
@@ -47,7 +44,7 @@ export default function ContactModal({
 
       <div className="flex border-b border-neutral-200">
         {(["groom", "bride"] as const).map((tab) => (
-          <button
+        <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`flex-1 py-4 text-center text-sm font-medium transition-colors ${
@@ -61,11 +58,11 @@ export default function ContactModal({
         ))}
       </div>
 
-      <div className="p-6">
+      <div className="p-4">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            className="h-[360px] flex flex-col"
+            className="flex flex-col h-full overflow-y-auto"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
@@ -97,22 +94,22 @@ export default function ContactModal({
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <motion.button
-                      onClick={() => handleMessageClick(contact.phone)}
-                      className="flex-1 flex items-center justify-center gap-2 py-2 px-4 bg-neutral-100 text-neutral-700 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
+                    <a
+                      href={`sms:${contact.phone}`}
+                      className="flex-1 flex items-center justify-center gap-2 p-2 bg-neutral-100 text-neutral-700 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors no-underline"
                     >
                       <MessageSquare className="w-4 h-4" /> 문자 보내기
-                    </motion.button>
-                    <motion.button
-                      onClick={() => handlePhoneClick(contact.phone)}
-                      className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
+                    </a>
+                    <a
+                      href={`tel:${contact.phone}`}
+                      className={`flex-1 flex items-center justify-center gap-2 p-2 rounded-lg text-sm font-medium transition-colors no-underline ${
                         activeTab === "groom"
                           ? "bg-[#5F89B8]/50 text-neutral-800"
                           : "bg-[#BB7273]/50 text-neutral-800"
                       }`}
                     >
                       <Phone className="w-4 h-4" /> 전화하기
-                    </motion.button>
+                    </a>
                   </div>
                 </motion.div>
               ))}
