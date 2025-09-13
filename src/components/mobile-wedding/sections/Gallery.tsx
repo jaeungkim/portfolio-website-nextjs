@@ -6,6 +6,7 @@ import Modal from "@/src/components/common/Modal/Modal";
 import Lightbox from "../components/Lightbox";
 import { GALLERY_IMAGES } from "../constants";
 import SectionContainer from "../components/SectionContainer";
+import RadixModal from "../../common/Modal/RadixModal";
 
 export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -64,7 +65,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      <Modal
+      <RadixModal
         isOpen={lightboxIndex !== null}
         onClose={closeLightbox}
         className="mx-0"
@@ -76,7 +77,7 @@ export default function Gallery() {
             onClose={closeLightbox}
           />
         )}
-      </Modal>
+      </RadixModal>
     </SectionContainer>
   );
 }

@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Phone, MessageSquare } from "lucide-react";
-import Modal from "@/src/components/common/Modal/Modal";
+import RadixModal from "@/src/components/common/Modal/RadixModal";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -30,7 +30,7 @@ export default function ContactModal({
   const currentContacts = CONTACTS[activeTab];
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className="mx-0">
+    <RadixModal isOpen={isOpen} onClose={onClose} className="mx-0">
       <div className="pt-8 pb-6 border-b border-neutral-200">
         <div className="text-center">
           <h2 className="text-xl font-semibold text-neutral-800">
@@ -117,6 +117,6 @@ export default function ContactModal({
           </motion.div>
         </AnimatePresence>
       </div>
-    </Modal>
+    </RadixModal>
   );
 }
