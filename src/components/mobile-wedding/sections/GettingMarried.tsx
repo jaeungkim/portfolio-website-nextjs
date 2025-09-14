@@ -38,9 +38,8 @@ export default function GettingMarried() {
   }, []);
 
   return (
-    <SectionContainer sectionKey="getting-married">
-      <div className="relative flex flex-col items-center justify-center py-[128px] text-[#5F89B8] font-bold text-lg text-center space-y-4 mx-8 overflow-hidden">
-        {/* Ribbon SVG with GSAP animated path drawing */}
+    <SectionContainer sectionKey="getting-married" className="pt-[160px]">
+      <div className="relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center space-y-4 mx-2 overflow-hidden">
         <div
           ref={ribbonRef}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-12 opacity-60"
@@ -84,13 +83,13 @@ export default function GettingMarried() {
         </motion.div>
 
         {/* Main text content */}
-        <p>화려한 예식 대신 소박하고,</p>
-        <p>따뜻한 만남을 선택했습니다.</p>
+        <p>화려한 예식 대신,</p>
+        <p>소박하고 따듯한 만남을 선택했습니다.</p>
+        <p>작은 모임이지만</p>
+        <p>큰 행복이 깃든 소중한 날이 되기를 바라며</p>
         <p>가족과 친척들이 한자리에 모여</p>
-        <p>정을 나누고, 함께하는 식사 자리를 통해</p>
+        <p>함께하는 식사 자리를 통해</p>
         <p>새로운 시작을 축하하고자 합니다.</p>
-        <p>작은 모임이지만 큰 행복이 깃든</p>
-        <p>소중한 날이 되기를 바랍니다.</p>
 
         {/* Gentle floating hearts in mixed colors */}
         <motion.div
