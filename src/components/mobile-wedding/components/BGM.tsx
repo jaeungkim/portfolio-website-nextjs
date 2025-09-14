@@ -151,7 +151,7 @@ export function BGMToggle({
   return (
     <motion.button
       onClick={onToggle}
-      className={`absolute top-3 right-3 z-50 size-6 rounded-full bg-black/20 border border-neutral-500 flex items-center justify-center backdrop-blur-sm ${
+      className={`fixed top-4 right-4 z-50 size-6 rounded-full bg-black/30  flex items-center justify-center backdrop-blur-sm ${
         className || ""
       }`}
       aria-label={isPlaying ? "일시정지" : "재생"}

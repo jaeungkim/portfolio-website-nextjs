@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 export interface Toast {
   id: string;
@@ -8,48 +8,27 @@ export interface Toast {
 }
 
 export function useToast() {
-  const [toasts, setToasts] = useState<Toast[]>([]);
-  const timeoutsRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
+  const [toast, setToast] = useState<Toast | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    return () => {
-      timeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
-      timeoutsRef.current.clear();
-    };
-  }, []);
-
-  const toast = (message: string) => {
-    const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
-
-    // Clear existing toast
-    if (toasts.length > 0) {
-      const existingId = toasts[0].id;
-      const existingTimeout = timeoutsRef.current.get(existingId);
-      if (existingTimeout) {
-        clearTimeout(existingTimeout);
-        timeoutsRef.current.delete(existingId);
-      }
+  const showToast = (message: string) => {
+    // Clear existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
 
-    setToasts([{ id, message }]);
+    // Show new toast
+    setToast({ id: Date.now().toString(), message });
+    setIsVisible(true);
 
-    // Auto dismiss after 3 seconds (typical toast duration)
-    const timeoutId = setTimeout(() => {
-      setToasts([]);
-      timeoutsRef.current.delete(id);
+    // Auto dismiss after 3 seconds
+    timeoutRef.current = setTimeout(() => {
+      setIsVisible(false);
+      // Clear toast after animation
+      setTimeout(() => setToast(null), 400);
     }, 3000);
-
-    timeoutsRef.current.set(id, timeoutId);
   };
 
-  const dismiss = (id: string) => {
-    setToasts([]);
-    const timeout = timeoutsRef.current.get(id);
-    if (timeout) {
-      clearTimeout(timeout);
-      timeoutsRef.current.delete(id);
-    }
-  };
-
-  return { toasts, toast, dismiss };
+  return { toast, isVisible, showToast };
 }

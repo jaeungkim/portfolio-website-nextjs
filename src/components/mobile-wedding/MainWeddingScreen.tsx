@@ -69,9 +69,9 @@ export default function MainWeddingScreen({}: MainWeddingScreenProps = {}) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.75, ease: "easeOut" }}
-              className="fixed top-3 left-1/2 transform -translate-x-1/2 z-50"
+              className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
             >
-              <div className="bg-neutral-600 text-neutral-100 px-2 py-1 rounded-lg text-center text-xs font-medium shadow-lg w-fit">
+              <div className="bg-black/30 text-neutral-100 px-4 py-1 rounded-lg text-center text-xs font-medium shadow-lg w-fit">
                 배경음악이 준비되었습니다
               </div>
             </motion.div>

@@ -25,7 +25,7 @@ export default function ScrollToTopButton() {
   return (
     <motion.button
       onClick={scrollToTop}
-      className={`fixed bottom-5 right-5 z-50 size-6 rounded-full bg-black/20 border border-neutral-300 flex items-center justify-center backdrop-blur-sm`}
+      className={`fixed bottom-6 right-6 z-50 size-8 rounded-full bg-black/30 flex items-center justify-center backdrop-blur-sm`}
       aria-label="맨 위로"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

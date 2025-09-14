@@ -13,7 +13,7 @@ export default function BankInfo() {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
     new Set()
   );
-  const { toasts, toast } = useToast();
+  const { toast, isVisible, showToast } = useToast();
 
   const toggleSection = (sectionId: string) => {
     setExpandedSections((prev) => {
@@ -30,10 +30,10 @@ export default function BankInfo() {
   const copyAccountNumber = async (accountNumber: string) => {
     try {
       await navigator.clipboard.writeText(accountNumber);
-      toast("계좌번호가 복사되었습니다.");
+      showToast("계좌번호가 복사되었습니다.");
     } catch (err) {
       console.error("계좌번호 복사 실패:", err);
-      toast("복사에 실패했습니다.");
+      showToast("복사에 실패했습니다.");
     }
   };
 
@@ -143,7 +143,8 @@ export default function BankInfo() {
 
       {/* Toast Notifications */}
       <Toaster
-        toasts={toasts}
+        toast={toast}
+        isVisible={isVisible}
       />
     </SectionContainer>
   );
