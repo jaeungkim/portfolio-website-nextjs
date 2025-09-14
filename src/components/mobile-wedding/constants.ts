@@ -5,7 +5,7 @@ export const ANIMATION_CONFIG = {
   duration: 1.2,
   ease: "power2.out",
   scrollTrigger: {
-    start: "top 90%",
+    start: "top 80%",
     end: "bottom 40%",
     toggleActions: "play none none reverse",
     scrub: false,
