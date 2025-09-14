@@ -9,7 +9,8 @@ import FloatingHeart from "../components/FloatingHeart";
 import { useRibbonAnimation } from "../hooks/useRibbonAnimation";
 
 export default function GettingMarried() {
-  const { ribbonRef, startRibbonAnimation, resetRibbonAnimation } = useRibbonAnimation();
+  const { ribbonRef, startRibbonAnimation, resetRibbonAnimation } =
+    useRibbonAnimation();
 
   const { ref: sectionRef, inView } = useInView({
     threshold: 0.3,
@@ -37,7 +38,7 @@ export default function GettingMarried() {
           size={20}
           color="#5F89B8"
           opacity={0.2}
-          position={{ top: "8", left: "8" }}
+          position={{ top: "0", left: "0" }}
           animation={{
             y: [-15, 5, -15],
             rotate: [0, 15, 0, -15, 0],
@@ -46,10 +47,10 @@ export default function GettingMarried() {
         />
 
         <FloatingHeart
-          size={15}
+          size={24}
           color="#FFB6C1"
           opacity={0.18}
-          position={{ top: "16", right: "12" }}
+          position={{ top: "0", right: "0" }}
           animation={{
             y: [15, -15, 15],
             x: [-2, 2, -2],
@@ -77,10 +78,10 @@ export default function GettingMarried() {
 
         {/* Gentle floating hearts in mixed colors */}
         <FloatingHeart
-          size={18}
+          size={22}
           color="#FFB6C1"
           opacity={0.25}
-          position={{ bottom: "8", left: "6" }}
+          position={{ bottom: "0", left: "0" }}
           animation={{
             y: [-13, 13, -13],
             rotate: [0, 18, 0, -18, 0],
@@ -93,7 +94,7 @@ export default function GettingMarried() {
           size={13}
           color="#5F89B8"
           opacity={0.22}
-          position={{ bottom: "12", right: "8" }}
+          position={{ bottom: "0", right: "1" }}
           animation={{
             y: [13, -13, 13],
             x: [1, -1, 1],

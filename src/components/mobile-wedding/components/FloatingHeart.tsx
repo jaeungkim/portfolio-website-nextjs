@@ -26,7 +26,7 @@ const HeartIcon = ({ size, color }: { size: number; color: string }) => (
 );
 
 export default function FloatingHeart({
-  size = 20,
+  size = 24,
   color = "#5F89B8",
   opacity = 1,
   position,
