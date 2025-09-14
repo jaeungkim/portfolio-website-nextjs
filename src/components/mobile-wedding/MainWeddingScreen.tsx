@@ -55,7 +55,7 @@ export default function MainWeddingScreen({}: MainWeddingScreenProps = {}) {
 
   return (
     <motion.div
-      className="min-h-screen flex justify-center"
+      className="relative min-h-screen flex justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}

@@ -10,31 +10,54 @@ import SectionContainer from "../components/SectionContainer";
 export default function GettingMarried() {
   const ribbonRef = useRef<HTMLDivElement>(null);
   const { ref: sectionRef, inView } = useInView({
-    threshold: 0.1,
+    threshold: 0.3,
     triggerOnce: false,
+    rootMargin: "0px 0px -10% 0px",
   });
 
   const startRibbonAnimation = () => {
     if (!ribbonRef.current) return;
 
-    gsap.killTweensOf(ribbonRef.current.querySelectorAll("path"));
-
     const paths = ribbonRef.current.querySelectorAll("path");
 
-    paths.forEach((path, index) => {
-      const pathLength = (path as SVGPathElement).getTotalLength();
+    // Kill any existing animations first
+    gsap.killTweensOf(paths);
 
+    // Set initial state
+    paths.forEach((path) => {
+      const pathLength = (path as SVGPathElement).getTotalLength();
       gsap.set(path, {
         strokeDasharray: pathLength,
         strokeDashoffset: pathLength,
         opacity: 0,
       });
+    });
 
+    // Animate each path simultaneously
+    paths.forEach((path) => {
       gsap.to(path, {
         strokeDashoffset: 0,
         opacity: 1,
-        duration: 3,
+        duration: 3.5,
         ease: "power2.inOut",
+      });
+    });
+  };
+
+  const resetRibbonAnimation = () => {
+    if (!ribbonRef.current) return;
+
+    const paths = ribbonRef.current.querySelectorAll("path");
+
+    // Kill any existing animations
+    gsap.killTweensOf(paths);
+
+    // Reset to initial state
+    paths.forEach((path) => {
+      const pathLength = (path as SVGPathElement).getTotalLength();
+      gsap.set(path, {
+        strokeDashoffset: pathLength,
+        opacity: 0,
       });
     });
   };
@@ -42,6 +65,8 @@ export default function GettingMarried() {
   useEffect(() => {
     if (inView) {
       startRibbonAnimation();
+    } else {
+      resetRibbonAnimation();
     }
   }, [inView]);
 
