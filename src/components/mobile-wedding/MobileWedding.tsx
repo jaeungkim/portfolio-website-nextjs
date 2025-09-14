@@ -6,10 +6,29 @@ import ErrorBoundary from "./components/ErrorBoundary";
 // 메인 컴포넌트들을 지연 로딩으로 최적화
 const MainWeddingScreen = lazy(() => import("./MainWeddingScreen"));
 
-// 줌 방지 함수들
+// 줌 방지 함수들 (스크롤은 허용)
+let initialDistance = 0;
+
 const preventZoom = (event: TouchEvent) => {
-  if (event.touches.length > 1) {
-    event.preventDefault();
+  if (event.touches.length === 2) {
+    const touch1 = event.touches[0];
+    const touch2 = event.touches[1];
+    const currentDistance = Math.sqrt(
+      Math.pow(touch2.clientX - touch1.clientX, 2) +
+      Math.pow(touch2.clientY - touch1.clientY, 2)
+    );
+
+    if (initialDistance === 0) {
+      initialDistance = currentDistance;
+    }
+
+    // 줌 제스처 감지 (거리가 크게 변하면 줌으로 간주)
+    if (Math.abs(currentDistance - initialDistance) > 50) {
+      event.preventDefault();
+      initialDistance = currentDistance;
+    }
+  } else {
+    initialDistance = 0;
   }
 };
 
@@ -65,9 +84,9 @@ export default function MobileWedding() {
 
   return (
     <div
-      className="min-h-screen overflow-hidden"
+      className="min-h-screen overflow-y-auto"
       style={{
-        touchAction: 'none',
+        touchAction: 'pan-y pinch-zoom',
         WebkitTouchCallout: 'none',
         WebkitUserSelect: 'none',
         KhtmlUserSelect: 'none',
