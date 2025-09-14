@@ -49,7 +49,7 @@ export default function Modal({
                   scale: 0.95,
                   transition: { duration: 0.2, ease: "easeIn" },
                 }}
-                transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                transition={{ duration: 1, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 <Dialog.Title className="sr-only">Modal Dialog</Dialog.Title>
                 <Dialog.Description className="sr-only">

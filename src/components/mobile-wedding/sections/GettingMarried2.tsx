@@ -16,7 +16,7 @@ export default function GettingMarried2() {
         height={1000}
         className="shadow-md rounded mb-[64px] w-full"
       />
-      <div className="flex flex-col items-center justify-center space-y-4">
+      <div className="flex flex-col items-center justify-center space-y-2">
         <p>미래는 누구도 알 수 없고,</p>
         <p>가끔은 막연한 두려움이 밀려오기도 하지만,</p>
         <p>그럼에도 불구하고</p>
