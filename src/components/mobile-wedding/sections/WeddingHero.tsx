@@ -33,14 +33,14 @@ const WEDDING_QUOTE = "어디든, 너와 함께라면";
 
 export default function WeddingHero() {
   return (
-    <div className="relative" {...HERO_ANIMATION.container}>
+    <div className="relative h-screen" {...HERO_ANIMATION.container}>
       <BGMPlayer
         src={BGM_CONFIG.src}
         loop={BGM_CONFIG.loop}
         volume={BGM_CONFIG.volume}
       />
 
-      <div className="relative flex-shrink-0" style={{ height: "70vh" }}>
+      <div className="relative" style={{ height: "70vh" }}>
         <Image
           src={HERO_IMAGE}
           alt="웨딩 히어로 이미지"
