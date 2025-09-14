@@ -17,13 +17,18 @@ const maruburi = localFont({
   variable: "--font-maruburi",
 });
 
+const hakgyoansim = localFont({
+  src: "../../../public/fonts/hakgyo-ansim/Hakgyoansim.ttf",
+  variable: "--font-hakgyoansim",
+});
+
 export default function MobileWeddingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className={`light relative ${maruburi.className} antialiased`}>
+    <div className={`light relative ${hakgyoansim.className} antialiased`}>
       {children}
       <ScrollToTopButton />
     </div>
