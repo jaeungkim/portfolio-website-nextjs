@@ -49,7 +49,7 @@ export default function GettingMarried() {
     <SectionContainer sectionKey="getting-married" className="pt-[160px]">
       <div
         ref={sectionRef}
-        className="relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center space-y-4 mx-2 overflow-hidden"
+        className="relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center"
       >
         <div
           ref={ribbonRef}
@@ -94,13 +94,21 @@ export default function GettingMarried() {
         </motion.div>
 
         {/* Main text content */}
-        <p>화려한 예식 대신,</p>
-        <p>소박하고 따듯한 만남을 선택했습니다.</p>
-        <p>작은 모임이지만</p>
-        <p>큰 행복이 깃든 소중한 날이 되기를 바라며</p>
-        <p>가족과 친척들이 한자리에 모여</p>
-        <p>함께하는 식사 자리를 통해</p>
-        <p>새로운 시작을 축하하고자 합니다.</p>
+        <div className="space-y-8">
+          <div className="space-y-2">
+            <p>화려한 예식 대신,</p>
+            <p>소박하고 따듯한 만남을 선택했습니다.</p>
+          </div>
+          <div className="space-y-2">
+            <p>작은 모임이지만</p>
+            <p>큰 행복이 깃든 소중한 날이 되기를 바라며</p>
+          </div>
+          <div className="space-y-2">
+            <p>가족과 친척들이 한자리에 모여</p>
+            <p>함께하는 식사 자리를 통해</p>
+            <p>새로운 시작을 축하하고자 합니다.</p>
+          </div>
+        </div>
 
         {/* Gentle floating hearts in mixed colors */}
         <motion.div
