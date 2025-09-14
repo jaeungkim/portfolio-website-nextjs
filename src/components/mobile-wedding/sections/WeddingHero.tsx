@@ -27,48 +27,47 @@ const HERO_ANIMATION = {
   },
 } as const;
 
-const HERO_IMAGE = "/images/mobile-wedding/gallery/wedding.jpeg";
+const HERO_IMAGE = "/images/mobile-wedding/gallery/wedding13.jpeg";
 const WEDDING_DATE = "2025년 10월 25일 토요일";
 const WEDDING_QUOTE = "어디든, 너와 함께라면";
 
 export default function WeddingHero() {
   return (
-    <div className="relative h-screen" {...HERO_ANIMATION.container}>
+    <div className="relative h-[100svh]" {...HERO_ANIMATION.container}>
       <BGMPlayer
         src={BGM_CONFIG.src}
         loop={BGM_CONFIG.loop}
         volume={BGM_CONFIG.volume}
       />
 
-      <div className="relative" style={{ height: "70vh" }}>
-        <Image
-          src={HERO_IMAGE}
-          alt="웨딩 히어로 이미지"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-      </div>
+      <Image
+        src={HERO_IMAGE}
+        alt="웨딩 히어로 이미지"
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
 
-      <div
-        className="flex items-center justify-center"
-        style={{ height: "30vh" }}
-      >
-        <div className="text-center text-neutral-600">
+      <div className="absolute inset-0 flex items-end justify-center pb-16">
+        <div className="text-center text-white px-6">
           <div {...HERO_ANIMATION.title} className="mb-8">
-            <h1 className="text-2xl font-medium mb-4 tracking-[0.15em]">
+            <h1 className="text-2xl md:text-3xl font-light mb-4 tracking-[0.15em]">
               Our Wedding Day
             </h1>
             <div
-              className="w-16 h-px bg-neutral-400 mx-auto mb-4"
+              className="w-16 h-px bg-white/60 mx-auto mb-4"
               aria-hidden="true"
             />
-            <p className="text-sm text-neutral-600">{WEDDING_DATE}</p>
+            <p className="text-sm md:text-base font-light tracking-[0.2em]">
+              — {WEDDING_DATE} —
+            </p>
           </div>
 
-          <div {...HERO_ANIMATION.subtitle}>
-            <p className="text-sm text-neutral-600">"{WEDDING_QUOTE}"</p>
+          <div {...HERO_ANIMATION.subtitle} className="space-y-3">
+            <p className="text-sm md:text-base font-light leading-relaxed">
+              "{WEDDING_QUOTE}"
+            </p>
           </div>
         </div>
       </div>

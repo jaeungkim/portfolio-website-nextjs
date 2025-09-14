@@ -28,7 +28,7 @@ export const BGM_CONFIG = {
 
 // 갤러리 이미지 목록
 export const GALLERY_IMAGES = [
-  "/images/mobile-wedding/gallery/wedding13.jpeg",
+  "/images/mobile-wedding/gallery/wedding.jpeg",
   "/images/mobile-wedding/gallery/wedding2.jpeg",
   "/images/mobile-wedding/gallery/wedding3.jpeg",
   "/images/mobile-wedding/gallery/wedding4.jpeg",
