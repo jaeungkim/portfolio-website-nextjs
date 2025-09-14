@@ -28,7 +28,7 @@ export default function GettingMarried() {
         opacity: 1,
         duration: 3,
         ease: "power2.inOut",
-        delay: index * 0.3,
+        delay: 0.3 + index * 0.3, // 0.5s initial delay + stagger
       });
     });
   }, []);
