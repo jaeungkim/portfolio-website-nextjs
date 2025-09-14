@@ -5,12 +5,12 @@ interface FloatingHeartProps {
   color?: string;
   opacity?: number;
   position: {
-    top?: string;
-    bottom?: string;
-    left?: string;
-    right?: string;
+    top?: string | number;
+    bottom?: string | number;
+    left?: string | number;
+    right?: string | number;
   };
-  animation: {
+  animation?: {
     y: number[];
     x?: number[];
     rotate?: number[];
@@ -34,29 +34,33 @@ export default function FloatingHeart({
 }: FloatingHeartProps) {
   return (
     <motion.div
-      className={`absolute ${position.top ? `top-${position.top}` : ""} ${
-        position.bottom ? `bottom-${position.bottom}` : ""
-      } ${position.left ? `left-${position.left}` : ""} ${
-        position.right ? `right-${position.right}` : ""
-      }`}
+      className="absolute"
       style={{
         opacity,
-        top: position.top,
-        bottom: position.bottom,
-        left: position.left,
-        right: position.right,
+        top: position.top ? `${position.top}rem` : undefined,
+        bottom: position.bottom ? `${position.bottom}rem` : undefined,
+        left: position.left ? `${position.left}rem` : undefined,
+        right: position.right ? `${position.right}rem` : undefined,
       }}
-      animate={{
-        y: animation.y,
-        ...(animation.x && { x: animation.x }),
-        ...(animation.rotate && { rotate: animation.rotate }),
-      }}
-      transition={{
-        duration: animation.duration,
-        repeat: Infinity,
-        ease: "easeInOut",
-        ...(animation.delay && { delay: animation.delay }),
-      }}
+      animate={
+        animation
+          ? {
+              y: animation.y,
+              ...(animation.x && { x: animation.x }),
+              ...(animation.rotate && { rotate: animation.rotate }),
+            }
+          : undefined
+      }
+      transition={
+        animation
+          ? {
+              duration: animation.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              ...(animation.delay && { delay: animation.delay }),
+            }
+          : undefined
+      }
     >
       <HeartIcon size={size} color={color} />
     </motion.div>

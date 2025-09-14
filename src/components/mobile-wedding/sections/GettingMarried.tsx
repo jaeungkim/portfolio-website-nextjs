@@ -30,7 +30,7 @@ export default function GettingMarried() {
     <SectionContainer sectionKey="getting-married" className="pt-[160px]">
       <div
         ref={sectionRef}
-        className="relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center"
+        className="size-full relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center"
       >
         <Ribbon ref={ribbonRef} />
 
@@ -38,7 +38,7 @@ export default function GettingMarried() {
           size={20}
           color="#5F89B8"
           opacity={0.2}
-          position={{ top: "0", left: "0" }}
+          position={{ top: "3", left: "1" }}
           animation={{
             y: [-15, 5, -15],
             rotate: [0, 15, 0, -15, 0],
@@ -50,12 +50,11 @@ export default function GettingMarried() {
           size={24}
           color="#FFB6C1"
           opacity={0.18}
-          position={{ top: "0", right: "0" }}
+          position={{ top: "0", right: "1" }}
           animation={{
             y: [15, -15, 15],
             x: [-2, 2, -2],
             duration: 8,
-            delay: 2,
           }}
         />
 
@@ -78,28 +77,25 @@ export default function GettingMarried() {
 
         {/* Gentle floating hearts in mixed colors */}
         <FloatingHeart
-          size={22}
+          size={20}
           color="#FFB6C1"
           opacity={0.25}
-          position={{ bottom: "0", left: "0" }}
+          position={{ bottom: "3", left: "1" }}
           animation={{
             y: [-13, 13, -13],
             rotate: [0, 18, 0, -18, 0],
             duration: 7,
-            delay: 1,
           }}
         />
 
         <FloatingHeart
-          size={13}
+          size={16}
           color="#5F89B8"
           opacity={0.22}
           position={{ bottom: "0", right: "1" }}
           animation={{
             y: [13, -13, 13],
-            x: [1, -1, 1],
             duration: 9,
-            delay: 3,
           }}
         />
       </div>
