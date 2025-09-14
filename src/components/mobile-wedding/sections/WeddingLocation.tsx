@@ -31,7 +31,7 @@ export default function WeddingLocation() {
 
       <div className="text-center space-y-3">
         <h2 className="text-xl font-light text-neutral-800 tracking-wide">
-          경복궁 서교점
+          경복궁 서교점 3층 연회장
         </h2>
         <p className="text-sm text-neutral-600 leading-relaxed max-w-xs">
           서울특별시 마포구 서교동 449-13

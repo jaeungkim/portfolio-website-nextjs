@@ -83,15 +83,13 @@ export const BANK_SECTIONS: BankSection[] = [
         accountNumber: "285-21-0209-832",
         bankName: "국민은행",
         accountHolder: "김화영",
-        // No KakaoPay URL - only copy button will be shown
       },
       {
         id: "groom-3",
         name: "신랑 아버지",
-        accountNumber: "390401-04-083015",
+        accountNumber: "285-21-0209-832",
         bankName: "국민은행",
-        accountHolder: "김정호",
-        // No KakaoPay URL - only copy button will be shown
+        accountHolder: "김화영",
       },
     ],
   },
