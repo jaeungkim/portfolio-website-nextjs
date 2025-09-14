@@ -13,7 +13,7 @@ const suit = localFont({
 });
 
 const maruburi = localFont({
-  src: "../../../public/fonts/maruburi/Maruburi-Regular.ttf",
+  src: "../../../public/fonts/maruburi/MaruBuri-Regular.ttf",
   variable: "--font-maruburi",
 });
 
