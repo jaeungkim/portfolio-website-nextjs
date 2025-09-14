@@ -15,7 +15,7 @@ export default function GettingMarried() {
   const { ref: sectionRef, inView } = useInView({
     threshold: 0.1, // Trigger when 10% of the element is visible
     triggerOnce: false,
-    rootMargin: "0px 0px -5% 0px", // Trigger slightly earlier
+    rootMargin: "0px 0px -3% 0px", // Trigger slightly earlier
   });
 
   useEffect(() => {
