@@ -2,15 +2,22 @@
 
 import { motion } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import { gsap } from "gsap";
 
 import SectionContainer from "../components/SectionContainer";
 
 export default function GettingMarried() {
   const ribbonRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
+  });
 
-  useEffect(() => {
+  const startRibbonAnimation = () => {
     if (!ribbonRef.current) return;
+
+    gsap.killTweensOf(ribbonRef.current.querySelectorAll("path"));
 
     const paths = ribbonRef.current.querySelectorAll("path");
 
@@ -28,14 +35,22 @@ export default function GettingMarried() {
         opacity: 1,
         duration: 3,
         ease: "power2.inOut",
-        delay: 0.3 + index * 0.3, // 0.5s initial delay + stagger
       });
     });
-  }, []);
+  };
+
+  useEffect(() => {
+    if (inView) {
+      startRibbonAnimation();
+    }
+  }, [inView]);
 
   return (
     <SectionContainer sectionKey="getting-married" className="pt-[160px]">
-      <div className="relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center space-y-4 mx-2 overflow-hidden">
+      <div
+        ref={sectionRef}
+        className="relative flex flex-col items-center justify-center pt-[64px] text-[#5F89B8] font-bold text-lg text-center space-y-4 mx-2 overflow-hidden"
+      >
         <div
           ref={ribbonRef}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-12 opacity-60"
