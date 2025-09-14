@@ -12,27 +12,23 @@ export default function GettingMarried() {
   useEffect(() => {
     if (!ribbonRef.current) return;
 
-    // Select all path elements in the ribbon SVG
     const paths = ribbonRef.current.querySelectorAll("path");
 
-    // Animate each path
     paths.forEach((path, index) => {
       const pathLength = (path as SVGPathElement).getTotalLength();
 
-      // Set initial state
       gsap.set(path, {
         strokeDasharray: pathLength,
         strokeDashoffset: pathLength,
         opacity: 0,
       });
 
-      // Animate the path drawing
       gsap.to(path, {
         strokeDashoffset: 0,
         opacity: 1,
         duration: 3,
         ease: "power2.inOut",
-        delay: index * 0.3, // Stagger the animations
+        delay: index * 0.3,
       });
     });
   }, []);
