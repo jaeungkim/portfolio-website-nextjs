@@ -13,9 +13,9 @@ export default function GettingMarried() {
     useRibbonAnimation();
 
   const { ref: sectionRef, inView } = useInView({
-    threshold: 0.3,
+    threshold: 0.1, // Trigger when 10% of the element is visible
     triggerOnce: false,
-    rootMargin: "0px 0px -10% 0px",
+    rootMargin: "0px 0px -5% 0px", // Trigger slightly earlier
   });
 
   useEffect(() => {
