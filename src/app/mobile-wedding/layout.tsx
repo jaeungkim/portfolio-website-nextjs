@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import ScrollToTopButton from "@/src/components/common/buttons/ScrollToTopButton";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "김재웅 ♥ 고아라의 결혼식",
   description: "김재웅 ♥ 고아라의 결혼식",
-  other: {
-    "color-scheme": "light",
-  },
 };
+
+const suit = localFont({
+  src: "../../../public/fonts/suit/SUIT-Regular.ttf",
+  variable: "--font-suit",
+});
 
 export default function MobileWeddingLayout({
   children,
@@ -15,7 +18,7 @@ export default function MobileWeddingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="light relative">
+    <div className={`light relative ${suit.className} antialiased`}>
       {children}
       <ScrollToTopButton />
     </div>
