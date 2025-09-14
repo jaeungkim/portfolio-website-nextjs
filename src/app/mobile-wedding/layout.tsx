@@ -12,13 +12,18 @@ const suit = localFont({
   variable: "--font-suit",
 });
 
+const maruburi = localFont({
+  src: "../../../public/fonts/maruburi/Maruburi-Regular.ttf",
+  variable: "--font-maruburi",
+});
+
 export default function MobileWeddingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className={`light relative ${suit.className} antialiased`}>
+    <div className={`light relative ${maruburi.className} antialiased`}>
       {children}
       <ScrollToTopButton />
     </div>
