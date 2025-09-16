@@ -8,10 +8,10 @@ import NaverMap from "./components/NaverMap";
 import SectionContainer from "../components/SectionContainer";
 
 const VENUE_COORDINATES = {
-  lat: 37.5555,
-  lng: 126.9236,
-  address: "서울특별시 마포구 서교동 449-13",
-  name: "경복궁 서교점",
+  lat: 37.5292719570904,
+  lng: 126.924892738645,
+  address: "서울 영등포구 여의공원로 101 C.C.M.M빌딩 지하1층",
+  name: "운산",
 };
 
 export default function WeddingLocation() {
@@ -31,10 +31,10 @@ export default function WeddingLocation() {
 
       <div className="text-center space-y-3">
         <h2 className="text-xl font-light text-neutral-800 tracking-wide">
-          경복궁 서교점 3층 연회장
+          운산
         </h2>
         <p className="text-sm text-neutral-600 leading-relaxed max-w-xs">
-          서울특별시 마포구 서교동 449-13
+          서울 영등포구 여의공원로 101 C.C.M.M빌딩 지하1층
         </p>
       </div>
 
@@ -58,23 +58,13 @@ export default function WeddingLocation() {
               <span className="font-medium">내부 주차장</span>을 이용해 주시기
               바랍니다.
             </p>
-
-            <div className="pt-2">
-              <p className="text-xs text-neutral-500 italic">
-                발렛 서비스: ₩2,000
-                <br />
-                <span className="text-neutral-400">
-                  (편리한 발렛 주차를 이용하실 수 있습니다)
-                </span>
-              </p>
-            </div>
           </div>
         </div>
       </div>
 
       <div className="text-center space-y-2 max-w-xs">
         <p className="text-xs text-neutral-500 leading-relaxed">
-          대중교통 이용 시 홍대입구역 1번 출구에서 도보 10분 거리
+          대중교통 이용 시 여의나루역 1번 출구에서 도보 10분 거리
         </p>
         <p className="text-xs text-neutral-500 leading-relaxed">
           자가용 이용 시 주차장 입구에서 안내를 받아주세요
