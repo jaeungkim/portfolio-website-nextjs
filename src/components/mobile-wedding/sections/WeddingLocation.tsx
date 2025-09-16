@@ -53,7 +53,7 @@ export default function WeddingLocation() {
 
           <div className="space-y-3 text-sm text-neutral-700 leading-relaxed">
             <p>
-              주차요원의 안내를 받아
+              건물 주차장 3시간 무료 주차 가능 합니다.
               <br />
               <span className="font-medium">내부 주차장</span>을 이용해 주시기
               바랍니다.
