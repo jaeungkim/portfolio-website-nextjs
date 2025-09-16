@@ -28,7 +28,7 @@ const HERO_ANIMATION = {
 } as const;
 
 const HERO_IMAGE = "/images/mobile-wedding/gallery/wedding13.jpeg";
-const WEDDING_DATE = "2025년 10월 25일 토요일";
+const WEDDING_DATE = "2025년 10월 25일 토요일 오전 11시 30분";
 const WEDDING_QUOTE = "어디든, 너와 함께라면";
 
 export default function WeddingHero() {
