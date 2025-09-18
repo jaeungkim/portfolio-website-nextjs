@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import Navbar from "@/src/components/navbar/Navbar";
 import Footer from "@/src/components/Footer";
 import ThemeProvider from "@/src/components/common/ThemeProvider";
+import CursorSplash from "@/src/components/common/CursorSplash";
 import { getMessages } from "next-intl/server";
 import { Suspense } from "react";
 
@@ -28,6 +29,7 @@ export default async function LocaleLayout({
         enableSystem
         disableTransitionOnChange
       >
+        <CursorSplash />
         <Navbar />
         <main className="w-full grow relative mx-auto max-w-5xl px-8">
           <Suspense>{children}</Suspense>
