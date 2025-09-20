@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "김재웅 ♥ 고아라의 소중한 날을 함께 축하해주세요.",
     images: [
       {
-        url: "/images/mobile-wedding/gallery/wedding12.jpeg",
+        url: "https://images.jaeungkim.com/mobile-wedding/gallery/wedding12.jpeg",
         width: 1200,
         height: 630,
         alt: "김재웅 ♥ 고아라의 결혼식",

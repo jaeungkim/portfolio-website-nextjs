@@ -10,7 +10,7 @@ export default function GettingMarried2() {
   return (
     <SectionContainer sectionKey="getting-married2">
       <Image
-        src="/images/mobile-wedding/gallery/wedding12.jpeg"
+        src="https://images.jaeungkim.com/mobile-wedding/gallery/wedding12.jpeg"
         alt="저희 결혼 사진"
         width={448}
         height={1000}
