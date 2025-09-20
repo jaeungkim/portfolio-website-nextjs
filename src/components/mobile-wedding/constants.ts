@@ -14,8 +14,9 @@ export const ANIMATION_CONFIG = {
 
 // SVG 경로 설정
 export const SVG_PATHS = {
-  welcome: "/images/mobile-wedding/loading/welcome.svg",
-  wedding: "/images/mobile-wedding/loading/to-our-wedding.svg",
+  welcome: "https://images.jaeungkim.com/mobile-wedding/loading/welcome.svg",
+  wedding:
+    "https://images.jaeungkim.com/mobile-wedding/loading/to-our-wedding.svg",
 } as const;
 
 // BGM 설정
@@ -28,15 +29,15 @@ export const BGM_CONFIG = {
 
 // 갤러리 이미지 목록
 export const GALLERY_IMAGES = [
-  "/images/mobile-wedding/gallery/wedding.jpeg",
-  "/images/mobile-wedding/gallery/wedding2.jpeg",
-  "/images/mobile-wedding/gallery/wedding3.jpeg",
-  "/images/mobile-wedding/gallery/wedding4.jpeg",
-  "/images/mobile-wedding/gallery/wedding5.jpeg",
-  "/images/mobile-wedding/gallery/wedding6.jpeg",
-  "/images/mobile-wedding/gallery/wedding7.jpeg",
-  "/images/mobile-wedding/gallery/wedding8.jpeg",
-  "/images/mobile-wedding/gallery/wedding9.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding2.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding3.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding4.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding5.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding6.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding7.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding8.jpeg",
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding9.jpeg",
 ] as const;
 
 // 섹션 컴포넌트 설정
@@ -124,7 +125,7 @@ export const MOBILE_CONTAINER_STYLES = {
   border: "1px solid #e5e5e5",
   boxShadow:
     "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-  backgroundImage: "url('/images/mobile-wedding/bg_img_white.jpg')",
+  backgroundImage: "url('https://images.jaeungkim.com/mobile-wedding/bg_img_white.jpg')",
   backgroundRepeat: "repeat",
   backgroundSize: "auto",
   backgroundAttachment: "local",

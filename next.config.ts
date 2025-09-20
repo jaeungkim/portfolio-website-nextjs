@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         hostname: "storage.googleapis.com",
         pathname: "/jaeungkim/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.jaeungkim.com",
+        pathname: "/**",
+      },
     ],
   },
   webpack(config) {
