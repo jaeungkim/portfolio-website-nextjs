@@ -11,11 +11,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "storage.googleapis.com",
-        pathname: "/jaeungkim/**",
-      },
-      {
-        protocol: "https",
         hostname: "images.jaeungkim.com",
         pathname: "/**",
       },
