@@ -1,27 +1,25 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/178870
 function Oct12thSunday2Solution(sequence, k) {
-  var answer = [0, sequence.length - 1];
+  const N = sequence.length;
   let left = 0;
-  let right = 0;
+  let sum = 0;
+  let bestLen = N + 1;
+  let ans = [-1, -1];
 
-  let sum = sequence[left];
-  while (right < sequence.length) {
-    if (sum > k) {
-      sum -= sequence[left];
-      left++;
-    } else if (sum < k) {
-      right++;
-      sum += sequence[right];
-    } else {
-      let distance = answer[1] - answer[0];
-      let currentDistance = right - left;
-      if (distance > currentDistance) {
-        answer = [left, right];
+  for (let right = 0; right < N; right++) {
+    sum += sequence[right];
+
+    while (sum > k && left <= right) {
+      sum -= sequence[left++];
+    }
+
+    if (sum === k) {
+      const len = right - left + 1;
+      if (len < bestLen || (len === bestLen && left < ans[0])) {
+        bestLen = len;
+        ans = [left, right];
       }
-      sum -= sequence[left];
-      left++;
     }
   }
-
-  return answer;
+  return ans;
 }
