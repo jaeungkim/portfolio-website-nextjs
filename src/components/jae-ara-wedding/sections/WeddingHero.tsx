@@ -27,7 +27,8 @@ const HERO_ANIMATION = {
   },
 } as const;
 
-const HERO_IMAGE = "https://images.jaeungkim.com/mobile-wedding/gallery/wedding13.jpeg";
+const HERO_IMAGE =
+  "https://images.jaeungkim.com/mobile-wedding/gallery/wedding13.jpeg";
 const WEDDING_DATE = "2025년 11월 1일 토요일 오전 11시 30분";
 const WEDDING_QUOTE = "어디든, 너와 함께라면";
 
