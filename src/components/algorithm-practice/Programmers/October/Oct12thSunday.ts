@@ -1,6 +1,6 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/389479?language=javascript
 
-function solution(players, m, k) {
+function Oct12thSundaySolution(players, m, k) {
   let answer = 0; // 총 증설 횟수
   let currentServerCount = 0; // 현재 가동 중(증설된) 서버 수
   const T = players.length;
