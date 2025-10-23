@@ -20,6 +20,32 @@
         "NIPA(정보통신산업진흥원) 주관 GSMP 프로그램에 선정되어 워싱턴 D.C. 현지 행사 참가 → 팀 대표로서 글로벌 파트너 대상 기술 소개 및 협업 기회 발굴"
       ],
       "projects": {
+        "ndxpro_ai": {
+          "title": "NDXPRO AI",
+          "description": "현대자동차 R&D 데이터를 온톨로지 기반 지식그래프로 통합하고, 근거 기반 AI 질의응답을 통해 신뢰도 높은 데이터 활용 환경을 검증한 프로젝트 (PoC)",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-AI-24bc3276c40c80b7bfb4f7d392b2c823?pvs=74",
+          "tasks": {
+            "graph_visualization": {
+              "title": "지식그래프 시각화 및 인터랙션 아키텍처 설계 (D3.js)",
+              "subtasks": [
+                "대규모 온톨로지 데이터를 직관적으로 탐색할 수 있도록 D3 Force Graph 기반 그래프 DB 시각화 아키텍처 설계",
+                "Sigma.js와 D3.js의 렌더링 및 확장성 비교를 통해, 커스터마이징 자유도와 UI/UX 통합 측면에서 D3.js를 채택",
+                "Force Atlas 알고리즘의 파라미터를 튜닝해 노드 밀집도와 물리적 거리 간의 균형 유지",
+                "관계 방향성 가시화를 위한 엣지 애니메이션을 커스터마이징하고, 렌더링 성능과 시각적 명료성을 모두 확보",
+                "하이라이트, 검색 포커싱, 노드 드래깅 등 사용자 인터랙션 레이어를 별도 모듈로 분리하여 재사용성과 유지보수성 강화"
+              ]
+            },
+            "evidence_highlighting": {
+              "title": "근거 중심 문서 하이라이팅 시스템 구축 (PDF.js + Markdown)",
+              "subtasks": [
+                "LLM 응답의 신뢰성을 확보하기 위해, 응답 내 문장 단위 근거를 원문 문서와 정밀 매핑하는 하이라이팅 시스템 설계",
+                "PDF.js 렌더링 구조를 확장하여 페이지 단위 Lazy Rendering 기능 구현",
+                "PDF 외 문서(docx, txt 등)에 대해 Markdown 파이프라인을 구성해 문서 포맷 일관성 확보",
+                "대용량 문서 렌더링 성능 병목 구간을 분석하고, Virtualization + 무한스크롤 성능을 개선"
+              ]
+            }
+          }
+        },
         "ndx_cloud": {
           "title": "NDX CLOUD",
           "description": "드론·지상 촬영 이미지를 사진측량 기반으로 정사영상 지도, 3D 모델, 포인트클라우드를 생성·시각화하는 클라우드 플랫폼",

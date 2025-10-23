@@ -20,6 +20,72 @@
         "Selected for NIPA’s GSMP program and represented the team at the Washington D.C. event, introducing the product to global partners and exploring international collaboration opportunities"
       ],
       "projects": {
+        "ndxpro_ai": {
+          "title": "NDXPRO AI",
+          "description": "PoC project integrating Hyundai Motor R&D data into an ontology-based knowledge graph, providing reliable, evidence-based AI Q&A capabilities",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-AI-24bc3276c40c80b7bfb4f7d392b2c823?pvs=74",
+          "tasks": {
+            "graph_visualization": {
+              "title": "Knowledge Graph Visualization and Interaction Architecture (D3.js)",
+              "subtasks": [
+                "Designed D3 Force Graph-based architecture for intuitive exploration of large-scale ontology data",
+                "Compared Sigma.js vs D3.js rendering and scalability, choosing D3.js for customization flexibility and UI/UX integration",
+                "Tuned Force Atlas algorithm parameters to balance node density and physical distance",
+                "Customized edge animations for relationship directionality visualization, ensuring both rendering performance and visual clarity",
+                "Separated user interaction layer (highlighting, search focusing, node dragging) into reusable modules for better maintainability"
+              ]
+            },
+            "evidence_highlighting": {
+              "title": "Evidence-based Document Highlighting System (PDF.js + Markdown)",
+              "subtasks": [
+                "Designed highlighting system that maps LLM response evidence to source documents at sentence level for reliability",
+                "Extended PDF.js rendering structure to implement page-level Lazy Rendering functionality",
+                "Configured Markdown pipeline for non-PDF documents (docx, txt) to ensure format consistency",
+                "Analyzed large document rendering performance bottlenecks and improved Virtualization + infinite scroll performance"
+              ]
+            }
+          }
+        },
+        "ndx_cloud": {
+          "title": "NDX CLOUD",
+          "description": "Cloud platform for generating and visualizing orthomosaic maps, 3D models, and point clouds from drone/ground photography using photogrammetry",
+          "link": "https://spiny-learning-4b9.notion.site/NDXPRO-KCLOUD-24bc3276c40c80b4afcef5f74478cbb5",
+          "tasks": {
+            "performance_optimization": {
+              "title": "Large-scale Image Metadata Processing Optimization",
+              "subtasks": [
+                "Achieved 96% memory reduction (20GB → 800MB) through selective data reading via JPEG APP1 marker analysis",
+                "Reduced metadata extraction time by 95% (6min 40sec → 20sec) through parallel processing implementation",
+                "Implemented direct browser ↔ S3 connection using AWS S3 Presigned URL approach",
+                "Maximized processing efficiency through presigned URL batch requests and concurrent stream uploads",
+                "Reduced upload time by 50% (20min → 10min) and server load by 70% by eliminating backend dependencies"
+              ]
+            },
+            "organization_management": {
+              "title": "Organization and Member Management System",
+              "subtasks": [
+                "Designed hierarchical structure and permission matrix for organization/project/site/dataset",
+                "Implemented organization management UI for member invitations, role changes, and member removal",
+                "Developed multi-organization switching and permission-based UI control features"
+              ]
+            },
+            "project_invitation": {
+              "title": "Project and Invitation Management",
+              "subtasks": [
+                "Implemented project creation/modification/deletion and member invitation features",
+                "Developed invitation expiration/resend handling and real-time status display functionality",
+                "Applied role-based access control"
+              ]
+            },
+            "admin_web": {
+              "title": "Admin Back-office for Operations Team",
+              "subtasks": [
+                "Implemented enterprise registration approval/rejection functionality",
+                "Developed PGP (credit) charging/usage management features"
+              ]
+            }
+          }
+        },
         "ndxpro_pmis": {
           "title": "NDXPRO PMIS",
           "description": "Web solution for integrated project management",
