@@ -32,7 +32,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  prefetch
+                  prefetch={true}
                   className="relative block px-3 py-2 transition hover:text-neutral-500 dark:hover:text-neutral-400"
                 >
                   {item.name}

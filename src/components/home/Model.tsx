@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, Component, ReactNode } from "react";
+import { useEffect, useRef, useMemo, Component, ReactNode } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, Loader } from "@react-three/drei";
@@ -9,65 +9,63 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
-const MODEL_URL = "https://images.jaeungkim.com/3d-models/models/scene-draco.glb";
+const MODEL_URL =
+  "https://images.jaeungkim.com/3d-models/models/scene-draco.glb";
 const DRACO_PATH = "https://www.gstatic.com/draco/versioned/decoders/1.5.7/";
 
-// DRACO 로더를 모듈 레벨에서 한 번만 생성
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath(DRACO_PATH);
 dracoLoader.setDecoderConfig({ type: "wasm" });
 
-// 로더 설정 함수를 모듈 레벨로 추출
-function loaderConfig(loader: GLTFLoader): void {
+const loaderConfig = (loader: GLTFLoader) => {
   loader.setDRACOLoader(dracoLoader);
-}
+};
 
-interface ErrorBoundaryState {
-  hasError: boolean;
+function ModelErrorFallback() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="gray" />
+    </mesh>
+  );
 }
 
 class ModelErrorBoundary extends Component<
   { children: ReactNode },
-  ErrorBoundaryState
+  { hasError: boolean }
 > {
   constructor(props: { children: ReactNode }) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(): ErrorBoundaryState {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  componentDidCatch(error: Error) {
     if (process.env.NODE_ENV === "development") {
-      console.error("3D 모델 로드 에러:", {
-        message: error.message,
-        stack: error.stack,
-        componentStack: errorInfo.componentStack,
-      });
+      console.error("3D 모델 로드 에러:", error);
     }
   }
 
   render() {
     if (this.state.hasError) {
-      return (
-        <mesh>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color="gray" />
-        </mesh>
-      );
+      return <ModelErrorFallback />;
     }
-
     return this.props.children;
   }
 }
 
 function ModelRoot() {
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
-  const scale = useThree(
-    (state) => Math.min(state.size.width, state.size.height) / 120
+  const { size } = useThree();
+
+  const scale = useMemo(
+    () => Math.min(size.width, size.height) / 120,
+    [size.width, size.height]
   );
+
   const gltf = useLoader(GLTFLoader, MODEL_URL, loaderConfig);
 
   useEffect(() => {
@@ -87,16 +85,18 @@ function ModelRoot() {
     mixerRef.current?.update(delta);
   });
 
+  const scaleArray = useMemo(() => [scale, scale, scale], [scale]);
+
   return (
     <primitive
       object={gltf.scene}
-      scale={[scale, scale, scale]}
+      scale={scaleArray}
       position={[-0.5, -2.5, 0]}
     />
   );
 }
 
-function ModelContainer() {
+export default function Model() {
   return (
     <>
       <Canvas>
@@ -118,13 +118,3 @@ function ModelContainer() {
     </>
   );
 }
-
-function Model() {
-  return null;
-}
-
-Model.Root = ModelRoot;
-Model.Container = ModelContainer;
-
-export default Model;
-export { ModelContainer };

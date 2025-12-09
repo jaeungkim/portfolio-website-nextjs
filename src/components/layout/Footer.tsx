@@ -4,7 +4,6 @@ const menuItems = [
   { label: "Home", url: "/" },
   { label: "About", url: "/resume" },
   { label: "Blog", url: "/blog" },
-  // { label: "Project", url: "/project" },
 ];
 
 const Footer = () => {

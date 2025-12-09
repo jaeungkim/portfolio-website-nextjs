@@ -2,6 +2,8 @@ import Article from "./components/Article";
 import { getSortedPostsData } from "./lib/posts";
 import type { Metadata } from "next";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Jaeung Kim - Blog",
   description: "A collection of photo stories",
@@ -16,13 +18,11 @@ export default async function BlogPage() {
         Travel
       </h1>
 
-      {/* render list directly; no Suspense needed */}
       <div className="flex flex-col space-y-16">
         {posts.map((post, index) => (
-          <Article.Root key={post.id} post={post} index={index} />
+          <Article key={post.id} post={post} index={index} />
         ))}
       </div>
     </div>
   );
 }
-

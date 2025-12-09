@@ -6,7 +6,6 @@ import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import BlurImage from "@/src/components/shared/image/BlurImage";
 
-// Types
 export interface Post {
   id: string;
   title: string;
@@ -23,14 +22,12 @@ export type PostData = {
   summary: string;
 };
 
-// Types for better type safety
 type Frontmatter = {
   title: string;
   date: string;
   summary?: string;
 };
 
-// Constants for better maintainability
 const POSTS_DIR = path.join(process.cwd(), "src", "app", "blog", "posts");
 const MDX_EXTENSION = ".mdx";
 const PLACEHOLDERS_CACHE_FILE = path.join(
@@ -195,7 +192,6 @@ export const getPostData = cache(
   async (slug: string): Promise<PostData | null> => {
     const filePath = path.join(POSTS_DIR, `${slug}${MDX_EXTENSION}`);
 
-    // Check if file exists first
     if (!(await fileExists(filePath))) {
       return null;
     }
@@ -211,7 +207,6 @@ export const getPostData = cache(
         options: { parseFrontmatter: true },
       });
 
-      // Validate required frontmatter fields
       if (!validateFrontmatter(frontmatter)) {
         console.warn(`Invalid frontmatter for post: ${slug}`);
         return null;
@@ -231,4 +226,3 @@ export const getPostData = cache(
     }
   }
 );
-

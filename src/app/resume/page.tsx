@@ -6,6 +6,8 @@ import ResumeSkill from "./components/ResumeSkill";
 import ResumeEducation from "./components/ResumeEducation";
 import Spacing from "@/src/components/shared/Spacing";
 
+export const dynamic = "force-static";
+
 export default async function ResumePage() {
   return (
     <div className="py-4">

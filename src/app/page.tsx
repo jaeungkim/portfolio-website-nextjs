@@ -3,7 +3,9 @@ import CrypticText from "@/src/components/shared/CrypticText";
 import { GithubIcon, LinkedInIcon } from "@/src/components/shared/icons/icons";
 import SocialIcon from "@/src/components/shared/icons/SocialIcon";
 
-const Model3D = dynamic(() => import("@/src/components/home/Model").then(mod => ({ default: mod.ModelContainer })), {
+export const dynamic = "force-static";
+
+const Model3D = dynamic(() => import("@/src/components/home/Model"), {
   ssr: false,
 });
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "motion/react";
 import dayjs from "dayjs";
@@ -17,7 +18,10 @@ interface DateProps {
   mobile: boolean;
 }
 
-function ArticleDate({ dateString, mobile }: DateProps) {
+const ArticleDate = memo(function ArticleDate({
+  dateString,
+  mobile,
+}: DateProps) {
   const date = dayjs(dateString);
 
   return (
@@ -36,9 +40,9 @@ function ArticleDate({ dateString, mobile }: DateProps) {
       {date.format("MMMM D, YYYY")}
     </time>
   );
-}
+});
 
-function ArticleRoot({ post, index }: ArticleProps) {
+function Article({ post, index }: ArticleProps) {
   const [ref, inView] = useInView({ triggerOnce: true });
 
   return (
@@ -58,7 +62,7 @@ function ArticleRoot({ post, index }: ArticleProps) {
           className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"
         />
 
-        <h2 className="relative z-10 text-base font-semibold  text-zinc-800 dark:text-zinc-100">
+        <h2 className="relative z-10 text-base font-semibold text-zinc-800 dark:text-zinc-100">
           {post.title}
         </h2>
 
@@ -91,12 +95,5 @@ function ArticleRoot({ post, index }: ArticleProps) {
   );
 }
 
-function Article() {
-  return null;
-}
-
-Article.Root = ArticleRoot;
-Article.Date = ArticleDate;
-
-export default Article;
+export default memo(Article);
 
