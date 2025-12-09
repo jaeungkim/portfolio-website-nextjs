@@ -6,17 +6,23 @@ import {
   LinkedInIcon,
 } from "@/src/components/shared/icons/icons";
 import IconWrapper from "@/src/components/shared/icons/IconWrapper";
+import { getPlaceholderForImage } from "@/src/lib/placeholders";
 
 export default async function ResumeHeader() {
+  const profileImagePath = "/images/resume_img.JPG";
+  const blurDataURL = await getPlaceholderForImage(profileImagePath);
+
   return (
     <div className="md:grid md:grid-cols-4 text-neutral-700 dark:text-neutral-300">
       <div className="flex justify-center items-center">
         <Image
           className="w-full max-w-[120px] h-[160px] object-cover rounded-sm"
-          src="/images/resume_img.JPG"
+          src={profileImagePath}
           alt="profileLogo"
           width={1080}
           height={1440}
+          placeholder={blurDataURL ? "blur" : undefined}
+          blurDataURL={blurDataURL}
         />
       </div>
 

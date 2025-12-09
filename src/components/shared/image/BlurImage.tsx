@@ -7,6 +7,15 @@ interface Props {
 }
 
 const BlurImage = ({ url, alt, blurDataURL }: Props) => {
+  // 개발 모드에서 디버깅 로그
+  if (process.env.NODE_ENV === "development" && typeof window === "undefined") {
+    if (blurDataURL) {
+      console.log(`[BlurImage] 플레이스홀더 있음: ${url}`);
+    } else {
+      console.warn(`[BlurImage] 플레이스홀더 없음: ${url}`);
+    }
+  }
+
   return (
     <Image
       src={url}

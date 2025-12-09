@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "../shared/buttons/ThemeToggle";
+import { getPlaceholderForImage } from "@/src/lib/placeholders";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -8,19 +9,24 @@ const navigation = [
   { name: "Blog", href: "/blog" },
 ];
 
-export default function Navbar() {
+export default async function Navbar() {
+  const profileImagePath = "/images/ill_prof.jpeg";
+  const blurDataURL = await getPlaceholderForImage(profileImagePath);
+
   return (
     <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4 h-[64px]">
       <div className="size-full mx-auto max-w-7xl relative px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         <div className="flex flex-1">
           <Link href="/" className="pointer-events-auto">
             <Image
-              src="/images/ill_prof.jpeg"
+              src={profileImagePath}
               alt="profileLogo"
               width={36}
               height={36}
               priority
               className="size-8 rounded-full object-cover"
+              placeholder={blurDataURL ? "blur" : undefined}
+              blurDataURL={blurDataURL}
             />
           </Link>
         </div>

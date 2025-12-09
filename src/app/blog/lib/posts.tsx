@@ -6,18 +6,10 @@ import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import BlurImage from "@/src/components/shared/image/BlurImage";
 import type { Frontmatter, Post, PostData } from "./types";
-import { POSTS_DIR, MDX_EXTENSION, PLACEHOLDERS_CACHE_FILE } from "./constants";
+import { POSTS_DIR, MDX_EXTENSION } from "./constants";
+import { loadPlaceholders } from "@/src/lib/placeholders";
 
 export type { Post, PostData } from "./types";
-
-const loadPlaceholders = cache(async (): Promise<Record<string, string>> => {
-  try {
-    const cacheContent = await fs.readFile(PLACEHOLDERS_CACHE_FILE, "utf-8");
-    return JSON.parse(cacheContent);
-  } catch {
-    return {};
-  }
-});
 
 function createMdxComponents(
   placeholders: Record<string, string>
