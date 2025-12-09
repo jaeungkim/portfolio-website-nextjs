@@ -1,6 +1,11 @@
+import type React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { ThemeProvider } from "next-themes";
 import "@/src/styles/globals.css";
+import Navbar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
+import CursorSplash from "@/src/components/shared/CursorSplash";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",
@@ -19,12 +24,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kr" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <body
         className={`flex flex-col min-h-svh ${pretendard.className} antialiased bg-neutral-0 dark:bg-neutral-850`}
       >
-        {children}
-        <div id="modal-root"></div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <CursorSplash />
+          <Navbar />
+          <main className="w-full grow relative mx-auto max-w-5xl px-8">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

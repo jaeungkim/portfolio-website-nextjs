@@ -1,12 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-
-interface GanttChartProps {
-  tasks: unknown[];
-  columWidth?: string;
-  ganttHeight?: string;
-}
+import type { GanttChartProps } from "@jaeungkim/gantt-chart";
 
 // Avoid bundling heavy chart code into main client bundle; load on demand
 const ReactGanttChart = dynamic<GanttChartProps>(

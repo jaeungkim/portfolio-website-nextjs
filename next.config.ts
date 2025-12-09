@@ -1,11 +1,10 @@
 import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
-
-const withNextIntl = createNextIntlPlugin();
+import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig: NextConfig = {
   experimental: {
     scrollRestoration: true,
+    optimizePackageImports: ["lucide-react"],
   },
   images: {
     remotePatterns: [
@@ -27,4 +26,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withPlaiceholder(nextConfig);
