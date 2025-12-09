@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "../common/buttons/ThemeToggle";
+import ThemeToggle from "../shared/buttons/ThemeToggle";
 
 const navigation = [
   { name: "Home", href: "/" },

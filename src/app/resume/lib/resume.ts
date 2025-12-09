@@ -86,7 +86,6 @@ export const projectsResume = [
     skills: [
       "Next 15 (App)",
       "Tailwind CSS",
-      "i18n",
       "GSAP",
       "Framer Motion",
       "Three.js",

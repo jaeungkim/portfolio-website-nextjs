@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Component, ReactNode } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, PerspectiveCamera, Loader } from "@react-three/drei";
+import { Suspense } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
@@ -19,7 +22,48 @@ function loaderConfig(loader: GLTFLoader): void {
   loader.setDRACOLoader(dracoLoader);
 }
 
-export default function Model() {
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ModelErrorBoundary extends Component<
+  { children: ReactNode },
+  ErrorBoundaryState
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("3D 모델 로드 에러:", {
+        message: error.message,
+        stack: error.stack,
+        componentStack: errorInfo.componentStack,
+      });
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <mesh>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial color="gray" />
+        </mesh>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+function ModelRoot() {
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const scale = useThree(
     (state) => Math.min(state.size.width, state.size.height) / 120
@@ -51,3 +95,36 @@ export default function Model() {
     />
   );
 }
+
+function ModelContainer() {
+  return (
+    <>
+      <Canvas>
+        <PerspectiveCamera makeDefault position={[2.5, 5, 7]} fov={60} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 10, 5]} intensity={1} />
+        <Suspense fallback={null}>
+          <ModelErrorBoundary>
+            <ModelRoot />
+          </ModelErrorBoundary>
+        </Suspense>
+        <OrbitControls
+          enableRotate
+          minPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}
+        />
+      </Canvas>
+      <Loader />
+    </>
+  );
+}
+
+function Model() {
+  return null;
+}
+
+Model.Root = ModelRoot;
+Model.Container = ModelContainer;
+
+export default Model;
+export { ModelContainer };

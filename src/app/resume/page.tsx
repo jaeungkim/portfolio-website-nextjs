@@ -1,12 +1,12 @@
-import ResumeProject from "./components/resumeProject";
-import ResumeIntroduce from "./components/resumeIntroduce";
-import ResumeWork from "./components/resumeWork";
-import ResumeSkill from "./components/resumeSkill";
-import ResumeHeader from "./components/resumeHeader";
+import ResumeHeader from "./components/ResumeHeader";
+import ResumeIntroduce from "./components/ResumeIntroduce";
+import ResumeWork from "./components/ResumeWork";
+import ResumeProject from "./components/ResumeProject";
+import ResumeSkill from "./components/ResumeSkill";
+import ResumeEducation from "./components/ResumeEducation";
 import Spacing from "@/src/components/shared/Spacing";
-import ResumeEducation from "./components/resumeEducation";
 
-export default async function Resume() {
+export default async function ResumePage() {
   return (
     <div className="py-4">
       <ResumeHeader />
@@ -30,4 +30,3 @@ export default async function Resume() {
     </div>
   );
 }
-

@@ -1,250 +1,50 @@
 import { experiences, getExperienceUtils } from "../lib/resume";
-import WorkSection from "./WorkSection";
+import workData from "./data/workData.json";
 import ResumeTitle from "./ResumeTitle";
+import WorkSection from "./WorkSection";
 import Pill from "@/src/components/shared/Pill";
+import type { WorkData } from "./types";
+import { toWorkSectionProps } from "./utils/dataTransform";
 
-// 한국어 작업 데이터
-const workData: Record<string, any> = {
-  e8ight: {
-    period: "2024.01 ~ 현재",
-    company: "이에이트",
-    link: "https://e8ight.co.kr/ndxpro/",
-    location: "잠실, 대한민국",
-    position: "플랫폼 개발팀 프론트엔드 개발자 | 주임 연구원",
-    details: [
-      "모노레포 구조 설계 및 디자인 시스템 공용화 → 문서화 및 팀 공유, 앱별 브랜치 전략과 Jenkins+Docker 기반 CI/CD 구축으로 협업 및 배포 체계 정립",
-      "CRA와 NPM 환경을 Vite와 Yarn Berry(PnP)로 전환하여 Docker 기반 CI 빌드 시간을 기존 10분에서 1~2분 수준으로 대폭 단축",
-      "Sentry를 사내 리눅스 서버에 Self-Hosted 방식으로 구축하여 오류 추적 체계 중앙화 및 운영 안정성 강화",
-      "사내 프론트엔드 공통 템플릿(i18n, Prettier/ESLint, 필수 라이브러리, Storybook 기반 디자인 시스템 포함) 제작 및 배포 → 초기 세팅 시간 단축 및 개발 환경 표준화",
-      "코드 리뷰 및 기술 세션을 통한 팀 내 기술 품질 향상과 지식 공유 문화 확산",
-      "NIPA(정보통신산업진흥원) 주관 GSMP 프로그램에 선정되어 워싱턴 D.C. 현지 행사 참가 → 팀 대표로서 글로벌 파트너 대상 기술 소개 및 협업 기회 발굴"
-    ],
-    projects: {
-      ndxpro_ai: {
-        title: "NDXPRO AI",
-        description: "현대자동차 R&D 데이터를 온톨로지로 통합하고, 근거 기반 AI 질의응답을 통해 신뢰도 높은 데이터 활용 환경을 검증한 프로젝트",
-        link: "https://spiny-learning-4b9.notion.site/NDXPRO-AI-24bc3276c40c80b7bfb4f7d392b2c823?pvs=74",
-        tasks: {
-          graph_visualization: {
-            title: "재사용 가능한 그래프 시각화 라이브러리 설계 및 개발 (D3.js 기반)",
-            subtasks: [
-              "대규모 온톨로지 데이터를 직관적으로 탐색할 수 있도록 D3 Force Graph 기반 Graph DB 시각화 라이브러리 설계 및 개발",
-              "관계 방향성 가시화를 위한 엣지 애니메이션을 커스터마이징하고, 렌더링 성능과 시각적 명료성을 모두 확보",
-              "하이라이트, 검색 포커싱, 노드 드래깅 등 사용자 인터랙션 레이어를 별도 모듈로 분리하여 재사용성과 유지보수성 강화"
-            ]
-          },
-          evidence_highlighting: {
-            title: "다양한 문서 뷰어 및 AI 응답 출처 하이라이팅 시스템 구축",
-            subtasks: [
-              "LLM 응답의 신뢰성을 확보하기 위해, 응답 내 문장 단위 근거를 원문 문서와 정밀 매핑하는 하이라이팅 시스템 설계",
-              "PDF 외 문서(docx, txt 등)에 대해 Markdown 파이프라인을 구성해 문서 포맷 일관성 확보",
-              "대용량 문서 렌더링 성능 병목 구간을 분석하고, Virtualization + 무한스크롤 성능을 개선"
-            ]
-          }
-        }
-      },
-      ndx_cloud: {
-        title: "NDX CLOUD",
-        description: "드론·지상 촬영 이미지를 사진측량 기반으로 정사영상 지도, 3D 모델, 포인트클라우드를 생성·시각화하는 클라우드 플랫폼",
-        link: "https://spiny-learning-4b9.notion.site/NDXPRO-KCLOUD-24bc3276c40c80b4afcef5f74478cbb5",
-        tasks: {
-          performance_optimization: {
-            title: "대용량 이미지 메타데이터 처리 최적화",
-            subtasks: [
-              "JPEG APP1 마커 분석을 통한 선택적 데이터 읽기로 메모리 96% 절약 (20GB → 800MB)",
-              "병렬 처리 구현 활용으로 메타데이터 추출 시간 95% 단축 (6분 40초 → 20초)",
-              "AWS S3 Presigned URL 방식으로 브라우저 ↔ S3 직접 연결 구현",
-              "Presigned URL 배치 요청 및 동시 스트림 업로드로 처리 효율성 극대화",
-              "백엔드 의존성 제거로 업로드 시간 50% 단축 (20분 → 10분) 및 서버 부하 70% 감소"
-            ]
-          },
-          organization_management: {
-            title: "조직 및 회원 관리 시스템",
-            subtasks: [
-              "조직/프로젝트/사이트/데이터셋 계층 구조 및 권한 매트릭스 설계",
-              "회원 초대, 역할 변경, 멤버 제거 등 조직 관리 UI 구현",
-              "다중 조직 전환 및 권한 기반 UI 제어 기능 개발"
-            ]
-          },
-          project_invitation: {
-            title: "프로젝트 및 초대 관리",
-            subtasks: [
-              "프로젝트 생성/수정/삭제 및 멤버 초대 기능 구현",
-              "초대 만료·재발송 처리 및 실시간 상태 표시 기능 개발",
-              "조직 권한 체계와 연동되는 접근 제어 로직 구현"
-            ]
-          },
-          admin_web: {
-            title: "운영팀용 Admin 백오피스 구축",
-            subtasks: [
-              "기업 회원 승인/반려 및 크레딧(PGP) 관리 기능 구현",
-              "운영팀 워크플로우 효율화를 위한 관리 화면 구현"
-            ]
-          }
-        }
-      },
-      ndxpro_pmis: {
-        title: "NDXPRO PMIS",
-        description: "프로젝트 전체적인 관리를 통합한 웹 솔루션",
-        link: "https://spiny-learning-4b9.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4?pvs=74",
-        tasks: {
-          gantt_chart: {
-            title: "WBS 기반 Gantt Chart 개발",
-            subtasks: [
-              "복잡한 프로젝트 데이터를 시각화하기 위해 Gantt Chart 아키텍처를 직접 설계 및 구현",
-              "구현된 인터랙션에 Optimistic UI 적용으로 실시간 구조/일정 수정 기능 구현",
-              "Virtualization 및 Lazy Loading를 적용하여 수천 개 Task 데이터의 렌더링 성능을 최적화하고, DOM 렌더링 성능 40% 개선"
-            ]
-          },
-          document_system: {
-            title: "도서 관리 시스템 개발",
-            subtasks: [
-              "폴더 구조 탐색기 아키텍처 설계 및 재귀 구성",
-              "키보드 입력 기반 범위/다중 선택 커스텀 훅 개발",
-              "파일 업로드 및 버전 관리 시스템 연동",
-              "단계별 피드백을 제공하는 문서 등록/변경 이력 UI 구현"
-            ]
-          }
-        }
-      },
-      ndxpro_epc: {
-        title: "NDXPRO EPC",
-        description: "설계, 조달, 시공 전 과정을 1D·2D·3D 데이터로 통합 시각화하는 웹 솔루션",
-        link: "https://spiny-learning-4b9.notion.site/NDXPRO-EPC-1d4c3276c40c8056a15cd797331f9d02",
-        tasks: {
-          viewer_markup: {
-            title: "2D 도면 뷰어 및 대시보드 레이아웃 개발",
-            subtasks: [
-              "SVG 기반 2D 도면 뷰어 및 마크업 기능 설계 및 구현 → 확대/축소 상태에서도 마크업 위치 유지",
-              "사용자 맞춤형 대시보드 레이아웃 구현 → 탭별 Layout을 Recoil Persist 로 상태 유지",
-              "iframe + postMessage API를 활용해 외부 협력사 3D Viewer와 연동하여 실시간 데이터 통신 지원"
-            ]
-          }
-        }
-      },
-      ndxpro_admin_web: {
-        title: "NDXPRO ADMIN WEB",
-        description: "NGSI-LD 기반 디지털 트윈 데이터를 정제하고 모델링·운영하는 NDXPRO 핵심 플랫폼",
-        link: "https://spiny-learning-4b9.notion.site/NDXPRO-ADMIN-WEB-1d4c3276c40c8083a95fc77d3410331e?pvs=4",
-        tasks: {
-          data_manager: {
-            title: "Data Manager V3 기능 개발 및 고도화",
-            subtasks: [
-              "데이터 모델 기반의 Attribute, Data Model, Relationship 생성 및 관리 기능 담당",
-              "React Flow를 활용하여 데이터 모델과 관계를 직관적으로 시각화",
-              "대규모 데이터를 효율적으로 등록 하기 위한 Excel Import/Export 기능 구현",
-              "인증 세션 자동 관리 시스템 구축 → 토큰 만료 시 자동 갱신 및 예외 시 일관된 로그아웃 처리"
-            ]
-          }
-        }
-      },
-      samsung_thync: {
-        title: "Samsung Thync ",
-        description: "상일동 삼성물산 BEMS 시스템의 Unreal 앱 내 사용자·자산 관리를 위한 웹뷰 기반의 관리 시스템",
-        link: "https://spiny-learning-4b9.notion.site/Samsung-Thync-1d4c3276c40c805aaab4ebde962f5d00?pvs=4",
-        tasks: {
-          nextjs_frontend: {
-            title: "Unreal 연동 로그인 및 사용자 등록/관리 시스템 개발",
-            subtasks: [
-              "SSO 및 일반 로그인을 통합 지원하는 인증 흐름 설계",
-              "최초 로그인 시 자동 사용자 등록, 권한 승인 프로세스 UI/서버 로직 설계 및 구현",
-              "백엔드 리소스 부족 상황에서 NestJS 기반 로그인/회원가입/권한 API 서버 직접 구축"
-            ]
-          }
-        }
-      }
-    }
-  },
-  flashee: {
-    period: "2023.07 ~ 2023.10",
-    company: "Flashee",
-    location: "밴쿠버, 캐나다",
-    position: "프론트엔드 개발자",
-    details: [
-      "통합 의류 쇼핑 마켓플레이스(E-Commerce) 스타트업",
-      "첫 번째 개발자로 입사하여 사내에 필요한 모든 프론트엔드 서비스 기획/개발/배포/운영",
-      "Shopify Marketplaces가 원활하게 통합된 정교한 E-Commerce 플랫폼 개발",
-      "Supabase 및 서드파티(Instagram, TikTok 등) 로그인 키트를 통해 플랫폼 보안 및 사용자 접근성 향상",
-      "Shopify Payments를 사용한 결제 게이트웨이 통합, 카트 포기 감소 및 성공적인 거래 증가"
-    ]
-  },
-  iclinic: {
-    period: "2022.07 ~ 2023.06",
-    company: "iClinic Systems Inc.",
-    location: "밴쿠버, 캐나다",
-    position: "풀스택 개발자",
-    details: [
-      "병원 및 클리닉 네트워크를 대상으로 하는 EMR(Electronic Medical Records) SaaS 스타트업",
-      "WebGL 기술을 적극 활용하여 사내 마케팅 프로젝트 전체를 독자적으로 설계 및 구현, 현대적인 웹 경험 제공",
-      "Framer Motion과 GSAP 기반의 인터랙션 및 애니메이션 구현으로 직관적이고 몰입감 있는 사용자 경험 제공",
-      "기술적 지식이 없는 경영진도 사용 가능한 사내 인력 및 근태 관리 어드민 포털 개발 및 운영, 효과적인 직원 관리 지원",
-      "전반적인 백엔드 구현, AWS 인프라 및 NoSQL 데이터베이스 설계 및 구축, CI/CD 파이프라인 구축"
-    ]
-  },
-  catalyx: {
-    period: "2021.01 ~ 2022.05",
-    company: "Catalx Management Ltd.",
-    location: "밴쿠버, 캐나다",
-    position: "프론트엔드 개발자",
-    details: [
-      "캐나다에 위치한 암호화폐 거래소 스타트업",
-      "React 기반의 컴포넌트 아키텍처 설계로 기업의 기술 기반 강화",
-      "다양한 외부 시스템을 성공적으로 통합, 고객이 신용카드를 이용해 암호화폐를 구입할수 있는 기능 구현",
-      "AWS Lambda@Edge와 Facebook Open Graph를 사용해 소셜 미디어용 URL 미리보기 기능 구현",
-      "디자이너 팀원들과 협력하여 전체적인 UI/UX 개선"
-    ]
-  }
-};
+const combineWorkWithExperience = (
+  workData: WorkData,
+  experiences: Array<{
+    id: string;
+    start: string;
+    end?: string | null;
+    skills?: string[];
+  }>
+) =>
+  Object.entries(workData).map(([key, job]) => ({
+    jobKey: key,
+    job,
+    experience: experiences.find((exp) => exp.id === key),
+  }));
 
 export default async function ResumeWork() {
   const { calculateExperience, calculateTotalExperience } =
     await getExperienceUtils();
+  const data = workData as WorkData;
 
-  const jobKeys = Object.keys(workData);
+  const workSections = combineWorkWithExperience(data, experiences);
 
   return (
     <>
       <div className="flex justify-between items-center">
         <ResumeTitle title="Experiences" />
-
         <Pill name={calculateTotalExperience(experiences)} />
       </div>
 
-      {jobKeys.map((key) => {
-        const job = workData[key];
-
-        const projects = job.projects
-          ? Object.values(job.projects).map((project: any) => ({
-              title: project.title,
-              description: project.description,
-              link: project.link,
-              tasks: Object.values(project.tasks).map((task: any) => ({
-                title: task.title,
-                subtasks: task.subtasks,
-              })),
-            }))
-          : [];
-
-        return (
-          <div key={key}>
-            <WorkSection
-              id={key}
-              period={job.period}
-              experience={calculateExperience(
-                experiences.find((exp) => exp.id === key)?.start ?? "",
-                experiences.find((exp) => exp.id === key)?.end ?? null
-              )}
-              company={job.company}
-              location={job.location}
-              position={job.position}
-              link={job.link}
-              skills={experiences.find((exp) => exp.id === key)?.skills ?? []}
-              details={job.details}
-              projects={projects}
-            />
-          </div>
-        );
-      })}
+      {workSections.map(({ jobKey, job, experience }) => (
+        <WorkSection
+          key={jobKey}
+          {...toWorkSectionProps(jobKey, job, experience?.skills)}
+          experience={calculateExperience(
+            experience?.start ?? "",
+            experience?.end ?? null
+          )}
+        />
+      ))}
     </>
   );
 }

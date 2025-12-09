@@ -19,7 +19,7 @@ export default async function BlogPage() {
       {/* render list directly; no Suspense needed */}
       <div className="flex flex-col space-y-16">
         {posts.map((post, index) => (
-          <Article key={post.id} post={post} index={index} />
+          <Article.Root key={post.id} post={post} index={index} />
         ))}
       </div>
     </div>

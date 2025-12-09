@@ -17,7 +17,7 @@ interface DateProps {
   mobile: boolean;
 }
 
-function Date({ dateString, mobile }: DateProps) {
+function ArticleDate({ dateString, mobile }: DateProps) {
   const date = dayjs(dateString);
 
   return (
@@ -38,7 +38,7 @@ function Date({ dateString, mobile }: DateProps) {
   );
 }
 
-const Article: React.FC<ArticleProps> = ({ post, index }) => {
+function ArticleRoot({ post, index }: ArticleProps) {
   const [ref, inView] = useInView({ triggerOnce: true });
 
   return (
@@ -62,7 +62,7 @@ const Article: React.FC<ArticleProps> = ({ post, index }) => {
           {post.title}
         </h2>
 
-        <Date dateString={post.date} mobile />
+        <ArticleDate dateString={post.date} mobile />
 
         <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
           {post.summary}
@@ -86,10 +86,17 @@ const Article: React.FC<ArticleProps> = ({ post, index }) => {
         </div>
       </Link>
 
-      <Date dateString={post.date} mobile={false} />
+      <ArticleDate dateString={post.date} mobile={false} />
     </motion.article>
   );
-};
+}
+
+function Article() {
+  return null;
+}
+
+Article.Root = ArticleRoot;
+Article.Date = ArticleDate;
 
 export default Article;
 

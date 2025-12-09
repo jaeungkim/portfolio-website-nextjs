@@ -1,6 +1,4 @@
-interface ResumeTitleProps {
-  title: string;
-}
+import type { ResumeTitleProps } from "./types";
 
 export default function ResumeTitle({ title }: ResumeTitleProps) {
   return (
@@ -9,3 +7,4 @@ export default function ResumeTitle({ title }: ResumeTitleProps) {
     </div>
   );
 }
+
