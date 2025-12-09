@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  GALLERY_IMAGES,
   WEDDING_SECTIONS,
   MOBILE_CONTAINER_STYLES,
-  BGM_CONFIG,
 } from "./constants";
-import type { MainWeddingScreenProps } from "./types";
 import { useWeddingAnimations } from "./hooks/useWeddingAnimations";
 
 import WeddingHero from "./sections/WeddingHero";
@@ -28,7 +25,7 @@ const SECTION_COMPONENTS = {
   Epilogue,
 } as const;
 
-export default function MainWeddingScreen(_props?: MainWeddingScreenProps) {
+export default function MainWeddingScreen() {
   const [showBGMNotification, setShowBGMNotification] = useState(true);
 
   // GSAP 애니메이션 훅 사용

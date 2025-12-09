@@ -7,31 +7,33 @@ import Model from "./Model";
 
 interface ErrorBoundaryState {
   hasError: boolean;
-  error?: Error;
 }
 
 class ModelErrorBoundary extends Component<
-  { children: ReactNode; fallback?: ReactNode },
+  { children: ReactNode },
   ErrorBoundaryState
 > {
-  constructor(props: { children: ReactNode; fallback?: ReactNode }) {
+  constructor(props: { children: ReactNode }) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error };
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("3D 모델 로드 에러:", error, errorInfo);
+    if (process.env.NODE_ENV === "development") {
+      console.error("3D 모델 로드 에러:", {
+        message: error.message,
+        stack: error.stack,
+        componentStack: errorInfo.componentStack,
+      });
+    }
   }
 
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        return this.props.fallback;
-      }
       return (
         <mesh>
           <boxGeometry args={[1, 1, 1]} />
@@ -58,8 +60,6 @@ export default function ModelContainer() {
         </Suspense>
         <OrbitControls
           enableRotate
-          enableZoom={true}
-          enablePan={true}
           minPolarAngle={Math.PI / 2}
           maxPolarAngle={Math.PI / 2}
         />
