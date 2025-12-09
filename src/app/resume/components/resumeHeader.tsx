@@ -1,9 +1,7 @@
 import Image from "next/image";
-import ExternalLink from "@/src/components/common/buttons/ExternalLink";
-import MailIcon from "@/src/components/common/icons/iconComponents/MailIcon";
-import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
-import Icon from "@/src/components/common/icons/Icon";
-import LinkedInIcon from "@/src/components/common/icons/iconComponents/LinkedInIcon";
+import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
+import { MailIcon, GithubIcon, LinkedInIcon } from "@/src/components/shared/icons/icons";
+import IconWrapper from "@/src/components/shared/icons/IconWrapper";
 
 export default async function ResumeHeader() {
   return (
@@ -22,7 +20,7 @@ export default async function ResumeHeader() {
         <div className="flex flex-col gap-4 justify-center md:col-span-3">
           <p className="text-4xl font-bold w-full">김재웅</p>
           <div className="w-fit group gap-2 flex items-center align-middle">
-            <Icon icon={MailIcon} className="size-6" />
+            <IconWrapper icon={MailIcon} className="size-6" />
             <a
               className="border-solid border-b border-neutral-700 leading-5 hover:border-neutral-200 transition-all duration-300 ease-in-out font-bold"
               href="mailto:jaewoongkim95@gmail.com"
@@ -32,14 +30,14 @@ export default async function ResumeHeader() {
           </div>
 
           <div className="w-fit group gap-2 flex items-center align-middle">
-            <Icon icon={GithubIcon} className="size-6" />
+            <IconWrapper icon={GithubIcon} className="size-6" />
             <ExternalLink link="https://github.com/jaeungkim">
               GitHub
             </ExternalLink>
           </div>
 
           <div className="w-fit flex gap-2 items-center align-middle group">
-            <Icon icon={LinkedInIcon} className="size-6" />
+            <IconWrapper icon={LinkedInIcon} className="size-6" />
             <ExternalLink link="https://www.linkedin.com/in/jaeungkim0526">
               LinkedIn
             </ExternalLink>

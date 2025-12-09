@@ -1,6 +1,5 @@
-import { experiences } from "@/src/constants/resume";
-import { getExperienceUtils } from "@/src/utils/resume";
-import ResumeTitle from "@/src/components/resume/ResumeTitle";
+import { experiences, getExperienceUtils } from "../lib/resume";
+import ResumeTitle from "./ResumeTitle";
 
 export default async function resumeIntroduce() {
   const { calculateTotalExperienceInYears } = await getExperienceUtils();

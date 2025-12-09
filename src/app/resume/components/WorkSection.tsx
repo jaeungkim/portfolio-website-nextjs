@@ -1,6 +1,5 @@
-import SkillPill from "../common/SkillPill";
-import ExternalLink from "@/src/components/common/buttons/ExternalLink";
-import Pill from "@/src/components/common/Pill";
+import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
+import Pill from "@/src/components/shared/Pill";
 
 interface ProjectTask {
   title?: string;
@@ -72,7 +71,7 @@ const WorkSection = ({
         {skills && skills.length > 0 && (
           <div className="flex flex-wrap gap-1 pt-1">
             {skills.map((skill: string, idx: number) => (
-              <Pill key={idx} name={skill} />
+              <Pill key={idx} name={skill} variant="skill" />
             ))}
           </div>
         )}

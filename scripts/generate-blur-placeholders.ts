@@ -1,8 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
-import { getRemotePlaiceholder } from "../src/utils/plaiceholder";
+import { getRemotePlaiceholder } from "../src/lib/plaiceholder";
 
-const POSTS_DIR = path.join(process.cwd(), "src", "posts");
+const POSTS_DIR = path.join(process.cwd(), "src", "app", "blog", "posts");
 const PLACEHOLDERS_CACHE_DIR = path.join(process.cwd(), ".next");
 const PLACEHOLDERS_CACHE_FILE = path.join(
   PLACEHOLDERS_CACHE_DIR,

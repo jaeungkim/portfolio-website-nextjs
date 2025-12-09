@@ -4,8 +4,24 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
-import BlurImage from "@/src/components/common/image/BlurImage";
-import type { Post, PostData } from "@/src/types/blog";
+import BlurImage from "@/src/components/shared/image/BlurImage";
+
+// Types
+export interface Post {
+  id: string;
+  title: string;
+  date: string;
+  summary: string;
+}
+
+export type PostData = {
+  slug: string;
+  id: string;
+  content: React.ReactNode;
+  date: string;
+  title: string;
+  summary: string;
+};
 
 // Types for better type safety
 type Frontmatter = {
@@ -15,7 +31,7 @@ type Frontmatter = {
 };
 
 // Constants for better maintainability
-const POSTS_DIR = path.join(process.cwd(), "src", "posts");
+const POSTS_DIR = path.join(process.cwd(), "src", "app", "blog", "posts");
 const MDX_EXTENSION = ".mdx";
 const PLACEHOLDERS_CACHE_FILE = path.join(
   process.cwd(),
@@ -215,3 +231,4 @@ export const getPostData = cache(
     }
   }
 );
+

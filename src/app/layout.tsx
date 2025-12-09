@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "@/src/styles/globals.css";
-import Navbar from "@/src/components/navbar/Navbar";
-import Footer from "@/src/components/Footer";
-import CursorSplash from "@/src/components/common/CursorSplash";
+import Navbar from "@/src/components/layout/Navbar";
+import Footer from "@/src/components/layout/Footer";
+import CursorSplash from "@/src/components/shared/CursorSplash";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",

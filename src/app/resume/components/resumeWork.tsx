@@ -1,9 +1,7 @@
-import { experiences } from "@/src/constants/resume";
-import SkillPill from "../common/SkillPill";
+import { experiences, getExperienceUtils } from "../lib/resume";
 import WorkSection from "./WorkSection";
-import { getExperienceUtils } from "@/src/utils/resume";
 import ResumeTitle from "./ResumeTitle";
-import Pill from "@/src/components/common/Pill";
+import Pill from "@/src/components/shared/Pill";
 
 // 한국어 작업 데이터
 const workData: Record<string, any> = {

@@ -9,3 +9,4 @@ declare module "@jaeungkim/gantt-chart" {
 
   export const ReactGanttChart: ComponentType<GanttChartProps>;
 }
+

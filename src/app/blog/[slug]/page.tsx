@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAllPostSlugs, getPostData } from "@/src/utils/posts";
+import { getAllPostSlugs, getPostData } from "../lib/posts";
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();

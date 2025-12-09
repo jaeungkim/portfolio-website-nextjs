@@ -1,5 +1,5 @@
-import Article from "@/src/components/blog/Article";
-import { getSortedPostsData } from "@/src/utils/posts";
+import Article from "./components/Article";
+import { getSortedPostsData } from "./lib/posts";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

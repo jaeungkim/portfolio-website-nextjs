@@ -1,10 +1,9 @@
 import dynamic from "next/dynamic";
-import CrypticText from "@/src/components/common/CrypticText";
-import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
-import LinkedInIcon from "@/src/components/common/icons/iconComponents/LinkedInIcon";
-import SocialIcon from "@/src/components/common/icons/SocialIcon";
+import CrypticText from "@/src/components/shared/CrypticText";
+import { GithubIcon, LinkedInIcon } from "@/src/components/shared/icons/icons";
+import SocialIcon from "@/src/components/shared/icons/SocialIcon";
 
-const Model3D = dynamic(() => import("@/src/components/model/ModelContainer"));
+const Model3D = dynamic(() => import("@/src/components/home/ModelContainer"));
 
 export default async function Home() {
   return (

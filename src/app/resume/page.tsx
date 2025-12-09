@@ -1,10 +1,10 @@
-import ResumeProject from "@/src/components/resume/resumeProject";
-import ResumeIntroduce from "@/src/components/resume/resumeIntroduce";
-import ResumeWork from "@/src/components/resume/resumeWork";
-import ResumeSkill from "@/src/components/resume/resumeSkill";
-import ResumeHeader from "@/src/components/resume/resumeHeader";
-import Spacing from "@/src/components/common/Spacing";
-import ResumeEducation from "@/src/components/resume/resumeEducation";
+import ResumeProject from "./components/resumeProject";
+import ResumeIntroduce from "./components/resumeIntroduce";
+import ResumeWork from "./components/resumeWork";
+import ResumeSkill from "./components/resumeSkill";
+import ResumeHeader from "./components/resumeHeader";
+import Spacing from "@/src/components/shared/Spacing";
+import ResumeEducation from "./components/resumeEducation";
 
 export default async function Resume() {
   return (

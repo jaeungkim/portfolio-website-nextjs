@@ -2,10 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import SunIcon from "@/src/components/common/icons/iconComponents/SunIcon";
-import MoonIcon from "@/src/components/common/icons/iconComponents/MoonIcon";
-
-import Icon from "../icons/Icon";
+import { SunIcon, MoonIcon } from "../icons/icons";
+import IconWrapper from "../icons/IconWrapper";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -26,7 +24,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="cursor-pointer group transition"
     >
-      {isDark ? <Icon icon={SunIcon} /> : <Icon icon={MoonIcon} />}
+      {isDark ? <IconWrapper icon={SunIcon} /> : <IconWrapper icon={MoonIcon} />}
     </button>
   );
 }

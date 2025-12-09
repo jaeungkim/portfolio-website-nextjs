@@ -1,8 +1,7 @@
-import { projectsResume } from "@/src/constants/resume";
-import SkillPill from "../common/SkillPill";
+import { projectsResume } from "../lib/resume";
 import ResumeTitle from "./ResumeTitle";
-import Pill from "@/src/components/common/Pill";
-import ExternalLink from "@/src/components/common/buttons/ExternalLink";
+import Pill from "@/src/components/shared/Pill";
+import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
 
 // 한국어 프로젝트 데이터
 const projectsData: Record<string, { title: string; description: string[] }> = {
@@ -114,7 +113,7 @@ function ProjectSection({
         {/* Skill Pills (from the constant array) */}
         <div className="flex flex-wrap gap-1 pl-4">
           {skills.map((skill, idx) => (
-            <Pill key={idx} name={skill} />
+            <Pill key={idx} name={skill} variant="skill" />
           ))}
         </div>
       </div>

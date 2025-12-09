@@ -1,12 +1,12 @@
-import { cn } from "@/src/utils/cn";
+import { cn } from "@/src/lib/cn";
 import { ComponentType } from "react";
 
-interface IconProps {
+interface IconWrapperProps {
   icon: ComponentType<{ className?: string }>;
   className?: string;
 }
 
-export default function Icon({ icon: IconComp, className }: IconProps) {
+export default function IconWrapper({ icon: IconComp, className }: IconWrapperProps) {
   return (
     <IconComp
       className={cn(
@@ -16,3 +16,4 @@ export default function Icon({ icon: IconComp, className }: IconProps) {
     />
   );
 }
+
