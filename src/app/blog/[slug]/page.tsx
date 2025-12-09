@@ -1,14 +1,15 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getAllPostSlugs, getPostData } from "../lib/posts";
+import { formatDate } from "../lib/utils";
+
+export const dynamicParams = false;
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
 }
-
-export const dynamicParams = false;
-export const dynamic = "force-static";
 
 export async function generateMetadata({
   params,
@@ -47,15 +48,25 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
   const postData = await getPostData(slug);
+
   if (!postData) notFound();
 
   return (
-      <article className="prose dark:prose-invert mx-auto overflow-auto max-w-3xl">
-        <h1 className="text-4xl font-bold mb-6">{postData.title}</h1>
-        {postData.content}
-      </article>
+    <article className="prose dark:prose-invert mx-auto max-w-3xl px-4 py-8">
+      <header className="mb-8">
+        <h1 className="text-4xl font-bold mb-4 text-neutral-800 dark:text-neutral-100">
+          {postData.title}
+        </h1>
+        <time
+          dateTime={postData.date}
+          className="text-sm text-neutral-600 dark:text-neutral-400"
+        >
+          {formatDate(postData.date)}
+        </time>
+      </header>
+      <div className="prose-lg">{postData.content}</div>
+    </article>
   );
 }
 

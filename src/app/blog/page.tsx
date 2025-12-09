@@ -1,6 +1,6 @@
+import type { Metadata } from "next";
 import Article from "./components/Article";
 import { getSortedPostsData } from "./lib/posts";
-import type { Metadata } from "next";
 
 export const dynamic = "force-static";
 
@@ -13,7 +13,7 @@ export default async function BlogPage() {
   const posts = await getSortedPostsData();
 
   return (
-    <div className="py-4 max-w-5xl mx-auto">
+    <div className="py-4 max-w-5xl mx-auto px-4">
       <h1 className="mb-12 text-4xl font-bold text-neutral-800 dark:text-neutral-100 sm:text-5xl">
         Travel
       </h1>

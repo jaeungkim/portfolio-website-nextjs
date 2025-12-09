@@ -10,7 +10,7 @@ export default function IconWrapper({ icon: IconComp, className }: IconWrapperPr
   return (
     <IconComp
       className={cn(
-        "ease-in-out duration-300 size-4 shrink-0 fill-neutral-700 dark:fill-neutral-300 transition-colors group-hover:fill-neutral-500 dark:group-hover:fill-neutral-200",
+        "ease-in-out duration-300 size-4 shrink-0 stroke-neutral-700 dark:stroke-neutral-300 transition-colors group-hover:stroke-neutral-500 dark:group-hover:stroke-neutral-200",
         className
       )}
     />

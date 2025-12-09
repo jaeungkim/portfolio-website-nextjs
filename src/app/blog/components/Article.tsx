@@ -3,44 +3,15 @@
 import { memo } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "motion/react";
-import dayjs from "dayjs";
-import clsx from "clsx";
-import type { Post } from "../lib/posts";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import type { Post } from "../lib/types";
+import ArticleDate from "./ArticleDate";
 
 interface ArticleProps {
   post: Post;
   index: number;
 }
-
-interface DateProps {
-  dateString: string;
-  mobile: boolean;
-}
-
-const ArticleDate = memo(function ArticleDate({
-  dateString,
-  mobile,
-}: DateProps) {
-  const date = dayjs(dateString);
-
-  return (
-    <time
-      className={clsx(
-        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
-        mobile ? "md:hidden pl-3.5" : "hidden md:block mt-1"
-      )}
-      dateTime={dateString}
-    >
-      {mobile && (
-        <span className="absolute inset-y-0 left-0 flex items-center">
-          <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
-        </span>
-      )}
-      {date.format("MMMM D, YYYY")}
-    </time>
-  );
-});
 
 function Article({ post, index }: ArticleProps) {
   const [ref, inView] = useInView({ triggerOnce: true });
@@ -74,19 +45,7 @@ function Article({ post, index }: ArticleProps) {
 
         <div className="relative z-10 mt-4 flex items-center text-sm font-medium text-zinc-500">
           Read more
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-            className="ml-1 h-4 w-4 stroke-current"
-          >
-            <path
-              d="M6.75 5.75 9.25 8l-2.5 2.25"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
         </div>
       </Link>
 
