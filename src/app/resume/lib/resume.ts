@@ -167,16 +167,9 @@ export async function getExperienceUtils() {
 
   const totalExperience = (items: Experience[]) => format(sumMonths(items));
 
-  const totalExperienceYearsOnly = (items: Experience[]) => {
-    const months = sumMonths(items);
-    const rounded = Math.floor(months / 12) * 12 || 12;
-    return format(rounded);
-  };
-
   return {
     calculateExperience: experienceForRange,
     calculateTotalExperience: totalExperience,
-    calculateTotalExperienceInYears: totalExperienceYearsOnly,
   };
 }
 

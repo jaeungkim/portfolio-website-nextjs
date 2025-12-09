@@ -16,24 +16,8 @@ export const loadPlaceholders = cache(
   async (): Promise<Record<string, string>> => {
     try {
       const cacheContent = await fs.readFile(PLACEHOLDERS_CACHE_FILE, "utf-8");
-      const placeholders = JSON.parse(cacheContent);
-      const count = Object.keys(placeholders).length;
-
-      if (process.env.NODE_ENV === "development") {
-        console.log(`[Placeholders] 캐시 로드 완료: ${count}개 항목`);
-      }
-
-      return placeholders;
-    } catch (error) {
-      if (process.env.NODE_ENV === "development") {
-        console.warn(
-          `[Placeholders] 캐시 파일을 로드할 수 없습니다: ${PLACEHOLDERS_CACHE_FILE}`,
-          error instanceof Error ? error.message : error
-        );
-        console.warn(
-          "[Placeholders] 플레이스홀더를 생성하려면 'yarn generate-placeholders'를 실행하세요."
-        );
-      }
+      return JSON.parse(cacheContent);
+    } catch {
       return {};
     }
   }

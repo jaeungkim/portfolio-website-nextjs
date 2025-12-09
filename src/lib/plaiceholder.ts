@@ -57,24 +57,3 @@ export async function getRemotePlaiceholder(
     return null;
   }
 }
-
-/**
- * 이미지 경로나 URL에 따라 적절한 플레이스홀더를 가져옵니다.
- * @param imagePathOrUrl - 이미지 경로 (정적: `/images/...`) 또는 URL (원격: `https://...`)
- * @returns base64 인코딩된 블러 데이터 URL 또는 null (실패 시)
- */
-export async function getImagePlaceholder(
-  imagePathOrUrl: string
-): Promise<string | null> {
-  // 정적 이미지인지 확인 (공개 경로로 시작)
-  if (imagePathOrUrl.startsWith("/")) {
-    const filePath = imagePathOrUrl.startsWith("/images/")
-      ? imagePathOrUrl.replace("/images/", "")
-      : imagePathOrUrl.slice(1);
-    const fullPath = `${process.cwd()}/public${imagePathOrUrl}`;
-    return getStaticPlaiceholder(fullPath);
-  }
-
-  // 원격 이미지
-  return getRemotePlaiceholder(imagePathOrUrl);
-}

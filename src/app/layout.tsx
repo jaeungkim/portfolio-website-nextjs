@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "@/src/styles/globals.css";
+import ConditionalLayout from "@/src/components/layout/ConditionalLayout";
 import Navbar from "@/src/components/layout/Navbar";
 import Footer from "@/src/components/layout/Footer";
-import CursorSplash from "@/src/components/shared/CursorSplash";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",
@@ -34,12 +34,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CursorSplash />
-          <Navbar />
-          <main className="w-full grow relative mx-auto max-w-5xl px-8">
+          <ConditionalLayout navbar={<Navbar />} footer={<Footer />}>
             {children}
-          </main>
-          <Footer />
+          </ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>
