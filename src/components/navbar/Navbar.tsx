@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { Link } from "@/src/i18n/routing";
-import LocaleSwitcher from "../common/buttons/LocaleSwitcher";
+import Link from "next/link";
 import ThemeToggle from "../common/buttons/ThemeToggle";
 
 const navigation = [
@@ -44,7 +43,6 @@ export default function Navbar() {
         </div>
 
         <div className="flex gap-2 justify-end flex-1">
-          <LocaleSwitcher />
           <ThemeToggle />
         </div>
       </div>

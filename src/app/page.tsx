@@ -1,0 +1,55 @@
+import dynamic from "next/dynamic";
+import CrypticText from "@/src/components/common/CrypticText";
+import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
+import LinkedInIcon from "@/src/components/common/icons/iconComponents/LinkedInIcon";
+import SocialIcon from "@/src/components/common/icons/SocialIcon";
+
+const Model3D = dynamic(() => import("@/src/components/model/ModelContainer"));
+
+export default async function Home() {
+  return (
+    <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
+      <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-96 md:h-auto md:pr-4 max-h-[350px]">
+        <Model3D />
+      </div>
+
+      <article className="basis-1/2">
+        <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100 sm:text-2xl">
+          <CrypticText
+            text="안녕하세요, 김재웅입니다."
+            delay={0.1}
+            classNames="fadein"
+          />
+        </h2>
+
+        <p className="mt-4 mb-4 text-base text-zinc-600 dark:text-zinc-400">
+          사용자가 서비스에 자연스럽게 몰입할 수 있도록 화면 흐름과 경험을
+          세심하게 고민하고 다듬는걸 좋아합니다.
+        </p>
+        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
+          단순함 속에서도 정교함을 추구하고, 그 과정에서 발생하는 문제를
+          해결하는 것을 좋아합니다.
+        </p>
+        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
+          평소엔 농구를 좋아해서 종종 공도 던지고 자연 속에서 시간을 보내며
+          에너지를 얻기도 합니다.
+        </p>
+        <p className="text-base text-zinc-600 dark:text-zinc-400 mb-4">
+          이 공간은 배우고 싶었던 것들을 자유롭게 실험하고, 작은 아이디어들을
+          테스트하며, 소소한 일상도 기록하는 저만의 작업실입니다.
+        </p>
+
+        <div className="mt-6 flex gap-6">
+          <SocialIcon
+            href="https://github.com/jaeungkim"
+            IconComponent={GithubIcon}
+          />
+          <SocialIcon
+            href="https://www.linkedin.com/in/jaeungkim0526/"
+            IconComponent={LinkedInIcon}
+          />
+        </div>
+      </article>
+    </div>
+  );
+}

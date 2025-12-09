@@ -28,7 +28,7 @@ const SECTION_COMPONENTS = {
   Epilogue,
 } as const;
 
-export default function MainWeddingScreen({}: MainWeddingScreenProps = {}) {
+export default function MainWeddingScreen(_props?: MainWeddingScreenProps) {
   const [showBGMNotification, setShowBGMNotification] = useState(true);
 
   // GSAP 애니메이션 훅 사용

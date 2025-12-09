@@ -18,11 +18,11 @@ export default function Model() {
   // Memoize DRACO loader setup
   const gltf = useLoader(
     GLTFLoader,
-    "/models/scene-draco.glb",
+    "https://images.jaeungkim.com/3d-models/models/scene-draco.glb",
     useMemo(
       () => (loader: GLTFLoader) => {
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath("/models/draco/");
+        dracoLoader.setDecoderPath("https://images.jaeungkim.com/3d-models/models/draco/");
         dracoLoader.setDecoderConfig({ type: "wasm" });
         loader.setDRACOLoader(dracoLoader);
       },

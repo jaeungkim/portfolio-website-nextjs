@@ -1,14 +1,11 @@
 import Image from "next/image";
 import ExternalLink from "@/src/components/common/buttons/ExternalLink";
-import { getTranslations } from "next-intl/server";
 import MailIcon from "@/src/components/common/icons/iconComponents/MailIcon";
 import GithubIcon from "@/src/components/common/icons/iconComponents/GithubIcon";
 import Icon from "@/src/components/common/icons/Icon";
 import LinkedInIcon from "@/src/components/common/icons/iconComponents/LinkedInIcon";
 
 export default async function ResumeHeader() {
-  const t = await getTranslations("home");
-
   return (
     <>
       <div className="md:grid md:grid-cols-4 text-neutral-700 dark:text-neutral-300">
@@ -23,7 +20,7 @@ export default async function ResumeHeader() {
         </div>
 
         <div className="flex flex-col gap-4 justify-center md:col-span-3">
-          <p className="text-4xl font-bold w-full">{t("about.name")}</p>
+          <p className="text-4xl font-bold w-full">김재웅</p>
           <div className="w-fit group gap-2 flex items-center align-middle">
             <Icon icon={MailIcon} className="size-6" />
             <a

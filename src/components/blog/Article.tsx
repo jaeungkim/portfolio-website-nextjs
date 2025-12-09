@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { motion } from "motion/react";
 import Date from "@/src/components/common/Date";
 import { Post } from "@/src/types/blog";
-import { Link } from "@/src/i18n/routing";
+import Link from "next/link";
 
 interface ArticleProps {
   post: Post;

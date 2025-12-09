@@ -2,8 +2,47 @@
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, Loader } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, Component, ReactNode } from "react";
 import Model from "./Model";
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error?: Error;
+}
+
+class ModelErrorBoundary extends Component<
+  { children: ReactNode; fallback?: ReactNode },
+  ErrorBoundaryState
+> {
+  constructor(props: { children: ReactNode; fallback?: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("3D 모델 로드 에러:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      if (this.props.fallback) {
+        return this.props.fallback;
+      }
+      return (
+        <mesh>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial color="gray" />
+        </mesh>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 export default function ModelContainer() {
   return (
@@ -13,7 +52,9 @@ export default function ModelContainer() {
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 10, 5]} intensity={1} />
         <Suspense fallback={null}>
-          <Model />
+          <ModelErrorBoundary>
+            <Model />
+          </ModelErrorBoundary>
         </Suspense>
         <OrbitControls
           enableRotate

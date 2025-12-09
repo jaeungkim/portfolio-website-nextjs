@@ -1,4 +1,8 @@
-export default function SkillPill({ name }) {
+interface SkillPillProps {
+  name: string;
+}
+
+export default function SkillPill({ name }: SkillPillProps) {
   return (
     <span className="border border-zinc-500 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400 px-3 py-1 text-sm font-medium rounded-full bg-transparent">
       {name}

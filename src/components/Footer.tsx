@@ -1,5 +1,4 @@
-// import Link from "next/link";
-import { Link } from "@/src/i18n/routing";
+import Link from "next/link";
 
 const menuItems = [
   { label: "Home", url: "/" },
@@ -19,6 +18,7 @@ const Footer = () => {
                 key={item.url}
                 className="transition hover:text-cyan-500 dark:hover:text-cyan-400"
                 href={item.url}
+                prefetch
               >
                 {item.label}
               </Link>

@@ -1,7 +1,31 @@
-import { Link } from "@/src/i18n/routing";
 import SkillPill from "../common/SkillPill";
 import ExternalLink from "@/src/components/common/buttons/ExternalLink";
 import Pill from "@/src/components/common/Pill";
+
+interface ProjectTask {
+  title?: string;
+  subtasks?: string[];
+}
+
+interface Project {
+  title: string;
+  description: string;
+  link?: string;
+  tasks: ProjectTask[];
+}
+
+interface WorkSectionProps {
+  id?: string;
+  period: string;
+  experience?: string;
+  company: string;
+  location: string;
+  position: string;
+  link?: string;
+  skills?: string[];
+  details?: string[];
+  projects?: Project[];
+}
 
 const WorkSection = ({
   period,
@@ -13,7 +37,7 @@ const WorkSection = ({
   skills,
   details = [],
   projects = [],
-}: any) => {
+}: WorkSectionProps) => {
   return (
     <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-6 my-8 text-neutral-700 dark:text-neutral-300">
       {/* Left Side */}
@@ -45,27 +69,27 @@ const WorkSection = ({
         </div>
 
         {/* 스킬 Pill 섹션 */}
-        {skills?.length > 0 && (
+        {skills && skills.length > 0 && (
           <div className="flex flex-wrap gap-1 pt-1">
-            {skills.map((skill, idx) => (
+            {skills.map((skill: string, idx: number) => (
               <Pill key={idx} name={skill} />
             ))}
           </div>
         )}
 
         {/* 회사에서 한 일 목록 */}
-        {details?.length > 0 && (
+        {details && details.length > 0 && (
           <ul className="list-disc space-y-2 pl-2 md:pl-4">
-            {details.map((text, idx) => (
+            {details.map((text: string, idx: number) => (
               <li key={idx}>{text}</li>
             ))}
           </ul>
         )}
 
         {/* 프로젝트 목록 */}
-        {projects?.length > 0 && (
+        {projects && projects.length > 0 && (
           <div className="space-y-8">
-            {projects.map((project, idx) => (
+            {projects.map((project: Project, idx: number) => (
               <div key={idx} className="">
                 {project.link ? (
                   <ExternalLink
@@ -82,14 +106,14 @@ const WorkSection = ({
                   {project.description}
                 </p>
                 <ul className="list-disc space-y-2 pl-5 text-base font-normal">
-                  {project.tasks.map((task, tIdx) => (
+                  {project.tasks.map((task: ProjectTask, tIdx: number) => (
                     <li key={tIdx}>
                       {task.title && (
                         <p className="font-semibold">{task.title}</p>
                       )}
                       {task.subtasks && (
                         <ul className="list-[circle] space-y-1 pl-5 mt-1">
-                          {task.subtasks.map((sub, sIdx) => (
+                          {task.subtasks.map((sub: string, sIdx: number) => (
                             <li key={sIdx}>{sub}</li>
                           ))}
                         </ul>

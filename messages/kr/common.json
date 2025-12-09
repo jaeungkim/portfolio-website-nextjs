@@ -1,9 +1,0 @@
-{
-  "utils": {
-    "year": "{count}년",
-    "month": "{count}개월",
-    "year_plural": "{count}년",
-    "month_plural": "{count}개월",
-    "yearAndMonth": "{year} {month}"
-  }
-}

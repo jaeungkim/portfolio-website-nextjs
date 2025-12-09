@@ -1,5 +1,4 @@
 import { cache } from "react";
-import { getTranslations } from "next-intl/server";
 
 export interface Experience {
   start: string;
@@ -23,14 +22,9 @@ function monthsBetween(startISO: string, endISO?: string | null): number {
 }
 
 const getFormatter = cache(async () => {
-  const t = await getTranslations("common.utils");
-
-  const yearTxt = (n: number) =>
-    t(n === 1 ? "year" : "year_plural", { count: n });
-  const monthTxt = (n: number) =>
-    t(n === 1 ? "month" : "month_plural", { count: n });
-  const yearMonthTxt = (y: number, m: number) =>
-    t("yearAndMonth", { year: yearTxt(y), month: monthTxt(m) });
+  const yearTxt = (n: number) => (n === 1 ? "1년" : `${n}년`);
+  const monthTxt = (n: number) => (n === 1 ? "1개월" : `${n}개월`);
+  const yearMonthTxt = (y: number, m: number) => `${yearTxt(y)} ${monthTxt(m)}`;
 
   const format = (total: number) => {
     const y = Math.floor(total / 12);
