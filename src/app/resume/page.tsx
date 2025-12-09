@@ -1,9 +1,9 @@
-import ResumeHeader from "./components/ResumeHeader";
-import ResumeIntroduce from "./components/ResumeIntroduce";
-import ResumeWork from "./components/ResumeWork";
-import ResumeProject from "./components/ResumeProject";
-import ResumeSkill from "./components/ResumeSkill";
-import ResumeEducation from "./components/ResumeEducation";
+import ResumeHeader from "./components/resumeHeader";
+import ResumeIntroduce from "./components/resumeIntroduce";
+import ResumeWork from "./components/resumeWork";
+import ResumeProject from "./components/resumeProject";
+import ResumeSkill from "./components/resumeSkill";
+import ResumeEducation from "./components/resumeEducation";
 import Spacing from "@/src/components/shared/Spacing";
 
 export const dynamic = "force-static";
