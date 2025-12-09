@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { ThemeProvider } from "next-themes";
 import "@/src/styles/globals.css";
 import Navbar from "@/src/components/navbar/Navbar";
 import Footer from "@/src/components/Footer";
-import ThemeProvider from "@/src/components/common/ThemeProvider";
 import CursorSplash from "@/src/components/common/CursorSplash";
 
 const pretendard = localFont({

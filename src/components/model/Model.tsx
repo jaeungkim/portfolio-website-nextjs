@@ -9,12 +9,15 @@ import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 const MODEL_URL = "https://images.jaeungkim.com/3d-models/models/scene-draco.glb";
 const DRACO_PATH = "https://www.gstatic.com/draco/versioned/decoders/1.5.7/";
 
-const loaderConfig = (loader: GLTFLoader) => {
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath(DRACO_PATH);
-  dracoLoader.setDecoderConfig({ type: "wasm" });
+// DRACO 로더를 모듈 레벨에서 한 번만 생성
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath(DRACO_PATH);
+dracoLoader.setDecoderConfig({ type: "wasm" });
+
+// 로더 설정 함수를 모듈 레벨로 추출
+function loaderConfig(loader: GLTFLoader): void {
   loader.setDRACOLoader(dracoLoader);
-};
+}
 
 export default function Model() {
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
