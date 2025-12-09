@@ -1,3 +1,4 @@
+import type React from "react";
 import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { cn } from "@/src/lib/cn";
 

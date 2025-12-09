@@ -1,19 +1,15 @@
-import dynamic from "next/dynamic";
 import CrypticText from "@/src/components/shared/CrypticText";
 import { GithubIcon, LinkedInIcon } from "@/src/components/shared/icons/icons";
 import SocialIcon from "@/src/components/shared/icons/SocialIcon";
+import ModelWrapper from "@/src/components/home/ModelWrapper";
 
 export const dynamic = "force-static";
-
-const Model3D = dynamic(() => import("@/src/components/home/Model"), {
-  ssr: false,
-});
 
 export default async function Home() {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-96 md:h-auto md:pr-4 max-h-[350px]">
-        <Model3D />
+        <ModelWrapper />
       </div>
 
       <article className="basis-1/2">
