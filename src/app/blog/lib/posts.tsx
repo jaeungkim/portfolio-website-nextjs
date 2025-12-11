@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
+import rehypePrettyCode from "rehype-pretty-code";
 import {
   frontmatterSchema,
   type Frontmatter,
@@ -129,7 +130,20 @@ export const getPostData = cache(
       const { content, frontmatter } = await compileMDX<Frontmatter>({
         source: fileContent,
         components: mdxComponents,
-        options: { parseFrontmatter: true },
+        options: {
+          parseFrontmatter: true,
+          mdxOptions: {
+            rehypePlugins: [
+              [
+                rehypePrettyCode,
+                {
+                  theme: "github-dark-dimmed",
+                  keepBackground: false,
+                },
+              ],
+            ],
+          },
+        },
       });
 
       // Zod 유효성 검사

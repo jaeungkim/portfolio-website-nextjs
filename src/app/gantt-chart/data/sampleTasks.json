@@ -1,0 +1,147 @@
+[
+  {
+    "id": "1",
+    "name": "Project Kickoff",
+    "startOffset": 0,
+    "endOffset": 1,
+    "parentId": null,
+    "sequence": "1",
+    "dependencies": []
+  },
+  {
+    "id": "2",
+    "name": "Requirements Gathering",
+    "startOffset": 2,
+    "endOffset": 4,
+    "parentId": null,
+    "sequence": "2",
+    "dependencies": [{ "targetId": "1", "type": "FS" }]
+  },
+  {
+    "id": "3",
+    "name": "Technical Research",
+    "startOffset": 2,
+    "endOffset": 8,
+    "parentId": null,
+    "sequence": "3",
+    "dependencies": [{ "targetId": "1", "type": "FS" }]
+  },
+  {
+    "id": "4",
+    "name": "UI/UX Design",
+    "startOffset": 7,
+    "endOffset": 14,
+    "parentId": null,
+    "sequence": "4",
+    "dependencies": [{ "targetId": "2", "type": "FS" }]
+  },
+  {
+    "id": "5",
+    "name": "System Architecture",
+    "startOffset": 9,
+    "endOffset": 11,
+    "parentId": null,
+    "sequence": "5",
+    "dependencies": [{ "targetId": "3", "type": "FS" }]
+  },
+  {
+    "id": "6",
+    "name": "Database Design",
+    "startOffset": 12,
+    "endOffset": 16,
+    "parentId": null,
+    "sequence": "6",
+    "dependencies": [{ "targetId": "5", "type": "FS" }]
+  },
+  {
+    "id": "7",
+    "name": "Frontend Development",
+    "startOffset": 15,
+    "endOffset": 29,
+    "parentId": null,
+    "sequence": "7",
+    "dependencies": [{ "targetId": "4", "type": "FS" }]
+  },
+  {
+    "id": "8",
+    "name": "Backend Development",
+    "startOffset": 17,
+    "endOffset": 32,
+    "parentId": null,
+    "sequence": "8",
+    "dependencies": [{ "targetId": "6", "type": "FS" }]
+  },
+  {
+    "id": "9",
+    "name": "API Integration",
+    "startOffset": 28,
+    "endOffset": 35,
+    "parentId": null,
+    "sequence": "9",
+    "dependencies": [
+      { "targetId": "7", "type": "SS" },
+      { "targetId": "8", "type": "SS" }
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Unit Testing",
+    "startOffset": 30,
+    "endOffset": 37,
+    "parentId": null,
+    "sequence": "10",
+    "dependencies": [{ "targetId": "7", "type": "SS" }]
+  },
+  {
+    "id": "11",
+    "name": "Integration Testing",
+    "startOffset": 36,
+    "endOffset": 39,
+    "parentId": null,
+    "sequence": "11",
+    "dependencies": [
+      { "targetId": "9", "type": "FS" },
+      { "targetId": "10", "type": "FS" }
+    ]
+  },
+  {
+    "id": "12",
+    "name": "Bug Fixes & Polish",
+    "startOffset": 40,
+    "endOffset": 44,
+    "parentId": null,
+    "sequence": "12",
+    "dependencies": [{ "targetId": "11", "type": "FS" }]
+  },
+  {
+    "id": "13",
+    "name": "Documentation",
+    "startOffset": 35,
+    "endOffset": 43,
+    "parentId": null,
+    "sequence": "13",
+    "dependencies": [{ "targetId": "8", "type": "FS" }]
+  },
+  {
+    "id": "14",
+    "name": "Deployment",
+    "startOffset": 45,
+    "endOffset": 46,
+    "parentId": null,
+    "sequence": "14",
+    "dependencies": [
+      { "targetId": "12", "type": "FS" },
+      { "targetId": "13", "type": "FS" }
+    ]
+  },
+  {
+    "id": "15",
+    "name": "Launch & Monitoring",
+    "startOffset": 47,
+    "endOffset": 53,
+    "parentId": null,
+    "sequence": "15",
+    "dependencies": [{ "targetId": "14", "type": "FS" }]
+  }
+]
+

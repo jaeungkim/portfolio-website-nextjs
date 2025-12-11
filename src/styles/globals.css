@@ -100,3 +100,76 @@
     }
   }
 }
+
+/* ===== rehype-pretty-code 구문 강조 스타일 ===== */
+[data-rehype-pretty-code-figure] {
+  margin: 1.5rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--muted) !important;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+[data-rehype-pretty-code-figure] code {
+  display: grid;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 1rem;
+  margin: 0 -1rem;
+  border-left: 2px solid transparent;
+}
+
+/* 강조된 라인 */
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background-color: var(--accent);
+  border-left-color: var(--primary);
+}
+
+/* 라인 번호 */
+[data-rehype-pretty-code-figure] [data-line-numbers] {
+  counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: var(--muted-foreground);
+}
+
+/* 코드 블록 제목 (파일명) */
+[data-rehype-pretty-code-title] {
+  padding: 0.5rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* 인라인 코드 */
+[data-rehype-pretty-code-figure] > code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  background-color: var(--muted);
+  font-size: 0.875em;
+}
