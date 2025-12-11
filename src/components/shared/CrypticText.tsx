@@ -3,13 +3,17 @@
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 
-type CrypticTextProps = {
+interface CrypticTextProps {
   text: string;
   classNames?: string;
   delay?: number; // seconds
-};
+}
 
-const letters = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
+const CHARS = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
+
+function getRandomChar(): string {
+  return CHARS[(Math.random() * CHARS.length) | 0];
+}
 
 export default function CrypticText({
   text,
@@ -22,38 +26,41 @@ export default function CrypticText({
     const el = spanRef.current;
     if (!el) return;
 
-    const delayFrames = Math.round(delay * 60);
-    let frame = 0;
-    let reveal = 0;
+    let revealIndex = 0;
     let rafId: number;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     const animate = () => {
-      if (frame >= delayFrames) {
-        const output = text
-          .split("")
-          .map((ch, idx) =>
-            idx < reveal
-              ? ch
-              : letters[Math.floor(Math.random() * letters.length)]
-          )
-          .join("");
-
-        el.textContent = output;
-
-        reveal += 1;
-        if (reveal > text.length) {
-          el.textContent = text; // ensure final state is the true text
-          return;
-        }
+      if (revealIndex > text.length) {
+        el.textContent = text;
+        return;
       }
-      frame += 1;
+
+      let output = "";
+      for (let i = 0; i < text.length; i++) {
+        output += i < revealIndex ? text[i] : getRandomChar();
+      }
+      el.textContent = output;
+
+      revealIndex++;
       rafId = requestAnimationFrame(animate);
     };
 
+    // 딜레이 동안 빈 공간 유지
     el.textContent = " ".repeat(text.length);
-    rafId = requestAnimationFrame(animate);
 
-    return () => cancelAnimationFrame(rafId);
+    if (delay > 0) {
+      timeoutId = setTimeout(() => {
+        rafId = requestAnimationFrame(animate);
+      }, delay * 1000);
+    } else {
+      rafId = requestAnimationFrame(animate);
+    }
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timeoutId);
+    };
   }, [text, delay]);
 
   return (

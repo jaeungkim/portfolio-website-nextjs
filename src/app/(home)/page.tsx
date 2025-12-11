@@ -1,14 +1,14 @@
 import CrypticText from "@/src/components/shared/CrypticText";
 import { GithubIcon, LinkedInIcon } from "@/src/components/shared/icons/icons";
 import SocialIcon from "@/src/components/shared/icons/SocialIcon";
-import ModelWrapper from "@/src/components/home/ModelWrapper";
+import ModelWrapper from "./components/ModelWrapper";
 
 export const dynamic = "force-static";
 
 export default function Home() {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
-      <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-96 md:h-auto md:pr-4 max-h-[350px]">
+      <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-[350px] md:pr-4">
         <ModelWrapper />
       </div>
 
@@ -16,7 +16,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-100 sm:text-2xl">
           <CrypticText
             text="안녕하세요, 김재웅입니다."
-            delay={0.1}
+            delay={0.5}
             classNames="fadein"
           />
         </h2>
@@ -52,3 +52,4 @@ export default function Home() {
     </div>
   );
 }
+

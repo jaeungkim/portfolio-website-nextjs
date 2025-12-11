@@ -1,26 +1,37 @@
 "use client";
 
-import { useEffect, useRef, useMemo, Component, ReactNode } from "react";
-import { useFrame, useLoader, useThree } from "@react-three/fiber";
+import { useEffect, useRef, Component, ReactNode } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera, Loader } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 const MODEL_URL =
   "https://images.jaeungkim.com/3d-models/models/scene-draco.glb";
-const DRACO_PATH = "https://www.gstatic.com/draco/versioned/decoders/1.5.7/";
 
-const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath(DRACO_PATH);
-dracoLoader.setDecoderConfig({ type: "wasm" });
+// 모델 프리로드
+useGLTF.preload(MODEL_URL);
 
-const loaderConfig = (loader: GLTFLoader) => {
-  loader.setDRACOLoader(dracoLoader);
-};
+// 로딩 플레이스홀더
+function LoadingPlaceholder() {
+  const ref = useRef<THREE.Mesh>(null);
 
+  useFrame((_, delta) => {
+    if (ref.current) {
+      ref.current.rotation.y += delta * 0.5;
+    }
+  });
+
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[1, 16, 16]} />
+      <meshBasicMaterial color="#888" wireframe />
+    </mesh>
+  );
+}
+
+// 에러 발생 시 대체 UI
 function ModelErrorFallback() {
   return (
     <mesh>
@@ -30,6 +41,7 @@ function ModelErrorFallback() {
   );
 }
 
+// 에러 바운더리
 class ModelErrorBoundary extends Component<
   { children: ReactNode },
   { hasError: boolean }
@@ -57,53 +69,63 @@ class ModelErrorBoundary extends Component<
   }
 }
 
+// 3D 모델 렌더링
 function ModelRoot() {
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
   const { size } = useThree();
+  const { scene, animations } = useGLTF(MODEL_URL);
 
-  const scale = useMemo(
-    () => Math.min(size.width, size.height) / 120,
-    [size.width, size.height]
-  );
+  const scale = Math.min(size.width, size.height) / 120;
 
-  const gltf = useLoader(GLTFLoader, MODEL_URL, loaderConfig);
-
+  // 애니메이션 설정
   useEffect(() => {
-    if (!gltf?.animations?.length || !gltf?.scene) return;
+    if (!animations?.length || !scene) return;
 
-    const mixer = new THREE.AnimationMixer(gltf.scene);
-    mixer.clipAction(gltf.animations[0])?.play();
+    const mixer = new THREE.AnimationMixer(scene);
+    mixer.clipAction(animations[0])?.play();
     mixerRef.current = mixer;
 
     return () => {
       mixer.stopAllAction();
       mixerRef.current = null;
     };
-  }, [gltf]);
+  }, [animations, scene]);
 
+  // 리소스 정리
+  useEffect(() => {
+    return () => {
+      scene.traverse((obj) => {
+        if (obj instanceof THREE.Mesh) {
+          obj.geometry?.dispose();
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach((m) => m.dispose());
+          } else {
+            obj.material?.dispose();
+          }
+        }
+      });
+    };
+  }, [scene]);
+
+  // 애니메이션 업데이트
   useFrame((_, delta) => {
     mixerRef.current?.update(delta);
   });
 
-  const scaleArray = useMemo(() => [scale, scale, scale], [scale]);
-
-  return (
-    <primitive
-      object={gltf.scene}
-      scale={scaleArray}
-      position={[-0.5, -2.5, 0]}
-    />
-  );
+  return <primitive object={scene} scale={scale} position={[-0.5, -2.5, 0]} />;
 }
 
 export default function Model() {
   return (
-    <>
-      <Canvas>
+    <div className="absolute inset-0">
+      <Canvas
+        dpr={[1, 2]}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
+      >
         <PerspectiveCamera makeDefault position={[2.5, 5, 7]} fov={60} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 10, 5]} intensity={1} />
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingPlaceholder />}>
           <ModelErrorBoundary>
             <ModelRoot />
           </ModelErrorBoundary>
@@ -114,7 +136,6 @@ export default function Model() {
           maxPolarAngle={Math.PI / 2}
         />
       </Canvas>
-      <Loader />
-    </>
+    </div>
   );
 }
