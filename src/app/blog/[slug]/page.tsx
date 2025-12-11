@@ -1,9 +1,7 @@
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getAllPostSlugs, getPostData } from "../lib/posts";
 import { formatDate } from "../lib/utils";
-import PostSkeleton from "../components/PostSkeleton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -60,16 +58,16 @@ export async function generateMetadata({
 }
 
 /**
- * 포스트 콘텐츠 - 데이터 페칭을 담당하는 async 컴포넌트
- * Suspense 내부에서 스트리밍됨
+ * 포스트 페이지 - 빌드 시점에 정적으로 생성됨
  */
-async function PostContent({ slug }: { slug: string }) {
+export default async function PostPage({ params }: PageProps) {
+  const { slug } = await params;
   const postData = await getPostData(slug);
 
   if (!postData) notFound();
 
   return (
-    <>
+    <article className="prose dark:prose-invert mx-auto max-w-3xl">
       <header className="mb-8">
         <h1 className="text-4xl font-bold mb-4 text-foreground">
           {postData.title}
@@ -82,21 +80,6 @@ async function PostContent({ slug }: { slug: string }) {
         </time>
       </header>
       <div className="prose-lg">{postData.content}</div>
-    </>
-  );
-}
-
-/**
- * 포스트 페이지 - 쉘 UI가 즉시 렌더링되고 콘텐츠는 스트리밍됨
- */
-export default async function PostPage({ params }: PageProps) {
-  const { slug } = await params;
-
-  return (
-    <article className="prose dark:prose-invert mx-auto max-w-3xl">
-      <Suspense fallback={<PostSkeleton />}>
-        <PostContent slug={slug} />
-      </Suspense>
     </article>
   );
 }
