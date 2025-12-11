@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import CursorSplash from "@/src/components/shared/CursorSplash";
 
 interface ConditionalLayoutProps {
   children: React.ReactNode;
@@ -23,7 +22,6 @@ export default function ConditionalLayout({
 
   return (
     <>
-      <CursorSplash />
       {navbar}
       <main className="w-full grow relative mx-auto max-w-5xl px-8">
         {children}

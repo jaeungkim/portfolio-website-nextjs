@@ -1,4 +1,8 @@
-import { experiences, getExperienceUtils } from "../lib/resume";
+import {
+  experiences,
+  calculateExperience,
+  calculateTotalExperience,
+} from "../lib/resume";
 import workData from "./data/workData.json";
 import ResumeTitle from "./ResumeTitle";
 import WorkSection from "./WorkSection";
@@ -21,11 +25,8 @@ const combineWorkWithExperience = (
     experience: experiences.find((exp) => exp.id === key),
   }));
 
-export default async function ResumeWork() {
-  const { calculateExperience, calculateTotalExperience } =
-    await getExperienceUtils();
+export default function ResumeWork() {
   const data = workData as WorkData;
-
   const workSections = combineWorkWithExperience(data, experiences);
 
   return (

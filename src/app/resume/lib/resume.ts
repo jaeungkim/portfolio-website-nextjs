@@ -1,5 +1,3 @@
-import { cache } from "react";
-
 // Types
 export interface Experience {
   start: string;
@@ -141,35 +139,32 @@ function monthsBetween(startISO: string, endISO?: string | null): number {
   return Math.max(1, years * 12 + months);
 }
 
-const getFormatter = cache(async () => {
-  const yearTxt = (n: number) => (n === 1 ? "1년" : `${n}년`);
-  const monthTxt = (n: number) => (n === 1 ? "1개월" : `${n}개월`);
-  const yearMonthTxt = (y: number, m: number) => `${yearTxt(y)} ${monthTxt(m)}`;
+/**
+ * 경력 기간 포맷팅 유틸리티
+ */
+const yearTxt = (n: number) => (n === 1 ? "1년" : `${n}년`);
+const monthTxt = (n: number) => (n === 1 ? "1개월" : `${n}개월`);
+const yearMonthTxt = (y: number, m: number) => `${yearTxt(y)} ${monthTxt(m)}`;
 
-  const format = (total: number) => {
-    const y = Math.floor(total / 12);
-    const m = total % 12;
-    if (y && m) return yearMonthTxt(y, m);
-    return y ? yearTxt(y) : monthTxt(m);
-  };
+function formatMonths(total: number): string {
+  const y = Math.floor(total / 12);
+  const m = total % 12;
+  if (y && m) return yearMonthTxt(y, m);
+  return y ? yearTxt(y) : monthTxt(m);
+}
 
-  return { format };
-});
+/**
+ * 경력 계산 유틸리티 (동기 함수)
+ */
+export function calculateExperience(start: string, end?: string | null): string {
+  return formatMonths(monthsBetween(start, end));
+}
 
-export async function getExperienceUtils() {
-  const { format } = await getFormatter();
-
-  const experienceForRange = (start: string, end?: string | null) =>
-    format(monthsBetween(start, end));
-
-  const sumMonths = (items: Experience[]) =>
-    items.reduce((acc, cur) => acc + monthsBetween(cur.start, cur.end), 0);
-
-  const totalExperience = (items: Experience[]) => format(sumMonths(items));
-
-  return {
-    calculateExperience: experienceForRange,
-    calculateTotalExperience: totalExperience,
-  };
+export function calculateTotalExperience(items: Experience[]): string {
+  const totalMonths = items.reduce(
+    (acc, cur) => acc + monthsBetween(cur.start, cur.end),
+    0
+  );
+  return formatMonths(totalMonths);
 }
 

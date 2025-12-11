@@ -1782,7 +1782,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/mdx@npm:^3.0.1":
+"@mdx-js/loader@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@mdx-js/loader@npm:3.1.1"
+  dependencies:
+    "@mdx-js/mdx": "npm:^3.0.0"
+    source-map: "npm:^0.7.0"
+  peerDependencies:
+    webpack: ">=5"
+  peerDependenciesMeta:
+    webpack:
+      optional: true
+  checksum: 10c0/b277b0be53646e2cb047c5ee013631d6624c7924416c0ced203000eaf82401211c453250b716aca229401b34cb7a314b0f5c8b277a3230fbda4ddb568989e41e
+  languageName: node
+  linkType: hard
+
+"@mdx-js/mdx@npm:^3.0.0, @mdx-js/mdx@npm:^3.0.1":
   version: 3.1.1
   resolution: "@mdx-js/mdx@npm:3.1.1"
   dependencies:
@@ -1867,6 +1882,23 @@ __metadata:
   version: 16.0.8
   resolution: "@next/env@npm:16.0.8"
   checksum: 10c0/1741d23c21ccc2f2ac00feb838c1a91c22a9841e268697938a442b3675bd56173b8daf219032aef998c17b61a318002b4abe9939aadbaefd6f3df11503772e87
+  languageName: node
+  linkType: hard
+
+"@next/mdx@npm:^16.0.8":
+  version: 16.0.8
+  resolution: "@next/mdx@npm:16.0.8"
+  dependencies:
+    source-map: "npm:^0.7.0"
+  peerDependencies:
+    "@mdx-js/loader": ">=0.15.0"
+    "@mdx-js/react": ">=0.15.0"
+  peerDependenciesMeta:
+    "@mdx-js/loader":
+      optional: true
+    "@mdx-js/react":
+      optional: true
+  checksum: 10c0/1e21adc513f85019d4f0d3130da4e2ebce94759181c3a7089935db96172433ced45bb109e4a63f542d8f3bbe87463294176cca92f75f4c6704cb5ba2f5aa887c
   languageName: node
   linkType: hard
 
@@ -3943,13 +3975,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gsap@npm:^3.13.0":
-  version: 3.14.1
-  resolution: "gsap@npm:3.14.1"
-  checksum: 10c0/c8f5e15773350a812847d83e44f0e696f5600a1a4e8f25d4c264d80cdb6ab4b0d2d887174fe592a1a3bf03a65b4a6e3337f4d646f31763effdce6209e3d3e576
-  languageName: node
-  linkType: hard
-
 "hasown@npm:^2.0.2":
   version: 2.0.2
   resolution: "hasown@npm:2.0.2"
@@ -5837,6 +5862,8 @@ __metadata:
   dependencies:
     "@gsap/react": "npm:^2.1.2"
     "@jaeungkim/gantt-chart": "npm:^0.2.4"
+    "@mdx-js/loader": "npm:^3.1.1"
+    "@next/mdx": "npm:^16.0.8"
     "@plaiceholder/next": "npm:^3.0.0"
     "@radix-ui/react-dialog": "npm:^1.1.15"
     "@react-three/drei": "npm:^10.1.2"
@@ -5852,7 +5879,6 @@ __metadata:
     clsx: "npm:^2.1.1"
     dayjs: "npm:^1.11.13"
     gray-matter: "npm:^4.0.3"
-    gsap: "npm:^3.13.0"
     lucide-react: "npm:^0.542.0"
     motion: "npm:^12.23.12"
     next: "npm:15.5.7"
@@ -5869,6 +5895,7 @@ __metadata:
     three: "npm:^0.177.0"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.8.3"
+    zod: "npm:^4.1.13"
   languageName: unknown
   linkType: soft
 
@@ -6705,6 +6732,13 @@ __metadata:
   bin:
     yaml: bin.mjs
   checksum: 10c0/703e4dc1e34b324aa66876d63618dcacb9ed49f7e7fe9b70f1e703645be8d640f68ab84f12b86df8ac960bac37acf5513e115de7c970940617ce0343c8c9cd96
+  languageName: node
+  linkType: hard
+
+"zod@npm:^4.1.13":
+  version: 4.1.13
+  resolution: "zod@npm:4.1.13"
+  checksum: 10c0/d7e74e82dba81a91ffc3239cd85bc034abe193a28f7087a94ab258a3e48e9a7ca4141920cac979a0d781495b48fc547777394149f26be04c3dc642f58bbc3941
   languageName: node
   linkType: hard
 

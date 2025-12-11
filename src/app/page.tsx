@@ -5,7 +5,7 @@ import ModelWrapper from "@/src/components/home/ModelWrapper";
 
 export const dynamic = "force-static";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full md:pt-24">
       <div className="w-full relative md:basis-2/6 lg:basis-3/6 h-96 md:h-auto md:pr-4 max-h-[350px]">

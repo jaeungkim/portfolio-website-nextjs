@@ -8,7 +8,7 @@ import Spacing from "@/src/components/shared/Spacing";
 
 export const dynamic = "force-static";
 
-export default async function ResumePage() {
+export default function ResumePage() {
   return (
     <div className="py-4">
       <ResumeHeader />
