@@ -20,32 +20,32 @@ function LocationInfo({
   position: string;
 }) {
   return (
-        <div className="space-y-1">
-          <p className="text-base font-normal text-neutral-600 dark:text-neutral-400 italic">
-            {location}
-          </p>
-          <p className="text-base font-normal text-neutral-600 dark:text-neutral-400 italic">
-            {position}
-          </p>
-        </div>
+    <div className="space-y-1">
+      <p className="text-base font-normal text-muted-foreground italic">
+        {location}
+      </p>
+      <p className="text-base font-normal text-muted-foreground italic">
+        {position}
+      </p>
+    </div>
   );
 }
 
 function SkillsList({ skills }: { skills: string[] }) {
   return (
-          <div className="flex flex-wrap gap-1 pt-1">
+    <div className="flex flex-wrap gap-1 pt-1">
       {skills.map((skill, idx) => (
-              <Pill key={idx} name={skill} variant="skill" />
-            ))}
-          </div>
+        <Pill key={idx} name={skill} variant="skill" />
+      ))}
+    </div>
   );
 }
 
 function DetailsList({ details }: { details: string[] }) {
   return (
-          <ul className="list-disc space-y-2 pl-2 md:pl-4">
+    <ul className="list-disc space-y-2 pl-2 md:pl-4">
       {details.map((text, idx) => (
-              <li key={idx}>{text}</li>
+        <li key={idx}>{text}</li>
       ))}
     </ul>
   );
@@ -59,9 +59,9 @@ function TaskItem({ task }: { task: ProjectTask }) {
         <ul className="list-[circle] space-y-1 pl-5 mt-1">
           {task.subtasks.map((sub, idx) => (
             <li key={idx}>{sub}</li>
-            ))}
-          </ul>
-        )}
+          ))}
+        </ul>
+      )}
     </li>
   );
 }
@@ -69,23 +69,23 @@ function TaskItem({ task }: { task: ProjectTask }) {
 function ProjectItem({ project }: { project: Project }) {
   return (
     <div>
-                {project.link ? (
+      {project.link ? (
         <ExternalLink additionalClassName="text-base" link={project.link}>
-                    <p>{project.title}</p>
-                  </ExternalLink>
-                ) : (
-                  <p className="font-bold">{project.title}</p>
-                )}
+          <p>{project.title}</p>
+        </ExternalLink>
+      ) : (
+        <p className="font-bold">{project.title}</p>
+      )}
 
-                <p className="pl-2 md:pl-4 font-bold text-base py-2">
-                  {project.description}
-                </p>
-                <ul className="list-disc space-y-2 pl-5 text-base font-normal">
+      <p className="pl-2 md:pl-4 font-bold text-base py-2">
+        {project.description}
+      </p>
+      <ul className="list-disc space-y-2 pl-5 text-base font-normal">
         {project.tasks.map((task, idx) => (
           <TaskItem key={idx} task={task} />
-                  ))}
-                </ul>
-              </div>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -94,8 +94,8 @@ function ProjectsList({ projects }: { projects: Project[] }) {
     <div className="space-y-8">
       {projects.map((project, idx) => (
         <ProjectItem key={idx} project={project} />
-            ))}
-          </div>
+      ))}
+    </div>
   );
 }
 
@@ -110,8 +110,8 @@ export default function WorkSection({
   projects = [],
 }: WorkSectionProps) {
   return (
-    <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-6 my-8 text-neutral-700 dark:text-neutral-300">
-      <p className="text-2xl font-medium text-neutral-600 dark:text-neutral-400 mb-2 md:mb-0">
+    <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-6 my-8 text-foreground">
+      <p className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
         {period}
       </p>
 

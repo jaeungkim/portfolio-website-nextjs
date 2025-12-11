@@ -30,7 +30,9 @@ export async function generateStaticParams() {
 /**
  * 포스트별 동적 메타데이터 생성
  */
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const postData = await getPostData(slug);
 
@@ -69,12 +71,12 @@ async function PostContent({ slug }: { slug: string }) {
   return (
     <>
       <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4 text-neutral-800 dark:text-neutral-100">
+        <h1 className="text-4xl font-bold mb-4 text-foreground">
           {postData.title}
         </h1>
         <time
           dateTime={postData.date}
-          className="text-sm text-neutral-600 dark:text-neutral-400"
+          className="text-sm text-muted-foreground"
         >
           {formatDate(postData.date)}
         </time>
@@ -91,7 +93,7 @@ export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
 
   return (
-    <article className="prose dark:prose-invert mx-auto max-w-3xl px-4 py-8">
+    <article className="prose dark:prose-invert mx-auto max-w-3xl">
       <Suspense fallback={<PostSkeleton />}>
         <PostContent slug={slug} />
       </Suspense>

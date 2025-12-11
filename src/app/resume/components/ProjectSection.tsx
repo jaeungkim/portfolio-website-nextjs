@@ -6,7 +6,7 @@ function ProjectTitle({ title, link }: { title: string; link?: string }) {
   return (
     <div className="flex items-start mb-2 md:mb-0">
       <ExternalLink
-        additionalClassName="text-xl text-neutral-600 dark:text-neutral-400"
+        additionalClassName="text-xl text-muted-foreground"
         link={link || ""}
       >
         {title}
@@ -42,7 +42,7 @@ export default function ProjectSection({
   skills,
 }: ProjectSectionProps) {
   return (
-    <div className="mt-8 md:grid md:grid-cols-4 md:gap-4 text-neutral-700 dark:text-neutral-300">
+    <div className="mt-8 md:grid md:grid-cols-4 md:gap-4 text-foreground">
       <ProjectTitle title={title} link={link?.url} />
       <div className="space-y-2 col-span-3">
         <DescriptionList descriptions={description} />

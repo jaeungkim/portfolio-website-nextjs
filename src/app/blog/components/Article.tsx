@@ -30,20 +30,20 @@ function Article({ post, index }: ArticleProps) {
       >
         <div
           aria-hidden="true"
-          className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"
+          className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-muted opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
         />
 
-        <h2 className="relative z-10 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+        <h2 className="relative z-10 text-base font-semibold text-foreground">
           {post.title}
         </h2>
 
         <ArticleDate dateString={post.date} mobile />
 
-        <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="relative z-10 mt-2 text-sm text-muted-foreground">
           {post.summary}
         </p>
 
-        <div className="relative z-10 mt-4 flex items-center text-sm font-medium text-zinc-500">
+        <div className="relative z-10 mt-4 flex items-center text-sm font-medium text-muted-foreground">
           Read more
           <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
         </div>
@@ -55,4 +55,3 @@ function Article({ post, index }: ArticleProps) {
 }
 
 export default memo(Article);
-

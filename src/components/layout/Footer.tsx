@@ -8,10 +8,10 @@ const menuItems = [
 
 const Footer = () => {
   return (
-    <footer className="mt-32 backdrop-blur w-full border-t border-zinc-100 py-8 dark:border-zinc-700/40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+    <footer className="mt-32 backdrop-blur w-full border-t border-border py-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <nav className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+          <nav className="flex gap-6 text-sm font-medium text-foreground">
             {menuItems.map((item) => (
               <Link
                 key={item.url}
@@ -23,7 +23,7 @@ const Footer = () => {
               </Link>
             ))}
           </nav>
-          <p className="text-sm text-zinc-400 dark:text-zinc-500">
+          <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Jaeung Kim. All rights reserved.
           </p>
         </div>

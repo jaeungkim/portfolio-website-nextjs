@@ -7,29 +7,19 @@ export default function PostsSkeleton() {
       {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className="md:grid md:grid-cols-4 md:items-baseline">
           <div className="md:col-span-3 flex flex-col items-start">
-            {/* 제목 스켈레톤 */}
-            <div className="h-5 w-48 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse" />
-
-            {/* 날짜 스켈레톤 (모바일) */}
-            <div className="mt-2 h-4 w-24 bg-zinc-100 dark:bg-zinc-800 rounded animate-pulse md:hidden" />
-
-            {/* 요약 스켈레톤 */}
+            <div className="h-5 w-48 skeleton" />
+            <div className="mt-2 h-4 w-24 skeleton md:hidden" />
             <div className="mt-3 space-y-2 w-full">
-              <div className="h-4 w-full bg-zinc-100 dark:bg-zinc-800 rounded animate-pulse" />
-              <div className="h-4 w-3/4 bg-zinc-100 dark:bg-zinc-800 rounded animate-pulse" />
+              <div className="h-4 w-full skeleton" />
+              <div className="h-4 w-3/4 skeleton" />
             </div>
-
-            {/* Read more 스켈레톤 */}
-            <div className="mt-4 h-4 w-20 bg-zinc-100 dark:bg-zinc-800 rounded animate-pulse" />
+            <div className="mt-4 h-4 w-20 skeleton" />
           </div>
-
-          {/* 날짜 스켈레톤 (데스크탑) */}
           <div className="hidden md:block">
-            <div className="h-4 w-24 bg-zinc-100 dark:bg-zinc-800 rounded animate-pulse" />
+            <div className="h-4 w-24 skeleton" />
           </div>
         </div>
       ))}
     </div>
   );
 }
-

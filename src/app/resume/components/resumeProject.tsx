@@ -25,7 +25,7 @@ export default async function ResumeProject() {
   const projects = combineProjectData(projectsResume, data);
 
   return (
-    <div className="text-neutral-700 dark:text-neutral-300">
+    <div className="text-foreground">
       <ResumeTitle title="Projects" />
 
       {projects.map(({ id, projectInfo, link, skills }) => (

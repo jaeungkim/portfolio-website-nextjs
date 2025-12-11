@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 
 export default function ResumePage() {
   return (
-    <div className="py-4">
+    <>
       <ResumeHeader />
       <Spacing />
       <ResumeIntroduce />
@@ -22,13 +22,13 @@ export default function ResumePage() {
       <ResumeSkill />
       <Spacing />
       <ResumeEducation />
-      <footer className="pt-[150px] flex flex-col items-center justify-center">
-        <p className="text-base">감사합니다.</p>
-        <div className="flex flex-col items-center gap-4 my-12 text-sm text-[#808080] text-center">
+      <footer className="pt-36 text-center">
+        <p>감사합니다.</p>
+        <div className="mt-12 space-y-1 text-sm text-muted-foreground">
           <p>Last updated: 2025.05.31</p>
           <p>@jaeungkim</p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

@@ -5,7 +5,7 @@ import type { SkillCategories, SkillCategory } from "./types";
 function SkillCategoryItem({ category }: { category: SkillCategory }) {
   return (
     <div className="md:grid md:grid-cols-4 md:gap-2">
-      <div className="text-2xl font-medium text-neutral-600 dark:text-neutral-400 mb-2 md:mb-0">
+      <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
         {category.title}
       </div>
       <ul className="col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 pl-5 list-disc text-base font-normal">
@@ -31,7 +31,7 @@ export default function ResumeSkill() {
   const categories = skillCategories as SkillCategories;
 
   return (
-    <div className="text-neutral-700 dark:text-neutral-300">
+    <div className="text-foreground">
       <ResumeTitle title="Skills" />
       <SkillCategoriesList categories={categories} />
     </div>

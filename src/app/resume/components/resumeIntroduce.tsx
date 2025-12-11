@@ -4,7 +4,7 @@ export default async function ResumeIntroduce() {
   return (
     <div className="md:grid md:grid-cols-4 md:gap-4">
       <ResumeTitle title="Introduce" />
-      <div className="col-span-3 flex flex-col gap-2 dark:text-neutral-300 text-neutral-700 mt-6 md:mt-0">
+      <div className="col-span-3 flex flex-col gap-2 text-foreground mt-6 md:mt-0">
         <p>
           안녕하세요. 웹 서비스의 기획과 설계부터 개발, 배포 및 운영까지
           전반적인 과정을 두루 경험하며 꾸준히 성장해온 프론트엔드 개발자입니다.

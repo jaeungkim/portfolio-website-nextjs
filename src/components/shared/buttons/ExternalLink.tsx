@@ -14,7 +14,7 @@ export default function ExternalLink({
   return (
     <a
       className={cn(
-        `text-neutral-700 dark:text-neutral-300 font-bold cursor-pointer w-fit flex items-center gap-1 border-solid border-b border-neutral-700 leading-5 group-hover:border-neutral-200 transition-all duration-300 ease-in-out`,
+        "text-foreground font-bold cursor-pointer w-fit flex items-center gap-1 border-b border-border leading-5 hover:border-muted-foreground transition-colors",
         additionalClassName
       )}
       href={link}

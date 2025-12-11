@@ -117,25 +117,23 @@ function ModelRoot() {
 
 export default function Model() {
   return (
-    <div className="absolute inset-0">
-      <Canvas
-        dpr={[1, 2]}
-        gl={{ antialias: true, powerPreference: "high-performance" }}
-      >
-        <PerspectiveCamera makeDefault position={[2.5, 5, 7]} fov={60} />
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 10, 5]} intensity={1} />
-        <Suspense fallback={<LoadingPlaceholder />}>
-          <ModelErrorBoundary>
-            <ModelRoot />
-          </ModelErrorBoundary>
-        </Suspense>
-        <OrbitControls
-          enableRotate
-          minPolarAngle={Math.PI / 2}
-          maxPolarAngle={Math.PI / 2}
-        />
-      </Canvas>
-    </div>
+    <Canvas
+      dpr={[1, 2]}
+      gl={{ antialias: true, powerPreference: "high-performance" }}
+    >
+      <PerspectiveCamera makeDefault position={[2.5, 5, 7]} fov={60} />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 10, 5]} intensity={1} />
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <ModelErrorBoundary>
+          <ModelRoot />
+        </ModelErrorBoundary>
+      </Suspense>
+      <OrbitControls
+        enableRotate
+        minPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2}
+      />
+    </Canvas>
   );
 }

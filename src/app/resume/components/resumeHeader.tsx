@@ -13,10 +13,10 @@ export default async function ResumeHeader() {
   const blurDataURL = await getPlaceholderForImage(profileImagePath);
 
   return (
-    <div className="md:grid md:grid-cols-4 text-neutral-700 dark:text-neutral-300">
+    <div className="md:grid md:grid-cols-4 text-foreground">
       <div className="flex justify-center items-center">
         <Image
-          className="w-full max-w-[120px] h-[160px] object-cover rounded-sm"
+          className="max-w-[120px] h-[160px] object-cover rounded-sm"
           src={profileImagePath}
           alt="profileLogo"
           width={1080}
@@ -27,26 +27,26 @@ export default async function ResumeHeader() {
       </div>
 
       <div className="flex flex-col gap-4 justify-center md:col-span-3">
-        <p className="text-4xl font-bold w-full">김재웅</p>
+        <p className="text-4xl font-bold">김재웅</p>
 
-        <div className="w-fit group gap-2 flex items-center align-middle">
+        <div className="flex items-center gap-2">
           <IconWrapper icon={MailIcon} className="size-6" />
           <a
-            className="border-solid border-b border-neutral-700 leading-5 hover:border-neutral-200 transition-all duration-300 ease-in-out font-bold"
+            className="border-b border-border leading-5 hover:border-muted-foreground transition-colors font-bold"
             href="mailto:jaewoongkim95@gmail.com"
           >
             jaewoongkim95@gmail.com
           </a>
         </div>
 
-        <div className="w-fit group gap-2 flex items-center align-middle">
+        <div className="flex items-center gap-2">
           <IconWrapper icon={GithubIcon} className="size-6" />
           <ExternalLink link="https://github.com/jaeungkim">
             GitHub
           </ExternalLink>
         </div>
 
-        <div className="w-fit flex gap-2 items-center align-middle group">
+        <div className="flex items-center gap-2">
           <IconWrapper icon={LinkedInIcon} className="size-6" />
           <ExternalLink link="https://www.linkedin.com/in/jaeungkim0526">
             LinkedIn

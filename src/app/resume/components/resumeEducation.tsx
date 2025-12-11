@@ -7,7 +7,7 @@ export default function ResumeEducation() {
       <ResumeTitle title="Education" />
 
       <div className="mt-8 md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-neutral-600 dark:text-neutral-400 mb-2 md:mb-0">
+        <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
           2020.04
         </div>
         <div className="col-span-3 space-y-2">
@@ -17,7 +17,7 @@ export default function ResumeEducation() {
           >
             University of British Columbia
           </ExternalLink>
-          <p className="text-base font-normal text-[#808080] italic">
+          <p className="text-base font-normal text-muted-foreground italic">
             Bachelor of Science - Major in Computer Science
           </p>
         </div>

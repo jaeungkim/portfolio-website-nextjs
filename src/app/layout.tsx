@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={`flex flex-col min-h-svh ${pretendard.className} antialiased bg-neutral-0 dark:bg-neutral-850`}
+        className={`flex flex-col min-h-svh ${pretendard.className} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
