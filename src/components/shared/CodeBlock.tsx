@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { Copy, Check } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 import { useTheme } from "next-themes";
@@ -43,10 +43,16 @@ function CodeBlock({
   language = "typescript",
   showLineNumbers = false,
 }: CodeBlockProps) {
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
 
-  // 테마에 따른 Prism 테마 선택
+  // hydration mismatch 방지: 마운트 후에만 테마 적용
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 서버와 클라이언트 모두 동일한 기본 테마 사용 (마운트 전까지)
+  const isDark = mounted ? resolvedTheme === "dark" : false;
   const prismTheme = isDark ? themes.nightOwl : themes.nightOwlLight;
 
   return (
@@ -63,33 +69,41 @@ function CodeBlock({
 
       {/* 코드 영역 with 구문 강조 */}
       <Highlight theme={prismTheme} code={code.trim()} language={language}>
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre
-            className={`p-4 overflow-x-auto text-sm ${className}`}
-            style={{ ...style, background: "transparent" }}
-          >
-            <code className="font-mono leading-relaxed">
-              {tokens.map((line, i) => (
-                <div
-                  key={i}
-                  {...getLineProps({ line })}
-                  className={showLineNumbers ? "table-row" : ""}
-                >
-                  {showLineNumbers && (
-                    <span className="table-cell pr-4 text-muted-foreground/50 select-none text-right w-8">
-                      {i + 1}
+        {({ className, style, tokens, getLineProps, getTokenProps }) => {
+          // background 관련 속성 제외하고 나머지 스타일만 적용
+          const {
+            backgroundColor: _bg,
+            background: _bgShort,
+            ...restStyle
+          } = style;
+          return (
+            <pre
+              className={`p-4 overflow-x-auto text-sm ${className}`}
+              style={restStyle}
+            >
+              <code className="font-mono leading-relaxed">
+                {tokens.map((line, i) => (
+                  <div
+                    key={i}
+                    {...getLineProps({ line })}
+                    className={showLineNumbers ? "table-row" : ""}
+                  >
+                    {showLineNumbers && (
+                      <span className="table-cell pr-4 text-muted-foreground/50 select-none text-right w-8">
+                        {i + 1}
+                      </span>
+                    )}
+                    <span className={showLineNumbers ? "table-cell" : ""}>
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token })} />
+                      ))}
                     </span>
-                  )}
-                  <span className={showLineNumbers ? "table-cell" : ""}>
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token })} />
-                    ))}
-                  </span>
-                </div>
-              ))}
-            </code>
-          </pre>
-        )}
+                  </div>
+                ))}
+              </code>
+            </pre>
+          );
+        }}
       </Highlight>
 
       {/* 헤더가 없는 경우 코드 영역에 복사 버튼 */}
@@ -126,8 +140,15 @@ interface TabbedInstallProps {
 
 export function TabbedInstall({ packageName }: TabbedInstallProps) {
   const [activeTab, setActiveTab] = useState<PackageManager>("npm");
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+
+  // hydration mismatch 방지: 마운트 후에만 테마 적용
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? resolvedTheme === "dark" : false;
   const prismTheme = isDark ? themes.nightOwl : themes.nightOwlLight;
 
   const commands: Record<PackageManager, string> = {
@@ -163,20 +184,28 @@ export function TabbedInstall({ packageName }: TabbedInstallProps) {
           code={commands[activeTab]}
           language="bash"
         >
-          {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <code
-              className={`text-sm font-mono ${className}`}
-              style={{ ...style, background: "transparent" }}
-            >
-              {tokens.map((line, i) => (
-                <span key={i} {...getLineProps({ line })}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token })} />
-                  ))}
-                </span>
-              ))}
-            </code>
-          )}
+          {({ className, style, tokens, getLineProps, getTokenProps }) => {
+            // background 관련 속성 제외하고 나머지 스타일만 적용
+            const {
+              backgroundColor: _bg,
+              background: _bgShort,
+              ...restStyle
+            } = style;
+            return (
+              <code
+                className={`text-sm font-mono ${className}`}
+                style={restStyle}
+              >
+                {tokens.map((line, i) => (
+                  <span key={i} {...getLineProps({ line })}>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token })} />
+                    ))}
+                  </span>
+                ))}
+              </code>
+            );
+          }}
         </Highlight>
         <CopyButton text={commands[activeTab]} />
       </div>

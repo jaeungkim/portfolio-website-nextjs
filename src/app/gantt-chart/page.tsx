@@ -318,7 +318,7 @@ export default function Page() {
             <div className="bg-card">
               <ReactGanttChart
                 tasks={sampleTasks}
-                height={480}
+                height={600}
                 width="100%"
                 defaultScale="month"
               />

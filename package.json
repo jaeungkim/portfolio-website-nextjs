@@ -29,7 +29,7 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@jaeungkim/gantt-chart": "^0.3.0",
+    "@jaeungkim/gantt-chart": "^0.3.1",
     "@plaiceholder/next": "^3.0.0",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
