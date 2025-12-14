@@ -32,24 +32,8 @@
     "title": "DevOps",
     "skills": [
       "AWS",
-      "NGINX",
       "Docker",
       "Jenkins"
-    ]
-  },
-  {
-    "title": "Misc.",
-    "skills": [
-      "Java",
-      "Agile/Scrum",
-      "Jira",
-      "Confluence",
-      "Git",
-      "GitHub",
-      "GitLab",
-      "BitBucket",
-      "Slack",
-      "VS Code"
     ]
   }
 ]
