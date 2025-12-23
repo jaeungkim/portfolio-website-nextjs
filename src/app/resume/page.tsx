@@ -1,5 +1,4 @@
 import ResumeHeader from "./components/resumeHeader";
-import ResumeIntroduce from "./components/resumeIntroduce";
 import ResumeWork from "./components/resumeWork";
 import ResumeProject from "./components/resumeProject";
 import ResumeSkill from "./components/resumeSkill";
@@ -12,8 +11,6 @@ export default function ResumePage() {
   return (
     <>
       <ResumeHeader />
-      <Spacing />
-      <ResumeIntroduce />
       <Spacing />
       <ResumeWork />
       <Spacing />
