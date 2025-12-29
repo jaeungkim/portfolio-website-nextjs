@@ -17,7 +17,7 @@
       "ndxpro_ai": {
         "title": "NDXPRO AI",
         "description": "현대자동차 R&D 데이터를 온톨로지로 통합하고, 근거 기반 AI 질의응답을 통해 신뢰도 높은 데이터 활용 환경을 검증한 프로젝트",
-        "link": "https://spiny-learning-4b9.notion.site/NDXPRO-AI-24bc3276c40c80b7bfb4f7d392b2c823?pvs=74",
+        "link": "https://jaeungkim.notion.site/NDXPRO-AI-24bc3276c40c80b7bfb4f7d392b2c823?pvs=74",
         "tasks": {
           "graph_visualization": {
             "title": "재사용 가능한 그래프 시각화 라이브러리 아키텍처 설계 (D3.js 기반)",
@@ -40,7 +40,7 @@
       "ndx_cloud": {
         "title": "NDX CLOUD",
         "description": "드론·지상 촬영 이미지를 사진측량 기반으로 정사영상 지도, 3D 모델, 포인트클라우드를 생성·시각화하는 클라우드 플랫폼",
-        "link": "https://spiny-learning-4b9.notion.site/NDXPRO-KCLOUD-24bc3276c40c80b4afcef5f74478cbb5",
+        "link": "https://jaeungkim.notion.site/NDXPRO-KCLOUD-24bc3276c40c80b4afcef5f74478cbb5",
         "tasks": {
           "performance_optimization": {
             "title": "대용량 이미지 메타데이터 처리 아키텍처 최적화",
@@ -77,7 +77,7 @@
       "ndxpro_pmis": {
         "title": "NDXPRO PMIS",
         "description": "프로젝트 전체적인 관리를 통합한 웹 솔루션",
-        "link": "https://spiny-learning-4b9.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4?pvs=74",
+        "link": "https://jaeungkim.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4?pvs=74",
         "tasks": {
           "gantt_chart": {
             "title": "WBS 기반 Gantt Chart 아키텍처 설계 및 최적화",
@@ -100,7 +100,7 @@
       "ndxpro_epc": {
         "title": "NDXPRO EPC",
         "description": "설계, 조달, 시공 전 과정을 1D·2D·3D 데이터로 통합 시각화하는 웹 솔루션",
-        "link": "https://spiny-learning-4b9.notion.site/NDXPRO-EPC-1d4c3276c40c8056a15cd797331f9d02",
+        "link": "https://jaeungkim.notion.site/NDXPRO-EPC-1d4c3276c40c8056a15cd797331f9d02",
         "tasks": {
           "viewer_markup": {
             "title": "2D 도면 뷰어 및 대시보드 아키텍처 설계",
@@ -115,7 +115,7 @@
       "ndxpro_admin_web": {
         "title": "NDXPRO ADMIN WEB",
         "description": "NGSI-LD 기반 디지털 트윈 데이터를 정제하고 모델링·운영하는 NDXPRO 핵심 플랫폼",
-        "link": "https://spiny-learning-4b9.notion.site/NDXPRO-ADMIN-WEB-1d4c3276c40c8083a95fc77d3410331e?pvs=4",
+        "link": "https://jaeungkim.notion.site/NDXPRO-ADMIN-WEB-1d4c3276c40c8083a95fc77d3410331e?pvs=4",
         "tasks": {
           "data_manager": {
             "title": "Data Manager V3 아키텍처 설계 및 고도화",
@@ -131,7 +131,7 @@
       "samsung_thync": {
         "title": "Samsung Thync ",
         "description": "상일동 삼성물산 BEMS 시스템의 Unreal 앱 내 사용자·자산 관리를 위한 웹뷰 기반의 관리 시스템",
-        "link": "https://spiny-learning-4b9.notion.site/Samsung-Thync-1d4c3276c40c805aaab4ebde962f5d00?pvs=4",
+        "link": "https://jaeungkim.notion.site/Samsung-Thync-1d4c3276c40c805aaab4ebde962f5d00?pvs=4",
         "tasks": {
           "nextjs_frontend": {
             "title": "Unreal 연동 인증 시스템 아키텍처 설계",
@@ -183,4 +183,3 @@
     ]
   }
 }
-
