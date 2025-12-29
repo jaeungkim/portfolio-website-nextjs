@@ -3,7 +3,6 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
-import rehypePrettyCode from "rehype-pretty-code";
 import {
   frontmatterSchema,
   type Frontmatter,
@@ -132,17 +131,6 @@ export const getPostData = cache(
         components: mdxComponents,
         options: {
           parseFrontmatter: true,
-          mdxOptions: {
-            rehypePlugins: [
-              [
-                rehypePrettyCode,
-                {
-                  theme: "github-dark-dimmed",
-                  keepBackground: false,
-                },
-              ],
-            ],
-          },
         },
       });
 
