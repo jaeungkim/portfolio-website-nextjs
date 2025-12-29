@@ -41,6 +41,23 @@
           }
         }
       },
+      "ndxpro_admin_web": {
+        "title": "NDXPRO ADMIN WEB",
+        "description": "NGSI-LD 기반 디지털 트윈 데이터를 정제하고 모델링·운영하는 NDXPRO 핵심 플랫폼",
+        "link": "https://jaeungkim.notion.site/NDXPRO-ADMIN-WEB-V4-2d1c3276c40c80dca27ee963af65e2af",
+        "tasks": {
+          "data_manager": {
+            "title": "Data Manager V4 & V3 아키텍처 설계 및 고도화",
+            "subtasks": [
+              "데이터 모델 간 관계를 시각화하는 다이어그램 SDK 설계, Dagre로 계층형 레이아웃을 자동 계산해 복잡한 관계도 깔끔하게 표현",
+              "관계 클릭 시 연결된 모델을 API로 조회해 on-demand로 확장, 새로 추가된 노드에 자동 포커스",
+              "같은 타입의 관계는 그룹 노드로 묶어 시각적 복잡도를 줄이고, 재귀적으로 하위 관계까지 탐색 가능하도록 설계",
+              "줌/팬, 마우스 휠 줌, fitToScreen 등 뷰포트 제어를 직접 구현해 UX 개선",
+              "데이터 모델 CRUD와 다이어그램 상태를 연동해 변경 사항이 즉시 반영되도록 구현"
+            ]
+          }
+        }
+      },
       "ndx_cloud": {
         "title": "NDX CLOUD",
         "description": "드론·지상 촬영 이미지를 사진측량 기반으로 정사영상 지도, 3D 모델, 포인트클라우드를 생성·시각화하는 클라우드 플랫폼",
@@ -112,22 +129,6 @@
               "SVG 기반 2D 도면 뷰어 아키텍처 설계 및 좌표 변환 시스템을 통한 확대/축소 상태에서의 마크업 위치 정확도 보장",
               "사용자 맞춤형 대시보드 레이아웃 아키텍처 설계 및 Recoil Persist를 활용한 상태 지속성 구현",
               "iframe + postMessage API 기반 마이크로프론트엔드 아키텍처로 외부 3D Viewer와의 실시간 데이터 통신 시스템 구축"
-            ]
-          }
-        }
-      },
-      "ndxpro_admin_web": {
-        "title": "NDXPRO ADMIN WEB",
-        "description": "NGSI-LD 기반 디지털 트윈 데이터를 정제하고 모델링·운영하는 NDXPRO 핵심 플랫폼",
-        "link": "https://jaeungkim.notion.site/NDXPRO-ADMIN-WEB-1d4c3276c40c8083a95fc77d3410331e?pvs=4",
-        "tasks": {
-          "data_manager": {
-            "title": "Data Manager V3 아키텍처 설계 및 고도화",
-            "subtasks": [
-              "데이터 모델 기반의 Attribute, Data Model, Relationship 생명주기 관리를 위한 도메인 모델 설계",
-              "React Flow를 활용한 데이터 모델 시각화 아키텍처 설계 및 대규모 그래프 렌더링 최적화",
-              "대규모 데이터 처리를 위한 Excel Import/Export 파이프라인 아키텍처 설계 및 스트리밍 처리 구현",
-              "인증 세션 자동 관리 시스템 아키텍처 설계 및 토큰 갱신 전략 구현으로 사용자 경험 개선"
             ]
           }
         }
