@@ -4,6 +4,10 @@ import path from "path";
 
 const PLACEHOLDERS_CACHE_FILE = path.join(
   process.cwd(),
+  "src",
+  "app",
+  "(main)",
+  "blog",
   "data",
   "placeholders.json"
 );
@@ -34,4 +38,3 @@ export async function getPlaceholderForImage(
   const placeholders = await loadPlaceholders();
   return placeholders[imagePath];
 }
-

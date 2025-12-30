@@ -3,7 +3,6 @@ import ResumeWork from "./components/resumeWork";
 import ResumeProject from "./components/resumeProject";
 import ResumeSkill from "./components/resumeSkill";
 import ResumeEducation from "./components/resumeEducation";
-import Spacing from "@/src/components/shared/Spacing";
 
 export const dynamic = "force-static";
 
@@ -11,13 +10,13 @@ export default function ResumePage() {
   return (
     <>
       <ResumeHeader />
-      <Spacing />
+      <hr className="my-6 h-px bg-border border-0" />
       <ResumeWork />
-      <Spacing />
+      <hr className="my-6 h-px bg-border border-0" />
       <ResumeProject />
-      <Spacing />
+      <hr className="my-6 h-px bg-border border-0" />
       <ResumeSkill />
-      <Spacing />
+      <hr className="my-6 h-px bg-border border-0" />
       <ResumeEducation />
       <footer className="pt-36 text-center">
         <p>감사합니다.</p>

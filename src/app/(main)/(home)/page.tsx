@@ -1,7 +1,7 @@
 "use client";
 
 import ModelWrapper from "./components/ModelWrapper";
-import DecryptedText from "@/components/DecryptedText";
+import DecryptedText from "@/src/components/shared/DecryptedText";
 
 export default function Home() {
   return (

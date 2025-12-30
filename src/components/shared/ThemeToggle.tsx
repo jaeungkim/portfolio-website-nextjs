@@ -2,8 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { SunIcon, MoonIcon } from "../icons/icons";
-import IconWrapper from "../icons/IconWrapper";
+import { Sun, Moon } from "lucide-react";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -24,7 +23,11 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="cursor-pointer group transition"
     >
-      {isDark ? <IconWrapper icon={SunIcon} /> : <IconWrapper icon={MoonIcon} />}
+      {isDark ? (
+        <Sun className="size-4 stroke-foreground transition-colors duration-300 ease-in-out group-hover:stroke-muted-foreground" />
+      ) : (
+        <Moon className="size-4 stroke-foreground transition-colors duration-300 ease-in-out group-hover:stroke-muted-foreground" />
+      )}
     </button>
   );
 }

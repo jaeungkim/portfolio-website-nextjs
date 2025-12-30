@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import type { GanttChartProps } from "@jaeungkim/gantt-chart";
 import "@jaeungkim/gantt-chart/style.css";
-import ThemeToggle from "@/src/components/shared/buttons/ThemeToggle";
+import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import CodeBlock, { TabbedInstall } from "@/src/components/shared/CodeBlock";
 import { Github, Package, ExternalLink } from "lucide-react";
 import { useMemo } from "react";

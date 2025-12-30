@@ -1,10 +1,14 @@
 import fs from "fs/promises";
 import path from "path";
-import { getRemotePlaiceholder, getStaticPlaiceholder } from "../src/lib/plaiceholder";
+import {
+  getRemotePlaiceholder,
+  getStaticPlaiceholder,
+} from "../../../../lib/plaiceholder";
 
-const POSTS_DIR = path.join(process.cwd(), "src", "app", "blog", "posts");
+const BLOG_DIR = path.join(process.cwd(), "src", "app", "(main)", "blog");
+const POSTS_DIR = path.join(BLOG_DIR, "posts");
 const PUBLIC_IMAGES_DIR = path.join(process.cwd(), "public", "images");
-const PLACEHOLDERS_CACHE_DIR = path.join(process.cwd(), "data");
+const PLACEHOLDERS_CACHE_DIR = path.join(BLOG_DIR, "data");
 const PLACEHOLDERS_CACHE_FILE = path.join(
   PLACEHOLDERS_CACHE_DIR,
   "placeholders.json"
@@ -142,7 +146,7 @@ async function generatePlaceholders(): Promise<void> {
 
     const fullPath = path.join(process.cwd(), "public", imagePath);
     console.log(`  생성 중: ${imagePath}`);
-    
+
     try {
       const placeholder = await getStaticPlaiceholder(fullPath);
       if (placeholder) {
@@ -172,4 +176,3 @@ generatePlaceholders().catch((error) => {
   console.error("플레이스홀더 생성 중 오류 발생:", error);
   process.exit(1);
 });
-

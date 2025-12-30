@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "@/src/styles/globals.css";
-import SplashCursor from "@/components/SplashCursor";
+import SplashCursor from "@/src/components/shared/SplashCursor";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",

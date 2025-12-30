@@ -1,4 +1,4 @@
-import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
+import ExternalLink from "@/src/components/shared/ExternalLink";
 import SkillsList from "./SkillsList";
 import type { ProjectSectionProps } from "./types";
 

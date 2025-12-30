@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "../shared/buttons/ThemeToggle";
+import ThemeToggle from "../shared/ThemeToggle";
 import { getPlaceholderForImage } from "@/src/lib/placeholders";
 
 const navigation = [

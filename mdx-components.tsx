@@ -1,6 +1,6 @@
 import type React from "react";
 import type { MDXComponents } from "mdx/types";
-import BlurImage from "@/src/components/shared/image/BlurImage";
+import BlurImage from "@/src/components/shared/BlurImage";
 import { InlineCode } from "@/src/components/shared/CodeBlock";
 
 interface BlurImageProps {

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "generate-placeholders": "tsx scripts/generate-blur-placeholders.ts",
+    "generate-placeholders": "tsx 'src/app/(main)/blog/scripts/generate-blur-placeholders.ts'",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
     "build": "yarn generate-placeholders && yarn type-check && next build",
