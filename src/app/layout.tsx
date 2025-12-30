@@ -3,9 +3,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 import "@/src/styles/globals.css";
-import ConditionalLayout from "@/src/components/layout/ConditionalLayout";
-import Navbar from "@/src/components/layout/Navbar";
-import Footer from "@/src/components/layout/Footer";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",
@@ -24,9 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html
+      lang="ko"
+      suppressHydrationWarning
+      className="[scrollbar-gutter:stable]"
+    >
       <body
-        className={`flex flex-col min-h-svh ${pretendard.className} antialiased bg-background text-foreground`}
+        className={`${pretendard.className} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
@@ -34,9 +35,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ConditionalLayout navbar={<Navbar />} footer={<Footer />}>
-            {children}
-          </ConditionalLayout>
+          {children}
         </ThemeProvider>
       </body>
     </html>

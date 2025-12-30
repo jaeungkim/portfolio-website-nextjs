@@ -1,9 +1,7 @@
-import CrypticText from "@/src/components/shared/CrypticText";
-import { GithubIcon, LinkedInIcon } from "@/src/components/shared/icons/icons";
-import SocialIcon from "@/src/components/shared/icons/SocialIcon";
-import ModelWrapper from "./components/ModelWrapper";
+"use client";
 
-export const dynamic = "force-static";
+import ModelWrapper from "./components/ModelWrapper";
+import DecryptedText from "@/components/DecryptedText";
 
 export default function Home() {
   return (
@@ -14,10 +12,13 @@ export default function Home() {
 
       <article className="basis-1/2 space-y-4">
         <h2 className="text-3xl font-bold text-foreground sm:text-2xl">
-          <CrypticText
+          <DecryptedText
             text="안녕하세요, 김재웅입니다."
-            delay={0.5}
-            classNames="fadein"
+            animateOn="view"
+            revealDirection="start"
+            speed={50}
+            sequential={true}
+            characters="ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ"
           />
         </h2>
 
@@ -38,15 +39,24 @@ export default function Home() {
           테스트하며, 소소한 일상도 기록하는 저만의 작업실입니다.
         </p>
 
-        <div className="flex gap-6 pt-2">
-          <SocialIcon
+        <div className="flex flex-wrap items-center gap-3 pt-2 text-sm text-muted-foreground">
+          <a
+            className="hover:text-foreground transition-colors"
             href="https://github.com/jaeungkim"
-            IconComponent={GithubIcon}
-          />
-          <SocialIcon
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+          <span>•</span>
+          <a
+            className="hover:text-foreground transition-colors"
             href="https://www.linkedin.com/in/jaeungkim0526/"
-            IconComponent={LinkedInIcon}
-          />
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
         </div>
       </article>
     </div>

@@ -1,5 +1,5 @@
 import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
-import Pill from "@/src/components/shared/Pill";
+import SkillsList from "./SkillsList";
 import type { WorkSectionProps, Project, ProjectTask } from "./types";
 
 function CompanyName({ company, link }: { company: string; link?: string }) {
@@ -27,16 +27,6 @@ function LocationInfo({
       <p className="text-base font-normal text-muted-foreground italic">
         {position}
       </p>
-    </div>
-  );
-}
-
-function SkillsList({ skills }: { skills: string[] }) {
-  return (
-    <div className="flex flex-wrap gap-1 pt-1">
-      {skills.map((skill, idx) => (
-        <Pill key={idx} name={skill} variant="skill" />
-      ))}
     </div>
   );
 }
@@ -118,7 +108,9 @@ export default function WorkSection({
       <div className="col-span-3 space-y-2 md:space-y-4">
         <CompanyName company={company} link={link} />
         <LocationInfo location={location} position={position} />
-        {skills.length > 0 && <SkillsList skills={skills} />}
+        {skills.length > 0 && (
+          <SkillsList skills={skills} className="flex flex-wrap gap-1 pt-1" />
+        )}
         {details.length > 0 && <DetailsList details={details} />}
         {projects.length > 0 && <ProjectsList projects={projects} />}
       </div>

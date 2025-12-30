@@ -1,11 +1,3 @@
-import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
-import {
-  MailIcon,
-  GithubIcon,
-  LinkedInIcon,
-} from "@/src/components/shared/icons/icons";
-import IconWrapper from "@/src/components/shared/icons/IconWrapper";
-
 export default function ResumeHeader() {
   return (
     <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-4 text-foreground">
@@ -38,28 +30,31 @@ export default function ResumeHeader() {
             성장하기 위해 노력하고 있습니다.
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div className="flex flex-wrap items-center gap-3 mt-4 text-sm text-muted-foreground">
           <a
-            className="flex items-center gap-1.5 text-foreground hover:text-muted-foreground transition-colors"
+            className="hover:text-foreground transition-colors"
             href="mailto:jaewoongkim95@gmail.com"
           >
-            <IconWrapper icon={MailIcon} className="size-4" />
-            <span>jaewoongkim95@gmail.com</span>
+            jaewoongkim95@gmail.com
           </a>
-
-          <div className="flex items-center gap-1.5 text-foreground hover:text-muted-foreground transition-colors">
-            <IconWrapper icon={GithubIcon} className="size-4" />
-            <ExternalLink link="https://github.com/jaeungkim">
-              GitHub
-            </ExternalLink>
-          </div>
-
-          <div className="flex items-center gap-1.5 text-foreground hover:text-muted-foreground transition-colors">
-            <IconWrapper icon={LinkedInIcon} className="size-4" />
-            <ExternalLink link="https://www.linkedin.com/in/jaeungkim0526">
-              LinkedIn
-            </ExternalLink>
-          </div>
+          <span>•</span>
+          <a
+            className="hover:text-foreground transition-colors"
+            href="https://github.com/jaeungkim"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+          <span>•</span>
+          <a
+            className="hover:text-foreground transition-colors"
+            href="https://www.linkedin.com/in/jaeungkim0526"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import ExternalLink from "@/src/components/shared/buttons/ExternalLink";
-import Pill from "@/src/components/shared/Pill";
+import SkillsList from "./SkillsList";
 import type { ProjectSectionProps } from "./types";
 
 function ProjectTitle({ title, link }: { title: string; link?: string }) {
@@ -25,16 +25,6 @@ function DescriptionList({ descriptions }: { descriptions: string[] }) {
   );
 }
 
-function SkillsList({ skills }: { skills: string[] }) {
-  return (
-    <div className="flex flex-wrap gap-1 pl-4">
-      {skills.map((skill, idx) => (
-        <Pill key={idx} name={skill} variant="skill" />
-      ))}
-    </div>
-  );
-}
-
 export default function ProjectSection({
   title,
   description,
@@ -46,7 +36,7 @@ export default function ProjectSection({
       <ProjectTitle title={title} link={link?.url} />
       <div className="space-y-2 col-span-3">
         <DescriptionList descriptions={description} />
-        <SkillsList skills={skills} />
+        <SkillsList skills={skills} className="flex flex-wrap gap-1 pl-4" />
       </div>
     </div>
   );

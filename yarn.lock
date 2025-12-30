@@ -3270,6 +3270,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "class-variance-authority@npm:0.7.1"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  checksum: 10c0/0f438cea22131808b99272de0fa933c2532d5659773bfec0c583de7b3f038378996d3350683426b8e9c74a6286699382106d71fbec52f0dd5fbb191792cccb5b
+  languageName: node
+  linkType: hard
+
 "client-only@npm:0.0.1":
   version: 0.0.1
   resolution: "client-only@npm:0.0.1"
@@ -4474,12 +4483,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.542.0":
-  version: 0.542.0
-  resolution: "lucide-react@npm:0.542.0"
+"lucide-react@npm:^0.562.0":
+  version: 0.562.0
+  resolution: "lucide-react@npm:0.562.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/3ccdb898a480f0194f93abef0b6f0347bc2647db24051e65a17c1dbd22ca0d10a7636d9af68c92665b42b6c9e761567a0d65944fe8568fb0e30a7ea57281ccec
+  checksum: 10c0/c713a2490916e42c678b9df0d7309d8cdb715af1d7139c7eb49c45547901b276a7cf722548012a668dc0e337eeadf5141d5af8c8fcda6721fc58fb2d288efcba
   languageName: node
   linkType: hard
 
@@ -5895,10 +5904,11 @@ __metadata:
     "@types/react": "npm:^19.1.6"
     "@types/react-dom": "npm:^19.1.6"
     "@types/three": "npm:^0.177.0"
+    class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
     dayjs: "npm:^1.11.13"
     gray-matter: "npm:^4.0.3"
-    lucide-react: "npm:^0.542.0"
+    lucide-react: "npm:^0.562.0"
     motion: "npm:^12.23.12"
     next: "npm:15.5.7"
     next-mdx-remote: "npm:^5.0.0"
@@ -5910,8 +5920,9 @@ __metadata:
     react-dom: "npm:^19.1.0"
     react-intersection-observer: "npm:^9.16.0"
     sharp: "npm:^0.34.5"
-    tailwind-merge: "npm:^3.3.0"
+    tailwind-merge: "npm:^3.4.0"
     tailwindcss: "npm:^4.1.8"
+    tailwindcss-animate: "npm:^1.0.7"
     three: "npm:^0.177.0"
     tsx: "npm:^4.19.4"
     typescript: "npm:^5.8.3"
@@ -6254,10 +6265,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:^3.3.0":
+"tailwind-merge@npm:^3.4.0":
   version: 3.4.0
   resolution: "tailwind-merge@npm:3.4.0"
   checksum: 10c0/eaf17bb695c51c7bb7a90366a9c62be295473ee97fcfd1da54287714d4a5788a88ff4ad1ab9e0128638257fda777d6c9ea88682e36195e31a7fa2cf43f45e310
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 10c0/ec7dbd1631076b97d66a1fbaaa06e0725fccfa63119221e8d87a997b02dcede98ad88bb1ef6665b968f5d260fcefb10592e0299ca70208d365b37761edf5e19a
   languageName: node
   linkType: hard
 
