@@ -1,18 +1,16 @@
 export default function ResumeHeader() {
   return (
-    <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-4 text-foreground">
-      {/* Left column - Name (like period in WorkSection) */}
+    <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-4">
+      {/* Left column - Name */}
       <div className="mb-4 md:mb-0">
-        <h1 className="text-2xl font-medium text-muted-foreground">김재웅</h1>
+        <h1 className="text-2xl font-medium">김재웅</h1>
         <p className="text-lg text-muted-foreground mt-1">Frontend Developer</p>
       </div>
 
-      {/* Right 3 columns - Contact & Intro (like company details in WorkSection) */}
+      {/* Right 3 columns - Contact & Intro */}
       <div className="col-span-3 space-y-4">
-        {/* Contact links row */}
-
-        {/* Introduction */}
-        <div className="space-y-3 text-foreground leading-relaxed">
+        {/* Introduction - primary content, full foreground */}
+        <div className="space-y-3 leading-relaxed">
           <p>
             안녕하세요. 웹 서비스의 기획과 설계부터 개발, 배포 및 운영까지
             전반적인 과정을 두루 경험하며 꾸준히 성장해온 프론트엔드
@@ -30,6 +28,7 @@ export default function ResumeHeader() {
             성장하기 위해 노력하고 있습니다.
           </p>
         </div>
+        {/* Contact links - secondary, muted */}
         <div className="flex flex-wrap items-center gap-3 mt-4 text-sm text-muted-foreground">
           <a
             className="hover:text-foreground transition-colors"

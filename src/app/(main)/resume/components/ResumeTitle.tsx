@@ -1,4 +1,6 @@
-import type { ResumeTitleProps } from "./types";
+interface ResumeTitleProps {
+  title: string;
+}
 
 export default function ResumeTitle({ title }: ResumeTitleProps) {
   return (
