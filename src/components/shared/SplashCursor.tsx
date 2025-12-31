@@ -1359,7 +1359,7 @@ export default function SplashCursor({
     }
 
     function generateColor(): ColorRGB {
-      return { r: 0.05, g: 0.05, b: 0.05 };
+      return { r: 0.02, g: 0.02, b: 0.02 };
     }
 
     function wrap(value: number, min: number, max: number) {
