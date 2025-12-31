@@ -42,14 +42,17 @@ export default function Home() {
           테스트하며, 소소한 일상도 기록하는 저만의 작업실입니다.
         </p>
 
-        <div className="flex items-center gap-4 pt-2">
+        <div className="flex flex-wrap items-center gap-2 pt-2">
           <IconButton
             href="https://github.com/jaeungkim"
             icon="/icons/github.svg"
+            label="GitHub"
+            iconClassName="dark:invert"
           />
           <IconButton
             href="https://www.linkedin.com/in/jaeungkim0526/"
             icon="/icons/linkedin.svg"
+            label="LinkedIn"
           />
         </div>
       </article>
