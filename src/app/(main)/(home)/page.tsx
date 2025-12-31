@@ -1,13 +1,15 @@
 "use client";
 
-import ModelWrapper from "./components/ModelWrapper";
+import dynamic from "next/dynamic";
 import DecryptedText from "@/src/components/shared/DecryptedText";
+
+const Model = dynamic(() => import("./components/Model"), { ssr: false });
 
 export default function Home() {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full">
       <div className="relative md:basis-2/6 lg:basis-3/6 h-[350px] md:pr-4">
-        <ModelWrapper />
+        <Model />
       </div>
 
       <article className="basis-1/2 space-y-4">

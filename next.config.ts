@@ -2,6 +2,7 @@ import { NextConfig } from "next";
 import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["three"],
   experimental: {
     scrollRestoration: true,
     optimizePackageImports: ["lucide-react"],
@@ -14,15 +15,6 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
-    });
-
-    return config;
   },
 };
 

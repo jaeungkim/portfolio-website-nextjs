@@ -2330,7 +2330,74 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/drei@npm:^10.1.2":
+"@react-spring/animated@npm:~10.0.3":
+  version: 10.0.3
+  resolution: "@react-spring/animated@npm:10.0.3"
+  dependencies:
+    "@react-spring/shared": "npm:~10.0.3"
+    "@react-spring/types": "npm:~10.0.3"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/6142522f310926729a92009a108ec1bd0d1fe3dca7e9aa0c49692c82fbed28f70c0ea9808fc7452f04bb688ae34333e780f794495906fa4b0efbfc7d53a19b6b
+  languageName: node
+  linkType: hard
+
+"@react-spring/core@npm:~10.0.3":
+  version: 10.0.3
+  resolution: "@react-spring/core@npm:10.0.3"
+  dependencies:
+    "@react-spring/animated": "npm:~10.0.3"
+    "@react-spring/shared": "npm:~10.0.3"
+    "@react-spring/types": "npm:~10.0.3"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/d941541d4a40a5229f488e78b414149d54238065178fdd14db307a851d285d521ab1914c0d426b102e0190651dbe752aeb743cee4cd497f5c066be937f2d1790
+  languageName: node
+  linkType: hard
+
+"@react-spring/rafz@npm:~10.0.3":
+  version: 10.0.3
+  resolution: "@react-spring/rafz@npm:10.0.3"
+  checksum: 10c0/4cf6f710e2be64a3d94e90a20a24a93c68a89b618538d32aaf0079217f9fbed610395051a181d2d010c7ed6898cb7239a3f2ced1d91dd93e4138563ffd2d44ce
+  languageName: node
+  linkType: hard
+
+"@react-spring/shared@npm:~10.0.3":
+  version: 10.0.3
+  resolution: "@react-spring/shared@npm:10.0.3"
+  dependencies:
+    "@react-spring/rafz": "npm:~10.0.3"
+    "@react-spring/types": "npm:~10.0.3"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/d8b33b2390792924d0ff2b57b3098d1c6b688a788fc67e83b168928659aad7435dd2c399925a765ffa5080182634dde8f9f76c919f2c259a33af15319187f72f
+  languageName: node
+  linkType: hard
+
+"@react-spring/three@npm:^10.0.3":
+  version: 10.0.3
+  resolution: "@react-spring/three@npm:10.0.3"
+  dependencies:
+    "@react-spring/animated": "npm:~10.0.3"
+    "@react-spring/core": "npm:~10.0.3"
+    "@react-spring/shared": "npm:~10.0.3"
+    "@react-spring/types": "npm:~10.0.3"
+  peerDependencies:
+    "@react-three/fiber": ">=6.0"
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    three: ">=0.126"
+  checksum: 10c0/bdc9e91bfed61e21a17d9a5894de94f9c90d28906f8460f7b22dfa013014fccdaec7292f9ce3a331d23bce31d7488ee83cf5ef51b388ab895180826d4fffcec8
+  languageName: node
+  linkType: hard
+
+"@react-spring/types@npm:~10.0.3":
+  version: 10.0.3
+  resolution: "@react-spring/types@npm:10.0.3"
+  checksum: 10c0/f9bc2619dc9997fe93ebab90fd98118106e53bc45c9c279caaa7081b69d3ed0186d603d5ed445e56bb8ad0075553d15908a2a54e3a0a36ef7cd43a03c1650b02
+  languageName: node
+  linkType: hard
+
+"@react-three/drei@npm:^10.7.7":
   version: 10.7.7
   resolution: "@react-three/drei@npm:10.7.7"
   dependencies:
@@ -2367,19 +2434,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/fiber@npm:^9.1.2":
-  version: 9.4.2
-  resolution: "@react-three/fiber@npm:9.4.2"
+"@react-three/fiber@npm:^9.5.0":
+  version: 9.5.0
+  resolution: "@react-three/fiber@npm:9.5.0"
   dependencies:
     "@babel/runtime": "npm:^7.17.8"
-    "@types/react-reconciler": "npm:^0.32.0"
     "@types/webxr": "npm:*"
     base64-js: "npm:^1.5.1"
     buffer: "npm:^6.0.3"
     its-fine: "npm:^2.0.0"
-    react-reconciler: "npm:^0.31.0"
     react-use-measure: "npm:^2.1.7"
-    scheduler: "npm:^0.25.0"
+    scheduler: "npm:^0.27.0"
     suspend-react: "npm:^0.1.3"
     use-sync-external-store: "npm:^1.4.0"
     zustand: "npm:^5.0.3"
@@ -2388,8 +2453,8 @@ __metadata:
     expo-asset: ">=8.4"
     expo-file-system: ">=11.0"
     expo-gl: ">=11.0"
-    react: ^19.0.0
-    react-dom: ^19.0.0
+    react: ">=19 <19.3"
+    react-dom: ">=19 <19.3"
     react-native: ">=0.78"
     three: ">=0.156"
   peerDependenciesMeta:
@@ -2405,7 +2470,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 10c0/641c7cffdbda6c66a31aa2dd9da409323bb8bed206aea81a6bfaff9e9fbdfcdba67ea18cd2bd766b5a44feb694d9b3ea629a3d621140cc6bf765a73d8ce54e22
+  checksum: 10c0/88daa671550a4383636e41ae9358747baa45ca9b02787f4dcf427a1778faf135c5e0f328fce0a1a152c653446cb3544004260c99807c0685ed0ebc60cf1c8a51
   languageName: node
   linkType: hard
 
@@ -2905,15 +2970,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-reconciler@npm:^0.32.0":
-  version: 0.32.3
-  resolution: "@types/react-reconciler@npm:0.32.3"
-  peerDependencies:
-    "@types/react": "*"
-  checksum: 10c0/8d6485c6da3aa6d84b5c320c4cf9737e67511cd6c7ebfb7252ec032fd1cfb0515d3a2c06054491603c6ab040202694ff5ad125cd840e1da9e76d7447cef53dff
-  languageName: node
-  linkType: hard
-
 "@types/react@npm:^19.1.6":
   version: 19.2.7
   resolution: "@types/react@npm:19.2.7"
@@ -2945,18 +3001,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:^0.177.0":
-  version: 0.177.0
-  resolution: "@types/three@npm:0.177.0"
+"@types/three@npm:^0.182.0":
+  version: 0.182.0
+  resolution: "@types/three@npm:0.182.0"
   dependencies:
     "@dimforge/rapier3d-compat": "npm:~0.12.0"
     "@tweenjs/tween.js": "npm:~23.1.3"
     "@types/stats.js": "npm:*"
-    "@types/webxr": "npm:*"
+    "@types/webxr": "npm:>=0.5.17"
     "@webgpu/types": "npm:*"
     fflate: "npm:~0.8.2"
-    meshoptimizer: "npm:~0.18.1"
-  checksum: 10c0/c3e5035d3f70dcf8eb20668f201dbafbfb2aedf9f18e60c7a7d569ffb2d38fdf1274208f6ba655e0a0ce1e0b4b42e97d04346f9a7d1d2ec02bccaa708f32c0e7
+    meshoptimizer: "npm:~0.22.0"
+  checksum: 10c0/3578a4c847a750922545410ae54b0a785a0695da28916a0009e659d1f79b5351a3b74b1665ae538ebba812add8d758c745148a131079fd10d770b487242da857
   languageName: node
   linkType: hard
 
@@ -2974,7 +3030,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webxr@npm:*, @types/webxr@npm:^0.5.2":
+"@types/webxr@npm:*, @types/webxr@npm:>=0.5.17, @types/webxr@npm:^0.5.2":
   version: 0.5.24
   resolution: "@types/webxr@npm:0.5.24"
   checksum: 10c0/ff59ffd390d06ca3f89ab2531d583ac10bc5e2ab82e5a01ecc40fbc365224a3375e7caa5b14649cf6141db21fb024940da7ad2bd8faa3cd497a6665257cb53b5
@@ -4694,13 +4750,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meshoptimizer@npm:~0.18.1":
-  version: 0.18.1
-  resolution: "meshoptimizer@npm:0.18.1"
-  checksum: 10c0/8a825c58b20b65585e8d00788843929b60c66ba4297e89afaa49f7c51ab9a0f7b9130f90cc9ad1b9b48b3d1bee3beb1bc93608acba0d73e78995c3e6e5ca436b
-  languageName: node
-  linkType: hard
-
 "meshoptimizer@npm:~0.22.0":
   version: 0.22.0
   resolution: "meshoptimizer@npm:0.22.0"
@@ -5604,17 +5653,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-reconciler@npm:^0.31.0":
-  version: 0.31.0
-  resolution: "react-reconciler@npm:0.31.0"
-  dependencies:
-    scheduler: "npm:^0.25.0"
-  peerDependencies:
-    react: ^19.0.0
-  checksum: 10c0/97920e1866c7206e200c3920c133c2e85f62a3c54fd9bc4b83c10c558d83d98eb378caab4fe37498e0cc1b1b2665d898627f2ae2537b29c8ab295ec8abc0c580
-  languageName: node
-  linkType: hard
-
 "react-remove-scroll-bar@npm:^2.3.7":
   version: 2.3.8
   resolution: "react-remove-scroll-bar@npm:2.3.8"
@@ -5894,8 +5932,9 @@ __metadata:
     "@next/mdx": "npm:^16.0.8"
     "@plaiceholder/next": "npm:^3.0.0"
     "@radix-ui/react-dialog": "npm:^1.1.15"
-    "@react-three/drei": "npm:^10.1.2"
-    "@react-three/fiber": "npm:^9.1.2"
+    "@react-spring/three": "npm:^10.0.3"
+    "@react-three/drei": "npm:^10.7.7"
+    "@react-three/fiber": "npm:^9.5.0"
     "@svgr/webpack": "npm:^8.1.0"
     "@tailwindcss/postcss": "npm:^4.1.8"
     "@tailwindcss/typography": "npm:^0.5.16"
@@ -5903,7 +5942,7 @@ __metadata:
     "@types/node": "npm:^22.15.30"
     "@types/react": "npm:^19.1.6"
     "@types/react-dom": "npm:^19.1.6"
-    "@types/three": "npm:^0.177.0"
+    "@types/three": "npm:^0.182.0"
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
     dayjs: "npm:^1.11.13"
@@ -5923,7 +5962,7 @@ __metadata:
     tailwind-merge: "npm:^3.4.0"
     tailwindcss: "npm:^4.1.8"
     tailwindcss-animate: "npm:^1.0.7"
-    three: "npm:^0.177.0"
+    three: "npm:^0.182.0"
     tsx: "npm:^4.19.4"
     tw-animate-css: "npm:^1.4.0"
     typescript: "npm:^5.8.3"
@@ -5935,13 +5974,6 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: 10c0/7e3c8b2e88a1841c9671094bbaeebd94448111dd90a81a1f606f3f67708a6ec57763b3b47f06da09fc6054193e0e6709e77325415dc8422b04497a8070fa02d4
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.25.0":
-  version: 0.25.0
-  resolution: "scheduler@npm:0.25.0"
-  checksum: 10c0/a4bb1da406b613ce72c1299db43759526058fdcc413999c3c3e0db8956df7633acf395cb20eb2303b6a65d658d66b6585d344460abaee8080b4aa931f10eaafe
   languageName: node
   linkType: hard
 
@@ -6341,10 +6373,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:^0.177.0":
-  version: 0.177.0
-  resolution: "three@npm:0.177.0"
-  checksum: 10c0/3e2ac1b9908e0d4dcecaf67c3d3e1b0b021dbfc7c80c2780005cc4e50532fb95b4c7f21669931e93c7b934d5576eb2364e1b34271bbd0e9484d1d723f836907b
+"three@npm:^0.182.0":
+  version: 0.182.0
+  resolution: "three@npm:0.182.0"
+  checksum: 10c0/8ddb3380dc881c75a91cb9fb29a3610b1d01de7feff4b7610fb305a24efc51c98d51b8bcef6ab74e82a1af1947bc81343a9eab1dc9ebe17b504eab19a321430b
   languageName: node
   linkType: hard
 
