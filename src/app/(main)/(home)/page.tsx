@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import DecryptedText from "@/src/components/shared/DecryptedText";
+import IconButton from "@/src/components/shared/IconButton";
 
 const Model = dynamic(() => import("./components/Model"), { ssr: false });
 
@@ -41,24 +42,15 @@ export default function Home() {
           테스트하며, 소소한 일상도 기록하는 저만의 작업실입니다.
         </p>
 
-        <div className="flex flex-wrap items-center gap-3 pt-2 text-sm text-muted-foreground">
-          <a
-            className="hover:text-foreground transition-colors"
+        <div className="flex items-center gap-4 pt-2">
+          <IconButton
             href="https://github.com/jaeungkim"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-          <span>•</span>
-          <a
-            className="hover:text-foreground transition-colors"
+            icon="/icons/github.svg"
+          />
+          <IconButton
             href="https://www.linkedin.com/in/jaeungkim0526/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
+            icon="/icons/linkedin.svg"
+          />
         </div>
       </article>
     </div>
