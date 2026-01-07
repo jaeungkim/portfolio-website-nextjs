@@ -14,7 +14,7 @@ const BlurImage = ({ url, alt, blurDataURL }: Props) => {
       width={1080}
       height={1440}
       quality={75}
-      className="rounded-[2px]"
+      className="rounded-md"
       placeholder={blurDataURL ? "blur" : undefined}
       blurDataURL={blurDataURL}
     />
