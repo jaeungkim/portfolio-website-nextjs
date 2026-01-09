@@ -1,10 +1,11 @@
 import Pill from "@/src/components/shared/Pill";
-import ResumeTitle from "./ResumeTitle";
 
 export default function ResumeSkill() {
   return (
     <>
-      <ResumeTitle title="Skills" />
+      <div className="font-semibold text-foreground text-3xl uppercase">
+        Skills
+      </div>
 
       <div className="mt-8 space-y-8">
         {/* Frontend */}

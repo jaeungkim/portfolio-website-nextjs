@@ -65,7 +65,7 @@ export default function SplashCursor({
   SPLAT_FORCE = 6000,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
-  BACK_COLOR = { r: 0.5, g: 0, b: 0 },
+  BACK_COLOR = { r: 0.25, g: 0, b: 0 },
   TRANSPARENT = true,
 }: SplashCursorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -1359,7 +1359,7 @@ export default function SplashCursor({
     }
 
     function generateColor(): ColorRGB {
-      return { r: 0.02, g: 0.02, b: 0.02 };
+      return { r: 0.01, g: 0.01, b: 0.01 };
     }
 
     function wrap(value: number, min: number, max: number) {

@@ -1,10 +1,11 @@
 import ExternalLink from "@/src/components/shared/ExternalLink";
-import ResumeTitle from "./ResumeTitle";
 
 export default function ResumeEducation() {
   return (
     <>
-      <ResumeTitle title="Education" />
+      <div className="font-semibold text-foreground text-3xl uppercase">
+        Education
+      </div>
 
       <div className="mt-8 md:grid md:grid-cols-4 md:gap-4">
         <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">

@@ -1,11 +1,12 @@
 import ExternalLink from "@/src/components/shared/ExternalLink";
 import Pill from "@/src/components/shared/Pill";
-import ResumeTitle from "./ResumeTitle";
 
 export default function ResumeProject() {
   return (
     <>
-      <ResumeTitle title="Projects" />
+      <div className="font-semibold text-foreground text-3xl uppercase">
+        Projects
+      </div>
 
       {/* React Gantt Chart */}
       <article className="mt-8 md:grid md:grid-cols-4 md:gap-4">

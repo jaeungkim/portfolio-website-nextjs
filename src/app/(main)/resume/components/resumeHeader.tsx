@@ -1,15 +1,12 @@
 export default function ResumeHeader() {
   return (
     <div className="md:grid md:grid-cols-4 md:gap-x-6 gap-y-4">
-      {/* Left column - Name */}
       <div className="mb-4 md:mb-0">
         <h1 className="text-2xl font-medium">김재웅</h1>
         <p className="text-lg text-muted-foreground mt-1">Frontend Developer</p>
       </div>
 
-      {/* Right 3 columns - Contact & Intro */}
       <div className="col-span-3 space-y-4">
-        {/* Introduction - primary content, full foreground */}
         <div className="space-y-3 leading-relaxed">
           <p>
             안녕하세요. 웹 서비스의 기획과 설계부터 개발, 배포 및 운영까지

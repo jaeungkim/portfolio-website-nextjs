@@ -1,12 +1,13 @@
 import ExternalLink from "@/src/components/shared/ExternalLink";
 import Pill from "@/src/components/shared/Pill";
-import ResumeTitle from "./ResumeTitle";
 
 export default function ResumeWork() {
   return (
     <>
       <div className="flex justify-between items-center">
-        <ResumeTitle title="Experiences" />
+        <div className="font-semibold text-foreground text-3xl uppercase">
+          Experiences
+        </div>
         <Pill name="4년+" />
       </div>
 
