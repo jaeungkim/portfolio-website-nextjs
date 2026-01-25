@@ -89,9 +89,8 @@ export default function ResumeWork() {
                       외부에서 그래프 상태 변화에 쉽게 대응할 수 있도록 설계
                     </li>
                     <li>
-                      Viewport Culling으로 화면 밖 노드 렌더링을 생략하고 물리
-                      시뮬레이션 alpha 값을 상황별로 조정해 수천 개 노드에서도
-                      60fps 유지
+                      화면 밖 노드 렌더링을 생략하고 물리 시뮬레이션 alpha 값을
+                      상황별로 조정해 수천 개 노드에서도 60fps 유지
                     </li>
                     <li>
                       노드 연결 생성 시 플로우 애니메이션으로 관계 방향을
@@ -242,8 +241,8 @@ export default function ResumeWork() {
                       구축
                     </li>
                     <li>
-                      Virtualization 및 Lazy Loading 전략을 통한 대규모 데이터
-                      렌더링 최적화로 DOM 렌더링 성능 40% 개선
+                      Virtualization을 통한 대규모 데이터 렌더링 최적화로 DOM
+                      렌더링 성능 40% 개선
                     </li>
                   </ul>
                 </li>

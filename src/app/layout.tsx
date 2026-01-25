@@ -27,6 +27,7 @@ export default function RootLayout({
       className="[scrollbar-gutter:stable]"
     >
       <body
+        suppressHydrationWarning
         className={`${pretendard.className} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
