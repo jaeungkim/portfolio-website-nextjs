@@ -7,6 +7,7 @@ interface BlurImageProps {
   url: string;
   alt?: string;
   blurDataURL?: string;
+  priority?: boolean;
 }
 
 /**
@@ -14,11 +15,18 @@ interface BlurImageProps {
  * 플레이스홀더 데이터를 주입하여 BlurImage 컴포넌트 생성
  */
 export function createMdxComponents(
-  placeholders: Record<string, string>
+  placeholders: Record<string, string>,
 ): MDXComponents {
-  const BlurImageWithPlaceholder = ({ url, alt }: BlurImageProps) => {
+  const BlurImageWithPlaceholder = ({ url, alt, priority }: BlurImageProps) => {
     const blurDataURL = placeholders[url] || undefined;
-    return <BlurImage url={url} alt={alt} blurDataURL={blurDataURL} />;
+    return (
+      <BlurImage
+        url={url}
+        alt={alt}
+        blurDataURL={blurDataURL}
+        priority={priority}
+      />
+    );
   };
 
   return {

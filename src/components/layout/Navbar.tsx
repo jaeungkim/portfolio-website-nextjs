@@ -25,7 +25,6 @@ export default async function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  prefetch={true}
                   className="relative block px-3 py-2 transition hover:text-muted-foreground"
                 >
                   {item.name}
