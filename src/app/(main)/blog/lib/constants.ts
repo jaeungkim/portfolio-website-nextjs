@@ -6,6 +6,6 @@ export const POSTS_DIR = path.join(
   "app",
   "(main)",
   "blog",
-  "posts"
+  "posts",
 );
 export const MDX_EXTENSION = ".mdx";

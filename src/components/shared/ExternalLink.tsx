@@ -15,7 +15,7 @@ export default function ExternalLink({
     <a
       className={cn(
         "text-foreground font-bold cursor-pointer w-fit flex items-center gap-1 border-b border-border leading-5 hover:border-muted-foreground transition-colors",
-        additionalClassName
+        additionalClassName,
       )}
       href={link}
       target="_blank"

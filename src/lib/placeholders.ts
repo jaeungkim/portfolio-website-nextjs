@@ -9,7 +9,7 @@ const PLACEHOLDERS_CACHE_FILE = path.join(
   "(main)",
   "blog",
   "data",
-  "placeholders.json"
+  "placeholders.json",
 );
 
 /**
@@ -24,7 +24,7 @@ export const loadPlaceholders = cache(
     } catch {
       return {};
     }
-  }
+  },
 );
 
 /**
@@ -33,7 +33,7 @@ export const loadPlaceholders = cache(
  * @returns base64 인코딩된 블러 데이터 URL 또는 undefined
  */
 export async function getPlaceholderForImage(
-  imagePath: string
+  imagePath: string,
 ): Promise<string | undefined> {
   const placeholders = await loadPlaceholders();
   return placeholders[imagePath];

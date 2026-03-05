@@ -1,19 +1,7 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import type { GanttChartProps } from "@jaeungkim/gantt-chart";
-import "@jaeungkim/gantt-chart/style.css";
 import ThemeToggle from "@/src/components/shared/ThemeToggle";
 import CodeBlock, { TabbedInstall } from "@/src/components/shared/CodeBlock";
 import { Github, Package, ExternalLink } from "lucide-react";
-import { useMemo } from "react";
-import { generateSampleTasks } from "./lib/generateTasks";
-
-// 무거운 차트 코드를 메인 번들에서 분리하여 온디맨드 로드
-const ReactGanttChart = dynamic<GanttChartProps>(
-  () => import("@jaeungkim/gantt-chart").then((m) => m.ReactGanttChart),
-  { ssr: false }
-);
+import GanttChartDemo from "./components/GanttChartDemo";
 
 const usageCode = `import { ReactGanttChart } from '@jaeungkim/gantt-chart';
 import type { Task } from '@jaeungkim/gantt-chart';
@@ -128,13 +116,10 @@ function FeatureCard({
 }
 
 export default function Page() {
-  // 오늘 날짜 기준으로 동적 생성된 샘플 태스크
-  const sampleTasks = useMemo(() => generateSampleTasks(), []);
-
   return (
     <div className="min-h-svh bg-background text-foreground">
       {/* 헤더 */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <a
@@ -315,14 +300,7 @@ export default function Page() {
               </span>
             </div>
             {/* 차트 영역 */}
-            <div className="bg-card">
-              <ReactGanttChart
-                tasks={sampleTasks}
-                height={600}
-                width="100%"
-                defaultScale="month"
-              />
-            </div>
+            <GanttChartDemo />
           </div>
         </section>
 

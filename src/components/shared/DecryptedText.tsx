@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import {
+  useEffect,
+  useState,
+  useRef,
+  type ComponentPropsWithoutRef,
+} from "react";
 import { motion } from "motion/react";
 
-interface DecryptedTextProps {
+interface DecryptedTextProps extends Omit<
+  ComponentPropsWithoutRef<typeof motion.span>,
+  "className"
+> {
   text: string;
   speed?: number;
   maxIterations?: number;
@@ -15,25 +23,7 @@ interface DecryptedTextProps {
   parentClassName?: string;
   encryptedClassName?: string;
   animateOn?: "view" | "hover" | "both";
-  [key: string]: any;
 }
-
-const styles: Record<string, React.CSSProperties> = {
-  wrapper: {
-    display: "inline-block",
-    whiteSpace: "pre-wrap",
-  },
-  srOnly: {
-    position: "absolute",
-    width: "1px",
-    height: "1px",
-    padding: 0,
-    margin: "-1px",
-    overflow: "hidden",
-    clip: "rect(0,0,0,0)",
-    border: 0,
-  },
-};
 
 export default function DecryptedText({
   text,
@@ -52,9 +42,11 @@ export default function DecryptedText({
   const [displayText, setDisplayText] = useState(text);
   const [isHovering, setIsHovering] = useState(false);
   const [isScrambling, setIsScrambling] = useState(false);
-  const [revealedIndices, setRevealedIndices] = useState(new Set());
+  const [revealedIndices, setRevealedIndices] = useState<Set<number>>(
+    new Set(),
+  );
   const [hasAnimated, setHasAnimated] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -97,7 +89,7 @@ export default function DecryptedText({
 
     const shuffleText = (
       originalText: string,
-      currentRevealed: Set<number>
+      currentRevealed: Set<number>,
     ) => {
       if (useOriginalCharsOnly) {
         const positions = originalText.split("").map((char, i) => ({
@@ -144,8 +136,8 @@ export default function DecryptedText({
     if (isHovering) {
       setIsScrambling(true);
       interval = setInterval(() => {
-        setRevealedIndices((prevRevealed: any) => {
-          const revealedSet = prevRevealed as Set<number>;
+        setRevealedIndices((prevRevealed: Set<number>) => {
+          const revealedSet = prevRevealed;
           if (sequential) {
             if (revealedSet.size < text.length) {
               const nextIndex = getNextIndex(revealedSet);
@@ -193,24 +185,16 @@ export default function DecryptedText({
   useEffect(() => {
     if (animateOn !== "view" && animateOn !== "both") return;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setIsHovering(true);
-          setHasAnimated(true);
-        }
-      });
-    };
-
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.1,
-    };
-
     const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setIsHovering(true);
+            setHasAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.1 },
     );
     const currentRef = containerRef.current;
     if (currentRef) {
@@ -218,9 +202,8 @@ export default function DecryptedText({
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (!currentRef) return;
+      observer.unobserve(currentRef);
     };
   }, [animateOn, hasAnimated]);
 
@@ -234,13 +217,12 @@ export default function DecryptedText({
 
   return (
     <motion.span
-      className={parentClassName}
+      className={`inline-block whitespace-pre-wrap ${parentClassName}`}
       ref={containerRef}
-      style={styles.wrapper}
       {...hoverProps}
       {...props}
     >
-      <span style={styles.srOnly}>{displayText}</span>
+      <span className="sr-only">{displayText}</span>
 
       <span aria-hidden="true">
         {displayText.split("").map((char, index) => {

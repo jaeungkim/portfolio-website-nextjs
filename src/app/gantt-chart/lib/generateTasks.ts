@@ -38,4 +38,3 @@ export function generateSampleTasks(): Task[] {
     dependencies: template.dependencies,
   }));
 }
-

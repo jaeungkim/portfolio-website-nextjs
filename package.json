@@ -5,6 +5,7 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
     "build": "yarn generate-placeholders && yarn type-check && next build",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,css,scss}' && eslint --fix '**/*.{js,jsx,ts,tsx}'",
     "dev": "next dev",
     "postinstall": "yarn generate-placeholders || true"
   },
@@ -19,7 +20,7 @@
     "lucide-react": "^0.562.0",
     "motion": "^12.23.12",
     "next": "15.5.7",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.4.6",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
@@ -44,14 +45,20 @@
     "@types/react-dom": "^19.1.6",
     "@types/three": "^0.182.0",
     "clsx": "^2.1.1",
+    "eslint": "^10.0.2",
+    "eslint-config-next": "^16.1.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
     "gray-matter": "^4.0.3",
     "plaiceholder": "^3.0.0",
     "postcss": "^8.5.4",
+    "prettier": "^3.8.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.1.8",
     "three": "^0.182.0",
     "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.56.1"
   },
   "packageManager": "yarn@4.9.1"
 }

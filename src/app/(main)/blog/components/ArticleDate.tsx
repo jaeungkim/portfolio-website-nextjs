@@ -12,7 +12,7 @@ function ArticleDate({ dateString, mobile }: ArticleDateProps) {
     <time
       className={cn(
         "relative z-10 order-first mb-3 flex items-center text-sm text-muted-foreground",
-        mobile ? "md:hidden pl-3.5" : "hidden md:block mt-1"
+        mobile ? "md:hidden pl-3.5" : "hidden md:block mt-1",
       )}
       dateTime={dateString}
     >

@@ -7,7 +7,7 @@ import fs from "fs/promises";
  * @returns base64 인코딩된 블러 데이터 URL 또는 null (실패 시)
  */
 export async function getStaticPlaiceholder(
-  filePath: string
+  filePath: string,
 ): Promise<string | null> {
   try {
     const buffer = await fs.readFile(filePath);
@@ -25,7 +25,7 @@ export async function getStaticPlaiceholder(
  * @returns base64 인코딩된 블러 데이터 URL 또는 null (실패 시)
  */
 export async function getRemotePlaiceholder(
-  url: string
+  url: string,
 ): Promise<string | null> {
   try {
     const controller = new AbortController();

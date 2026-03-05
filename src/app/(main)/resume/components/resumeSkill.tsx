@@ -1,5 +1,3 @@
-import Pill from "@/src/components/shared/Pill";
-
 export default function ResumeSkill() {
   return (
     <>

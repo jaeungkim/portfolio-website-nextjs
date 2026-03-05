@@ -15,9 +15,6 @@ import { createMdxComponents } from "@/mdx-components";
 
 export type { Post, PostData } from "./types";
 
-/**
- * MDX 파일 목록 조회
- */
 async function getMdxFiles(): Promise<string[]> {
   try {
     const files = await fs.readdir(POSTS_DIR);
@@ -28,16 +25,10 @@ async function getMdxFiles(): Promise<string[]> {
   }
 }
 
-/**
- * 파일명에서 slug 추출
- */
 function filenameToSlug(filename: string): string {
   return filename.replace(MDX_EXTENSION, "");
 }
 
-/**
- * 날짜 기준 내림차순 정렬
- */
 function sortPostsByDate(posts: Post[]): Post[] {
   return posts.sort((a, b) => {
     const dateA = new Date(a.date).getTime();
@@ -46,10 +37,6 @@ function sortPostsByDate(posts: Post[]): Post[] {
   });
 }
 
-/**
- * Frontmatter 추출 및 Zod 스키마 유효성 검사
- * 빌드 시점에 잘못된 frontmatter 감지
- */
 function parseFrontmatter(fileContent: string, filename: string): Frontmatter {
   const { data } = matter(fileContent);
   const result = frontmatterSchema.safeParse(data);
@@ -64,9 +51,6 @@ function parseFrontmatter(fileContent: string, filename: string): Frontmatter {
   return result.data;
 }
 
-/**
- * 단일 MDX 파일을 Post 메타데이터로 파싱
- */
 async function parseMdxFileToPost(filename: string): Promise<Post> {
   const filePath = path.join(POSTS_DIR, filename);
   const fileContent = await fs.readFile(filePath, "utf8");
@@ -80,10 +64,6 @@ async function parseMdxFileToPost(filename: string): Promise<Post> {
   };
 }
 
-/**
- * 정렬된 모든 포스트 메타데이터 조회
- * React cache()로 요청 단위 메모이제이션
- */
 export const getSortedPostsData = cache(async (): Promise<Post[]> => {
   const mdxFiles = await getMdxFiles();
 
@@ -93,27 +73,20 @@ export const getSortedPostsData = cache(async (): Promise<Post[]> => {
 
   try {
     const posts = await Promise.all(
-      mdxFiles.map((filename) => parseMdxFileToPost(filename))
+      mdxFiles.map((filename) => parseMdxFileToPost(filename)),
     );
     return sortPostsByDate(posts);
   } catch (error) {
     console.error("포스트 목록 조회 오류:", error);
-    throw error; // 빌드 시점 에러를 노출
+    throw error;
   }
 });
 
-/**
- * 모든 포스트 slug 조회 (generateStaticParams용)
- */
 export const getAllPostSlugs = cache(async (): Promise<string[]> => {
   const mdxFiles = await getMdxFiles();
   return mdxFiles.map((filename) => filenameToSlug(filename));
 });
 
-/**
- * slug로 개별 포스트 데이터 조회
- * MDX 컴파일 및 플레이스홀더 주입 포함
- */
 export const getPostData = cache(
   async (slug: string): Promise<PostData | null> => {
     const filePath = path.join(POSTS_DIR, `${slug}${MDX_EXTENSION}`);
@@ -126,16 +99,14 @@ export const getPostData = cache(
 
       const mdxComponents = createMdxComponents(placeholders);
 
-      const { content, frontmatter } = await compileMDX<Frontmatter>({
-        source: fileContent,
-        components: mdxComponents,
-        options: {
-          parseFrontmatter: true,
-        },
-      });
-
-      // Zod 유효성 검사
-      const validatedFrontmatter = parseFrontmatter(fileContent, slug);
+      const { content, frontmatter: validatedFrontmatter } =
+        await compileMDX<Frontmatter>({
+          source: fileContent,
+          components: mdxComponents,
+          options: {
+            parseFrontmatter: true,
+          },
+        });
 
       return {
         slug,
@@ -150,7 +121,7 @@ export const getPostData = cache(
         return null;
       }
       console.error(`[${slug}] 포스트 데이터 조회 오류:`, error);
-      throw error; // 빌드 시점 에러를 노출
+      throw error;
     }
-  }
+  },
 );

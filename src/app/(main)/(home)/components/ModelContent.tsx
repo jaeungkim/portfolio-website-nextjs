@@ -20,7 +20,7 @@ function ModelContent() {
   const group = useRef<THREE.Group>(null);
   const { size } = useThree();
   const { scene, animations } = useGLTF(
-    "https://images.jaeungkim.com/3d-models/models/scene-draco.glb"
+    "https://images.jaeungkim.com/3d-models/models/scene-draco.glb",
   );
   const { actions } = useAnimations(animations, group);
 

@@ -336,7 +336,6 @@ export default function ResumeWork() {
             bullets={work.bullets}
           />
 
-          {/* Render nested Sub-projects for e8ight */}
           {work.projects && (
             <div className="md:grid md:grid-cols-4 md:gap-x-6">
               <div className="hidden md:block"></div>

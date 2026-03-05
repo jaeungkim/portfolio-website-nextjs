@@ -8,7 +8,7 @@ const navigation = [
   { name: "Blog", href: "/blog" },
 ];
 
-export default async function Navbar() {
+export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4 h-[64px]">
       <div className="size-full mx-auto max-w-5xl relative px-4 sm:px-6 lg:px-8 flex items-center justify-between">

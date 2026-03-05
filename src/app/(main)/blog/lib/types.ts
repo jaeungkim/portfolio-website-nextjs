@@ -36,4 +36,3 @@ export interface PostData {
   title: string;
   summary: string;
 }
-

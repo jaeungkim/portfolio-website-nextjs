@@ -11,7 +11,7 @@ const PUBLIC_IMAGES_DIR = path.join(process.cwd(), "public", "images");
 const PLACEHOLDERS_CACHE_DIR = path.join(BLOG_DIR, "data");
 const PLACEHOLDERS_CACHE_FILE = path.join(
   PLACEHOLDERS_CACHE_DIR,
-  "placeholders.json"
+  "placeholders.json",
 );
 
 /**
@@ -55,7 +55,7 @@ async function collectStaticImages(): Promise<string[]> {
   try {
     const files = await fs.readdir(PUBLIC_IMAGES_DIR);
     const imageFiles = files.filter((file) =>
-      /\.(jpg|jpeg|png|webp|avif)$/i.test(file)
+      /\.(jpg|jpeg|png|webp|avif)$/i.test(file),
     );
     return imageFiles.map((file) => `/images/${file}`);
   } catch (error) {

@@ -90,24 +90,24 @@ const projects = [
       </li>,
     ],
   },
-  {
-    title: "WebGL Playground",
-    link: "https://github.com/jaeungkim/webGL-playground",
-    pills: ["React", "Three.js", "WebGL", "GSAP", "Motion"],
-    bullets: [
-      <li key="0">
-        WebGL과 Three.js를 활용한 3D 인터랙션 아키텍처 실험 프로젝트
-      </li>,
-      <li key="1">
-        사용자 입력에 반응하는 실시간 3D 렌더링 아키텍처 설계 및 다양한 시각
-        효과 최적화
-      </li>,
-      <li key="2">
-        렌더링 성능 최적화 전략 및 사용자 경험 개선을 위한 다양한 기법 실험 및
-        검증
-      </li>,
-    ],
-  },
+  // {
+  //   title: "WebGL Playground",
+  //   link: "https://github.com/jaeungkim/webGL-playground",
+  //   pills: ["React", "Three.js", "WebGL", "GSAP", "Motion"],
+  //   bullets: [
+  //     <li key="0">
+  //       WebGL과 Three.js를 활용한 3D 인터랙션 아키텍처 실험 프로젝트
+  //     </li>,
+  //     <li key="1">
+  //       사용자 입력에 반응하는 실시간 3D 렌더링 아키텍처 설계 및 다양한 시각
+  //       효과 최적화
+  //     </li>,
+  //     <li key="2">
+  //       렌더링 성능 최적화 전략 및 사용자 경험 개선을 위한 다양한 기법 실험 및
+  //       검증
+  //     </li>,
+  //   ],
+  // },
 ];
 
 export default function ResumeProject() {
@@ -120,8 +120,6 @@ export default function ResumeProject() {
       {projects.map((project, index) => (
         <ResumeSectionItem
           key={index}
-          isProject={true}
-          period=""
           title={project.title}
           link={project.link}
           bullets={project.bullets}

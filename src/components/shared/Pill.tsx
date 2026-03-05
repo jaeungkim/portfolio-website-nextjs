@@ -3,18 +3,13 @@ interface PillProps {
   variant?: "default" | "skill";
 }
 
-export default function Pill({ name, variant = "default" }: PillProps) {
-  if (variant === "skill") {
-    return (
-      <span className="border border-border text-muted-foreground px-3 py-1 text-sm font-medium rounded-full bg-transparent">
-        {name}
-      </span>
-    );
-  }
+const variants = {
+  default:
+    "border border-border text-foreground px-2 py-0.5 text-xs rounded-full bg-transparent",
+  skill:
+    "border border-border text-muted-foreground px-3 py-1 text-sm font-medium rounded-full bg-transparent",
+};
 
-  return (
-    <span className="border border-border text-foreground px-2 py-0.5 text-xs rounded-full bg-transparent">
-      {name}
-    </span>
-  );
+export default function Pill({ name, variant = "default" }: PillProps) {
+  return <span className={variants[variant]}>{name}</span>;
 }
