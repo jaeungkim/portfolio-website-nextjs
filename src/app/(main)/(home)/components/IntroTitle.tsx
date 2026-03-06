@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const STEP_MS = 50;
 const SCRAMBLE_CHARACTERS =
@@ -25,6 +25,7 @@ export default function IntroTitle({ text }: { text: string }) {
   const containerRef = useRef<HTMLSpanElement | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0);
+  const hasTextBeenFullyRevealed = revealedCount >= text.length;
 
   useEffect(() => {
     const currentRef = containerRef.current;
@@ -53,7 +54,7 @@ export default function IntroTitle({ text }: { text: string }) {
   }, []);
 
   useEffect(() => {
-    if (!hasStarted || revealedCount >= text.length) {
+    if (!hasStarted || hasTextBeenFullyRevealed) {
       return;
     }
 
@@ -64,15 +65,11 @@ export default function IntroTitle({ text }: { text: string }) {
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [hasStarted, revealedCount, text.length]);
+  }, [hasStarted, hasTextBeenFullyRevealed, revealedCount]);
 
-  const displayText = useMemo(() => {
-    if (!hasStarted || revealedCount >= text.length) {
-      return text;
-    }
-
-    return buildDisplayText(text, revealedCount);
-  }, [hasStarted, revealedCount, text]);
+  const displayText = hasStarted && !hasTextBeenFullyRevealed
+    ? buildDisplayText(text, revealedCount)
+    : text;
 
   return (
     <span ref={containerRef} className="inline-block whitespace-pre-wrap">
@@ -81,7 +78,7 @@ export default function IntroTitle({ text }: { text: string }) {
         {displayText.split("").map((character, index) => {
           const isEncrypted =
             hasStarted &&
-            revealedCount < text.length &&
+            !hasTextBeenFullyRevealed &&
             index >= revealedCount &&
             character !== " ";
 

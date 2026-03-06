@@ -14,6 +14,10 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "JaeKim_Portfolio",
   description: "Jae Kim Portfolio Website",
+  icons: {
+    icon: "/icons/jaekim.svg",
+    shortcut: "/icons/jaekim.svg",
+  },
 };
 
 export default function RootLayout({
