@@ -1,13 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { GanttChartProps } from "@jaeungkim/gantt-chart";
+import type { GanttProps } from "@jaeungkim/gantt-chart";
 import "@jaeungkim/gantt-chart/style.css";
 import { useMemo } from "react";
 import { generateSampleTasks } from "../lib/generateTasks";
 
-const ReactGanttChart = dynamic<GanttChartProps>(
-  () => import("@jaeungkim/gantt-chart").then((m) => m.ReactGanttChart),
+const ReactGanttChart = dynamic<GanttProps>(
+  () =>
+    import("@jaeungkim/gantt-chart").then((module) => module.ReactGanttChart),
   { ssr: false },
 );
 

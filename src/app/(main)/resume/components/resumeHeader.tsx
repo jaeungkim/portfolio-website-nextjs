@@ -25,7 +25,6 @@ export default function ResumeHeader() {
             성장하기 위해 노력하고 있습니다.
           </p>
         </div>
-        {/* Contact links - secondary, muted */}
         <div className="flex flex-wrap items-center gap-3 mt-4 text-sm text-muted-foreground">
           <a
             className="hover:text-foreground transition-colors"

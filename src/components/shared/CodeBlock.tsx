@@ -88,14 +88,6 @@ function CodeBlock({
 
 export default memo(CodeBlock);
 
-export function InlineCode({ children }: { children: React.ReactNode }) {
-  return (
-    <code className="px-1.5 py-0.5 rounded bg-muted text-foreground font-mono text-sm">
-      {children}
-    </code>
-  );
-}
-
 type PackageManager = "npm" | "yarn" | "pnpm" | "bun";
 
 interface TabbedInstallProps {

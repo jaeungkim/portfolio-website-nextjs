@@ -6,7 +6,6 @@ export default function ResumeSkill() {
       </div>
 
       <div className="mt-8 space-y-8">
-        {/* Frontend */}
         <div className="md:grid md:grid-cols-4 md:gap-2">
           <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
             Frontend
@@ -29,7 +28,6 @@ export default function ResumeSkill() {
           </ul>
         </div>
 
-        {/* Backend */}
         <div className="md:grid md:grid-cols-4 md:gap-2">
           <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
             Backend
@@ -43,7 +41,6 @@ export default function ResumeSkill() {
           </ul>
         </div>
 
-        {/* DevOps */}
         <div className="md:grid md:grid-cols-4 md:gap-2">
           <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
             DevOps

@@ -2,11 +2,14 @@
 
 import { useEffect, useRef, Suspense } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
+import { usePathname } from "next/navigation";
 import {
   useGLTF,
   PerspectiveCamera,
   OrbitControls,
   useAnimations,
+  Clone,
+  Preload,
 } from "@react-three/drei";
 import * as THREE from "three";
 import { Html, useProgress } from "@react-three/drei";
@@ -19,9 +22,8 @@ function Loader() {
 function ModelContent() {
   const group = useRef<THREE.Group>(null);
   const { size } = useThree();
-  const { scene, animations } = useGLTF(
-    "https://images.jaeungkim.com/3d-models/models/scene-draco.glb",
-  );
+  const modelUrl = "/3d-models/models/scene-draco.glb";
+  const { scene, animations } = useGLTF(modelUrl);
   const { actions } = useAnimations(animations, group);
 
   const scale = Math.min(size.width, size.height) / 120;
@@ -30,16 +32,27 @@ function ModelContent() {
     if (actions && animations.length > 0) {
       actions[animations[0].name]?.play();
     }
-  }, [actions, animations]);
+
+    return () => {
+      useGLTF.clear(modelUrl);
+    };
+  }, [actions, animations, modelUrl]);
 
   return (
     <group ref={group} dispose={null}>
-      <primitive object={scene} scale={scale} position={[-0.5, -2.5, 0]} />
+      <Clone object={scene} scale={scale} position={[-0.5, -2.5, 0]} />
+      <Preload all />
     </group>
   );
 }
 
 export default function Model() {
+  const pathname = usePathname();
+
+  if (pathname !== "/") {
+    return null;
+  }
+
   return (
     <div className="absolute inset-0">
       <Canvas dpr={[1, 1.5]} gl={{ antialias: false }}>

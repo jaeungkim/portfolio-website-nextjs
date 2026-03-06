@@ -1,4 +1,3 @@
-import React from "react";
 import ExternalLink from "@/src/components/shared/ExternalLink";
 import Pill from "@/src/components/shared/Pill";
 
@@ -8,7 +7,7 @@ export interface ResumeSectionItemProps {
   link?: string;
   location?: string;
   role?: string;
-  bullets: React.ReactNode[];
+  bullets: string[];
   pills?: string[];
 }
 
@@ -48,7 +47,7 @@ export default function ResumeSectionItem({
         {bullets && bullets.length > 0 && (
           <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
             {bullets.map((bullet, idx) => (
-              <React.Fragment key={idx}>{bullet}</React.Fragment>
+              <li key={`${title}-${idx}`}>{bullet}</li>
             ))}
           </ul>
         )}

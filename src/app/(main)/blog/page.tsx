@@ -2,16 +2,11 @@ import type { Metadata } from "next";
 import Article from "./components/Article";
 import { getSortedPostsData } from "./lib/posts";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = {
   title: "Jaeung Kim - Blog",
   description: "A collection of photo stories",
 };
 
-/**
- * 블로그 페이지 - 빌드 시점에 정적으로 생성됨
- */
 export default async function BlogPage() {
   const posts = await getSortedPostsData();
 

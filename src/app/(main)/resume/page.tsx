@@ -4,8 +4,6 @@ import ResumeProject from "./components/resumeProject";
 import ResumeSkill from "./components/resumeSkill";
 import ResumeEducation from "./components/resumeEducation";
 
-export const dynamic = "force-static";
-
 export default function ResumePage() {
   return (
     <>

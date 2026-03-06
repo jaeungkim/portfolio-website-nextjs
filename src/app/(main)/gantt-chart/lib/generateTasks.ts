@@ -11,22 +11,16 @@ interface TaskTemplate {
   dependencies: TaskDependency[];
 }
 
-/**
- * 오늘 날짜 기준으로 오프셋을 적용하여 UTC ISO 문자열 생성
- */
-function getDateWithOffset(offsetDays: number, isEnd: boolean): string {
-  const date = new Date();
-  date.setDate(date.getDate() + offsetDays);
+const DEMO_START_DATE = Date.UTC(2026, 0, 5, 9, 0, 0, 0);
 
-  // 시작: 09:00 UTC, 종료: 17:00 UTC
+function getDateWithOffset(offsetDays: number, isEnd: boolean): string {
+  const date = new Date(DEMO_START_DATE);
+  date.setUTCDate(date.getUTCDate() + offsetDays);
   date.setUTCHours(isEnd ? 17 : 9, 0, 0, 0);
 
   return date.toISOString();
 }
 
-/**
- * 템플릿 데이터로부터 오늘 기준 동적 태스크 생성
- */
 export function generateSampleTasks(): Task[] {
   return (sampleTasksData as TaskTemplate[]).map((template) => ({
     id: template.id,

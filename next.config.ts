@@ -1,8 +1,9 @@
-import { NextConfig } from "next";
-import withPlaiceholder from "@plaiceholder/next";
+import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["three"],
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  cacheComponents: true,
   experimental: {
     scrollRestoration: true,
     optimizePackageImports: ["lucide-react"],
@@ -19,4 +20,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPlaiceholder(nextConfig);
+const withMDX = createMDX({
+  extension: /\.(md|mdx)$/,
+});
+
+export default withMDX(nextConfig);

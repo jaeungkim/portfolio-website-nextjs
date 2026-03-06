@@ -1,7 +1,5 @@
 "use client";
 
-import { memo } from "react";
-import { useInView } from "react-intersection-observer";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -13,14 +11,12 @@ interface ArticleProps {
   index: number;
 }
 
-function Article({ post, index }: ArticleProps) {
-  const [ref, inView] = useInView({ triggerOnce: true });
-
+export default function Article({ post, index }: ArticleProps) {
   return (
     <motion.article
-      ref={ref}
       initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.01 }}
       className="md:grid md:grid-cols-4 md:items-baseline"
     >
@@ -53,5 +49,3 @@ function Article({ post, index }: ArticleProps) {
     </motion.article>
   );
 }
-
-export default memo(Article);

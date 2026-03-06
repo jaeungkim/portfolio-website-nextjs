@@ -5,8 +5,9 @@ const menuItems = [
   { label: "About", url: "/resume" },
   { label: "Blog", url: "/blog" },
 ];
+const COPYRIGHT_YEAR = new Date().getFullYear();
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="mt-32 backdrop-blur w-full border-t border-border py-8">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -23,12 +24,10 @@ const Footer = () => {
             ))}
           </nav>
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Jaeung Kim. All rights reserved.
+            © {COPYRIGHT_YEAR} Jaeung Kim. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

@@ -16,8 +16,8 @@ export default function AnimatedProfileLogo({
         alt="Jaeung Kim Logo"
         width={100}
         height={30}
-        className="object-contain dark:invert"
-        priority
+        className="object-contain dark:invert w-auto h-auto"
+        preload
       />
     </div>
   );

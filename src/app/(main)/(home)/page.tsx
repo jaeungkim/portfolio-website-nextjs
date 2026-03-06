@@ -1,25 +1,17 @@
-import DecryptedText from "@/src/components/shared/DecryptedText";
 import IconButton from "@/src/components/shared/IconButton";
-
-import ModelWrapper from "./components/ModelWrapper";
+import IntroTitle from "./components/IntroTitle";
+import ModelIsland from "./components/ModelIsland";
 
 export default function Home() {
   return (
     <div className="flex flex-col md:flex-row gap-4 w-full">
       <div className="relative md:basis-2/6 lg:basis-3/6 h-[350px] md:pr-4">
-        <ModelWrapper />
+        <ModelIsland />
       </div>
 
       <article className="basis-1/2 space-y-4">
         <h2 className="text-3xl font-bold text-foreground sm:text-2xl">
-          <DecryptedText
-            text="안녕하세요, 김재웅입니다."
-            animateOn="view"
-            revealDirection="start"
-            speed={50}
-            sequential={true}
-            characters="ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ"
-          />
+          <IntroTitle text="안녕하세요, 김재웅입니다." />
         </h2>
 
         <p className="text-muted-foreground">

@@ -1,8 +1,7 @@
-import { cache } from "react";
 import fs from "fs/promises";
 import path from "path";
+import { cacheLife } from "next/cache";
 import matter from "gray-matter";
-import { compileMDX } from "next-mdx-remote/rsc";
 import {
   frontmatterSchema,
   type Frontmatter,
@@ -10,8 +9,6 @@ import {
   type PostData,
 } from "./types";
 import { POSTS_DIR, MDX_EXTENSION } from "./constants";
-import { loadPlaceholders } from "@/src/lib/placeholders";
-import { createMdxComponents } from "@/mdx-components";
 
 export type { Post, PostData } from "./types";
 
@@ -64,7 +61,9 @@ async function parseMdxFileToPost(filename: string): Promise<Post> {
   };
 }
 
-export const getSortedPostsData = cache(async (): Promise<Post[]> => {
+export async function getSortedPostsData(): Promise<Post[]> {
+  "use cache";
+  cacheLife("days");
   const mdxFiles = await getMdxFiles();
 
   if (mdxFiles.length === 0) {
@@ -80,48 +79,39 @@ export const getSortedPostsData = cache(async (): Promise<Post[]> => {
     console.error("포스트 목록 조회 오류:", error);
     throw error;
   }
-});
+}
 
-export const getAllPostSlugs = cache(async (): Promise<string[]> => {
+export async function getAllPostSlugs(): Promise<string[]> {
+  "use cache";
+  cacheLife("days");
   const mdxFiles = await getMdxFiles();
   return mdxFiles.map((filename) => filenameToSlug(filename));
-});
+}
 
-export const getPostData = cache(
-  async (slug: string): Promise<PostData | null> => {
-    const filePath = path.join(POSTS_DIR, `${slug}${MDX_EXTENSION}`);
+export async function getPostData(slug: string): Promise<PostData | null> {
+  "use cache";
+  cacheLife("days");
+  const filePath = path.join(POSTS_DIR, `${slug}${MDX_EXTENSION}`);
 
-    try {
-      const [fileContent, placeholders] = await Promise.all([
-        fs.readFile(filePath, "utf8"),
-        loadPlaceholders(),
-      ]);
+  try {
+    const fileContent = await fs.readFile(filePath, "utf8");
+    const frontmatter = parseFrontmatter(
+      fileContent,
+      `${slug}${MDX_EXTENSION}`,
+    );
 
-      const mdxComponents = createMdxComponents(placeholders);
-
-      const { content, frontmatter: validatedFrontmatter } =
-        await compileMDX<Frontmatter>({
-          source: fileContent,
-          components: mdxComponents,
-          options: {
-            parseFrontmatter: true,
-          },
-        });
-
-      return {
-        slug,
-        id: slug,
-        content,
-        date: validatedFrontmatter.date,
-        title: validatedFrontmatter.title,
-        summary: validatedFrontmatter.summary,
-      };
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === "ENOENT") {
-        return null;
-      }
-      console.error(`[${slug}] 포스트 데이터 조회 오류:`, error);
-      throw error;
+    return {
+      slug,
+      id: slug,
+      date: frontmatter.date,
+      title: frontmatter.title,
+      summary: frontmatter.summary,
+    };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return null;
     }
-  },
-);
+    console.error(`[${slug}] 포스트 데이터 조회 오류:`, error);
+    throw error;
+  }
+}
