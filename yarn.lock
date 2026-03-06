@@ -1519,12 +1519,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20":
-  version: 20.19.36
-  resolution: "@types/node@npm:20.19.36"
+"@types/node@npm:^22":
+  version: 22.19.15
+  resolution: "@types/node@npm:22.19.15"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/caf1e7802a986a3d98dfac2cbed968a359694a1289e4d1a7a0c93337f3d9b0843e668f11fd2ee03e1a97dc7ab237ef253888200d2a5b455f21bc7c871cd893c8
+  checksum: 10c0/f17eaf3d0d1da5e93ad9e287efb78201f8a5282973c004c5f70d91675c5c6b926a23acaa7b158a42b3d7e27e36b349d65a531710c91c308fca53dd7fa280ef98
   languageName: node
   linkType: hard
 
@@ -6155,7 +6155,7 @@ __metadata:
     "@tailwindcss/typography": "npm:^0.5.16"
     "@types/mdx": "npm:^2.0.13"
     "@types/next": "npm:^9.0.0"
-    "@types/node": "npm:^20"
+    "@types/node": "npm:^22"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
     "@types/three": "npm:0.182.0"
