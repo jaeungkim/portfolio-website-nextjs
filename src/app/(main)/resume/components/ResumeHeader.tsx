@@ -68,15 +68,15 @@ export default function ResumeHeader() {
   ] satisfies ContactLinkProps[];
 
   return (
-    <section className="grid gap-6 md:grid-cols-[220px_minmax(0,1fr)] md:items-start md:gap-8">
+    <section className="flex flex-col items-center gap-6 sm:gap-7 md:flex-row md:items-start md:gap-8 md:text-left">
       {image && (
-        <div className="overflow-hidden rounded-xl border border-border bg-muted">
+        <div className="w-full max-w-[140px] shrink-0 overflow-hidden rounded-xl border border-border bg-muted sm:max-w-[168px] md:w-[clamp(180px,24vw,220px)] md:max-w-none">
           <div className="relative aspect-[4/5] w-full">
             <Image
               src={image}
               alt={name}
               fill
-              sizes="(min-width: 768px) 220px, 100vw"
+              sizes="(min-width: 1024px) 220px, (min-width: 768px) 24vw, (min-width: 640px) 168px, 140px"
               className="object-cover"
               priority
             />
@@ -84,9 +84,9 @@ export default function ResumeHeader() {
         </div>
       )}
 
-      <div className="space-y-4">
-        <div>
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+      <div className="flex w-full flex-col items-start space-y-4 md:items-start">
+        <div className="text-left md:text-left">
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
             {name}
           </h1>
           <p className="mt-2 text-lg font-medium text-muted-foreground md:text-xl">
@@ -94,15 +94,15 @@ export default function ResumeHeader() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div className="flex flex-wrap items-center justify-start gap-x-4 gap-y-2 md:justify-start">
           {contactLinks.map((link) => (
             <ContactLink key={link.label} {...link} />
           ))}
         </div>
 
-        <div className="space-y-3 text-[15.5px] leading-7 text-muted-foreground">
-          {description.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+        <div className="space-y-3 text-left text-[15.5px] leading-7 text-muted-foreground md:text-left">
+          {description.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
           ))}
         </div>
       </div>

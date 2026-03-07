@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@jaeungkim/gantt-chart": "^0.3.1",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
     "@next/mdx": "16.2.0-canary.80",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
