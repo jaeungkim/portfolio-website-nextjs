@@ -1,7 +1,13 @@
 import dayjs from "dayjs";
-import { ResumeExperience } from "../app/(main)/resume/components/resume.data";
 
-export function calculateTotalExperience(experiences: ResumeExperience[]) {
+type ExperienceDateRange = {
+  startDate: string;
+  endDate?: string;
+};
+
+export function calculateTotalExperience(
+  experiences: ReadonlyArray<ExperienceDateRange>,
+) {
   const totalMonths = experiences.reduce((acc, work) => {
     const start = dayjs(work.startDate);
     const end = work.endDate ? dayjs(work.endDate) : dayjs();
