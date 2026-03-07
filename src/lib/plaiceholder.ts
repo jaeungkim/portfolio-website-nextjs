@@ -1,11 +1,6 @@
 import { getPlaiceholder } from "plaiceholder";
 import fs from "fs/promises";
 
-/**
- * 정적 이미지 파일의 블러 플레이스홀더를 생성합니다.
- * @param filePath - 파일 시스템 경로
- * @returns base64 인코딩된 블러 데이터 URL 또는 null (실패 시)
- */
 export async function getStaticPlaiceholder(
   filePath: string,
 ): Promise<string | null> {
@@ -19,17 +14,12 @@ export async function getStaticPlaiceholder(
   }
 }
 
-/**
- * 원격 이미지의 블러 플레이스홀더를 생성합니다.
- * @param url - 원격 이미지 URL
- * @returns base64 인코딩된 블러 데이터 URL 또는 null (실패 시)
- */
 export async function getRemotePlaiceholder(
   url: string,
 ): Promise<string | null> {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10초 타임아웃
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     const response = await fetch(url, {
       signal: controller.signal,

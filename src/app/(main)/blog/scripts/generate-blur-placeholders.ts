@@ -14,9 +14,6 @@ const PLACEHOLDERS_CACHE_FILE = path.join(
   "placeholders.json",
 );
 
-/**
- * MDX 파일에서 BlurImage 컴포넌트의 URL을 추출합니다.
- */
 function extractImageUrls(content: string): string[] {
   const urls: string[] = [];
   const blurImageRegex = /<BlurImage\s+url=["']([^"']+)["']/g;
@@ -29,9 +26,6 @@ function extractImageUrls(content: string): string[] {
   return urls;
 }
 
-/**
- * 모든 MDX 파일에서 이미지 URL을 수집합니다.
- */
 async function collectImageUrls(): Promise<Set<string>> {
   const files = await fs.readdir(POSTS_DIR);
   const mdxFiles = files.filter((file) => file.endsWith(".mdx"));
@@ -48,9 +42,6 @@ async function collectImageUrls(): Promise<Set<string>> {
   return imageUrls;
 }
 
-/**
- * public/images 디렉토리에서 정적 이미지 파일을 수집합니다.
- */
 async function collectStaticImages(): Promise<string[]> {
   try {
     const files = await fs.readdir(PUBLIC_IMAGES_DIR);
@@ -64,9 +55,6 @@ async function collectStaticImages(): Promise<string[]> {
   }
 }
 
-/**
- * 기존 캐시를 로드합니다.
- */
 async function loadCache(): Promise<Record<string, string>> {
   try {
     const cacheContent = await fs.readFile(PLACEHOLDERS_CACHE_FILE, "utf-8");
@@ -76,9 +64,6 @@ async function loadCache(): Promise<Record<string, string>> {
   }
 }
 
-/**
- * 캐시를 저장합니다.
- */
 async function saveCache(cache: Record<string, string>): Promise<void> {
   try {
     await fs.mkdir(PLACEHOLDERS_CACHE_DIR, { recursive: true });
@@ -90,24 +75,18 @@ async function saveCache(cache: Record<string, string>): Promise<void> {
   }
 }
 
-/**
- * 플레이스홀더를 생성하고 캐시합니다.
- */
 async function generatePlaceholders(): Promise<void> {
   console.log("=== 플레이스홀더 생성 시작 ===\n");
 
-  // 기존 캐시 로드
   console.log("기존 캐시 로드 중...");
   const cache = await loadCache();
   const initialCacheSize = Object.keys(cache).length;
   console.log(`기존 캐시 항목 수: ${initialCacheSize}\n`);
 
-  // 원격 이미지 URL 수집
   console.log("원격 이미지 URL 수집 중...");
   const imageUrls = await collectImageUrls();
   console.log(`${imageUrls.size}개의 고유한 원격 이미지 URL 발견\n`);
 
-  // 정적 이미지 수집
   console.log("정적 이미지 파일 수집 중...");
   const staticImages = await collectStaticImages();
   console.log(`${staticImages.length}개의 정적 이미지 파일 발견\n`);
@@ -116,7 +95,6 @@ async function generatePlaceholders(): Promise<void> {
   let cachedCount = 0;
   let failedCount = 0;
 
-  // 원격 이미지 플레이스홀더 생성
   console.log("원격 이미지 플레이스홀더 생성 중...");
   for (const url of Array.from(imageUrls)) {
     if (cache[url]) {
@@ -136,7 +114,6 @@ async function generatePlaceholders(): Promise<void> {
     }
   }
 
-  // 정적 이미지 플레이스홀더 생성
   console.log("\n정적 이미지 플레이스홀더 생성 중...");
   for (const imagePath of staticImages) {
     if (cache[imagePath]) {
@@ -162,7 +139,6 @@ async function generatePlaceholders(): Promise<void> {
     }
   }
 
-  // 결과 요약
   console.log("\n=== 플레이스홀더 생성 완료 ===");
   console.log(`  - 새로 생성: ${newCount}`);
   console.log(`  - 캐시에서 로드: ${cachedCount}`);

@@ -67,9 +67,10 @@ export default function IntroTitle({ text }: { text: string }) {
     };
   }, [hasStarted, hasTextBeenFullyRevealed, revealedCount]);
 
-  const displayText = hasStarted && !hasTextBeenFullyRevealed
-    ? buildDisplayText(text, revealedCount)
-    : text;
+  const displayText =
+    hasStarted && !hasTextBeenFullyRevealed
+      ? buildDisplayText(text, revealedCount)
+      : text;
 
   return (
     <span ref={containerRef} className="inline-block whitespace-pre-wrap">

@@ -1,7 +1,23 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import ExternalLink from "@/src/components/shared/ExternalLink";
 import Pill from "@/src/components/shared/Pill";
 import ResumeSectionItem from "./ResumeSectionItem";
 import { resumeExperiences, type ResumeSubproject } from "./resume.data";
+import {
+  calculateTotalExperience,
+  formatExperienceText,
+} from "@/src/utils/date";
+
+const ExperienceDurationPill = dynamic(
+  () => {
+    const { years, months } = calculateTotalExperience(resumeExperiences);
+    const text = formatExperienceText(years, months);
+    return Promise.resolve(() => <Pill name={`${text}+`} />);
+  },
+  { ssr: false },
+);
 
 function ResumeProjectDetails({ project }: { project: ResumeSubproject }) {
   return (
@@ -16,7 +32,7 @@ function ResumeProjectDetails({ project }: { project: ResumeSubproject }) {
         {project.summary}
       </p>
       <div className="space-y-4 pl-4">
-        {project.sections.map((section) => (
+        {project.sections?.map((section) => (
           <section key={section.title} className="space-y-2">
             <h4 className="text-base font-semibold text-foreground">
               {section.title}
@@ -40,11 +56,11 @@ export default function ResumeWork() {
         <div className="font-semibold text-foreground text-3xl uppercase">
           Experiences
         </div>
-        <Pill name="4년+" />
+        <ExperienceDurationPill />
       </div>
 
       {resumeExperiences.map((work) => (
-        <div key={`${work.period}-${work.title}`}>
+        <div key={work.title} className="space-y-12">
           <ResumeSectionItem
             period={work.period}
             title={work.title}
@@ -52,6 +68,7 @@ export default function ResumeWork() {
             location={work.location}
             role={work.role}
             bullets={work.bullets}
+            pills={work.pills}
           />
 
           {work.projects && (

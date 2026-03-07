@@ -44,20 +44,20 @@ export default function ResumeSectionItem({
           </div>
         )}
 
+        {pills && pills.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {pills.map((pill) => (
+              <Pill key={pill} name={pill} />
+            ))}
+          </div>
+        )}
+
         {bullets && bullets.length > 0 && (
           <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
             {bullets.map((bullet, idx) => (
               <li key={`${title}-${idx}`}>{bullet}</li>
             ))}
           </ul>
-        )}
-
-        {pills && pills.length > 0 && (
-          <div className="flex flex-wrap gap-1 pl-4">
-            {pills.map((pill) => (
-              <Pill key={pill} name={pill} />
-            ))}
-          </div>
         )}
       </div>
     </article>

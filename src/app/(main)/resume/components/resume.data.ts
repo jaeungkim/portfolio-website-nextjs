@@ -12,11 +12,14 @@ export interface ResumeSubproject {
 
 export interface ResumeExperience {
   period: string;
+  startDate: string;
+  endDate?: string;
   title: string;
   link?: string;
   location: string;
   role: string;
   bullets: string[];
+  pills: string[];
   projects?: ResumeSubproject[];
 }
 
@@ -27,9 +30,38 @@ export interface ResumeProjectSummary {
   bullets: string[];
 }
 
+export interface ResumePersonalInfo {
+  name: string;
+  role: string;
+  image: string;
+  description: string[];
+  email: string;
+  github: string;
+  linkedin: string;
+  notion: string;
+}
+
+export const resumePersonalInfo: ResumePersonalInfo = {
+  name: "김재웅",
+  role: "Frontend Developer",
+  image: "/images/profile.jpeg",
+  description: [
+    "안녕하세요. 캐나다 밴쿠버에서 나고 자라 다양한 문화 속에서 성장한 프론트엔드 개발자입니다. 웹 서비스의 기획과 설계부터 개발, 배포 및 운영까지 전반적인 과정을 경험하며 꾸준히 성장해왔습니다.",
+    "저는 단순히 화면을 구현하는 것에 그치지 않고, 코드의 구조와 흐름을 이해하며 서비스의 완성도를 높이는 데 집중하는 개발자입니다. 누구나 쉽게 이해하고 유지보수할 수 있는 명확한 코드를 작성하는 것을 중요하게 생각하며, 견고하고 효율적인 구조를 만들기 위해 항상 고민하고 있습니다.",
+    "또한 완성도 높은 결과물을 만들기 위한 집요함을 제 강점이라고 생각합니다. 다만 빠르게 변화하는 개발 환경 속에서 완벽함만을 추구하기보다는, 우선순위를 명확히 설정해 핵심 기능을 안정적으로 구현하고 이후 구조적인 개선을 지속적으로 발전시키는 방식으로 균형을 맞추고 있습니다.",
+    "개발은 혼자 완성하는 일이 아니라 함께 만들어가는 과정이라고 생각합니다. 프로젝트의 방향성과 문제 상황을 투명하게 공유하고, 동료들과의 기술적 논의와 협업을 통해 더 나은 해결책을 찾는 것을 중요하게 여기고 있습니다.",
+    "앞으로도 꾸준한 학습과 경험을 통해 더 높은 수준의 기술적 완성도를 갖춘 프론트엔드 개발자로 성장해 나가겠습니다.",
+  ],
+  email: "jaewoongkim95@gmail.com",
+  github: "https://github.com/jaeungkim",
+  linkedin: "https://www.linkedin.com/in/jaeungkim0526",
+  notion: "https://jaeungkim.notion.site",
+};
+
 export const resumeExperiences: ResumeExperience[] = [
   {
     period: "2024.01 ~ 현재",
+    startDate: "2024-01-08",
     title: "이에이트",
     link: "https://e8ight.co.kr/ndxpro/",
     location: "잠실, 대한민국",
@@ -41,6 +73,27 @@ export const resumeExperiences: ResumeExperience[] = [
       "사내 프론트엔드 공통 템플릿(i18n, Prettier/ESLint, 필수 라이브러리, Storybook 기반 디자인 시스템 포함) 제작 및 배포 → 신규 프로젝트 초기 세팅 시간 대폭 단축 및 개발 환경 표준화",
       "코드 리뷰 및 기술 세션 주도로 팀 내 코드 품질 개선 및 지식 공유 문화 확산",
       "NIPA(정보통신산업진흥원) 주관 GSMP 프로그램에 선정되어 워싱턴 D.C. 현지 행사 참가 → 팀 대표로서 글로벌 파트너 대상 기술 소개 및 협업 기회 발굴",
+    ],
+    pills: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Nest.js",
+      "TanStack-Query",
+      "Zustand",
+      "Recoil",
+      "Tailwind CSS",
+      "Shadcn",
+      "Motion",
+      "D3.js",
+      "Canvas API",
+      "Socket.io",
+      "WebRTC",
+      "Storybook",
+      "Figma",
+      "Docker",
+      "Sentry",
+      "AWS",
     ],
     projects: [
       {
@@ -154,7 +207,9 @@ export const resumeExperiences: ResumeExperience[] = [
     ],
   },
   {
-    period: "2023.07 ~ 2023.10",
+    period: "2023.06 ~ 2023.10",
+    startDate: "2023-06-16",
+    endDate: "2023-10-13",
     title: "Flashee",
     location: "밴쿠버, 캐나다",
     role: "프론트엔드 개발자",
@@ -164,9 +219,20 @@ export const resumeExperiences: ResumeExperience[] = [
       "Supabase 및 서드파티(Instagram, TikTok 등) 로그인 키트 통합 아키텍처 설계로 플랫폼 보안 및 사용자 접근성 향상",
       "Shopify Payments 결제 게이트웨이 통합 전략 수립 및 구현으로 카트 포기율 감소 및 거래 성공률 개선",
     ],
+    pills: [
+      "React",
+      "Next.js",
+      "Redux",
+      "Tailwind CSS",
+      "Supabase",
+      "Shopify",
+      "AWS",
+    ],
   },
   {
     period: "2022.07 ~ 2023.06",
+    startDate: "2022-07-12",
+    endDate: "2023-06-15",
     title: "iClinic Systems Inc.",
     location: "밴쿠버, 캐나다",
     role: "풀스택 개발자",
@@ -177,9 +243,23 @@ export const resumeExperiences: ResumeExperience[] = [
       "기술적 지식이 없는 경영진도 사용 가능한 인력 및 근태 관리 어드민 포털 아키텍처 설계 및 운영",
       "백엔드 API 아키텍처, AWS 인프라 설계, MongoDB 데이터베이스 스키마 설계 및 CI/CD 파이프라인 구축",
     ],
+    pills: [
+      "Angular",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "SASS",
+      "Framer Motion",
+      "GSAP",
+      "WebGL",
+      "Three.js",
+      "AWS",
+    ],
   },
   {
     period: "2021.01 ~ 2022.05",
+    startDate: "2021-01-07",
+    endDate: "2022-05-15",
     title: "Catalx Management Ltd.",
     location: "밴쿠버, 캐나다",
     role: "프론트엔드 개발자",
@@ -189,6 +269,7 @@ export const resumeExperiences: ResumeExperience[] = [
       "AWS Lambda@Edge와 Facebook Open Graph를 활용한 소셜 미디어 URL 미리보기 최적화 전략 수립 및 구현",
       "디자이너와 협업하여 UI/UX 아키텍처 개선 및 사용자 경험 향상",
     ],
+    pills: ["React", "GraphQL", "AWS", "Figma"],
   },
 ];
 
@@ -209,8 +290,8 @@ export const resumeProjects: ResumeProjectSummary[] = [
     pills: [
       "Next 15 (App)",
       "Tailwind CSS",
-      "GSAP",
       "Framer Motion",
+      "GSAP",
       "Three.js",
     ],
     bullets: [
