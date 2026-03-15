@@ -5,7 +5,6 @@ const menuItems = [
   { label: "About", url: "/resume" },
   { label: "Blog", url: "/blog" },
 ];
-const COPYRIGHT_YEAR = new Date().getFullYear();
 
 export default function Footer() {
   return (
@@ -24,7 +23,7 @@ export default function Footer() {
             ))}
           </nav>
           <p className="text-sm text-muted-foreground">
-            © {COPYRIGHT_YEAR} Jaeung Kim. All rights reserved.
+            © Jaeung Kim. All rights reserved.
           </p>
         </div>
       </div>

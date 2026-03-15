@@ -7,10 +7,13 @@ type ExperienceDateRange = {
 
 export function calculateTotalExperience(
   experiences: ReadonlyArray<ExperienceDateRange>,
+  referenceDate: string | Date,
 ) {
+  const currentDate = dayjs(referenceDate);
+
   const totalMonths = experiences.reduce((acc, work) => {
     const start = dayjs(work.startDate);
-    const end = work.endDate ? dayjs(work.endDate) : dayjs();
+    const end = work.endDate ? dayjs(work.endDate) : currentDate;
 
     const duration = end.add(1, "day").diff(start, "month", true);
     return acc + duration;
