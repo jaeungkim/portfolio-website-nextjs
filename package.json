@@ -47,7 +47,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react": "^7.37.5",
     "plaiceholder": "^3.0.0",
-    "postcss": "^8.5.4",
+    "postcss": "^8.5.10",
     "prettier": "^3.8.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
