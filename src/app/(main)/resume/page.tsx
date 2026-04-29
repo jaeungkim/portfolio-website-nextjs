@@ -1,8 +1,8 @@
-import ResumeHeader from "./components/ResumeHeader";
-import ResumeWork from "./components/ResumeWork";
-import ResumeProject from "./components/ResumeProject";
-import ResumeSkill from "./components/ResumeSkill";
-import ResumeEducation from "./components/ResumeEducation";
+import ResumeHeader from "@/src/app/(main)/resume/components/ResumeHeader";
+import ResumeWork from "@/src/app/(main)/resume/components/ResumeWork";
+import ResumeProject from "@/src/app/(main)/resume/components/ResumeProject";
+import ResumeSkill from "@/src/app/(main)/resume/components/ResumeSkill";
+import ResumeEducation from "@/src/app/(main)/resume/components/ResumeEducation";
 
 export default function ResumePage() {
   return (

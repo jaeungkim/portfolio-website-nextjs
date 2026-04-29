@@ -1,5 +1,5 @@
 import type { Task, TaskDependency } from "@jaeungkim/gantt-chart";
-import sampleTasksData from "../data/sampleTasks.json";
+import sampleTasksData from "@/src/app/(main)/gantt-chart/data/sampleTasks.json";
 
 interface TaskTemplate {
   id: string;

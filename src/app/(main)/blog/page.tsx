@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Article from "./components/Article";
-import { getSortedPostsData } from "./lib/posts";
+import Article from "@/src/app/(main)/blog/components/Article";
+import { getSortedPostsData } from "@/src/app/(main)/blog/lib/posts";
 
 export const metadata: Metadata = {
   title: "Jaeung Kim - Blog",

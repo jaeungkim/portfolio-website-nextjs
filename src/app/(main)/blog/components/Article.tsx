@@ -3,8 +3,8 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import type { Post } from "../lib/types";
-import ArticleDate from "./ArticleDate";
+import type { Post } from "@/src/app/(main)/blog/lib/types";
+import ArticleDate from "@/src/app/(main)/blog/components/ArticleDate";
 
 interface ArticleProps {
   post: Post;

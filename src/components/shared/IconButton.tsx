@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/src/lib/cn";
 
 interface IconButtonProps {
   href: string;
@@ -25,7 +26,7 @@ export default function IconButton({
         alt=""
         width={16}
         height={16}
-        className={`size-4 ${iconClassName || ""}`}
+        className={cn("size-4", iconClassName)}
       />
       {label}
     </a>

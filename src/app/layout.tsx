@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
+import { cn } from "@/src/lib/cn";
 import "@/src/styles/globals.css";
 
 const pretendard = localFont({
@@ -33,7 +34,10 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className={`${pretendard.className} antialiased bg-background text-foreground`}
+        className={cn(
+          pretendard.className,
+          "antialiased bg-background text-foreground",
+        )}
       >
         <ThemeProvider
           attribute="class"

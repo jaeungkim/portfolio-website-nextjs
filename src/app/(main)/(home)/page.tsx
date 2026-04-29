@@ -1,6 +1,6 @@
 import IconButton from "@/src/components/shared/IconButton";
-import IntroTitle from "./components/IntroTitle";
-import ModelIsland from "./components/ModelIsland";
+import IntroTitle from "@/src/app/(main)/(home)/components/IntroTitle";
+import ModelIsland from "@/src/app/(main)/(home)/components/ModelIsland";
 
 export default function Home() {
   return (

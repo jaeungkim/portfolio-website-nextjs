@@ -1,4 +1,4 @@
-import ResumeSectionItem from "./ResumeSectionItem";
+import ResumeSectionItem from "@/src/app/(main)/resume/components/ResumeSectionItem";
 
 export default function ResumeProject() {
   return (

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import type { GanttProps } from "@jaeungkim/gantt-chart";
 import "@jaeungkim/gantt-chart/style.css";
 import { useMemo } from "react";
-import { generateSampleTasks } from "../lib/generateTasks";
+import { generateSampleTasks } from "@/src/app/(main)/gantt-chart/lib/generateTasks";
 
 const ReactGanttChart = dynamic<GanttProps>(
   () =>

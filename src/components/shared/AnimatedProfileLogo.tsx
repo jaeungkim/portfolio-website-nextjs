@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/src/lib/cn";
 
 interface AnimatedProfileLogoProps {
   className?: string;
@@ -9,7 +10,10 @@ export default function AnimatedProfileLogo({
 }: AnimatedProfileLogoProps) {
   return (
     <div
-      className={`relative flex items-center justify-center opacity-0 animate-in fade-in duration-1000 fill-mode-forwards ${className}`}
+      className={cn(
+        "relative flex items-center justify-center opacity-0 animate-in fade-in duration-1000 fill-mode-forwards",
+        className,
+      )}
     >
       <Image
         src="/icons/jaekim.svg"

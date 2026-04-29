@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import CodeBlock, { TabbedInstall } from "@/src/components/shared/CodeBlock";
 import { ExternalLink, Github, Package } from "lucide-react";
-import GanttChartDemo from "./components/GanttChartDemo";
+import GanttChartDemo from "@/src/app/(main)/gantt-chart/components/GanttChartDemo";
+import { cn } from "@/src/lib/cn";
 
 const usageCode = `import { ReactGanttChart } from "@jaeungkim/gantt-chart";
 import type { Task } from "@jaeungkim/gantt-chart";
@@ -160,17 +161,17 @@ function ExternalButton({
   children: ReactNode;
   variant?: "primary" | "secondary";
 }) {
-  const className =
-    variant === "primary"
-      ? "inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
-      : "inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-secondary";
-
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
+      className={cn(
+        "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium",
+        variant === "primary"
+          ? "bg-foreground text-background transition-opacity hover:opacity-90"
+          : "border border-border text-foreground transition-colors hover:bg-secondary",
+      )}
     >
       {children}
     </a>
@@ -197,20 +198,19 @@ function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
           {rows.map((row, rowIndex) => (
             <tr
               key={row.join("-")}
-              className={
-                rowIndex === rows.length - 1
-                  ? undefined
-                  : "border-b border-border"
-              }
+              className={cn(
+                rowIndex !== rows.length - 1 && "border-b border-border",
+              )}
             >
               {row.map((cell, cellIndex) => (
                 <td
                   key={`${row[0]}-${headers[cellIndex]}`}
-                  className={`px-4 py-3 align-top ${
+                  className={cn(
+                    "px-4 py-3 align-top",
                     cellIndex === 0
                       ? "font-mono text-foreground"
-                      : "text-muted-foreground"
-                  }`}
+                      : "text-muted-foreground",
+                  )}
                 >
                   {cell}
                 </td>

@@ -4,6 +4,7 @@ import { useState, memo } from "react";
 import { Copy, Check } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 import { useTheme } from "next-themes";
+import { cn } from "@/src/lib/cn";
 
 interface CodeBlockProps {
   code: string;
@@ -57,7 +58,10 @@ function CodeBlock({
       <Highlight theme={prismTheme} code={code.trim()} language={language}>
         {({ className, tokens, getLineProps, getTokenProps }) => (
           <pre
-            className={`p-4 overflow-x-auto text-sm !bg-transparent ${className}`}
+            className={cn(
+              "p-4 overflow-x-auto text-sm !bg-transparent",
+              className,
+            )}
           >
             <code className="font-mono leading-relaxed !bg-transparent">
               {tokens.map((line, i) => (
@@ -115,11 +119,12 @@ export function TabbedInstall({ packageName }: TabbedInstallProps) {
             key={pm}
             type="button"
             onClick={() => setActiveTab(pm)}
-            className={`px-4 py-2 text-sm font-medium transition-colors ${
+            className={cn(
+              "px-4 py-2 text-sm font-medium transition-colors",
               activeTab === pm
                 ? "text-foreground bg-muted"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
+                : "text-muted-foreground hover:text-foreground",
+            )}
           >
             {pm}
           </button>
@@ -132,7 +137,9 @@ export function TabbedInstall({ packageName }: TabbedInstallProps) {
           language="bash"
         >
           {({ className, tokens, getLineProps, getTokenProps }) => (
-            <code className={`text-sm font-mono !bg-transparent ${className}`}>
+            <code
+              className={cn("text-sm font-mono !bg-transparent", className)}
+            >
               {tokens.map((line, i) => (
                 <span key={i} {...getLineProps({ line })}>
                   {line.map((token, key) => (

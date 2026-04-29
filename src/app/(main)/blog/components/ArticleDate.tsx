@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { cn } from "@/src/lib/cn";
-import { formatDate } from "../lib/utils";
+import { formatDate } from "@/src/app/(main)/blog/lib/utils";
 
 interface ArticleDateProps {
   dateString: string;

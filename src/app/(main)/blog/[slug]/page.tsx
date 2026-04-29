@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getAllPostSlugs, getPostData } from "../lib/posts";
-import { formatDate } from "../lib/utils";
+import { getAllPostSlugs, getPostData } from "@/src/app/(main)/blog/lib/posts";
+import { formatDate } from "@/src/app/(main)/blog/lib/utils";
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();

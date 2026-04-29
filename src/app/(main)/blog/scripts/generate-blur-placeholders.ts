@@ -3,7 +3,7 @@ import path from "path";
 import {
   getRemotePlaiceholder,
   getStaticPlaiceholder,
-} from "../../../../lib/plaiceholder";
+} from "@/src/lib/plaiceholder";
 
 const BLOG_DIR = path.join(process.cwd(), "src", "app", "(main)", "blog");
 const POSTS_DIR = path.join(BLOG_DIR, "posts");

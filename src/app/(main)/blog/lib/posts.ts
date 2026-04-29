@@ -7,10 +7,13 @@ import {
   type Frontmatter,
   type Post,
   type PostData,
-} from "./types";
-import { POSTS_DIR, MDX_EXTENSION } from "./constants";
+} from "@/src/app/(main)/blog/lib/types";
+import {
+  POSTS_DIR,
+  MDX_EXTENSION,
+} from "@/src/app/(main)/blog/lib/constants";
 
-export type { Post, PostData } from "./types";
+export type { Post, PostData } from "@/src/app/(main)/blog/lib/types";
 
 async function getMdxFiles(): Promise<string[]> {
   try {

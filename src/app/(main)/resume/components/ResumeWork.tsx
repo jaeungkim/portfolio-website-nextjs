@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import ExternalLink from "@/src/components/shared/ExternalLink";
-import ResumeSectionItem from "./ResumeSectionItem";
-import ExperienceDurationPill from "./ExperienceDurationPill";
+import ResumeSectionItem from "@/src/app/(main)/resume/components/ResumeSectionItem";
+import ExperienceDurationPill from "@/src/app/(main)/resume/components/ExperienceDurationPill";
 
 interface ResumeProjectItemProps {
   title: string;

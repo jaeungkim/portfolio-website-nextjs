@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ThemeToggle from "../shared/ThemeToggle";
-import AnimatedProfileLogo from "../shared/AnimatedProfileLogo";
+import ThemeToggle from "@/src/components/shared/ThemeToggle";
+import AnimatedProfileLogo from "@/src/components/shared/AnimatedProfileLogo";
 
 const navigation = [
   { name: "Home", href: "/" },
