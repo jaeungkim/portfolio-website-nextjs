@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 const STEP_MS = 50;
-const SCRAMBLE_CHARACTERS = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
+const SCRAMBLE_CHARACTERS =
+  "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
 
 function buildScrambledText(text: string, revealedCount: number): string {
   return text
@@ -21,7 +22,10 @@ interface ScrambleReveal {
   isComplete: boolean;
 }
 
-export function useScrambleReveal(text: string, active: boolean): ScrambleReveal {
+export function useScrambleReveal(
+  text: string,
+  active: boolean,
+): ScrambleReveal {
   const [revealedCount, setRevealedCount] = useState(0);
   const isComplete = revealedCount >= text.length;
 

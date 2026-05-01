@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ExternalLink } from "@/src/components/shared/ExternalLink";
 import { ResumeSectionItem } from "@/src/app/(main)/resume/components/ResumeSectionItem";
 import { ResumeTitle } from "@/src/app/(main)/resume/components/ResumeTitle";
@@ -83,12 +84,16 @@ export function ResumeWork() {
         <h2 className="text-lg font-bold text-primary uppercase tracking-wider">
           Experiences
         </h2>
-        <ExperienceDurationPill />
+        <Suspense fallback={null}>
+          <ExperienceDurationPill />
+        </Suspense>
       </div>
 
       <div className="space-y-12">
         <ResumeSectionItem period="2024.01 ~ 현재">
-          <ResumeTitle link="https://e8ight.co.kr/ndxpro/">이에이트</ResumeTitle>
+          <ResumeTitle link="https://e8ight.co.kr/ndxpro/">
+            이에이트
+          </ResumeTitle>
           <ResumeMeta
             location="잠실, 대한민국"
             role="플랫폼 개발팀 프론트엔드 개발자 | 주임 연구원"

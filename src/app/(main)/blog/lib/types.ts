@@ -21,10 +21,7 @@ export interface PostData {
 
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 
-export function parseFrontmatter(
-  raw: unknown,
-  filename: string,
-): Frontmatter {
+export function parseFrontmatter(raw: unknown, filename: string): Frontmatter {
   if (typeof raw !== "object" || raw === null) {
     throw new Error(`[${filename}] frontmatter must be an object`);
   }

@@ -7,10 +7,7 @@ import {
   type Post,
   type PostData,
 } from "@/src/app/(main)/blog/lib/types";
-import {
-  POSTS_DIR,
-  MDX_EXTENSION,
-} from "@/src/app/(main)/blog/lib/constants";
+import { POSTS_DIR, MDX_EXTENSION } from "@/src/app/(main)/blog/lib/constants";
 
 export type { Post, PostData } from "@/src/app/(main)/blog/lib/types";
 

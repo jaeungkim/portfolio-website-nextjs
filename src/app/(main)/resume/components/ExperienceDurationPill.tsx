@@ -1,3 +1,5 @@
+"use client";
+
 import { Pill } from "@/src/components/shared/Pill";
 import {
   calculateTotalExperience,
