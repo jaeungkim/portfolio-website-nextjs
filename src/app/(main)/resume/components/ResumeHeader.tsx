@@ -1,7 +1,34 @@
 import Image from "next/image";
 import { Github, Linkedin, Mail, FileText } from "lucide-react";
 
-export default function ResumeHeader() {
+const SOCIAL_LINKS = [
+  {
+    href: "mailto:jaewoongkim95@gmail.com",
+    icon: Mail,
+    label: "Email",
+    external: false,
+  },
+  {
+    href: "https://github.com/jaeungkim",
+    icon: Github,
+    label: "GitHub",
+    external: true,
+  },
+  {
+    href: "https://www.linkedin.com/in/jaeungkim0526",
+    icon: Linkedin,
+    label: "LinkedIn",
+    external: true,
+  },
+  {
+    href: "https://jaeungkim.notion.site",
+    icon: FileText,
+    label: "Notion",
+    external: true,
+  },
+] as const;
+
+export function ResumeHeader() {
   return (
     <section className="grid gap-y-5 sm:gap-y-6 md:grid-cols-[clamp(180px,24vw,220px)_minmax(0,1fr)] md:gap-x-8 lg:gap-x-10">
       <div className="w-full max-w-[150px] overflow-hidden rounded-xl border border-border bg-muted sm:max-w-[172px] md:row-span-2 md:w-[clamp(180px,24vw,220px)] md:max-w-none md:self-start">
@@ -28,44 +55,23 @@ export default function ResumeHeader() {
         </div>
 
         <div className="flex flex-wrap items-center justify-start gap-x-4 gap-y-2 md:gap-x-5">
-          <a
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            href="mailto:jaewoongkim95@gmail.com"
-          >
-            <Mail className="size-3" aria-hidden="true" />
-            <span>Email</span>
-          </a>
-          <a
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            href="https://github.com/jaeungkim"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Github className="size-3" aria-hidden="true" />
-            <span>GitHub</span>
-          </a>
-          <a
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            href="https://www.linkedin.com/in/jaeungkim0526"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Linkedin className="size-3" aria-hidden="true" />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            href="https://jaeungkim.notion.site"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FileText className="size-3" aria-hidden="true" />
-            <span>Notion</span>
-          </a>
+          {SOCIAL_LINKS.map(({ href, icon: Icon, label, external }) => (
+            <a
+              key={label}
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              href={href}
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              <Icon className="size-3" aria-hidden="true" />
+              <span>{label}</span>
+            </a>
+          ))}
         </div>
       </header>
 
-      <div className="max-w-[72ch] space-y-3 text-left text-[15.5px] leading-7 text-muted-foreground">
+      <div className="max-w-[72ch] space-y-3 text-left text-base leading-7 text-muted-foreground">
         <p>
           안녕하세요. 캐나다 밴쿠버에서 나고 자라 다양한 문화 속에서 성장한
           프론트엔드 개발자입니다. 웹 서비스의 기획과 설계부터 개발, 배포,

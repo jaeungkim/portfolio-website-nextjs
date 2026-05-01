@@ -1,27 +1,28 @@
-import ExternalLink from "@/src/components/shared/ExternalLink";
+import { ExternalLink } from "@/src/components/shared/ExternalLink";
+import { ResumeRow } from "@/src/app/(main)/resume/components/ResumeRow";
 
-export default function ResumeEducation() {
+export function ResumeEducation() {
   return (
     <>
-      <div className="font-semibold text-foreground text-3xl uppercase">
+      <h2 className="text-lg font-bold text-primary uppercase tracking-wider">
         Education
-      </div>
+      </h2>
 
-      <div className="mt-8 md:grid md:grid-cols-4 md:gap-4">
-        <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
-          2020.04
-        </div>
-        <div className="col-span-3 space-y-2">
-          <ExternalLink
-            additionalClassName="text-2xl"
-            link="https://www.ubc.ca/"
-          >
+      <div className="mt-8">
+        <ResumeRow
+          leading={
+            <p className="text-2xl font-medium text-muted-foreground">
+              2020.04
+            </p>
+          }
+        >
+          <ExternalLink link="https://www.ubc.ca/" className="text-2xl">
             University of British Columbia
           </ExternalLink>
           <p className="text-base font-normal text-muted-foreground italic">
             Bachelor of Science - Major in Computer Science
           </p>
-        </div>
+        </ResumeRow>
       </div>
     </>
   );

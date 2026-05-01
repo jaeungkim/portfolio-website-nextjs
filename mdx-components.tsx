@@ -1,16 +1,18 @@
-import type React from "react";
 import type { MDXComponents } from "mdx/types";
-import BlurImage from "@/src/components/shared/BlurImage";
+import { BlurImage } from "@/src/components/shared/BlurImage";
 import { InlineCode } from "@/src/components/shared/InlineCode";
 import placeholders from "@/src/app/(main)/blog/data/placeholders.json";
 
-type PlaceholderEntry = {
+const FALLBACK_WIDTH = 1080;
+const FALLBACK_HEIGHT = 1440;
+
+interface PlaceholderEntry {
   blurDataURL: string;
   width: number;
   height: number;
-};
+}
 
-interface BlurImageProps {
+interface BlurImageMdxProps {
   url?: string;
   src?: string;
   alt?: string;
@@ -23,10 +25,7 @@ interface BlurImageProps {
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  const placeholderMap = placeholders as unknown as Record<
-    string,
-    PlaceholderEntry
-  >;
+  const placeholderMap = placeholders as Record<string, PlaceholderEntry>;
 
   function BlurImageWithPlaceholder({
     url,
@@ -38,7 +37,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     className,
     sizes,
     quality,
-  }: BlurImageProps) {
+  }: BlurImageMdxProps) {
     const imageUrl = url ?? src;
 
     if (!imageUrl) {
@@ -50,11 +49,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return (
       <BlurImage
         url={imageUrl}
-        alt={alt}
+        alt={alt ?? ""}
         blurDataURL={entry?.blurDataURL}
         priority={priority}
-        width={width ?? entry?.width}
-        height={height ?? entry?.height}
+        width={width ?? entry?.width ?? FALLBACK_WIDTH}
+        height={height ?? entry?.height ?? FALLBACK_HEIGHT}
         className={className}
         sizes={sizes}
         quality={quality}

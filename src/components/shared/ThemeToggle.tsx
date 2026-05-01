@@ -3,13 +3,13 @@
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 
-export default function ThemeToggle() {
-  const { setTheme } = useTheme();
+export function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
       type="button"
-      onClick={() => setTheme((theme) => (theme === "dark" ? "light" : "dark"))}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className="relative flex items-center justify-center size-8 rounded-md hover:bg-muted transition-colors"
       aria-label="Toggle theme"
     >

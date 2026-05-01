@@ -1,23 +1,19 @@
-"use client";
-
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Post } from "@/src/app/(main)/blog/lib/types";
-import ArticleDate from "@/src/app/(main)/blog/components/ArticleDate";
+import { ArticleDateMobile } from "@/src/app/(main)/blog/components/ArticleDateMobile";
+import { ArticleDateDesktop } from "@/src/app/(main)/blog/components/ArticleDateDesktop";
+import { MotionArticle } from "@/src/app/(main)/blog/components/MotionArticle";
 
 interface ArticleProps {
   post: Post;
   index: number;
 }
 
-export default function Article({ post, index }: ArticleProps) {
+export function Article({ post, index }: ArticleProps) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, delay: index * 0.01 }}
+    <MotionArticle
+      index={index}
       className="md:grid md:grid-cols-4 md:items-baseline"
     >
       <Link
@@ -33,7 +29,7 @@ export default function Article({ post, index }: ArticleProps) {
           {post.title}
         </h2>
 
-        <ArticleDate dateString={post.date} mobile />
+        <ArticleDateMobile dateString={post.date} />
 
         <p className="relative z-10 mt-2 text-sm text-muted-foreground">
           {post.summary}
@@ -45,7 +41,7 @@ export default function Article({ post, index }: ArticleProps) {
         </div>
       </Link>
 
-      <ArticleDate dateString={post.date} mobile={false} />
-    </motion.article>
+      <ArticleDateDesktop dateString={post.date} />
+    </MotionArticle>
   );
 }

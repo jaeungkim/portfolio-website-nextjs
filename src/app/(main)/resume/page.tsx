@@ -1,8 +1,15 @@
-import ResumeHeader from "@/src/app/(main)/resume/components/ResumeHeader";
-import ResumeWork from "@/src/app/(main)/resume/components/ResumeWork";
-import ResumeProject from "@/src/app/(main)/resume/components/ResumeProject";
-import ResumeSkill from "@/src/app/(main)/resume/components/ResumeSkill";
-import ResumeEducation from "@/src/app/(main)/resume/components/ResumeEducation";
+import type { Metadata } from "next";
+import { ResumeHeader } from "@/src/app/(main)/resume/components/ResumeHeader";
+import { ResumeWork } from "@/src/app/(main)/resume/components/ResumeWork";
+import { ResumeProject } from "@/src/app/(main)/resume/components/ResumeProject";
+import { ResumeSkill } from "@/src/app/(main)/resume/components/ResumeSkill";
+import { ResumeEducation } from "@/src/app/(main)/resume/components/ResumeEducation";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description:
+    "Jaeung Kim — frontend developer resume covering experience, projects, skills, and education.",
+};
 
 export default function ResumePage() {
   return (

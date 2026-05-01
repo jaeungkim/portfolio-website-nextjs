@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { getAllPostSlugs, getPostData } from "@/src/app/(main)/blog/lib/posts";
 import { formatDate } from "@/src/app/(main)/blog/lib/utils";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -21,7 +23,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${postData.title} | Jaeung Kim`,
+    title: postData.title,
     description: postData.summary,
     openGraph: {
       title: postData.title,

@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, memo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 import { useTheme } from "next-themes";
 import { cn } from "@/src/lib/cn";
+
+const COPY_FEEDBACK_MS = 2000;
 
 interface CodeBlockProps {
   code: string;
@@ -13,13 +15,32 @@ interface CodeBlockProps {
   showLineNumbers?: boolean;
 }
 
-function CopyButton({ text }: { text: string }) {
+interface CopyButtonProps {
+  text: string;
+}
+
+function CopyButton({ text }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (timeoutRef.current !== null) {
+      window.clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = window.setTimeout(() => {
+      setCopied(false);
+      timeoutRef.current = null;
+    }, COPY_FEEDBACK_MS);
   };
 
   return (
@@ -34,7 +55,14 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-function CodeBlock({
+function lineKey(
+  line: ReadonlyArray<{ content: string }>,
+  index: number,
+): string {
+  return `${index}:${line.map((token) => token.content).join("")}`;
+}
+
+export function CodeBlock({
   code,
   filename,
   language = "typescript",
@@ -66,7 +94,7 @@ function CodeBlock({
             <code className="font-mono leading-relaxed !bg-transparent">
               {tokens.map((line, i) => (
                 <div
-                  key={i}
+                  key={lineKey(line, i)}
                   {...getLineProps({ line })}
                   className={showLineNumbers ? "table-row" : ""}
                 >
@@ -77,7 +105,10 @@ function CodeBlock({
                   )}
                   <span className={showLineNumbers ? "table-cell" : ""}>
                     {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token })} />
+                      <span
+                        key={`${key}:${token.content}`}
+                        {...getTokenProps({ token })}
+                      />
                     ))}
                   </span>
                 </div>
@@ -89,8 +120,6 @@ function CodeBlock({
     </div>
   );
 }
-
-export default memo(CodeBlock);
 
 type PackageManager = "npm" | "yarn" | "pnpm" | "bun";
 
@@ -141,9 +170,12 @@ export function TabbedInstall({ packageName }: TabbedInstallProps) {
               className={cn("text-sm font-mono !bg-transparent", className)}
             >
               {tokens.map((line, i) => (
-                <span key={i} {...getLineProps({ line })}>
+                <span key={lineKey(line, i)} {...getLineProps({ line })}>
                   {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token })} />
+                    <span
+                      key={`${key}:${token.content}`}
+                      {...getTokenProps({ token })}
+                    />
                   ))}
                 </span>
               ))}

@@ -12,12 +12,35 @@ const pretendard = localFont({
   preload: true,
 });
 
+const SITE_NAME = "Jaeung Kim";
+const SITE_URL = "https://jaeungkim.com";
+
 export const metadata: Metadata = {
-  title: "JaeKim_Portfolio",
-  description: "Jae Kim Portfolio Website",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: "Frontend developer portfolio, resume, and travel notes.",
   icons: {
     icon: "/icons/jaekim.svg",
     shortcut: "/icons/jaekim.svg",
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: "Frontend developer portfolio, resume, and travel notes.",
+    url: SITE_URL,
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_NAME,
+    description: "Frontend developer portfolio, resume, and travel notes.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

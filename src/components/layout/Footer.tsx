@@ -6,7 +6,7 @@ const menuItems = [
   { label: "Blog", url: "/blog" },
 ];
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="mt-32 backdrop-blur w-full border-t border-border py-8">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -15,7 +15,7 @@ export default function Footer() {
             {menuItems.map((item) => (
               <Link
                 key={item.url}
-                className="transition hover:text-cyan-500 dark:hover:text-cyan-400"
+                className="transition hover:text-primary"
                 href={item.url}
               >
                 {item.label}

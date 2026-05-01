@@ -1,6 +1,4 @@
-"use client";
-
-import Pill from "@/src/components/shared/Pill";
+import { Pill } from "@/src/components/shared/Pill";
 import {
   calculateTotalExperience,
   formatExperienceText,
@@ -13,7 +11,7 @@ const EXPERIENCES = [
   { startDate: "2021-01-07", endDate: "2022-05-15" },
 ] as const;
 
-export default function ExperienceDurationPill() {
+export function ExperienceDurationPill() {
   const experience = calculateTotalExperience(EXPERIENCES, new Date());
 
   return (

@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { Github, Linkedin } from "lucide-react";
-import IconButton from "@/src/components/shared/IconButton";
-import IntroTitle from "@/src/app/(main)/(home)/components/IntroTitle";
-import ModelIsland from "@/src/app/(main)/(home)/components/ModelIsland";
+import { IconButton } from "@/src/components/shared/IconButton";
+import { IntroTitle } from "@/src/app/(main)/(home)/components/IntroTitle";
+import { ModelIsland } from "@/src/app/(main)/(home)/components/ModelIsland";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Jaeung Kim — frontend developer based in Seoul, building expressive product UIs.",
+};
 
 export default function Home() {
   return (

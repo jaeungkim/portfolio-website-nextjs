@@ -3,8 +3,7 @@ import path from "path";
 import { cacheLife } from "next/cache";
 import matter from "gray-matter";
 import {
-  frontmatterSchema,
-  type Frontmatter,
+  parseFrontmatter,
   type Post,
   type PostData,
 } from "@/src/app/(main)/blog/lib/types";
@@ -37,24 +36,11 @@ function sortPostsByDate(posts: Post[]): Post[] {
   });
 }
 
-function parseFrontmatter(fileContent: string, filename: string): Frontmatter {
-  const { data } = matter(fileContent);
-  const result = frontmatterSchema.safeParse(data);
-
-  if (!result.success) {
-    const errors = result.error.issues
-      .map((issue) => `  - ${issue.path.join(".")}: ${issue.message}`)
-      .join("\n");
-    throw new Error(`[${filename}] Frontmatter 유효성 검사 실패:\n${errors}`);
-  }
-
-  return result.data;
-}
-
 async function parseMdxFileToPost(filename: string): Promise<Post> {
   const filePath = path.join(POSTS_DIR, filename);
   const fileContent = await fs.readFile(filePath, "utf8");
-  const frontmatter = parseFrontmatter(fileContent, filename);
+  const { data } = matter(fileContent);
+  const frontmatter = parseFrontmatter(data, filename);
 
   return {
     id: filenameToSlug(filename),
@@ -98,10 +84,8 @@ export async function getPostData(slug: string): Promise<PostData | null> {
 
   try {
     const fileContent = await fs.readFile(filePath, "utf8");
-    const frontmatter = parseFrontmatter(
-      fileContent,
-      `${slug}${MDX_EXTENSION}`,
-    );
+    const { data } = matter(fileContent);
+    const frontmatter = parseFrontmatter(data, `${slug}${MDX_EXTENSION}`);
 
     return {
       slug,
@@ -111,7 +95,11 @@ export async function getPostData(slug: string): Promise<PostData | null> {
       summary: frontmatter.summary,
     };
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+    if (
+      error instanceof Error &&
+      "code" in error &&
+      (error as NodeJS.ErrnoException).code === "ENOENT"
+    ) {
       return null;
     }
     console.error(`[${slug}] 포스트 데이터 조회 오류:`, error);

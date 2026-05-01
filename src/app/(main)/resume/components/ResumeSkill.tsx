@@ -1,56 +1,50 @@
-export default function ResumeSkill() {
+import { ResumeSkillRow } from "@/src/app/(main)/resume/components/ResumeSkillRow";
+
+const SKILL_GROUPS = [
+  {
+    category: "Frontend",
+    skills: [
+      "Next.js",
+      "React",
+      "React Query",
+      "Recoil",
+      "Zustand",
+      "Redux",
+      "JavaScript",
+      "TypeScript",
+      "WebGL",
+      "Three.js",
+      "GSAP",
+      "Tailwind",
+      "Storybook",
+      "Figma",
+    ],
+  },
+  {
+    category: "Backend",
+    skills: ["Node.js", "Nest.js", "Express.js", "PostgreSQL", "MongoDB"],
+  },
+  {
+    category: "DevOps",
+    skills: ["AWS", "Docker", "Jenkins"],
+  },
+];
+
+export function ResumeSkill() {
   return (
     <>
-      <div className="font-semibold text-foreground text-3xl uppercase">
+      <h2 className="text-lg font-bold text-primary uppercase tracking-wider">
         Skills
-      </div>
+      </h2>
 
       <div className="mt-8 space-y-8">
-        <div className="md:grid md:grid-cols-4 md:gap-2">
-          <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
-            Frontend
-          </div>
-          <ul className="col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 pl-5 list-disc text-base">
-            <li>Next.js</li>
-            <li>React</li>
-            <li>React Query</li>
-            <li>Recoil</li>
-            <li>Zustand</li>
-            <li>Redux</li>
-            <li>JavaScript</li>
-            <li>TypeScript</li>
-            <li>WebGL</li>
-            <li>Three.js</li>
-            <li>GSAP</li>
-            <li>Tailwind</li>
-            <li>Storybook</li>
-            <li>Figma</li>
-          </ul>
-        </div>
-
-        <div className="md:grid md:grid-cols-4 md:gap-2">
-          <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
-            Backend
-          </div>
-          <ul className="col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 pl-5 list-disc text-base">
-            <li>Node.js</li>
-            <li>Nest.js</li>
-            <li>Express.js</li>
-            <li>PostgreSQL</li>
-            <li>MongoDB</li>
-          </ul>
-        </div>
-
-        <div className="md:grid md:grid-cols-4 md:gap-2">
-          <div className="text-2xl font-medium text-muted-foreground mb-2 md:mb-0">
-            DevOps
-          </div>
-          <ul className="col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-1 pl-5 list-disc text-base">
-            <li>AWS</li>
-            <li>Docker</li>
-            <li>Jenkins</li>
-          </ul>
-        </div>
+        {SKILL_GROUPS.map((group) => (
+          <ResumeSkillRow
+            key={group.category}
+            category={group.category}
+            skills={group.skills}
+          />
+        ))}
       </div>
     </>
   );

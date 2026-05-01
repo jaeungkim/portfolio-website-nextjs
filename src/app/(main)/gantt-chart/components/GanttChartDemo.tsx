@@ -3,8 +3,9 @@
 import dynamic from "next/dynamic";
 import type { GanttProps } from "@jaeungkim/gantt-chart";
 import "@jaeungkim/gantt-chart/style.css";
-import { useMemo } from "react";
 import { generateSampleTasks } from "@/src/app/(main)/gantt-chart/lib/generateTasks";
+
+const SAMPLE_TASKS = generateSampleTasks();
 
 const ReactGanttChart = dynamic<GanttProps>(
   () =>
@@ -12,13 +13,11 @@ const ReactGanttChart = dynamic<GanttProps>(
   { ssr: false },
 );
 
-export default function GanttChartDemo() {
-  const sampleTasks = useMemo(() => generateSampleTasks(), []);
-
+export function GanttChartDemo() {
   return (
     <div className="bg-card">
       <ReactGanttChart
-        tasks={sampleTasks}
+        tasks={SAMPLE_TASKS}
         height={600}
         width="100%"
         defaultScale="month"

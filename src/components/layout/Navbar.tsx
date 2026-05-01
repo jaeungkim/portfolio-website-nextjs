@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ThemeToggle from "@/src/components/shared/ThemeToggle";
-import AnimatedProfileLogo from "@/src/components/shared/AnimatedProfileLogo";
+import { ThemeToggle } from "@/src/components/shared/ThemeToggle";
+import { AnimatedProfileLogo } from "@/src/components/shared/AnimatedProfileLogo";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -8,9 +8,9 @@ const navigation = [
   { name: "Blog", href: "/blog" },
 ];
 
-export default function Navbar() {
+export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 bg-opacity-70 backdrop-blur py-4 h-[64px]">
+    <header className="sticky top-0 z-40 backdrop-blur py-4 h-16">
       <div className="size-full mx-auto max-w-5xl relative px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <div className="flex flex-1">
           <Link href="/" className="pointer-events-auto">
@@ -22,13 +22,14 @@ export default function Navbar() {
           <nav className="pointer-events-auto">
             <ul className="justify-center items-center flex rounded-full px-3 text-sm font-medium text-foreground backdrop-blur">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="relative block px-3 py-2 transition hover:text-muted-foreground"
-                >
-                  {item.name}
-                </Link>
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="relative block px-3 py-2 transition hover:text-muted-foreground"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
               ))}
             </ul>
           </nav>

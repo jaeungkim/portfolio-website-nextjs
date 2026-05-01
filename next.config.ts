@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   cacheComponents: true,
   experimental: {
-    scrollRestoration: true,
     optimizePackageImports: ["lucide-react"],
   },
   images: {

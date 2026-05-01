@@ -5,9 +5,7 @@ interface AnimatedProfileLogoProps {
   className?: string;
 }
 
-export default function AnimatedProfileLogo({
-  className,
-}: AnimatedProfileLogoProps) {
+export function AnimatedProfileLogo({ className }: AnimatedProfileLogoProps) {
   return (
     <div
       className={cn(
@@ -20,8 +18,8 @@ export default function AnimatedProfileLogo({
         alt="Jaeung Kim Logo"
         width={100}
         height={30}
-        className="object-contain dark:invert w-auto h-auto"
-        preload
+        className="object-contain dark:invert"
+        priority
       />
     </div>
   );

@@ -1,34 +1,34 @@
 import Image from "next/image";
 import { cn } from "@/src/lib/cn";
 
-interface Props {
+interface BlurImageProps {
   url: string;
-  alt?: string;
+  alt: string;
+  width: number;
+  height: number;
   blurDataURL?: string;
   priority?: boolean;
-  width?: number;
-  height?: number;
   className?: string;
   sizes?: string;
   quality?: number;
 }
 
-export default function BlurImage({
+export function BlurImage({
   url,
   alt,
+  width,
+  height,
   blurDataURL,
   priority = false,
-  width = 1080,
-  height = 1440,
   className,
   sizes = "(max-width: 768px) 100vw, 768px",
   quality = 75,
-}: Props) {
+}: BlurImageProps) {
   return (
     <div className="not-prose my-0 overflow-hidden rounded-md">
       <Image
         src={url}
-        alt={alt || ""}
+        alt={alt}
         width={width}
         height={height}
         quality={quality}

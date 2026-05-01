@@ -1,14 +1,8 @@
-import { z } from "zod";
-
-export const frontmatterSchema = z.object({
-  title: z.string().min(1, "제목은 필수입니다"),
-  date: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "날짜는 YYYY-MM-DD 형식이어야 합니다"),
-  summary: z.string().optional().default(""),
-});
-
-export type Frontmatter = z.infer<typeof frontmatterSchema>;
+export interface Frontmatter {
+  title: string;
+  date: string;
+  summary: string;
+}
 
 export interface Post {
   id: string;
@@ -23,4 +17,33 @@ export interface PostData {
   date: string;
   title: string;
   summary: string;
+}
+
+const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+
+export function parseFrontmatter(
+  raw: unknown,
+  filename: string,
+): Frontmatter {
+  if (typeof raw !== "object" || raw === null) {
+    throw new Error(`[${filename}] frontmatter must be an object`);
+  }
+  const fields = raw as Record<string, unknown>;
+
+  const title = fields.title;
+  if (typeof title !== "string" || title.length === 0) {
+    throw new Error(`[${filename}] frontmatter.title is required`);
+  }
+
+  const date = fields.date;
+  if (typeof date !== "string" || !DATE_REGEX.test(date)) {
+    throw new Error(`[${filename}] frontmatter.date must be YYYY-MM-DD`);
+  }
+
+  const summaryRaw = fields.summary;
+  if (summaryRaw !== undefined && typeof summaryRaw !== "string") {
+    throw new Error(`[${filename}] frontmatter.summary must be a string`);
+  }
+
+  return { title, date, summary: summaryRaw ?? "" };
 }

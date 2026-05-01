@@ -1,227 +1,23 @@
-import type { ReactNode } from "react";
-import CodeBlock, { TabbedInstall } from "@/src/components/shared/CodeBlock";
+import type { Metadata } from "next";
 import { ExternalLink, Github, Package } from "lucide-react";
-import GanttChartDemo from "@/src/app/(main)/gantt-chart/components/GanttChartDemo";
-import { cn } from "@/src/lib/cn";
+import { CodeBlock, TabbedInstall } from "@/src/components/shared/CodeBlock";
+import { GanttChartDemo } from "@/src/app/(main)/gantt-chart/components/GanttChartDemo";
+import { ExternalButton } from "@/src/app/(main)/gantt-chart/components/ExternalButton";
+import { DataTable } from "@/src/app/(main)/gantt-chart/components/DataTable";
+import {
+  USAGE_CODE,
+  TASK_FORMAT_CODE,
+  TOC_ITEMS,
+  FEATURES,
+  PROP_ROWS,
+  SCALE_ROWS,
+} from "@/src/app/(main)/gantt-chart/data/pageContent";
 
-const usageCode = `import { ReactGanttChart } from "@jaeungkim/gantt-chart";
-import type { Task } from "@jaeungkim/gantt-chart";
-
-const tasks: Task[] = [
-  {
-    id: "1",
-    name: "Project Kickoff",
-    startDate: "2024-06-01T09:00:00Z",
-    endDate: "2024-06-03T17:00:00Z",
-    parentId: null,
-    sequence: "1",
-    dependencies: [],
-  },
-  {
-    id: "2",
-    name: "Requirements Gathering",
-    startDate: "2024-06-04T09:00:00Z",
-    endDate: "2024-06-10T17:00:00Z",
-    parentId: null,
-    sequence: "2",
-    dependencies: [{ targetId: "1", type: "FS" }],
-  },
-];
-
-export default function App() {
-  return (
-    <ReactGanttChart
-      tasks={tasks}
-      height={600}
-      width="100%"
-      theme="system"
-      defaultScale="month"
-      onTasksChange={(updatedTasks) => console.log(updatedTasks)}
-    />
-  );
-}`;
-
-const taskFormatCode = `interface Task {
-  id: string;
-  name: string;
-  startDate: string; // UTC ISO string
-  endDate: string; // UTC ISO string
-  parentId: string | null;
-  sequence: string;
-  dependencies?: TaskDependency[];
-}
-
-interface TaskDependency {
-  targetId: string;
-  type: DependencyType;
-}
-
-type DependencyType = "FS" | "SS" | "FF" | "SF";
-// FS = Finish-to-Start
-// SS = Start-to-Start
-// FF = Finish-to-Finish
-// SF = Start-to-Finish`;
-
-const tocItems = [
-  { id: "installation", label: "Installation" },
-  { id: "features", label: "Features" },
-  { id: "usage", label: "Usage" },
-  { id: "task-format", label: "Task Format" },
-  { id: "demo", label: "Live Demo" },
-  { id: "props", label: "Props" },
-  { id: "scales", label: "Timeline Scales" },
-];
-
-const features = [
-  {
-    title: "Timeline scales",
-    description:
-      "Day, week, month, and year views with matching drag intervals.",
-  },
-  {
-    title: "Virtualized rendering",
-    description:
-      "Keeps large task sets responsive by rendering only what is visible.",
-  },
-  {
-    title: "Dependency support",
-    description:
-      "Supports FS, SS, FF, and SF relationships with auto-routed connectors.",
-  },
-  {
-    title: "Interactive editing",
-    description:
-      "Drag bars, resize edges, and push updates back through a single callback.",
-  },
-  {
-    title: "Theme-aware",
-    description:
-      "Fits light, dark, and system themes without extra wrapper code.",
-  },
-  {
-    title: "Minimal API surface",
-    description:
-      "The exported component stays small enough to drop into product code quickly.",
-  },
-];
-
-const propRows = [
-  ["tasks", "Task[]", "[]", "Array of task objects to render."],
-  [
-    "onTasksChange",
-    "(tasks) => void",
-    "undefined",
-    "Receives updated task data after edits.",
-  ],
-  [
-    "height",
-    "number | string",
-    "600",
-    "Chart height in pixels or any CSS length.",
-  ],
-  [
-    "width",
-    "number | string",
-    `"100%"`,
-    "Chart width in pixels or any CSS length.",
-  ],
-  [
-    "theme",
-    `"light" | "dark" | "system"`,
-    `"system"`,
-    "Theme mode applied inside the chart.",
-  ],
-  [
-    "defaultScale",
-    `"day" | "week" | "month" | "year"`,
-    `"month"`,
-    "Initial visible timeline scale.",
-  ],
-  [
-    "className",
-    "string",
-    "undefined",
-    "Additional class name for the outer wrapper.",
-  ],
-];
-
-const scaleRows = [
-  ["day", "Day", "Hour", "1 hour"],
-  ["week", "Week", "Day", "6 hours"],
-  ["month", "Month", "Day", "1 day"],
-  ["year", "Year", "Month", "7 days"],
-];
-
-function ExternalButton({
-  href,
-  children,
-  variant = "primary",
-}: {
-  href: string;
-  children: ReactNode;
-  variant?: "primary" | "secondary";
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={cn(
-        "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium",
-        variant === "primary"
-          ? "bg-foreground text-background transition-opacity hover:opacity-90"
-          : "border border-border text-foreground transition-colors hover:bg-secondary",
-      )}
-    >
-      {children}
-    </a>
-  );
-}
-
-function DataTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
-  return (
-    <div className="overflow-x-auto rounded-2xl border border-border">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="bg-secondary/40">
-            {headers.map((header) => (
-              <th
-                key={header}
-                className="border-b border-border px-4 py-3 text-left font-medium"
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr
-              key={row.join("-")}
-              className={cn(
-                rowIndex !== rows.length - 1 && "border-b border-border",
-              )}
-            >
-              {row.map((cell, cellIndex) => (
-                <td
-                  key={`${row[0]}-${headers[cellIndex]}`}
-                  className={cn(
-                    "px-4 py-3 align-top",
-                    cellIndex === 0
-                      ? "font-mono text-foreground"
-                      : "text-muted-foreground",
-                  )}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
+export const metadata: Metadata = {
+  title: "@jaeungkim/gantt-chart",
+  description:
+    "Lightweight, high-performance Gantt chart UI for React with virtualization, editable dependencies, and a minimal API surface.",
+};
 
 export default function GanttChartPage() {
   return (
@@ -255,7 +51,7 @@ export default function GanttChartPage() {
             </ExternalButton>
           </div>
           <nav className="flex flex-wrap gap-2 pt-2">
-            {tocItems.map((item) => (
+            {TOC_ITEMS.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -278,7 +74,7 @@ export default function GanttChartPage() {
       <section id="features" className="space-y-6 scroll-mt-24">
         <h2 className="text-2xl font-semibold text-foreground">Features</h2>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {features.map((feature) => (
+          {FEATURES.map((feature) => (
             <article
               key={feature.title}
               className="rounded-2xl border border-border bg-card p-5"
@@ -297,7 +93,7 @@ export default function GanttChartPage() {
       <section id="usage" className="space-y-4 scroll-mt-24">
         <h2 className="text-2xl font-semibold text-foreground">Usage</h2>
         <div className="max-w-3xl">
-          <CodeBlock code={usageCode} filename="App.tsx" />
+          <CodeBlock code={USAGE_CODE} filename="App.tsx" />
         </div>
       </section>
 
@@ -315,7 +111,7 @@ export default function GanttChartPage() {
           </p>
         </div>
         <div className="max-w-3xl">
-          <CodeBlock code={taskFormatCode} filename="types.ts" />
+          <CodeBlock code={TASK_FORMAT_CODE} filename="types.ts" />
         </div>
       </section>
 
@@ -344,7 +140,7 @@ export default function GanttChartPage() {
         <h2 className="text-2xl font-semibold text-foreground">Props</h2>
         <DataTable
           headers={["Prop", "Type", "Default", "Description"]}
-          rows={propRows}
+          rows={PROP_ROWS}
         />
       </section>
 
@@ -360,7 +156,7 @@ export default function GanttChartPage() {
         </div>
         <DataTable
           headers={["Scale", "Header Label", "Tick Unit", "Drag Step"]}
-          rows={scaleRows}
+          rows={SCALE_ROWS}
         />
       </section>
 

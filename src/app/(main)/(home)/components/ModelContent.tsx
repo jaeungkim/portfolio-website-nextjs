@@ -15,45 +15,49 @@ import {
 import * as THREE from "three";
 
 const MODEL_PATH = "/3d-models/models/scene-draco.glb";
+const MODEL_SCALE_DIVISOR = 120;
+const CAMERA_POSITION: [number, number, number] = [2.5, 5, 7];
+const MODEL_POSITION: [number, number, number] = [-0.5, -2.5, 0];
 
 useGLTF.preload(MODEL_PATH);
 
 function ModelScene() {
   const groupRef = useRef<THREE.Group>(null);
   const { size } = useThree();
-  const { scene, animations } = useGLTF(MODEL_PATH) as {
-    scene: THREE.Group;
-    animations: THREE.AnimationClip[];
-  };
+  const { scene, animations } = useGLTF(MODEL_PATH);
   const { actions } = useAnimations(animations, groupRef);
   const firstClip = animations[0];
   const firstAction = firstClip ? actions?.[firstClip.name] : null;
 
   useEffect(() => {
     firstAction?.play();
-
     return () => {
       firstAction?.stop();
     };
-  }, [actions, firstAction]);
+  }, [firstAction]);
 
   return (
     <group ref={groupRef}>
       <Clone
-        object={scene}
-        scale={Math.min(size.width, size.height) / 120}
-        position={[-0.5, -2.5, 0]}
+        object={scene as THREE.Group}
+        scale={Math.min(size.width, size.height) / MODEL_SCALE_DIVISOR}
+        position={MODEL_POSITION}
       />
       <Preload all />
     </group>
   );
 }
 
-export default function Model() {
+function Loader() {
+  const { progress } = useProgress();
+  return <Html center>{Math.round(progress)} %</Html>;
+}
+
+export function ModelContent() {
   return (
     <div className="absolute inset-0">
       <Canvas dpr={[1, 1.5]} gl={{ antialias: false }}>
-        <PerspectiveCamera makeDefault position={[2.5, 5, 7]} fov={60} />
+        <PerspectiveCamera makeDefault position={CAMERA_POSITION} fov={60} />
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 10, 5]} intensity={1} />
         <Suspense fallback={<Loader />}>
@@ -67,8 +71,4 @@ export default function Model() {
       </Canvas>
     </div>
   );
-}
-
-function Loader() {
-  return <Html center>{Math.round(useProgress().progress)} %</Html>;
 }
