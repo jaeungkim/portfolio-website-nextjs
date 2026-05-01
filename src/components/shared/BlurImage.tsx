@@ -5,8 +5,9 @@ interface Props {
   url: string;
   alt?: string;
   blurDataURL?: string;
-  preload?: boolean;
   priority?: boolean;
+  width?: number;
+  height?: number;
   className?: string;
   sizes?: string;
   quality?: number;
@@ -16,23 +17,22 @@ export default function BlurImage({
   url,
   alt,
   blurDataURL,
-  preload,
-  priority,
+  priority = false,
+  width = 1080,
+  height = 1440,
   className,
   sizes = "(max-width: 768px) 100vw, 768px",
   quality = 75,
 }: Props) {
-  const shouldPreload = preload ?? priority ?? false;
-
   return (
     <div className="not-prose my-0 overflow-hidden rounded-md">
       <Image
         src={url}
         alt={alt || ""}
-        width={1080}
-        height={1440}
+        width={width}
+        height={height}
         quality={quality}
-        preload={shouldPreload}
+        priority={priority}
         sizes={sizes}
         className={cn("block h-auto w-full", className)}
         placeholder={blurDataURL ? "blur" : undefined}

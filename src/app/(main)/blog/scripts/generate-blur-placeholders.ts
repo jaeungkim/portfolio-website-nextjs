@@ -3,6 +3,7 @@ import path from "path";
 import {
   getRemotePlaiceholder,
   getStaticPlaiceholder,
+  type Plaiceholder,
 } from "@/src/lib/plaiceholder";
 
 const BLOG_DIR = path.join(process.cwd(), "src", "app", "(main)", "blog");
@@ -13,6 +14,20 @@ const PLACEHOLDERS_CACHE_FILE = path.join(
   PLACEHOLDERS_CACHE_DIR,
   "placeholders.json",
 );
+
+type PlaceholderEntry = {
+  blurDataURL: string;
+  width: number;
+  height: number;
+};
+
+function toEntry(placeholder: Plaiceholder): PlaceholderEntry {
+  return {
+    blurDataURL: placeholder.base64,
+    width: placeholder.width,
+    height: placeholder.height,
+  };
+}
 
 function extractImageUrls(content: string): string[] {
   const urls: string[] = [];
@@ -55,7 +70,7 @@ async function collectStaticImages(): Promise<string[]> {
   }
 }
 
-async function loadCache(): Promise<Record<string, string>> {
+async function loadCache(): Promise<Record<string, PlaceholderEntry>> {
   try {
     const cacheContent = await fs.readFile(PLACEHOLDERS_CACHE_FILE, "utf-8");
     return JSON.parse(cacheContent);
@@ -64,30 +79,23 @@ async function loadCache(): Promise<Record<string, string>> {
   }
 }
 
-async function saveCache(cache: Record<string, string>): Promise<void> {
-  try {
-    await fs.mkdir(PLACEHOLDERS_CACHE_DIR, { recursive: true });
-    await fs.writeFile(PLACEHOLDERS_CACHE_FILE, JSON.stringify(cache, null, 2));
-    console.log(`캐시 저장 완료: ${PLACEHOLDERS_CACHE_FILE}`);
-  } catch (error) {
-    console.error(`캐시 저장 실패: ${error}`);
-    throw error;
-  }
+async function saveCache(
+  cache: Record<string, PlaceholderEntry>,
+): Promise<void> {
+  await fs.mkdir(PLACEHOLDERS_CACHE_DIR, { recursive: true });
+  await fs.writeFile(PLACEHOLDERS_CACHE_FILE, JSON.stringify(cache, null, 2));
+  console.log(`캐시 저장 완료: ${PLACEHOLDERS_CACHE_FILE}`);
 }
 
 async function generatePlaceholders(): Promise<void> {
   console.log("=== 플레이스홀더 생성 시작 ===\n");
 
-  console.log("기존 캐시 로드 중...");
   const cache = await loadCache();
-  const initialCacheSize = Object.keys(cache).length;
-  console.log(`기존 캐시 항목 수: ${initialCacheSize}\n`);
+  console.log(`기존 캐시 항목 수: ${Object.keys(cache).length}\n`);
 
-  console.log("원격 이미지 URL 수집 중...");
   const imageUrls = await collectImageUrls();
-  console.log(`${imageUrls.size}개의 고유한 원격 이미지 URL 발견\n`);
+  console.log(`${imageUrls.size}개의 고유한 원격 이미지 URL 발견`);
 
-  console.log("정적 이미지 파일 수집 중...");
   const staticImages = await collectStaticImages();
   console.log(`${staticImages.length}개의 정적 이미지 파일 발견\n`);
 
@@ -95,7 +103,6 @@ async function generatePlaceholders(): Promise<void> {
   let cachedCount = 0;
   let failedCount = 0;
 
-  console.log("원격 이미지 플레이스홀더 생성 중...");
   for (const url of Array.from(imageUrls)) {
     if (cache[url]) {
       cachedCount++;
@@ -106,7 +113,7 @@ async function generatePlaceholders(): Promise<void> {
     const placeholder = await getRemotePlaiceholder(url);
 
     if (placeholder) {
-      cache[url] = placeholder;
+      cache[url] = toEntry(placeholder);
       newCount++;
     } else {
       failedCount++;
@@ -114,7 +121,6 @@ async function generatePlaceholders(): Promise<void> {
     }
   }
 
-  console.log("\n정적 이미지 플레이스홀더 생성 중...");
   for (const imagePath of staticImages) {
     if (cache[imagePath]) {
       cachedCount++;
@@ -124,26 +130,19 @@ async function generatePlaceholders(): Promise<void> {
     const fullPath = path.join(process.cwd(), "public", imagePath);
     console.log(`  생성 중: ${imagePath}`);
 
-    try {
-      const placeholder = await getStaticPlaiceholder(fullPath);
-      if (placeholder) {
-        cache[imagePath] = placeholder;
-        newCount++;
-      } else {
-        failedCount++;
-        console.warn(`  실패: ${imagePath}`);
-      }
-    } catch (error) {
+    const placeholder = await getStaticPlaiceholder(fullPath);
+    if (placeholder) {
+      cache[imagePath] = toEntry(placeholder);
+      newCount++;
+    } else {
       failedCount++;
-      console.warn(`  실패: ${imagePath} - ${error}`);
+      console.warn(`  실패: ${imagePath}`);
     }
   }
 
-  console.log("\n=== 플레이스홀더 생성 완료 ===");
-  console.log(`  - 새로 생성: ${newCount}`);
-  console.log(`  - 캐시에서 로드: ${cachedCount}`);
-  console.log(`  - 실패: ${failedCount}`);
-  console.log(`  - 총 캐시 항목 수: ${Object.keys(cache).length}`);
+  console.log(
+    `\n=== 완료 === 새로 생성: ${newCount}, 캐시: ${cachedCount}, 실패: ${failedCount}`,
+  );
 
   await saveCache(cache);
 }

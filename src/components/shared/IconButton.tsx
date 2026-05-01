@@ -1,18 +1,15 @@
-import Image from "next/image";
-import { cn } from "@/src/lib/cn";
+import type { LucideIcon } from "lucide-react";
 
 interface IconButtonProps {
   href: string;
-  icon: string;
+  icon: LucideIcon;
   label: string;
-  iconClassName?: string;
 }
 
 export default function IconButton({
   href,
-  icon,
+  icon: Icon,
   label,
-  iconClassName,
 }: IconButtonProps) {
   return (
     <a
@@ -21,13 +18,7 @@ export default function IconButton({
       rel="noreferrer"
       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/50 transition-all text-sm"
     >
-      <Image
-        src={icon}
-        alt=""
-        width={16}
-        height={16}
-        className={cn("size-4", iconClassName)}
-      />
+      <Icon className="size-4" aria-hidden="true" />
       {label}
     </a>
   );
