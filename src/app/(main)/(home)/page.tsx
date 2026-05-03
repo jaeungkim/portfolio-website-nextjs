@@ -22,19 +22,19 @@ export default function Home() {
           <IntroTitle text="안녕하세요, 김재웅입니다." />
         </h2>
 
-        <p className="text-muted-foreground">
+        <p className="text-foreground">
           사용자가 서비스에 자연스럽게 몰입할 수 있도록 화면 흐름과 경험을
           세심하게 고민하고 다듬는걸 좋아합니다.
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-foreground">
           단순함 속에서도 정교함을 추구하고, 그 과정에서 발생하는 문제를
           해결하는 것을 좋아합니다.
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-foreground">
           평소엔 농구를 좋아해서 종종 공도 던지고 자연 속에서 시간을 보내며
           에너지를 얻기도 합니다.
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-foreground">
           이 공간은 배우고 싶었던 것들을 자유롭게 실험하고, 작은 아이디어들을
           테스트하며, 소소한 일상도 기록하는 저만의 작업실입니다.
         </p>

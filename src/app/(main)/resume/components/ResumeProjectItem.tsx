@@ -3,7 +3,7 @@ import { ExternalLink } from "@/src/components/shared/ExternalLink";
 
 interface ResumeProjectItemProps {
   title: string;
-  link: string;
+  link?: string;
   description: string;
   children: ReactNode;
 }
@@ -16,13 +16,13 @@ export function ResumeProjectItem({
 }: ResumeProjectItemProps) {
   return (
     <article className="space-y-3">
-      <ExternalLink link={link} className="text-base font-medium">
-        {title}
-      </ExternalLink>
-      <p className="pl-4 text-base font-bold text-muted-foreground">
-        {description}
-      </p>
-      <div className="space-y-4 pl-4">{children}</div>
+      {link ? (
+        <ExternalLink link={link}>{title}</ExternalLink>
+      ) : (
+        <h3 className="text-base font-bold text-foreground">{title}</h3>
+      )}
+      <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
+      <div className="space-y-4">{children}</div>
     </article>
   );
 }

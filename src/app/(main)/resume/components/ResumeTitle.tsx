@@ -9,10 +9,10 @@ interface ResumeTitleProps {
 export function ResumeTitle({ link, children }: ResumeTitleProps) {
   if (link) {
     return (
-      <ExternalLink link={link} className="text-2xl">
+      <ExternalLink link={link} className="text-lg">
         {children}
       </ExternalLink>
     );
   }
-  return <p className="text-2xl font-medium">{children}</p>;
+  return <p className="text-lg font-bold">{children}</p>;
 }

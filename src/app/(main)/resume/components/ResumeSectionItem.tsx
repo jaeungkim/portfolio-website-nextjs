@@ -15,7 +15,7 @@ export function ResumeSectionItem({
       <ResumeRow
         leading={
           period ? (
-            <p className="text-2xl font-medium text-muted-foreground">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {period}
             </p>
           ) : null

@@ -7,8 +7,8 @@ export function ResumeMeta({ location, role }: ResumeMetaProps) {
   if (!location && !role) return null;
   return (
     <div className="space-y-1 text-muted-foreground">
-      {location && <p className="text-base italic">{location}</p>}
-      {role && <p className="text-base italic">{role}</p>}
+      {location && <p className="text-sm">{location}</p>}
+      {role && <p className="text-sm">{role}</p>}
     </div>
   );
 }
