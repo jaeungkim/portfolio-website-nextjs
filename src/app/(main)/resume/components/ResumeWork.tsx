@@ -107,14 +107,9 @@ export function ResumeWork() {
               </h3>
               <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                 <li>
-                  개발자 경험 전반에 깊은 관심을 두고, 팀의 프론트엔드 개발
-                  환경과 표준을 직접 설계하고 운영해옴.
-                </li>
-                <li>
-                  모노레포, 디자인 시스템, 공용 UI 패키지, CI/CD 파이프라인,
-                  Sentry 기반 운영 모니터링 같은 기본기를 구축해 팀이 같은
-                  방식으로 일할 수 있는 토대를 마련 (빌드 환경 재구성으로 CI
-                  시간 약 80% 단축).
+                  모노레포, 디자인 시스템, 공용 UI 패키지, CI/CD, MSW와
+                  Storybook 기반 격리 개발 환경, Sentry 운영 모니터링까지 팀의
+                  기본기를 구축. 빌드 환경 재구성으로 CI 시간 약 80% 단축.
                 </li>
                 <li>
                   AI 코딩 에이전트와의 협업까지 표준화. Claude Code와 Cursor
@@ -122,14 +117,13 @@ export function ResumeWork() {
                   <code className="rounded bg-muted px-1 py-0.5 text-sm">
                     .agent/workflows/
                   </code>
-                  )을 직접 설계하고, 공개된 엔지니어링 원칙들을 agent-readable
-                  룰로 재구성해 룰셋에 통합. AI가 생성한 코드가 처음부터 합의된
-                  기준을 만족하도록 구조화.
+                  )을 설계, 공개된 엔지니어링 원칙들을 agent-readable 룰로
+                  재구성해 AI 생성 코드가 처음부터 합의된 기준을 만족하도록
+                  구조화.
                 </li>
                 <li>
-                  사내 기술 세션과 외부 발표를 통해 표준과 도구를 팀 안팎으로
-                  공유. NIPA 주관 GSMP 프로그램에 팀 대표로 선정되어 워싱턴 D.C.
-                  현지 행사에서 글로벌 파트너 대상으로 발표.
+                  NIPA 주관 GSMP 프로그램에 팀 대표로 선정, 워싱턴 D.C. 현지
+                  행사에서 글로벌 파트너 대상 발표.
                 </li>
               </ul>
             </section>
@@ -150,24 +144,19 @@ export function ResumeWork() {
                 </h4>
                 <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                   <li>
-                    사용자가 검색과 필터로 그래프를 점진적으로 탐색한다는 사용
-                    패턴을 전제로, 시각화의 핵심 가치를 노드 수가 아니라
-                    인터랙션 성능과 UX로 재정의.
+                    검색과 필터로 그래프를 점진적으로 탐색하는 사용 패턴을
+                    전제로, 시각화의 핵심 가치를 노드 수가 아닌 인터랙션 성능과
+                    UX로 재정의.
                   </li>
                   <li>
-                    sigma.js 등 WebGL 기반 대량 렌더링도 검토했으나, 통합형
-                    그래프 라이브러리는 한정된 노드 수에서 인터랙션 품질을
-                    정밀하게 다듬는 방향과 맞지 않다고 판단해 자체 SDK로 결정.
+                    sigma.js 등 WebGL 기반 통합 라이브러리 검토 후 한정된 노드
+                    환경의 인터랙션 정밀도와 맞지 않다고 판단, 자체 SDK 구축으로
+                    방향 전환.
                   </li>
                   <li>
-                    Neo4j Browser처럼 한 화면 노드 수를 약 25개로 한정. 물리
-                    시뮬레이션은 D3-Force를 기반으로 두고 렌더링과 상호작용
-                    레이어만 직접 설계해, 차별화가 필요한 영역에만 자체 구현을
-                    집중.
-                  </li>
-                  <li>
-                    사내 라이브러리로 분리되어 온톨로지 매핑 툴 NAXiS의 핵심
-                    시각화 모듈로 채택, 팀 내 시각화 작업의 공통 기반으로 활용.
+                    한 화면 노드 수를 25개로 한정, 물리 시뮬레이션은 D3-Force에
+                    위임하고 차별화가 필요한 렌더링과 상호작용 레이어만 직접
+                    설계해 구현 자원을 정밀도에 집중.
                   </li>
                 </ul>
               </section>
@@ -177,17 +166,16 @@ export function ResumeWork() {
                 </h4>
                 <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                   <li>
-                    사용자가 올린 정형/비정형 파일(엑셀, PDF, PPT 등)을 AI가
-                    단일 JSON 스키마로 구조화하도록 Entity 모델을 직접 정의.
-                    Entity를 그래프 노드 그 자체로 등치해, 데이터를 온톨로지에
-                    연결하는 매핑이 곧 그래프 빌딩이 되는 구조. 변환 레이어
-                    없이 파일 업로드부터 GraphRAG 질의응답까지 단일 경로로
-                    이어짐.
+                    AI가 정형/비정형 파일을 단일 JSON으로 구조화하도록 출력
+                    스키마인 Entity 모델을 정의. Entity를 그래프 노드 그 자체로
+                    등치시켜 매핑이 곧 그래프 빌딩이 되는 구조로 설계, 별도 변환
+                    레이어 없이 파일 업로드부터 GraphRAG 질의응답까지 단일
+                    경로로 통합.
                   </li>
                   <li>
-                    도메인 사용자에게 익숙한 엑셀 인터랙션은 그대로 두고 그
-                    위에 매핑만 별도 시각 언어로 얹어, 새 도구 학습 없이 매핑
-                    작업으로 진입할 수 있는 에디터를 직접 설계.
+                    도메인 사용자에게 익숙한 엑셀 인터랙션을 그대로 두고 그 위에
+                    매핑만 별도 시각 언어로 얹어, 새 도구 학습 없이 매핑
+                    작업으로 진입 가능한 에디터 설계.
                   </li>
                 </ul>
               </section>
@@ -198,20 +186,13 @@ export function ResumeWork() {
                 <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                   <li>
                     부서별로 분산된 R&D 과정 전체를 단일 화면에서 추적하도록
-                    설계한 다이어그램. 흩어진 자료를 사용자가 직접 이어 흐름을
-                    재구성하던 기존 작업을 시각화 모델로 대체, 현대차 R&D 사내
-                    인증 도구로 채택.
+                    가로 다중 패널 뷰 설계, 분석 대상 선택 시 관련 패널이 좌에서
+                    우로 동시에 열리는 구조. 패널 간 노드 소유권을 사전에 분배해
+                    동일 노드는 한 번만 렌더링하고 관계는 엣지로 표현.
                   </li>
                   <li>
-                    6열 가로 레이아웃 기반 다중 패널 뷰 직접 설계. 분석 대상을
-                    선택하면 관련 패널이 동시에 열리며 좌→우 흐름으로 비교
-                    가능.
-                  </li>
-                  <li>
-                    여러 패널이 동일 노드를 공유할 때 패널 간 노드 소유권을
-                    사전에 분배해 한 노드를 한 번만 렌더링하고 관계는 엣지로
-                    표현. 행 추가 시 발생하는 노드 점프는 위치 보간
-                    애니메이션으로 흐름 유지.
+                    행 추가 시 발생하는 노드 점프를 위치 보간 애니메이션으로
+                    흡수해 시선 흐름 유지.
                   </li>
                 </ul>
               </section>
@@ -219,64 +200,69 @@ export function ResumeWork() {
 
             <ResumeProjectItem
               title="디지털 트윈 연합 통합 포털"
-              description="과학기술정보통신부 「디지털 트윈 연합 핵심 기술 개발 사업」 3세부 통합 포털. 외부 디지털 트윈 도구 11개와 정부 연구기관(1세부 ETRI, 2세부 KETI) 산출물을 단일 환경에 묶음. NestJS 백엔드 6개 모듈과 Next.js 15 프론트엔드, DB 스키마까지 단독 풀스택."
+              link="https://www.notion.so/jaeungkim/354c3276c40c800eaf1df6aa708079cc"
+              description="과학기술정보통신부 「디지털 트윈 연합 핵심 기술 개발 사업」 3세부 통합 포털. 인증이 제각각이거나 부재한 외부 도구 11개와 연구기관 산출물을 단일 인증/권한/조직 레이어 위로 묶음. NestJS 백엔드, Next.js 15 프론트엔드, DB 스키마까지 단독 풀스택."
             >
               <section className="space-y-2">
-                <h4 className="text-sm font-semibold text-foreground">
-                  NestJS 백엔드 6개 모듈
-                </h4>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  인증, 사용자, 권한, 조직, 게시판, 공지 6개 도메인 모듈로
-                  책임을 분리하여 구성하였습니다. Refresh Token Rotation을 DB
-                  기반으로 설계해 갱신 시 기존 토큰을 즉시 무효화하고, 같은
-                  토큰으로 두 번째 갱신 시도가 들어오면 거부(replay 차단)하도록
-                  하였으며, 로그아웃 시에는 사용자의 모든 refresh token을 일괄
-                  무효화합니다. 가드 체인(ThrottlerGuard, JwtAuthGuard,
-                  RolesGuard)을 글로벌로 적용하여 미인증 무차별 대입을
-                  차단하였고, Role × Permission 기반 RBAC과 bcrypt cost 12,
-                  응답에서 password 컬럼 제외 같은 기본기를 처음부터 일관되게
-                  적용하였습니다.
-                </p>
+                <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
+                  <li>
+                    도메인 모듈 6개로 책임 격리, CRUD가 동일한 콘텐츠는 enum
+                    기반 단일 엔티티로 통합 후 쓰기 권한만 타입별 분기.
+                  </li>
+                  <li>
+                    JWT + RBAC 기반 인증을 NestJS 가드로 단일화하고, 토큰 모델은
+                    DB 기반 Refresh Token Rotation으로 구성해 재사용 거부와
+                    사용자 단위 일괄 무효화 지원.
+                  </li>
+                  <li>
+                    인증 책임을 클라이언트 바깥으로 일관되게 분리: 토큰은
+                    httpOnly 쿠키 전용으로 클라이언트 코드에서 다루지 않고 BFF
+                    Route Handler가 서버 사이드에서만 NestJS로 프록시, 무인증
+                    진입은 미들웨어에서 사전 차단해 보호 페이지 깜빡임 제거.
+                  </li>
+                  <li>
+                    페이지별 렌더링 모드(SSR/SSG/ISR)를 표 기반으로 사전
+                    결정하고, 서버 prefetch와 클라이언트 쿼리가 동일 키를
+                    공유하도록 단일 키 팩토리로 진입점 강제. 캐시 무효화는
+                    태그를 주 경로로, 시간 만료를 호출 누락 안전망으로 이중화.
+                  </li>
+                  <li>
+                    외부 도구 11개를 iframe + 공통 EmbeddedApp으로 격리,
+                    sandbox/allow/referrer를 registry에 선언화, 재시도는 강제
+                    재마운트로 처리.
+                  </li>
+                </ul>
               </section>
+            </ResumeProjectItem>
+
+            <ResumeProjectItem
+              title="이에이트 자사 디지털 트윈 제품군 (NAXiS, PMIS, EPC, NDX Cloud)"
+              description="디지털 트윈 데이터 모델링, 시각화, 운영 도메인 5개 제품에 참여"
+            >
               <section className="space-y-2">
-                <h4 className="text-sm font-semibold text-foreground">
-                  Next.js 15 렌더링 패턴
-                </h4>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Route Handler 17개를 NestJS 앞단의 BFF로 두고 쿠키 인증을
-                  처리하여 클라이언트가 토큰을 직접 다루지 않도록 하였고, Server
-                  Action은 로그인 한 군데(쿠키 설정과 redirect)로 한정하여 책임
-                  경계를 단순화하였습니다.{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-sm">
-                    middleware.ts
-                  </code>
-                  에서 미인증 사용자를 edge 단계에서{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-sm">
-                    /signin
-                  </code>
-                  으로 리다이렉트하여 보호 페이지의 HTML이 도달하지 않도록
-                  처리하였습니다. 공지 목록은{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-sm">
-                    revalidate: 60
-                  </code>
-                  과{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-sm">
-                    revalidateTag('notices')
-                  </code>{" "}
-                  하이브리드 ISR로 구성하고,{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-sm">
-                    prefetchQuery
-                  </code>
-                  와{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-sm">
-                    &lt;HydrationBoundary&gt;
-                  </code>
-                  로 서버에서 채워 보낸 뒤 같은 query key로 TanStack Query가
-                  이어받아 서버와 클라이언트 캐시를 한 흐름으로 묶었습니다. 외부
-                  도구 11개는 iframe으로 격리하고 공통 IframeContainer로 로딩,
-                  타임아웃, 에러 UX를 통일하였으며, iframeKey 증가 기반의 강제
-                  재마운트로 "재시도" UX를 제공합니다.
-                </p>
+                <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
+                  <li>
+                    대규모 그래프 렌더링에서 노드 간 N:M 관계가 만드는 시각적
+                    노이즈를 동일 관계의 그룹 노드 추상화로 해결, 화면당 엣지
+                    수를 노드 수 증가에 무관하게 유지.
+                  </li>
+                  <li>
+                    수천 행 규모 트리 뷰의 초기 진입 비용을 가시 영역 크기에
+                    비례하도록 재구성, 지연 로딩과 가상 스크롤로 진입점을 분리해
+                    초기 로딩 12초→2초.
+                  </li>
+                  <li>
+                    RBAC 권한 모델을 단일 매트릭스로 추상화, 비개발자가 직접
+                    운영 가능한 백오피스를 동반 설계해 운영 작업의 개발 의존
+                    제거.
+                  </li>
+                  <li>
+                    4천 장 단위 이미지 업로드의 병목을 메타데이터 파싱과 서버
+                    경유 업로드로 분리 진단. APP1 마커만 부분 파싱하여 EXIF 추출
+                    메모리 20GB→800MB, Presigned URL 기반 직접 업로드로 백엔드를
+                    트래픽 경로에서 제거해 4천 장 처리 20분→10분.
+                  </li>
+                </ul>
               </section>
             </ResumeProjectItem>
           </div>
