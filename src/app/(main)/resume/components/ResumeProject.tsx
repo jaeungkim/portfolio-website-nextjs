@@ -9,7 +9,7 @@ const PROJECTS = [
     link: "https://jaeungkim.com/gantt-chart",
     pills: ["React", "Vite", "Zustand"],
     bullets: [
-      "npm에 공개한 오픈소스 Gantt Chart 라이브러리. 수천 개 Task 데이터를 Virtualization과 Lazy Loading 아키텍처로 렌더링 성능 40% 개선.",
+      "이에이트 NDXPRO PMIS 사내 자산을 일반화하여 npm에 공개한 오픈소스 Gantt Chart 라이브러리. 수천 개 Task 데이터를 Virtualization과 Lazy Loading 아키텍처로 렌더링 성능 40% 개선.",
       "WBS 기반 프로젝트 관리 아키텍처 설계 및 Optimistic UI 패턴을 통한 실시간 구조/일정 수정 시스템 구축",
       "확장 가능한 플러그인 아키텍처와 경량화 설계로 실무 환경에서 활용 중이며, 커뮤니티 피드백을 반영한 지속적 개선",
     ],
