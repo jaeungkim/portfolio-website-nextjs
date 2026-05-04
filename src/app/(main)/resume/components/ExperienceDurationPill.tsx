@@ -4,7 +4,7 @@ import { Pill } from "@/src/components/shared/Pill";
 import {
   calculateTotalExperience,
   formatExperienceText,
-} from "@/src/utils/date";
+} from "@/src/app/(main)/resume/lib/date";
 
 const EXPERIENCES = [
   { startDate: "2024-01-08" },

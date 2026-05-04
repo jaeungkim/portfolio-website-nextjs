@@ -7,7 +7,7 @@ import { ModelIsland } from "@/src/app/(main)/(home)/components/ModelIsland";
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Jaeung Kim — frontend developer based in Seoul, building expressive product UIs.",
+    "Jaeung Kim — product engineer in Seoul, designing interfaces where people and AI navigate complex domain knowledge through knowledge graphs and GraphRAG.",
 };
 
 export default function Home() {
@@ -23,20 +23,26 @@ export default function Home() {
         </h2>
 
         <p className="text-foreground">
-          사용자가 서비스에 자연스럽게 몰입할 수 있도록 화면 흐름과 경험을
-          세심하게 고민하고 다듬는걸 좋아합니다.
+          5년차 엔지니어입니다. 복잡한 도메인의 데이터에 의미를 부여하고, 사람이
+          그 의미를 따라 길을 잃지 않도록 환경을 설계하는 일에 가치를 둡니다.
+          좋은 설계는 복잡함을 줄이는 일이 아니라, 사람이 그 안에서도 길을 잡을
+          수 있게 만드는 일이라고 봅니다.
         </p>
         <p className="text-foreground">
-          단순함 속에서도 정교함을 추구하고, 그 과정에서 발생하는 문제를
-          해결하는 것을 좋아합니다.
+          데이터가 도메인 지식으로 정제되는 과정과, 그 위에서 사람과 AI가 어떻게
+          협업할 수 있는지를 주로 고민합니다. 사소한 어긋남을 그냥 두지 않으려
+          하고, 좋은 결과물은 좋은 협업에서 나온다고 믿는 편입니다.
         </p>
         <p className="text-foreground">
-          평소엔 농구를 좋아해서 종종 공도 던지고 자연 속에서 시간을 보내며
-          에너지를 얻기도 합니다.
+          최근에는 이에이트에서 현대자동차 R&D 데이터 통합 플랫폼을 만들고
+          있습니다. 부서별로 흩어진 데이터를 온톨로지 기반 지식 그래프로 모으고,
+          그 위에서 자연어 탐색과 추적이 한 환경에서 이어지도록 GraphRAG로
+          설계하는 일에 집중하고 있습니다.
         </p>
         <p className="text-foreground">
-          이 공간은 배우고 싶었던 것들을 자유롭게 실험하고, 작은 아이디어들을
-          테스트하며, 소소한 일상도 기록하는 저만의 작업실입니다.
+          개발자 경험이나 사용자 경험처럼 기술과 사람이 맞닿는 표면을 다듬는
+          일에 특히 공을 들입니다. 이런 가치를 함께 진지하게 다루는 팀에서
+          일하고 싶습니다.
         </p>
 
         <div className="flex flex-wrap items-center gap-2 pt-2">
