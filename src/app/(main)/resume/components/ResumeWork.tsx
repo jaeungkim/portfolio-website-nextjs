@@ -147,9 +147,8 @@ export function ResumeWork() {
                   {": "}Claude Code, Cursor, OpenAI Codex 어느 도구로 진입해도
                   동일한 팀 컨벤션을 따르도록 진입점 3종(CLAUDE.md, AGENTS.md,
                   .cursor/rules)을 단일 워크플로 디렉토리로 라우팅, 도메인
-                  워크플로 15개로
-                  분리해 환각, 과도한 추상화, 컨벤션 표류, 검증 누락 4가지 실패
-                  패턴을 시스템 레벨에서 차단
+                  워크플로 15개로 분리해 환각, 과도한 추상화, 컨벤션 표류, 검증
+                  누락 4가지 실패 패턴을 시스템 레벨에서 차단
                 </li>
               </ul>
             </section>
@@ -157,7 +156,7 @@ export function ResumeWork() {
             <ResumeProjectItem
               title="현대자동차 R&D 데이터 통합 플랫폼"
               link="https://www.notion.so/jaeungkim/R-D-354c3276c40c805a88a9f4469e9189c3"
-              description="부서마다 엑셀과 PDF로 흩어져 관리되던 차량 개발 데이터를 단일 온톨로지 지식 그래프로 통합하는 사내 플랫폼입니다. PoC를 거쳐 섀시 해석팀의 본사업에 진입했고, 7개 차량 성능 영역 전 부서로 단계적으로 확장 중입니다. FE 전체 아키텍처를 주도했고, BE/AI/FE가 공유하는 데이터 스키마와 지식 그래프 시각화 SDK를 직접 설계하고 구현했습니다."
+              description="부서마다 엑셀과 PDF로 흩어져 있던 차량 개발 데이터를 단일 온톨로지 지식 그래프로 통합하는 사내 플랫폼. PoC를 거쳐 섀시 해석팀 본사업에 진입, 7개 차량 성능 영역 전 부서로 단계적 확장 중. FE 전체 아키텍처를 주도하고 BE, AI, FE 공유 데이터 스키마와 지식 그래프 시각화 SDK를 직접 설계하고 구현."
             >
               <section className="space-y-3">
                 <div className="space-y-1.5">
@@ -166,25 +165,30 @@ export function ResumeWork() {
                   </h4>
                   <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                     <li>
-                      WebGL 기반 통합 그래프 라이브러리는 대규모 렌더링에는
-                      강했지만, 한 화면 25노드 점진 탐색에 필요한 인터랙션
-                      정밀도가 나오지 않았습니다. 커스터마이징 비용이 누적되는
-                      구조였기에, 렌더링과 상태, 인터랙션 제어권을 모두 내부에
-                      둔 자체 SDK로 전환했습니다.
+                      <span className="font-medium text-foreground">
+                        렌더링과 인터랙션 제어권 내재화
+                      </span>
+                      {": "}WebGL 통합 라이브러리가 25노드 점진 탐색에 필요한
+                      인터랙션 정밀도를 못 맞춰, 렌더링과 상태, 인터랙션
+                      제어권을 내부에 둔 자체 SDK로 전환. 커스터마이징 비용 누적
+                      구조 제거
                     </li>
                     <li>
-                      레이아웃 안정성은 검증된 물리 시뮬레이션 라이브러리에
-                      위임하고, 도메인 차별화가 필요한 렌더링과 인터랙션만
-                      Canvas로 직접 구현했습니다. 위임과 직접 구현의 경계를
-                      명확히 그어, SDK가 안는 복잡도를 통제 가능한 범위로
-                      유지했습니다.
+                      <span className="font-medium text-foreground">
+                        위임과 직접 구현 경계 분리
+                      </span>
+                      {": "}레이아웃 안정성은 검증된 물리 시뮬레이션
+                      라이브러리에 위임, 도메인 차별화가 필요한 렌더링과
+                      인터랙션만 Canvas로 직접 구현. SDK가 안는 복잡도를 통제
+                      가능한 범위로 한정
                     </li>
                     <li>
-                      고빈도로 갱신되는 시뮬레이션 좌표는 React 상태에서 빼고
-                      SDK 내부에서 관리하며, React에는 노드 선택처럼 의미 있는
-                      변화만 콜백으로 노출했습니다. 매 프레임마다 UI 트리가
-                      리렌더되지 않도록 분리해, 노드 수가 늘어도 인터랙션
-                      응답성을 잃지 않도록 했습니다.
+                      <span className="font-medium text-foreground">
+                        고빈도 좌표를 React 트리에서 분리
+                      </span>
+                      {": "}시뮬레이션 좌표는 SDK 내부에서 관리하고 React에는
+                      노드 선택 같은 의미 있는 변화만 콜백으로 노출. 노드 수가
+                      늘어도 매 프레임 리렌더 없이 인터랙션 응답성 유지
                     </li>
                   </ul>
                 </div>
@@ -195,22 +199,21 @@ export function ResumeWork() {
                   </h4>
                   <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                     <li>
-                      BE와 AI, FE가 같은 JSON 위에서 협업할 수 있도록 입력 표현,
-                      의미 단위, 저장 단위 3단 추상화를 스키마 단계에서
-                      정의했습니다. 각 팀이 자기 레이어만 다루는 구조라, 팀 사이
-                      API 명세 합의 비용이 사라졌습니다.
+                      <span className="font-medium text-foreground">
+                        세 팀 공통 JSON 스키마 설계
+                      </span>
+                      {": "}부서별 엑셀 데이터를 BE, AI, FE가 같은 JSON 위에서
+                      다루도록 공통 형식으로 정의. 팀 사이 데이터 명세를 별도로
+                      합의하는 비용 제거
                     </li>
                     <li>
-                      매핑이 확정되는 순간 의미 단위가 곧 온톨로지 그래프의
-                      노드가 되도록 데이터 모델을 잡았습니다. 파일 업로드부터
-                      GraphRAG 기반 LLM 질의응답까지 변환 단계 없이 같은
-                      데이터가 단일 경로로 흐릅니다.
-                    </li>
-                    <li>
-                      사용자가 정의한 컬럼명을 그대로 데이터 키로 받아들이는
-                      구조라, 표준 양식을 강제하지 않고도 부서별 양식 차이가
-                      흡수됩니다. 같은 모델을 PDF 같은 비정형 입력에도 그대로
-                      확장했습니다.
+                      <span className="font-medium text-foreground">
+                        컬럼 구조와 타입 매핑을 같은 JSON에 통합
+                      </span>
+                      {": "}부서가 엑셀에 정의한 컬럼명을 그대로 키로 받고, 타입
+                      매핑도 동일한 JSON 안에 포함. 표준 양식을 강제하지 않고
+                      부서별 양식 차이를 흡수, PDF 같은 비정형 입력에도 같은
+                      모델로 확장
                     </li>
                   </ul>
                 </div>
@@ -221,17 +224,22 @@ export function ResumeWork() {
                   </h4>
                   <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                     <li>
-                      R&D 엔지니어가 엑셀 외 새 인터페이스에 적응할 필요가
-                      없도록, 단축키와 마우스 인터랙션은 엑셀 그대로
-                      가져갔습니다. 매핑이라는 새 작업만 색상과 브러시 같은 별도
-                      시각 레이어로 분리해, 기존 동작과 충돌 없이 신규 작업을
-                      흡수했습니다.
+                      <span className="font-medium text-foreground">
+                        기존 엑셀 인터랙션 유지
+                      </span>
+                      {": "}R&D 엔지니어 적응 비용을 없애도록 단축키와 마우스
+                      인터랙션은 엑셀 그대로 유지. 매핑이라는 신규 작업만 색상과
+                      브러시 같은 별도 시각 레이어로 분리해 기존 동작과 충돌
+                      없이 흡수
                     </li>
                     <li>
-                      매핑 정의는 관리자가 한 번 끝내고 값 입력은 일반 사용자가
-                      N회 반복하도록 화면 단위로 책임을 분리했습니다. 일반
-                      사용자가 매핑 개념을 몰라도 시스템이 돌아가는 구조라, 도입
-                      비용이 사용자 모수에 비례하지 않습니다.
+                      <span className="font-medium text-foreground">
+                        관리자와 사용자 책임 분리
+                      </span>
+                      {": "}매핑 정의는 관리자가 1회로 끝내고 값 입력은 일반
+                      사용자가 N회 반복하도록 화면 단위 책임 분리. 일반 사용자가
+                      매핑 개념을 몰라도 동작해, 도입 비용이 사용자 모수에
+                      비례하지 않음
                     </li>
                   </ul>
                 </div>
@@ -242,17 +250,21 @@ export function ResumeWork() {
                   </h4>
                   <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                     <li>
-                      차량 단위로 설계, 해석, 성능까지 이어지는 워크플로우를 한
-                      화면에서 따라가도록 가로 다중 패널 레이아웃을
-                      설계했습니다. 패널 간 노드 소유권을 사전 분배해 공유
-                      노드는 한 번만 그리고 관계는 엣지로 풀어내, 패널 수가
-                      늘어도 시각 복잡도가 일정하게 유지됩니다.
+                      <span className="font-medium text-foreground">
+                        패널 간 노드 소유권 사전 분배
+                      </span>
+                      {": "}차량 단위로 설계, 해석, 성능까지 이어지는
+                      워크플로우를 한 화면에서 따라가도록 가로 다중 패널 설계.
+                      공유 노드는 한 번만 그리고 관계는 엣지로 풀어내 패널 수가
+                      늘어도 시각 복잡도가 일정하게 유지
                     </li>
                     <li>
-                      노드 위치가 갑자기 점프하면 흐름을 따라간다는 추적성의
-                      본질이 깨진다고 판단해, 위치 보간으로 부드럽게
-                      풀어냈습니다. 사용자가 드래그 중일 때는 자동 이동을 멈춰,
-                      수동 조작과 자동 보정이 충돌하지 않게 했습니다.
+                      <span className="font-medium text-foreground">
+                        위치 보간으로 추적성 유지
+                      </span>
+                      {": "}노드 위치 점프가 추적성의 본질을 깬다고 판단해 위치
+                      보간으로 부드럽게 처리. 사용자 드래그 중에는 자동 이동을
+                      멈춰 수동 조작과 자동 보정 충돌 방지
                     </li>
                   </ul>
                 </div>
@@ -262,52 +274,87 @@ export function ResumeWork() {
             <ResumeProjectItem
               title="디지털 트윈 연합 통합 포털"
               link="https://www.notion.so/jaeungkim/354c3276c40c800eaf1df6aa708079cc"
-              description="과기정통부 디지털 트윈 연합 핵심 기술 개발 사업 3세부 통합 포털입니다. 인증과 권한이 제각각이거나 부재했던 외부 도구 11개와 연구기관 산출물을 단일 인증, 권한, 조직 레이어 아래로 묶었습니다. NestJS 백엔드와 Next.js 15 BFF, DB 스키마까지 1인 풀스택으로 진행했습니다."
+              description="정부 R&D 「디지털 트윈 연합 핵심 기술 개발 사업」 3세부 통합 포털을 1인 풀스택으로 설계. 1세부(ETRI), 2세부(KETI), 3세부 산출물이 단일 인증, 권한, 조직 모델 위에서 동작하는 통합 운영 환경을 구축. Next.js 15 App Router 기반 프론트엔드부터 NestJS 백엔드, 인증/인가 시스템까지 아키텍처 설계와 구현을 단독 담당."
             >
               <section className="space-y-3">
                 <div className="space-y-1.5">
                   <h4 className="text-sm font-semibold text-foreground">
-                    통합 인증, 권한, 조직 레이어
+                    <ExternalLink
+                      link="https://www.notion.so/35ec3276c40c814a8783c59bed9581f4"
+                      className="inline-flex items-baseline align-baseline text-sm leading-relaxed"
+                    >
+                      Next.js 15 App Router 렌더링 정책 단일화
+                    </ExternalLink>
                   </h4>
                   <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                     <li>
-                      인증, 사용자, 권한, 조직, 게시판, 공지 등 6개 도메인으로
-                      모듈을 분리하고, RBAC는 NestJS 글로벌 가드로
-                      단일화했습니다. 컨트롤러마다 흩어져 있던 인증 코드를 한
-                      지점으로 모은 덕분에, 권한 정책 변경이 가드 한 곳의
-                      수정으로 끝나는 구조가 됐습니다.
+                      <span className="font-medium text-foreground">
+                        라우트별 렌더링 전략 분리
+                      </span>
+                      {": "}SSG, ISR, SSR을 라우트 단위로 명시. 데이터 변경 시
+                      태그 기반 캐시 무효화로 페이지 최신성 보장
                     </li>
                     <li>
-                      토큰을 httpOnly 쿠키와 서버 사이드 프록시 안쪽으로
-                      봉인하고, middleware 단계에서 무인증 진입을 사전
-                      차단했습니다. 클라이언트 코드가 토큰에 접근하는 경로
-                      자체를 없애 XSS 탈취 표면을 제거했고, 보호 페이지 진입 시
-                      발생하던 인증 체크 깜빡임도 함께 사라졌습니다.
+                      <span className="font-medium text-foreground">
+                        권한 페이지 캐시 격리
+                      </span>
+                      {": "}인증이 필요한 레이아웃에서 쿠키를 읽도록 강제해,
+                      사용자별 응답이 정적 캐시에 섞이는 경로를 차단
                     </li>
                   </ul>
                 </div>
 
                 <div className="space-y-1.5">
                   <h4 className="text-sm font-semibold text-foreground">
-                    렌더링과 캐시 전략
+                    Next.js BFF ↔ NestJS 통신 경계 설계
                   </h4>
                   <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
                     <li>
-                      Next.js 15에서 부모 layout이 cookies()를 읽는 자식
-                      라우트가 전부 동적으로 분류되면서, 단순한 page-level
-                      revalidate 선언이 의도대로 동작하지 않는 상황을
-                      마주했습니다. “캐시는
-                      데이터의 영역에, 동적 검증은 권한의 영역에 둔다”는
-                      원칙으로 정리하고, 라우트별 렌더링 전략을 SSG, ISR, 동적
-                      SSR + 데이터 캐시, RSC + Client Hydration 네 갈래로
-                      분리했습니다.
+                      <span className="font-medium text-foreground">
+                        BFF 통신 경로 이원화
+                      </span>
+                      {": "}서버 렌더링 경로와 클라이언트 요청 경로를 책임 분리.
+                      토큰 만료 시 서버 경로는 자동 로그인 페이지 이동,
+                      클라이언트 경로는 인터셉터에서 토큰을 자동 갱신해 사용자
+                      흐름이 끊기지 않도록 설계
                     </li>
                     <li>
-                      서버에서 prefetch한 데이터를 클라이언트가 같은 키로 그대로
-                      받아쓸 수 있도록, 도메인별 query key factory를 두고
-                      hydration 경계를 통일했습니다. 같은 페이지가 서버
-                      프리렌더와 클라이언트 인터랙션 사이에서 깜빡임 없이
-                      이어지도록 하기 위함입니다.
+                      <span className="font-medium text-foreground">
+                        서버/클라이언트 캐시 동기화
+                      </span>
+                      {": "}서버 페이지 캐시와 클라이언트 화면 캐시를 BFF 한
+                      곳에서 함께 무효화. 한 번의 데이터 변경으로 양쪽 레이어가
+                      동시 갱신되도록 설계
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="space-y-1.5">
+                  <h4 className="text-sm font-semibold text-foreground">
+                    <ExternalLink
+                      link="https://www.notion.so/35ec3276c40c816e81c8ca38ab182675"
+                      className="inline-flex items-baseline align-baseline text-sm leading-relaxed"
+                    >
+                      NestJS 인증/인가 보안 시스템 설계
+                    </ExternalLink>
+                  </h4>
+                  <ul className="list-[circle] space-y-1.5 pl-5 text-sm leading-relaxed text-muted-foreground">
+                    <li>
+                      <span className="font-medium text-foreground">
+                        전역 가드 체인 구성
+                      </span>
+                      {": "}요청 빈도 제한, JWT 검증, 역할 기반 권한
+                      체크(RBAC)를 전역 가드로 일괄 적용. 로그인은 별도 빈도
+                      제한, 동일 출처 검증으로 CSRF 차단
+                    </li>
+                    <li>
+                      <span className="font-medium text-foreground">
+                        HttpOnly 쿠키 기반 토큰 격리
+                      </span>
+                      {": "}인증 토큰을 브라우저 자바스크립트가 접근할 수 없는
+                      HttpOnly 쿠키에 보관, BFF 내부 경로에서만 백엔드 인증
+                      헤더로 변환. Refresh Token Rotation으로 토큰 재사용 시도
+                      무효화
                     </li>
                   </ul>
                 </div>
