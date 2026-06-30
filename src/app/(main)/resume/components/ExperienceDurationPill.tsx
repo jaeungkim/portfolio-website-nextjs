@@ -1,5 +1,4 @@
-"use client";
-
+import { connection } from "next/server";
 import { Pill } from "@/src/components/shared/Pill";
 import {
   calculateTotalExperience,
@@ -13,7 +12,9 @@ const EXPERIENCES = [
   { startDate: "2021-01-07", endDate: "2022-05-15" }, // CATALX
 ] as const;
 
-export function ExperienceDurationPill() {
+export async function ExperienceDurationPill() {
+  // Defer to request time so new Date() is live, not frozen at build under cacheComponents.
+  await connection();
   const experience = calculateTotalExperience(EXPERIENCES, new Date());
 
   return (
