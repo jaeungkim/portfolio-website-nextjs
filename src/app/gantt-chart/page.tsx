@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ExternalLink, Github, Package } from "lucide-react";
+import { ExternalLink, Package } from "lucide-react";
+import { GithubIcon } from "@/src/components/shared/GithubIcon";
 import { CodeBlock, TabbedInstall } from "@/src/components/shared/CodeBlock";
 import { GanttChartDemo } from "@/src/app/gantt-chart/components/GanttChartDemo";
 import { ExternalButton } from "@/src/app/gantt-chart/components/ExternalButton";
@@ -39,7 +40,7 @@ export default function GanttChartPage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <ExternalButton href="https://github.com/jaeungkim/gantt-chart">
-              <Github className="size-4" />
+              <GithubIcon className="size-4" />
               GitHub
             </ExternalButton>
             <ExternalButton

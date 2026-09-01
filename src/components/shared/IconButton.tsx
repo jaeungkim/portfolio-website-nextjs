@@ -1,8 +1,9 @@
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
+import type { LucideProps } from "lucide-react";
 
 interface IconButtonProps {
   href: string;
-  icon: LucideIcon;
+  icon: ComponentType<LucideProps>;
   label: string;
 }
 

@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Mail, FileText } from "lucide-react";
+import { GithubIcon } from "@/src/components/shared/GithubIcon";
+import { LinkedinIcon } from "@/src/components/shared/LinkedinIcon";
 
 const SOCIAL_LINKS = [
   {
@@ -10,13 +12,13 @@ const SOCIAL_LINKS = [
   },
   {
     href: "https://github.com/jaeungkim",
-    icon: Github,
+    icon: GithubIcon,
     label: "GitHub",
     external: true,
   },
   {
     href: "https://www.linkedin.com/in/jaeungkim0526",
-    icon: Linkedin,
+    icon: LinkedinIcon,
     label: "LinkedIn",
     external: true,
   },
