@@ -3,12 +3,12 @@
   "scripts": {
     "generate-placeholders": "tsx 'src/app/(main)/blog/scripts/generate-blur-placeholders.ts'",
     "typegen": "next typegen",
-    "type-check": "yarn typegen && tsc --noEmit",
+    "type-check": "pnpm typegen && tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
-    "build": "yarn generate-placeholders && yarn type-check && next build",
+    "build": "pnpm generate-placeholders && pnpm type-check && next build",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,css,scss}' && eslint --fix '**/*.{js,jsx,ts,tsx}'",
     "dev": "next dev",
-    "postinstall": "yarn generate-placeholders || true"
+    "postinstall": "pnpm generate-placeholders || true"
   },
   "dependencies": {
     "@jaeungkim/gantt-chart": "^0.3.1",
@@ -55,5 +55,11 @@
     "typescript": "^5",
     "typescript-eslint": "^8.69.0"
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "pnpm@10.30.3",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver"
+    ]
+  }
 }
