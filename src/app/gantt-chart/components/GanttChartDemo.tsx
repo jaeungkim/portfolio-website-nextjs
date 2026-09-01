@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import type { GanttProps } from "@jaeungkim/gantt-chart";
 import "@jaeungkim/gantt-chart/style.css";
-import { generateSampleTasks } from "@/src/app/(main)/gantt-chart/lib/generateTasks";
+import { generateSampleTasks } from "@/src/app/gantt-chart/lib/generateTasks";
 
 const SAMPLE_TASKS = generateSampleTasks();
 

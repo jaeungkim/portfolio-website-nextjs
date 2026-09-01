@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { ExternalLink, Github, Package } from "lucide-react";
 import { CodeBlock, TabbedInstall } from "@/src/components/shared/CodeBlock";
-import { GanttChartDemo } from "@/src/app/(main)/gantt-chart/components/GanttChartDemo";
-import { ExternalButton } from "@/src/app/(main)/gantt-chart/components/ExternalButton";
-import { DataTable } from "@/src/app/(main)/gantt-chart/components/DataTable";
+import { GanttChartDemo } from "@/src/app/gantt-chart/components/GanttChartDemo";
+import { ExternalButton } from "@/src/app/gantt-chart/components/ExternalButton";
+import { DataTable } from "@/src/app/gantt-chart/components/DataTable";
 import {
   USAGE_CODE,
   TASK_FORMAT_CODE,
@@ -11,7 +11,7 @@ import {
   FEATURES,
   PROP_ROWS,
   SCALE_ROWS,
-} from "@/src/app/(main)/gantt-chart/data/pageContent";
+} from "@/src/app/gantt-chart/data/pageContent";
 
 export const metadata: Metadata = {
   title: "@jaeungkim/gantt-chart",
