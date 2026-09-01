@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Github, Linkedin } from "lucide-react";
+import { GithubIcon } from "@/src/components/shared/GithubIcon";
+import { LinkedinIcon } from "@/src/components/shared/LinkedinIcon";
 import { IconButton } from "@/src/components/shared/IconButton";
 import { IntroTitle } from "@/src/app/(main)/(home)/components/IntroTitle";
 import { ModelIsland } from "@/src/app/(main)/(home)/components/ModelIsland";
@@ -42,12 +43,12 @@ export default function Home() {
         <div className="flex flex-wrap items-center gap-2 pt-2">
           <IconButton
             href="https://github.com/jaeungkim"
-            icon={Github}
+            icon={GithubIcon}
             label="GitHub"
           />
           <IconButton
             href="https://www.linkedin.com/in/jaeungkim0526/"
-            icon={Linkedin}
+            icon={LinkedinIcon}
             label="LinkedIn"
           />
         </div>
