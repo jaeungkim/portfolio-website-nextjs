@@ -1,4 +1,5 @@
 import { Footer } from "@/src/components/layout/Footer";
+import "@/src/app/gantt-chart/gantt-theme.css";
 
 export default function GanttChartLayout({
   children,
