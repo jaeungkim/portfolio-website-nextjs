@@ -5,19 +5,22 @@ import { CodeBlock, TabbedInstall } from "@/src/components/shared/CodeBlock";
 import { GanttChartDemo } from "@/src/app/gantt-chart/components/GanttChartDemo";
 import { ExternalButton } from "@/src/app/gantt-chart/components/ExternalButton";
 import { DataTable } from "@/src/app/gantt-chart/components/DataTable";
+import { PropGroupTable } from "@/src/app/gantt-chart/components/PropGroupTable";
 import {
   USAGE_CODE,
   TASK_FORMAT_CODE,
   TOC_ITEMS,
   FEATURES,
-  PROP_ROWS,
+  PROP_GROUPS,
   SCALE_ROWS,
+  DOC_LINKS,
+  DOCS_KO_INDEX,
 } from "@/src/app/gantt-chart/data/pageContent";
 
 export const metadata: Metadata = {
   title: "@jaeungkim/gantt-chart",
   description:
-    "Lightweight, high-performance Gantt chart UI for React with virtualization, editable dependencies, and a minimal API surface.",
+    "Virtualized React Gantt chart with six timeline scales, four dependency types, auto-scheduling, a working-day calendar, critical path, and keyboard and screen-reader support.",
 };
 
 export default function GanttChartPage() {
@@ -35,7 +38,7 @@ export default function GanttChartPage() {
             <p className="text-lg leading-8 text-muted-foreground">
               Lightweight, high-performance Gantt chart UI for React
               applications with virtualization, editable dependencies, and a
-              minimal API surface.
+              scheduling engine that runs without a DOM.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -104,9 +107,21 @@ export default function GanttChartPage() {
             Task Format
           </h2>
           <p className="text-muted-foreground">
-            All dates should be passed as UTC ISO strings such as{" "}
+            Dates go in as anything{" "}
             <code className="rounded bg-secondary px-1.5 py-0.5 text-sm">
-              2024-06-01T09:00:00Z
+              dayjs.utc()
+            </code>{" "}
+            parses, so a bare{" "}
+            <code className="rounded bg-secondary px-1.5 py-0.5 text-sm">
+              2026-03-02
+            </code>{" "}
+            is UTC midnight, and they come back out of{" "}
+            <code className="rounded bg-secondary px-1.5 py-0.5 text-sm">
+              onTasksChange
+            </code>{" "}
+            as{" "}
+            <code className="rounded bg-secondary px-1.5 py-0.5 text-sm">
+              YYYY-MM-DDTHH:mm:ss.sssZ
             </code>
             .
           </p>
@@ -137,12 +152,26 @@ export default function GanttChartPage() {
         </div>
       </section>
 
-      <section id="props" className="space-y-4 scroll-mt-24">
-        <h2 className="text-2xl font-semibold text-foreground">Props</h2>
-        <DataTable
-          headers={["Prop", "Type", "Default", "Description"]}
-          rows={PROP_ROWS}
-        />
+      <section id="props" className="space-y-6 scroll-mt-24">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">Props</h2>
+          <p className="text-muted-foreground">
+            Every prop the component accepts, grouped by what it controls. Only{" "}
+            <code className="rounded bg-secondary px-1.5 py-0.5 text-sm">
+              tasks
+            </code>{" "}
+            is needed to render a chart.
+          </p>
+        </div>
+        <div className="space-y-8">
+          {PROP_GROUPS.map((group) => (
+            <PropGroupTable
+              key={group.id}
+              title={group.title}
+              rows={group.rows}
+            />
+          ))}
+        </div>
       </section>
 
       <section id="scales" className="space-y-4 scroll-mt-24">
@@ -152,13 +181,53 @@ export default function GanttChartPage() {
           </h2>
           <p className="text-muted-foreground">
             The scale switcher in the chart header controls the visible timeline
-            density.
+            density. Each scale sets its own header unit, tick unit and the
+            smallest step a drag can land on.
           </p>
         </div>
         <DataTable
-          headers={["Scale", "Header Label", "Tick Unit", "Drag Step"]}
+          headers={["Scale", "Label Unit", "Tick Unit", "Drag Step"]}
           rows={SCALE_ROWS}
         />
+      </section>
+
+      <section id="docs" className="space-y-6 scroll-mt-24">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">
+            Documentation
+          </h2>
+          <p className="text-muted-foreground">
+            The full guides live in the repository, in English and{" "}
+            <a
+              href={DOCS_KO_INDEX}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground underline underline-offset-4 transition-colors hover:text-cyan-500"
+            >
+              한국어
+            </a>
+            .
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {DOC_LINKS.map((doc) => (
+            <a
+              key={doc.href}
+              href={doc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-cyan-500/50"
+            >
+              <h3 className="flex items-center gap-2 text-base font-semibold text-foreground">
+                {doc.title}
+                <ExternalLink className="size-4" />
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {doc.description}
+              </p>
+            </a>
+          ))}
+        </div>
       </section>
 
       <section className="rounded-[1.5rem] border border-border bg-secondary/30 p-6">
