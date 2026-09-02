@@ -6,7 +6,7 @@ import { ResumeBullets } from "@/src/app/(main)/resume/components/ResumeBullets"
 const PROJECTS = [
   {
     title: "React Gantt Chart",
-    link: "https://jaeungkim.com/gantt-chart",
+    link: "https://gantt.jaeungkim.com",
     pills: ["React", "Vite", "Zustand"],
     bullets: [
       "npm에 공개한 오픈소스 Gantt Chart 라이브러리. 수천 개 Task 데이터를 Virtualization과 Lazy Loading 아키텍처로 렌더링 성능 40% 개선.",
