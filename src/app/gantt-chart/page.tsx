@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import { ExternalLink, Package } from "lucide-react";
+import { BookOpen, ExternalLink, Package } from "lucide-react";
 import { GithubIcon } from "@/src/components/shared/GithubIcon";
 import { CodeBlock, TabbedInstall } from "@/src/components/shared/CodeBlock";
 import { GanttChartDemo } from "@/src/app/gantt-chart/components/GanttChartDemo";
 import { ExternalButton } from "@/src/app/gantt-chart/components/ExternalButton";
-import { DataTable } from "@/src/app/gantt-chart/components/DataTable";
-import { PropGroupTable } from "@/src/app/gantt-chart/components/PropGroupTable";
 import {
   USAGE_CODE,
   TASK_FORMAT_CODE,
   TOC_ITEMS,
   FEATURES,
-  PROP_GROUPS,
-  SCALE_ROWS,
   DOC_LINKS,
+  DOCS_EN_INDEX,
   DOCS_KO_INDEX,
 } from "@/src/app/gantt-chart/data/pageContent";
 
@@ -42,7 +39,14 @@ export default function GanttChartPage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <ExternalButton href="https://github.com/jaeungkim/gantt-chart">
+            <ExternalButton href={DOCS_EN_INDEX}>
+              <BookOpen className="size-4" />
+              Documentation
+            </ExternalButton>
+            <ExternalButton
+              href="https://github.com/jaeungkim/gantt-chart"
+              variant="secondary"
+            >
               <GithubIcon className="size-4" />
               GitHub
             </ExternalButton>
@@ -152,52 +156,14 @@ export default function GanttChartPage() {
         </div>
       </section>
 
-      <section id="props" className="space-y-6 scroll-mt-24">
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-foreground">Props</h2>
-          <p className="text-muted-foreground">
-            Every prop the component accepts, grouped by what it controls. Only{" "}
-            <code className="rounded bg-secondary px-1.5 py-0.5 text-sm">
-              tasks
-            </code>{" "}
-            is needed to render a chart.
-          </p>
-        </div>
-        <div className="space-y-8">
-          {PROP_GROUPS.map((group) => (
-            <PropGroupTable
-              key={group.id}
-              title={group.title}
-              rows={group.rows}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section id="scales" className="space-y-4 scroll-mt-24">
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-foreground">
-            Timeline Scales
-          </h2>
-          <p className="text-muted-foreground">
-            The scale switcher in the chart header controls the visible timeline
-            density. Each scale sets its own header unit, tick unit and the
-            smallest step a drag can land on.
-          </p>
-        </div>
-        <DataTable
-          headers={["Scale", "Label Unit", "Tick Unit", "Drag Step"]}
-          rows={SCALE_ROWS}
-        />
-      </section>
-
       <section id="docs" className="space-y-6 scroll-mt-24">
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold text-foreground">
             Documentation
           </h2>
           <p className="text-muted-foreground">
-            The full guides live in the repository, in English and{" "}
+            Every prop, guide and reference page lives on the documentation
+            site, in English and{" "}
             <a
               href={DOCS_KO_INDEX}
               target="_blank"

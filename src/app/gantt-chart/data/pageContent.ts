@@ -113,8 +113,6 @@ export const TOC_ITEMS: TocItem[] = [
   { id: "usage", label: "Usage" },
   { id: "task-format", label: "Task Format" },
   { id: "demo", label: "Live Demo" },
-  { id: "props", label: "Props" },
-  { id: "scales", label: "Timeline Scales" },
   { id: "docs", label: "Documentation" },
 ];
 
@@ -186,514 +184,63 @@ export const FEATURES: Feature[] = [
   },
 ];
 
-/** [prop, type, default, description] */
-export type PropRow = [string, string, string, string];
-
-interface PropGroup {
-  id: string;
-  title: string;
-  rows: PropRow[];
-}
-
-export const PROP_GROUPS: PropGroup[] = [
-  {
-    id: "data",
-    title: "Data",
-    rows: [
-      [
-        "tasks",
-        "Task[]",
-        "[]",
-        "The task array. Reflected only when the contents actually change.",
-      ],
-      [
-        "onTasksChange",
-        "(updatedTasks: Task[]) => void",
-        "none",
-        "Fires with the whole array after any committed edit.",
-      ],
-    ],
-  },
-  {
-    id: "layout",
-    title: "Layout and size",
-    rows: [
-      [
-        "height",
-        "number | string",
-        "600",
-        "Chart height, a number in px or any CSS length.",
-      ],
-      [
-        "width",
-        "number | string",
-        `"100%"`,
-        "Chart width, a number in px or any CSS length.",
-      ],
-      [
-        "className",
-        "string",
-        "none",
-        "Appended to the container's gantt-container class.",
-      ],
-    ],
-  },
-  {
-    id: "task-list",
-    title: "Task list",
-    rows: [
-      [
-        "showTaskList",
-        "boolean",
-        "columns !== undefined",
-        "Shows the left pane. Passing columns alone turns it on.",
-      ],
-      [
-        "columns",
-        "GanttColumn[]",
-        "Name / Start / End",
-        "Column definitions for the pane. The first column carries the tree indentation.",
-      ],
-    ],
-  },
-  {
-    id: "hierarchy",
-    title: "Hierarchy and grouping",
-    rows: [
-      [
-        "hierarchy",
-        "boolean",
-        "false",
-        "Derives depth from parentId and turns rows with children into summary rows.",
-      ],
-      [
-        "collapsedIds",
-        "string[]",
-        "none",
-        "Controlled collapsed set. Given, the chart stops tracking its own.",
-      ],
-      [
-        "defaultCollapsedIds",
-        "string[]",
-        "[]",
-        "Uncontrolled seed, read once on mount.",
-      ],
-      [
-        "onCollapsedChange",
-        "(collapsedIds: string[]) => void",
-        "none",
-        "Fires on every collapse toggle, controlled or not.",
-      ],
-      [
-        "groupBy",
-        "GanttGroupBy",
-        "none",
-        "A task field name or accessor that groups rows into swimlanes.",
-      ],
-      [
-        "ungroupedLabel",
-        "string",
-        `"Ungrouped"`,
-        "Header label for tasks with no group value.",
-      ],
-    ],
-  },
-  {
-    id: "timeline",
-    title: "Timeline and range",
-    rows: [
-      [
-        "defaultScale",
-        "GanttScaleKey",
-        `"month"`,
-        "Seed scale, used only when no scale is stored under storageKey.",
-      ],
-      [
-        "visibleStart",
-        "string",
-        "none",
-        "Pins the timeline's start to this ISO date.",
-      ],
-      [
-        "visibleEnd",
-        "string",
-        "none",
-        "Pins the timeline's end to this ISO date.",
-      ],
-      [
-        "showNonWorkingDays",
-        "boolean",
-        "true",
-        "Shades weekends and holidays.",
-      ],
-      [
-        "holidays",
-        "string[]",
-        "none",
-        "ISO date strings shaded as non-working.",
-      ],
-      [
-        "isNonWorkingDay",
-        "(date: Dayjs) => boolean",
-        "none",
-        "Replaces the built-in weekend plus holidays test.",
-      ],
-      [
-        "markers",
-        "GanttMarker[]",
-        "[]",
-        "Labelled vertical lines at given dates.",
-      ],
-      [
-        "rangeBands",
-        "GanttRangeBand[]",
-        "[]",
-        "Shaded bands covering a date range.",
-      ],
-      [
-        "onRangeChange",
-        "(range: GanttDateRange) => void",
-        "none",
-        "Fires whenever the rendered range changes.",
-      ],
-    ],
-  },
-  {
-    id: "zoom",
-    title: "Zoom and scrolling",
-    rows: [
-      [
-        "zoomOnWheel",
-        "boolean",
-        "false",
-        "Ctrl/Cmd + wheel steps through the scale ladder.",
-      ],
-      [
-        "infiniteScroll",
-        "boolean",
-        "false",
-        "Grows the rendered range when either end is approached.",
-      ],
-      [
-        "initialScrollTo",
-        `"today" | string`,
-        "none",
-        "Scrolls once, after the timeline first renders.",
-      ],
-      [
-        "autoScrollOnDrag",
-        "boolean",
-        "true",
-        "A bar drag at a viewport edge scrolls the timeline.",
-      ],
-    ],
-  },
-  {
-    id: "editing",
-    title: "Editing",
-    rows: [
-      [
-        "readOnly",
-        "boolean",
-        "false",
-        "Blocks moving, resizing and progress dragging on every task.",
-      ],
-      [
-        "allowMove",
-        "boolean",
-        "!readOnly",
-        "Allows moving bars, overriding readOnly.",
-      ],
-      [
-        "allowResize",
-        "boolean",
-        "!readOnly",
-        "Allows resizing bars, overriding readOnly.",
-      ],
-      [
-        "allowProgressChange",
-        "boolean",
-        "!readOnly",
-        "Allows dragging the progress handle, overriding readOnly.",
-      ],
-      [
-        "allowTaskCreate",
-        "boolean",
-        "!readOnly",
-        "Allows drawing a new task on empty row space. Needs onTaskCreate to do anything.",
-      ],
-      [
-        "allowRowReorder",
-        "boolean",
-        "false",
-        "Allows dragging a task-list row to reorder and re-parent.",
-      ],
-      [
-        "minDate",
-        "string",
-        "none",
-        "Earliest ISO date any bar may be dragged to.",
-      ],
-      [
-        "maxDate",
-        "string",
-        "none",
-        "Latest ISO date any bar may be dragged to.",
-      ],
-    ],
-  },
-  {
-    id: "dependencies",
-    title: "Dependencies",
-    rows: [
-      [
-        "allowLinkCreate",
-        "boolean",
-        "!readOnly",
-        "Allows drawing dependencies between bars.",
-      ],
-      [
-        "allowLinkDelete",
-        "boolean",
-        "!readOnly",
-        "Allows selecting and deleting dependency arrows.",
-      ],
-      [
-        "onDependencyCreate",
-        "(change: GanttDependencyChange) => boolean | void",
-        "none",
-        "Runs before a drawn link is applied; false rejects it.",
-      ],
-      [
-        "onDependencyDelete",
-        "(change: GanttDependencyChange) => boolean | void",
-        "none",
-        "Runs before an arrow is removed; false keeps it.",
-      ],
-    ],
-  },
-  {
-    id: "scheduling",
-    title: "Scheduling",
-    rows: [
-      [
-        "schedulingPolicy",
-        `"off" | "shift-on-overlap" | "maintain-gap"`,
-        `"off"`,
-        "How a move propagates to the dragged task's successors.",
-      ],
-      [
-        "onSchedulingCycle",
-        "(taskIds: string[]) => void",
-        "none",
-        "Fires with the ids caught in a dependency cycle.",
-      ],
-      [
-        "workingCalendar",
-        "boolean",
-        "false",
-        "Routes every date calculation through a working-day calendar.",
-      ],
-      [
-        "criticalPath",
-        "boolean",
-        "false",
-        "Computes the critical path and fills in the slack fields.",
-      ],
-    ],
-  },
-  {
-    id: "rendering",
-    title: "Rendering",
-    rows: [
-      [
-        "renderBar",
-        "GanttBarRenderer",
-        "none",
-        "Replaces the bar node entirely.",
-      ],
-      [
-        "renderTooltip",
-        "GanttTooltipRenderer",
-        "none",
-        "Replaces the hover and drag tooltip node.",
-      ],
-      [
-        "renderHeaderCell",
-        "GanttHeaderCellRenderer",
-        "none",
-        "Replaces a timeline header cell in both rows.",
-      ],
-      [
-        "renderBaseline",
-        "(task: TaskTransformed) => ReactNode",
-        "none",
-        "Replaces the baseline bar for tasks carrying baselineStart.",
-      ],
-      ["showTooltip", "boolean", "true", "Shows the hover and drag tooltips."],
-    ],
-  },
-  {
-    id: "events",
-    title: "Events",
-    rows: [
-      [
-        "onTaskClick",
-        "(task: TaskTransformed, event: React.MouseEvent) => void",
-        "none",
-        "Fires on a bar or row click, not after a drag.",
-      ],
-      [
-        "onTaskDoubleClick",
-        "(task: TaskTransformed, event: React.MouseEvent) => void",
-        "none",
-        "Fires on a double click.",
-      ],
-      [
-        "onTaskSelect",
-        "(task: TaskTransformed | null) => void",
-        "none",
-        "Fires when the selection changes, null on an empty-timeline click.",
-      ],
-      [
-        "selectable",
-        "boolean",
-        "onTaskSelect !== undefined",
-        "Turns click-to-select and its highlight on.",
-      ],
-      [
-        "onBeforeTaskChange",
-        "GanttBeforeChangeHandler",
-        "none",
-        "Runs before a move, resize or progress change is written, and can cancel it.",
-      ],
-      [
-        "onTaskCreate",
-        "(draft: GanttTaskDraft) => void",
-        "none",
-        "Fires with the range drawn on empty row space.",
-      ],
-      [
-        "onReorder",
-        "(change: GanttReorderChange) => void | boolean",
-        "none",
-        "Runs before a row drop is committed; false cancels it.",
-      ],
-    ],
-  },
-  {
-    id: "locale-theme",
-    title: "Locale and theme",
-    rows: [
-      [
-        "locale",
-        "string",
-        "none",
-        "BCP 47 tag applied to every date label through Intl.",
-      ],
-      [
-        "formats",
-        "GanttFormatOverrides",
-        "none",
-        "Per-scale tick / header / tooltip label overrides. Must be memoized.",
-      ],
-      [
-        "firstDayOfWeek",
-        "number",
-        "none",
-        "0 = Sunday .. 6 = Saturday. Groups the week scale's top header.",
-      ],
-      [
-        "theme",
-        `"light" | "dark" | "system"`,
-        "none",
-        "Omitted, no theme class is attached and the stylesheet follows the OS.",
-      ],
-    ],
-  },
-  {
-    id: "storage",
-    title: "Storage and history",
-    rows: [
-      [
-        "storageKey",
-        "string",
-        `"gantt-scale"`,
-        "sessionStorage key the scale selection is stored under.",
-      ],
-      ["historyLimit", "number", "100", "Undo steps kept; 0 turns undo off."],
-    ],
-  },
-];
-
-/** [scale, labelUnit, tickUnit, drag step] */
-export type ScaleRow = [string, string, string, string];
-
-export const SCALE_ROWS: ScaleRow[] = [
-  ["hour", "Day", "Hour", "15 minutes"],
-  ["day", "Day", "Hour", "1 hour"],
-  ["week", "Month", "Day", "6 hours"],
-  ["month", "Month", "Day", "1 day"],
-  ["quarter", "Quarter", "Month", "3 days"],
-  ["year", "Year", "Month", "7 days"],
-];
-
 interface DocLink {
   title: string;
   description: string;
   href: string;
 }
 
-const DOCS_BASE = "https://github.com/jaeungkim/gantt-chart/blob/main/docs/en";
+const DOCS_BASE = "https://gantt.jaeungkim.com/docs";
 
-export const DOCS_KO_INDEX =
-  "https://github.com/jaeungkim/gantt-chart/blob/main/docs/ko/README.md";
+export const DOCS_EN_INDEX = DOCS_BASE;
+
+export const DOCS_KO_INDEX = "https://gantt.jaeungkim.com/ko/docs";
 
 export const DOC_LINKS: DocLink[] = [
   {
     title: "Documentation index",
     description: "Every guide and reference page, in reading order.",
-    href: `${DOCS_BASE}/README.md`,
+    href: `${DOCS_BASE}`,
   },
   {
     title: "Quick start",
     description:
       "Install, import the stylesheet, and get to a chart whose edits land in your state.",
-    href: `${DOCS_BASE}/quick-start.md`,
+    href: `${DOCS_BASE}/quick-start`,
   },
   {
     title: "Task data",
     description:
       "The Task shape, how dates are parsed, and how the tasks prop is compared.",
-    href: `${DOCS_BASE}/task-data.md`,
+    href: `${DOCS_BASE}/task-data`,
   },
   {
     title: "Editing tasks",
     description:
       "Move, resize, progress, per-task permissions, touch, and drawing a new task.",
-    href: `${DOCS_BASE}/editing.md`,
+    href: `${DOCS_BASE}/editing`,
   },
   {
     title: "Dependencies",
     description: "The four link types, lag, and drawing or deleting arrows.",
-    href: `${DOCS_BASE}/dependencies.md`,
+    href: `${DOCS_BASE}/dependencies`,
   },
   {
     title: "Scheduling",
     description:
       "Auto-scheduling policies, the working calendar, critical path and baselines.",
-    href: `${DOCS_BASE}/scheduling.md`,
+    href: `${DOCS_BASE}/scheduling`,
   },
   {
     title: "Keyboard and screen readers",
     description:
       "The key map, the ARIA treegrid, and the gaps that are still open.",
-    href: `${DOCS_BASE}/accessibility.md`,
+    href: `${DOCS_BASE}/accessibility`,
   },
   {
     title: "Theming",
     description:
       "The theme prop and the 33 CSS custom properties every color reads.",
-    href: `${DOCS_BASE}/theming.md`,
+    href: `${DOCS_BASE}/theming`,
   },
 ];
