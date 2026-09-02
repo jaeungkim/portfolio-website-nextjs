@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
+import { DevAnnotationToolbar } from "@/src/components/shared/DevAnnotationToolbar";
 import { cn } from "@/src/lib/cn";
 import "@/src/styles/globals.css";
 
@@ -69,6 +70,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <DevAnnotationToolbar />
         </ThemeProvider>
       </body>
     </html>
