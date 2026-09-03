@@ -4,7 +4,7 @@
     "generate-placeholders": "tsx 'src/app/[lang]/(main)/blog/scripts/generate-blur-placeholders.ts'",
     "typegen": "next typegen",
     "type-check": "pnpm typegen && tsc --noEmit",
-    "test": "tsx --test src/i18n/negotiate.test.ts",
+    "test": "tsx --test 'src/**/*.test.ts'",
     "type-check:watch": "tsc --noEmit --watch",
     "build": "pnpm generate-placeholders && pnpm type-check && next build",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,css,scss}' && eslint --fix '**/*.{js,jsx,ts,tsx}'",

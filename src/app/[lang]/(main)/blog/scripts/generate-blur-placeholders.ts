@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { extractImageUrls } from "@/src/app/[lang]/(main)/blog/scripts/extract-image-urls";
 import {
   getRemotePlaiceholder,
   getStaticPlaiceholder,
@@ -27,18 +28,6 @@ function toEntry(placeholder: Plaiceholder): PlaceholderEntry {
     width: placeholder.width,
     height: placeholder.height,
   };
-}
-
-function extractImageUrls(content: string): string[] {
-  const urls: string[] = [];
-  const blurImageRegex = /<BlurImage\s+url=["']([^"']+)["']/g;
-  let match;
-
-  while ((match = blurImageRegex.exec(content)) !== null) {
-    urls.push(match[1]);
-  }
-
-  return urls;
 }
 
 async function collectImageUrls(): Promise<Set<string>> {

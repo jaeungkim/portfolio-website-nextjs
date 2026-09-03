@@ -3,9 +3,6 @@ import { BlurImage } from "@/src/components/shared/BlurImage";
 import { InlineCode } from "@/src/components/shared/InlineCode";
 import placeholders from "@/src/app/[lang]/(main)/blog/data/placeholders.json";
 
-const FALLBACK_WIDTH = 1080;
-const FALLBACK_HEIGHT = 1440;
-
 interface PlaceholderEntry {
   blurDataURL: string;
   width: number;
@@ -25,7 +22,10 @@ interface BlurImageMdxProps {
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  const placeholderMap = placeholders as Record<string, PlaceholderEntry>;
+  const placeholderMap = placeholders as Record<
+    string,
+    PlaceholderEntry | undefined
+  >;
 
   function BlurImageWithPlaceholder({
     url,
@@ -46,14 +46,21 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
     const entry = placeholderMap[imageUrl];
 
+    // Fail the build rather than ship a blank slot with a guessed aspect ratio.
+    if (!entry) {
+      throw new Error(
+        `No blur placeholder for ${imageUrl}. Run \`pnpm generate-placeholders\`.`,
+      );
+    }
+
     return (
       <BlurImage
         url={imageUrl}
         alt={alt ?? ""}
-        blurDataURL={entry?.blurDataURL}
+        blurDataURL={entry.blurDataURL}
         priority={priority}
-        width={width ?? entry?.width ?? FALLBACK_WIDTH}
-        height={height ?? entry?.height ?? FALLBACK_HEIGHT}
+        width={width ?? entry.width}
+        height={height ?? entry.height}
         className={className}
         sizes={sizes}
         quality={quality}
