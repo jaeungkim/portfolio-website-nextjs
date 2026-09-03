@@ -4,9 +4,9 @@
     "description": "프론트엔드 개발자의 포트폴리오와 이력서, 그리고 여행 기록."
   },
   "nav": {
-    "home": "홈",
-    "about": "소개",
-    "blog": "블로그",
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
     "toggleTheme": "테마 전환",
     "switchLanguage": "영어로 전환"
   },
@@ -14,7 +14,7 @@
     "rights": "© Jaeung Kim. All rights reserved."
   },
   "home": {
-    "metaTitle": "홈",
+    "metaTitle": "Home",
     "metaDescription": "김재웅 — 서울에서 일하는 프론트엔드 개발자. 사용자가 오래 머무는 화면을 만듭니다.",
     "greeting": "안녕하세요, 김재웅입니다.",
     "paragraphs": [
@@ -25,9 +25,9 @@
     ]
   },
   "blog": {
-    "metaTitle": "블로그",
+    "metaTitle": "Blog",
     "metaDescription": "사진으로 남긴 기록들",
-    "title": "여행",
+    "title": "Travel",
     "readMore": "더 보기",
     "notFoundTitle": "글을 찾을 수 없습니다"
   },
