@@ -3943,5 +3943,75 @@
     "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVR4nAH6AAX/ANP//8T3/6PR6ZS90pTE33iXqou50l1qdQB5qMN1or0oQU4uSFdZgJVFXWpKdom4v8UAeZSla4CKUV9oUGJscIaMNEZHPU9TMikqAE1ibktgbE9fbGZuc4uSlDw9PTA3NIR9fgAABhEkKzVCS1NQUVV6e3wdFxaaj4SBdnEAg42Xn6e0aWx0NTY8bnZ5RT87WlRRCgYDAGNocZ2su2yEkwseJzY7OignJ2BgZRUdJAASGBs/Sk5WbnkJHSlQU2EeIzAOCxJZVVEA5+XbysnAsrKqmZuWAAAALy8zaWlm/fvuAFtmaoyQj7i2raqpoTY4OEFFRUxRUoWLhz/OY/aYFWROAAAAAElFTkSuQmCC",
     "width": 960,
     "height": 1280
+  },
+  "https://images.jaeungkim.com/blog/personal/2008-home/vancouver - 1.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQUlEQVQYlQE2Acn+ALDL7sXX8dnq/6rL94q08n2v9Wiq+WWw/1CH1TE8ZwCqy/eawPaw1P93q/F3rPN1sPyCichRnfcgSHoSGjMA9/7/0un/mcf/jcD/hL3/a6z6l57VTYG+AAANAAIUANjy/+D7/7bi/5TL/3C5/2Sr/o26+ilLcgAAEQIHGwB2ntGHxf93zP9mxv9Rtv9WwP9Wo+8DES8AAhwPECAATlyJZHegdZ7SeNX/aML/ZrT2PHCcAAEbEhgtRz07ABwyUDtIbVBjiGt4m5Swx3OAjCs9TjI2QVxbXWRiYQAbN1IdK0wnQFkoLktgUWJUVmI/QUpeY2dRY3JtZF8AIz5aPFaCWWyMSU9oTEpjUVdqXV9pcnd7Y3J8cmpjADxQc2l4m1ZfdICDkIuRnZqgpKOoqKmqp4+PkH12cXvdmHE15X6JAAAAAElFTkSuQmCC",
+    "width": 1600,
+    "height": 1600
+  },
+  "https://images.jaeungkim.com/blog/personal/2019-oct-newyork/1.jpg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQUlEQVQYlQE2Acn+AJJ+aYt2Y6ONeJuIc5uGcZmEcLmkjfnmzP/647yqlQDAqo7FrpffyrLfyrDcya/r173x3cPl0bf/7tXEspsAtZ+Gu6OM0ryj2MWp1sSq5tW69ubL5tW6+ebMkn9qAKqTfa2VgLWgice0msy9odzLsv/v0vfozu7cxWRUQQCYgmyhi3Ojj3izoYbLu5/VxKvu4MT/8trezLNGOiYAoYtyn4tzm4VvmYRuvq2S2siv7dzC/+/VvKqUQTYkAMKeh7WReK2Vf66XgKeSfbWljOPUt//y16STfDMpFwD/soR7QCJ2X0qYgmyrk33CsZXeza7TvqN3aFE1KRgAznZHUhoAQDQfOy8bQTQhWk03Oy8bKiAJRTgkOS0dADAAAEcAAFM/JiYbBRgFABwNAB4RACYaAkAzIDcrGecTpp9ko9LaAAAAAElFTkSuQmCC",
+    "width": 900,
+    "height": 900
+  },
+  "https://images.jaeungkim.com/blog/personal/2019-oct-toronto/1.jpg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQUlEQVQYlQE2Acn+AMVwTKRTNb5nSnszGqdSOMhkQKlRJ7deONRyYP+7vgCxVi2SPRqbRCV8LxK9clW9YETGbE3BcVvEalW/VTwAqk4ml0Qdm0smYCcQxHFFxW5Mx3hm7q2h5bGjs0YnAKpXMr9vTadYMmEoEqJgNcSJdruBeP/Xyst/ZKJUNwCyXDKjUSyUTy9MIAejXDqZXUe5dmXHhnGERCA7JhEA4JJrzotw4biqWDMfqmxP2Zl48cKf2K2RWUQ0DAUAAPHBnO+6jf/883BbVLF/asCfiMusloZyYEEtIB8UAgDOp02ihUlZUChTOzCBY05ZSTONblVdPTACAAAoEwIAsptAhYBTPjgeSzsqWUwyQkAodHJbo4p4cGRid3JyAL63sd3W0KefmpeSht3Yr1xWTURIUXp4emVmZmtwcf5Vhk+XAPvFAAAAAElFTkSuQmCC",
+    "width": 900,
+    "height": 900
+  },
+  "https://images.jaeungkim.com/blog/personal/2022-nov-fortlangley/2022-fortlangley-1.jpg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ACeO2SCL2iyR20KZ4kic5USW4DeO1wBOp+xEoOo8neg4nOlKpu9Kpu82megAJprkK53sNqf4QKv7N6f8PrH/Oq3/AIXK9F+69EOn512+/2O8+lCl4GrO/wDY//+y4/IASmJyo7KPyehPg6KW2f8Aj6qqaISGFi8wY317UXaHGkhfTH6ZABw9Ugo1RwAkNAArQAAiPAAxSRtGYAB7ormPtMiGr8NehJtLgalEdptLdpUAV3yOWXaBSmBiI0FPLWOHVnaKQVhfADKHyD6EvD1zmwAvSxgxNScxKAAHD6g9ZoTkxsacAAAAAElFTkSuQmCC",
+    "width": 966,
+    "height": 1288
+  },
+  "https://images.jaeungkim.com/blog/personal/2022-oct-downtown/2022-oct-downtown-1.jpg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ACIsIhAaCyQpGiAnGR8nHAYRCV9cSwBIV00PFw4kKRpHVVQWIBo6QThdYFIAJiwYHSQUN0A1WWdaV2VVXGZShJWMAI2nrDhBOSYrGkxURWRqY1RbSnN+aADCzt5dUFhiaVmGlox/g3cyMw8yNBUAYjtBSCAoKx0WUUEyRUEqISQUR0k+ABUSHQABCRMFEU8mMVI8PkU8PWhsaQBjaGlucG5taWSrl5KOfnWOgXWim5QA//Tc//riva+Z8+TKbW9qdnBopZaBAN/Tv9rOu42IfZGmtoGetmtzdlVWUpt6S6ExPWjwAAAAAElFTkSuQmCC",
+    "width": 900,
+    "height": 1200
+  },
+  "https://images.jaeungkim.com/blog/personal/2023-apr-losangeles/2023-LA%20-%201.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/AIG5/4S9/4jA/47D/5fN/5zU/5zU/6Xa/wCJwf+Evf+LyP9lj8V3p+iY1P+Z0v+i3P8AZ4m0i8j/hMT/frz/g77/jsr/j8L/mMv/AEpdcI/K/5DS/4jG/47M/5va/3eXu3eMowCKuvmay/+b0/+f3P+n4/+WwPtiboJgbH8Aiq7Wi6rOeZSxxPn/yv3/eoiUYmdub3mMAHxsV5OjuVhteV9jbn+LmwAIAAAIAC0vJwBbWTpNTClXXzpqalhGSj9cWEtNUEhAQToAf4lKd4REcoBB1NSg8erLkZh0hpBxp6iXAJusVYmcSGt4Ll9qJqisecTCrlZfRCEzCsAjjpAWWvbDAAAAAElFTkSuQmCC",
+    "width": 960,
+    "height": 1280
+  },
+  "https://images.jaeungkim.com/blog/personal/2023-aug-garibaldi/2023garibaldi1.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AHK2/3a9/3jA/3jC/3rG/3zI/4HM/wB7wv97w/96xP96xP9+x/+C0f+E1v8Aidj/jNz/iNj/hdT/hNL/h9n/i+L/AJj2/3nN/4DX/5bz/53//5z//6H//wAWRGAAL08LQWM2cKVqtf+X6P+g6/8APEQ9ETRDADRQDjdTACtMBERxF1KFAEafsDiFpkGRuABDXQALIEWSwzyFtgBnxPlfu+djw+xSqNJOe6GFyv83UXIAjvn/gun/fN7/X6ffXWJxXFVXLCYpAHLY/2zN/m++6gAPJAAAAGhgXKOUjaHjexko53gMAAAAAElFTkSuQmCC",
+    "width": 3024,
+    "height": 4032
+  },
+  "https://images.jaeungkim.com/blog/personal/2023-aug-joffree/2023joffree1.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/AHBqYLrEx7vLzNzx/7XHyam5tnF4Z3V5dABbXE6JjH52e2zI1trV6O7a6eqUm41haF0AWlpJiop9yMvD9P/9o6ufpq+kg4x4Vlk/AGJiUJ+gkPT+/MvSzX6HfG1yZD5CLURILgBBQitlaV2HlJRygXd6j5RgaFxBQzM7QTMAPjgVOTUVOzcvaGVYaWpkMzUtJygdIiIdAAwRCgADACMjHjk1KiIjFx0hGyssJRgZEwBiXVSNgniEfU9BQBUYHRgrNR4gKB02OiMAkol4uqiblpJVbW00ZVxYVUgyQzMbISYaAGZtbmZxc2ZtbXJ1cpCOhZJ7YoNQITU0M8emYwgSuPP2AAAAAElFTkSuQmCC",
+    "width": 1200,
+    "height": 1600
+  },
+  "https://images.jaeungkim.com/blog/personal/2023-may-lasvegas/2023_las_vegas%20-%201.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/AMWffcKhgLubfqqLcqeGaKqTdsW/rOHf0QCvlHy9ooa0mYDBqpLErZPHtJvf3Mnz8uQAppeG2cq4y72n5NfCs6mYtbOl/vvr3N3RANG9qv/24uDUwau0wLnByNXVyvr15eTi1wD028b//Ojo39GFkaaLob/U0su7vbjv7uYAvp+Z1b2v5tfL9vbx5OTg5+LbtLS2y8TFAMfA/6ebucWWjsR8gb6xpaGgm4CBgzkvMADGy/+5q8zMratlCRdfPzhNTEN4cm3CqpoAUUdWT0dWUEhRIhcXMSgeRDcmX1JCzsC2AIhoThUSFAAAAAcDACggDDkuHj00Ijo9NvxGkkPYFOpOAAAAAElFTkSuQmCC",
+    "width": 960,
+    "height": 1280
+  },
+  "https://images.jaeungkim.com/blog/personal/2024-aug-boracay/boracay%20-%201.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/ACIfEwMAAAADACIiGiIjHGBkYLzA0EdARAAYFgIXFQwWFgwkJR0MDACAhYfO1OQrIyMAKCcYIh8RMS0jJCMSIiASGR8YPkI6KCIeACwpGCMiFS4qFlNOPScmGxodEUJEOlJEOwA/Nh4yKhQYFQBTUUZuZl1yYFGYlY2xr7IAPTooZV9VVFFMcWtl0tfj9vv/z9HZ6e34AEtAPHBiXXdtbFRMS6Cfn8nK0JSQlPv//wBxX1ZhT0hqVU5BLypsS0dxWFRKPj7u2s4A38Kz2r2v4Ma228Gy28GyzrWqmoSAYE9NAOLCr+XFtuXIt+rMvefLvNa9r7ackmpXVSApYXZQQJKWAAAAAElFTkSuQmCC",
+    "width": 960,
+    "height": 1280
+  },
+  "https://images.jaeungkim.com/blog/personal/2025-washingtondc/2025_washingtondc%20-%201.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/AP/+5ffw2tzWxs/KwNbSyODa0v/89P/79ACHhHl6dW+Ggn6cm5avrqrDwbzLxcLk29wAAAAAHRoVQT04cGxnd3VyhoSDmZKVpZulACglIQ8NBiQkHo2Jg19cWkJAQVpYWnFxdgAmGhAjGA0rJyNaWVQ4NzUwMjM6QUFDTEwAPDAMOCoKWEssNDEjLygZFwoADQAAWltqAH1+ZHJ0X3V9allcVWpsdFlWZlFHZKZ9ywByd3ZRTUmQhoG9trGyq6tEOzhWRkBVR1wAk5CJV05L0rysnaCuamhucVxFWTkTLikpAKqhk5SCarSfhU1XcwUJGoBxYH9xZZKHoalmZydamFR5AAAAAElFTkSuQmCC",
+    "width": 960,
+    "height": 1280
+  },
+  "https://images.jaeungkim.com/blog/personal/2025-mar-jejuisland/jeju%20-%201.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/APn//4iJgnl4bmppX01LSSgnJDc3LlVWSADAxb6kp6Ckp6Cnp6P5/PzMzs++v8C+wb8ATVE7bG1ggYN53+Xo6/L35+7x19ze4ujnAF9gUHd4a2FgULC0suTp79LT03+AdE9RNwAmJQ0uKg9DQiVHSC9xamBwZlovLRwiHQsAcnVtKicWIyAMJSQSTE07NjYjGhcELywnADg4LCcjGRgSBiomGSQkFRwdDRcWCg8IAAAGAQAoJBMfHAkjHgwtKRg0MSEzLyEjJBsAX2BIYWREXVk/VVI7Z2FQXVZFQUAjNDYfAIOChYWEh4CAgYB/foB+fH58eHh1cWtpZPVGW+3PaMfgAAAAAElFTkSuQmCC",
+    "width": 960,
+    "height": 1280
+  },
+  "https://images.jaeungkim.com/blog/personal/2025-may-busan/busan1.jpg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAzklEQVQImWMIWHoscPmJ0NVXIjfdi9v9POXYF3HHQIbwTdeSj71KO/Ut+dDX1KPfcy/9V/BPYYjafttv/jGfWYf855/2n38qZstTKdcohqa7/4u2PUhafKR82+2KvY+6bvyXcApjCG5Z7Nk436FxgUf3Gq/J20JX3RCx9GO49P//lpf/Z1/8Nv3qn5ojb5tu/RezCWQIKOryyOu0zmhyLOl3q5vnPWEbj5oZAyZgZmJiYGNnY2WDIFYWEGBmYWFlYGZhhiNWNlZWdjY2djYAvKlUbocsPHEAAAAASUVORK5CYII=",
+    "width": 900,
+    "height": 1200
+  },
+  "https://images.jaeungkim.com/blog/personal/2025-hongkong/hongkong-macau - 1.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/AJefn4aMim9yd21mPFtSGzc3OTg2Lzk3LwCan5+UmZV6fYOHf0qAdy5AQUFIRz9JSUAAlIuAjYmFi4yMcW1XW1Y8WVZRVlVOX11UAN3c0o6CeYyGgWlmYkFAO1JQRmhjXX99cAD1/fnd3tSTiX5iZF1eNDZhLjJvcGablIUA5uvj9P7+4+XgV1lYVjUMi14ZfHlysqeQALnIqq23gsff1EVVYy4AAHk/Fo+Ka7SkiACAlIZZXRqRolxYbFodChRPMyuOfVq2qYYAc25nf29aeWo4PjwXQkE9RkZAcmJdpKR+ABEKCiwjFlM9JiQaGEErIDQuIwcAAB0kI/OyY3+LKdbhAAAAAElFTkSuQmCC",
+    "width": 1200,
+    "height": 1600
   }
 }
