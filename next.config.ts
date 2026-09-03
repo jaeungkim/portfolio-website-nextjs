@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   cacheComponents: true,
   experimental: {
+    globalNotFound: true,
     optimizePackageImports: ["lucide-react"],
   },
   images: {

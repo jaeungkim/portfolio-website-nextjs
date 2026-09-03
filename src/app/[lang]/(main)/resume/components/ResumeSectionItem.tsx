@@ -1,0 +1,28 @@
+import type { ReactNode } from "react";
+import { ResumeRow } from "@/src/app/[lang]/(main)/resume/components/ResumeRow";
+
+interface ResumeSectionItemProps {
+  period?: string;
+  children: ReactNode;
+}
+
+export function ResumeSectionItem({
+  period,
+  children,
+}: ResumeSectionItemProps) {
+  return (
+    <article className="mt-8">
+      <ResumeRow
+        leading={
+          period ? (
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {period}
+            </p>
+          ) : null
+        }
+      >
+        {children}
+      </ResumeRow>
+    </article>
+  );
+}

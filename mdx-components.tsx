@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import { BlurImage } from "@/src/components/shared/BlurImage";
 import { InlineCode } from "@/src/components/shared/InlineCode";
-import placeholders from "@/src/app/(main)/blog/data/placeholders.json";
+import placeholders from "@/src/app/[lang]/(main)/blog/data/placeholders.json";
 
 const FALLBACK_WIDTH = 1080;
 const FALLBACK_HEIGHT = 1440;

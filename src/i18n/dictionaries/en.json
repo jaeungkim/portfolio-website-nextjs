@@ -1,0 +1,206 @@
+{
+  "site": {
+    "name": "Jaeung Kim",
+    "description": "Frontend developer portfolio, resume, and travel notes."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "Switch to Korean"
+  },
+  "footer": {
+    "rights": "© Jaeung Kim. All rights reserved."
+  },
+  "home": {
+    "metaTitle": "Home",
+    "metaDescription": "Jaeung Kim — frontend developer based in Seoul, building expressive product UIs.",
+    "greeting": "Hi, I'm Jaeung Kim.",
+    "paragraphs": [
+      "I like thinking carefully about how a screen flows, then polishing it until people move through a product without noticing the seams.",
+      "I go after precision inside simplicity, and I enjoy the problems that turn up along the way.",
+      "Off the clock I play basketball, and I get my energy back from time spent outdoors.",
+      "This place is my own workshop — somewhere to experiment with things I wanted to learn, test small ideas, and keep a record of ordinary days."
+    ]
+  },
+  "blog": {
+    "metaTitle": "Blog",
+    "metaDescription": "A collection of photo stories",
+    "title": "Travel",
+    "readMore": "Read more",
+    "notFoundTitle": "Post Not Found"
+  },
+  "notFound": {
+    "metaTitle": "Page not found",
+    "title": "Page not found",
+    "description": "The page you were looking for doesn't exist.",
+    "home": "Return home"
+  },
+  "resume": {
+    "metaTitle": "Resume",
+    "metaDescription": "Jaeung Kim — frontend developer resume covering experience, projects, skills, and education.",
+    "name": "Jaeung Kim",
+    "role": "Frontend Engineer",
+    "photoAlt": "Jaeung Kim",
+    "intro": [
+      "I'm Jaeung Kim, a frontend developer five years in. Lately I've been on an automotive R&D project, tying large datasets together as an ontology and visualising them, and pulling thousands of spreadsheets and PDFs scattered across departments into one place you can question in plain language and trace straight to the answer.",
+      "The harder the domain, the more the screen design decides the outcome. So rather than listing features, I watch how people actually react and shape the UI/UX from there. A good screen shows you what to do next without anyone explaining it.",
+      "I hold my colleagues' experience to the same standard. I design consistent structures so the next developer can pick up my code and use it immediately, and I write down why it is the way it is. On the current project I own the frontend architecture and development, and from the planning stage I work with designers and backend developers to set the product's direction and the frontend's shape. Carrying design intent and implementation between each other's languages, and filling the gaps between roles, is what I do best and enjoy most.",
+      "I pick up new tools like AI quickly, but I don't stop there. I care more about designing how people and AI work together, and getting the team to adopt that standard. Building an environment the whole team uses well matters more to me than being the one person who uses it well."
+    ],
+    "sections": {
+      "experiences": "Experiences",
+      "projects": "Projects",
+      "education": "Education"
+    },
+    "experienceUnits": {
+      "years": " yrs",
+      "months": " mos",
+      "none": "Entry level"
+    },
+    "thanks": "Thank you for reading.",
+    "lastUpdatedLabel": "Last updated",
+    "experience": {
+      "e8ight": {
+        "period": "2024.01 ~ Present",
+        "company": "E8IGHT",
+        "location": "Jamsil, South Korea",
+        "role": "Platform Development Team | Senior Researcher",
+        "platformHeading": "Frontend platform architecture and company-wide standardisation",
+        "platformBullets": [
+          "Consolidated the monorepo, shared UI package, Storybook design system, lint and i18n templates and the branching strategy into one standard, removing setup cost for new projects.",
+          "Migrated from CRA to Vite + Yarn Berry (PnP) and introduced Jenkins/Docker CI/CD, cutting CI builds from 10 minutes to 1–2 (about 80% faster).",
+          "Self-hosted Sentry on an internal server to centralise scattered error logs, with real-time alerts that surface incidents as they happen.",
+          "Established the frontend team's first commit-stage quality gate — husky, lint-staged and commitlint enforcing lint, format, type-check and commit conventions.",
+          "Building out an AI-native development environment — 15 custom commands and workflows, role-specific subagents and skills, and verification guardrails — so reaching for AI is the default rather than the exception."
+        ],
+        "projects": {
+          "hyundai": {
+            "title": "Hyundai R&D data integration platform",
+            "description": "An internal platform that unifies Hyundai R&D data into an ontology-backed knowledge graph. I lead the whole frontend architecture and personally designed and built the graph visualisation SDK, the LLM chat and the mapping editor.",
+            "sdkHeading": "Knowledge graph visualisation SDK",
+            "sdkBullets": [
+              "Designed and built the knowledge-graph visualisation SDK shared across the company's GraphRAG products, splitting rendering and the d3-force layout engine into a React-independent core that several products reuse.",
+              "Exposed the engine through a single imperative handle that hides the implementation types, so internal rewrites never break call sites and the core can be tested on its own.",
+              "Rendered straight to Canvas 2D instead of the DOM, redrawing only while something moves and stopping entirely when the graph is still.",
+              "Improved label performance and sharpness with hybrid rendering — cached label bitmaps for reuse, switching to direct text drawing at high zoom.",
+              "Kept fast-changing state outside React and propagated updates only on real data changes, cutting needless re-renders in large lists.",
+              "Expanded the graph neighbour by neighbour rather than loading every node at once, cancelling superseded requests and discarding late responses so only the newest result lands."
+            ],
+            "llmHeading": "LLM chat wired to the knowledge graph",
+            "llmBullets": [
+              "Split WebSocket events into per-type handlers for text, reasoning steps and graph evidence, batching bursts of chunks into a single frame to minimise re-renders.",
+              "Decoupled receiving from displaying: the token queue drains at a steady typewriter pace, accelerates when it falls behind, and snaps to the text received so far on stop or error.",
+              "Parsed settled and in-flight regions separately so only completed text renders as markdown, which keeps unclosed code blocks and half-written formulas from breaking the layout.",
+              "Answers are generated by walking the graph's nodes and relations with GraphRAG; a graph query travels with each answer, so 'show evidence' renders the supporting subgraph on the adjacent canvas."
+            ],
+            "mappingHeading": "Spreadsheet mapping editor",
+            "mappingBullets": [
+              "One mapping model absorbs spreadsheets in wildly different shapes, so an unfamiliar layout becomes ontology entities without a code change.",
+              "Built-in step validation, preview and de-duplication structurally block user error in mappings that have to be exactly right.",
+              "Written from scratch rather than on an off-the-shelf grid, but it handles exactly like Excel, and a defined layout saves as a template so the work is done once."
+            ]
+          },
+          "digitalTwin": {
+            "title": "Digital Twin Federation integrated portal",
+            "description": "A government R&D programme portal designed and built solo, full stack. An operations shell on top of one authentication, permission and organisation model, from a Next.js 15 App Router frontend through to a NestJS backend, delivered on schedule.",
+            "bullets": [
+              "Applied SSG, ISR or SSR per route and forced authenticated pages to render dynamically, so nothing private leaks into the static cache.",
+              "Prefetched data in server components and dehydrated it into the client TanStack Query cache, so the first screen renders without a loading state and client queries take over from there.",
+              "A Next.js BFF keeps tokens in HttpOnly cookies only and relays them to the backend as a Bearer header, so XSS cannot reach them.",
+              "Split access and refresh tokens with rotation, reuse detection, concurrent-refresh coalescing and full invalidation on password change, to blunt token theft.",
+              "Registered JWT verification and RBAC globally through APP_GUARD so a new controller cannot ship without auth; on expiry the server redirects to login while the client interceptor refreshes in place.",
+              "Gated the security settings behind environment variables so one deployment image serves both public HTTPS and an internal HTTP network."
+            ]
+          },
+          "products": {
+            "title": "In-house product suite (NAXiS, PMIS, NDX Cloud and others)",
+            "description": "Led frontend development across five in-house products.",
+            "naxisNote": "(ontology modelling tool)",
+            "naxisBullets": [
+              "Built a no-code ontology editor on React Flow, delegating infrastructure like viewport and events to the library while abstracting the domain logic — entity types, relations, serialisation — myself, so library upgrades and domain changes stay independent.",
+              "Compressed the visual noise of hundreds of edges on one node into relation group nodes, with custom SVG edges that merge identical relations automatically.",
+              "Borrowed Dagre but kept control of when it runs and what goes in and out, doing partial re-layout on expand and collapse to hold interaction cost down.",
+              "Because the domain logic sits apart from the library, several in-house products adopted it unchanged and it settled in as a shared component asset."
+            ],
+            "pmisNote": "(project schedule and resource management)",
+            "pmisBullets": [
+              "Rebuilt a thousands-of-rows tree with child-flag lazy loading and virtual scrolling, cutting initial load from 12 seconds to 2 (about 80% faster).",
+              "Parallelised serial drawing uploads with mutateAsync and Promise.all — 19 files went from 4 minutes to 20 seconds — with optimistic UI and rollback for immediate feedback."
+            ],
+            "ndxCloudNote": "(large-scale image cloud platform)",
+            "ndxCloudBullets": [
+              "Abstracted four permission tiers (organisation, project, site, dataset) into a single RBAC matrix, giving consistent access control down to the screen level.",
+              "Cleared a 4,000-image upload bottleneck on two fronts: parsing only the JPEG APP1 marker for EXIF dropped memory from 20 GB to 800 MB, and presigned URLs connecting the browser straight to S3 took uploads from 20 minutes to 10, with 70% less server load."
+            ]
+          }
+        }
+      },
+      "flashee": {
+        "period": "2023.06 ~ 2023.10",
+        "company": "Flashee",
+        "location": "Vancouver, Canada",
+        "role": "Frontend Developer",
+        "bullets": [
+          "Joined a unified clothing marketplace (e-commerce) startup as its first developer, owning planning, development, deployment and operation of the whole frontend.",
+          "Designed and built the e-commerce platform architecture for Shopify Marketplaces integration.",
+          "Designed the Supabase and third-party (Instagram, TikTok) login kit integration, improving platform security and sign-in accessibility.",
+          "Planned and implemented the Shopify Payments gateway integration, lowering cart abandonment and improving transaction success."
+        ]
+      },
+      "iclinic": {
+        "period": "2022.07 ~ 2023.06",
+        "company": "iClinic Systems Inc.",
+        "location": "Vancouver, Canada",
+        "role": "Full-stack Developer",
+        "bullets": [
+          "Full-stack developer at an EMR (Electronic Medical Records) SaaS startup.",
+          "Independently designed and built the WebGL marketing project architecture for a modern web experience.",
+          "Designed the interaction and animation approach with Framer Motion and GSAP, improving the user experience.",
+          "Designed and ran an HR and attendance admin portal that non-technical executives could use unaided.",
+          "Designed the backend API architecture, AWS infrastructure and MongoDB schema, and built the CI/CD pipeline."
+        ]
+      },
+      "catalx": {
+        "period": "2021.01 ~ 2022.05",
+        "company": "Catalx Management Ltd.",
+        "location": "Vancouver, Canada",
+        "role": "Frontend Developer",
+        "bullets": [
+          "Designed a React component architecture and built out scalable systems at a cryptocurrency exchange startup.",
+          "Designed and implemented the credit card payment integration and the crypto purchase flow.",
+          "Planned and implemented social media URL preview optimisation with AWS Lambda@Edge and Facebook Open Graph.",
+          "Worked with designers to improve the UI/UX architecture and the overall user experience."
+        ]
+      }
+    },
+    "projects": {
+      "gantt": [
+        "An open-source Gantt chart library published on npm. Virtualization and lazy loading improved rendering performance on thousands of tasks by 40%.",
+        "Designed a WBS-based project management architecture with an optimistic UI pattern for live structure and schedule edits.",
+        "An extensible plugin architecture and a small footprint keep it in production use, with continuous improvement driven by community feedback."
+      ],
+      "portfolio": [
+        "Static site architecture on the Next.js App Router with SSG, running the projects and technical blog from one system.",
+        "Designed the 3D interaction architecture with WebGL and Three.js and optimised its rendering performance.",
+        "Improved performance and user experience through an image optimisation strategy and a responsive design architecture."
+      ],
+      "bcGovernment": [
+        "An employee management system architecture, built for the BC Government IS24 Full Stack Competition.",
+        "Designed the data model for organisational hierarchy management and an efficient UI/UX architecture.",
+        "React frontend, Node.js backend and PostgreSQL database architecture, deployed as Docker containers."
+      ],
+      "lostArk": [
+        "A Discord.js party and raid recruitment bot for Lost Ark, improving matching efficiency in the game community.",
+        "Command-based event handling and an automatic notification system for everyday convenience.",
+        "Runs in a live community, with continuous improvement and maintenance driven by user feedback."
+      ]
+    },
+    "education": {
+      "period": "2020.04",
+      "school": "University of British Columbia",
+      "degree": "Bachelor of Science - Major in Computer Science"
+    }
+  }
+}

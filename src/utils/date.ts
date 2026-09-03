@@ -5,6 +5,12 @@ type ExperienceDateRange = {
   endDate?: string;
 };
 
+interface ExperienceUnits {
+  years: string;
+  months: string;
+  none: string;
+}
+
 export function calculateTotalExperience(
   experiences: ReadonlyArray<ExperienceDateRange>,
   referenceDate: string | Date,
@@ -25,10 +31,14 @@ export function calculateTotalExperience(
   return { years, months, totalMonths };
 }
 
-export function formatExperienceText(years: number, months: number) {
+export function formatExperienceText(
+  years: number,
+  months: number,
+  units: ExperienceUnits,
+) {
   const parts = [];
-  if (years > 0) parts.push(`${years}년`);
-  if (months > 0) parts.push(`${months}개월`);
+  if (years > 0) parts.push(`${years}${units.years}`);
+  if (months > 0) parts.push(`${months}${units.months}`);
 
-  return parts.length > 0 ? parts.join(" ") : "신입";
+  return parts.length > 0 ? parts.join(" ") : units.none;
 }

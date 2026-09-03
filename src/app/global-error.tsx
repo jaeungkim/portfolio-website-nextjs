@@ -1,13 +1,19 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { errorMessagesFor } from "@/src/i18n/error-messages";
+
 export default function GlobalError({
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const pathname = usePathname();
+  const messages = errorMessagesFor(pathname);
+
   return (
-    <html lang="ko">
+    <html lang={pathname.split("/")[1] === "ko" ? "ko" : "en"}>
       <body
         style={{
           margin: 0,
@@ -21,7 +27,7 @@ export default function GlobalError({
         }}
       >
         <h1 style={{ fontSize: "1.25rem", fontWeight: 600 }}>
-          Something went wrong
+          {messages.title}
         </h1>
         <button
           type="button"
@@ -36,7 +42,7 @@ export default function GlobalError({
             color: "inherit",
           }}
         >
-          다시 시도
+          {messages.retry}
         </button>
       </body>
     </html>
