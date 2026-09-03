@@ -21,7 +21,7 @@ export function BlurImage({
   blurDataURL,
   priority = false,
   className,
-  sizes = "(max-width: 768px) 100vw, 768px",
+  sizes = "(max-width: 512px) 100vw, 512px",
   quality = 75,
 }: BlurImageProps) {
   return (
