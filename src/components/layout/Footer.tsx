@@ -14,7 +14,8 @@ export async function Footer() {
     <footer className="mt-32 backdrop-blur w-full border-t border-border py-8">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <nav className="flex gap-6 text-sm font-medium text-foreground">
+          {/* Repeats the header nav, so no second navigation landmark. */}
+          <div className="flex gap-6 text-sm font-medium text-foreground">
             {MENU_ITEMS.map((item) => (
               <LocaleLink
                 key={item.url}
@@ -24,7 +25,7 @@ export async function Footer() {
                 {dict.nav[item.key]}
               </LocaleLink>
             ))}
-          </nav>
+          </div>
           <p className="text-sm text-muted-foreground">{dict.footer.rights}</p>
         </div>
       </div>

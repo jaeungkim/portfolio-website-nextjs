@@ -16,8 +16,8 @@ function resolveLocale(request: NextRequest): Locale {
 
 /**
  * Every route lives under `/[lang]`, so a request without a locale prefix is
- * redirected to the visitor's locale. Prefixed requests pass straight through,
- * which keeps `/en/*` and `/ko/*` statically prerendered.
+ * redirected to the visitor's locale. Prefixed requests are excluded by the
+ * matcher; the `isLocale` check is a fallback if a locale is added to one but not the other.
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -41,6 +41,8 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Skip Next internals and anything with a file extension (fonts, icons, images).
-  matcher: ["/((?!_next|.*\\..*).*)"],
+  // Skip Next internals, anything with a file extension (fonts, icons, images),
+  // and the locale-prefixed pages, so prerendered `/en/*` and `/ko/*` are served
+  // from cache without invoking the proxy. Must be a literal; keep in sync with LOCALES.
+  matcher: ["/((?!_next|en(?:/|$)|ko(?:/|$)|.*\\..*).*)"],
 };

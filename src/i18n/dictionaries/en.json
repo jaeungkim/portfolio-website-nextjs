@@ -67,50 +67,37 @@
         "company": "E8IGHT",
         "location": "Seoul, South Korea",
         "role": "Platform Development Team | Senior Researcher",
-        "platformHeading": "Frontend platform architecture and standardization",
+        "platformHeading": "Frontend platform standardization and developer environment",
         "platformBullets": [
-          "Unified the monorepo, shared UI package, Storybook design system, lint and i18n templates, and branching strategy into one standard, removing setup cost for new projects",
-          "Migrated from CRA to Vite and Yarn Berry (PnP) and introduced Jenkins and Docker CI/CD, cutting CI builds from 10 minutes to under 2 (about 80%)",
-          "Deployed Sentry on an internal server to centralize error logs, with alerts that surface incidents in real time",
-          "Established the team's first commit stage quality gate with husky, lint-staged, and commitlint, enforcing lint, format, type checks, and commit conventions",
-          "Building an AI native development environment with 15 custom commands and workflows, subagents and skills per role, and verification guardrails, so AI assisted development is the default"
+          "Consolidated the shared UI package, Storybook design system, lint and i18n templates, and branching strategy into one monorepo standard, so new products skip setup and start on domain work",
+          "Moved the legacy CRA setup to Vite and a pnpm workspace and introduced a Jenkins and Docker pipeline, cutting CI builds from 10 minutes to under 2 (about 80%)",
+          "Deployed Sentry on an internal server to collect every product's error logs in one place and catch incidents through alerts",
+          "Enforced lint, type checks, and commit conventions as a commit stage gate, so code from people and coding agents is verified to the same standard",
+          "Built a coding agent collaboration environment from 15 custom commands and workflows, role specific subagents, and skills. Now the frontend team standard and spreading to the backend team"
         ],
         "projects": {
           "hyundai": {
             "title": "Hyundai Motor R&D data integration platform",
-            "description": "Internal platform that integrates Hyundai Motor R&D data into an ontology based knowledge graph. Led the frontend architecture and built the graph visualization SDK, LLM chat, and mapping editor.",
+            "description": "Internal platform that integrates Hyundai Motor R&D data into an ontology based knowledge graph. Led the frontend architecture and built the graph visualization SDK and the LLM chat.",
             "sdkHeading": "Knowledge graph visualization SDK",
             "sdkBullets": [
-              "Designed the graph visualization SDK shared by the company's GraphRAG products, separating rendering and the d3-force layout engine into a core with no React dependency",
-              "Exposed the engine through one imperative handle that hides implementation types, so internal rewrites never break call sites and the core is testable on its own",
-              "Rendered to Canvas 2D instead of the DOM, redrawing only while the graph moves and stopping entirely when it is idle",
-              "Improved label performance and sharpness with hybrid rendering, caching labels as bitmaps and drawing text directly at high zoom",
-              "Kept fast changing state outside React and propagated updates only on real data changes, removing needless rerenders in large lists",
-              "Expanded the graph by neighborhood instead of loading every node, canceling stale requests and discarding late responses so only the latest result applies"
+              "Designed the knowledge graph visualization SDK shared by the company's GraphRAG products. Split rendering and the d3-force layout into a core with no React dependency, exposed through one imperative handle, so internal rewrites never break call sites",
+              "Capped the nodes drawn per screen around a neighborhood based exploration model and dropped WebGL bulk renderers such as sigma.js after evaluation. Within that budget, rendered directly to Canvas 2D, paused rendering when idle, and cached labels as bitmaps to keep interaction smooth",
+              "Kept fast changing state in a store outside React and propagated updates only on real data changes, removing needless rerenders in large lists"
             ],
             "llmHeading": "LLM chat integrated with the knowledge graph",
             "llmBullets": [
-              "Routed WebSocket events to handlers for text, reasoning steps, and graph evidence, batching bursts of chunks into one frame to minimize rerenders",
-              "Decoupled receiving from display with a token queue that drains at a steady pace, accelerates when it falls behind, and snaps to the received text on stop or error",
-              "Parsed completed and pending text separately and rendered only completed text as markdown, so unclosed code blocks and partial formulas never break the layout",
-              "Generated answers with GraphRAG over the graph's nodes and relations, and attached a graph query to each answer so the supporting subgraph renders on the adjacent canvas"
-            ],
-            "mappingHeading": "Spreadsheet mapping editor",
-            "mappingBullets": [
-              "Designed one mapping model that accepts spreadsheets in any layout, so a new format becomes ontology entities without a code change",
-              "Built validation, preview, and deduplication into each step to prevent user error where mappings must be exact",
-              "Implemented the grid from scratch with the feel of Excel, and saved defined layouts as templates to remove repeated work"
+              "Rendered the supporting subgraph on the adjacent canvas from the graph query attached to each GraphRAG answer, so a source can be traced on the graph itself",
+              "Routed the WebSocket stream by type into text, reasoning steps, and graph evidence, and decoupled receiving from display with a token queue. Batched chunks per frame to minimize rerenders",
+              "Drained the token queue at a steady pace, accelerated when it fell behind, and snapped to the received text on stop or error. Rendered only completed segments as markdown so unclosed code blocks and partial formulas never broke the layout"
             ]
           },
           "digitalTwin": {
             "title": "Digital Twin Federation integrated portal",
-            "description": "Integrated portal for a government R&D program, designed and built alone as the sole full stack engineer. Built an operations shell on one authentication, authorization, and organization model, from a Next.js 15 App Router frontend to a NestJS backend, and delivered on schedule.",
+            "description": "Integrated portal for a government R&D program: one shell that brings external digital twin tools and partner institutions' deliverables into a single environment. Designed and built as the sole full stack engineer, from the authentication, authorization, and organization model through the Next.js 15 frontend and NestJS backend, and delivered on schedule.",
             "bullets": [
-              "Applied SSG, ISR, or SSR per route and forced authenticated pages to render dynamically, keeping private data out of the static cache",
-              "Prefetched data in Server Components and hydrated the client TanStack Query cache, so the first screen renders without a loading state",
-              "Built a Next.js BFF that keeps tokens in HttpOnly cookies and relays them to the backend as a Bearer header, so XSS cannot reach them",
-              "Separated access and refresh tokens with rotation, reuse detection, merged concurrent refreshes, and full invalidation on password change",
-              "Registered JWT verification and RBAC globally through APP_GUARD so no controller ships without authentication, with the server redirecting to login and the client interceptor refreshing in place on expiry",
+              "Designed authentication and authorization as global guards with deny by default, so a new API cannot ship without authentication",
+              "Kept tokens in HttpOnly cookies only, never exposed to the browser, with refresh token rotation and reuse detection to block stolen tokens",
               "Gated security settings behind environment variables so one deployment image serves both public HTTPS and internal HTTP"
             ]
           },
@@ -119,20 +106,19 @@
             "description": "Led frontend development for five company products.",
             "naxisNote": "(ontology modeling tool)",
             "naxisBullets": [
-              "Built a visual ontology editor on React Flow, delegating viewport and events to the library and abstracting entity types, relations, and serialization myself, so library upgrades and domain changes stay independent",
-              "Collapsed hundreds of edges on one node into relation group nodes, with custom SVG edges that merge identical relations automatically",
-              "Used Dagre for layout while controlling when it runs and what it receives, with partial relayout on expand and collapse to keep interaction cheap",
-              "Kept domain logic separate from the library, so several company products adopted the editor unchanged as a shared component"
+              "A graph editor for building ontologies without code. Kept the domain model (entity types, relations, serialization) separate from React Flow, so other company products adopted it unchanged",
+              "Collapsed hubs with hundreds of edges on one node into relation group nodes and merged identical relations into one edge, with partial relayout on expand and collapse instead of a full pass"
             ],
             "pmisNote": "(project schedule and resource management)",
             "pmisBullets": [
               "Rebuilt a tree of thousands of rows with lazy loading and virtual scrolling, cutting initial load from 12 seconds to 2 (about 80%)",
-              "Parallelized drawing uploads with mutateAsync and Promise.all, taking 19 files from 4 minutes to 20 seconds, with optimistic UI and rollback"
+              "Parallelized serial drawing uploads, taking 19 files from 4 minutes to 20 seconds, with optimistic UI and rollback for instant feedback"
             ],
             "ndxCloudNote": "(large scale image cloud platform)",
             "ndxCloudBullets": [
               "Abstracted four permission levels (organization, project, site, dataset) into one RBAC matrix for consistent access control down to the screen",
-              "Fixed a 4,000 image upload bottleneck by parsing only the JPEG APP1 marker for EXIF (20 GB to 800 MB of memory) and uploading directly from the browser to S3 with presigned URLs (20 minutes to 10, 70% less server load)"
+              "Cut EXIF extraction for 4,000 images to parsing only the JPEG APP1 marker, taking memory from 20 GB to 800 MB",
+              "Uploaded directly from the browser to S3 with presigned URLs, taking 20 minutes down to 10 with 70% less server load"
             ]
           }
         }
@@ -143,10 +129,10 @@
         "location": "Vancouver, Canada",
         "role": "Frontend Developer",
         "bullets": [
-          "Joined a clothing marketplace startup as its first developer and owned planning, development, deployment, and operation of the frontend",
-          "Designed and built the ecommerce platform architecture for Shopify Marketplaces integration",
-          "Integrated Supabase and third party login (Instagram, TikTok), improving security and login accessibility",
-          "Integrated the Shopify Payments gateway, reducing cart abandonment and improving transaction success"
+          "First developer at a clothing marketplace startup. Owned the stack choice, frontend architecture, deployment, and operations alone",
+          "Designed and built the platform that gathers multiple Shopify seller stores into one marketplace. Products and orders stayed in each store, and the platform owned discovery and the buying experience",
+          "Kept Supabase Auth as the single identity layer and wired Instagram and TikTok Login Kit on top, so users sign in with a social account while sessions are managed in one place",
+          "Chose Shopify Payments over a custom gateway integration, keeping card handling outside the platform while improving cart abandonment and transaction success"
         ]
       },
       "iclinic": {
@@ -155,11 +141,11 @@
         "location": "Vancouver, Canada",
         "role": "Full Stack Developer",
         "bullets": [
-          "Full stack developer at an EMR (Electronic Medical Records) SaaS startup",
-          "Designed and built a WebGL marketing site independently",
-          "Designed interactions and animations with Framer Motion and GSAP",
-          "Designed and operated an HR and attendance admin portal that executives could use without technical help",
-          "Designed the backend API, AWS infrastructure, and MongoDB schema, and built the CI/CD pipeline"
+          "EMR (Electronic Medical Records) SaaS startup. Full stack ownership across the marketing site, an internal admin portal, the backend API, and AWS infrastructure",
+          "Designed and built the WebGL (Three.js) 3D marketing site alone, from design through implementation and deployment",
+          "Designed and built scroll and page transition interactions with GSAP and Framer Motion",
+          "Designed and operated the HR and attendance admin portal. Treated non technical executives as the primary users and shaped the screens so they needed no training",
+          "Designed and built the Express backend API, MongoDB schema, AWS infrastructure, and CI/CD pipeline"
         ]
       },
       "catalx": {
@@ -168,33 +154,20 @@
         "location": "Vancouver, Canada",
         "role": "Frontend Developer",
         "bullets": [
-          "Designed the React component architecture and built scalable systems at a cryptocurrency exchange startup",
-          "Designed and implemented credit card payments and the cryptocurrency purchase flow",
-          "Optimized social media URL previews with AWS Lambda@Edge and Facebook Open Graph",
-          "Worked with designers to improve UI/UX and the overall user experience"
+          "Designed the React component architecture at a cryptocurrency exchange startup. Drew the line between shared components and screen code so new screens were composed from existing pieces",
+          "Designed the credit card payment integration and built the crypto purchase flow from card authorization to asset credit",
+          "Fixed empty social media previews for SPA links with Lambda@Edge. Injected per route Open Graph meta at the CloudFront edge without changing how the frontend renders",
+          "Worked with designers from Figma to improve UI/UX, reconciling design intent and implementation component by component"
         ]
       }
     },
     "projects": {
       "gantt": [
-        "Open source Gantt chart library on npm, with virtualization and lazy loading that improved rendering of thousands of tasks by 40%",
-        "Designed a WBS based project management architecture with optimistic UI for live structure and schedule edits",
-        "Extensible plugin architecture and small footprint, in production use and improved with community feedback"
-      ],
-      "portfolio": [
-        "Static site on the Next.js App Router with SSG, running projects and a technical blog from one system",
-        "Designed the 3D interaction with WebGL and Three.js and optimized rendering performance",
-        "Improved performance and user experience with image optimization and responsive design"
-      ],
-      "bcGovernment": [
-        "Employee management system built for the BC Government IS24 Full Stack Competition",
-        "Designed the data model for organizational hierarchy and an efficient UI/UX",
-        "React frontend, Node.js backend, and PostgreSQL database, deployed with Docker"
-      ],
-      "lostArk": [
-        "Discord.js party and raid recruitment bot for Lost Ark that improved matching in the game community",
-        "Command based event handling and automatic notifications",
-        "Runs in a live community, maintained and improved with user feedback"
+        "Open source Gantt chart on npm for React 18 and 19. Controlled component that persists nothing: once an edit is committed, the complete next task list goes out through a single callback",
+        "Calendar, task tree, and timeline geometry are pure modules tested separately from React. Drag, keyboard, and detail panel edits share one commit path, so working day snapping and summary row moves behave the same from every input",
+        "Virtualized on both axes, rows and time cells, with five scales from day to year. The bundle imports only React and stays under 40 kB gzipped",
+        "No toolbar, just the chart. Scale is driven through an imperative handle and the theme overridden through CSS variables",
+        "Move, resize, and reorder tasks from the keyboard, with edits announced to screen readers. English and Korean docs plus a playground"
       ]
     },
     "education": {

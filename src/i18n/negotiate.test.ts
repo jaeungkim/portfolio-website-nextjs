@@ -3,10 +3,10 @@ import { test } from "node:test";
 import { negotiateLocale } from "@/src/i18n/negotiate";
 
 test("falls back to the default locale", () => {
-  assert.equal(negotiateLocale(null), "en");
-  assert.equal(negotiateLocale(""), "en");
-  assert.equal(negotiateLocale("de-DE,fr;q=0.8"), "en");
-  assert.equal(negotiateLocale("*"), "en");
+  assert.equal(negotiateLocale(null), "ko");
+  assert.equal(negotiateLocale(""), "ko");
+  assert.equal(negotiateLocale("de-DE,fr;q=0.8"), "ko");
+  assert.equal(negotiateLocale("*"), "ko");
 });
 
 test("matches on the primary subtag", () => {
@@ -23,7 +23,7 @@ test("honours quality values over header order", () => {
 
 test("ignores ranges the client refused", () => {
   assert.equal(negotiateLocale("ko;q=0,en;q=0.4"), "en");
-  assert.equal(negotiateLocale("ko;q=0"), "en");
+  assert.equal(negotiateLocale("ko;q=0"), "ko");
 });
 
 test("keeps header order when qualities tie", () => {
@@ -32,6 +32,6 @@ test("keeps header order when qualities tie", () => {
 });
 
 test("survives malformed input", () => {
-  assert.equal(negotiateLocale(",,;q=,"), "en");
+  assert.equal(negotiateLocale(",,;q=,"), "ko");
   assert.equal(negotiateLocale("ko;q=abc,en"), "en");
 });

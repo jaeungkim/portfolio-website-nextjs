@@ -2,23 +2,18 @@ import { ArrowRight } from "lucide-react";
 import type { Post } from "@/src/app/[lang]/(main)/blog/lib/types";
 import { ArticleDateMobile } from "@/src/app/[lang]/(main)/blog/components/ArticleDateMobile";
 import { ArticleDateDesktop } from "@/src/app/[lang]/(main)/blog/components/ArticleDateDesktop";
-import { MotionArticle } from "@/src/app/[lang]/(main)/blog/components/MotionArticle";
 import { LocaleLink } from "@/src/components/shared/LocaleLink";
 import { getDictionary } from "@/src/i18n/dictionaries";
 
 interface ArticleProps {
   post: Post;
-  index: number;
 }
 
-export async function Article({ post, index }: ArticleProps) {
+export async function Article({ post }: ArticleProps) {
   const dict = await getDictionary();
 
   return (
-    <MotionArticle
-      index={index}
-      className="md:grid md:grid-cols-4 md:items-baseline"
-    >
+    <article className="md:grid md:grid-cols-4 md:items-baseline motion-safe:animate-in fade-in slide-in-from-bottom-5 duration-600 fill-mode-both">
       <LocaleLink
         href={`/blog/${post.id}`}
         className="md:col-span-3 group relative flex flex-col items-start"
@@ -45,6 +40,6 @@ export async function Article({ post, index }: ArticleProps) {
       </LocaleLink>
 
       <ArticleDateDesktop dateString={post.date} />
-    </MotionArticle>
+    </article>
   );
 }

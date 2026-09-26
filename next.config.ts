@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
     globalNotFound: true,
     optimizePackageImports: ["lucide-react"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/gantt-chart",
+        destination: "https://gantt.jaeungkim.com",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     deviceSizes: [640, 828, 1080, 1200],
     minimumCacheTTL: 31536000,
@@ -16,7 +25,9 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.jaeungkim.com",
-        pathname: "/**",
+        port: "",
+        pathname: "/blog/**",
+        search: "",
       },
     ],
   },
@@ -25,7 +36,7 @@ const nextConfig: NextConfig = {
 const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
   options: {
-    remarkPlugins: ["remark-frontmatter", "remark-mdx-frontmatter"],
+    remarkPlugins: ["remark-frontmatter"],
   },
 });
 

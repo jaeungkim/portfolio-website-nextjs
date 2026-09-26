@@ -1,4 +1,4 @@
-import { connection } from "next/server";
+import { cacheLife } from "next/cache";
 import { Pill } from "@/src/components/shared/Pill";
 import {
   calculateTotalExperience,
@@ -14,8 +14,9 @@ const EXPERIENCES = [
 ] as const;
 
 export async function ExperienceDurationPill() {
-  // Defer to request time so new Date() is live, not frozen at build under cacheComponents.
-  await connection();
+  // The label moves once a month, so bake it into the static shell and refresh daily.
+  "use cache";
+  cacheLife("days");
   const dict = await getDictionary();
   const experience = calculateTotalExperience(EXPERIENCES, new Date());
 

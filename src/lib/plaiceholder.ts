@@ -1,24 +1,10 @@
 import { getPlaiceholder } from "plaiceholder";
-import fs from "fs/promises";
 
 export type Plaiceholder = {
   base64: string;
   width: number;
   height: number;
 };
-
-export async function getStaticPlaiceholder(
-  filePath: string,
-): Promise<Plaiceholder | null> {
-  try {
-    const buffer = await fs.readFile(filePath);
-    const { base64, metadata } = await getPlaiceholder(buffer, { size: 10 });
-    return { base64, width: metadata.width, height: metadata.height };
-  } catch (error) {
-    console.error(`정적 이미지 플레이스홀더 생성 실패 (${filePath}):`, error);
-    return null;
-  }
-}
 
 export async function getRemotePlaiceholder(
   url: string,

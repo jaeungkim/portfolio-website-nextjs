@@ -17,6 +17,8 @@ export interface PostData {
   date: string;
   title: string;
   summary: string;
+  /** First gallery image, used as the social preview. */
+  hero?: { url: string; width: number; height: number };
 }
 
 const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;

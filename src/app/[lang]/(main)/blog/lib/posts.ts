@@ -11,27 +11,22 @@ import {
   POSTS_DIR,
   MDX_EXTENSION,
 } from "@/src/app/[lang]/(main)/blog/lib/constants";
-import type { Locale } from "@/src/i18n/config";
+import { extractImageUrls } from "@/src/app/[lang]/(main)/blog/scripts/extract-image-urls";
+import placeholders from "@/src/app/[lang]/(main)/blog/data/placeholders.json";
 
 export type { Post, PostData } from "@/src/app/[lang]/(main)/blog/lib/types";
 
-/** Posts are `<slug>.<locale>.mdx`, so each locale reads its own edition. */
-function localeSuffix(locale: Locale): string {
-  return `.${locale}${MDX_EXTENSION}`;
+// Posts are written once, in English, and served unchanged under every locale.
+
+// Let a missing posts dir throw: a failed build or regeneration keeps the last good
+// page, where returning [] would cache an empty blog.
+async function getMdxFiles(): Promise<string[]> {
+  const files = await fs.readdir(POSTS_DIR);
+  return files.filter((file) => file.endsWith(MDX_EXTENSION));
 }
 
-async function getMdxFiles(locale: Locale): Promise<string[]> {
-  try {
-    const files = await fs.readdir(POSTS_DIR);
-    return files.filter((file) => file.endsWith(localeSuffix(locale)));
-  } catch (error) {
-    console.error("포스트 디렉토리 읽기 오류:", error);
-    return [];
-  }
-}
-
-function filenameToSlug(filename: string, locale: Locale): string {
-  return filename.slice(0, -localeSuffix(locale).length);
+function filenameToSlug(filename: string): string {
+  return filename.slice(0, -MDX_EXTENSION.length);
 }
 
 function sortPostsByDate(posts: Post[]): Post[] {
@@ -42,27 +37,24 @@ function sortPostsByDate(posts: Post[]): Post[] {
   });
 }
 
-async function parseMdxFileToPost(
-  filename: string,
-  locale: Locale,
-): Promise<Post> {
+async function parseMdxFileToPost(filename: string): Promise<Post> {
   const filePath = path.join(POSTS_DIR, filename);
   const fileContent = await fs.readFile(filePath, "utf8");
   const { data } = matter(fileContent);
   const frontmatter = parseFrontmatter(data, filename);
 
   return {
-    id: filenameToSlug(filename, locale),
+    id: filenameToSlug(filename),
     title: frontmatter.title,
     date: frontmatter.date,
     summary: frontmatter.summary,
   };
 }
 
-export async function getSortedPostsData(locale: Locale): Promise<Post[]> {
+export async function getSortedPostsData(): Promise<Post[]> {
   "use cache";
-  cacheLife("days");
-  const mdxFiles = await getMdxFiles(locale);
+  cacheLife("max");
+  const mdxFiles = await getMdxFiles();
 
   if (mdxFiles.length === 0) {
     return [];
@@ -70,7 +62,7 @@ export async function getSortedPostsData(locale: Locale): Promise<Post[]> {
 
   try {
     const posts = await Promise.all(
-      mdxFiles.map((filename) => parseMdxFileToPost(filename, locale)),
+      mdxFiles.map((filename) => parseMdxFileToPost(filename)),
     );
     return sortPostsByDate(posts);
   } catch (error) {
@@ -79,25 +71,35 @@ export async function getSortedPostsData(locale: Locale): Promise<Post[]> {
   }
 }
 
-export async function getAllPostSlugs(locale: Locale): Promise<string[]> {
+export async function getAllPostSlugs(): Promise<string[]> {
   "use cache";
-  cacheLife("days");
-  const mdxFiles = await getMdxFiles(locale);
-  return mdxFiles.map((filename) => filenameToSlug(filename, locale));
+  cacheLife("max");
+  const mdxFiles = await getMdxFiles();
+  return mdxFiles.map((filename) => filenameToSlug(filename));
 }
 
-export async function getPostData(
-  slug: string,
-  locale: Locale,
-): Promise<PostData | null> {
+const placeholderMap = placeholders as Record<
+  string,
+  { width: number; height: number } | undefined
+>;
+
+function resolveHero(content: string): PostData["hero"] {
+  const url = extractImageUrls(content)[0];
+  const size = url ? placeholderMap[url] : undefined;
+  return url && size
+    ? { url, width: size.width, height: size.height }
+    : undefined;
+}
+
+export async function getPostData(slug: string): Promise<PostData | null> {
   "use cache";
-  cacheLife("days");
-  const filename = `${slug}${localeSuffix(locale)}`;
+  cacheLife("max");
+  const filename = `${slug}${MDX_EXTENSION}`;
   const filePath = path.join(POSTS_DIR, filename);
 
   try {
     const fileContent = await fs.readFile(filePath, "utf8");
-    const { data } = matter(fileContent);
+    const { data, content } = matter(fileContent);
     const frontmatter = parseFrontmatter(data, filename);
 
     return {
@@ -106,6 +108,7 @@ export async function getPostData(
       date: frontmatter.date,
       title: frontmatter.title,
       summary: frontmatter.summary,
+      hero: resolveHero(content),
     };
   } catch (error) {
     if (

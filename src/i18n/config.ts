@@ -2,7 +2,9 @@ export const LOCALES = ["en", "ko"] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
-export const DEFAULT_LOCALE: Locale = "en";
+export const DEFAULT_LOCALE: Locale = "ko";
+
+export const SITE_URL = "https://jaeungkim.com";
 
 /** Cookie the locale switcher writes so a manual choice survives the next visit to `/`. */
 export const LOCALE_COOKIE = "NEXT_LOCALE";

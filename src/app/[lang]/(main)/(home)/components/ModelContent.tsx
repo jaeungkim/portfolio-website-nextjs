@@ -1,33 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import {
-  Clone,
   Html,
   OrbitControls,
   useAnimations,
   useGLTF,
   useProgress,
 } from "@react-three/drei";
-import * as THREE from "three";
 
-const MODEL_PATH = "/3d-models/models/scene-draco.glb";
+// The model is meshopt-compressed (EXT_meshopt_compression). Its decoder ships
+// inside three, so no Draco binaries are fetched from Google's CDN.
+const MODEL_PATH = "/3d-models/models/scene.glb";
+const USE_DRACO = false;
 const MODEL_SCALE_DIVISOR = 120;
 const CAMERA_POSITION: [number, number, number] = [2.5, 5, 7];
 const MODEL_POSITION: [number, number, number] = [-0.5, -2.5, 0];
 
-useGLTF.preload(MODEL_PATH);
+useGLTF.preload(MODEL_PATH, USE_DRACO);
 
 function ModelScene() {
-  const groupRef = useRef<THREE.Group>(null);
   const size = useThree((state) => state.size);
-  const { scene, animations } = useGLTF(MODEL_PATH);
-  const { actions } = useAnimations(animations, groupRef);
+  const { scene, animations } = useGLTF(MODEL_PATH, USE_DRACO);
+  const { actions } = useAnimations(animations, scene);
 
   useEffect(() => {
-    // `actions` are getters that return undefined until groupRef is attached,
-    // so the action has to be read here and never during render.
     const clip = animations[0];
     const action = clip && actions[clip.name];
     action?.play();
@@ -37,13 +35,11 @@ function ModelScene() {
   }, [actions, animations]);
 
   return (
-    <group ref={groupRef}>
-      <Clone
-        object={scene as THREE.Group}
-        scale={Math.min(size.width, size.height) / MODEL_SCALE_DIVISOR}
-        position={MODEL_POSITION}
-      />
-    </group>
+    <primitive
+      object={scene}
+      scale={Math.min(size.width, size.height) / MODEL_SCALE_DIVISOR}
+      position={MODEL_POSITION}
+    />
   );
 }
 
@@ -62,8 +58,8 @@ export function ModelContent() {
         dpr={[1, 1.5]}
         gl={{ antialias: false }}
         camera={{ position: CAMERA_POSITION, fov: 60 }}
-        // R3F force-loses the WebGL context 500ms after its Effects are torn
-        // down, and rebuilds neither the context nor the root when they re-run
+        // R3F force-loses the WebGL context when it tears its root down, and
+        // rebuilds neither the context nor the root when its Effects re-run
         // (`if (!root.current)`). So any hide/show cycle — Next's <Activity>,
         // StrictMode — strands this canvas on a dead context and it stays
         // white; R3F ships no context-loss recovery, so remounting is ours to
@@ -83,7 +79,8 @@ export function ModelContent() {
           <ModelScene />
         </Suspense>
         <OrbitControls
-          enableRotate
+          enableZoom={false}
+          enablePan={false}
           minPolarAngle={Math.PI / 2}
           maxPolarAngle={Math.PI / 2}
         />

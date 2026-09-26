@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
-import { lang } from "next/root-params";
 import type { Metadata } from "next";
 import {
   getAllPostSlugs,
   getPostData,
 } from "@/src/app/[lang]/(main)/blog/lib/posts";
 import { formatDate } from "@/src/app/[lang]/(main)/blog/lib/utils";
-import { OG_LOCALES, isLocale } from "@/src/i18n/config";
+import { OG_LOCALES } from "@/src/i18n/config";
 import {
   getDictionary,
   getLocale,
@@ -14,10 +13,7 @@ import {
 } from "@/src/i18n/dictionaries";
 
 export async function generateStaticParams() {
-  const locale = await lang();
-  if (!isLocale(locale)) return [];
-
-  const slugs = await getAllPostSlugs(locale);
+  const slugs = await getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
 }
 
@@ -26,7 +22,7 @@ export async function generateMetadata({
 }: PageProps<"/[lang]/blog/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
-  const postData = await getPostData(slug, locale);
+  const postData = await getPostData(slug);
 
   if (!postData) {
     return {
@@ -42,11 +38,16 @@ export async function generateMetadata({
       title: postData.title,
       description: postData.summary,
       type: "article",
+      siteName: dict.site.name,
+      url: `/${locale}/blog/${slug}`,
       locale: OG_LOCALES[locale],
       publishedTime: postData.date,
+      ...(postData.hero && {
+        images: [{ ...postData.hero, alt: postData.title }],
+      }),
     },
     twitter: {
-      card: "summary",
+      card: postData.hero ? "summary_large_image" : "summary",
       title: postData.title,
       description: postData.summary,
     },
@@ -57,12 +58,11 @@ export default async function PostPage({
   params,
 }: PageProps<"/[lang]/blog/[slug]">) {
   const { slug } = await params;
-  const locale = await getLocale();
-  const postData = await getPostData(slug, locale);
+  const postData = await getPostData(slug);
 
   if (!postData) notFound();
 
-  const { default: Post } = await import(`../posts/${slug}.${locale}.mdx`);
+  const { default: Post } = await import(`../posts/${slug}.mdx`);
 
   return (
     <article className="prose dark:prose-invert mx-auto max-w-3xl">

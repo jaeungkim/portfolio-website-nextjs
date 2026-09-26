@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GithubIcon } from "@/src/components/shared/GithubIcon";
 import { LinkedinIcon } from "@/src/components/shared/LinkedinIcon";
+import { NotionIcon } from "@/src/components/shared/NotionIcon";
 import { IconButton } from "@/src/components/shared/IconButton";
 import { IntroTitle } from "@/src/app/[lang]/(main)/(home)/components/IntroTitle";
 import { ModelIsland } from "@/src/app/[lang]/(main)/(home)/components/ModelIsland";
@@ -26,9 +27,9 @@ export default async function Home() {
       </div>
 
       <article className="basis-1/2 space-y-4">
-        <h2 className="text-3xl font-bold text-foreground sm:text-2xl">
+        <h1 className="text-3xl font-bold text-foreground sm:text-2xl">
           <IntroTitle text={dict.home.greeting} />
-        </h2>
+        </h1>
 
         {dict.home.paragraphs.map((paragraph) => (
           <p key={paragraph} className="text-foreground">
@@ -37,6 +38,11 @@ export default async function Home() {
         ))}
 
         <div className="flex flex-wrap items-center gap-2 pt-2">
+          <IconButton
+            href="https://jaeungkim.notion.site/"
+            icon={NotionIcon}
+            label="Notion"
+          />
           <IconButton
             href="https://github.com/jaeungkim"
             icon={GithubIcon}

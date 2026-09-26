@@ -10,15 +10,9 @@ interface PlaceholderEntry {
 }
 
 interface BlurImageMdxProps {
-  url?: string;
-  src?: string;
+  url: string;
   alt?: string;
   priority?: boolean;
-  width?: number;
-  height?: number;
-  className?: string;
-  sizes?: string;
-  quality?: number;
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -27,49 +21,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     PlaceholderEntry | undefined
   >;
 
-  function BlurImageWithPlaceholder({
-    url,
-    src,
-    alt,
-    priority,
-    width,
-    height,
-    className,
-    sizes,
-    quality,
-  }: BlurImageMdxProps) {
-    const imageUrl = url ?? src;
-
-    if (!imageUrl) {
-      return null;
-    }
-
-    const entry = placeholderMap[imageUrl];
+  function BlurImageWithPlaceholder({ url, alt, priority }: BlurImageMdxProps) {
+    const entry = placeholderMap[url];
 
     // Fail the build rather than ship a blank slot with a guessed aspect ratio.
     if (!entry) {
       throw new Error(
-        `No blur placeholder for ${imageUrl}. Run \`pnpm generate-placeholders\`.`,
+        `No blur placeholder for ${url}. Run \`pnpm generate-placeholders\`.`,
       );
     }
 
     return (
       <BlurImage
-        url={imageUrl}
+        url={url}
         alt={alt ?? ""}
         blurDataURL={entry.blurDataURL}
         priority={priority}
-        width={width ?? entry.width}
-        height={height ?? entry.height}
-        className={className}
-        sizes={sizes}
-        quality={quality}
+        width={entry.width}
+        height={entry.height}
       />
     );
   }
 
   return {
-    img: BlurImageWithPlaceholder,
     BlurImage: BlurImageWithPlaceholder,
     code: InlineCode,
     ...components,

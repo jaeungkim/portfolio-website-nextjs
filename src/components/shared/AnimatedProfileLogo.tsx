@@ -19,7 +19,6 @@ export function AnimatedProfileLogo({ className }: AnimatedProfileLogoProps) {
         width={100}
         height={30}
         className="object-contain dark:invert"
-        priority
       />
     </div>
   );

@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import { errorMessagesFor } from "@/src/i18n/error-messages";
 
 export default function Error({
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
   const messages = errorMessagesFor(usePathname());
 
@@ -19,7 +19,7 @@ export default function Error({
       <p className="text-sm text-muted-foreground">{messages.description}</p>
       <button
         type="button"
-        onClick={reset}
+        onClick={retry}
         className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
       >
         {messages.retry}

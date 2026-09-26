@@ -10,7 +10,6 @@ interface BlurImageProps {
   priority?: boolean;
   className?: string;
   sizes?: string;
-  quality?: number;
 }
 
 export function BlurImage({
@@ -22,7 +21,6 @@ export function BlurImage({
   priority = false,
   className,
   sizes = "(max-width: 512px) 100vw, 512px",
-  quality = 75,
 }: BlurImageProps) {
   return (
     <div className="not-prose my-0 overflow-hidden rounded-md">
@@ -31,8 +29,7 @@ export function BlurImage({
         alt={alt}
         width={width}
         height={height}
-        quality={quality}
-        priority={priority}
+        preload={priority}
         sizes={sizes}
         className={cn("block h-auto w-full", className)}
         placeholder={blurDataURL ? "blur" : undefined}

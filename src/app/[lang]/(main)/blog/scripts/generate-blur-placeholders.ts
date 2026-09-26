@@ -3,13 +3,18 @@ import path from "path";
 import { extractImageUrls } from "@/src/app/[lang]/(main)/blog/scripts/extract-image-urls";
 import {
   getRemotePlaiceholder,
-  getStaticPlaiceholder,
   type Plaiceholder,
 } from "@/src/lib/plaiceholder";
 
-const BLOG_DIR = path.join(process.cwd(), "src", "app", "[lang]", "(main)", "blog");
+const BLOG_DIR = path.join(
+  process.cwd(),
+  "src",
+  "app",
+  "[lang]",
+  "(main)",
+  "blog",
+);
 const POSTS_DIR = path.join(BLOG_DIR, "posts");
-const PUBLIC_IMAGES_DIR = path.join(process.cwd(), "public", "images");
 const PLACEHOLDERS_CACHE_DIR = path.join(BLOG_DIR, "data");
 const PLACEHOLDERS_CACHE_FILE = path.join(
   PLACEHOLDERS_CACHE_DIR,
@@ -46,19 +51,6 @@ async function collectImageUrls(): Promise<Set<string>> {
   return imageUrls;
 }
 
-async function collectStaticImages(): Promise<string[]> {
-  try {
-    const files = await fs.readdir(PUBLIC_IMAGES_DIR);
-    const imageFiles = files.filter((file) =>
-      /\.(jpg|jpeg|png|webp|avif)$/i.test(file),
-    );
-    return imageFiles.map((file) => `/images/${file}`);
-  } catch (error) {
-    console.warn(`public/images 디렉토리를 읽을 수 없습니다: ${error}`);
-    return [];
-  }
-}
-
 async function loadCache(): Promise<Record<string, PlaceholderEntry>> {
   try {
     const cacheContent = await fs.readFile(PLACEHOLDERS_CACHE_FILE, "utf-8");
@@ -85,9 +77,6 @@ async function generatePlaceholders(): Promise<void> {
   const imageUrls = await collectImageUrls();
   console.log(`${imageUrls.size}개의 고유한 원격 이미지 URL 발견`);
 
-  const staticImages = await collectStaticImages();
-  console.log(`${staticImages.length}개의 정적 이미지 파일 발견\n`);
-
   let newCount = 0;
   let cachedCount = 0;
   let failedCount = 0;
@@ -107,25 +96,6 @@ async function generatePlaceholders(): Promise<void> {
     } else {
       failedCount++;
       console.warn(`  실패: ${url}`);
-    }
-  }
-
-  for (const imagePath of staticImages) {
-    if (cache[imagePath]) {
-      cachedCount++;
-      continue;
-    }
-
-    const fullPath = path.join(process.cwd(), "public", imagePath);
-    console.log(`  생성 중: ${imagePath}`);
-
-    const placeholder = await getStaticPlaiceholder(fullPath);
-    if (placeholder) {
-      cache[imagePath] = toEntry(placeholder);
-      newCount++;
-    } else {
-      failedCount++;
-      console.warn(`  실패: ${imagePath}`);
     }
   }
 

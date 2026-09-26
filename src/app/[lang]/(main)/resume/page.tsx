@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ResumeHeader } from "@/src/app/[lang]/(main)/resume/components/ResumeHeader";
+import { ResumeSection } from "@/src/app/[lang]/(main)/resume/components/ResumeSection";
 import { ResumeWork } from "@/src/app/[lang]/(main)/resume/components/ResumeWork";
 import { ResumeProject } from "@/src/app/[lang]/(main)/resume/components/ResumeProject";
 import { ResumeEducation } from "@/src/app/[lang]/(main)/resume/components/ResumeEducation";
@@ -22,23 +23,33 @@ export default async function ResumePage() {
   const dict = await getDictionary();
 
   return (
-    <>
+    // lg+: identity sticks in a left column while one readable column scrolls on the right.
+    <div className="lg:grid lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-x-14">
       <ResumeHeader />
-      <hr className="my-6 h-px bg-border border-0" />
-      <ResumeWork />
-      <hr className="my-6 h-px bg-border border-0" />
-      <ResumeProject />
-      <hr className="my-6 h-px bg-border border-0" />
-      <ResumeEducation />
-      <footer className="pt-36 text-center">
-        <p>{dict.resume.thanks}</p>
-        <div className="mt-12 space-y-1 text-sm text-muted-foreground">
-          <p>
-            {dict.resume.lastUpdatedLabel}: {LAST_UPDATED}
-          </p>
-          <p>{HANDLE}</p>
-        </div>
-      </footer>
-    </>
+
+      <div className="mt-12 max-w-2xl space-y-16 lg:mt-0 lg:max-w-none lg:space-y-20">
+        <ResumeSection id="about" title={dict.nav.about}>
+          <div className="space-y-3 text-sm leading-relaxed text-foreground">
+            {dict.resume.intro.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </ResumeSection>
+
+        <ResumeWork />
+        <ResumeProject />
+        <ResumeEducation />
+
+        <footer className="space-y-6 text-sm text-muted-foreground">
+          <p className="text-foreground">{dict.resume.thanks}</p>
+          <div>
+            <p>
+              {dict.resume.lastUpdatedLabel}: {LAST_UPDATED}
+            </p>
+            <p>{HANDLE}</p>
+          </div>
+        </footer>
+      </div>
+    </div>
   );
 }

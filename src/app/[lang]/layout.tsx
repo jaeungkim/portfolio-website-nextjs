@@ -13,7 +13,17 @@ import { cn } from "@/src/lib/cn";
 import "@/src/styles/globals.css";
 
 const pretendard = localFont({
-  src: "../../../public/fonts/pretendard/Pretendard-Regular.woff2",
+  // Only the two weights the type scale uses; any other weight would be browser-synthesized fake bold.
+  src: [
+    {
+      path: "../../../public/fonts/pretendard/Pretendard-Regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "../../../public/fonts/pretendard/Pretendard-SemiBold.woff2",
+      weight: "600",
+    },
+  ],
   display: "swap",
   variable: "--font-pretendard",
   preload: true,
@@ -70,7 +80,9 @@ export default async function RootLayout({
     <html
       lang={await getLocale()}
       suppressHydrationWarning
-      className="[scrollbar-gutter:stable]"
+      className="[scrollbar-gutter:stable] motion-safe:scroll-smooth"
+      // Lets Next.js keep route changes instant while in-page anchors scroll smoothly.
+      data-scroll-behavior="smooth"
     >
       <body
         suppressHydrationWarning

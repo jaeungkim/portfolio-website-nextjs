@@ -2,7 +2,12 @@ import { notFound } from "next/navigation";
 import { lang } from "next/root-params";
 import en from "@/src/i18n/dictionaries/en.json";
 import ko from "@/src/i18n/dictionaries/ko.json";
-import { LOCALES, isLocale, type Locale } from "@/src/i18n/config";
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  isLocale,
+  type Locale,
+} from "@/src/i18n/config";
 
 /** The English dictionary is the shape every other locale has to satisfy. */
 export type Dictionary = typeof en;
@@ -31,7 +36,7 @@ export async function localeAlternates(path: string = "") {
     canonical: `/${locale}${path}`,
     languages: {
       ...Object.fromEntries(LOCALES.map((code) => [code, `/${code}${path}`])),
-      "x-default": `/en${path}`,
+      "x-default": `/${DEFAULT_LOCALE}${path}`,
     },
   };
 }

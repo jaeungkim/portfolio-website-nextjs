@@ -4,16 +4,16 @@ import { usePathname } from "next/navigation";
 import { errorMessagesFor } from "@/src/i18n/error-messages";
 
 export default function GlobalError({
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
   const pathname = usePathname();
   const messages = errorMessagesFor(pathname);
 
   return (
-    <html lang={pathname.split("/")[1] === "ko" ? "ko" : "en"}>
+    <html lang={pathname.split("/")[1] === "en" ? "en" : "ko"}>
       <body
         style={{
           margin: 0,
@@ -31,7 +31,7 @@ export default function GlobalError({
         </h1>
         <button
           type="button"
-          onClick={reset}
+          onClick={retry}
           style={{
             fontSize: "0.875rem",
             fontWeight: 500,
