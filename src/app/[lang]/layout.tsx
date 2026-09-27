@@ -1,8 +1,8 @@
 import type React from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { ThemeProvider } from "next-themes";
 import { DevAnnotationToolbar } from "@/src/components/shared/DevAnnotationToolbar";
+import { ThemeProvider } from "@/src/components/shared/ThemeProvider";
 import { LOCALES, OG_LOCALES } from "@/src/i18n/config";
 import {
   getDictionary,
@@ -91,12 +91,7 @@ export default async function RootLayout({
           "antialiased bg-background text-foreground",
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           {children}
           <DevAnnotationToolbar />
         </ThemeProvider>
