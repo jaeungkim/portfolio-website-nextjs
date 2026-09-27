@@ -15,13 +15,12 @@
   },
   "home": {
     "metaTitle": "Home",
-    "metaDescription": "Jaeung Kim, a frontend developer in Seoul.",
+    "metaDescription": "Jaeung Kim, a web engineer in Seoul.",
     "greeting": "Hi, I'm Jae Kim.",
     "paragraphs": [
-      "I care about how a screen feels. I like refining the flow of a product until people move through it without thinking about it.",
-      "Simple on the surface, precise underneath. That is the balance I chase, and the problems along the way are the fun part.",
-      "Off work I play basketball and spend time outdoors to recharge.",
-      "This site is my workshop. I use it to try things I want to learn, test small ideas, and keep notes on ordinary days."
+      "I'm a web engineer by day, and the rest of the time it's basketball, Olivia Dean on repeat, hanging out with friends, and trips here and there.",
+      "As a dev I'm pretty detail oriented, probably more than I need to be. If something's a pixel off I'll notice, and it'll bug me until I fix it.",
+      "This site is where all of that ends up, the stuff I build for fun and photos from wherever I went last."
     ]
   },
   "blog": {
@@ -37,15 +36,15 @@
   },
   "resume": {
     "metaTitle": "Resume",
-    "metaDescription": "Resume of Jaeung Kim, frontend engineer, with experience, projects, skills, and education.",
+    "metaDescription": "Resume of Jaeung Kim, a web engineer in Seoul: experience, projects, and education.",
     "name": "Jaeung (Jae) Kim",
-    "role": "Frontend Engineer",
+    "role": "Web Engineer",
     "photoAlt": "Jaeung (Jae) Kim",
     "intro": [
-      "I am a frontend engineer with five years of experience. I currently work on an automotive R&D platform that models large engineering datasets as an ontology and visualizes them as a knowledge graph, so thousands of spreadsheets and PDFs from across departments can be searched in plain language and traced to their source.",
-      "In a complex domain, interface design decides the outcome. I start by observing how users respond and refine the UI/UX from there. A good screen makes the next step obvious without explanation.",
-      "I hold my code to the same standard. I design consistent structures that the next developer can use immediately and document the reasoning behind them. On my current project I own the frontend architecture and work with designers and backend engineers from planning onward to shape the product and the frontend. Translating between design intent and implementation is the work I do best.",
-      "I adopt new tools such as AI quickly, but adoption is not the goal. I focus on designing how people and AI work together and making that a shared team standard. An environment the whole team uses well matters more than one person using it well."
+      "I am a software engineer with five years of experience building web products end to end, from interface to API and infrastructure. I currently work on an automotive R&D platform that models data scattered across departments as an ontology and visualizes it as a knowledge graph, so it can be searched in plain language and traced to its source.",
+      "In complex domains, interface design decides the outcome. I start by observing how users actually respond and refine the UI/UX from there. A good screen makes the next step obvious without explanation.",
+      "I hold my code to the same standard: consistent structures the next engineer can use immediately, with the reasoning documented. On my current project I own the web application architecture and work with designers and backend engineers from planning onward to shape the product. Translating between design intent and implementation is the work I do best.",
+      "I adopt new tools such as AI coding agents quickly, but adoption is not the goal. I focus on designing how people and AI work together and making that a shared team standard. A team that works well with these tools matters more than one person who does."
     ],
     "sections": {
       "about": "About",
@@ -61,115 +60,115 @@
     "lastUpdatedLabel": "Last updated",
     "experience": {
       "e8ight": {
-        "period": "2024.01 ~ Present",
+        "period": "Jan 2024 – Present",
         "company": "E8IGHT",
         "location": "Seoul, South Korea",
-        "role": "Platform Development Team | Senior Researcher",
-        "platformHeading": "Frontend platform standardization and developer environment",
+        "role": "Senior Software Engineer | Platform Development Team",
+        "platformHeading": "Web platform and developer tooling",
         "platformBullets": [
-          "Consolidated the shared UI package, Storybook design system, lint and i18n templates, and branching strategy into one monorepo standard, so new products skip setup and start on domain work",
-          "Moved the legacy CRA setup to Vite and a pnpm workspace and introduced a Jenkins and Docker pipeline, cutting CI builds from 10 minutes to under 2 (about 80%)",
-          "Deployed Sentry on an internal server to collect every product's error logs in one place and catch incidents through alerts",
-          "Enforced lint, type checks, and commit conventions as a commit stage gate, so code from people and coding agents is verified to the same standard",
-          "Built a coding agent collaboration environment from 15 custom commands and workflows, role specific subagents, and skills. Now the frontend team standard and spreading to the backend team"
+          "Unified the shared UI package, Storybook design system, lint and i18n templates, and branching strategy into one monorepo standard that lets new products skip setup",
+          "Migrated the legacy CRA build to Vite and pnpm workspaces and added a Jenkins/Docker pipeline, cutting CI builds 80% (10 minutes to under 2)",
+          "Self-hosted Sentry to centralize error logs across products and alert on incidents",
+          "Enforced lint, type checks, and commit conventions at commit time, holding engineers and coding agents to the same standard",
+          "Built the team's coding agent environment (15 custom commands and workflows, role-specific subagents, skills), now the web team standard and spreading to the backend team"
         ],
         "projects": {
           "hyundai": {
             "title": "Hyundai Motor R&D data integration platform",
-            "description": "Internal platform that integrates Hyundai Motor R&D data into an ontology based knowledge graph. Led the frontend architecture and built the graph visualization SDK and the LLM chat.",
+            "description": "Internal platform that integrates Hyundai Motor R&D data into an ontology-based knowledge graph. Led the web application architecture and built the graph visualization SDK and LLM chat.",
             "sdkHeading": "Knowledge graph visualization SDK",
             "sdkBullets": [
-              "Designed the knowledge graph visualization SDK shared by the company's GraphRAG products. Split rendering and the d3-force layout into a core with no React dependency, exposed through one imperative handle, so internal rewrites never break call sites",
-              "Capped the nodes drawn per screen around a neighborhood based exploration model and dropped WebGL bulk renderers such as sigma.js after evaluation. Within that budget, rendered directly to Canvas 2D, paused rendering when idle, and cached labels as bitmaps to keep interaction smooth",
-              "Kept fast changing state in a store outside React and propagated updates only on real data changes, removing needless rerenders in large lists"
+              "Architected the graph visualization SDK shared by all GraphRAG products: rendering and d3-force layout in a React-free core behind one imperative handle, so internal rewrites never break call sites",
+              "Capped nodes per screen around neighborhood-based exploration, rejecting WebGL bulk renderers such as sigma.js after evaluation. Rendered directly to Canvas 2D with idle pausing and bitmap label caching to keep interaction responsive",
+              "Kept fast-changing state outside React and propagated only real data changes, eliminating needless re-renders in large lists"
             ],
             "llmHeading": "LLM chat integrated with the knowledge graph",
             "llmBullets": [
-              "Rendered the supporting subgraph on the adjacent canvas from the graph query attached to each GraphRAG answer, so a source can be traced on the graph itself",
-              "Routed the WebSocket stream by type into text, reasoning steps, and graph evidence, and decoupled receiving from display with a token queue. Batched chunks per frame to minimize rerenders",
-              "Drained the token queue at a steady pace, accelerated when it fell behind, and snapped to the received text on stop or error. Rendered only completed segments as markdown so unclosed code blocks and partial formulas never broke the layout"
+              "Rendered each GraphRAG answer's supporting subgraph on an adjacent canvas, so users trace sources directly on the graph",
+              "Split the WebSocket stream into text, reasoning steps, and graph evidence, and buffered display through a per-frame token queue to minimize re-renders",
+              "Paced token output with catch-up acceleration and instant snap on stop or error, rendering only completed markdown segments so partial code blocks and formulas never break the layout"
             ]
           },
           "digitalTwin": {
             "title": "Digital Twin Federation integrated portal",
-            "description": "Integrated portal for a government R&D program: one shell that brings external digital twin tools and partner institutions' deliverables into a single environment. Designed and built as the sole full stack engineer, from the authentication, authorization, and organization model through the Next.js 15 frontend and NestJS backend, and delivered on schedule.",
+            "description": "Government R&D program portal that brings external digital twin tools and partner deliverables into one shell. Delivered on schedule as the sole full-stack engineer, from the auth and organization model through the Next.js 15 web app and NestJS backend.",
             "bullets": [
-              "Designed authentication and authorization as global guards with deny by default, so a new API cannot ship without authentication",
-              "Kept tokens in HttpOnly cookies only, never exposed to the browser, with refresh token rotation and reuse detection to block stolen tokens",
-              "Gated security settings behind environment variables so one deployment image serves both public HTTPS and internal HTTP"
+              "Enforced authentication and authorization through global deny-by-default guards, so no endpoint ships unauthenticated",
+              "Kept tokens in HttpOnly cookies only, with refresh token rotation and reuse detection to block token theft",
+              "Gated security settings by environment variable so one deployment image serves both public HTTPS and internal HTTP"
             ]
           },
           "products": {
             "title": "Company product suite (NAXiS, PMIS, NDX Cloud, and others)",
-            "description": "Led frontend development for five company products.",
+            "description": "Led web development for five company products.",
             "naxisNote": "(ontology modeling tool)",
             "naxisBullets": [
-              "A graph editor for building ontologies without code. Kept the domain model (entity types, relations, serialization) separate from React Flow, so other company products adopted it unchanged",
-              "Collapsed hubs with hundreds of edges on one node into relation group nodes and merged identical relations into one edge, with partial relayout on expand and collapse instead of a full pass"
+              "Built a no-code graph editor for ontologies with the domain model (entity types, relations, serialization) decoupled from React Flow, so other products adopted it unchanged",
+              "Collapsed hundred-edge hubs into relation group nodes, merged identical relations into one edge, and relaid out only the affected region on expand and collapse"
             ],
             "pmisNote": "(project schedule and resource management)",
             "pmisBullets": [
-              "Rebuilt a tree of thousands of rows with lazy loading and virtual scrolling, cutting initial load from 12 seconds to 2 (about 80%)",
-              "Parallelized serial drawing uploads, taking 19 files from 4 minutes to 20 seconds, with optimistic UI and rollback for instant feedback"
+              "Rebuilt a tree of thousands of rows with lazy loading and virtual scrolling, cutting initial load 80% (12 seconds to 2)",
+              "Parallelized drawing uploads (19 files from 4 minutes to 20 seconds) with optimistic UI and rollback for instant feedback"
             ],
-            "ndxCloudNote": "(large scale image cloud platform)",
+            "ndxCloudNote": "(large-scale image cloud platform)",
             "ndxCloudBullets": [
-              "Abstracted four permission levels (organization, project, site, dataset) into one RBAC matrix for consistent access control down to the screen",
-              "Cut EXIF extraction for 4,000 images to parsing only the JPEG APP1 marker, taking memory from 20 GB to 800 MB",
-              "Uploaded directly from the browser to S3 with presigned URLs, taking 20 minutes down to 10 with 70% less server load"
+              "Unified four permission tiers (organization, project, site, dataset) into one RBAC matrix, enforced consistently down to the screen",
+              "Limited EXIF extraction for 4,000 images to the JPEG APP1 marker, cutting memory from 20 GB to 800 MB",
+              "Moved uploads to direct browser-to-S3 with presigned URLs, halving upload time (20 minutes to 10) and cutting server load 70%"
             ]
           }
         }
       },
       "flashee": {
-        "period": "2023.06 ~ 2023.10",
+        "period": "Jun 2023 – Oct 2023",
         "company": "Flashee",
         "location": "Vancouver, Canada",
-        "role": "Frontend Developer",
+        "role": "Web Developer",
         "bullets": [
-          "First developer at a clothing marketplace startup. Owned the stack choice, frontend architecture, deployment, and operations alone",
-          "Designed and built the platform that gathers multiple Shopify seller stores into one marketplace. Products and orders stayed in each store, and the platform owned discovery and the buying experience",
-          "Kept Supabase Auth as the single identity layer and wired Instagram and TikTok Login Kit on top, so users sign in with a social account while sessions are managed in one place",
-          "Chose Shopify Payments over a custom gateway integration, keeping card handling outside the platform while improving cart abandonment and transaction success"
+          "First and sole engineer at a clothing marketplace startup, owning stack selection, application architecture, deployment, and operations",
+          "Built a marketplace over multiple Shopify seller stores: products and orders stayed in each store, the platform owned discovery and purchase",
+          "Layered Instagram and TikTok Login Kit on Supabase Auth as the single identity provider, so social sign-in shares one session model",
+          "Chose Shopify Payments over a custom gateway, keeping card data out of the platform while improving cart abandonment and transaction success"
         ]
       },
       "iclinic": {
-        "period": "2022.07 ~ 2023.06",
+        "period": "Jul 2022 – Jun 2023",
         "company": "iClinic Systems Inc.",
         "location": "Vancouver, Canada",
         "role": "Full Stack Developer",
         "bullets": [
-          "EMR (Electronic Medical Records) SaaS startup. Full stack ownership across the marketing site, an internal admin portal, the backend API, and AWS infrastructure",
-          "Designed and built the WebGL (Three.js) 3D marketing site alone, from design through implementation and deployment",
-          "Designed and built scroll and page transition interactions with GSAP and Framer Motion",
-          "Designed and operated the HR and attendance admin portal. Treated non technical executives as the primary users and shaped the screens so they needed no training",
-          "Designed and built the Express backend API, MongoDB schema, AWS infrastructure, and CI/CD pipeline"
+          "Owned the full stack at an EMR (electronic medical records) SaaS startup: marketing site, internal admin portal, backend API, and AWS infrastructure",
+          "Designed and shipped the WebGL (Three.js) 3D marketing site solo, from concept through deployment",
+          "Built scroll-driven and page transition interactions with GSAP and Framer Motion",
+          "Designed and ran the HR and attendance admin portal for non-technical executives, with screens that needed no training",
+          "Built the Express backend API, MongoDB schema, AWS infrastructure, and CI/CD pipeline"
         ]
       },
       "catalx": {
-        "period": "2021.01 ~ 2022.05",
+        "period": "Jan 2021 – May 2022",
         "company": "Catalx Management Ltd.",
         "location": "Vancouver, Canada",
-        "role": "Frontend Developer",
+        "role": "Web Developer",
         "bullets": [
-          "Designed the React component architecture at a cryptocurrency exchange startup. Drew the line between shared components and screen code so new screens were composed from existing pieces",
-          "Designed the credit card payment integration and built the crypto purchase flow from card authorization to asset credit",
-          "Fixed empty social media previews for SPA links with Lambda@Edge. Injected per route Open Graph meta at the CloudFront edge without changing how the frontend renders",
-          "Worked with designers from Figma to improve UI/UX, reconciling design intent and implementation component by component"
+          "Designed the React component architecture for a cryptocurrency exchange, separating shared components from screen code so new screens composed from existing pieces",
+          "Designed the credit card integration and built the crypto purchase flow from card authorization to asset credit",
+          "Fixed blank social previews for SPA links with Lambda@Edge, injecting per-route Open Graph tags at the CloudFront edge without changing how the app renders",
+          "Partnered with designers in Figma to reconcile design intent with implementation, component by component"
         ]
       }
     },
     "projects": {
       "gantt": [
-        "Open source Gantt chart on npm for React 18 and 19. Controlled component that persists nothing: once an edit is committed, the complete next task list goes out through a single callback",
-        "Calendar, task tree, and timeline geometry are pure modules tested separately from React. Drag, keyboard, and detail panel edits share one commit path, so working day snapping and summary row moves behave the same from every input",
-        "Virtualized on both axes, rows and time cells, with five scales from day to year. The bundle imports only React and stays under 40 kB gzipped",
-        "No toolbar, just the chart. Scale is driven through an imperative handle and the theme overridden through CSS variables",
-        "Move, resize, and reorder tasks from the keyboard, with edits announced to screen readers. English and Korean docs plus a playground"
+        "Published an open source Gantt chart for React 18 and 19 on npm as a fully controlled component: each committed edit emits the complete next task list through one callback",
+        "Isolated calendar, task tree, and timeline geometry as pure modules tested without React. Drag, keyboard, and panel edits share one commit path, so working-day snapping behaves the same from every input",
+        "Virtualized rows and time cells across five scales from day to year, with a bundle that depends only on React and stays under 40 kB gzipped",
+        "Shipped without a toolbar, with scale driven through an imperative handle and theming through CSS variables",
+        "Added full keyboard support for moving, resizing, and reordering tasks, with edits announced to screen readers, plus English and Korean docs and a live playground"
       ]
     },
     "education": {
-      "period": "2020.04",
+      "period": "Apr 2020",
       "school": "University of British Columbia",
       "degree": "Bachelor of Science, Computer Science"
     }
