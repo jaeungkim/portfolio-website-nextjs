@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useLayoutEffect, useState, Suspense } from "react";
 import { catchError } from "next/error";
+import { clone } from "three/addons/utils/SkeletonUtils.js";
 import { Canvas, useThree } from "@react-three/fiber";
 import {
   Html,
@@ -19,10 +20,27 @@ const MODEL_POSITION: [number, number, number] = [-0.5, -2.5, 0];
 
 useGLTF.preload(MODEL_PATH);
 
+// Next keeps a page you leave mounted inside a hidden <Activity>, and a hidden
+// canvas keeps rendering. R3F forwards Activity into the canvas, so this layout
+// effect cleans up on hide: the loop stops there and restarts when shown again.
+function PauseWhileHidden() {
+  const setFrameloop = useThree((state) => state.setFrameloop);
+
+  useLayoutEffect(() => {
+    setFrameloop("always");
+    return () => setFrameloop("never");
+  }, [setFrameloop]);
+
+  return null;
+}
+
 function ModelScene() {
   const size = useThree((state) => state.size);
-  const { scene, animations } = useGLTF(MODEL_PATH);
-  const { actions } = useAnimations(animations, scene);
+  const gltf = useGLTF(MODEL_PATH);
+  // useGLTF hands every caller one cached scene, and a three.js object can only
+  // sit in one scene. The hidden page's canvas and this one each need a copy.
+  const [scene] = useState(() => clone(gltf.scene));
+  const { actions } = useAnimations(gltf.animations, scene);
 
   useEffect(() => {
     Object.values(actions)[0]?.play();
@@ -67,6 +85,7 @@ export function ModelContent() {
             )
           }
         >
+          <PauseWhileHidden />
           <ambientLight intensity={0.5} />
           <directionalLight position={[5, 10, 5]} intensity={1} />
           <Suspense fallback={<Loader />}>
