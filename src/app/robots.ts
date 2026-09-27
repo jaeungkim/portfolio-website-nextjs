@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/src/i18n/config";
+import { SITE_URL } from "@/i18n/config";
 
 export default function robots(): MetadataRoute.Robots {
   return {

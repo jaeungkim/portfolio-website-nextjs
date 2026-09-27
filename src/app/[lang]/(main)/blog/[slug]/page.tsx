@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import {
   getAllPostSlugs,
   getPostData,
-} from "@/src/app/[lang]/(main)/blog/lib/posts";
-import { formatDate } from "@/src/app/[lang]/(main)/blog/lib/utils";
-import { OG_LOCALES } from "@/src/i18n/config";
+} from "@/app/[lang]/(main)/blog/_lib/posts";
+import { formatDate } from "@/app/[lang]/(main)/blog/_lib/format-date";
+import { OG_LOCALES } from "@/i18n/config";
 import {
   getDictionary,
   getLocale,
   localeAlternates,
-} from "@/src/i18n/dictionaries";
+} from "@/i18n/dictionaries";
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
@@ -24,11 +24,7 @@ export async function generateMetadata({
   const [dict, locale] = await Promise.all([getDictionary(), getLocale()]);
   const postData = await getPostData(slug);
 
-  if (!postData) {
-    return {
-      title: dict.blog.notFoundTitle,
-    };
-  }
+  if (!postData) notFound();
 
   return {
     title: postData.title,
@@ -36,7 +32,6 @@ export async function generateMetadata({
     alternates: await localeAlternates(`/blog/${slug}`),
     openGraph: {
       title: postData.title,
-      description: postData.summary,
       type: "article",
       siteName: dict.site.name,
       url: `/${locale}/blog/${slug}`,
@@ -45,11 +40,6 @@ export async function generateMetadata({
       ...(postData.hero && {
         images: [{ ...postData.hero, alt: postData.title }],
       }),
-    },
-    twitter: {
-      card: postData.hero ? "summary_large_image" : "summary",
-      title: postData.title,
-      description: postData.summary,
     },
   };
 }
@@ -62,7 +52,7 @@ export default async function PostPage({
 
   if (!postData) notFound();
 
-  const { default: Post } = await import(`../posts/${slug}.mdx`);
+  const { default: Post } = await import(`../_posts/${slug}.mdx`);
 
   return (
     <article className="prose dark:prose-invert mx-auto max-w-3xl">

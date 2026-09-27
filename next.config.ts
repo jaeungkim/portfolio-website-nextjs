@@ -2,11 +2,9 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   cacheComponents: true,
   experimental: {
     globalNotFound: true,
-    optimizePackageImports: ["lucide-react"],
   },
   async redirects() {
     return [
@@ -34,7 +32,6 @@ const nextConfig: NextConfig = {
 };
 
 const withMDX = createMDX({
-  extension: /\.(md|mdx)$/,
   options: {
     remarkPlugins: ["remark-frontmatter"],
   },

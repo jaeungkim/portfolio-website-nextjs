@@ -1,8 +1,5 @@
 import type { LucideProps } from "lucide-react";
 
-// lucide-react 1.x removed every brand mark, so the LinkedIn logo ships here
-// instead. Brand marks are solid paths rather than lucide's stroked outlines,
-// hence fill="currentColor" and no stroke props.
 export function LinkedinIcon(props: LucideProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>

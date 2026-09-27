@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { ResumeHeader } from "@/src/app/[lang]/(main)/resume/components/ResumeHeader";
-import { ResumeSection } from "@/src/app/[lang]/(main)/resume/components/ResumeSection";
-import { ResumeWork } from "@/src/app/[lang]/(main)/resume/components/ResumeWork";
-import { ResumeProject } from "@/src/app/[lang]/(main)/resume/components/ResumeProject";
-import { ResumeEducation } from "@/src/app/[lang]/(main)/resume/components/ResumeEducation";
-import { getDictionary, localeAlternates } from "@/src/i18n/dictionaries";
+import { ResumeHeader } from "@/app/[lang]/(main)/resume/_components/ResumeHeader";
+import { ResumeSection } from "@/app/[lang]/(main)/resume/_components/ResumeSection";
+import { ResumeWork } from "@/app/[lang]/(main)/resume/_components/ResumeWork";
+import { ResumeSectionItem } from "@/app/[lang]/(main)/resume/_components/ResumeSectionItem";
+import { ResumeStack } from "@/app/[lang]/(main)/resume/_components/ResumeStack";
+import { ResumeBullets } from "@/app/[lang]/(main)/resume/_components/ResumeBullets";
+import { getDictionary, localeAlternates } from "@/i18n/dictionaries";
 
 const LAST_UPDATED = "2026.06.30";
 const HANDLE = "@jaeungkim";
@@ -23,13 +24,12 @@ export default async function ResumePage() {
   const dict = await getDictionary();
 
   return (
-    // lg+: identity sticks in a left column while one readable column scrolls on the right.
     <div className="lg:grid lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-x-14">
       <ResumeHeader />
 
       <div className="mt-12 max-w-2xl space-y-16 lg:mt-0 lg:max-w-none lg:space-y-20">
-        <ResumeSection id="about" title={dict.nav.about}>
-          <div className="space-y-3 text-sm leading-relaxed text-foreground">
+        <ResumeSection id="about" title={dict.resume.sections.about}>
+          <div className="space-y-3 text-sm leading-relaxed">
             {dict.resume.intro.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -37,8 +37,24 @@ export default async function ResumePage() {
         </ResumeSection>
 
         <ResumeWork />
-        <ResumeProject />
-        <ResumeEducation />
+        <ResumeSection id="projects" title={dict.resume.sections.projects}>
+          <ResumeSectionItem
+            title="@jaeungkim/gantt-chart"
+            href="https://gantt.jaeungkim.com"
+          >
+            <ResumeStack items={["React", "TypeScript", "Zustand", "Vite"]} />
+            <ResumeBullets items={dict.resume.projects.gantt} />
+          </ResumeSectionItem>
+        </ResumeSection>
+
+        <ResumeSection id="education" title={dict.resume.sections.education}>
+          <ResumeSectionItem
+            title={dict.resume.education.school}
+            href="https://www.ubc.ca/"
+            period={dict.resume.education.period}
+            role={dict.resume.education.degree}
+          />
+        </ResumeSection>
 
         <footer className="space-y-6 text-sm text-muted-foreground">
           <p className="text-foreground">{dict.resume.thanks}</p>

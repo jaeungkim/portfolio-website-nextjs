@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
-import { getSortedPostsData } from "@/src/app/[lang]/(main)/blog/lib/posts";
-import { DEFAULT_LOCALE, LOCALES, SITE_URL } from "@/src/i18n/config";
+import { getSortedPostsData } from "@/app/[lang]/(main)/blog/_lib/posts";
+import { DEFAULT_LOCALE, LOCALES, SITE_URL } from "@/i18n/config";
 
-/** One entry per locale for `path`, each carrying the full hreflang set. */
 function localized(path: string, lastModified?: string): MetadataRoute.Sitemap {
   const languages = Object.fromEntries(
     LOCALES.map((locale) => [locale, `${SITE_URL}/${locale}${path}`]),
@@ -23,6 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...localized(""),
     ...localized("/resume"),
     ...localized("/blog"),
-    ...posts.flatMap((post) => localized(`/blog/${post.id}`, post.date)),
+    ...posts.flatMap((post) => localized(`/blog/${post.slug}`, post.date)),
   ];
 }

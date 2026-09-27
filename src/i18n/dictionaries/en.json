@@ -28,11 +28,9 @@
     "metaTitle": "Blog",
     "metaDescription": "Travel notes in photos.",
     "title": "Travel",
-    "readMore": "Read more",
-    "notFoundTitle": "Post not found"
+    "readMore": "Read more"
   },
   "notFound": {
-    "metaTitle": "Page not found",
     "title": "Page not found",
     "description": "The page you were looking for doesn't exist.",
     "home": "Back to home"
@@ -50,14 +48,14 @@
       "I adopt new tools such as AI quickly, but adoption is not the goal. I focus on designing how people and AI work together and making that a shared team standard. An environment the whole team uses well matters more than one person using it well."
     ],
     "sections": {
-      "experiences": "Experience",
+      "about": "About",
+      "experience": "Experience",
       "projects": "Projects",
       "education": "Education"
     },
     "experienceUnits": {
       "years": " yrs",
-      "months": " mos",
-      "none": "Entry level"
+      "months": " mos"
     },
     "thanks": "Thank you for reading.",
     "lastUpdatedLabel": "Last updated",

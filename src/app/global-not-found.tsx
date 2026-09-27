@@ -1,45 +1,33 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { DEFAULT_LOCALE } from "@/src/i18n/config";
-import ko from "@/src/i18n/dictionaries/ko.json";
-import "@/src/styles/globals.css";
-
-const pretendard = localFont({
-  src: "../../public/fonts/pretendard/Pretendard-Regular.woff2",
-  display: "swap",
-  variable: "--font-pretendard",
-});
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { DEFAULT_LOCALE } from "@/i18n/config";
+import ko from "@/i18n/dictionaries/ko.json";
+import { pretendard } from "@/styles/fonts";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: ko.notFound.metaTitle,
+  title: ko.notFound.title,
   description: ko.notFound.description,
 };
 
-/**
- * Unmatched URLs never reach a locale segment, so this page renders its own
- * document. It renders in the default locale — a URL with no valid `[lang]` gives
- * nothing to localise against.
- */
 export default function GlobalNotFound() {
   return (
-    <html lang={DEFAULT_LOCALE} className="[scrollbar-gutter:stable]">
-      <body
-        className={`${pretendard.className} antialiased bg-background text-foreground`}
-      >
-        <main className="mx-auto flex min-h-screen max-w-md flex-col items-start justify-center gap-4 px-4">
-          <h1 className="text-xl font-semibold text-foreground">
-            {ko.notFound.title}
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            {ko.notFound.description}
-          </p>
-          <a
-            href={`/${DEFAULT_LOCALE}`}
-            className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
-          >
-            {ko.notFound.home}
-          </a>
-        </main>
+    <html lang={DEFAULT_LOCALE} suppressHydrationWarning>
+      <body className={pretendard.className}>
+        <ThemeProvider>
+          <main className="mx-auto flex min-h-screen max-w-md flex-col items-start justify-center gap-4 px-4">
+            <h1 className="text-xl font-semibold">{ko.notFound.title}</h1>
+            <p className="text-sm text-muted-foreground">
+              {ko.notFound.description}
+            </p>
+            <a
+              href={`/${DEFAULT_LOCALE}`}
+              className="text-sm font-medium underline-offset-4 hover:underline"
+            >
+              {ko.notFound.home}
+            </a>
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

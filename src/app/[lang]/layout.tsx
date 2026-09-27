@@ -1,37 +1,16 @@
 import type React from "react";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { DevAnnotationToolbar } from "@/src/components/shared/DevAnnotationToolbar";
-import { ThemeProvider } from "@/src/components/shared/ThemeProvider";
-import { LOCALES, OG_LOCALES } from "@/src/i18n/config";
+import { DevAnnotationToolbar } from "@/components/shared/DevAnnotationToolbar";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { LOCALES, OG_LOCALES, SITE_URL } from "@/i18n/config";
 import {
   getDictionary,
   getLocale,
   localeAlternates,
-} from "@/src/i18n/dictionaries";
-import { cn } from "@/src/lib/cn";
-import "@/src/styles/globals.css";
+} from "@/i18n/dictionaries";
+import { pretendard } from "@/styles/fonts";
+import "@/styles/globals.css";
 
-const pretendard = localFont({
-  // Only the two weights the type scale uses; any other weight would be browser-synthesized fake bold.
-  src: [
-    {
-      path: "../../../public/fonts/pretendard/Pretendard-Regular.woff2",
-      weight: "400",
-    },
-    {
-      path: "../../../public/fonts/pretendard/Pretendard-SemiBold.woff2",
-      weight: "600",
-    },
-  ],
-  display: "swap",
-  variable: "--font-pretendard",
-  preload: true,
-});
-
-const SITE_URL = "https://jaeungkim.com";
-
-// Cache Components requires every root parameter to have at least one value.
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
 }
@@ -47,26 +26,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: dict.site.description,
     alternates: await localeAlternates(),
-    icons: {
-      icon: "/icons/jaekim.svg",
-      shortcut: "/icons/jaekim.svg",
-    },
+    icons: "/icons/jaekim.svg",
     openGraph: {
       type: "website",
       siteName: dict.site.name,
-      title: dict.site.name,
-      description: dict.site.description,
-      url: `${SITE_URL}/${locale}`,
       locale: OG_LOCALES[locale],
-    },
-    twitter: {
-      card: "summary",
-      title: dict.site.name,
-      description: dict.site.description,
-    },
-    robots: {
-      index: true,
-      follow: true,
     },
   };
 }
@@ -80,17 +44,10 @@ export default async function RootLayout({
     <html
       lang={await getLocale()}
       suppressHydrationWarning
-      className="[scrollbar-gutter:stable] motion-safe:scroll-smooth"
-      // Lets Next.js keep route changes instant while in-page anchors scroll smoothly.
+      className="motion-safe:scroll-smooth"
       data-scroll-behavior="smooth"
     >
-      <body
-        suppressHydrationWarning
-        className={cn(
-          pretendard.className,
-          "antialiased bg-background text-foreground",
-        )}
-      >
+      <body suppressHydrationWarning className={pretendard.className}>
         <ThemeProvider>
           {children}
           <DevAnnotationToolbar />

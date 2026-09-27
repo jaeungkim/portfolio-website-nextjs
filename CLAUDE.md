@@ -5,7 +5,7 @@ Personal portfolio and travel blog at https://jaeungkim.com, deployed on Vercel.
 ## Stack
 
 - Next.js 16 App Router with Turbopack and `cacheComponents`, React 19, TypeScript
-- Tailwind CSS v4 through `@tailwindcss/postcss`, tokens in `src/styles/globals.css`
+- Tailwind CSS v4 through `@tailwindcss/postcss`, tokens and the `page-container` utility in `src/styles/globals.css`, Pretendard loaded once in `src/styles/fonts.ts`
 - MDX posts through `@next/mdx`, 3D model through React Three Fiber and drei
 - pnpm, version pinned by `packageManager` in `package.json`
 
@@ -15,15 +15,15 @@ Personal portfolio and travel blog at https://jaeungkim.com, deployed on Vercel.
 - `pnpm build`: generates blur placeholders, type-checks, then runs `next build`
 - `pnpm type-check`: `next typegen` then `tsc --noEmit`
 - `pnpm lint`: `eslint .`
-- `pnpm test`: `tsx --test` over `src/**/*.test.ts`
 - `pnpm format`: prettier then `eslint --fix`
 
 ## Layout
 
 - `src/app/[lang]/`: every route is localized (`ko` default, `en`). `src/proxy.ts` redirects unprefixed requests to the negotiated locale.
-- `src/i18n/`: locale config and the `en.json` / `ko.json` dictionaries holding UI and resume copy.
-- `src/app/[lang]/(main)/blog/posts/<slug>.mdx`: posts, one English file served under both locales. `gray-matter` reads frontmatter. `scripts/generate-blur-placeholders.ts` writes `blog/data/placeholders.json`.
-- `src/components/`: layout and shared UI. Compose classes with `cn()` from `@/src/lib/cn`.
+- `src/i18n/`: locale config, the `en.json` / `ko.json` dictionaries holding UI and resume copy, and `error-messages.ts` for the client error boundaries, which cannot call `getDictionary()`.
+- `src/app/[lang]/(main)/blog/_posts/<slug>.mdx`: posts, one English file served under both locales. `gray-matter` reads frontmatter. `scripts/generate-blur-placeholders.ts` writes `blog/_data/placeholders.json`.
+- `src/components/`: layout and shared UI, plus the small data lists two components share (`layout/navigation.ts`, `shared/profile-links.ts`), kept beside their consumers. Compose conditional classes with `cn()` from the `cn` package.
+- Route-only code sits next to its route in private `_components` / `_lib` / `_data` folders. `@/*` maps to `src/*`. `src/mdx-components.tsx` maps MDX tags.
 
 ## Working rules
 

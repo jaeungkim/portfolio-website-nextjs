@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { GithubIcon } from "@/src/components/shared/GithubIcon";
-import { LinkedinIcon } from "@/src/components/shared/LinkedinIcon";
-import { NotionIcon } from "@/src/components/shared/NotionIcon";
-import { IconButton } from "@/src/components/shared/IconButton";
-import { IntroTitle } from "@/src/app/[lang]/(main)/(home)/components/IntroTitle";
-import { ModelIsland } from "@/src/app/[lang]/(main)/(home)/components/ModelIsland";
-import { getDictionary, localeAlternates } from "@/src/i18n/dictionaries";
+import { IntroTitle } from "@/app/[lang]/(main)/(home)/_components/IntroTitle";
+import { ModelIsland } from "@/app/[lang]/(main)/(home)/_components/ModelIsland";
+import { PROFILE_LINKS } from "@/components/shared/profile-links";
+import { getDictionary } from "@/i18n/dictionaries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
@@ -13,7 +10,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: dict.home.metaTitle,
     description: dict.home.metaDescription,
-    alternates: await localeAlternates(),
   };
 }
 
@@ -27,32 +23,27 @@ export default async function Home() {
       </div>
 
       <article className="basis-1/2 space-y-4">
-        <h1 className="text-3xl font-bold text-foreground sm:text-2xl">
+        <h1 className="text-3xl font-bold sm:text-2xl">
           <IntroTitle text={dict.home.greeting} />
         </h1>
 
         {dict.home.paragraphs.map((paragraph) => (
-          <p key={paragraph} className="text-foreground">
-            {paragraph}
-          </p>
+          <p key={paragraph}>{paragraph}</p>
         ))}
 
         <div className="flex flex-wrap items-center gap-2 pt-2">
-          <IconButton
-            href="https://jaeungkim.notion.site/"
-            icon={NotionIcon}
-            label="Notion"
-          />
-          <IconButton
-            href="https://github.com/jaeungkim"
-            icon={GithubIcon}
-            label="GitHub"
-          />
-          <IconButton
-            href="https://www.linkedin.com/in/jaeungkim0526/"
-            icon={LinkedinIcon}
-            label="LinkedIn"
-          />
+          {PROFILE_LINKS.map(({ href, icon: Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-muted-foreground hover:text-foreground hover:border-foreground/50 transition-all text-sm"
+            >
+              <Icon className="size-4" aria-hidden="true" />
+              {label}
+            </a>
+          ))}
         </div>
       </article>
     </div>
