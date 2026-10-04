@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "projects": "Projects",
     "blog": "Blog",
     "toggleTheme": "Toggle theme",
     "switchLanguage": "Switch to Korean"
@@ -28,6 +29,21 @@
     "metaDescription": "Travel notes in photos.",
     "title": "Travel",
     "readMore": "Read more"
+  },
+  "projects": {
+    "metaTitle": "Projects",
+    "metaDescription": "Side projects by Jaeung Kim.",
+    "title": "Projects",
+    "inProgress": "In progress",
+    "links": {
+      "website": "Website",
+      "github": "GitHub",
+      "npm": "npm"
+    },
+    "items": {
+      "gantt": "An open source Gantt chart for React. Drag bars to reschedule and link tasks that depend on each other. You can edit from the keyboard too.",
+      "footprint": "A satellite imagery marketplace I'm building to learn GIS. Find scenes on a map, crop just the area you need, and order it. The data is real Sentinel imagery."
+    }
   },
   "notFound": {
     "title": "Page not found",

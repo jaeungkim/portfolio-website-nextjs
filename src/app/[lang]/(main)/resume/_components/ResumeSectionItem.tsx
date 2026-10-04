@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ExternalLink } from "@/app/[lang]/(main)/resume/_components/ExternalLink";
+import { ExternalLink } from "@/components/shared/ExternalLink";
 
 interface ResumeSectionItemProps {
   title: string;
