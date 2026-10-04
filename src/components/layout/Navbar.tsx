@@ -25,12 +25,12 @@ export async function Navbar() {
 
         <div className="md:flex-1">
           <nav>
-            <ul className="justify-center items-center flex rounded-full px-3 text-sm font-medium backdrop-blur">
+            <ul className="justify-center items-center flex rounded-full sm:px-3 text-sm font-medium backdrop-blur">
               {NAVIGATION.map((item) => (
                 <li key={item.key}>
                   <LocaleLink
                     href={item.href}
-                    className="block px-3 py-2 transition hover:text-muted-foreground"
+                    className="block px-1.5 py-2 transition hover:text-muted-foreground sm:px-3"
                   >
                     {dict.nav[item.key]}
                   </LocaleLink>
