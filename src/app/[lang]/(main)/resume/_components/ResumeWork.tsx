@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ExternalLink } from "@/components/shared/ExternalLink";
+import { ExternalLink } from "@/app/[lang]/(main)/resume/_components/ExternalLink";
 import { ResumeSection } from "@/app/[lang]/(main)/resume/_components/ResumeSection";
 import { ResumeSectionItem } from "@/app/[lang]/(main)/resume/_components/ResumeSectionItem";
 import { ResumeStack } from "@/app/[lang]/(main)/resume/_components/ResumeStack";

@@ -21,7 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...localized(""),
     ...localized("/resume"),
-    ...localized("/projects"),
     ...localized("/blog"),
     ...posts.flatMap((post) => localized(`/blog/${post.slug}`, post.date)),
   ];
