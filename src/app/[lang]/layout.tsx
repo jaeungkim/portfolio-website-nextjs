@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { DevAnnotationToolbar } from "@/components/shared/DevAnnotationToolbar";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { LOCALES, OG_LOCALES, SITE_URL } from "@/i18n/config";
@@ -52,6 +53,7 @@ export default async function RootLayout({
           {children}
           <DevAnnotationToolbar />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
