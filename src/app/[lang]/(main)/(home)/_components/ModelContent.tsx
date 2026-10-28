@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState, Suspense } from "react";
 import { catchError } from "next/error";
+import { setConsoleFunction } from "three";
 import { clone } from "three/addons/utils/SkeletonUtils.js";
 import { Canvas, useThree } from "@react-three/fiber";
 import {
@@ -17,6 +18,13 @@ const MODEL_PATH = "/3d-models/models/scene.glb";
 const MODEL_SCALE_DIVISOR = 120;
 const CAMERA_POSITION: [number, number, number] = [2.5, 5, 7];
 const MODEL_POSITION: [number, number, number] = [-0.5, -2.5, 0];
+
+const FIBER_CLOCK_DEPRECATION = "THREE.Clock: This module has been deprecated.";
+
+setConsoleFunction((type, message, ...params) => {
+  if (type === "warn" && message.startsWith(FIBER_CLOCK_DEPRECATION)) return;
+  console[type](message, ...params);
+});
 
 useGLTF.preload(MODEL_PATH);
 
