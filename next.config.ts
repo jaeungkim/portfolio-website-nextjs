@@ -3,6 +3,8 @@ import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  partialPrefetching: true,
+  agentRules: false,
   experimental: {
     globalNotFound: true,
   },
