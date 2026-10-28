@@ -4,7 +4,7 @@ export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "ko";
 
-export const SITE_URL = "https://jaeungkim.com";
+export const SITE_URL = "https://www.jaeungkim.com";
 
 export const hasLocale = (locale: string): locale is Locale =>
   LOCALES.includes(locale as Locale);
