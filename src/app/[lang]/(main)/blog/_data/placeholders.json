@@ -3993,5 +3993,150 @@
     "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKCAIAAAAGpYjXAAAACXBIWXMAAAsTAAALEwEAmpwYAAABBUlEQVQImQH6AAX/AJefn4aMim9yd21mPFtSGzc3OTg2Lzk3LwCan5+UmZV6fYOHf0qAdy5AQUFIRz9JSUAAlIuAjYmFi4yMcW1XW1Y8WVZRVlVOX11UAN3c0o6CeYyGgWlmYkFAO1JQRmhjXX99cAD1/fnd3tSTiX5iZF1eNDZhLjJvcGablIUA5uvj9P7+4+XgV1lYVjUMi14ZfHlysqeQALnIqq23gsff1EVVYy4AAHk/Fo+Ka7SkiACAlIZZXRqRolxYbFodChRPMyuOfVq2qYYAc25nf29aeWo4PjwXQkE9RkZAcmJdpKR+ABEKCiwjFlM9JiQaGEErIDQuIwcAAB0kI/OyY3+LKdbhAAAAAElFTkSuQmCC",
     "width": 1200,
     "height": 1600
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%201.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AFZleTxMYkxdcExdcneImU5ecRAkPABicYdvfZRwfZScp7agqrc8TWUjOFIABzlfLU5xFEFjJUlrKElpBjJUACtPAIunxYSjw22RtVJ8omKHqoOjwoijwADh7e7o9/vu/f/u/f/I0tCjq6WJjIAAjH5fd2VFaVRCZUtHYlxEEQMAHRIAAGdNGD0dAEs4HWdXP1pJJzglADYkDAA1KAkqEQAyGgByZE1tXkJhUTZaSS0AZlxHbGJLaV9FhXFTppNvp5RyppR2ALGffcayisW0kLOmhpyNbYl9X4F1Vi/mWI9+BUpzAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%202.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AFcvBmJCFRsVABIMDB8KADsKAIdaVgCOaUx9blCcpmypnYVCKiBmQz2nlJMA3MuqCQMBTklA2827vaeWgGdZrZ2fALSbeRsXDCgjHcnCsod7ap+AYO3RvgAxJBVJRTX15aj/5qq2bWhnPEK8s60AWVRM1M6J/9x7/9qP/6Cn41BpZTc8AIF3bPz6uJxzPf99fN92e/93jJE3SQBiWlb79NrpgHr7SmnUgXX1dHiHN0cAfGxjNDIw14WR919zy1JgiVBUX1VXAPDXwBgYHhsfK0pGVykpOj9CSP/76LMEYqhyWtb5AAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%203.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AJR+X4d2WXBeR2pYQH9sUHhkSntmSgAiGg4QAwAYEgFPRTaumn+/qo7Uv6MAs6KJyLSY6M+w4ceq9tu8//vc//PYAN/Cp8Wzm7SfhpZ/bJZ+bePJp//tyQCfg22fg259bV9oWVG7oIlSRzuGcV0AfWpdPSIZWjgqmYBupotxGxEWDwoSAKeNgVQ9M4JbOZ1WHJdWIDQwIzw8MgCLeGpOVUSIc1LZqmDluXGtlHeNeWkARkk9aGRUhm5Yo3pKrYZVwqKBfW1dAIdzZH5sXnxkUmJBMHNYR4dpV4p9aavmYbgiYoyYAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%204.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ALWwrcG7usC7usvHxsTBvbawr7SsqgDRy8jEvra3s6fAvLLCu7TIw7zBu7EAt7Kur66ro6Kfu7q0w8C9vrm4pKOdAKeloAwHABQJBSktFy02F6utq5OdowC3sqpORTuUjIdSWDgcKwBmdliFjpAAiH9zKiUfBwkAFRgAEh8LLTMZGwAAAJCIfiQkHgoGABQIAD49OnhtXFM8KADAubPNxcC1srGqp6WdoaOnqarFwsAAo6KjmJSUoJ2et7Kxr6+vyMjA//r0AFJRVk1MUFZWWlxbX62pqvr39Ofj4gPEbYpajBHhAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%205.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ANbg7OX2/+j3//D8//D//+37/9Lj9QCjqa/L3u7W7f/Z7f/S5f3P3/OPlJcAh4mP0N3q3/X/zuX71ur/qqqxmJiYAJCTkri0ttrt/uLx/8LO2pKYnX19fQCGhH6FgH2fpq7V3OFkaG1ubXBvbGoAdHJwX11cYl5bc3d4VFRRWldUYWBaAE5NTlJMTU1SUZSfpVhZVmpoao2MkQBJR0YoKSVte4GPn6k6R0YvLil+eXoAEBYQIy4nXW50UmZtRlZdFiEcICMfAA4ZDzhEQT1MTzlISjtMTyQ0LQAHAP2BcC3waArtAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%206.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AGNmYN/g3P7+/O7t7fDx8vX19err7ABCQzg4MT+rsrv7/fv7+/jv7+zb29sAZm1pcGpzRR4oZ1hhdXtxeoJwo62YAHx9d66lpbhhRIMhDCYSEh4XF0lJOwBISDxdEAC1NAeyQhx4NA1tIwB1PBoAS0Ekqi0B0EAJuz4clSQAbzgFikEUAE42G8U4DclBHa9CLH8mAC4iAIM2DQBVLBabQSKDRTKfOB13HAAYAACALwgARhcCUBoAnxoASRMAX0tKZ1xcLR0YAIB4dpU4CG0eADs5OWtmZVJLUSwtNFndUMXADWHyAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%207.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AFx+qE5zm1mU1FGHxE2DwkqCvkl/vQBRb5RBXoNqpetdlNJclNBXj81VjMgAa4inVHGThLnyeKfZaJjNYpjXXJTQALC9xbTDzO7//9Po9sHZ75jF8oW26QCLkpSHlJu2ytTE1d7K2eDY7frb7/wAMzcwq6aZUlVUU1hYaW1tjpmhs8fUACgeBlNWO2ViVHl3cnhzakA8NUhQUQAjFgYjKSM6QUV4d2ibmox2dW48ODMAAAIDW11ddnZyiYl8jI2Fenx3fX16AHV2cn6AeY6PiIyNh4aHgY2MhoyMhs4ablHbveeWAAAAAElFTkSuQmCC",
+    "width": 2999,
+    "height": 3999
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%208.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AF+Y5V2Y5ViR21qT3lyW41qT3l2W5QBtp/Jmm+Nloe5opfNno/Ftr/9opfUAfbf/ZpXLdbL8drT/c7L8YZLPIzFCAIfB/3Cn6H+9/4C+/4fK/2uYzSc2SQCc0P/I6//N/P+b0f+TxPd+r95ZfZwA5/3/tLSykJWYYmpxXFVGbmtZUlNFAKu2ukZKRlRKOEg2IUo4GV5ZRiYiEQA6PCYuLSKIgnNaUUJLRSUMBgAAAAAAf3hodm5fnJKFlo18ZVY0QkIqQkgvAH5+fYGBfomJgpaTiqafksO9r8a4pgIOb3C7i64gAAAAAElFTkSuQmCC",
+    "width": 2854,
+    "height": 3807
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%209.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AKbY/5LF/4O2/3yt/Xir+3qt/3iq8QCs4P+WzP+Rxf+Gvf+Ct/+DtvtUaFUAy///uvT/pdr/mtD/pN7/lsP1RFRRAND+/63X+6fN742qqam+u2FvXFZiWwAtPSYSGQA9SSpOXColLgIbIgAjKg8AIB4LFBoFEREAJCIVBQ8AMzsYMzsgAEI0NW5oXkhGQhoAAHt3ZaqtnZ2fkQCio56Zl5KKjIo8PDxlZGKUkIhsaGQAra2qt7m0s7KtsrOuq6ymhoV/b3BvAKKioKOin6WloqmppKqqqKusqa+vriUBbpniNlYwAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2010.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ADpyrDZwqzJtqTJtqTJtqzBspy5rqABHf7pEfbtDfbpCfrtCfbw/erY+erkAcqniYJfRVI7KVo/OUIW7TYfCUI/OALTJ18Hm/4O36W2k3FiNv3et5G6f0ABKSUW0wcTH1dy+2/GRttbr/v+nt74AVlVLOjozoKqryt7oeYKCR0Y5NDYsACclGxYPAjQ4NVtoZTo/Nz84IRUOAABLTT0CAQAmIhpjXlNXU0Fva1kwLxcAd2xXbGlWhYR9d3dxenlzhYR7kIl5AKyag5eWiW9xanBxanFybHZ2cHZ3cD9ZYpOR8pgoAAAAAElFTkSuQmCC",
+    "width": 1574,
+    "height": 2100
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2011.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AISdZJqyfqzFf5asa2F6PZOqeaS7jwBujzB+n0ySsGPT5sG/0LOKoG65z7YAd5RQf5xkboNmgI5rp7SGo7R/6///AGx+W3KNYH6ecVpjXF1cXcLTurnQowBlaUhldlZpd1FtaWF0cXmXmImxupYARFUkZX5ViIiHgIFpbmldoqOYzMy/ACUvE3Z1WpuXpJOXlHp0bqSrfZ+xZAAxOCRCPTOdlphWVFRRTEttdTttfkYAv8p6h5NsCRMmEBMaBAUHiZWHt8TUAOz1e9XceTxCMRMYGAICAk5ZJ2lwXC9fZKYCrtd9AAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2012.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AN76/8Lk/77g/4e094m095O+/qHI/wDe///H7v+94/+03P+Swv+Hu/6Mvv8A0On6wdzwzPT/uun/jsn/hMT/hsT/AD5LKmluPbve9qC14H5pdYy57Z7Q/wAVHQ9ASCFlbkpfYktuRClnOi6QgoMABgwEN0QffHhMVUw9cWlIhXZNp5F4AFFLO6ecebqyn3dudomAdpJ6Z1lUSgA/NjSSjIdVZGpBNTWYjYmtm5N9dnAAY2B3dXeBJiQfAwAAQjs5t6+ghYB+AF1baXd2fCgpKRQREFlVVLWtoX57d9pxcAJQsdrMAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2013.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AHJXRkofDlUiD3Y9E3pAFH5BFX5BFQBBJxtVLhGCRha6cifIgC3FgS3BeSoAVDsuqoJksW8my38t5Jc56p1B551DAL6okPvdybuHTrl1KNeQOduPPN2SPQCuk3m7kUqKaDabe1ikfVzLm23XnWkAondYg2U8zbJf2cFiurpiXU00clxRAMiTbbaLYf/tffeBM/+rSLGXUXNgTgC5j3a3j2f/8J//x4P/25L/4HOGXD4A0LWoY1hMo4FW9cmR7caNm3dGtYtwAMGjk1BHRQIAABsUEBcJBWFOQPDQtz+GZhzWR83NAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2014.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AKefm6efmZqTjYeBfXJxbWtmY11ZWACUkYydl46Ph32FfnKCbVxwYFWGdmYAc1I8hW9Sjm9WyrGG6tGvp5+aXDgaAD4bAGBAAUsYA3xINJ6NeGJaYzgDBgAtIBkWAABBIBZMHRiXbVjLi1JTHw8AmlZMmWlbwq+XxqGI/vbc//+52826AIxgP1AqAINvXYJ5d49xa3hcXJadpgCVPkN9OxGMbjkmJiAwMDhlXVZpY10AyJScaCMrfG1ebm1neHJlmZaRZ3SAAIOKhpyjoGNtd15fWnNyZYeOjbKulYgiW8IjxoXMAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2015.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ALmZhKRoOlM2KbaDXf/QhP7KhrGbgQCtdVYtFw88HRFGNSmnlGC+r5DHjGAA/YAuvGMoXV9d2tzVo4h3OSoqXVVXAP/618+Zc3FlWdLIta2CaFE3JS0xOQDj1r2tjXBkTDUNAAB1OBl6ORVnKxMAmm9Pv4VR5bJv3sKR3opbmWNKYkg3ALqhbnlqH6RoM/KhYKVoSs6lj6qjkQDEg2GudjuqXCrMXSKuYTWUaVeTdmMAvWQ62mkp2GorrlYmRy4hVjEjQAYDAHA/J3s8F2s6HUosH29BK4hPNnVBKZw5XH9WP7gTAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2016.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AEsYAE0WAFQXAE0XADAAAEwxJQwAAwBQHAChVgC0axnKnGLKo1nXqiu/nFYAiVgjym0M5H4W2JA4//GT7rYp7bk2AJNkNaBRAO2PHMiCIad7QZ5uPMadaACKWSuFTACjeTmmfkOzi0/Dm1fbuoAAhWA9il0ep39Dto5K0K9w9t60//zfAIhpUGtHGsCjcuXLo/7qyf/z2f/24ADTuaPXwKbjz7by3cTz3MTy3MXv2cUA6dG+5tC73MSt2cGs3MSt3si059K+AKaQguDItt/Itt3FtNfAreDKt+rUwcdEd6ZqGvL4AAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2017.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AGhPNls8ITUbAEIjClYsEkQlDl47IACPcliTfGmBd25MPC5GJAtXMBdZNx8ArIJN1cOl/9q5376iY1pH17OGxJFoAHtcNEkzIY1yXZaBbYBsVv/rrf/2pwB1UzpYRzw0IxpRJRNhPSeVdVngu48An35pgHBjXS0bjTses2ZHZkw+hFk/AFQ9MmMtHmo0H4NDLYZJMH1hTW1POwATAAAqAABaIQ52OB1jQS9gSz5IMyYARSEJIQEAHAAAJgcARiIUYUMymWxOAGY8IF01GmlAI2ZBJlY1H3pOM7yEX7ruRiLbGlnPAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2018.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AJ5sQnZWPDAEAGEzKHRXNlpPMHZmYgCCaEiUeVq0gGXJlH7jvp/vxZ3gtpIA26Zz7rF36Kdt1IZFtnY65MF4tq2ZAMt2O7lqKrZoI7t1QaViO6VsPs6RVAB9QjHChFLtokvjpk35umyvaDjceTMAo2MwynAvrWUllJU5m1sdiE0kp2Y5AIhFGqdVH35AFMiRO//GVb2bXVw3LQCYVibQiUHytWD/94D/43DGpGSgaEoAlGZG5siPf2NAMCEOUCYHn1Yb/6hbAKyDcN6ylFEqGBQBAIJFG6dEIN1ZMOiFY50LUYtQAAAAAElFTkSuQmCC",
+    "width": 3024,
+    "height": 4032
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2019.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ADE2N2RlYr2/vurq6uzy8cLHx/j2+AClrq6jqadjZmarrK61tbTn6eP99uMA/P397/Hvubu8vsK2iI96pa2TcIJUAIGCgpybl8DCsllqPFRoNGJyQTBGIQBQX2KGko1YXUgACgAXJQAbKwAsQRgAbZedRZShTo+aMVtaFh4ODRQAFiUAAHh9fgAZHx1GTSg4PRcWEyUlGG12TgCHiIkmIBsUEA0nJB96eHGysKijoJsAiouNS0pGnZuSpaOcxcS8l5SNamhpAImIiJaTir6+uLm2rpOQiGBeYHl4eWnLZFYC715+AAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2020.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ALfI1tfl8uLv/Njl89zq+a24yGRsdgDH0t7S3enU4O3f7fjw//+ruMFOVl8A3OnxytLY1eDr0t3my9Tbm56fcnJ3AK+yraejj7m8uVVbYjs7PE5MTG9sawB+fHFTUEkpKCdFRUJeXVdFRkRKSkgAKyssLyssNzUwSEc9MjIpMS4rV1dTACwqJCgnIAcDAC8tJz4/PjZCWGNiXABfX1pXVlA4NTRBOzNMSEgiLEFHSEYAeXx6XV5dWVpYSktKS0xLa21pV1hXAEhKSzc5OTo8PDo7PDU2NlVWVklJSUuFXPR9UC8sAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2021.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AMjW3vf+/+31+9rn88zf7sze7rnI2gBGVliwvsPi8//T5vPD1+fI3e2ywtMAJzI0RVdWlJ2jqLfHobTAs8bYtcjcACMtJCo7OzNLYkNRYYmRlKW2wp2wvQAdKR0gKCAsOUsLNlk9Tl1/hol2hpQAABQLFB8XLy4mM0JWFTlTIy8mcX2HABkiDiIjFyQZHB8eIzAwNDs5Mk5RTQAQGQIkJw4jGQofGw4nGw4sLCI1MyoAAAkANTokSUU/XVdPgn53jIiBmpWQAD1IK1RVTFNQToB+eaSim5qYkoaEf3nQWEe9yMxnAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2022.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AMLHwoycr8DX8dHn+tbr+97w/0JIUwDT1cxJUllEWG7N5frd8P7q9/9RW2UA1dfQjJeeTWh9k5KUys/W7/7/YmxzANvd1ZGcn1ZtgFZOSoZ3c9js+FNRUwC1tap6gX9RUlRCKDIwLC2LkpUpISQAlJSBdnp6O0A+Oh4hMxoRTE1GBAIBAIOKemdwbV1jWW9WSkw3LTw8ORgYGwA4QDpYWUhyZFRgWk5MTk44OztDRUUAbmIueHFgZFdQY2NgcnNtdXZwbW5qAJKNeImJf4aHgpCSjI2Oi46PjJOUj1c3ZRTFZm+mAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2023.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ACoaKl5DWnpofs7H0e///+7G0sWnrwA9OjcCAg4jGiM/Mj5cS1x6bHuqnKoAp5uLaU87OyYlRDo6Qzo7HxoiYl9lALe9wGRUSWxWKldPQiMEAXRKNnFcTQCGfXpbTUllVip5aWApFhOSUzRoUkQAHwAAKhYGiYNqd29lLBcVcTEOimdHAFtANzsjGqCZh4yLe3FUSXw5F45xUgCmr0dNTSJJTlSxn5fZpY/Fim7JsJsAg5UZYGMbXUlEXE9Bx6qU7d3Lzs3GAFdELiYbAFVUJ5GRddXSxbOzrJ+em4MbVDEHag8EAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2024.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AH1VOZBgOcSFUdOUYuakc/Kwgv2+kwCDXUt/UC5XMxZSMRhQLhdPLBdfOiQAcltRe08tMR0VHAwAFgAAGgAAVzgiAHhjVMJ5SlFCK0w/LE09KD01IcCMZQB/Z1nkvZt3dGB4aFaBcWN1Ykz/3sUAiWRIi4Zpp6qbindtjXpwu6up9e3oAKKiVpCHNpufT5F+X6OIgdDWr5qhagDHm3qkjmO3lHr/2Lz/9+S+so2pb1UA5l5f0pSQ/4+R//jt7ure1n2F0EFHANuvqtfIxN/Uz93c1+Pi3POvrdufoPMabCO2rHeJAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2025.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AImOlJ6kqt7q8/P//77J1KOqspufowCgpKN2fIGtub7c7vysu8aYn6WXmp0AZ2tmVVZaKjwwrL29sbzFi5GUl5iZABgXFzY0NDE/M4J4aJmLg4mNkYKDggAFAwEwJSg9RjiBclWWi3p9hIFWVlIALysnTD88OT0zUE86WWBFbnZkXFtWAGReWVdCP1ZUUHx8dmhuXW5zZU1KRgBQTU1ZSUZwbmmmpp6urKWOjYZaVkwASEhIPkA9cXFqjY2HpKObnJuRm5OCADEuKlJRTG1taHp6dIaGgI2MhomGf0XpYL2gojTmAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2026.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/ABEqKVJjY+75//L+/97o8nBwd5WamQABGRhEVlXt9v/u//+9w8lQUFacnKEABBkUHzMrlpiUx7atlYZ8mpmbsK6uAA0eDQ0cEWhzR7KWd6eSjHuAgGVtUAADFwAAFgApPRZ5cVduWlYyOyU4ThgAAAcAAA8AAAcAkpCEjYt5UE5HGyYhAC0sJhELBSwpJ6Shm763rXl1aio4JwBbSUkdFg9xbGamo5umo5t8eW5VV0sATD4+V1ROjYqDoaCZpaednZqRcG1gADw7Nnh2cJqZk6WnnqenoLCtppKSgFDGWMwe8yxdAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2027.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AKOtuZimsM3c5vL//+by+8DL1s3V3gBfbXEgMDM9Sk9yf4ORlJi5wsvd6PEAVWRhrbCuwMC9NUFEOUdFTVlZlZ+lAF9gXo+Pj7u+wpWbnr3AvX+DgVJZVwAGDRYAAwoOEBIjJSNHRkdeXGGFhIUAU1NORDs1MzAqHhwdKjMRNUEOVFhFAGhnW2hbRTAtKSglI1RbNIKWImBwJQBTWDh+g2FGQTw0JyBqYDykqVN1ejwAd3Jaf3RknZOCmZSFoJqJpqaXraymAMbEub29tMLDu8TFvsPFvsLDvcDAub/yYuATQvy/AAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2028.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AIhjS4pjTH1VP3dSPX1WQo5jSoVcRwADAwIbHR1LSUphYGAsLCsJCgsTEhEAHxkUPjg3paSeua6tY1lbQTw8Ni0rADMrG0g8NJmUh9jRuYiHX0tCPDQsJgA+OilKQj2MhXT8/9t3gTcwJhw2KyUAW1tccXBu2NjR9vbuaGNeExMaKiUiACEYGG5ubd7f3dbV1ra0qicmJCwpJwA6My9tbGabmJiZlp1qaWgmIh4jGhkAWlJGgXlxiIaEdXR0TEpHNS4qMCciAIuCcoyGf4GBenl4dmRiXEE8Nzs1LZMOTL5Po1ftAAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
+  },
+  "https://images.jaeungkim.com/blog/personal/2026-sept-osaka/2026-sept-osaka%20-%2029.jpeg": {
+    "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAIAAAD3rtNaAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA50lEQVQImQHcACP/AJGTmoODhZOSka+tra2vsbK0sLy9uQCKi4qysK2/ua+6saLHuKjNxLa0rqcApJ2UtZ+J2riUsJFywqGCu6OKnY5/ALmtlqOSbolxW5h/ZXl7aYeXlOH//wBxb1peZkhVTjhaUURrbFaesKaUubEAFhUAIhsNIhULDgAAOzIrmcvxZ4qYAC4WB0EgFi4TDblUHGY9F5a+4Hd/iwBeOB9xWE4jEA2nURnWm1etjnBXPzwATjMaGhcYTEQ5eF45soxVZUIoVzovACAZFjcsJnhfP7mSW4NWKFItG2A5Jku2XVddyDV9AAAAAElFTkSuQmCC",
+    "width": 4284,
+    "height": 5712
   }
 }
