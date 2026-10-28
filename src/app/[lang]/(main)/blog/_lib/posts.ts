@@ -16,6 +16,13 @@ type Frontmatter = { title: string; date: string; summary: string };
 
 async function readPost(slug: string) {
   const { data, content } = matter(await readPostSource(slug));
+  const date = new Date(data.date);
+  if (
+    Number.isNaN(date.getTime()) ||
+    date.toISOString().slice(0, 10) !== data.date
+  ) {
+    throw new Error(`${slug}.mdx: date must be a valid, quoted YYYY-MM-DD`);
+  }
   const url = extractImageUrls(content)[0];
   const size = url ? placeholderMap[url] : undefined;
   return {

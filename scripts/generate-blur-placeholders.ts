@@ -55,6 +55,7 @@ async function generatePlaceholders() {
       console.log(`생성: ${url}`);
     } catch (error) {
       console.error(`실패: ${url}`, error);
+      process.exitCode = 1;
     }
   }
 
