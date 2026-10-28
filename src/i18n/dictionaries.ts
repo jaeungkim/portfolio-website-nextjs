@@ -24,5 +24,6 @@ export async function localeAlternates(path: string = "") {
       ...Object.fromEntries(LOCALES.map((code) => [code, `/${code}${path}`])),
       "x-default": `/${DEFAULT_LOCALE}${path}`,
     },
+    types: { "application/rss+xml": "/rss.xml" },
   };
 }
