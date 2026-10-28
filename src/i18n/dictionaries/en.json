@@ -41,10 +41,9 @@
     "role": "Web Engineer",
     "photoAlt": "Jaeung (Jae) Kim",
     "intro": [
-      "I am a software engineer with five years of experience building web products end to end, from interface to API and infrastructure. I currently work on an automotive R&D platform that models data scattered across departments as an ontology and visualizes it as a knowledge graph, so it can be searched in plain language and traced to its source.",
-      "In complex domains, interface design decides the outcome. I start by observing how users actually respond and refine the UI/UX from there. A good screen makes the next step obvious without explanation.",
-      "I hold my code to the same standard: consistent structures the next engineer can use immediately, with the reasoning documented. On my current project I own the web application architecture and work with designers and backend engineers from planning onward to shape the product. Translating between design intent and implementation is the work I do best.",
-      "I adopt new tools such as AI coding agents quickly, but adoption is not the goal. I focus on designing how people and AI work together and making that a shared team standard. A team that works well with these tools matters more than one person who does."
+      "Hi, I'm Jaeung Kim, a web developer with five years of experience. I'm currently building an AI ontology platform for automotive R&D, where users ask questions in natural language and trace each answer to its source.",
+      "As a frontend developer, I work with designers and backend engineers from planning onward, turning complex requirements into something simple everyone can align on.",
+      "I write code that teammates and AI tools can read at a glance, and set up AI workflows the whole team can use."
     ],
     "sections": {
       "about": "About",
