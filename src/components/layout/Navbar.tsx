@@ -17,7 +17,7 @@ export async function Navbar() {
               src="/icons/jaekim.svg"
               alt={dict.site.name}
               width={100}
-              height={30}
+              height={22}
               className="block dark:invert"
             />
           </LocaleLink>
