@@ -59,7 +59,7 @@ export default async function PostPage({
   return (
     <article className="prose dark:prose-invert mx-auto max-w-3xl">
       <header className="mb-8">
-        <h1 className="text-4xl font-bold mb-4 text-foreground">
+        <h1 lang="en" className="text-4xl font-bold mb-4 text-foreground">
           {postData.title}
         </h1>
         <time
@@ -69,7 +69,7 @@ export default async function PostPage({
           {await formatDate(postData.date)}
         </time>
       </header>
-      <div className="prose-lg">
+      <div lang="en" className="prose-lg">
         <Post />
       </div>
     </article>

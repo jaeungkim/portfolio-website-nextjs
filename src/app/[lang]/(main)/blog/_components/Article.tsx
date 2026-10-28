@@ -25,7 +25,9 @@ export async function Article({ post }: ArticleProps) {
           className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-muted opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
         />
 
-        <h2 className="relative z-10 text-base font-semibold">{post.title}</h2>
+        <h2 lang="en" className="relative z-10 text-base font-semibold">
+          {post.title}
+        </h2>
 
         <time
           className="relative z-10 order-first mb-3 flex items-center text-sm text-muted-foreground md:hidden pl-3.5"
@@ -37,7 +39,10 @@ export async function Article({ post }: ArticleProps) {
           {date}
         </time>
 
-        <p className="relative z-10 mt-2 text-sm text-muted-foreground">
+        <p
+          lang="en"
+          className="relative z-10 mt-2 text-sm text-muted-foreground"
+        >
           {post.summary}
         </p>
 
