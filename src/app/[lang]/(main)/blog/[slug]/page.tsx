@@ -12,6 +12,8 @@ import {
   localeAlternates,
 } from "@/i18n/dictionaries";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));
