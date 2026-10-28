@@ -29,7 +29,8 @@ function BlurImage({
         alt={alt}
         width={entry.width}
         height={entry.height}
-        preload={priority}
+        loading={priority ? "eager" : undefined}
+        fetchPriority={priority ? "high" : undefined}
         sizes="(max-width: 512px) 100vw, 512px"
         className="block h-auto w-full"
         placeholder="blur"
