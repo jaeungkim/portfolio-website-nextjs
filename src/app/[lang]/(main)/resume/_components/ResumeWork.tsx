@@ -34,8 +34,6 @@ const HYUNDAI_URL =
   "https://jaeungkim.notion.site/R-D-35fc3276c40c81d7920bc177b5130845";
 const DIGITAL_TWIN_URL =
   "https://jaeungkim.notion.site/354c3276c40c800eaf1df6aa708079cc";
-const NAXIS_URL =
-  "https://jaeungkim.notion.site/NAXiS-356c3276c40c80b6bd65c6fada81f741";
 const PMIS_URL =
   "https://jaeungkim.notion.site/NDXPRO-PMIS-1d4c3276c40c809ca6dad49c9ce5f1b4";
 const NDX_CLOUD_URL =
@@ -106,14 +104,7 @@ export async function ResumeWork() {
             href={HYUNDAI_URL}
             description={hyundai.description}
           >
-            <WorkProjectPart
-              title={hyundai.sdkHeading}
-              bullets={hyundai.sdkBullets}
-            />
-            <WorkProjectPart
-              title={hyundai.llmHeading}
-              bullets={hyundai.llmBullets}
-            />
+            <ResumeBullets items={hyundai.bullets} />
           </WorkProject>
 
           <WorkProject
@@ -124,26 +115,17 @@ export async function ResumeWork() {
             <ResumeBullets items={digitalTwin.bullets} />
           </WorkProject>
 
-          <WorkProject
-            title={products.title}
-            description={products.description}
-          >
-            <WorkProjectPart
-              title="NAXiS"
-              href={NAXIS_URL}
-              note={products.naxisNote}
-              bullets={products.naxisBullets}
-            />
+          <WorkProject title={products.title}>
             <WorkProjectPart
               title="PMIS"
               href={PMIS_URL}
-              note={products.pmisNote}
+              description={products.pmisDescription}
               bullets={products.pmisBullets}
             />
             <WorkProjectPart
               title="NDX Cloud"
               href={NDX_CLOUD_URL}
-              note={products.ndxCloudNote}
+              description={products.ndxCloudDescription}
               bullets={products.ndxCloudBullets}
             />
           </WorkProject>
@@ -192,19 +174,24 @@ function WorkProject({ title, href, description, children }: WorkProjectProps) {
 interface WorkProjectPartProps {
   title: string;
   href?: string;
-  note?: string;
+  description?: string;
   bullets: readonly string[];
 }
 
-function WorkProjectPart({ title, href, note, bullets }: WorkProjectPartProps) {
+function WorkProjectPart({
+  title,
+  href,
+  description,
+  bullets,
+}: WorkProjectPartProps) {
   return (
     <div className="space-y-1.5">
-      <h5 className="flex flex-wrap items-baseline gap-x-1.5 text-sm font-semibold">
+      <h5 className="text-sm font-semibold">
         {href ? <ExternalLink href={href}>{title}</ExternalLink> : title}
-        {note && (
-          <span className="font-normal text-muted-foreground">{note}</span>
-        )}
       </h5>
+      {description && (
+        <p className="text-sm text-muted-foreground">{description}</p>
+      )}
       <ResumeBullets items={bullets} />
     </div>
   );

@@ -18,9 +18,9 @@
     "metaDescription": "Jaeung Kim, a web engineer in Seoul.",
     "greeting": "Hi, I'm Jae Kim.",
     "paragraphs": [
-      "I write software for a living. Outside of work I'm usually playing basketball, out with friends, or planning my next trip, with Olivia Dean playing somewhere in the background.",
-      "At work I sweat the small stuff, probably more than I need to. Once I find a bug, I can't let it go until it's fixed.",
-      "This site ends up being a bit of both. I use it to try out whatever I'm curious about, and to hold on to photos from my trips."
+      "I'm a web engineer based in Seoul. When I'm not working, I'm usually on a basketball court, out with friends, or planning my next trip, with Olivia Dean on in the background.",
+      "At work I sweat the small stuff, probably more than I should. Once I spot a bug, I can't let it go until it's fixed.",
+      "This site is a bit of both: a place to try out whatever I'm curious about, and to keep photos from my trips."
     ]
   },
   "blog": {
@@ -63,58 +63,50 @@
         "company": "E8IGHT",
         "location": "Seoul, South Korea",
         "role": "Senior Software Engineer | Platform Development Team",
-        "platformHeading": "Web platform and developer tooling",
+        "platformHeading": "Frontend platform and AI Native engineering",
         "platformBullets": [
-          "Unified the shared UI package, Storybook design system, lint and i18n templates, and branching strategy into one monorepo standard that lets new products skip setup",
-          "Migrated the legacy CRA build to Vite and pnpm workspaces and added a Jenkins/Docker pipeline, cutting CI builds 80% (10 minutes to under 2)",
-          "Self-hosted Sentry to centralize error logs across products and alert on incidents",
-          "Enforced lint, type checks, and commit conventions at commit time, holding engineers and coding agents to the same standard",
-          "Built the team's coding agent environment (15 custom commands and workflows, role-specific subagents, skills), now the web team standard and spreading to the backend team"
+          "Consolidated every product's frontend into one monorepo with shared config and dependencies, so new products start on domain work from day one",
+          "Replaced the legacy CRA build with Vite and reworked the CI pipeline, cutting build time 80% (from 10 minutes to about 2)",
+          "Stood up Sentry on internal servers to centralize frontend error monitoring and alerting across products",
+          "Architected a design system on design tokens and shared components, and rebuilt the handoff from designers to code as an AI Native workflow",
+          "Drove the team's shift to AI Native development, designing a frontend environment around subagents scoped by role, shared rules, and skills",
+          "Introduced architecture guardrails and automated verification loops for coding agents, turning recurring failure patterns into enforceable rules"
         ],
         "projects": {
           "hyundai": {
             "title": "Hyundai Motor R&D data integration platform",
-            "description": "Internal platform that integrates Hyundai Motor R&D data into an ontology-based knowledge graph. Led the web application architecture and built the graph visualization SDK and LLM chat.",
-            "sdkHeading": "Knowledge graph visualization SDK",
-            "sdkBullets": [
-              "Architected the graph visualization SDK shared by all GraphRAG products: rendering and d3-force layout in a React-free core behind one imperative handle, so internal rewrites never break call sites",
-              "Capped nodes per screen around neighborhood-based exploration, rejecting WebGL bulk renderers such as sigma.js after evaluation. Rendered directly to Canvas 2D with idle pausing and bitmap label caching to keep interaction responsive",
-              "Kept fast-changing state outside React and propagated only real data changes, eliminating needless re-renders in large lists"
-            ],
-            "llmHeading": "LLM chat integrated with the knowledge graph",
-            "llmBullets": [
-              "Rendered each GraphRAG answer's supporting subgraph on an adjacent canvas, so users trace sources directly on the graph",
-              "Split the WebSocket stream into text, reasoning steps, and graph evidence, and buffered display through a per-frame token queue to minimize re-renders",
-              "Paced token output with catch-up acceleration and instant snap on stop or error, rendering only completed markdown segments so partial code blocks and formulas never break the layout"
+            "description": "Knowledge graph platform that unifies R&D documents from every department on an ontology. Owned the frontend architecture from PoC through production rollout.",
+            "bullets": [
+              "Led frontend delivery of the core product: ontology data mapping, graph visualization, and the GraphRAG streaming UI",
+              "Architected a graph visualization SDK shared across the company's GraphRAG products, with a core independent of any framework and a thin React adapter so each product plugs in its own data source",
+              "Designed an exploration model that seeds the graph with its most connected nodes and expands relations as users need them, keeping graphs of thousands of nodes readable",
+              "Evaluated SVG, WebGL, Sigma.js, and Cytoscape.js, then built a custom d3-force and Canvas 2D engine that preserves layout on expansion so users keep their context",
+              "Decoupled the graph simulation from React through an imperative API and a Zustand store, eliminating React renders during animation",
+              "Owned release readiness in the client's secure network, covering service integrations, GitOps deployment on Harbor, Kubernetes, and ArgoCD, and SonarQube and Black Duck compliance"
             ]
           },
           "digitalTwin": {
             "title": "Digital Twin Federation integrated portal",
-            "description": "Government R&D program portal that brings external digital twin tools and partner deliverables into one shell. Delivered on schedule as the sole full-stack engineer, from the auth and organization model through the Next.js 15 web app and NestJS backend.",
+            "description": "Integrated portal for subproject 3 of a national digital twin program under the Ministry of Science and ICT. Designed and delivered on schedule as the sole full stack engineer on Next.js and NestJS.",
             "bullets": [
-              "Enforced authentication and authorization through global deny-by-default guards, so no endpoint ships unauthenticated",
-              "Kept tokens in HttpOnly cookies only, with refresh token rotation and reuse detection to block token theft",
-              "Gated security settings by environment variable so one deployment image serves both public HTTPS and internal HTTP"
+              "Chose a rendering strategy per page (SSG, ISR, dynamic SSR, RSC), so pages behind permissions are never cached and notices stay fresh through revalidation by tag",
+              "Architected a Next.js BFF that holds tokens in HttpOnly cookies to prevent XSS token theft, with SameSite cookies and Origin checks guarding against CSRF",
+              "Unified separate auth systems across subprojects into a single shell and embedded partner research institutes' tools through iframes, coordinating integration directly with each institute",
+              "Designed RBAC with three roles and an organization model built around institutions, along with the admin console for users, notices, and boards"
             ]
           },
           "products": {
-            "title": "Company product suite (NAXiS, PMIS, NDX Cloud, and others)",
-            "description": "Led web development for five company products.",
-            "naxisNote": "(ontology modeling tool)",
-            "naxisBullets": [
-              "Built a no-code graph editor for ontologies with the domain model (entity types, relations, serialization) decoupled from React Flow, so other products adopted it unchanged",
-              "Collapsed hundred-edge hubs into relation group nodes, merged identical relations into one edge, and relaid out only the affected region on expand and collapse"
-            ],
-            "pmisNote": "(project schedule and resource management)",
+            "title": "Company products (PMIS, NDX Cloud, and more)",
+            "pmisDescription": "Solution for managing project schedules, resources, and drawings.",
             "pmisBullets": [
-              "Rebuilt a tree of thousands of rows with lazy loading and virtual scrolling, cutting initial load 80% (12 seconds to 2)",
-              "Parallelized drawing uploads (19 files from 4 minutes to 20 seconds) with optimistic UI and rollback for instant feedback"
+              "Redesigned a tree of thousands of rows around lazy loading and virtual scrolling, cutting initial load from 12 seconds to 2 (about 80%)",
+              "Moved drawing uploads from serial to parallel with optimistic UI and rollback on failure, cutting 19 uploads from 4 minutes to 20 seconds"
             ],
-            "ndxCloudNote": "(large-scale image cloud platform)",
+            "ndxCloudDescription": "Cloud platform for managing large image datasets.",
             "ndxCloudBullets": [
-              "Unified four permission tiers (organization, project, site, dataset) into one RBAC matrix, enforced consistently down to the screen",
-              "Limited EXIF extraction for 4,000 images to the JPEG APP1 marker, cutting memory from 20 GB to 800 MB",
-              "Moved uploads to direct browser-to-S3 with presigned URLs, halving upload time (20 minutes to 10) and cutting server load 70%"
+              "Abstracted four levels of permissions (organization, project, site, dataset) into a single RBAC matrix, unifying access control across every screen",
+              "Optimized EXIF extraction to parse only the JPEG APP1 marker, cutting memory for 4,000 images from 20 GB to 800 MB",
+              "Designed direct uploads from the browser to S3 with presigned URLs, halving upload time from 20 minutes to 10 and cutting server load about 70%"
             ]
           }
         }
@@ -127,7 +119,7 @@
         "bullets": [
           "First and sole engineer at a clothing marketplace startup, owning stack selection, application architecture, deployment, and operations",
           "Built a marketplace over multiple Shopify seller stores: products and orders stayed in each store, the platform owned discovery and purchase",
-          "Layered Instagram and TikTok Login Kit on Supabase Auth as the single identity provider, so social sign-in shares one session model",
+          "Layered Instagram and TikTok Login Kit on Supabase Auth as the single identity provider, so social login shares one session model",
           "Chose Shopify Payments over a custom gateway, keeping card data out of the platform while improving cart abandonment and transaction success"
         ]
       },
@@ -139,8 +131,8 @@
         "bullets": [
           "Owned the full stack at an EMR (electronic medical records) SaaS startup: marketing site, internal admin portal, backend API, and AWS infrastructure",
           "Designed and shipped the WebGL (Three.js) 3D marketing site solo, from concept through deployment",
-          "Built scroll-driven and page transition interactions with GSAP and Framer Motion",
-          "Designed and ran the HR and attendance admin portal for non-technical executives, with screens that needed no training",
+          "Built scroll and page transition animations with GSAP and Framer Motion",
+          "Designed and ran the HR and attendance admin portal for executives without a technical background, with screens that needed no training",
           "Built the Express backend API, MongoDB schema, AWS infrastructure, and CI/CD pipeline"
         ]
       },
@@ -152,18 +144,17 @@
         "bullets": [
           "Designed the React component architecture for a cryptocurrency exchange, separating shared components from screen code so new screens composed from existing pieces",
           "Designed the credit card integration and built the crypto purchase flow from card authorization to asset credit",
-          "Fixed blank social previews for SPA links with Lambda@Edge, injecting per-route Open Graph tags at the CloudFront edge without changing how the app renders",
+          "Fixed blank social previews for SPA links with Lambda@Edge, injecting Open Graph tags for each route at the CloudFront edge without changing how the app renders",
           "Partnered with designers in Figma to reconcile design intent with implementation, component by component"
         ]
       }
     },
     "projects": {
       "gantt": [
-        "Published an open source Gantt chart for React 18 and 19 on npm as a fully controlled component: each committed edit emits the complete next task list through one callback",
-        "Isolated calendar, task tree, and timeline geometry as pure modules tested without React. Drag, keyboard, and panel edits share one commit path, so working-day snapping behaves the same from every input",
-        "Virtualized rows and time cells across five scales from day to year, with a bundle that depends only on React and stays under 40 kB gzipped",
-        "Shipped without a toolbar, with scale driven through an imperative handle and theming through CSS variables",
-        "Added full keyboard support for moving, resizing, and reordering tasks, with edits announced to screen readers, plus English and Korean docs and a live playground"
+        "Built and published an open source Gantt chart library for React 18 and 19 on npm, with no runtime dependencies beyond React and under 40 kB gzipped",
+        "Separated the chart's internal state from the consuming app's data ownership and isolated each instance in its own Zustand store, so every chart runs independently even on the same page",
+        "Implemented virtualization on both the row and time axes, adjusting the render range to scroll direction to keep DOM nodes to a minimum",
+        "Moved the task tree, schedule math, and dependency validation into a TypeScript core independent of React, so drag edits and hierarchy moves follow the same rules"
       ]
     },
     "education": {
