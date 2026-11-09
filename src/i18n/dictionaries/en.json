@@ -75,19 +75,19 @@
         "projects": {
           "hyundai": {
             "title": "Hyundai Motor R&D data integration platform",
-            "description": "Knowledge graph platform that unifies R&D documents from every department on an ontology. Owned the frontend architecture from PoC through production rollout.",
+            "description": "Ontology knowledge graph platform for R&D data. Owned frontend architecture and development from PoC through production.",
             "bullets": [
               "Led frontend delivery of the core product: ontology data mapping, graph visualization, and the GraphRAG streaming UI",
               "Architected a graph visualization SDK shared across the company's GraphRAG products, with a core independent of any framework and a thin React adapter so each product plugs in its own data source",
-              "Designed an exploration model that seeds the graph with its most connected nodes and expands relations as users need them, keeping graphs of thousands of nodes readable",
-              "Evaluated SVG, WebGL, Sigma.js, and Cytoscape.js, then built a custom d3-force and Canvas 2D engine that preserves layout on expansion so users keep their context",
+              "Evaluated Cytoscape.js and Sigma.js for drawing the whole graph at once, judged that dense graphs hide the relations users need, and moved to an exploration UX that starts from key nodes and expands only what users ask for",
+              "Kept d3-force for layout and wrote rendering and interaction directly on Canvas 2D, fitting nodes to the product and preserving layout on expansion so users keep their context",
               "Decoupled the graph simulation from React through an imperative API and a Zustand store, eliminating React renders during animation",
               "Owned release readiness in the client's secure network, covering service integrations, GitOps deployment on Harbor, Kubernetes, and ArgoCD, and SonarQube and Black Duck compliance"
             ]
           },
           "digitalTwin": {
             "title": "Digital Twin Federation integrated portal",
-            "description": "Integrated portal for subproject 3 of a national digital twin program under the Ministry of Science and ICT. Designed and delivered on schedule as the sole full stack engineer on Next.js and NestJS.",
+            "description": "Integrated portal for a national digital twin program under the Ministry of Science and ICT. Built over about two years as the sole full stack engineer on Next.js and NestJS.",
             "bullets": [
               "Chose a rendering strategy per page (SSG, ISR, dynamic SSR, RSC), so pages behind permissions are never cached and notices stay fresh through revalidation by tag",
               "Architected a Next.js BFF that holds tokens in HttpOnly cookies to prevent XSS token theft, with SameSite cookies and Origin checks guarding against CSRF",
